@@ -1,8 +1,12 @@
+import { CategoryService } from './service/category/category.service';
+import { SuiModule } from 'ng2-semantic-ui';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
+import { Configuration } from './config/configuration';
 
 
 @NgModule({
@@ -10,9 +14,11 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    SuiModule,
+    HttpModule
   ],
-  providers: [],
+  providers: [CategoryService, Configuration],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
