@@ -7,20 +7,21 @@ import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app.routing';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AppRoutingModule
+    AppComponent
   ],
   imports: [
     BrowserModule,
     SuiModule,
     HttpModule
   ],
-  providers: [CategoryService, Configuration],
+  providers: [
+    CategoryService,
+    Configuration
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

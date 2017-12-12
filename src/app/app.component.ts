@@ -1,6 +1,6 @@
-import { Category } from './model/category';
+import { Category } from './servers/model/category';
 import { Component } from '@angular/core';
-import { CategoryService } from './service/category/category.service';
+import { CategoryService } from './servers/service/category/category.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
