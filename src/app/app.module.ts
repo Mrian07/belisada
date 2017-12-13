@@ -7,11 +7,15 @@ import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
+import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.component';
+import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FullLayoutComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
