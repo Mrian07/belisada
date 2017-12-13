@@ -2,9 +2,11 @@ import { Configuration } from './servers/config/configuration';
 import { CategoryService } from './servers/service/category/category.service';
 import { SuiModule } from 'ng2-semantic-ui';
 import { BrowserModule } from '@angular/platform-browser';
+
+import { AppRoutingModule } from './app.routing';
+
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
 
 import { AppComponent } from './app.component';
 
@@ -16,7 +18,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     SuiModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [
     CategoryService,
