@@ -7,11 +7,13 @@ import { HttpModule } from '@angular/http';
 
 
 import { AppComponent } from './app.component';
+import { RegisterComponenet } from './clients/pages/register/register.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegisterComponenet
   ],
   imports: [
     BrowserModule,

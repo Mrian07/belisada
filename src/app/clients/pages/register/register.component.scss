@@ -1,0 +1,42 @@
+.hook-bottom-left{
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    width: 600px;
+}
+h1{
+    font-size: 48px;
+    font-family: "Lato";
+    color: rgb(246, 30, 37);
+    font-style: italic;
+    line-height: 1.2;
+    margin-top: 20px;
+text-align: center
+}
+.xxxx{
+    background-color: red
+}
+.toi{
+    color: #ffffff;
+    background: #f63940;
+    width: 200px;
+}
+.socmed{
+    width: 220px;
+}
+.toi:hover{
+    color: #ffffff;
+    background: #f63940;
+}
+
+.top-image{
+   margin-top: 70px;
+   margin-left: 90px;
+}
+@media only screen and (min-width: 1200px){
+    .ui.container {
+        width: 1127px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
