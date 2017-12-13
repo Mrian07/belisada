@@ -12,6 +12,7 @@ import { RegisterComponenet } from './clients/pages/register/register.component'
 
 import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.component';
 import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
+import { LoginComponent } from './clients/pages/login/login.component';
 
 
 
@@ -20,8 +21,8 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
     AppComponent,
     RegisterComponenet,
     FullLayoutComponent,
-    SidebarComponent
-
+    SidebarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
