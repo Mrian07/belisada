@@ -1,3 +1,4 @@
+import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.component';
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'modal-popup',
+        component: ModalPopupComponent,
       }
     ]
   }

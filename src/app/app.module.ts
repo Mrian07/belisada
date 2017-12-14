@@ -1,3 +1,4 @@
+import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -23,6 +24,7 @@ import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.c
 import { HeaderComponent } from './clients/components/header/header.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +37,7 @@ import { FooterComponent } from './clients/components/footer/footer.component';
     HeaderComponent,
     FooterComponent,
     ForgotPasswordComponent,
+    ModalPopupComponent
   ],
   imports: [
     BrowserModule,
