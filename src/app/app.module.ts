@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,7 +27,8 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
     AuthenticationLayoutComponent,
     LoginComponent,
     RegistrationComponent,
-    SidebarComponent
+    SidebarComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
