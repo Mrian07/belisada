@@ -18,6 +18,9 @@ import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.c
 import { LoginComponent } from './clients/pages/login/login.component';
 import { RegistrationComponent } from './clients/pages/registration/registration.component';
 import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
+import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
+import { HeaderComponent } from './clients/components/header/header.component';
+import { FooterComponent } from './clients/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
     AuthenticationLayoutComponent,
     LoginComponent,
     RegistrationComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
