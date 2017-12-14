@@ -1,30 +1,32 @@
-import { Configuration } from './servers/config/configuration';
-import { CategoryService } from './servers/service/category/category.service';
-import { SuiModule } from 'ng2-semantic-ui';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app.routing';
-
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
+// semantic-ui module
+import { SuiModule } from 'ng2-semantic-ui';
+
+// Component
 import { AppComponent } from './app.component';
 
-import { RegisterComponenet } from './clients/pages/register/register.component';
+// Routing Module
+import { AppRoutingModule } from './app.routing';
 
+// Layouts
+import { AuthenticationLayoutComponent } from './clients/layouts/authentication-layout/authentication-layout.component';
 import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.component';
-import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 import { LoginComponent } from './clients/pages/login/login.component';
-
-
+import { RegistrationComponent } from './clients/pages/registration/registration.component';
+import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponenet,
     FullLayoutComponent,
-    SidebarComponent,
-    LoginComponent
+    AuthenticationLayoutComponent,
+    LoginComponent,
+    RegistrationComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +34,10 @@ import { LoginComponent } from './clients/pages/login/login.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [
-    CategoryService,
-    Configuration
-  ],
+  providers: [{
+    provide: LocationStrategy,
+    useClass: HashLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

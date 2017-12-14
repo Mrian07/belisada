@@ -4,3 +4,42 @@ body{
     font-family: 'Lato', sans-serif;
 
 }
+
+/**
+*   @author Achmad Ricky Budianto
+*   CSS global tools
+**/
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-justify {
+    text-align: justify;
+}
+.gap-between-elements {
+    margin: 0 0 1em;
+}
+/** ----------------------- **/
+
+/**
+*   @author Wahyu
+*   Used by form inside authentication layout
+**/
+.auth-btn-submit {
+    color: #ffffff;
+    background: #3cb878;
+    width: 200px;
+}
+.auth-btn-submit:hover {
+    color: #ffffff;
+    background: #3cb878;
+}
+.button.socmed {
+    width: 220px;
+}
+/** ----------------------- **/

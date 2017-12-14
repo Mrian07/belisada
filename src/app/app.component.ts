@@ -1,23 +1,13 @@
-import { Category } from './servers/model/category';
 import { Component } from '@angular/core';
-import { CategoryService } from './servers/service/category/category.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: '<router-outlet></router-outlet>',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
 
-  categories: Category[];
-
-  constructor(private _categoryService: CategoryService) { }
-
   ngOnInit(): void {
-    this._categoryService.getAll().subscribe( data => {
-      this.categories = data;
-      console.log('this.categories', this.categories);
-    });
   }
 }
