@@ -4,6 +4,7 @@ import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.c
 import { AuthenticationLayoutComponent } from './clients/layouts/authentication-layout/authentication-layout.component';
 import { LoginComponent } from './clients/pages/login/login.component';
 import { RegistrationComponent } from './clients/pages/registration/registration.component';
+import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 
 const routes: Routes = [
   {
@@ -31,19 +32,19 @@ const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path: 'seller',
-  //   component: FullLayoutComponent,
-  //   data: {
-  //     title: 'Seller'
-  //   },
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: './pages/pages.module#PagesModule',
-  //     }
-  //   ]
-  // }
+  {
+    path: 'seller',
+    component: FullLayoutComponent,
+    data: {
+      title: 'Seller'
+    },
+    children: [
+      {
+        path: 'dashboard',
+        component: SidebarComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
