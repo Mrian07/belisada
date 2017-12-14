@@ -6,6 +6,7 @@ import { LoginComponent } from './clients/pages/login/login.component';
 import { RegistrationComponent } from './clients/pages/registration/registration.component';
 import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,13 @@ const routes: Routes = [
         component: LoginComponent,
         data: {
           title: 'Login'
+        }
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+        data: {
+          title: 'Forgot Password'
         }
       },
       {
