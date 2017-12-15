@@ -9,6 +9,7 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { ProductComponent } from './clients/pages/seller/product/product.component';
+import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
 
 const routes: Routes = [
   {
