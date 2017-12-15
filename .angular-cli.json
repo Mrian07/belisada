@@ -19,11 +19,9 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss",
-        "../node_modules/semantic-ui-calendar/dist/calendar.min.css"
+        "styles.scss"
       ],
       "scripts": [
-        "../node_modules/semantic-ui-calendar/dist/calendar.min.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
