@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../../../servers/service/category/category.service';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +25,7 @@ export class DashboardComponent implements OnInit {
   return = [];
   productList = [];
 
-  constructor() {
+  constructor(private categoryService: CategoryService, private route: ActivatedRoute, private router: Router ) {
   }
 
   ngOnInit() {
@@ -56,10 +58,22 @@ export class DashboardComponent implements OnInit {
           'date': '2017-12-20'
         }
       ];
+    this.getCategory()
     }
 
     search() {
       console.log(this.orderText);
     }
+
+    getCategory() {
+      this.categoryService.getAll().subscribe(data => {
+        console.log(data);
+      });
+    }
+
+    addProducts() {
+      this.router.navigate(['seller/add-products']);
+    }
+
 
   }

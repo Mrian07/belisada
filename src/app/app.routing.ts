@@ -8,6 +8,7 @@ import { RegistrationComponent } from './clients/pages/registration/registration
 import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
+import { AddProductsComponent } from './clients/pages/seller/add-products/add-products.component'
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'modal-popup',
         component: ModalPopupComponent,
+      },
+      {
+        path: 'add-products',
+        component: AddProductsComponent,
       }
     ]
   }

@@ -25,6 +25,10 @@ import { HeaderComponent } from './clients/components/header/header.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http/src/http_module';
+import { CategoryService } from './servers/service/category/category.service';
+import { Configuration } from './servers/config/configuration';
+import { LoginService } from './servers/service/login/login.service';
+import { AddProductsComponent } from './clients/pages/seller/add-products/add-products.component';
 
 
 @NgModule({
@@ -39,7 +43,8 @@ import { JsonpModule } from '@angular/http/src/http_module';
     HeaderComponent,
     FooterComponent,
     ForgotPasswordComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    AddProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,8 +55,12 @@ import { JsonpModule } from '@angular/http/src/http_module';
   ],
   providers: [{
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+    useClass: HashLocationStrategy,
+  },
+    CategoryService,
+    LoginService,
+    Configuration
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
