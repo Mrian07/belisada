@@ -1,9 +1,15 @@
+import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.component';
 import { AuthenticationLayoutComponent } from './clients/layouts/authentication-layout/authentication-layout.component';
 import { LoginComponent } from './clients/pages/login/login.component';
 import { RegistrationComponent } from './clients/pages/registration/registration.component';
+import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
+import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
+import { ProductComponent } from './clients/pages/seller/product/product.component';
+import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
 
 const routes: Routes = [
   {
@@ -23,6 +29,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+        data: {
+          title: 'Forgot Password'
+        }
+      },
+      {
         path: 'register',
         component: RegistrationComponent,
         data: {
@@ -31,19 +44,30 @@ const routes: Routes = [
       }
     ]
   },
-  // {
-  //   path: 'seller',
-  //   component: FullLayoutComponent,
-  //   data: {
-  //     title: 'Seller'
-  //   },
-  //   children: [
-  //     {
-  //       path: '',
-  //       loadChildren: './pages/pages.module#PagesModule',
-  //     }
-  //   ]
-  // }
+  {
+    path: 'seller',
+    component: FullLayoutComponent,
+    data: {
+      title: 'Seller'
+    },
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
+      },
+      {
+        path: 'modal-popup',
+        component: ModalPopupComponent,
+      },{
+        path: 'profile',
+        component: ProfileComponent,
+      }
+    ]
+  }
 ];
 
 @NgModule({

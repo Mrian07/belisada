@@ -43,3 +43,11 @@ body{
     width: 220px;
 }
 /** ----------------------- **/
+
+@media only screen and (min-width: 1440px) {
+    .ui.container {
+        width: 1401px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}

@@ -1,3 +1,5 @@
+import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
+import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -18,6 +20,13 @@ import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.c
 import { LoginComponent } from './clients/pages/login/login.component';
 import { RegistrationComponent } from './clients/pages/registration/registration.component';
 import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
+import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
+import { HeaderComponent } from './clients/components/header/header.component';
+import { FooterComponent } from './clients/components/footer/footer.component';
+import { ProductComponent } from './clients/pages/seller/product/product.component';
+import { FormsModule } from '@angular/forms';
+import { JsonpModule } from '@angular/http/src/http_module';
+import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,13 +35,21 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
     AuthenticationLayoutComponent,
     LoginComponent,
     RegistrationComponent,
-    SidebarComponent
+    SidebarComponent,
+    DashboardComponent,
+    HeaderComponent,
+    FooterComponent,
+    ForgotPasswordComponent,
+    ProductComponent,
+    ModalPopupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     SuiModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [{
     provide: LocationStrategy,
