@@ -8,6 +8,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ProductComponent } from './seller/product/product.component';
 import { ModalPopupComponent } from './seller/modal-popup/modal-popup.component';
 import { ProfileComponent } from './seller/profile/profile.component';
+import { RekeningComponent } from './seller/rekening/rekening.component';
+import { TokoComponent } from './seller/toko/toko.component';
+import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -18,7 +21,10 @@ import { ProfileComponent } from './seller/profile/profile.component';
     ForgotPasswordComponent,
     ProductComponent,
     ModalPopupComponent,
-    ProfileComponent
+    ProfileComponent,
+    RekeningComponent,
+    TokoComponent,
+    InfoPerusahaanComponent
   ]
 })
 export class ViewsModule { }
