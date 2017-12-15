@@ -5,7 +5,12 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { DashboardComponent } from './seller/dashboard/dashboard.component';
 
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ProductComponent } from './seller/product/product.component';
 import { ModalPopupComponent } from './seller/modal-popup/modal-popup.component';
+import { ProfileComponent } from './seller/profile/profile.component';
+import { RekeningComponent } from './seller/rekening/rekening.component';
+import { TokoComponent } from './seller/toko/toko.component';
+import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -14,7 +19,12 @@ import { ModalPopupComponent } from './seller/modal-popup/modal-popup.component'
     RegistrationComponent,
     DashboardComponent,
     ForgotPasswordComponent,
-    ModalPopupComponent
+    ProductComponent,
+    ModalPopupComponent,
+    ProfileComponent,
+    RekeningComponent,
+    TokoComponent,
+    InfoPerusahaanComponent
   ]
 })
 export class ViewsModule { }

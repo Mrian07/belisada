@@ -23,13 +23,17 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
 import { HeaderComponent } from './clients/components/header/header.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
+import { ProductComponent } from './clients/pages/seller/product/product.component';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http/src/http_module';
 import { CategoryService } from './servers/service/category/category.service';
 import { Configuration } from './servers/config/configuration';
 import { LoginService } from './servers/service/login/login.service';
 import { AddProductsComponent } from './clients/pages/seller/add-products/add-products.component';
-
+import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
+import { RekeningComponent } from './clients/pages/seller/rekening/rekening.component';
+import { TokoComponent } from './clients/pages/seller/toko/toko.component';
+import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,13 @@ import { AddProductsComponent } from './clients/pages/seller/add-products/add-pr
     FooterComponent,
     ForgotPasswordComponent,
     ModalPopupComponent,
-    AddProductsComponent
+    AddProductsComponent,
+    ProductComponent,
+    ModalPopupComponent,
+    ProfileComponent,
+    RekeningComponent,
+    TokoComponent,
+    InfoPerusahaanComponent
   ],
   imports: [
     BrowserModule,

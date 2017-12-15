@@ -1,0 +1,132 @@
+<style>
+body {
+  padding: 1em;
+}
+
+.ui.action.input input[type="file"] {
+  display: none;
+}
+
+
+</style>
+
+<div class="ui segment">
+   <div class="ui grid">
+      <div class="twelve wide stretched column">
+    
+
+            <div class="ui grid">
+              <div class="six wide column">
+                
+                <div class="ui card">
+                  <div class="image">
+                    <img src="/assets/img/kristy.png">
+                  </div>
+                  <div class="content">
+                    <a class="header">Kristy</a>
+                    <div class="meta">
+                      <span class="date">Joined in 2013</span>
+                    </div>
+                    <div class="description">
+                      Besar file maksimum 5 MB.<br>Format file yang diperbolehkan (.JPG,.JPEG,.PNG)
+                    </div>
+                  </div>
+                  <div class="extra content center aligned">
+                      <button class="ui orange button">Pilih Photo</button>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="ten wide column">
+                
+                  <form class="ui form">
+                    <div class="field">
+                      <label>Nama</label>
+                      <input name="first-name" placeholder="Masukan nama" type="text">
+                    </div>
+                    <div class="field">
+                      <label>Tanggal Lahir</label>
+                      <div class="ui grid">
+                          <div class="five wide column">
+                            <select class="ui search dropdown">
+                              <option value="">Tanggal</option>
+                            </select>
+                          </div>
+                          <div class="six wide column">
+                            <select class="ui search dropdown">
+                              <option value="">Bulan</option>
+                            </select>     
+                          </div>
+                          <div class="five wide column">
+                            <select class="ui search dropdown">
+                              <option value="">Tahun</option>
+                            </select>  
+                          </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                      <label>Email</label>
+                      <input name="email" placeholder="Masukan email" type="text">
+                    </div>
+                    <div class="field">
+                      <label>Nomor HP</label>
+                      <input name="no_hp" placeholder="Masukan nomor handphone" type="text">
+                    </div>
+                    <div class="field">
+                      <label>No. NPWP</label>
+                      <input name="no_npwp" placeholder="Masukan NPWP" type="text">
+                    </div>
+                    <div class="field">
+                      <div class="ui action input">
+                        <input type="text" placeholder="Upload file NPWP" readonly>
+                        <input type="file">
+                        <div class="ui icon button">
+                          <i class="attach icon"></i>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <button class="ui primary button" type="submit">Simpan</button>
+                  </form>
+
+        
+              </div>  
+            </div>
+              
+     
+     
+      </div>
+      <div class="four wide column">
+        <div class="ui vertical fluid right tabular menu">
+          <a routerLink="/seller/profile" class="active item">
+            Data Diri
+          </a>
+          <a routerLink="/seller/rekening" class="item">
+            Rekening Bank
+          </a>
+          <a routerLink="/seller/toko" class="item">
+            Info Toko
+          </a>
+          <a routerLink="/seller/info-perusahaan" class="item">
+            Info Perusahaan
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script>
+  $("input:text").click(function() {
+  $(this).parent().find("input:file").click();
+});
+
+$('input:file', '.ui.action.input')
+  .on('change', function(e) {
+    var name = e.target.files[0].name;
+    $('input:text', $(e.target).parent()).val(name);
+  });
+
+  </script>
