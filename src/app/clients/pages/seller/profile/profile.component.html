@@ -47,8 +47,6 @@ body {
                     </div>
                     <div class="field">
                       <label>Tanggal Lahir</label>
-                      
-
                       <div class="ui grid">
                           <div class="five wide column">
                             <select class="ui search dropdown">
@@ -66,7 +64,6 @@ body {
                             </select>  
                           </div>
                         </div>
-
                     </div>
                     <div class="field">
                       <label>Email</label>
@@ -81,7 +78,6 @@ body {
                       <input name="no_npwp" placeholder="Masukan NPWP" type="text">
                     </div>
                     <div class="field">
-
                       <div class="ui action input">
                         <input type="text" placeholder="Upload file NPWP" readonly>
                         <input type="file">
@@ -104,17 +100,17 @@ body {
       </div>
       <div class="four wide column">
         <div class="ui vertical fluid right tabular menu">
-          <a class="active item">
+          <a routerLink="/seller/profile" class="active item">
             Data Diri
           </a>
-          <a class="item">
+          <a routerLink="/seller/rekening" class="item">
             Rekening Bank
           </a>
-          <a class="item">
+          <a routerLink="/seller/toko" class="item">
             Info Toko
           </a>
-          <a class="item">
-            Notifikasi
+          <a routerLink="/seller/info-perusahaan" class="item">
+            Info Perusahaan
           </a>
         </div>
       </div>

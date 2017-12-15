@@ -27,6 +27,9 @@ import { ProductComponent } from './clients/pages/seller/product/product.compone
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http/src/http_module';
 import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
+import { RekeningComponent } from './clients/pages/seller/rekening/rekening.component';
+import { TokoComponent } from './clients/pages/seller/toko/toko.component';
+import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { ProfileComponent } from './clients/pages/seller/profile/profile.compone
     ForgotPasswordComponent,
     ProductComponent,
     ModalPopupComponent,
-    ProfileComponent
+    ProfileComponent,
+    RekeningComponent,
+    TokoComponent,
+    InfoPerusahaanComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,9 @@ import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.c
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { ProductComponent } from './clients/pages/seller/product/product.component';
 import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
+import { RekeningComponent } from './clients/pages/seller/rekening/rekening.component';
+import { TokoComponent } from './clients/pages/seller/toko/toko.component';
+import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 
 const routes: Routes = [
   {
@@ -65,6 +68,15 @@ const routes: Routes = [
       },{
         path: 'profile',
         component: ProfileComponent,
+      },{
+        path: 'rekening',
+        component: RekeningComponent,
+      },{
+        path: 'toko',
+        component: TokoComponent,
+      },{
+        path: 'info-perusahaan',
+        component: InfoPerusahaanComponent,
       }
     ]
   }
