@@ -5,6 +5,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { DashboardComponent } from './seller/dashboard/dashboard.component';
 
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { ProductComponent } from './seller/product/product.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -12,7 +13,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     LoginComponent,
     RegistrationComponent,
     DashboardComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ProductComponent
   ]
 })
 export class ViewsModule { }

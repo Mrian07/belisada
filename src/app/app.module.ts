@@ -22,6 +22,7 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
 import { HeaderComponent } from './clients/components/header/header.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
+import { ProductComponent } from './clients/pages/seller/product/product.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { FooterComponent } from './clients/components/footer/footer.component';
     HeaderComponent,
     FooterComponent,
     ForgotPasswordComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

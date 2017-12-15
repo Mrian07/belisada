@@ -7,6 +7,7 @@ import { RegistrationComponent } from './clients/pages/registration/registration
 import { SidebarComponent } from './clients/components/sidebar/sidebar.component';
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
+import { ProductComponent } from './clients/pages/seller/product/product.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
       }
     ]
   }
