@@ -3,8 +3,8 @@
   <div class="ui grid">
     <div class="five wide column">Track Orderan Anda<br>
       <div class="ui action input">
-        <input placeholder="Masukan nomor order Anda..." type="text" style='width:250px;'>
-        <button class="ui green button">Search</button>
+        <input placeholder="Masukan nomor order Anda..." type="text" style='width:250px;' [(ngModel)]="orderText">
+        <button class="ui green button" (click)="search()">Search</button>
       </div>
     </div>
     <div class="eleven wide column">
@@ -13,18 +13,18 @@
               <div class="column">
                 <div class="ui grid">
                   <div class="two wide column">
-                    <img src="/assets/img/iconshop.jpg" class="top-image"> 
-                  </div>  
+                    <img src="/assets/img/iconshop.jpg" class="top-image">
+                  </div>
                   <div class="fourteen wide column">
                     <button class="huge fluid ui red button">Tambah Produk Anda</button>
-                  </div>  
+                  </div>
                 </div>
               </div>
             </div>
         </div>
     </div>
   </div>
-</div>  
+</div>
 
 
 
@@ -37,14 +37,14 @@
           <div class="column">
             <div class="ui grid">
               <div class="eight wide column">
-      
+
                 <div class="ui fluid vertical menu"><div class="header item"><i>Notification</i></div>
                   <a class="item"><i class="warning icon"></i> System: Stock Laptop Asus ROG Anda telah habis segera restock</a>
                   <a class="item"><i class="warning icon"></i> Finance: Transaksi ID#5675467332 Telah Dibayar</a>
                 </div>
 
                 <div class="ui fluid vertical menu">
-                  
+
                   <div class="header item"><i>Sales Status</i></div>
                   <a class="item"><i class="warning icon"></i> System: Stock Laptop Asus ROG Anda telah habis segera restock</a>
                   <a class="item"><i class="warning icon"></i> Finance: Transaksi ID#5675467332 Telah Dibayar</a>
@@ -69,7 +69,7 @@
           <div class="column">
             <div class="ui grid">
               <div class="sexteen wide column">
-                
+
 
                   <table class="ui striped table">
                       <thead>
@@ -83,41 +83,16 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>2011-11-20</td>
-                          <td>#5765675675</td>
-                          <td>Laptop Asus ROG</td>
-                          <td>6</td>
-                          <td>Success</td>
+                        <tr *ngFor="let list of productList">
+                          <td>{{list.date}}</td>
+                          <td>{{list.orderId}}</td>
+                          <td>{{list.product}}</td>
+                          <td>{{list.qty}}</td>
+                          <td>{{list.status}}</td>
                           <td><i class="search icon"></i></td>
                         </tr>
-                        <tr>
-                            <td>2011-11-20</td>
-                            <td>#5765675675</td>
-                            <td>Laptop Asus ROG</td>
-                            <td>6</td>
-                            <td>Success</td>
-                            <td><i class="search icon"></i></td>
-                          </tr>
-                          <tr>
-                              <td>2011-11-20</td>
-                              <td>#5765675675</td>
-                              <td>Laptop Asus ROG</td>
-                              <td>6</td>
-                              <td>Success</td>
-                              <td><i class="search icon"></i></td>
-                            </tr>
-                            <tr>
-                                <td>2011-11-20</td>
-                                <td>#5765675675</td>
-                                <td>Laptop Asus ROG</td>
-                                <td>6</td>
-                                <td>Success</td>
-                                <td><i class="search icon"></i></td>
-                              </tr>
                       </tbody>
                     </table>
-
               </div>
             </div>
           </div>
@@ -131,45 +106,45 @@
               <div class="item">
                 <div class="header">Produk Report </div>
                 <div class="menu">
-                  <a class="item">Produk Terverifikasi 
+                  <a class="item">Produk Terverifikasi
                     <a class="ui label">
-                      55
+                      {{ veryfyProduct }}
                     </a>
                   </a>
                   <a class="item">Produk Ditolak
                     <a class="ui label">
-                      11
+                      {{ rejectedProduct }}
                     </a>
                   </a>
                   <a class="item">Produk Terkirim
                       <a class="ui label">
-                        14
+                        {{ sendProduct }}
                       </a>
                   </a>
                   <a class="item">Produk Terjual
                     <a class="ui label">
-                      19
+                      {{ sellProduct }}
                     </a>
                   </a>
                   <a class="item">Produk Pending
                     <a class="ui label">
-                      8
+                      {{ pendingProduct }}
                     </a>
                   </a>
                   <a class="item">Produk Dikembalikan
                     <a class="ui label">
-                      4
+                      {{ returnProduct }}
                     </a>
                   </a>
-                  <a class="item">Produk Diretur
+                  <!-- <a class="item">Produk Diretur
                     <a class="ui label">
                       2
                     </a>
-                  </a>
+                  </a> -->
                 </div>
               </div>
               <a class="item center aligned"><i class="caret right icon"></i> View More</a>
-            </div> 
+            </div>
 
 
 
@@ -177,11 +152,11 @@
 
       </div>
     </div>
-  </div>  
+  </div>
 
 
 
-      
+
 
 
 

@@ -23,6 +23,8 @@ import { SidebarComponent } from './clients/components/sidebar/sidebar.component
 import { DashboardComponent } from './clients/pages/seller/dashboard/dashboard.component';
 import { HeaderComponent } from './clients/components/header/header.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { JsonpModule } from '@angular/http/src/http_module';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { FooterComponent } from './clients/components/footer/footer.component';
     BrowserModule,
     SuiModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [{
     provide: LocationStrategy,
