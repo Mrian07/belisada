@@ -61,6 +61,9 @@ const routes: Routes = [
       {
         path: 'modal-popup',
         component: ModalPopupComponent,
+      },{
+        path: 'profile',
+        component: ProfileComponent,
       }
     ]
   }

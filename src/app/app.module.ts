@@ -26,6 +26,7 @@ import { FooterComponent } from './clients/components/footer/footer.component';
 import { ProductComponent } from './clients/pages/seller/product/product.component';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http/src/http_module';
+import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { JsonpModule } from '@angular/http/src/http_module';
     FooterComponent,
     ForgotPasswordComponent,
     ProductComponent,
-    ModalPopupComponent
+    ModalPopupComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
