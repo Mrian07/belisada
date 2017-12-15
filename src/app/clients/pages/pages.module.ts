@@ -6,6 +6,7 @@ import { DashboardComponent } from './seller/dashboard/dashboard.component';
 
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ProductComponent } from './seller/product/product.component';
+import { ModalPopupComponent } from './seller/modal-popup/modal-popup.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -14,7 +15,8 @@ import { ProductComponent } from './seller/product/product.component';
     RegistrationComponent,
     DashboardComponent,
     ForgotPasswordComponent,
-    ProductComponent
+    ProductComponent,
+    ModalPopupComponent
   ]
 })
 export class ViewsModule { }
