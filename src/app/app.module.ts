@@ -35,6 +35,7 @@ import { RekeningComponent } from './clients/pages/seller/rekening/rekening.comp
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
