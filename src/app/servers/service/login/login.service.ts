@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../login/login.service';
-import { Http } from '@angular/http';
+import { Login } from '../../model/login';
+import {HttpClientModule} from '@angular/common/http';
 import { Configuration } from './../../config/configuration';
 import { AbstractRestService } from '../abstract.rest.service';
+import { HttpClient } from '@angular/common/http/src/client';
 
 @Injectable()
-export class LoginService extends AbstractRestService<Login> {
+export class LoginService {
 
-  constructor(http: Http, configuration: Configuration) {
-      super(http, configuration.serverWithAccUrl + '/account/masuk');
-  }
+  // constructor( private http: HttpClient, configuration: Configuration ) {
+  //   super(http, configuration.serverWithAccUrl + '/account/masuk');
+  // }
+
+  // constructor(http: Http, configuration: Configuration) {
+  //     super(http, configuration.serverWithAccUrl + '/account/masuk');
+  // }
   // addBookWithPromise(book:Book): Promise<Book> {
   //   let headers = new Headers({ 'Content-Type': 'application/json' });
   //         let options = new RequestOptions({ headers: headers });

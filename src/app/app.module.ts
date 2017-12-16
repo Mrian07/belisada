@@ -4,6 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 // semantic-ui module
 import { SuiModule } from 'ng2-semantic-ui';
@@ -35,6 +36,7 @@ import { RekeningComponent } from './clients/pages/seller/rekening/rekening.comp
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +63,8 @@ import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/
     SuiModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClient
   ],
   providers: [{
     provide: LocationStrategy,

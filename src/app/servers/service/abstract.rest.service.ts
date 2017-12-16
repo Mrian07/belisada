@@ -15,8 +15,8 @@ export abstract class AbstractRestService<T> {
         return this._http.get(`${this.actionUrl}${id}`)
             .map(resp => resp.json() as T);
     }
-    doLogin(email: string, password: string): Observable<T> {
-      return this._http.post(this.actionUrl)
-        .map(resp => resp.json() as T);
-    }
+    // doLogin(email: string, password: string): Observable<T> {
+    //   return this._http.post(this.actionUrl)
+    //     .map(resp => resp.json() as T);
+    // }
 }
