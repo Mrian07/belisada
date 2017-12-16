@@ -12,11 +12,11 @@ export abstract class AbstractRestService<T> {
             .map(resp => resp.json() as T[]);
     }
     getOne(id: number): Observable<T> {
-        return this._http.get(`${this.actionUrl}${id}`)
-            .map(resp => resp.json() as T);
-    }
-    doLogin(email: string, password: string): Observable<T> {
-      return this._http.post(this.actionUrl)
-        .map(resp => resp.json() as T);
-    }
+      return this._http.get(`${this.actionUrl}${id}`)
+          .map(resp => resp.json() as T);
+  }
+    doLogin(loginData): Observable<T> {
+      return this._http.post(this.actionUrl, loginData)
+          .map(resp => resp.json() as T);
+  }
 }
