@@ -29,6 +29,7 @@ import { JsonpModule } from '@angular/http/src/http_module';
 import { CategoryService } from './servers/service/category/category.service';
 import { Configuration } from './servers/config/configuration';
 import { LoginService } from './servers/service/login/login.service';
+import { SearchService } from './servers/service/search/search.service';
 import { AddProductsComponent } from './clients/pages/seller/add-products/add-products.component';
 import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
 import { RekeningComponent } from './clients/pages/seller/rekening/rekening.component';
@@ -70,6 +71,7 @@ import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/
   },
     CategoryService,
     LoginService,
+    SearchService,
     Configuration
   ],
   bootstrap: [AppComponent]

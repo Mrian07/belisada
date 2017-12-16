@@ -8,6 +8,7 @@ import { LoginService } from '../../../servers/service/login/login.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
   email: string;
