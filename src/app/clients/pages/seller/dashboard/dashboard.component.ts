@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../../servers/service/category/category.service';
+import { SearchService } from '../../../../servers/service/search/search.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   sellProduct: number;
   pendingProduct: number;
   returnProduct: number;
-  orderText: string;
+  searchText: string;
 
   verify = [];
   rejected = [];
@@ -25,7 +26,7 @@ export class DashboardComponent implements OnInit {
   return = [];
   productList = [];
 
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute, private router: Router ) {
+  constructor(private categoryService: CategoryService, private searchService: SearchService, private router: Router ) {
   }
 
   ngOnInit() {
@@ -58,11 +59,14 @@ export class DashboardComponent implements OnInit {
         'date': '2017-12-20'
       }
     ];
-    this.getCategory()
+    this.getCategory();
   }
 
-  search() {
-    console.log(this.orderText);
+  search(event) {
+    const key = event.target.value;
+    this.searchService.searchProduct(key).subscribe(data => {
+      console.log(data);
+    });
   }
 
   getCategory() {

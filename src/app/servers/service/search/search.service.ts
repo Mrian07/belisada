@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
 import { AbstractRestService } from '../abstract.rest.service';
-import { Login } from '../../model/login';
+import { Search } from '../../model/search';
 import { Http } from '@angular/http';
 
 @Injectable()
-export class LoginService extends AbstractRestService<Login> {
+export class SearchService extends AbstractRestService<Search>  {
 
   constructor(http: Http, configuration: Configuration) {
-    super(http, configuration.serverWithAccUrl + '/account/masuk');
+    super(http, configuration.serverWithApiUrl + '/product/productlist/');
   }
 
 }
