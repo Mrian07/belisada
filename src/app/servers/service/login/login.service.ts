@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../login/login.service';
 import { Http } from '@angular/http';
 import { Configuration } from './../../config/configuration';
 import { AbstractRestService } from '../abstract.rest.service';
+import { Login } from '../../model/login';
 
 @Injectable()
 export class LoginService extends AbstractRestService<Login> {
