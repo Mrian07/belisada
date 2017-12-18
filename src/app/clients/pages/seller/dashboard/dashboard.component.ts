@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
     // tadi nya ada di dalem () sekarang pindah ke search-dashboard/search-dasboard.ts
   }
 
-  ngOnInit() {
+  ngOnInit() {}
     // this.veryfyProduct = this.verify.length;
     // this.rejectedProduct = this.rejected.length;
     // this.sendProduct = this.send.length;
@@ -43,33 +43,12 @@ export class DashboardComponent implements OnInit {
     // this.returnProduct = this.return.length;
     // isi ini sudah di pindah di  dashboard produk-report/produk-report.ts
 
-    // this.productList = [
-    //   {
-    //     'orderId': '#5765675655',
-    //     'product': 'Asus ROG',
-    //     'qty': '3',
-    //     'status': 'success',
-    //     'date': '2017-12-09'
-    //   },
-    //   {
-    //     'orderId': '#5765675615',
-    //     'product': 'Macbook pro 15"',
-    //     'qty': '1',
-    //     'status': 'success',
-    //     'date': '2017-12-10'
-    //   },
-    //   {
-    //     'orderId': '#5765675673',
-    //     'product': 'iPhone X',
-    //     'qty': '6',
-    //     'status': 'pending',
-    //     'date': '2017-12-20'
-    //   }
-    // ];
-    // isi di atas sudah di pidah di  dashboard/status-invoice.ts
-    // this.getCategory();
-    // ^^ pindah ke search-dashboard/search-dasboard.ts
-  }
+  // search(event) {
+  //   const key = event.target.value;
+  //   this.searchService.Search(key).subscribe(data => {
+  //     console.log(data);
+  //   });
+  // }
 
   // search(event) {
   //   const key = event.target.value;
