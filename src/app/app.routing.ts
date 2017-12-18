@@ -89,7 +89,8 @@ const routes: Routes = [
       {
         path: 'info-perusahaan',
         component: InfoPerusahaanComponent,
-      },{
+      },
+      {
         path: 'kontak',
         component: KontakComponent,
       },{
