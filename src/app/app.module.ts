@@ -30,6 +30,7 @@ import { ProfileComponent } from './clients/pages/seller/profile/profile.compone
 import { RekeningComponent } from './clients/pages/seller/rekening/rekening.component';
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
+import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/
     ProfileComponent,
     RekeningComponent,
     TokoComponent,
-    InfoPerusahaanComponent
+    InfoPerusahaanComponent,
+    KontakComponent
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,7 @@ import { ProfileComponent } from './seller/profile/profile.component';
 import { RekeningComponent } from './seller/rekening/rekening.component';
 import { TokoComponent } from './seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
+import { KontakComponent } from './seller/kontak/kontak.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -24,7 +25,8 @@ import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaa
     ProfileComponent,
     RekeningComponent,
     TokoComponent,
-    InfoPerusahaanComponent
+    InfoPerusahaanComponent,
+    KontakComponent
   ]
 })
 export class ViewsModule { }
