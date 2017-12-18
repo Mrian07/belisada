@@ -1,0 +1,52 @@
+    <table class="ui three column table">
+      <thead>
+        <tr>
+            <a routerLink="/seller/salles-report/penjualan" class="active item line"><th>Penjualan</th></a>
+          <a routerLink="/seller/salles-report/reject-retur" class="active item line"><th>Reject / Retur</th></a>
+          <th></th>
+          <th></th>
+        </tr>
+        <tr>
+          <td><div class="ui icon input">
+              <input type="text" placeholder="Search...">
+              <i class="circular search link icon"></i>
+            </div>
+          </td>
+          <td></td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Date</td>
+          <td>Order ID</td>
+          <td class="negative">Product</td>
+          <td>Qty</td>
+          <td>Reason</td>
+        </tr>
+        <tr class="positive">
+          <td>2017 - 11 - 22</td>
+          <td><i class="icon checkmark"></i> #451545884</td>
+          <td>Laptop </td>
+          <td>5</td>
+          <td>Cancled</td>
+        </tr>
+        <tr>
+          <td>2017 - 11 - 22</td>
+          <td>#451545884</td>
+          <td class="positive"><i class="icon close"></i>SmartPhone</td>
+          <td>5</td>
+          <td>Success</td>
+        </tr>
+        <tr class="negative">
+          <td>2017 - 11 - 22</td>
+          <td>#451545884</td>
+          <td>PC</td>
+          <td>5</td>
+          <td>Success</td>
+        </tr>
+        
+      </tbody>
+    </table>
+    <router-outlet></router-outlet>
+  

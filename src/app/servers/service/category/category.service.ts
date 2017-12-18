@@ -9,7 +9,7 @@ import { Category } from '../../model/category';
 export class CategoryService extends AbstractRestService<Category> {
 
   constructor(http: Http, configuration: Configuration) {
-    super(http, configuration.serverWithApiUrl + '/category/list');
+    super(http, configuration.serverWithApiUrl + '/category/list/');
   }
 
 }

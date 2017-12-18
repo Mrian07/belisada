@@ -9,22 +9,22 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class SearchDashboardComponent implements OnInit {
 
-  constructor(private categoryService: CategoryService, private searchService: SearchService, private router: Router) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.getCategory();
+   // this.getCategory();
   }
-  search(event) {
-    const key = event.target.value;
-    this.searchService.searchProduct(key).subscribe(data => {
-      console.log(data);
-    });
-  }
-  getCategory() {
-    this.categoryService.getAll().subscribe(data => {
-      console.log(data);
-    });
-  }
+  // search(event) {
+  //   const key = event.target.value;
+  //   this.searchService.searchProduct(key).subscribe(data => {
+  //     console.log(data);
+  //   });
+  // }
+  // getCategory() {
+  //   this.categoryService.getAll().subscribe(data => {
+  //     console.log(data);
+  //   });
+  // }
   addProducts() {
     this.router.navigate(['seller/add-products']);
   }

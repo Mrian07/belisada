@@ -46,6 +46,10 @@ import { MyTopProdukComponent } from './clients/components/dashboard/my-top-prod
 import { ProdukReportComponent } from './clients/components/dashboard/produk-report/produk-report.component';
 import { StatusInvoiceComponent } from './clients/components/dashboard/status-invoice/status-invoice.component';
 import { SearchDashboardComponent } from './clients/components/dashboard/search-dashboard/search-dashboard.component';
+import { SallesReportComponent } from './clients/pages/seller/salles-report/salles-report.component';
+import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
+import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
+import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 
 
 @NgModule({
@@ -76,7 +80,11 @@ import { SearchDashboardComponent } from './clients/components/dashboard/search-
     MyTopProdukComponent,
     ProdukReportComponent,
     StatusInvoiceComponent,
-    SearchDashboardComponent
+    SearchDashboardComponent,
+    SallesReportComponent,
+    RejectReturComponent,
+    PlainLayoutComponent,
+    PaymentInfoComponent
   ],
   imports: [
     BrowserModule,
