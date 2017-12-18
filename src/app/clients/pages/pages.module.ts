@@ -13,6 +13,8 @@ import { TokoComponent } from './seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './seller/kontak/kontak.component';
 import { KontakDetailComponent } from './seller/kontak-detail/kontak-detail.component';
+import { ProdukComponent } from './seller/produk/produk.component';
+import { FaqComponent } from './seller/faq/faq.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -28,7 +30,9 @@ import { KontakDetailComponent } from './seller/kontak-detail/kontak-detail.comp
     TokoComponent,
     InfoPerusahaanComponent,
     KontakComponent,
-    KontakDetailComponent
+    KontakDetailComponent,
+    ProdukComponent,
+    FaqComponent
   ]
 })
 export class ViewsModule { }

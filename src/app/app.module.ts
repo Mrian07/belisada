@@ -37,6 +37,7 @@ import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
 import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
+import { FaqComponent } from './clients/pages/seller/faq/faq.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kont
     TokoComponent,
     InfoPerusahaanComponent,
     KontakComponent,
-    KontakDetailComponent
+    KontakDetailComponent,
+    FaqComponent
   ],
   imports: [
     BrowserModule,
