@@ -36,6 +36,12 @@ import { RekeningComponent } from './clients/pages/seller/rekening/rekening.comp
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
+import { NotificationComponent } from './clients/components/dashboard/notification/notification.component';
+import { SalesStatusComponent } from './clients/components/dashboard/sales-status/sales-status.component';
+import { MyTopProdukComponent } from './clients/components/dashboard/my-top-produk/my-top-produk.component';
+import { ProdukReportComponent } from './clients/components/dashboard/produk-report/produk-report.component';
+import { StatusInvoiceComponent } from './clients/components/dashboard/status-invoice/status-invoice.component';
+import { SearchDashboardComponent } from './clients/components/dashboard/search-dashboard/search-dashboard.component';
 
 
 @NgModule({
@@ -58,7 +64,13 @@ import { KontakComponent } from './clients/pages/seller/kontak/kontak.component'
     RekeningComponent,
     TokoComponent,
     InfoPerusahaanComponent,
-    KontakComponent
+    KontakComponent,
+    NotificationComponent,
+    SalesStatusComponent,
+    MyTopProdukComponent,
+    ProdukReportComponent,
+    StatusInvoiceComponent,
+    SearchDashboardComponent
   ],
   imports: [
     BrowserModule,

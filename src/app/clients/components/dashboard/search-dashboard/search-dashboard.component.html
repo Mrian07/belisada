@@ -1,0 +1,25 @@
+<div class="ui grid">
+    <div class="five wide column">Track Orderan Anda<br>
+    
+      <div class="ui action input">
+        <input placeholder="Masukan nomor order Anda..." type="text" style='width:250px;' (keydown)="search($event)">
+        <button class="ui green button" (click)="search()">Search</button>
+      </div>
+    </div>
+    <div class="eleven wide column">
+        <div class="ui segment column">
+          <div class="sexteen wide column">
+              <div class="column">
+                <div class="ui grid">
+                  <div class="two wide column">
+                    <img src="/assets/img/iconshop.jpg" class="top-image">
+                  </div>
+                  <div class="fourteen wide column">
+                    <button class="huge fluid ui red button" (click)="addProducts()">Tambah Produk Anda</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+  </div>
