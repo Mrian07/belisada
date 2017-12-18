@@ -1,9 +1,9 @@
 
 <div class="column">
   <div class="ui grid">
-    <div class="five wide column">Track Orderan Anda<br>
+    <div class="five wide column">Track Orderan Anda<br/>
       <div class="ui action input">
-        <input placeholder="Masukan nomor order Anda..." type="text" style='width:250px;' (keydown)="search($event)">
+        <input placeholder="Masukan nomor order Anda..." type="text" (keydown)="search($event)"/>
         <button class="ui green button" (click)="search()">Search</button>
       </div>
     </div>
@@ -12,10 +12,10 @@
           <div class="sexteen wide column">
               <div class="column">
                 <div class="ui grid">
-                  <div class="two wide column">
-                    <img src="/assets/img/iconshop.jpg" class="top-image">
+                  <div class="three wide column">
+                    <img src="/assets/img/iconshop.jpg" alt="iconshop.jpg" class="top-image ui image"/>
                   </div>
-                  <div class="fourteen wide column">
+                  <div class="thirteen wide column">
                     <button class="huge fluid ui red button" (click)="addProducts()">Tambah Produk Anda</button>
                   </div>
                 </div>
@@ -84,11 +84,11 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let list of productList">
-                          <td>{{list.date}}</td>
-                          <td>{{list.orderId}}</td>
-                          <td>{{list.product}}</td>
-                          <td>{{list.qty}}</td>
-                          <td>{{list.status}}</td>
+                          <td>{{ list.date }}</td>
+                          <td>{{ list.orderId }}</td>
+                          <td>{{ list.product }}</td>
+                          <td>{{ list.qty }}</td>
+                          <td>{{ list.status }}</td>
                           <td><i class="search icon"></i></td>
                         </tr>
                       </tbody>
@@ -101,8 +101,7 @@
       </div>
       <div class="five wide column">
 
-
-          <div class="sixten wide ui vertical menu"  style='width:100%'>
+          <div class="sixten wide ui vertical menu column">
               <div class="item">
                 <div class="header">Produk Report </div>
                 <div class="menu">

@@ -13,26 +13,26 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  logout(){
-    //alert('logout');
+  logout() {
+    // alert('logout');
     swal({
-  title: 'Alert',
-  text: "Apakah Anda akan keluar dari Account Area.",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  cancelButtonText: 'Tidak',
-  confirmButtonText: 'Iya'
-}).then((result) => {
-  if (result.value) {
-    swal(
-      'Success!',
-      'Anda sudah keluar dari Account Area.',
-      'success'
-    )
-  }
-})
+      title: 'Alert',
+      text: 'Apakah Anda akan keluar dari Account Area.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Tidak',
+      confirmButtonText: 'Iya'
+    }).then((result) => {
+      if (result.value) {
+        swal(
+          'Success!',
+          'Anda sudah keluar dari Account Area.',
+          'success'
+        );
+      }
+    });
   }
 
 }

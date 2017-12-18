@@ -1,126 +1,122 @@
 <div class="column">
-
     <div class="wide column">
-      <h1>Tambah Produk </h1>
-      <p>
-        Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
-      </p>
-      <div class="ui segment">
-        <p>Apa yang anda jual?</p>
-        <div class="ui form">
-            <div class="inline fields">
-              <label for="fruit">Product Condition:</label>
-              <div class="field">
-                  <sui-radio-button name="example" value="hello" [(ngModel)]="eRadio">Baru</sui-radio-button>
-              </div>
-              <div class="field">
-                  <sui-radio-button name="example" value="world" [(ngModel)]="eRadio">Second</sui-radio-button>
-              </div>
-              <div class="field">
-                  <sui-radio-button name="example" value="example" [(ngModel)]="eRadio">Refurbish</sui-radio-button>
-              </div>
+        <h1>Tambah Produk </h1>
+        <p>
+            Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br/>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
+        </p>
+        <div class="ui segment">
+            <p>Apa yang anda jual?</p>
+            <div class="ui form">
+                <div class="inline fields">
+                    <label for="fruit">Product Condition:</label>
+                    <div class="field">
+                        <sui-radio-button name="example" value="hello" [(ngModel)]="eRadio">Baru</sui-radio-button>
+                    </div>
+                    <div class="field">
+                        <sui-radio-button name="example" value="world" [(ngModel)]="eRadio">Second</sui-radio-button>
+                    </div>
+                    <div class="field">
+                        <sui-radio-button name="example" value="example" [(ngModel)]="eRadio">Refurbish</sui-radio-button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="text high"><strong>Nama Produk :</strong></div>
+            <div class="ui dropdown button" suiDropdown>
+                <div class="text">Pilih Kategori</div>
+                <i class="dropdown icon"></i>
+                <div class="menu" suiDropdownMenu>
+                    <div class="item">Item 1</div>
+                    <div class="disabled item">Disabled Item</div>
+                    <div class="item" suiDropdown>
+                        <i class="dropdown icon"></i>
+                        Nested
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Sub-item 1</div>
+                            <div class="item">Sub-item 2</div>
+                        </div>
+                    </div>
+                    <div class="item">Item 4</div>
+                </div>
+            </div>
+
+            <div class="ui dropdown button" suiDropdown>
+                <div class="text">Pilih Kategori</div>
+                <i class="dropdown icon"></i>
+                <div class="menu" suiDropdownMenu>
+                    <div class="item">Item 1</div>
+                    <div class="disabled item">Disabled Item</div>
+                    <div class="item" suiDropdown>
+                        <i class="dropdown icon"></i>
+                        Nested
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Sub-item 1</div>
+                            <div class="item">Sub-item 2</div>
+                        </div>
+                    </div>
+                    <div class="item">Item 4</div>
+                </div>
+            </div>
+
+            <div class="ui dropdown button" suiDropdown>
+                <div class="text">Pilih Kategori</div>
+                <i class="dropdown icon"></i>
+                <div class="menu" suiDropdownMenu>
+                    <div class="item">Item 1</div>
+                    <div class="disabled item">Disabled Item</div>
+                    <div class="item" suiDropdown>
+                        <i class="dropdown icon"></i>
+                        Nested
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Sub-item 1</div>
+                            <div class="item">Sub-item 2</div>
+                        </div>
+                    </div>
+                    <div class="item">Item 4</div>
+                </div>
+            </div>
+
+            <div class="text high"><strong>Pilih Brand :</strong></div>
+            <div class="ui dropdown button" suiDropdown>
+                <div class="text">Pilih Brand</div>
+                <i class="dropdown icon"></i>
+                <div class="menu" suiDropdownMenu>
+                    <div class="item">Item 1</div>
+                    <div class="disabled item">Disabled Item</div>
+                    <div class="item" suiDropdown>
+                        <i class="dropdown icon"></i>
+                        Nested
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Sub-item 1</div>
+                            <div class="item">Sub-item 2</div>
+                        </div>
+                    </div>
+                    <div class="item">Item 4</div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="text high"><b>Nama Produk :</b></div>
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Kategori</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
+        <div class="ui segment">
+            <h3>Detail Produk</h3>
+            <div class="garis"></div>
+            <div class="custom-item">Harga</div>
+            <div class="garis"></div>
+            <div class="custom-item">Berat</div>
+            <div class="garis"></div>
+            <div class="custom-item">Dimensi</div>
+            <div class="garis"></div>
+            <h3>Deskripsi Produk</h3>
+            <div class="garis"></div>
+            <div class="custom-item">Deskripsi</div>
+        </div>
 
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Kategori</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
-
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Kategori</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
-
-      <div class="text high"><b>Pilih Brand :</b></div>
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Brand</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
-
-
+        <div class="ui segment">
+            <h3>Gambar Produk</h3>
+            <div class="text">Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk</div>
+            <div>
+                <i class="photo icon"></i>
+                <i class="add circle icon"></i>
+            </div>
+        </div>
     </div>
-
-    <div class="ui segment">
-      <h3>Detail Produk</h3>
-      <div class="garis"></div>
-      <div class="custom-item">Harga</div>
-      <div class="garis"></div>
-      <div class="custom-item">Berat</div>
-      <div class="garis"></div>
-      <div class="custom-item">Dimensi</div>
-      <div class="garis"></div>
-      <h3>Deskripsi Produk</h3>
-      <div class="garis"></div>
-      <div class="custom-item">Deskripsi</div>
-    </div>
-
-    <div class="ui segment">
-        <h3>Gambar Produk</h3>
-        <div class="text">Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk</div>
-        <div>
-        <i class="photo icon"></i>
-        <i class="add circle icon"></i>
-      </div>
-    </div>
-
 </div>

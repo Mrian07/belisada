@@ -12,7 +12,7 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
 
-  editProfile(){
+  editProfile() {
     this.router.navigate(['/seller/profile']);
   }
 
