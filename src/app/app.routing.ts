@@ -112,7 +112,6 @@ const routes: Routes = [
 
         ]
       },
-      },
       {
         path: 'kontak',
         component: KontakComponent,
