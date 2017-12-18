@@ -2,10 +2,10 @@ import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-po
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import {TranslateModule} from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-
+import { FileUploadModule } from 'ng2-file-upload';
 
 // semantic-ui module
 import { SuiModule } from 'ng2-semantic-ui';
@@ -84,6 +84,7 @@ import { SearchDashboardComponent } from './clients/components/dashboard/search-
     HttpModule,
     AppRoutingModule,
     FormsModule,
+    FileUploadModule,
     TranslateModule.forRoot()
   ],
   providers: [{
