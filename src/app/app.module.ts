@@ -26,11 +26,17 @@ import { FooterComponent } from './clients/components/footer/footer.component';
 import { ProductComponent } from './clients/pages/seller/product/product.component';
 import { FormsModule } from '@angular/forms';
 import { JsonpModule } from '@angular/http/src/http_module';
+import { CategoryService } from './servers/service/category/category.service';
+import { Configuration } from './servers/config/configuration';
+import { LoginService } from './servers/service/login/login.service';
+import { SearchService } from './servers/service/search/search.service';
+import { AddProductsComponent } from './clients/pages/seller/add-products/add-products.component';
 import { ProfileComponent } from './clients/pages/seller/profile/profile.component';
 import { RekeningComponent } from './clients/pages/seller/rekening/rekening.component';
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +50,8 @@ import { KontakComponent } from './clients/pages/seller/kontak/kontak.component'
     HeaderComponent,
     FooterComponent,
     ForgotPasswordComponent,
+    ModalPopupComponent,
+    AddProductsComponent,
     ProductComponent,
     ModalPopupComponent,
     ProfileComponent,
@@ -61,8 +69,13 @@ import { KontakComponent } from './clients/pages/seller/kontak/kontak.component'
   ],
   providers: [{
     provide: LocationStrategy,
-    useClass: HashLocationStrategy
-  }],
+    useClass: HashLocationStrategy,
+  },
+    CategoryService,
+    LoginService,
+    SearchService,
+    Configuration
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

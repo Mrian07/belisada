@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../../../servers/service/category/category.service';
 
 @Component({
   templateUrl: './registration.component.html',
@@ -6,9 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  fullName: string;
+  phone: number;
+  email: string;
+  password: string;
+  verifyPassword: string;
+
+  constructor(private categoryService: CategoryService) {
+
+
+  }
 
   ngOnInit() {
+  }
+
+  register() {
+    console.log(this.fullName + '-' + this.phone + '-' + this.email + '-' + this.password + '-' + this.verifyPassword);
   }
 
 }
