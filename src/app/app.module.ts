@@ -38,6 +38,12 @@ import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
 import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
 import { FaqComponent } from './clients/pages/seller/faq/faq.component';
+import { NotificationComponent } from './clients/components/dashboard/notification/notification.component';
+import { SalesStatusComponent } from './clients/components/dashboard/sales-status/sales-status.component';
+import { MyTopProdukComponent } from './clients/components/dashboard/my-top-produk/my-top-produk.component';
+import { ProdukReportComponent } from './clients/components/dashboard/produk-report/produk-report.component';
+import { StatusInvoiceComponent } from './clients/components/dashboard/status-invoice/status-invoice.component';
+import { SearchDashboardComponent } from './clients/components/dashboard/search-dashboard/search-dashboard.component';
 
 
 @NgModule({
@@ -61,8 +67,17 @@ import { FaqComponent } from './clients/pages/seller/faq/faq.component';
     TokoComponent,
     InfoPerusahaanComponent,
     KontakComponent,
+<<<<<<< HEAD
     KontakDetailComponent,
     FaqComponent
+=======
+    NotificationComponent,
+    SalesStatusComponent,
+    MyTopProdukComponent,
+    ProdukReportComponent,
+    StatusInvoiceComponent,
+    SearchDashboardComponent
+>>>>>>> ad69c3dc3de4f6a13fea01b7c7a382216d3d417e
   ],
   imports: [
     BrowserModule,

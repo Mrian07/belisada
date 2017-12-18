@@ -1,126 +1,188 @@
 <div class="column">
 
     <div class="wide column">
-      <h1>Tambah Produk </h1>
-      <p>
-        Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
-      </p>
-      <div class="ui segment">
-        <p>Apa yang anda jual?</p>
-        <div class="ui form">
-            <div class="inline fields">
-              <label for="fruit">Product Condition:</label>
-              <div class="field">
-                  <sui-radio-button name="example" value="hello" [(ngModel)]="eRadio">Baru</sui-radio-button>
-              </div>
-              <div class="field">
-                  <sui-radio-button name="example" value="world" [(ngModel)]="eRadio">Second</sui-radio-button>
-              </div>
-              <div class="field">
-                  <sui-radio-button name="example" value="example" [(ngModel)]="eRadio">Refurbish</sui-radio-button>
-              </div>
-
+      	<h1>Tambah Produk </h1>
+      	<p>
+        	Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
+      	</p>
+      	<div class="ui segment">
+        	<p>Apa yang anda jual?</p>
+        	<div class="ui form">
+          		<div class="inline twelve fields">
+            		<div class="two wide field">
+						Status
+					</div>
+            	<div class="ten wide field">
+              		<div class="field">
+                		<sui-radio-button value="baru" [(ngModel)]="condition">Baru</sui-radio-button>
+              		</div>
+              		<div class="field">
+                		<sui-radio-button value="second" [(ngModel)]="condition">Second</sui-radio-button>
+              		</div>
+                    <div class="field">
+                        <sui-radio-button value="refurbish" [(ngModel)]="condition">Refurbish</sui-radio-button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="text high"><b>Nama Produk :</b></div>
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Kategori</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
+        <div class="ui form">
+            <div class="inline twelve fields">
+                <div class="two wide field">
+                    Nama Product
+                </div>
+                <div class="ten wide field">
+                    <input type="text" placeholder="Nama Produk">
+                </div>
+            </div>
+            <div class="inline twelve fields">
+                <div class="two wide field">
+                    Category Product
+                </div>
+                <div class="ten wide field">
+                    <div class="ui dropdown four wide field" suiDropdown>
+                        <div class="text">Pilih Kategori</div>
+                            <i class="dropdown icon"></i>
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Item 1</div>
+                        </div>
+                    </div>
 
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Kategori</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
+                    <div class="ui dropdown four wide field" suiDropdown>
+                        <div class="text">Pilih Kategori</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Item 1</div>
+                        </div>
+                    </div>
 
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Kategori</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
+                    <div class="ui dropdown four wide field" suiDropdown>
+                        <div class="text">Pilih Kategori</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Item 1</div>
+                        </div>
+                    </div>
 
-      <div class="text high"><b>Pilih Brand :</b></div>
-      <div class="ui dropdown button" suiDropdown>
-          <div class="text">Pilih Brand</div>
-          <i class="dropdown icon"></i>
-          <div class="menu" suiDropdownMenu>
-              <div class="item">Item 1</div>
-              <div class="disabled item">Disabled Item</div>
-              <div class="item" suiDropdown>
-                  <i class="dropdown icon"></i>
-                  Nested
-                  <div class="menu" suiDropdownMenu>
-                      <div class="item">Sub-item 1</div>
-                      <div class="item">Sub-item 2</div>
-                  </div>
-              </div>
-              <div class="item">Item 4</div>
-          </div>
-      </div>
+                </div>
+            </div>
 
-
+            <div class="inline twelve fields">
+                <div class="two wide field">
+                    Nama Product
+                </div>
+                <div class="ten wide field">
+                    <div class="ui dropdown three wide field" suiDropdown>
+                        <div class="text">Pilih Brand</div>
+                            <i class="dropdown icon"></i>
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Item 1</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="ui segment">
-      <h3>Detail Produk</h3>
-      <div class="garis"></div>
-      <div class="custom-item">Harga</div>
-      <div class="garis"></div>
-      <div class="custom-item">Berat</div>
-      <div class="garis"></div>
-      <div class="custom-item">Dimensi</div>
-      <div class="garis"></div>
-      <h3>Deskripsi Produk</h3>
-      <div class="garis"></div>
-      <div class="custom-item">Deskripsi</div>
+        <h3>Detail Produk</h3>
+        <div class="garis"></div>
+        <div class="ui form">
+            <div class="inline twelve fields">
+                <div class="two wide field">
+                    Harga
+                </div>
+                <div class="five wide field">
+                    <input type="text" placeholder="Harga">
+                </div>
+                <div class="five wide field small">
+                        Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000
+                    </div>
+            </div>
+        </div>
+
+        <div class="ui form">
+            <div class="inline five fields">
+                <div class="two wide field">
+                    Berat
+                </div>
+                <div class="two wide field">
+                    <input type="text" placeholder="Berat">
+                </div>
+                <div class="one wide field">
+                    <div class="ui dropdown three wide field" suiDropdown>
+                        <div class="text">Kg</div>
+                            <i class="dropdown icon"></i>
+                        <div class="menu" suiDropdownMenu>
+                            <div class="item">Kg</div>
+                            <div class="item">Gram</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui form">
+            <div class="inline eight fields">
+                <div class="two wide field">
+                    Dimensi
+                </div>
+                <div class="one wide field">
+                        <input type="text" placeholder="">
+                </div>
+                <div class="one wide field small">
+                    Panjang
+                </div>
+                <div class="one wide field">
+                    <input type="text" placeholder="">
+                </div>
+                <div class="one wide field small">
+                    Lebar
+                </div>
+                <div class="one wide field">
+                    <input type="text" placeholder="">
+                </div>
+                <div class="one wide field small">
+                    Tinggi
+                </div>
+            </div>
+        </div>
+
+        <h3>Deskripsi Produk</h3>
+        <div class="garis"></div>
+        <div class="ui form">
+            <div class="twelve fields">
+                <div class="two wide field">
+                    Deskripsi
+                </div>
+                <div class="six wide field">
+                    <textarea></textarea>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="ui segment">
         <h3>Gambar Produk</h3>
         <div class="text">Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk</div>
-        <div>
-        <i class="photo icon"></i>
-        <i class="add circle icon"></i>
-      </div>
+        <div class="ui form">
+            <div class="twelve wide fields">
+                    <div class="left floated column">
+                        <div class="image-upload-select">
+                            <img src="assets/img/icon-upload.png">
+                        </div>
+                    </div>
+                </div>
+            <div class="twelve wide fields">
+                <div class="right floated column">
+                    <button class="ui positive basic button">Upload Foto</button>
+                </div>
+            </div>
+        </div>
     </div>
-
-</div>
+    <div class="ui centered">
+        <div class="twelve wide fields">
+            <button class="positive ui button">Tambahkan Produk</button>
+        </div>
+    </div>
