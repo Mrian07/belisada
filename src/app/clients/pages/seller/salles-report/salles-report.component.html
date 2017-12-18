@@ -1,0 +1,106 @@
+<p class="Sales_Report">
+  Sales Report
+</p>
+<sui-search placeholder="Cari Produk Anda"
+    [options]="options"
+    [searchDelay]="0"
+    (resultSelected)="alertSelected($event)">
+</sui-search>
+
+
+<div class="lalaal">
+    <sui-select class="selection"
+    [(ngModel)]="selectedOption"
+    [optionsLookup]="optionsLookup"
+    labelField="name"
+    valueField="id"
+    [isSearchable]="true"
+    #searchSelect>
+    <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+    </sui-select>
+</div>
+<p class="aaaaaa">
+  Urutkan :
+</p>
+<button class="ui youtube button lol"> Cetak Report </button>
+
+
+<table class="ui five column table">
+    <thead>
+      <tr>
+        <th>Penjualan</th>
+        <a routerLink="/seller/salles-report/reject-retur" class="active item line"><th>Reject / Retur</th></a>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><div class="ui icon input">
+            <input type="text" placeholder="Search...">
+            <i class="circular search link icon"></i>
+          </div>
+        </td>
+        <td><sui-select class="selection"
+          [(ngModel)]="selectedOption"
+          [optionsLookup]="optionsLookup"
+          labelField="name"
+          valueField="id"
+          [isSearchable]="true"
+          #searchSelect>
+          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+          </sui-select>
+        </td>
+        <td><sui-select class="selection"
+          [(ngModel)]="selectedOption"
+          [optionsLookup]="optionsLookup"
+          labelField="name"
+          valueField="id"
+          [isSearchable]="true"
+          #searchSelect>
+          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+          </sui-select>
+        </td>
+        <td><sui-select class="selection"
+          [(ngModel)]="selectedOption"
+          [optionsLookup]="optionsLookup"
+          labelField="name"
+          valueField="id"
+          [isSearchable]="true"
+          #searchSelect>
+          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+          </sui-select>
+        </td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Date</td>
+        <td>Order ID</td>
+        <td class="negative">Product</td>
+        <td>Qty</td>
+        <td>Reason</td>
+      </tr>
+      <tr class="positive">
+        <td>2017 - 11 - 22</td>
+        <td><i class="icon checkmark"></i> #451545884</td>
+        <td>Laptop </td>
+        <td>5</td>
+        <td>Cancled</td>
+      </tr>
+      <tr>
+        <td>2017 - 11 - 22</td>
+        <td>#451545884</td>
+        <td class="positive"><i class="icon close"></i>SmartPhone</td>
+        <td>5</td>
+        <td>Success</td>
+      </tr>
+      <tr class="negative">
+        <td>2017 - 11 - 22</td>
+        <td>#451545884</td>
+        <td>PC</td>
+        <td>5</td>
+        <td>Success</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  <router-outlet></router-outlet>
