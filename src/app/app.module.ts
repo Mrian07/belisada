@@ -67,17 +67,14 @@ import { SearchDashboardComponent } from './clients/components/dashboard/search-
     TokoComponent,
     InfoPerusahaanComponent,
     KontakComponent,
-<<<<<<< HEAD
     KontakDetailComponent,
     FaqComponent
-=======
     NotificationComponent,
     SalesStatusComponent,
     MyTopProdukComponent,
     ProdukReportComponent,
     StatusInvoiceComponent,
     SearchDashboardComponent
->>>>>>> ad69c3dc3de4f6a13fea01b7c7a382216d3d417e
   ],
   imports: [
     BrowserModule,
