@@ -9,6 +9,8 @@ export class AddProductsComponent implements OnInit {
 
   constructor() { }
 
+  condition: string;
+
   ngOnInit() {
   }
 
