@@ -12,6 +12,7 @@ import { RekeningComponent } from './seller/rekening/rekening.component';
 import { TokoComponent } from './seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './seller/kontak/kontak.component';
+import { KontakDetailComponent } from './seller/kontak-detail/kontak-detail.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -26,7 +27,8 @@ import { KontakComponent } from './seller/kontak/kontak.component';
     RekeningComponent,
     TokoComponent,
     InfoPerusahaanComponent,
-    KontakComponent
+    KontakComponent,
+    KontakDetailComponent
   ]
 })
 export class ViewsModule { }

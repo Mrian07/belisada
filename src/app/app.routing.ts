@@ -15,6 +15,7 @@ import { RekeningComponent } from './clients/pages/seller/rekening/rekening.comp
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
+import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
 
 const routes: Routes = [
   {
@@ -90,6 +91,9 @@ const routes: Routes = [
       },{
         path: 'kontak',
         component: KontakComponent,
+      },{
+        path: 'kontak-detail',
+        component: KontakDetailComponent,
       }
     ]
   }
