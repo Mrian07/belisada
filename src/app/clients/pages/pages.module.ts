@@ -13,7 +13,6 @@ import { TokoComponent } from './seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './seller/kontak/kontak.component';
 import { KontakDetailComponent } from './seller/kontak-detail/kontak-detail.component';
-import { ProdukComponent } from './seller/produk/produk.component';
 import { FaqComponent } from './seller/faq/faq.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { FaqComponent } from './seller/faq/faq.component';
     InfoPerusahaanComponent,
     KontakComponent,
     KontakDetailComponent,
-    ProdukComponent,
     FaqComponent
   ]
 })
