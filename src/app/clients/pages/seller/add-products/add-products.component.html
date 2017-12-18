@@ -32,7 +32,10 @@
                     Nama Product
                 </div>
                 <div class="ten wide field">
-                    <input type="text" placeholder="Nama Produk">
+                    <input type="text" name="city" list="cityname" (keyup)="search($event)" (blur)="blur()">
+                    <datalist id="cityname" >
+                        <option *ngFor="let hasil of results" value="{{hasil.name}}">
+                    </datalist>
                 </div>
             </div>
             <div class="inline twelve fields">
@@ -40,31 +43,34 @@
                     Category Product
                 </div>
                 <div class="ten wide field">
-                    <div class="ui dropdown four wide field" suiDropdown>
-                        <div class="text">Pilih Kategori</div>
-                            <i class="dropdown icon"></i>
-                        <div class="menu" suiDropdownMenu>
-                            <div class="item">Item 1</div>
-                        </div>
+                    <div class="ui five wide field">
+                        <sui-select class="selection"
+                            [(ngModel)]="selectedOption"
+                            labelField="name"
+                            placeholder="Select Category">
+                            <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                        </sui-select>
                     </div>
 
-                    <div class="ui dropdown four wide field" suiDropdown>
-                        <div class="text">Pilih Kategori</div>
-                        <i class="dropdown icon"></i>
-                        <div class="menu" suiDropdownMenu>
-                            <div class="item">Item 1</div>
+                    <div class="ui five wide field">
+                            <sui-select class="selection"
+                                [(ngModel)]="selectedOption"
+                                labelField="name"
+                                placeholder="Select Category">
+                                <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                            </sui-select>
                         </div>
-                    </div>
 
-                    <div class="ui dropdown four wide field" suiDropdown>
-                        <div class="text">Pilih Kategori</div>
-                        <i class="dropdown icon"></i>
-                        <div class="menu" suiDropdownMenu>
-                            <div class="item">Item 1</div>
+<!--<div class="ui dropdown five wide field" suiDropdown>
+                            <sui-select class="selection"
+                                [(ngModel)]="selectedOption"
+                                labelField="name"
+                                placeholder="Select Category">
+                                <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name"></sui-select-option>
+                            </sui-select>
                         </div>
-                    </div>
 
-                </div>
+                </div> -->
             </div>
 
             <div class="inline twelve fields">

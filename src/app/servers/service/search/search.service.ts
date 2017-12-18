@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
-import { AbstractRestService } from '../abstract.rest.service';
 import { Search } from '../../model/search';
 import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/map';
 
 @Injectable()
-export class SearchService extends AbstractRestService<Search>  {
+export class SearchService {
 
-  constructor(http: Http, configuration: Configuration) {
-    super(http, configuration.serverWithApiUrl + '/product/productlist/');
+  constructor(private http: Http, private configuration: Configuration) {
   }
-
+    Search(key: string) {
+      return this.http.get(this.configuration.serverWithApiUrl + '/product/productlist/' + key)
+          .map(resp => resp.json());
+    }
 }

@@ -64,7 +64,7 @@ export class DashboardComponent implements OnInit {
 
   search(event) {
     const key = event.target.value;
-    this.searchService.searchProduct(key).subscribe(data => {
+    this.searchService.Search(key).subscribe(data => {
       console.log(data);
     });
   }

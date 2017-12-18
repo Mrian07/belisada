@@ -3,7 +3,7 @@ import { Category2 } from './category2';
 export class Category {
 
   alias: string;
-  c2: Category2;
+  c2: [Category2];
   categoryParentId: number;
   description: string;
   iconurl: string;
