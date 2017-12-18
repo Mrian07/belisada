@@ -17,6 +17,7 @@ import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
 import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
 import { FaqComponent } from './clients/pages/seller/faq/faq.component';
+import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 
 const routes: Routes = [
   {
@@ -99,6 +100,9 @@ const routes: Routes = [
       },{
         path: 'faq',
         component: FaqComponent,
+      },{
+        path: 'payment-info',
+        component: PaymentInfoComponent,
       }
     ]
   }
