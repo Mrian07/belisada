@@ -2,8 +2,10 @@ import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-po
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import {TranslateModule} from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+
 
 // semantic-ui module
 import { SuiModule } from 'ng2-semantic-ui';
@@ -36,6 +38,8 @@ import { RekeningComponent } from './clients/pages/seller/rekening/rekening.comp
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
+import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
+import { FaqComponent } from './clients/pages/seller/faq/faq.component';
 import { NotificationComponent } from './clients/components/dashboard/notification/notification.component';
 import { SalesStatusComponent } from './clients/components/dashboard/sales-status/sales-status.component';
 import { MyTopProdukComponent } from './clients/components/dashboard/my-top-produk/my-top-produk.component';
@@ -45,6 +49,7 @@ import { SearchDashboardComponent } from './clients/components/dashboard/search-
 import { SallesReportComponent } from './clients/pages/seller/salles-report/salles-report.component';
 import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
+import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 
 
 @NgModule({
@@ -68,6 +73,8 @@ import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layou
     TokoComponent,
     InfoPerusahaanComponent,
     KontakComponent,
+    KontakDetailComponent,
+    FaqComponent,
     NotificationComponent,
     SalesStatusComponent,
     MyTopProdukComponent,
@@ -76,14 +83,16 @@ import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layou
     SearchDashboardComponent,
     SallesReportComponent,
     RejectReturComponent,
-    PlainLayoutComponent
+    PlainLayoutComponent,
+    PaymentInfoComponent
   ],
   imports: [
     BrowserModule,
     SuiModule,
     HttpModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    TranslateModule.forRoot()
   ],
   providers: [{
     provide: LocationStrategy,
