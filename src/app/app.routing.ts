@@ -1,3 +1,4 @@
+import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,6 +16,11 @@ import { RekeningComponent } from './clients/pages/seller/rekening/rekening.comp
 import { TokoComponent } from './clients/pages/seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './clients/pages/seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './clients/pages/seller/kontak/kontak.component';
+import { SallesReportComponent } from './clients/pages/seller/salles-report/salles-report.component';
+import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
+import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
+import { FaqComponent } from './clients/pages/seller/faq/faq.component';
+import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 
 const routes: Routes = [
   {
@@ -87,9 +93,37 @@ const routes: Routes = [
       {
         path: 'info-perusahaan',
         component: InfoPerusahaanComponent,
-      },{
+      }, {
         path: 'kontak',
         component: KontakComponent,
+      },
+      {
+        path: 'salles-report',
+        component: PlainLayoutComponent,
+        children: [
+          {
+            path: 'reject-retur',
+            component: RejectReturComponent,
+          },
+          {
+            path: 'penjualan',
+            component: SallesReportComponent
+          }
+
+        ]
+      },
+      {
+        path: 'kontak',
+        component: KontakComponent,
+      },{
+        path: 'kontak-detail',
+        component: KontakDetailComponent,
+      },{
+        path: 'faq',
+        component: FaqComponent,
+      },{
+        path: 'payment-info',
+        component: PaymentInfoComponent,
       }
     ]
   }

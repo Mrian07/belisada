@@ -12,6 +12,11 @@ import { RekeningComponent } from './seller/rekening/rekening.component';
 import { TokoComponent } from './seller/toko/toko.component';
 import { InfoPerusahaanComponent } from './seller/info-perusahaan/info-perusahaan.component';
 import { KontakComponent } from './seller/kontak/kontak.component';
+import { SallesReportComponent } from './seller/salles-report/salles-report.component';
+import { RejectReturComponent } from './seller/salles-report/reject-retur/reject-retur.component';
+import { KontakDetailComponent } from './seller/kontak-detail/kontak-detail.component';
+import { FaqComponent } from './seller/faq/faq.component';
+import { PaymentInfoComponent } from './seller/payment-info/payment-info.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -26,7 +31,12 @@ import { KontakComponent } from './seller/kontak/kontak.component';
     RekeningComponent,
     TokoComponent,
     InfoPerusahaanComponent,
-    KontakComponent
+    KontakComponent,
+    SallesReportComponent,
+    RejectReturComponent,
+    KontakDetailComponent,
+    FaqComponent,
+    PaymentInfoComponent
   ]
 })
 export class ViewsModule { }
