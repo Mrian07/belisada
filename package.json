@@ -5,10 +5,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "server": "concurrently --kill-others \"npm run htmllint\" \"npm run lint\" \"npm run start\"",
+    "server": "concurrently --kill-others-on-fail \"npm run htmllint\" \"npm run lint\" \"npm run start\"",
     "build": "ng build",
     "test": "ng test",
-    "htmllint": "htmllint src/**/*.html",
+    "htmllint": "htmllint ./src/**/*.html",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

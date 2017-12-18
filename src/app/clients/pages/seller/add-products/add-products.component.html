@@ -1,66 +1,67 @@
 <div class="column">
     <div class="wide column">
-      	<h1>Tambah Produk </h1>
-      	<p>
-        	Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br/>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
-      	</p>
-      	<div class="ui segment">
-        	<p>Apa yang anda jual?</p>
-        	<div class="ui form">
-          		<div class="inline twelve fields">
-            		<div class="two wide field">
-						Status
-					</div>
-            	<div class="ten wide field">
-              		<div class="field">
-                		<sui-radio-button value="baru" [(ngModel)]="condition">Baru</sui-radio-button>
-              		</div>
-              		<div class="field">
-                		<sui-radio-button value="second" [(ngModel)]="condition">Second</sui-radio-button>
-              		</div>
-                    <div class="field">
-                        <sui-radio-button value="refurbish" [(ngModel)]="condition">Refurbish</sui-radio-button>
+        <h1>Tambah Produk </h1>
+        <p>
+            Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br/>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
+        </p>
+        <div class="ui segment">
+            <p>Apa yang anda jual?</p>
+            <div class="ui form">
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                        Status
+                    </div>
+                    <div class="ten wide field">
+                        <div class="field">
+                            <sui-radio-button value="baru" [(ngModel)]="condition">Baru</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button value="second" [(ngModel)]="condition">Second</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button value="refurbish" [(ngModel)]="condition">Refurbish</sui-radio-button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="ui form">
-            <div class="inline twelve fields">
-                <div class="two wide field">
-                    Nama Product
-                </div>
-                <div class="ten wide field">
-                    <input type="text" name="city" list="cityname" (keyup)="search($event)" (blur)="blur()">
-                    <datalist id="cityname" >
-                        <option *ngFor="let hasil of results" value="{{hasil.name}}">
-                    </datalist>
-                </div>
-            </div>
-            <div class="inline twelve fields">
-                <div class="two wide field">
-                    Category Product
-                </div>
-                <div class="ten wide field">
-                    <div class="ui five wide field">
-                        <sui-select class="selection"
-                            [(ngModel)]="selectedOption"
-                            labelField="name"
-                            placeholder="Select Category">
-                            <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
-                        </sui-select>
+            <div class="ui form">
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                        Nama Product
                     </div>
-
-                    <div class="ui five wide field">
+                    <div class="ten wide field">
+                        <input type="text" name="city" list="cityname" (keyup)="search($event)" (blur)="blur()"/>
+                        <datalist id="cityname">
+                            <option *ngFor="let hasil of results" value="{{hasil.name}}"></option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                        Category Product
+                    </div>
+                    <div class="ten wide field">
+                        <div class="ui five wide field">
                             <sui-select class="selection"
                                 [(ngModel)]="selectedOption"
                                 labelField="name"
                                 placeholder="Select Category">
-                                <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                    <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
                             </sui-select>
                         </div>
 
-<!--<div class="ui dropdown five wide field" suiDropdown>
+                        <div class="ui five wide field">
+                            <sui-select class="selection"
+                                [(ngModel)]="selectedOption"
+                                labelField="name"
+                                placeholder="Select Category">
+                                    <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                            </sui-select>
+                        </div>
+
+                        <!--
+                        <div class="ui dropdown five wide field" suiDropdown>
                             <sui-select class="selection"
                                 [(ngModel)]="selectedOption"
                                 labelField="name"
@@ -68,127 +69,127 @@
                                 <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name"></sui-select-option>
                             </sui-select>
                         </div>
+                        -->
+                    </div>
 
-                </div> -->
-            </div>
-
-            <div class="inline twelve fields">
-                <div class="two wide field">
-                    Nama Product
-                </div>
-                <div class="ten wide field">
-                    <div class="ui dropdown three wide field" suiDropdown>
-                        <div class="text">Pilih Brand</div>
-                            <i class="dropdown icon"></i>
-                        <div class="menu" suiDropdownMenu>
-                            <div class="item">Item 1</div>
+                    <div class="inline twelve fields">
+                        <div class="two wide field">
+                            Nama Product
+                        </div>
+                        <div class="ten wide field">
+                            <div class="ui dropdown three wide field" suiDropdown>
+                                <div class="text">Pilih Brand</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu" suiDropdownMenu>
+                                    <div class="item">Item 1</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="ui segment">
-        <h3>Detail Produk</h3>
-        <div class="garis"></div>
-        <div class="ui form">
-            <div class="inline twelve fields">
-                <div class="two wide field">
-                    Harga
-                </div>
-                <div class="five wide field">
-                    <input type="text" placeholder="Harga"/>
-                </div>
-                <div class="five wide field small">
-                        Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000
+            <div class="ui segment">
+                <h3>Detail Produk</h3>
+                <div class="garis"></div>
+                <div class="ui form">
+                    <div class="inline twelve fields">
+                        <div class="two wide field">
+                            Harga
+                        </div>
+                        <div class="five wide field">
+                            <input type="text" placeholder="Harga"/>
+                        </div>
+                        <div class="five wide field small">
+                            Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000
+                        </div>
                     </div>
-            </div>
-        </div>
+                </div>
 
-        <div class="ui form">
-            <div class="inline five fields">
-                <div class="two wide field">
-                    Berat
+                <div class="ui form">
+                    <div class="inline five fields">
+                        <div class="two wide field">
+                            Berat
+                        </div>
+                        <div class="two wide field">
+                            <input type="text" placeholder="Berat"/>
+                        </div>
+                        <div class="one wide field">
+                            <div class="ui dropdown three wide field" suiDropdown>
+                                <div class="text">Kg</div>
+                                <i class="dropdown icon"></i>
+                                <div class="menu" suiDropdownMenu>
+                                    <div class="item">Kg</div>
+                                    <div class="item">Gram</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="two wide field">
-                    <input type="text" placeholder="Berat"/>
+
+                <div class="ui form">
+                    <div class="inline eight fields">
+                        <div class="two wide field">
+                            Dimensi
+                        </div>
+                        <div class="one wide field">
+                            <input type="text" placeholder=""/>
+                        </div>
+                        <div class="one wide field small">
+                            Panjang
+                        </div>
+                        <div class="one wide field">
+                            <input type="text" placeholder=""/>
+                        </div>
+                        <div class="one wide field small">
+                            Lebar
+                        </div>
+                        <div class="one wide field">
+                            <input type="text" placeholder=""/>
+                        </div>
+                        <div class="one wide field small">
+                            Tinggi
+                        </div>
+                    </div>
                 </div>
-                <div class="one wide field">
-                    <div class="ui dropdown three wide field" suiDropdown>
-                        <div class="text">Kg</div>
-                            <i class="dropdown icon"></i>
-                        <div class="menu" suiDropdownMenu>
-                            <div class="item">Kg</div>
-                            <div class="item">Gram</div>
+
+                <h3>Deskripsi Produk</h3>
+                <div class="garis"></div>
+                <div class="ui form">
+                    <div class="twelve fields">
+                        <div class="two wide field">
+                            Deskripsi
+                        </div>
+                        <div class="six wide field">
+                            <textarea></textarea>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="ui form">
-            <div class="inline eight fields">
-                <div class="two wide field">
-                    Dimensi
-                </div>
-                <div class="one wide field">
-                    <input type="text" placeholder=""/>
-                </div>
-                <div class="one wide field small">
-                    Panjang
-                </div>
-                <div class="one wide field">
-                    <input type="text" placeholder=""/>
-                </div>
-                <div class="one wide field small">
-                    Lebar
-                </div>
-                <div class="one wide field">
-                    <input type="text" placeholder=""/>
-                </div>
-                <div class="one wide field small">
-                    Tinggi
-                </div>
-            </div>
-        </div>
-
-        <h3>Deskripsi Produk</h3>
-        <div class="garis"></div>
-        <div class="ui form">
-            <div class="twelve fields">
-                <div class="two wide field">
-                    Deskripsi
-                </div>
-                <div class="six wide field">
-                    <textarea></textarea>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="ui segment">
-        <h3>Gambar Produk</h3>
-        <div class="text">Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk</div>
-        <div class="ui form">
-            <div class="twelve wide fields">
-                    <div class="left floated column">
-                        <div class="image-upload-select">
-                            <img class="ui image" src="assets/img/icon-upload.png" alt="icon-upload"/>
+            <div class="ui segment">
+                <h3>Gambar Produk</h3>
+                <div class="text">Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk</div>
+                <div class="ui form">
+                    <div class="twelve wide fields">
+                        <div class="left floated column">
+                            <div class="image-upload-select">
+                                <img class="ui image" src="assets/img/icon-upload.png" alt="icon-upload"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="twelve wide fields">
+                        <div class="right floated column">
+                            <button class="ui positive basic button">Upload Foto</button>
                         </div>
                     </div>
                 </div>
-            <div class="twelve wide fields">
-                <div class="right floated column">
-                    <button class="ui positive basic button">Upload Foto</button>
+            </div>
+            <div class="ui centered">
+                <div class="twelve wide fields">
+                    <button class="positive ui button">Tambahkan Produk</button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="ui centered">
-        <div class="twelve wide fields">
-            <button class="positive ui button">Tambahkan Produk</button>
         </div>
     </div>
 </div>

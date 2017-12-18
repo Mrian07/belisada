@@ -115,13 +115,16 @@ const routes: Routes = [
       {
         path: 'kontak',
         component: KontakComponent,
-      },{
+      },
+      {
         path: 'kontak-detail',
         component: KontakDetailComponent,
-      },{
+      },
+      {
         path: 'faq',
         component: FaqComponent,
-      },{
+      },
+      {
         path: 'payment-info',
         component: PaymentInfoComponent,
       }
