@@ -52,6 +52,8 @@ import { RejectReturComponent } from './clients/pages/seller/salles-report/rejec
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
+import { HomeComponent } from './clients/pages/front/home/home.component';
+import { FrontHeaderComponent } from './clients/components/front/front-header/front-header.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -61,6 +63,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     FrontLayoutComponent,
+    HomeComponent,
     FullLayoutComponent,
     AuthenticationLayoutComponent,
     LoginComponent,
@@ -91,7 +94,8 @@ export function createTranslateLoader(http: HttpClient) {
     RejectReturComponent,
     PlainLayoutComponent,
     PaymentInfoComponent,
-    FrontLayoutComponent
+    FrontLayoutComponent,
+    FrontHeaderComponent,
   ],
   imports: [
     BrowserModule,

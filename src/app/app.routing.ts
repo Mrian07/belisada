@@ -22,6 +22,7 @@ import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kont
 import { FaqComponent } from './clients/pages/seller/faq/faq.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
+import { HomeComponent } from './clients/pages/front/home/home.component';
 
 const routes: Routes = [
   {
@@ -35,9 +36,9 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: FrontLayoutComponent,
+        component: HomeComponent,
         data: {
-          title: 'front'
+          title: 'home'
         }
       }
     ]
