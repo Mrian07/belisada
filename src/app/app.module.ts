@@ -1,3 +1,4 @@
+import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -5,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
 
 // semantic-ui module
@@ -102,6 +104,7 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
     CategoryService,
     LoginService,
     SearchService,
+   AlamatserviceService,
     Configuration
   ],
   bootstrap: [AppComponent]
