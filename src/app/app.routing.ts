@@ -89,7 +89,7 @@ const routes: Routes = [
         component: ModalPopupComponent,
       },
       {
-        path: 'add-products',
+        path: 'add-products/:id',
         component: AddProductsComponent,
       },
       {
