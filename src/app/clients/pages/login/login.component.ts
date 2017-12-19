@@ -1,6 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { Headers, RequestOptions, Http } from '@angular/http';
 import { LoginService } from '../../../servers/service/login/login.service';
 
 @Component({
@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
 
-  constructor(private http: Http, private loginService: LoginService) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
   ngOnInit() {
   }

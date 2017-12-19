@@ -7,5 +7,5 @@ export class Search {
   category: string;
   pricelist: string;
 
-      constructor() {}
-  }
+  constructor() {}
+}
