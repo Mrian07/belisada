@@ -26,7 +26,7 @@ export class SearchDashboardComponent implements OnInit {
   //   });
   // }
   addProducts() {
-    this.router.navigate(['seller/add-products']);
+    this.router.navigate(['seller/add-products/add']);
   }
 
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../../../servers/service/search/search.service';
 import { CategoryService } from '../../../../servers/service/category/category.service';
-import { Search } from '../../../../servers/model/search';
 import { forEach } from '@angular/router/src/utils/collection';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-products',
@@ -11,23 +11,34 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 
 export class AddProductsComponent implements OnInit {
-
-  constructor(private searchService: SearchService, private categoryService: CategoryService) {
-
-  }
-
+  editid: any;
   condition: string;
-  results: Search[];
+  selectProd: object;
+  selectedCategory: string;
+  results = [];
   category = [];
   subcategory = [];
-  subcategories = [];
+  subcategories? = [];
   categorySelect: Boolean = false;
-  selectedOption: string;
   keys: string;
+  description: string;
+  price: number;
+  weight: number;
+  imageurl: string;
+
+  constructor(private searchService: SearchService, private categoryService: CategoryService,
+  private route: ActivatedRoute) {
+    this.route.params.subscribe( id => {
+      console.log(id);
+      this.editid = id;
+    });
+  }
+
 
   ngOnInit() {
     this.getCategory();
-
+    this.condition = 'baru';
+    if (this.editid.id === 'add' ) {}
   }
 
   search(event) {
@@ -37,14 +48,25 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-  selectProduct(id: number) {
+  productSelected(hasil) {
+    this.selectProd = hasil.name;
+    this.results = [];
+    this.selectedCategory = hasil.category;
+    this.price = hasil.pricelist;
+    this.description = hasil.description;
+    this.imageurl = hasil.imageurl;
+    this.weight = hasil.weight;
+  }
 
+  selectCondition() {
+  }
+
+  selectProduct(id: number) {
     this.categoryService.getAll().subscribe(data => {
       data.forEach(element => {
         if ( element.categoryParentId === id ) {
           const subcat = element.c2;
-          console.log(subcat);
-          this.subcategory = element.c2;
+          this.subcategory = subcat;
         }
       });
     });
@@ -52,18 +74,17 @@ export class AddProductsComponent implements OnInit {
 
   getCategory() {
     this.categoryService.getAll().subscribe(data => {
-      console.log(data);
       this.category = data;
     });
+
   }
   subCategory(id) {
     this.categoryService.getOne(id).subscribe(data => {
-      console.log(data);
-     // this.subcategory = data;
+
     });
   }
 
-  blur() {
+  blur(hasil) {
     this.results = [];
     this.category = [];
   }

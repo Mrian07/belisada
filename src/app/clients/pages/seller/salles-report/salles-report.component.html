@@ -20,6 +20,7 @@
     <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
     </sui-select>
 </div>
+
 <p class="aaaaaa">
   Urutkan :
 </p>
@@ -28,49 +29,41 @@
   <div class="ui top attached tabular menu">
       <a class="item" suiTabHeader="1">First</a>
       <a class="item" suiTabHeader="2">Second</a>
-  
+    
   </div>
-  <div class="ui bottom attached segment" suiTabContent="1"><table class="ui four column table">
-    <thead>
-      
-      <tr>
+  <div class="ui bottom attached segment" suiTabContent="1"><table class="ui five column table">
+    <tr>
         <td><div class="ui icon input">
             <input type="text" placeholder="Search..."/>
             <i class="circular search link icon"></i>
           </div>
         </td>
-        <td><sui-select class="selection"
-          [(ngModel)]="selectedOption"
-          [optionsLookup]="optionsLookup"
-          labelField="name"
-          valueField="id"
-          [isSearchable]="true"
-          #searchSelect>
-          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
-          </sui-select>
-        </td>
-        <td><sui-select class="selection"
-          [(ngModel)]="selectedOption"
-          [optionsLookup]="optionsLookup"
-          labelField="name"
-          valueField="id"
-          [isSearchable]="true"
-          #searchSelect>
-          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
-          </sui-select>
-        </td>
-        <td><sui-select class="selection"
-          [(ngModel)]="selectedOption"
-          [optionsLookup]="optionsLookup"
-          labelField="name"
-          valueField="id"
-          [isSearchable]="true"
-          #searchSelect>
-          <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
-          </sui-select>
-        </td>
-      </tr>
-    </thead>
+        <td>
+            <sui-select class="selection"
+            [(ngModel)]="selectedOption"
+            [optionsLookup]="optionsLookup"
+            labelField="name"
+            valueField="id"
+            [isSearchable]="true"
+            #searchSelect>
+            <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+            </sui-select>
+          </td>
+          <td>
+              <sui-select class="selection"
+              [(ngModel)]="selectedOption"
+              [optionsLookup]="optionsLookup"
+              labelField="name"
+              valueField="id"
+              [isSearchable]="true"
+              #searchSelect>
+              <sui-select-option *ngFor="let o of searchSelect.filteredOptions" [value]="o"></sui-select-option>
+              </sui-select>
+            </td>
+    </tr>
+       
+
+
     <tbody>
       <tr>
         <td>Date</td>

@@ -22,12 +22,27 @@ import { RejectReturComponent } from './clients/pages/seller/salles-report/rejec
 import { KontakDetailComponent } from './clients/pages/seller/kontak-detail/kontak-detail.component';
 import { FaqComponent } from './clients/pages/seller/faq/faq.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
+import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
+import { HomeComponent } from './clients/pages/front/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'home',
     pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+        data: {
+          title: 'home'
+        }
+      }
+    ]
   },
   {
     path: '',
@@ -76,7 +91,7 @@ const routes: Routes = [
         component: ModalPopupComponent,
       },
       {
-        path: 'add-products',
+        path: 'add-products/:id',
         component: AddProductsComponent,
       },
       {

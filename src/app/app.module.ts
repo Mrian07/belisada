@@ -1,3 +1,4 @@
+import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -52,6 +53,9 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
 import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
+import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
+import { HomeComponent } from './clients/pages/front/home/home.component';
+import { FrontHeaderComponent } from './clients/components/front/front-header/front-header.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -60,6 +64,8 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    FrontLayoutComponent,
+    HomeComponent,
     FullLayoutComponent,
     AuthenticationLayoutComponent,
     LoginComponent,
@@ -90,7 +96,9 @@ export function createTranslateLoader(http: HttpClient) {
     RejectReturComponent,
     PlainLayoutComponent,
     PaymentInfoComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    FrontLayoutComponent,
+    FrontHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +122,7 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
+   AlamatserviceService,
     Configuration
   ],
   bootstrap: [AppComponent]
