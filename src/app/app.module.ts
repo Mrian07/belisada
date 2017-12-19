@@ -50,11 +50,13 @@ import { SallesReportComponent } from './clients/pages/seller/salles-report/sall
 import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
+import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    FrontLayoutComponent,
     FullLayoutComponent,
     AuthenticationLayoutComponent,
     LoginComponent,
@@ -84,7 +86,8 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
     SallesReportComponent,
     RejectReturComponent,
     PlainLayoutComponent,
-    PaymentInfoComponent
+    PaymentInfoComponent,
+    FrontLayoutComponent
   ],
   imports: [
     BrowserModule,
