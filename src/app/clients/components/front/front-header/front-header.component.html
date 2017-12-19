@@ -1,76 +1,71 @@
 <div class="ui column doubling grid header-top">
-  <div class="eight wide column"></div>
-  <div class="eight wide column header-top-side">
-    <ul class='header-top-menu'>
-      <li><a href='#'>LACAK PESANAN</a></li>
-      <li><a href='#'>CUSTOMER CARE</a></li>
-      <li><a href='#'>JUAL DI BELISADA</a></li>
-      <li><a href='#'>DOWNLOAD APP</a></li>
-    </ul>
-  </div>
+    <div class="eight wide column"></div>
+    <div class="eight wide column header-top-side">
+        <ul class="header-top-menu">
+            <li><a href="#">LACAK PESANAN</a></li>
+            <li><a href="#">CUSTOMER CARE</a></li>
+            <li><a href="#">JUAL DI BELISADA</a></li>
+            <li><a href="#">DOWNLOAD APP</a></li>
+        </ul>
+    </div>
 </div>
 
 <div class="ui column doubling grid header-second">
-    <div class="three wide column"><img class="ui image" src="/assets/img/logo.jpg" alt="profile picture"/></div>
-    <div class="ten wide column">
-      
-        <div class="ui column doubling grid ">
-            <div class="ten wide column">
-                <div class="header-mid-side">
-                  <ul class='header-mid-menu'>
-                    <li><a href='#'>Blog</a></li>
-                    <li><a href='#'>Produk Terbaru</a></li>
-                    <li><a href='#'>Cara Belanja</a></li>
-                    <li><a href='#'>Customer Service</a></li>
-                  </ul>
-                </div>
+        <div class="three wide column"><img class="ui image" src="/assets/img/logo.jpg" alt="profile picture"/></div>
+        <div class="ten wide column">
+            
+                <div class="ui column doubling grid">
+                        <div class="ten wide column">
+                                <div class="header-mid-side">
+                                    <ul class="header-mid-menu">
+                                        <li><a href="#">Blog</a></li>
+                                        <li><a href="#">Produk Terbaru</a></li>
+                                        <li><a href="#">Cara Belanja</a></li>
+                                        <li><a href="#">Customer Service</a></li>
+                                    </ul>
+                                </div>
+                        </div>
+                        <div class="six wide column right aligned">
+                            Dapatkan Promo Menarik Di<br/>
+                            <strong>Festifal Belanja Online</strong>
+                        </div>
+                    </div>
+
+
+                    <div class="ui column doubling grid">
+                            <div class="four wide column">
+                            
+                                <sui-select class="selection"
+                                                        [(ngModel)]="selectedOption"
+                                                        [options]="options"
+                                                        labelField="name"
+                                                        [isSearchable]="searchable"
+                                                        [isDisabled]="disabled"
+                                                        #select>
+                                        <sui-select-option *ngFor="let option of select.filteredOptions"
+                                                                            [value]="option">
+                                        </sui-select-option>
+                                </sui-select>
+
+                            </div>
+                            <div class="twelve wide column">
+                                <div class="ui search">
+                                    <div class="ui icon input full-size-component">
+                                        <input class="prompt" placeholder="Common passwords..." type="text"/>
+                                        <i class="search icon"></i>
+                                    </div>
+                                    <div class="results"></div>
+                                </div>
+                            </div>
+
+                    </div>
+
+        </div>
+        <div class="three wide column center aligned">
+            <div class="menu-header">
+                <div class="menu-header3"><img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/></div>
+                <div class="menu-header2">Selamat Datang<br/><strong>Login</strong> / <strong>Daftar</strong></div>
+                <div class="menu-header1"><img class="ui image" src="/assets/img/id.jpg" alt="image not found"/></div> 
             </div>
-            <div class="six wide column right aligned">
-              Dapatkan Promo Menarik Di<br>
-              <b>Festifal Belanja Online</b>
-            </div>
-          </div>
-
-
-          <div class="ui column doubling grid "  >
-              <div class="four wide column">
-              
-                <sui-select class="selection"
-                            [(ngModel)]="selectedOption"
-                            [options]="options"
-                            labelField="name"
-                            [isSearchable]="searchable"
-                            [isDisabled]="disabled"
-                            #select>
-                    <sui-select-option *ngFor="let option of select.filteredOptions"
-                                      [value]="option">
-                    </sui-select-option>
-                </sui-select>
-
-              </div>
-              <div class="twelve wide column">
-                <div class="ui search">
-                  <div class="ui icon input" style='width:100%'>
-                    <input class="prompt" placeholder="Common passwords..." type="text">
-                    <i class="search icon"></i>
-                  </div>
-                  <div class="results"></div>
-                </div>
-              </div>
-
-          </div>
-
-    </div>
-    <div class="three wide column center aligned">
-      <div class='menu-header'>
-        <div class='menu-header3'><img class="ui image" src="/assets/img/cart.jpg" alt="profile picture"/></div>
-        <div class='menu-header2'>Selamat Datang<br><b>Login</b> / <b>Daftar</b></div>
-        <div class='menu-header1'><img class="ui image" src="/assets/img/id.jpg" alt="profile picture"/></div> 
-      </div>
-    </div>
+        </div>
 </div>
-
-
-
-
-  
