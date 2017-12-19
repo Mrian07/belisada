@@ -4,7 +4,7 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
 
 // semantic-ui module
@@ -89,7 +89,7 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
   imports: [
     BrowserModule,
     SuiModule,
-    HttpModule,
+    HttpClient,
     AppRoutingModule,
     FormsModule,
     FileUploadModule,
