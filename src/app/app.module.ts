@@ -2,10 +2,11 @@ import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-po
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // semantic-ui module
 import { SuiModule } from 'ng2-semantic-ui';
@@ -51,6 +52,9 @@ import { RejectReturComponent } from './clients/pages/seller/salles-report/rejec
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -89,11 +93,17 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
   imports: [
     BrowserModule,
     SuiModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     FileUploadModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    })
   ],
   providers: [{
     provide: LocationStrategy,
