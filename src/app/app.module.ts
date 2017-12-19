@@ -3,11 +3,11 @@ import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-po
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // semantic-ui module
 import { SuiModule } from 'ng2-semantic-ui';
@@ -52,11 +52,16 @@ import { SallesReportComponent } from './clients/pages/seller/salles-report/sall
 import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
+import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
     AppComponent,
+    FrontLayoutComponent,
     FullLayoutComponent,
     AuthenticationLayoutComponent,
     LoginComponent,
@@ -86,16 +91,23 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
     SallesReportComponent,
     RejectReturComponent,
     PlainLayoutComponent,
-    PaymentInfoComponent
+    PaymentInfoComponent,
+    FrontLayoutComponent
   ],
   imports: [
     BrowserModule,
     SuiModule,
-    HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     FileUploadModule,
-    TranslateModule.forRoot()
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: (createTranslateLoader),
+          deps: [HttpClient]
+      }
+    })
   ],
   providers: [{
     provide: LocationStrategy,

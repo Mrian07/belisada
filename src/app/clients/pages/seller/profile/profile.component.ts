@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -26,5 +27,11 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  // edit() {
+  //   if(){
+  //     alert('Nama tidak boleh kosong');
+  //   }
+  // }
 
 }

@@ -1,5 +1,5 @@
 <div class="ui fluid vertical menu"><div class="header item"><i>Notification1 </i></div>
-<div  *ngFor = "let post of address1">
-<a class="item"><i class="warning icon"></i> <span>Kelurahaan : </span>{{post.village_name}}</a>
+<div  *ngFor = "let post of address | slice:0:2; let i=index">
+    <a class="item"><i class="warning icon"></i> <span>Kelurahaan : </span>{{ post.village_name }}</a>
 </div>
 </div>
