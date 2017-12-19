@@ -1,3 +1,4 @@
+import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -51,6 +52,9 @@ import { SallesReportComponent } from './clients/pages/seller/salles-report/sall
 import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
+import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
+import { HomeComponent } from './clients/pages/front/home/home.component';
+import { FrontHeaderComponent } from './clients/components/front/front-header/front-header.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -59,6 +63,8 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    FrontLayoutComponent,
+    HomeComponent,
     FullLayoutComponent,
     AuthenticationLayoutComponent,
     LoginComponent,
@@ -88,7 +94,9 @@ export function createTranslateLoader(http: HttpClient) {
     SallesReportComponent,
     RejectReturComponent,
     PlainLayoutComponent,
-    PaymentInfoComponent
+    PaymentInfoComponent,
+    FrontLayoutComponent,
+    FrontHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -112,6 +120,7 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
+   AlamatserviceService,
     Configuration
   ],
   bootstrap: [AppComponent]
