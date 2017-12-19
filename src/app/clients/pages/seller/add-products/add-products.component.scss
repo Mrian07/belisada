@@ -31,19 +31,22 @@
 }
 .result-container {
     position: absolute;
-    margin-top: -15px;
-    width: 810px;
-    height: 350px;
+    margin-top: 178px;
+    width: 665px;
+    height: 320px;
     overflow: auto;
     z-index: 2;
-
 }
 .result {
     color: #000000;
     background-color: rgba(255, 255, 255, .8);
-    margin-left: 140px;
+    margin-left: 0px;
     height: 35px;
     padding: 10px;
     border: 1px solid #ccc;
     z-index: 3;
+}
+
+.product-image {
+    height: 300px;
 }

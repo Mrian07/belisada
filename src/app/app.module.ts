@@ -1,3 +1,4 @@
+import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -119,6 +120,7 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
+   AlamatserviceService,
     Configuration
   ],
   bootstrap: [AppComponent]
