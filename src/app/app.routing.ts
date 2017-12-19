@@ -99,18 +99,7 @@ const routes: Routes = [
       },
       {
         path: 'salles-report',
-        component: PlainLayoutComponent,
-        children: [
-          {
-            path: 'reject-retur',
-            component: RejectReturComponent,
-          },
-          {
-            path: 'penjualan',
-            component: SallesReportComponent
-          }
-
-        ]
+        component: SallesReportComponent,
       },
       {
         path: 'kontak',
