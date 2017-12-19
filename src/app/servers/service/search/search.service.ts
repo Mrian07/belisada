@@ -1,7 +1,7 @@
+import { Search } from './../../model/search';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
-import { Search } from '../../model/search';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -9,10 +9,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class SearchService {
 
-  constructor(private http: Http, private configuration: Configuration) {
+  constructor(private http: HttpClient, private configuration: Configuration) {
   }
-    Search(key: string) {
+    search(key: string): Observable<Search[]> {
       return this.http.get(this.configuration.serverWithApiUrl + '/product/productlist/' + key)
-          .map(resp => resp.json());
+          .map(response => response as Search[]);
     }
 }

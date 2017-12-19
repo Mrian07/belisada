@@ -43,7 +43,7 @@ export class AddProductsComponent implements OnInit {
 
   search(event) {
     const key = event.target.value;
-    this.searchService.Search(key).subscribe(data => {
+    this.searchService.search(key).subscribe(data => {
       this.results = data;
     });
   }
