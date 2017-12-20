@@ -14,12 +14,12 @@ export class SearchDashboardComponent implements OnInit {
   ngOnInit() {
    // this.getCategory();
   }
-  // search(event) {
-  //   const key = event.target.value;
-  //   this.searchService.searchProduct(key).subscribe(data => {
-  //     console.log(data);
-  //   });
-  // }
+  search(event) {
+    const key = event.target.value;
+    // this.searchService.searchProduct(key).subscribe(data => {
+    //   console.log(data);
+    // });
+  }
   // getCategory() {
   //   this.categoryService.getAll().subscribe(data => {
   //     console.log(data);

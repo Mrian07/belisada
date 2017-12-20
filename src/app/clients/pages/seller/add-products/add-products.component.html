@@ -38,55 +38,54 @@
                     </div>
                 </div>
                 <div class="inline twelve fields">
-                    <div class="two wide field">
-                        Category Product
-                    </div>
-                    <div class="ten wide field">
-                        <div class="ui five wide field">
-                            <sui-select class="selection"
-                                [(ngModel)]="selectedCategory"
-                                labelField="name"
-                                placeholder="Select Category">
-                                    <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
-                            </sui-select>
-                        </div>
-
-                        <div class="ui five wide field">
-                            <sui-select class="selection"
-                                [(ngModel)]="selectedOption"
-                                labelField="name"
-                                placeholder="Select Category">
-                                    <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
-                            </sui-select>
-                        </div>
-
-                        <!--
-                        <div class="ui dropdown five wide field" suiDropdown>
-                            <sui-select class="selection"
-                                [(ngModel)]="selectedOption"
-                                labelField="name"
-                                placeholder="Select Category">
-                                <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name"></sui-select-option>
-                            </sui-select>
-                        </div>
-                        -->
-                    </div>
-
-                    <!-- <div class="inline twelve fields">
                         <div class="two wide field">
-                            Nama Product
+                            Category Product
                         </div>
                         <div class="ten wide field">
-                            <div class="ui dropdown three wide field" suiDropdown>
-                                <div class="text">Pilih Brand</div>
-                                <i class="dropdown icon"></i>
-                                <div class="menu" suiDropdownMenu>
-                                    <div class="item">Item 1</div>
+                            <div class="ui five wide field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="selectedCategory"
+                                    labelField="name"
+                                    placeholder="Select Category">
+                                        <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+
+                            <div class="ui five wide field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="selectedOption"
+                                    labelField="name"
+                                    placeholder="Select SubCategory">
+                                        <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+
+                            <div class="ui five wide field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="selectedOption"
+                                    labelField="name"
+                                    placeholder="Select Section">
+                                        <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="inline twelve fields">
+                            <div class="two wide field">
+                                Product Name
+                            </div>
+                            <div class="ten wide field">
+                                <div class="ui five wide field">
+                                    <sui-select class="selection"
+                                        [(ngModel)]="selectedCategory"
+                                        labelField="name"
+                                        placeholder="Select Brand">
+                                            <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                    </sui-select>
                                 </div>
                             </div>
                         </div>
-                    </div> -->
-                </div>
             </div>
 
             <div class="ui segment">
@@ -97,11 +96,11 @@
                         <div class="two wide field">
                             Harga
                         </div>
-                        <div class="five wide field">
+                        <div class="two wide field">
                             <input type="text" placeholder="Harga" value="{{price}}"/>
                         </div>
-                        <div class="five wide field small">
-                            Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000
+                        <div class="seven wide field small">
+                            Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined">(preview : {{ price | currency:'Rp.' }})</span>
                         </div>
                     </div>
                 </div>
@@ -112,7 +111,7 @@
                             Berat
                         </div>
                         <div class="two wide field">
-                            <input type="text" placeholder="Berat" value="{{weight}}"/>
+                            <input type="text" placeholder="Berat" value="{{weight}}" [disabled]="true"/>
                         </div>
                         <div class="one wide field">
                             <div class="ui dropdown three wide field" suiDropdown>
