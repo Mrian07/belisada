@@ -15,6 +15,7 @@ export class AddProductsComponent implements OnInit {
   condition: string;
   selectProd: object;
   selectedCategory: string;
+  selectedOption: string;
   results = [];
   category = [];
   subcategory = [];
@@ -25,6 +26,7 @@ export class AddProductsComponent implements OnInit {
   price: number;
   weight: number;
   imageurl: string;
+  editMode: Boolean = true;
 
   constructor(private searchService: SearchService, private categoryService: CategoryService,
   private route: ActivatedRoute) {
@@ -38,7 +40,11 @@ export class AddProductsComponent implements OnInit {
   ngOnInit() {
     this.getCategory();
     this.condition = 'baru';
-    if (this.editid.id === 'add' ) {}
+    if (this.editid.id === 'add' ) {
+      this.editMode = false;
+    } else {
+      this.editMode = true;
+    }
   }
 
   search(event) {
