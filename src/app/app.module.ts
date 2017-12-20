@@ -6,8 +6,8 @@ import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // semantic-ui module
 import { SuiModule } from 'ng2-semantic-ui';
@@ -65,6 +65,7 @@ import { FrontHeaderComponent } from './clients/components/front/front-header/fr
 import { FrontNavComponent } from './clients/components/front/front-nav/front-nav.component';
 import { FrontSlideShowComponent } from './clients/components/front/front-slide-show/front-slide-show.component';
 import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
+import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -111,7 +112,8 @@ export function createTranslateLoader(http: HttpClient) {
     FrontNavComponent,
     FrontNavComponent,
     FrontSlideShowComponent,
-    FrontGridCarouselComponent
+    FrontGridCarouselComponent,
+    FrontFooterComponent
   ],
   imports: [
     BrowserModule,
