@@ -55,6 +55,7 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FrontHeaderComponent } from './clients/components/front/front-header/front-header.component';
+import { FrontNavComponent } from './clients/components/front/front-nav/front-nav.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -97,6 +98,8 @@ export function createTranslateLoader(http: HttpClient) {
     PaymentInfoComponent,
     FrontLayoutComponent,
     FrontHeaderComponent,
+    FrontNavComponent,
+    FrontNavComponent
   ],
   imports: [
     BrowserModule,
