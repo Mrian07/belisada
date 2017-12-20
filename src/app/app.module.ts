@@ -1,3 +1,4 @@
+import { HomeService } from './servers/service/home/home.service';
 import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -134,7 +135,8 @@ export function createTranslateLoader(http: HttpClient) {
     SearchService,
     AlamatserviceService,
     Configuration,
-    NgxCarousel
+    NgxCarousel,
+    HomeService
   ],
   bootstrap: [AppComponent]
 })
