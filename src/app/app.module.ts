@@ -66,6 +66,7 @@ import { FrontNavComponent } from './clients/components/front/front-nav/front-na
 import { FrontSlideShowComponent } from './clients/components/front/front-slide-show/front-slide-show.component';
 import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
+import { RegisterService } from './servers/service/register/register.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -145,6 +146,7 @@ SalesStatusService,
     AlamatserviceService,
     Configuration,
     NgxCarousel,
+    RegisterService,
     HomeService
   ],
   bootstrap: [AppComponent]
