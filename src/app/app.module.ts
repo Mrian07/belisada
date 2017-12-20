@@ -1,3 +1,5 @@
+import { SalesStatusService } from './servers/service/salesstatus/sales-status.service';
+import { MyTopProductService } from './servers/service/mytopproduct/my-top-product.service';
 import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -132,6 +134,11 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
+
+AlamatserviceService,
+MyTopProductService,
+SalesStatusService,
+  Configuration,
     AlamatserviceService,
     Configuration,
     NgxCarousel
