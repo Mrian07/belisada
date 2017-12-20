@@ -33,14 +33,18 @@
             <div class="ui grid">
                 <div class="eight wide column">
                     <h3>Tingkat Kepuasan Produk</h3>
-                          
-                    <!-- <div *ngIf="chart"> -->
-                        <!-- <canvas id="canvas">{{ chart }}</canvas> -->
-                    <!-- </div> -->
+
+                    <div class="canvas-wrap">
+                        <canvas class="cvs-circular-progressbar" #cvsCircularProgressbar></canvas>
+                        <span id="procent"></span>
+                    </div>                      
                 </div>
                 <div class="eight wide column">
                     <h3>KPI Seller</h3>
                     <sui-rating class="star" [ngModel]="3.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">3.0</span>
+
+                    <div>Kualitas produk</div>
+                    <div>Jaminan produk tersedia</div>
                 </div>
             </div>
         </div>

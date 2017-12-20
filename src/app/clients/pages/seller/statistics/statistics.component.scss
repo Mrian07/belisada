@@ -10,3 +10,26 @@
     font-size: 1.7rem;
     margin-left: 10px;
 }
+  
+span#procent {
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    font-size: 50px;
+    transform: translate(-50%, -50%);
+    color: #3949AB;
+}
+  
+span#procent::after {
+    content: '%';
+}
+  
+.canvas-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.cvs-circular-progressbar {
+    width: 100%;
+}
