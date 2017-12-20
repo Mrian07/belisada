@@ -63,6 +63,7 @@ import { FrontNavComponent } from './clients/components/front/front-nav/front-na
 import { FrontSlideShowComponent } from './clients/components/front/front-slide-show/front-slide-show.component';
 import { FrontBodyComponent } from './clients/components/front/front-body/front-body.component';
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
+import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -110,7 +111,8 @@ export function createTranslateLoader(http: HttpClient) {
     FrontNavComponent,
     FrontSlideShowComponent,
     FrontBodyComponent,
-    FrontFooterComponent
+    FrontFooterComponent,
+    FrontGridCarouselComponent
   ],
   imports: [
     BrowserModule,
