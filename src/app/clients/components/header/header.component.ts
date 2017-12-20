@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../../../servers/service/login/login.service';
+import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 @Component({
@@ -8,9 +10,10 @@ import swal from 'sweetalert2';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private loginService: LoginService, private router: Router) { }
+  user: Object;
   ngOnInit() {
+    this.user = this.loginService.user;
   }
 
   logout() {
@@ -26,11 +29,14 @@ export class HeaderComponent implements OnInit {
       confirmButtonText: 'Iya'
     }).then((result) => {
       if (result.value) {
+        this.loginService.logout();
         swal(
           'Success!',
           'Anda sudah keluar dari Account Area.',
           'success'
-        );
+        ).then(()=> {
+          this.router.navigate(['home']);
+        });
       }
     });
   }
