@@ -1,11 +1,8 @@
 import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
-import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
-import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
-import { FileUploadModule } from 'ng2-file-upload';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
@@ -52,6 +49,9 @@ import { SallesReportComponent } from './clients/pages/seller/salles-report/sall
 import { RejectReturComponent } from './clients/pages/seller/salles-report/reject-retur/reject-retur.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
+import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
+import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
+import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FrontHeaderComponent } from './clients/components/front/front-header/front-header.component';
@@ -96,6 +96,7 @@ export function createTranslateLoader(http: HttpClient) {
     RejectReturComponent,
     PlainLayoutComponent,
     PaymentInfoComponent,
+    StatisticsComponent,
     FrontLayoutComponent,
     FrontHeaderComponent,
     FrontNavComponent,
@@ -107,7 +108,6 @@ export function createTranslateLoader(http: HttpClient) {
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    FileUploadModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,

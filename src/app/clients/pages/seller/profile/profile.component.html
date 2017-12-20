@@ -5,7 +5,7 @@
                 <div class="six wide column">
                     <div class="ui card">
                         <div class="image">
-                            <img src="/assets/img/kristy.png" alt="Profile Picture"/>
+                            <img src="/assets/img/kristy.png" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
                         </div>
                         <div class="content">
                             <a class="header">Kristy</a>
@@ -19,7 +19,7 @@
                         <div class="extra content center aligned">
                             <div class="upload-btn-wrapper">
                                 <button class="ui orange button">Pilih Photo</button>
-                                <input type="file" name="myfile" />
+                                <input type="file" name="myfile" (change)="setUrl($event, avaImg)" />
                             </div>
                         </div>
                     </div>

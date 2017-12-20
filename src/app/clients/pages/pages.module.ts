@@ -17,6 +17,7 @@ import { RejectReturComponent } from './seller/salles-report/reject-retur/reject
 import { KontakDetailComponent } from './seller/kontak-detail/kontak-detail.component';
 import { FaqComponent } from './seller/faq/faq.component';
 import { PaymentInfoComponent } from './seller/payment-info/payment-info.component';
+import { StatisticsComponent } from './seller/statistics/statistics.component';
 import { HomeComponent } from './front/home/home.component';
 
 @NgModule({
@@ -38,6 +39,7 @@ import { HomeComponent } from './front/home/home.component';
     KontakDetailComponent,
     FaqComponent,
     PaymentInfoComponent,
+    StatisticsComponent,
     HomeComponent
   ]
 })

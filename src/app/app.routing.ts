@@ -1,3 +1,4 @@
+import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
 import { NgModule } from '@angular/core';
@@ -131,6 +132,10 @@ const routes: Routes = [
       {
         path: 'payment-info',
         component: PaymentInfoComponent,
+      },
+      {
+        path: 'statistics',
+        component: StatisticsComponent,
       }
     ]
   }

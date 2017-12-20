@@ -10,7 +10,11 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class NotificationComponent implements OnInit {
 
   address: Alamat[];
-  token = `eyJhbGciOiJIUzI1NiJ9.eyJVc2VyRGF0YSI6eyJuYW1lIjoid2FoeXUxIHdhaHl1IG5pY2giLCJlbWFpbCI6IndhaHl1LnN1aXRAbXlhY2ljby5jb20iLCJyb2xlIjoiQjJDIiwiYXZhdGFyIjoiaHR0cDovL3d3dy5uZXdzc2hhcmUuaW4vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMDQvTWluaWNsaXAtOC1CYWxsLVBvb2wtQXZhdGFyLTgucG5nIiwidXNlcklkIjoxMDAwMjI5fSwiaXNzIjoid2FoeXUuc3VpdEBteWFjaWNvLmNvbSIsInN1YiI6IndhaHl1MSB3YWh5dSBuaWNoIiwiYXVkIjoiQjJDIiwiZXhwIjoxNTE0MjU4NzAwLCJpYXQiOjE1MTM2NTM5MDAsImp0aSI6IjEwMDAyMjkifQ.a8J3FqatKT3Ups3WL_W-2lWqxFVRtspxs0qrNzXF_NA`;
+  token = 'eyJhbGciOiJIUzI1NiJ9.eyJVc2VyRGF0YSI6eyJuYW1lIjoid2FoeXUxIHdhaHl1IG5pY2giLCJlbWFpbCI6IndhaHl1LnN1aXRAbXlhY2ljby'
+          + '5jb20iLCJyb2xlIjoiQjJDIiwiYXZhdGFyIjoiaHR0cDovL3d3dy5uZXdzc2hhcmUuaW4vd3AtY29udGVudC91cGxvYWRzLzIwMTcvMDQvTWlu'
+          + 'aWNsaXAtOC1CYWxsLVBvb2wtQXZhdGFyLTgucG5nIiwidXNlcklkIjoxMDAwMjI5fSwiaXNzIjoid2FoeXUuc3VpdEBteWFjaWNvLmNvbSIsInN'
+          + '1YiI6IndhaHl1MSB3YWh5dSBuaWNoIiwiYXVkIjoiQjJDIiwiZXhwIjoxNTE0MjU4NzAwLCJpYXQiOjE1MTM2NTM5MDAsImp0aSI6IjEwMDAyMjk'
+          + 'ifQ.a8J3FqatKT3Ups3WL_W-2lWqxFVRtspxs0qrNzXF_NA';
   constructor(private alamatserviceService: AlamatserviceService) {
   }
 

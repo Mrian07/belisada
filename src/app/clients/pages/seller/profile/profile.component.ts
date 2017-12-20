@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 // const URL = '/api/';
@@ -11,21 +10,39 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  public uploader: FileUploader = new FileUploader({url: URL});
-  public hasBaseDropZoneOver: Boolean = false;
-  public hasAnotherDropZoneOver: Boolean = false;
-
-  public fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
-
-  public fileOverAnother(e: any): void {
-    this.hasAnotherDropZoneOver = e;
-  }
+  newImage: string;
+  updateImg: Boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  setCanvas(e) {
+    if (!this.updateImg) { return false; }
+    const cnv = document.createElement('canvas');
+    const el = e.path[0];
+    const w = el.width;
+    const h = el.height;
+
+    cnv.width = w;
+    cnv.height = h;
+    cnv.getContext('2d').drawImage(el, 0, 0, w, h);
+
+    this.newImage = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
+    console.log('newImg:', this.newImage);
+  }
+
+  setUrl(event, img) {
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
   }
 
   // edit() {
