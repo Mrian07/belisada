@@ -1,6 +1,7 @@
 <div class="ui fluid vertical menu">
- 
     <div class="header item"><i>Sales Status</i></div>
-    <a class="item"><i class="warning icon"></i> System: Stock Laptop Asus ROG Anda telah habis segera restock</a>
-    <a class="item"><i class="warning icon"></i> Finance: Transaksi ID#5675467332 Telah Dibayar</a>
+    <div  *ngFor = "let post of test | slice:0:3; let i=index">
+      <a class="item"><i class="warning icon"></i> <span></span>{{ post.address_name }}</a>
+      <!-- kalo eror berarti token expired -->
+  </div>
   </div>
