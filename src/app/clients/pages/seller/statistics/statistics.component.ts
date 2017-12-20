@@ -10,10 +10,43 @@ export class StatisticsComponent implements OnInit {
 
   @ViewChild('cvsCircularProgressbar', {read: ElementRef}) cvsCircularProgressbar: ElementRef;
 
+  chart = [];
+
   constructor() { }
 
   ngOnInit() {
-    console.log('this.cvsCircularProgressbar: ', this.cvsCircularProgressbar);
+    this.showCircularProgressBar();
+
+    this.chart = new Chart('cvs-earning', {
+      type: 'line',
+      data: {
+        labels: ['11/12', '12/12', '13/12', '14/12', '15/12', '16/12'],
+        datasets: [
+          {
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            borderWidth: 1
+          },
+          {
+            label: '# of Points',
+            data: [7, 11, 5, 8, 3, 7],
+            borderWidth: 1
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              reverse: false
+            }
+          }]
+        }
+      }
+    });
+  }
+
+  showCircularProgressBar() {
     const
         cvsWidth = this.cvsCircularProgressbar.nativeElement.width,
         cvsHeigh = this.cvsCircularProgressbar.nativeElement.height,
@@ -54,5 +87,4 @@ export class StatisticsComponent implements OnInit {
       }, fps);
     }
   }
-
 }

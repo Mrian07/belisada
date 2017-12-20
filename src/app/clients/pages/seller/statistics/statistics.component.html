@@ -1,52 +1,99 @@
 <div class="ui grid">
-    <div class="five wide column">
-        <div class="ui vertical menu">
-            <div class="item">
-                <div class="header">Status Pesanan</div>
-                <div class="menu">
-                    <a class="item">Pesanan dalam proses
-                        <a class="ui label">
-                            1
+    <div class="ui row">
+        <div class="five wide column">
+            <div class="ui vertical menu">
+                <div class="item">
+                    <div class="header"><h3>Pesanan baru</h3></div>
+                    <div class="new-order-counter text-center">2</div>
+                    <div class="header"><h3>Status Pesanan</h3></div>
+                    <div class="menu">
+                        <a class="item">Pesanan dalam proses
+                            <a class="ui label">
+                                1
+                            </a>
                         </a>
-                    </a>
-                    <a class="item">Pesanan terkirim
-                        <a class="ui label">
-                            55
+                        <a class="item">Pesanan terkirim
+                            <a class="ui label">
+                                55
+                            </a>
                         </a>
-                    </a>
-                    <a class="item">Pesanan dibatalkan  
-                        <a class="ui label">
-                            2
+                        <a class="item">Pesanan dibatalkan  
+                            <a class="ui label">
+                                2
+                            </a>
                         </a>
-                    </a>
-                    <a class="item">Pesanan stok habis
-                        <a class="ui label">
-                            5
+                        <a class="item">Pesanan stok habis
+                            <a class="ui label">
+                                5
+                            </a>
                         </a>
-                    </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eleven wide column">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="eight wide column">
+                        <h3>Tingkat Kepuasan Produk</h3>
+
+                        <div class="canvas-wrap">
+                            <canvas class="cvs-circular-progressbar" #cvsCircularProgressbar></canvas>
+                            <span id="procent"></span>
+                        </div>
+                    </div>
+                    <div class="eight wide column">
+                        <h3>KPI Seller</h3>
+                        
+                        <div class="gap-between-elements">
+                            <sui-rating class="star" [ngModel]="3.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">3.0</span>
+                        </div>
+
+                        <div>
+                            <div>
+                                <span class="pull-left">Kualitas produk</span>
+                                <span class="pull-right">4.3</span>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div>
+                                <span class="pull-left">Jaminan produk tersedia</span>
+                                <span class="pull-right">5</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="eleven wide column">
-        <div class="ui segment">
-            <div class="ui grid">
-                <div class="eight wide column">
-                    <h3>Tingkat Kepuasan Produk</h3>
-
-                    <div class="canvas-wrap">
-                        <canvas class="cvs-circular-progressbar" #cvsCircularProgressbar></canvas>
-                        <span id="procent"></span>
-                    </div>                      
+    <div class="ui row">
+        <div class="sixteen wide column">
+            <sui-tabset>
+                <div class="ui top attached tabular menu">
+                    <a class="item" suiTabHeader="1">Statistik Pendapatan</a>
+                    <a class="item" suiTabHeader="2">Second</a>
+                    <a class="item" suiTabHeader="3">Third</a>
                 </div>
-                <div class="eight wide column">
-                    <h3>KPI Seller</h3>
-                    <sui-rating class="star" [ngModel]="3.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">3.0</span>
-
-                    <div>Kualitas produk</div>
-                    <div>Jaminan produk tersedia</div>
+                <div class="ui bottom attached segment" suiTabContent="1">
+                    <div class="ui grid">
+                        <div class="ten wide column">
+                            <canvas id="cvs-earning">{{ chart }}</canvas>
+                        </div>
+                        <div class="six wide column">
+                            <div class="gap-between-elements">
+                                <div>Jumlah transaksi sukses:</div>
+                                <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
+                            </div>
+                            <div class="gap-between-elements">
+                                <div>Jumlah transaksi pending:</div>
+                                <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <div class="ui bottom attached segment" suiTabContent="2">Second tab!</div>
+                <div class="ui bottom attached segment" suiTabContent="3">Third tab!</div>
+            </sui-tabset>
         </div>
     </div>
 </div>
