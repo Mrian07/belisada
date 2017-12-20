@@ -1,69 +1,75 @@
 <div class="ui segment">
   <div class="ui grid">
     <div class="twelve wide stretched column">
-  
-
-          <div class="ui grid">
+        <div class="ui grid">
             <div class="six wide column center aligend">
-              
                 <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/>
-
-
             </div>
             <div class="ten wide column">
-              
+
                 <form class="ui form">
-                  <div class="field">
-                    <label>Nama Toko</label>
-                    <input name="nm_toko" placeholder="Masukan nama toko" type="text"/>
-                  </div>
-                  <div class="field">
-                    <label>Alamat</label>
-                    <input name="alamat" placeholder="Masukan nomor alamat" type="text"/>
-                  </div>
-                  <div class="field">
-                    <label>Provinsi</label>
-                    <input name="provinsi" placeholder="Masukan provinsi" type="text"/>
-                  </div>
-                  <div class="field">
-                    <label>Kota</label>
-                    <input name="kota" placeholder="Masukan kota" type="text"/>
-                  </div>
-                  <div class="field">
-                    <label>Kodepos</label>
-                    <input name="kodepos" placeholder="Masukan kodepos" type="text"/>
-                  </div>
-                  <div class="field">
-                    <label>Kategori Utama Produk</label>
-                    <select class="ui search dropdown">
-                      <option value="">Komputer</option>
-                    </select>
-                  </div>
-
-                  <button class="ui primary button" type="submit">Simpan</button>
+                    <div class="field">
+                        <label>Nama Toko</label>
+                        <input name="nm_toko" placeholder="Masukan nama toko" type="text"/>
+                    </div>
+                    <div class="field">
+                        <label>Alamat</label>
+                        <input name="alamat" placeholder="Masukan nomor alamat" type="text"/>
+                    </div>
+                    <div class="field">
+                        <label>Provinsi</label>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Propinsi">
+                            <sui-select-option *ngFor="let option of propinsi" [value]="option" value="option.name" (click)="selectCity(option.c_region_id)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Kota</label>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Kota">
+                            <sui-select-option *ngFor="let option of city" [value]="option" value="option.name" (click)="selectKelurahan(option.c_city_id)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Kelurahan/ Kecamatan</label>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan/ Kecamatan">
+                            <sui-select-option *ngFor="let option of kelurahan" [value]="option" value="option.name" (click)="selectDesa(option.c_district_id)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Desa</label>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Desa">
+                            <sui-select-option *ngFor="let option of desa" [value]="option" value="option.name" (click)="postal(option.postal)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Kodepos</label>
+                        <input name="kodepos" placeholder="Masukan kodepos" type="text" value="{{ code }}"/>
+                    </div>
+                    <div class="field">
+                        <label>Kategori Utama Produk</label>
+                        <select class="ui search dropdown">
+                            <option value="">Komputer</option>
+                        </select>
+                    </div>
+                    <button class="ui primary button" type="submit">Simpan</button>
                 </form>
-
-      
-            </div>  
-          </div>
-
-    
+            </div>
+        </div>
     </div>
     <div class="four wide column">
-      <div class="ui vertical fluid right tabular menu">
-        <a routerLink="/seller/profile" class="item">
-          Data Diri
-        </a>
-        <a routerLink="/seller/rekening" class="item">
-          Rekening Bank
-        </a>
-        <a routerLink="/seller/toko" class="active item">
-          Info Toko
-        </a>
-        <a routerLink="/seller/info-perusahaan" class="item">
-          Info Perusahaan
-        </a>
-      </div>
+        <div class="ui vertical fluid right tabular menu">
+            <a routerLink="/seller/profile" class="item">
+            Data Diri
+            </a>
+            <a routerLink="/seller/rekening" class="item">
+            Rekening Bank
+            </a>
+            <a routerLink="/seller/toko" class="active item">
+            Info Toko
+            </a>
+            <a routerLink="/seller/info-perusahaan" class="item">
+            Info Perusahaan
+            </a>
+        </div>
     </div>
-  </div>
+    </div>
 </div>
