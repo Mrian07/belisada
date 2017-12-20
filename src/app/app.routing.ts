@@ -24,6 +24,7 @@ import { FaqComponent } from './clients/pages/seller/faq/faq.component';
 import { PaymentInfoComponent } from './clients/pages/seller/payment-info/payment-info.component';
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 import { HomeComponent } from './clients/pages/front/home/home.component';
+import { FooterComponent } from './clients/components/footer/footer.component';
 
 const routes: Routes = [
   {

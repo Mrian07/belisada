@@ -17,6 +17,10 @@ import { AppComponent } from './app.component';
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
+// slide show
+import { NgxCarouselModule, NgxCarousel } from 'ngx-carousel';
+import 'hammerjs';
+
 // Layouts
 import { AuthenticationLayoutComponent } from './clients/layouts/authentication-layout/authentication-layout.component';
 import { FullLayoutComponent } from './clients/layouts/full-layout/full-layout.component';
@@ -57,6 +61,9 @@ import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FrontHeaderComponent } from './clients/components/front/front-header/front-header.component';
+import { FrontNavComponent } from './clients/components/front/front-nav/front-nav.component';
+import { FrontSlideShowComponent } from './clients/components/front/front-slide-show/front-slide-show.component';
+import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -100,9 +107,14 @@ export function createTranslateLoader(http: HttpClient) {
     StatisticsComponent,
     FrontLayoutComponent,
     FrontHeaderComponent,
+    FrontNavComponent,
+    FrontNavComponent,
+    FrontSlideShowComponent,
+    FrontGridCarouselComponent
   ],
   imports: [
     BrowserModule,
+    NgxCarouselModule,
     SuiModule,
     HttpClientModule,
     AppRoutingModule,
@@ -122,10 +134,14 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
-   AlamatserviceService,
-  MyTopProductService,
-  SalesStatusService,
-    Configuration
+
+AlamatserviceService,
+MyTopProductService,
+SalesStatusService,
+  Configuration,
+    AlamatserviceService,
+    Configuration,
+    NgxCarousel
   ],
   bootstrap: [AppComponent]
 })
