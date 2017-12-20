@@ -45,6 +45,11 @@
     padding: 10px;
     border: 1px solid #ccc;
     z-index: 3;
+    cursor: pointer;
+}
+.result:hover {
+    background-color: #999999;
+    color: #fff;
 }
 
 .product-image {
