@@ -1,1 +1,63 @@
-home
+<div class="ui six column grid">
+    <div class="column" *ngFor="let item of level_2 | slice:0:6">
+        <div class="ui segment">
+            <img class="ui image" src="{{ item.imageurl }}" alt=""/>
+            <div><strong>{{ item.name }}</strong></div>
+            <div>{{ item.pricelist | currency:'Rp ' }}</div>
+            <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
+        </div>
+    </div>
+</div>
+
+
+<div class="ui six column grid">
+    <div class="column" *ngFor="let item of level_3 | slice:0:6">
+        <div class="ui segment">
+            <img class="ui image" src="{{ item.imageurl }}" alt=""/>
+            <div><strong>{{ item.name }}</strong></div>
+            <div>{{ item.pricelist | currency:'Rp ' }}</div>
+            <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
+        </div>
+    </div>
+</div>
+
+<hr/>
+<h3>PILIH DAN KLIK BRAND FAVORIT ANDA</h3>
+<div class="ui eight column grid">
+    <div class="column" *ngFor="let item of level_4">
+        <div class="ui segment">
+            <img class="ui image" src="{{ item.imageurl }}" alt=""/>
+        </div>
+    </div>
+</div>
+
+<hr/>
+<h3 class="text-center">myacico.co.id menjamin kualitas toko kami melalui 5 poin berikut ini :</h3>
+
+<div class="ui five column grid">
+    <div class="column text-center">
+        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon1.png" alt=""/>
+        <span><strong>Gratis Pengiriman</strong></span>
+        <p>Kami akan mengirimkan pesanan anda secara cuma-cuma untuk area Jakarta.</p>
+    </div>
+    <div class="column text-center">
+        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon2.png" alt=""/>
+        <span><strong>Keamanan Pembayaran</strong></span>
+        <p>Kami akan memastikan kerahasiaan informasi pembayaran Anda.</p>
+    </div>
+    <div class="column text-center">
+        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon3.png" alt=""/>
+        <span><strong>Kemudahan Transaksi</strong></span>
+        <p>Anda bisa melakukan transaksi dengan mudah melalui berbagai metode pembayaran.</p>
+    </div>
+    <div class="column text-center">
+        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon5.png" alt=""/>
+        <span><strong>Garansi Produk Terpercaya</strong></span>
+        <p>Produk yang Anda beli dapat diservice di berbagai outlet terpercaya</p>
+    </div>
+    <div class="column text-center">
+        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon4.png" alt=""/>
+        <span><strong>Layanan cepat</strong></span>
+        <p>Customer service kami akan selalu cepat dan tanggap dalam memberikan informasi</p>
+    </div>
+</div>

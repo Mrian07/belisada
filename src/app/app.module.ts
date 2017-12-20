@@ -1,3 +1,4 @@
+import { HomeService } from './servers/service/home/home.service';
 import { SalesStatusService } from './servers/service/salesstatus/sales-status.service';
 import { MyTopProductService } from './servers/service/mytopproduct/my-top-product.service';
 import { AlamatserviceService } from './servers/service/alamat/alamatservice.service';
@@ -141,7 +142,8 @@ SalesStatusService,
   Configuration,
     AlamatserviceService,
     Configuration,
-    NgxCarousel
+    NgxCarousel,
+    HomeService
   ],
   bootstrap: [AppComponent]
 })
