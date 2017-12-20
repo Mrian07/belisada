@@ -10,6 +10,15 @@ body{
 *   @author Achmad Ricky Budianto
 *   CSS global tools
 **/
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
 .text-left {
     text-align: left;
 }
