@@ -1,20 +1,32 @@
-<div class="ui grid">
-    <div class="row" *ngFor="let item of topProductLvl1">
-        <!-- <h1>{{ item.category }}</h1> -->
-        <div class="ui six column grid">
-            <hr/>
-            <h1>{{ item.category }}</h1>
-            <div class="column" *ngFor="let item of item.topProduct">
-                <div class="ui segment">
-                    <img class="ui image" src="{{ item.imageurl }}" alt=""/>
-                    <div><strong>{{ item.name }}</strong></div>
-                    <div>{{ item.pricelist | currency:'Rp ' }}</div>
-                    <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
+<div class="ui grid" *ngFor="let item of topProductLvl1">
+        <div class="row">
+            <div class="ui three column grid">
+                <hr/>
+                <h1>{{ item.category }}</h1>
+                <div class="column">
+                    <img class="ui image" src="https://myacico.co.id/images/demo/banner-b31.jpg" alt=""/>
+                </div>
+                <div class="column">
+                    <img class="ui image" src="https://myacico.co.id/images/demo/banner-b31.jpg" alt=""/>
+                </div>
+                <div class="column">
+                    <img class="ui image" src="https://myacico.co.id/images/demo/banner-b31.jpg" alt=""/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="ui six column grid">
+                <div class="column" *ngFor="let item of item.topProduct">
+                    <div class="ui segment">
+                        <img class="ui image" src="{{ item.imageurl }}" alt=""/>
+                        <div><strong>{{ item.name }}</strong></div>
+                        <div>{{ item.pricelist | currency:'Rp ' }}</div>
+                        <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <!-- <div class="ui six column grid">
     <div class="column" *ngFor="let item of level_3 | slice:0:6">
