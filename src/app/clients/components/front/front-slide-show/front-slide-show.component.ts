@@ -50,7 +50,7 @@ export class FrontSlideShowComponent implements OnInit {
       load: 2,
       loop: true,
       touch: true
-    }
+    };
   }
 
   /* It will be triggered on every slide*/

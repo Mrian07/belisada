@@ -31,7 +31,6 @@ export class AddProductsComponent implements OnInit {
   constructor(private searchService: SearchService, private categoryService: CategoryService,
   private route: ActivatedRoute) {
     this.route.params.subscribe( id => {
-      console.log(id);
       this.editid = id;
     });
   }
@@ -83,11 +82,6 @@ export class AddProductsComponent implements OnInit {
       this.category = data;
     });
 
-  }
-  subCategory(id) {
-    this.categoryService.getOne(id).subscribe(data => {
-
-    });
   }
 
   blur(hasil) {

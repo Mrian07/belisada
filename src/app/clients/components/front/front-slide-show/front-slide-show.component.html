@@ -1,20 +1,44 @@
-<ngx-carousel
-[inputs]="carouselBanner"
-[moveToSlide]="1"
-(onMove)="onmoveFn($event)">
-
-    <ngx-item NgxCarouselItem class="bannerStyle">
-        <h1>1</h1>
-    </ngx-item>
-
-    <ngx-item NgxCarouselItem class="bannerStyle">
-        <h1>2</h1>
-    </ngx-item>
-
-    <ngx-item NgxCarouselItem class="bannerStyle">
-        <h1>3</h1>
-    </ngx-item>
-
-    <button NgxCarouselPrev class='leftRs'>&lt;</button>
-    <button NgxCarouselNext class='rightRs'>&gt;</button>
-</ngx-carousel>
+<div class="ui column doubling grid slide-first">
+    <div class="ten wide column"> 
+        <ngx-carousel
+        [inputs]="carouselBanner"
+        [moveToSlide]="1"
+        (onMove)="onmoveFn($event)">
+        
+            <ngx-item NgxCarouselItem class="bannerStyle">
+                <img class="ui image" src="/assets/img/slide1.jpg" width='100%'/>
+            </ngx-item>
+        
+            <!-- <ngx-item NgxCarouselItem class="bannerStyle">
+                <h1>2</h1>
+            </ngx-item>
+        
+            <ngx-item NgxCarouselItem class="bannerStyle">
+                <h1>3</h1>
+            </ngx-item> -->
+        
+            <button NgxCarouselPrev class='leftRs'>&lt;</button>
+            <button NgxCarouselNext class='rightRs'>&gt;</button>
+        </ngx-carousel>
+    </div>
+    <div class="six wide column">
+        <div class="ui column doubling grid">
+            <div class="sixteen wide column"> 
+                <img class="ui image" src="/assets/img/slide1a.jpg" class='slide1a'/>
+            </div>
+            <div class="sixteen wide column"> 
+                <img class="ui image" src="/assets/img/slide1b.jpg" class='slide1b'/>
+            </div>
+        </div>        
+    </div>
+    <div class="sixteen wide column">
+        <div class="ui column doubling grid">
+            <div class="eight wide column"> 
+                <img class="ui image" src="/assets/img/slide2a.jpg" class='slide2a'/>
+            </div>
+            <div class="eight wide column"> 
+                <img class="ui image" src="/assets/img/slide2b.jpg" class='slide2a'/>
+            </div>
+        </div>        
+    </div>
+</div>
