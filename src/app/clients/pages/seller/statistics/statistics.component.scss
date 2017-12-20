@@ -1,3 +1,5 @@
+// @import "./assets/scss/global";
+
 .ui.vertical.menu {
     width: 100%;
 }
@@ -32,4 +34,18 @@ span#procent::after {
 
 .cvs-circular-progressbar {
     width: 100%;
+}
+
+.new-order-counter {
+    font-size: 5rem;
+    // font-weight: bold;
+    padding: 10px 0 25px;
+}
+
+.currency-negative {
+    color: #B03060;
+}
+
+.currency-positive {
+    color: #016936;
 }
