@@ -1,3 +1,6 @@
+import { TopProductLvl2 } from './../../../../servers/model/top-product-lvl2';
+import { TopProductLvl1 } from './../../../../servers/model/top-product-lvl1';
+import { TopProductCategory } from './../../../../servers/model/top-product-category';
 import { HomeService } from './../../../../servers/service/home/home.service';
 import { Level5 } from './../../../../servers/model/home/level5';
 import { Level4 } from './../../../../servers/model/home/level4';
@@ -21,6 +24,10 @@ export class HomeComponent implements OnInit {
   level_4: Level4[];
   level_5: Level5[];
 
+  topProduct: TopProductCategory;
+  topProductLvl1: TopProductLvl1[];
+  topProductLvl2: TopProductLvl2[];
+
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
@@ -31,6 +38,11 @@ export class HomeComponent implements OnInit {
       this.level_3 = data.level_3;
       this.level_4 = data.level_4;
       this.level_5 = data.level_5;
+    });
+
+    this.homeService.getTopProductCategory().subscribe(data => {
+      this.topProduct = data;
+      this.topProductLvl1 = data.topProduct;
     });
   }
 
