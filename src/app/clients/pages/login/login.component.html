@@ -1,14 +1,16 @@
-<form class="ui form">
+<form class="ui form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
   <div class="field">
     <label>Alamat Email</label>
-    <input name="first-name" placeholder="Email" type="email" [(ngModel)]="email" required/>
+    <input name="first-name" placeholder="Email" type="email" [(ngModel)]="email" #_email="ngModel" required/>
+    <div *ngIf="f.submitted && !_email.valid" class="ui pointing red basic label">Email is required</div>
   </div>
   <div class="field">
     <label>Kata Sandi</label>
-    <input name="last-name" placeholder="password" type="password" [(ngModel)]="password" required minlength="5"/>
+    <input name="last-name" placeholder="Password" type="password" [(ngModel)]="password" #passwd="ngModel" required minlength="5"/>
+    <div *ngIf="f.submitted && !passwd.valid" class="ui pointing red basic label">Password is required</div>
   </div>
   <div class="text-center gap-between-elements">
-    <button class="ui button auth-btn-submit" type="submit" (click)="login()">Submit</button>
+    <button [disabled]="loading" [ngClass]="loading?'loading':'auth-btn-submit'" class="ui button" type="submit">Submit</button>
   </div>
   <p class="text-center textwarna gap-between-elements">
     <a routerLink="/forgot-password" routerLinkActive="active">Lupa Password</a>

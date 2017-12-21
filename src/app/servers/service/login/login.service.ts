@@ -14,7 +14,7 @@ export class LoginService {
 
 
   doLogin(loginData): Observable<Login> {
-    return this.http.post(this.configuration.serverWithAccUrl + '/account/masuk', loginData)
+    return this.http.post(this.configuration.serverWithAccUrl + '/account/login', loginData)
         .map(response => response as Login);
   }
 
