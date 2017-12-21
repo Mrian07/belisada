@@ -1,10 +1,9 @@
 <div class="ui segment">
   <div class="ui grid">
     <div class="fourteen wide column">
-      <h3>Selamat datang Seller</h3> 
-      <!-- <h3>Selamat datang {{user.name}}</h3>  -->
+      <h3>Selamat datang {{user ? user.name : 'guest'}}</h3> 
     </div>
-    <div class="two wide column right aligned">
+    <div *ngIf="user" class="two wide column right aligned">
       <button class="ui basic button" (click)="logout()">
         <i class="icon user"></i>
         Logout

@@ -22,7 +22,11 @@ export class LoginService {
       delete this.user;
       localStorage.removeItem('user');
   }
-  // isLogin(): boolean {
-  //   const 
-  // }
+
+  whoLogin(): Object {
+    if(!this.user && localStorage.user) {
+      this.user = JSON.parse(localStorage.user);
+    }
+    return this.user;
+  }
 }
