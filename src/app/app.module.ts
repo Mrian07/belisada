@@ -68,6 +68,7 @@ import { FrontGridCarouselComponent } from './clients/components/front/front-gri
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -114,7 +115,7 @@ export function createTranslateLoader(http: HttpClient) {
     FrontNavComponent,
     FrontSlideShowComponent,
     FrontGridCarouselComponent,
-    FrontFooterComponent
+    FrontFooterComponent,
   ],
   imports: [
     BrowserModule,
