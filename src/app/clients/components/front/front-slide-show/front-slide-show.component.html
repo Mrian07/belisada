@@ -1,45 +1,22 @@
-
-<div class="ui column doubling grid slide-first">
-    <div class="ten wide column"> 
-        <ngx-carousel
-        [inputs]="carouselBanner"
-        [moveToSlide]="1"
-        (onMove)="onmoveFn($event)">
-        
-            <ngx-item NgxCarouselItem class="bannerStyle">
-                <img class="ui image carousel1" alt="image" src="/assets/img/slide1.jpg"/>
-            </ngx-item>
-        
-            <!-- <ngx-item NgxCarouselItem class="bannerStyle">
-                <h1>2</h1>
-            </ngx-item>
-        
-            <ngx-item NgxCarouselItem class="bannerStyle">
-                <h1>3</h1>
-            </ngx-item> -->
-        
-            <button NgxCarouselPrev class="leftRs">&lt;</button>
-            <button NgxCarouselNext class="rightRs">&gt;</button>
-        </ngx-carousel>
-    </div>
-    <div class="six wide column">
-        <div class="ui column doubling grid">
-            <div class="sixteen wide column"> 
-                <img class="ui image coursel2" alt="image2" src="/assets/img/slide1a.jpg"/>
+<div class="gap-between-elements"></div>
+<div class="promo-banner-container">
+    <div class="promo-grid" style="padding-bottom: 100%;">
+        <div class="promo-grid-content">
+            <div class="promo-grid-cell" style="width: 66.67%;height: 66.67%;left: 0.00%;top: 0.00%;">
+                <span class="promo-img-banner" style="background-image: url('/assets/img/slide1.jpg')"></span>
             </div>
-            <div class="sixteen wide column"> 
-                <img class="ui image coursel3" alt="image3" src="/assets/img/slide1b.jpg"/>
+            <div class="promo-grid-cell" style="width: 33.33%;height: 33.33%;left: 66.67%;top: 0.00%;">
+                <span class="promo-img-banner" style="background-image: url('/assets/img/slide1a.jpg')"></span>
             </div>
-        </div>        
-    </div>
-    <div class="sixteen wide column">
-        <div class="ui column doubling grid">
-            <div class="eight wide column"> 
-                <img class="ui image coursel4" alt ="image4" src="/assets/img/slide2a.jpg"/>
+            <div class="promo-grid-cell" style="width: 33.33%;height: 33.33%;left: 66.67%;top: 33.33%;">
+                <span class="promo-img-banner" style="background-image: url('/assets/img/slide1b.jpg')"></span>
             </div>
-            <div class="eight wide column"> 
-                <img class="ui image coursel4" alt="image5" src="/assets/img/slide2b.jpg"/>
+            <div class="promo-grid-cell" style="width: 33.33%;height: 33.33%;left: 0.00%;top: 66.67%;">
+                <span class="promo-img-banner" style="background-image: url('/assets/img/slide2a.jpg')"></span>
             </div>
-        </div>        
+            <div class="promo-grid-cell" style="width: 66.67%;height: 33.33%;left: 33.33%;top: 66.67%;">
+                <span class="promo-img-banner" style="background-image: url('/assets/img/slide2b.jpg')"></span>
+            </div>
+        </div>
     </div>
 </div>
