@@ -19,9 +19,4 @@ export abstract class AbstractRestService<T> {
       return this._http.post(this.actionUrl, loginData)
           .map(response => response as T);
     }
-
-    // searchByCategory(key: string, catID: number): Observable<T> {
-    //   return this._http.get(`${this.actionUrl}${key}${catID}`)
-    //       .map(response => response as T);
-    // }
 }
