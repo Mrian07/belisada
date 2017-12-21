@@ -15,8 +15,4 @@ export abstract class AbstractRestService<T> {
       return this._http.get(`${this.actionUrl}${id}`)
           .map(response => response as T);
     }
-    doRegister(registerData): Observable<T> {
-        return this._http.post(this.actionUrl, registerData)
-            .map(response => response as T);
-      }
 }
