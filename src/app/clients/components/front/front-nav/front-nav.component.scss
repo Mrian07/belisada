@@ -1,10 +1,16 @@
 .header-second{
     background: #002e43;
     color:#ffffff;
+    float:right;
+    padding-top:20px;
+    
 }
 
 .menu-wrapper{
-    margin-top:15px;
+    // margin-top:15px;
+    // float:right;
+    background: #002e43;
+    width:100%;
 }
 /* mini reset */
 
@@ -29,7 +35,7 @@
 .nav,
 input {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   -webkit-font-smoothing: antialiased;
 }
 .nav {
@@ -57,7 +63,7 @@ input {
   position: relative;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
   transition: all .3s ease;
-  width:175px;
+  // width:175px;
   text-align:center;
   z-index: 510;
 }
