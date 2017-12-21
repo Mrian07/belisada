@@ -47,25 +47,25 @@
                                     [(ngModel)]="selectedCategory"
                                     labelField="name"
                                     placeholder="Select Category">
-                                        <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                        <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectCategory(option.mproductCategoryId)"></sui-select-option>
                                 </sui-select>
                             </div>
 
                             <div class="ui five wide field">
                                 <sui-select class="selection"
-                                    [(ngModel)]="selectedOption"
+                                    [(ngModel)]="selectedSubCategory"
                                     labelField="name"
                                     placeholder="Select SubCategory">
-                                        <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                        <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectSubCategory(option.m_product_category_id)"></sui-select-option>
                                 </sui-select>
                             </div>
 
                             <div class="ui five wide field">
                                 <sui-select class="selection"
-                                    [(ngModel)]="selectedOption"
+                                    [(ngModel)]="selectedSubCategories"
                                     labelField="name"
                                     placeholder="Select Section">
-                                        <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                        <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name" (click)="selectSubCategories(option.m_product_category_id)"></sui-select-option>
                                 </sui-select>
                             </div>
                         </div>
@@ -78,10 +78,10 @@
                             <div class="ten wide field">
                                 <div class="ui five wide field">
                                     <sui-select class="selection"
-                                        [(ngModel)]="selectedCategory"
+                                        [(ngModel)]="selectedOption"
                                         labelField="name"
                                         placeholder="Select Brand">
-                                            <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                            <sui-select-option *ngFor="let option of brands" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
                                     </sui-select>
                                 </div>
                             </div>

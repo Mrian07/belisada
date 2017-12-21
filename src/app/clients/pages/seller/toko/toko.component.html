@@ -46,9 +46,9 @@
                     </div>
                     <div class="field">
                         <label>Kategori Utama Produk</label>
-                        <select class="ui search dropdown">
-                            <option value="">Komputer</option>
-                        </select>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Kategori">
+                            <sui-select-option *ngFor="let option of categories" [value]="option" value="option.name" (click)="selectCategories(option.mproductCategoryId)"></sui-select-option>
+                        </sui-select>
                     </div>
                     <button class="ui primary button" type="submit">Simpan</button>
                 </form>

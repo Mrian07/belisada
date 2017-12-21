@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategorySearch } from './../../../../servers/model/category-search';
 import { CategoryService } from '../../../../servers/service/category/category.service';
+import { Category } from '../../../../servers/model/category';
 
 @Component({
   selector: 'app-front-header',
@@ -9,7 +10,7 @@ import { CategoryService } from '../../../../servers/service/category/category.s
 })
 export class FrontHeaderComponent implements OnInit {
 
-  categorySearch: CategorySearch[];
+  categorySearch: Category[];
 
   constructor(private categoryService: CategoryService) { }
 
@@ -18,7 +19,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   loadDataCategorySearch() {
-    this.categoryService.getCategorySearch().subscribe(data => {
+    this.categoryService.CategoryOne().subscribe(data => {
       this.categorySearch = data;
     });
   }
