@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import { City } from '../../model/city';
 import { Kelurahan } from '../../model/kelurahan';
