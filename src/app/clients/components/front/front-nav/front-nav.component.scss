@@ -8,8 +8,9 @@
 .menu-wrapper{
     // margin-top:15px;
     // float:right;
-    background: #002e43;
+    // background: #dddddd;
     width:100%;
+    padding: 0!important;
 }
 /* mini reset */
 
@@ -23,6 +24,11 @@
   margin: 0;
   padding: 0;
 }
+
+.nav ul {
+  width: 2000px;
+}
+
 .nav a {
   text-decoration: none;
 }
@@ -39,14 +45,15 @@ input {
 }
 .nav {
   cursor: default;
-  display: inline-block;
-  position: relative;
+  display: table;
+  width: 100%;
   z-index: 500;
+  position: relative;
 }
 
 /* menu list */
 .nav > li {
-  float: left;
+  display: table-cell;
 }
 
 /* menu links */
@@ -74,7 +81,7 @@ input {
 }
 .nav > li:first-child > a {
   border-left: none;
-  border-radius: 3px 0 0 3px;
+  // border-radius: 3px 0 0 3px;
 }
 
 /* search form */
