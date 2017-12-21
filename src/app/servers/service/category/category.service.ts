@@ -4,6 +4,7 @@ import { Configuration } from './../../config/configuration';
 import { Injectable } from '@angular/core';
 import { AbstractRestService } from '../abstract.rest.service';
 import { Category } from '../../model/category';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -13,7 +14,7 @@ export class CategoryService extends AbstractRestService<Category> {
     super(http, configuration.serverWithApiUrl + '/category/list/');
   }
 
-  getCategorySearch() {
+  getCategorySearch(): Observable<CategorySearch[]> {
     return this.http.get(this.configuration.serverWithApiUrl + '/category')
         .map(response => response as CategorySearch[]);
   }
