@@ -1,7 +1,7 @@
 .header-second{
     background: #002e43;
     color:#ffffff;
-    float:right;
+    // float:right;
     
 }
 
@@ -63,6 +63,7 @@ input {
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
   transition: all .3s ease;
   // width:175px;
+  font-size:12px;
   text-align:center;
   z-index: 510;
 }
