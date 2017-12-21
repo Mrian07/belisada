@@ -23,7 +23,8 @@
     </div>
     <div class="ui checkbox gap-between-elements text-center">
         <input type="checkbox" name="example">
-        <label>saya telah membaca dan menyetujui  <a routerLink="/login" routerLinkActive="active">Kebijakan belisada</a></label>
+        <label>saya telah membaca dan menyetujui <a class="pointer" (click)= "popUp()">Kebijakan belisada</a></label>
+     
       </div>
     <div class="text-center gap-between-elements">
        <button class="ui button auth-btn-submit" (click)="register()">Daftar Akun</button>
@@ -52,5 +53,13 @@
     </p>
 </div>
 
-
-
+<ng-template let-context let-modal="modal" #modalTemplate>
+    <div class="header">Example</div>
+    <div class="content">
+        <p>{{ context.data }}</p>
+    </div>
+    <div class="actions">
+        <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+        <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+    </div>
+</ng-template>

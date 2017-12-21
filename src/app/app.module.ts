@@ -1,3 +1,4 @@
+import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
 import { HomeService } from './servers/service/home/home.service';
 import { SalesStatusService } from './servers/service/salesstatus/sales-status.service';
 import { MyTopProductService } from './servers/service/mytopproduct/my-top-product.service';
@@ -116,6 +117,7 @@ export function createTranslateLoader(http: HttpClient) {
     FrontSlideShowComponent,
     FrontGridCarouselComponent,
     FrontFooterComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
