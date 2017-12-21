@@ -12,6 +12,7 @@ export class LoginService {
 
   constructor(private http: HttpClient, private configuration: Configuration) {}
 
+
   doLogin(loginData): Observable<Login> {
     return this.http.post(this.configuration.serverWithAccUrl + '/account/masuk', loginData)
         .map(response => response as Login);
@@ -24,7 +25,7 @@ export class LoginService {
   }
 
   whoLogin(): Object {
-    if(!this.user && localStorage.user) {
+    if (!this.user && localStorage.user) {
       this.user = JSON.parse(localStorage.user);
     }
     return this.user;

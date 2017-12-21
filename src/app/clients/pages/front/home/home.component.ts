@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
+
     this.homeService.getHomeThumbnail().subscribe(data => {
       this.homeView = data;
       this.level_1 = data.level_1;

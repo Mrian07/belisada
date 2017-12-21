@@ -1,3 +1,4 @@
+import { CategorySearch } from './../../model/category-search';
 import { HttpClient } from '@angular/common/http';
 import { Configuration } from './../../config/configuration';
 import { Injectable } from '@angular/core';

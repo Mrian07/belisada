@@ -16,7 +16,7 @@
             <div class="ui six column grid">
                 <div class="column" *ngFor="let item of item.topProduct">
                     <div class="ui segment">
-                        <img class="ui image" src="{{ item.imageurl }}" alt=""/>
+                        <img class="ui image" src="{{ item.imageurl }}" alt="image not found"/>
                         <div><strong>{{ item.name }}</strong></div>
                         <div>{{ item.pricelist | currency:'Rp ' }}</div>
                         <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
@@ -42,7 +42,7 @@
 <div class="ui eight column grid">
     <div class="column" *ngFor="let item of level_4">
         <div class="ui segment">
-            <img class="ui image" src="{{ item.imageurl }}" alt=""/>
+            <img class="ui image" src="{{ item.imageurl }}" alt="image not found"/>
         </div>
     </div>
 </div>
