@@ -10,7 +10,7 @@ export class RegisterService {
   constructor(private configuration: Configuration, private httpClient: HttpClient) { }
 
     register(register) {
-      return this.httpClient.post(this.configuration.serverWithacc1, register)
+      return this.httpClient.post(this.configuration.serverWithAccUrl + '/account/create', register)
       .map(response => response as Register);
     }
 

@@ -1,3 +1,4 @@
+import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
 import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
@@ -54,6 +55,13 @@ const routes: Routes = [
         component: LoginComponent,
         data: {
           title: 'Login'
+        }
+      },
+      {
+        path: 'pop-up',
+        component: PopUpComponent,
+        data: {
+          title: 'popUp'
         }
       },
       {
