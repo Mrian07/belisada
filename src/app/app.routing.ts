@@ -1,3 +1,4 @@
+import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
 import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
@@ -25,6 +26,7 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
+import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -42,6 +44,13 @@ const routes: Routes = [
         data: {
           title: 'home'
         }
+      },
+      {
+        path: 'test',
+        component: ProductDetailComponent,
+        data: {
+          title: 'product'
+        }
       }
     ]
   },
@@ -52,6 +61,13 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent,
+        data: {
+          title: 'Login'
+        }
+      },
+      {
+        path: 'pop-up',
+        component: PopUpComponent,
         data: {
           title: 'Login'
         }

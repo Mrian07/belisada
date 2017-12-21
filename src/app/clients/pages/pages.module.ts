@@ -19,6 +19,8 @@ import { FaqComponent } from './seller/faq/faq.component';
 import { PaymentInfoComponent } from './seller/payment-info/payment-info.component';
 import { StatisticsComponent } from './seller/statistics/statistics.component';
 import { HomeComponent } from './front/home/home.component';
+import { PopUpComponent } from './registration/popUp/pop-up/pop-up.component';
+import { ProductDetailComponent } from './front/product-detail/product-detail.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -40,7 +42,9 @@ import { HomeComponent } from './front/home/home.component';
     FaqComponent,
     PaymentInfoComponent,
     StatisticsComponent,
-    HomeComponent
+    HomeComponent,
+    PopUpComponent,
+    ProductDetailComponent
   ]
 })
 export class ViewsModule { }

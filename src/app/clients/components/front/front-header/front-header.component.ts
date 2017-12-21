@@ -14,6 +14,10 @@ export class FrontHeaderComponent implements OnInit {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.loadDataCategorySearch();
+  }
+
+  loadDataCategorySearch() {
     this.categoryService.getCategorySearch().subscribe(data => {
       this.categorySearch = data;
     });

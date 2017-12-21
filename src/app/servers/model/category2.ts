@@ -1,11 +1,10 @@
 export class Category2 {
 
-  alias: string;
-  categorySubId: number;
-  description: string;
-  imageurl: string;
+  m_product_category_id: string;
+  value: string;
   name: string;
   name_en: string;
+  Message?: string;
 
   constructor() {}
 }

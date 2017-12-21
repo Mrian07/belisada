@@ -1,8 +1,13 @@
 import { RegisterService } from './../../../servers/service/register/register.service';
 import { HttpClient } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
 import swal from 'sweetalert2';
+
+export interface IContext {
+  data: string;
+}
+
 @Component({
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
@@ -15,9 +20,33 @@ export class RegistrationComponent implements OnInit {
   password2: string;
   iscorporate = 'N';
   userType = '1';
-  constructor(private http: HttpClient, private categoryService: RegisterService) {  }
+  clickMessage = '';
+
+  @ViewChild('modalTemplate')
+  public modalTemplate: ModalTemplate<IContext, string, string>;
+  public open(dynamicContent: string = 'Example') {
+    const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
+
+    config.closeResult = "closed!";
+    config.context = { data: dynamicContent };
+
+    this.modalService
+        .open(config)
+        .onApprove(result => { /* approve callback */ })
+        .onDeny(result => { /* deny callback */});
+}
+  constructor(private http: HttpClient, private categoryService: RegisterService, public modalService: SuiModalService) {  }
 
   ngOnInit() {
+  }
+  popUp() {
+    swal(
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum odio tortor,' +
+    'semper ut finibus in, feugiat a felis. Mauris congue augue ac sem euismod, commodo' +
+    'malesuada odio ultricies. Quisque vitae enim vitae ex fringilla ullamcorper. In sollicitudin, lorem' +
+    'id lacinia consectetur, mauris quam tempor sem, vitae interdum leo dolor quis nibh' +
+    'Cras quis mi consectetur, facilisis orci ac, ultrices dui. Ut convallis molestie finibus. In hac habitasse platea dict' +
+    'umst. Donec quis lacus sagittis, lacinia sapien id, feugiat justo. Cras scelerisque ipsum quis efficitur eleifend.');
   }
   register() {
     const registerData = {
@@ -86,6 +115,7 @@ export class RegistrationComponent implements OnInit {
           'error'
         );
       }
+      
 
 
     });

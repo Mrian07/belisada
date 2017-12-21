@@ -47,3 +47,32 @@
     width:100%;
      height:400px;
 }
+
+
+.promo-img-banner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: transparent no-repeat 50%;
+    background-size: cover;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    transition: opacity .7s;
+}
+
+.promo-grid-cell {
+    box-sizing: border-box;
+    padding: 3px;
+    position: absolute;
+}
+
+.promo-grid-content {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    bottom: -3px;
+    left: -3px;
+}
+.promo-grid {
+    padding: 0 0 50%;
+    position: relative;
+}

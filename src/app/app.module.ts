@@ -1,3 +1,5 @@
+import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
+import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
 import { HomeService } from './servers/service/home/home.service';
 import { SalesStatusService } from './servers/service/salesstatus/sales-status.service';
 import { MyTopProductService } from './servers/service/mytopproduct/my-top-product.service';
@@ -68,6 +70,7 @@ import { FrontGridCarouselComponent } from './clients/components/front/front-gri
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
 
+
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -114,7 +117,9 @@ export function createTranslateLoader(http: HttpClient) {
     FrontNavComponent,
     FrontSlideShowComponent,
     FrontGridCarouselComponent,
-    FrontFooterComponent
+    FrontFooterComponent,
+    PopUpComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
