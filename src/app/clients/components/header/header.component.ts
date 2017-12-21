@@ -13,7 +13,8 @@ export class HeaderComponent implements OnInit {
   constructor(private loginService: LoginService, private router: Router) { }
   user: Object;
   ngOnInit() {
-    this.user = this.loginService.user;
+    this.user = this.loginService.whoLogin();
+    console.log('loged user:', this.user);
   }
 
   logout() {
