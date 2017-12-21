@@ -1,5 +1,7 @@
+import { RegisterService } from './../../../servers/service/register/register.service';
+import { HttpClient } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../../servers/service/category/category.service';
 
 @Component({
   templateUrl: './registration.component.html',
@@ -7,22 +9,30 @@ import { CategoryService } from '../../../servers/service/category/category.serv
 })
 export class RegistrationComponent implements OnInit {
 
-  fullName: string;
-  phone: number;
   email: string;
   password: string;
-  verifyPassword: string;
-
-  constructor(private categoryService: CategoryService) {
+  phone: string;
+  name: string;
+  iscorporate: '1';
+  userType: string;
+  constructor(private http: HttpClient, private categoryService: RegisterService) {
 
 
   }
 
   ngOnInit() {
   }
-
   register() {
-    console.log(this.fullName + '-' + this.phone + '-' + this.email + '-' + this.password + '-' + this.verifyPassword);
+    const registerData = {
+      email : this.email,
+      password : this.password,
+      name : this.name,
+      iscorporate: this.iscorporate,
+      userType: this.userType
+    };
+    this.categoryService.register(registerData).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }

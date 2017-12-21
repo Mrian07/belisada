@@ -3,15 +3,13 @@
             <div class="ui three column grid">
                 <hr/>
                 <h1>{{ item.category }}</h1>
-                <div class="column">
-                    <img class="ui image" src="https://myacico.co.id/images/demo/banner-b31.jpg" alt=""/>
-                </div>
-                <div class="column">
-                    <img class="ui image" src="https://myacico.co.id/images/demo/banner-b31.jpg" alt=""/>
-                </div>
-                <div class="column">
-                    <img class="ui image" src="https://myacico.co.id/images/demo/banner-b31.jpg" alt=""/>
-                </div>
+                <!-- <img src="https://www.myacico.co.id/images/demo/banner-b2.jpg" width="21%"> -->
+
+                <div class="ui images">
+                        <img src="{{ item.imageUrl2 }}" width="53%">
+                        <img src="{{ item.imageUrl3 }}" width="21%">
+                        <img src="{{ item.imageUrl4 }}" width="21%">
+                      </div>
             </div>
         </div>
         <div class="row">
