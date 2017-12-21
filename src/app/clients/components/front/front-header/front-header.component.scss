@@ -26,10 +26,10 @@
 .header-top-menu li {
     float: right;
     margin-right: 30px;
-    font-size:15px;
+    font-size:12px;
     display: block;
     font-weight: bold;
-    margin-top:-11px;
+    margin-top:-15px;
     // width:20%;
     text-decoration: none;
 }
@@ -50,9 +50,10 @@
 }
 
 .menu-header2{
-    float: right;
-    margin-right:20px;
-    width:150px;
+    float: left;
+    // margin-right:20px;
+    font-size:12px;
+    //  width:130px;
 }
 
 .menu-header3{
@@ -112,8 +113,21 @@
     padding-top:10px;
   }
 
+  .welcome{
+    float:left
+  }
+
+  .cart{
+    float:left; 
+    margin-left:10px;
+  }
+
   .logo{
-    padding-top:19px;
+    padding-top:10px;
     margin-bottom:0px;
-    padding-botom:0px;
+    padding-bottom:0px;
+  }
+
+  .promo{
+    font-size: 12px;
   }
