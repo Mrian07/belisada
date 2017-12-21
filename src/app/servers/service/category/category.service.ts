@@ -1,3 +1,4 @@
+import { CategorySearch } from './../../model/category-search';
 import { HttpClient } from '@angular/common/http';
 import { Configuration } from './../../config/configuration';
 import { Injectable } from '@angular/core';
@@ -8,7 +9,12 @@ import { Category } from '../../model/category';
 @Injectable()
 export class CategoryService extends AbstractRestService<Category> {
 
-  constructor(http: HttpClient, configuration: Configuration) {
+  constructor(private http: HttpClient, private configuration: Configuration) {
     super(http, configuration.serverWithApiUrl + '/category/list/');
+  }
+
+  getCategorySearch() {
+    return this.http.get(this.configuration.serverWithApiUrl + '/category')
+        .map(response => response as CategorySearch[]);
   }
 }

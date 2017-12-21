@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategorySearch } from './../../../../servers/model/category-search';
+import { CategoryService } from '../../../../servers/service/category/category.service';
 
 @Component({
   selector: 'app-front-header',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontHeaderComponent implements OnInit {
 
-  constructor() { }
+  categorySearch: CategorySearch[];
+
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.categoryService.getCategorySearch().subscribe(data => {
+      this.categorySearch = data;
+    });
   }
 
 }

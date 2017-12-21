@@ -40,17 +40,12 @@
 
                     <div class="ui column doubling grid">
                             <div class="four wide column">
-                            
+
                                 <sui-select class="selection"
-                                                        [(ngModel)]="selectedOption"
-                                                        [options]="options"
-                                                        labelField="name"
-                                                        [isSearchable]="searchable"
-                                                        [isDisabled]="disabled"
-                                                        #select>
-                                        <sui-select-option *ngFor="let option of select.filteredOptions"
-                                                                            [value]="option">
-                                        </sui-select-option>
+                                    [(ngModel)]="selectedSearchCategory"
+                                    labelField="name"
+                                    placeholder="Select Category">
+                                        <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
                                 </sui-select>
 
                             </div>
