@@ -70,7 +70,7 @@ input {
 .nav > li > a:focus,
 .nav > li:hover > a {
   background: #012333;
-  border-top:1px solid #f7982d;
+  // border-top:1px solid #f7982d;
 }
 .nav > li:first-child > a {
   border-left: none;
@@ -165,3 +165,9 @@ h3 {
 .highlight {
   color: #2196f3;
 }
+
+.header-second2{
+  background:#002e43;
+  margin-bottom:10px;
+}
+
