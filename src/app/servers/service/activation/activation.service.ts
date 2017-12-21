@@ -14,5 +14,4 @@ export class ActivationService {
     return this.http.post(this.configuration.serverWithAccUrl + 'account/activation', key)
     .map(response => response as Activation);
   }
-
 }
