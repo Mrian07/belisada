@@ -1,26 +1,32 @@
 <form class="ui form">
     <div class="field">
+
         <label>Nama Lengkap</label>
-        <input type="text" name="first-name" placeholder="Nama Lengkap" [(ngModel)]="fullName"/>
+        <input type="text" name="name" placeholder="Nama Lengkap"  [(ngModel)]="name"/>
     </div>
     <div class="field">
         <label>No Telpon</label>
-        <input type="number" name="first-name" placeholder="No Telpon" [(ngModel)]="phone"/>
+        <input type="number" name="phone" placeholder="No Telpon" [(ngModel)]="phone"/>
     </div>
     <div class="field">
         <label>Alamat Email</label>
-        <input type="email" name="first-name" placeholder="Alamat Email" [(ngModel)]="email"/>
+        <input type="email" name="email" placeholder="Alamat Email" [(ngModel)]="email"/>
     </div>
     <div class="field">
         <label>Password</label>
-        <input type="password" name="first-name" placeholder="Minimal 6 karakter" [(ngModel)]="password"/>
+        <input type="password" name="password" placeholder="Minimal 7 karakter" [(ngModel)]="password"/>
+        
     </div>
     <div class="field">
         <label>Ulangi Password</label>
-        <input type="password" name="first-name" [(ngModel)]="verifyPassword"/>
+        <input type="password" name="password2" placeholder="Minimal 7 karakter" [(ngModel)]="password2"/>
     </div>
+    <div class="ui checkbox gap-between-elements text-center">
+        <input type="checkbox" name="example">
+        <label>saya telah membaca dan menyetujui  <a routerLink="/login" routerLinkActive="active">Kebijakan belisada</a></label>
+      </div>
     <div class="text-center gap-between-elements">
-        <a routerLink="/seller/modal-popup"><button class="ui button auth-btn-submit" (click)="register()">Daftar Akun</button></a>
+       <button class="ui button auth-btn-submit" (click)="register()">Daftar Akun</button>
     </div>
     <div class="text-center gap-between-elements">
         <a routerLink="/login" routerLinkActive="active">Sudah punya akun? Klik di sini</a>

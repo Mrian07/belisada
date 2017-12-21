@@ -8,7 +8,7 @@ import { Login } from '../../model/login';
 export class LoginService extends AbstractRestService<Login> {
 
   constructor(http: HttpClient, configuration: Configuration) {
-    super(http, configuration.serverWithAccUrl + '/account/masuk');
+    super(http, configuration.serverWithApiUrl + '/account/masuk');
   }
 
 }

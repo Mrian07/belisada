@@ -5,5 +5,9 @@ export class Register {
       name: string;
       iscorporate: string;
       userType: string;
+
+      // untuk balikan
+      message: string;
+      status: string;
           constructor() {}
       }
