@@ -21,6 +21,8 @@ import { StatisticsComponent } from './seller/statistics/statistics.component';
 import { HomeComponent } from './front/home/home.component';
 import { PopUpComponent } from './registration/popUp/pop-up/pop-up.component';
 import { ProductDetailComponent } from './front/product-detail/product-detail.component';
+import { AccountLayoutComponent } from './account-layout/account-layout.component';
+import { ActivationLayoutComponent } from './account-layout/activation-layout/activation-layout.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -44,7 +46,9 @@ import { ProductDetailComponent } from './front/product-detail/product-detail.co
     StatisticsComponent,
     HomeComponent,
     PopUpComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AccountLayoutComponent,
+    ActivationLayoutComponent
   ]
 })
 export class ViewsModule { }
