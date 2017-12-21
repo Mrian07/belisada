@@ -23,12 +23,12 @@ export class StatisticsComponent implements OnInit {
         labels: ['11/12', '12/12', '13/12', '14/12', '15/12', '16/12'],
         datasets: [
           {
-            label: '# of Votes',
+            label: 'Transaksi sukses',
             data: [12, 19, 3, 5, 2, 3],
             borderWidth: 1
           },
           {
-            label: '# of Points',
+            label: 'Transaksi pending',
             data: [7, 11, 5, 8, 3, 7],
             borderWidth: 1
           }

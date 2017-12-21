@@ -1,11 +1,11 @@
 <form class="ui form">
   <div class="field">
     <label>Alamat Email</label>
-    <input name="first-name" placeholder="Email" type="email" [(ngModel)]="email"/>
+    <input name="first-name" placeholder="Email" type="email" [(ngModel)]="email" required/>
   </div>
   <div class="field">
     <label>Kata Sandi</label>
-    <input name="last-name" placeholder="password" type="password" [(ngModel)]="password"/>
+    <input name="last-name" placeholder="password" type="password" [(ngModel)]="password" required minlength="5"/>
   </div>
   <div class="text-center gap-between-elements">
     <button class="ui button auth-btn-submit" type="submit" (click)="login()">Submit</button>

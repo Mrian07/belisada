@@ -23,5 +23,6 @@ export class FrontFooterComponent implements OnInit {
     // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     // $('html, body').animate({scrollTop: 0}, 1000);
           return false;
+
   }
 }

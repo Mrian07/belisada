@@ -1,3 +1,9 @@
+
+    <div class="sixteen wide column top-bg" (click)="imgTop" style='cursor: pointer;'>
+        <img src="/assets/img/bg-top_main.png" border='0'>
+    </div>
+
+
 <div class="ui column doubling grid header-top">
     <div class="eight wide column"></div>
     <div class="eight wide column header-top-side">
@@ -34,27 +40,26 @@
 
                     <div class="ui column doubling grid">
                             <div class="four wide column">
-                            
+
                                 <sui-select class="selection"
-                                                        [(ngModel)]="selectedOption"
-                                                        [options]="options"
-                                                        labelField="name"
-                                                        [isSearchable]="searchable"
-                                                        [isDisabled]="disabled"
-                                                        #select>
-                                        <sui-select-option *ngFor="let option of select.filteredOptions"
-                                                                            [value]="option">
-                                        </sui-select-option>
+                                    [(ngModel)]="selectedSearchCategory"
+                                    labelField="name"
+                                    placeholder="Select Category">
+                                        <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
                                 </sui-select>
 
                             </div>
                             <div class="twelve wide column">
-                                <div class="ui search">
+                                <!-- <div class="ui search">
                                     <div class="ui icon input full-size-component">
                                         <input class="prompt" placeholder="Common passwords..." type="text"/>
                                         <i class="search icon"></i>
                                     </div>
                                     <div class="results"></div>
+                                </div> -->
+                                <div class="ui icon input full-size-component">
+                                <input placeholder="Search..." type="text">
+                                <i class="inverted circular search link icon"></i>
                                 </div>
                             </div>
 
