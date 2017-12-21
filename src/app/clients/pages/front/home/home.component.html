@@ -1,46 +1,48 @@
 <app-front-slide-show></app-front-slide-show>
 
-<div class="ui grid" *ngFor="let item of topProductLvl1">
-        <div class="row">
-            <div class="ui three column grid">
-                <hr/>
-                <h1>{{ item.category }}</h1>
-                <!-- <img src="https://www.myacico.co.id/images/demo/banner-b2.jpg" width="21%"> -->
-
-                <div class="ui images">
-                    <img src="{{ item.imageUrl2 }}" width="53%"/>
-                    <img src="{{ item.imageUrl3 }}" width="21%"/>
-                    <img src="{{ item.imageUrl4 }}" width="21%"/>
+<div *ngFor="let item of topProductLvl1">
+    <hr/>
+    <h1>{{ item.category }}</h1>
+    <div class="promo-banner-container gap-between-elements">
+        <div class="promo-grid" style="padding-bottom: 40%;">
+            <div class="promo-grid-content">
+                <div class="promo-grid-cell" style="width: 66.67%;height: 100.00%;left: 0.00%;top: 0.00%;">
+                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl2 + ')'}"></span>
+                </div>
+                <div class="promo-grid-cell" style="width: 33.33%;height: 50.00%;left: 66.67%;top: 0.00%;">
+                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl3 + ')'}"></span>
+                </div>
+                <div class="promo-grid-cell" style="width: 33.33%;height: 50.00%;left: 66.67%;top: 50.00%;">
+                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl4 + ')'}"></span>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="ui six column grid">
-                <div class="column" *ngFor="let item of item.topProduct">
-                    <div class="ui segment">
-                        <img class="ui image" src="{{ item.imageurl }}" alt="image not found"/>
-                        <div><strong>{{ item.name }}</strong></div>
-                        <div>{{ item.pricelist | currency:'Rp ' }}</div>
-                        <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
+    </div>
+
+    <div class="item-grid-container">
+        <div class="grid-wrapper">
+            <div class="item-grid" style="width: 16.66666667%;" *ngFor="let item of item.topProduct">
+                <div class="grid-content-wrapper">
+                    <div class="item-img">
+                        <span class="helper"></span>
+                        <img src="{{ item.imageurl }}" alt="image not found"/>
+                    </div>
+                    <div class="item-product-info">
+                        <h3 class="item-product-title">{{ item.name }}</h3>
+                        <div class="item-product-price">{{ item.pricelist | currency:'Rp ' }}</div>
+                        <div class="item-product-rating">
+                            <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="clearfix"></div>
         </div>
     </div>
-
-<!-- <div class="ui six column grid">
-    <div class="column" *ngFor="let item of level_3 | slice:0:6">
-        <div class="ui segment">
-            <img class="ui image" src="{{ item.imageurl }}" alt=""/>
-            <div><strong>{{ item.name }}</strong></div>
-            <div>{{ item.pricelist | currency:'Rp ' }}</div>
-            <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span>
-        </div>
-    </div>
-</div> -->
+</div>
 
 <hr/>
-<h3>PILIH DAN KLIK BRAND FAVORIT ANDA</h3>
+<h1>PILIH DAN KLIK BRAND FAVORIT ANDA</h1>
 <div class="ui eight column grid">
     <div class="column" *ngFor="let item of level_4">
         <div class="ui segment">
@@ -48,34 +50,3 @@
         </div>
     </div>
 </div>
-<!-- 
-<hr/>
-<h3 class="text-center">myacico.co.id menjamin kualitas toko kami melalui 5 poin berikut ini :</h3>
-
-<div class="ui five column grid">
-    <div class="column text-center">
-        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon1.png" alt=""/>
-        <span><strong>Gratis Pengiriman</strong></span>
-        <p>Kami akan mengirimkan pesanan anda secara cuma-cuma untuk area Jakarta.</p>
-    </div>
-    <div class="column text-center">
-        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon2.png" alt=""/>
-        <span><strong>Keamanan Pembayaran</strong></span>
-        <p>Kami akan memastikan kerahasiaan informasi pembayaran Anda.</p>
-    </div>
-    <div class="column text-center">
-        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon3.png" alt=""/>
-        <span><strong>Kemudahan Transaksi</strong></span>
-        <p>Anda bisa melakukan transaksi dengan mudah melalui berbagai metode pembayaran.</p>
-    </div>
-    <div class="column text-center">
-        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon5.png" alt=""/>
-        <span><strong>Garansi Produk Terpercaya</strong></span>
-        <p>Produk yang Anda beli dapat diservice di berbagai outlet terpercaya</p>
-    </div>
-    <div class="column text-center">
-        <img class="ui image component-centered gap-between-elements" src="https://myacico.co.id/images/general/f-icon4.png" alt=""/>
-        <span><strong>Layanan cepat</strong></span>
-        <p>Customer service kami akan selalu cepat dan tanggap dalam memberikan informasi</p>
-    </div>
-</div> -->
