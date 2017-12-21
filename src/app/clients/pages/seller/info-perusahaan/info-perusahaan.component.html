@@ -35,8 +35,8 @@
                         <div class="field">
                             <label>Kelurahan/ Kecamatan</label>
                             <sui-select class="selection" labelField="name" placeholder="Pilih Kota">
-                                    <sui-select-option *ngFor="let option of kelurahan" [value]="option" value="option.name" (click)="selectKelurahan(option.c_district_id)"></sui-select-option>
-                                </sui-select>
+                                <sui-select-option *ngFor="let option of kelurahan" [value]="option" value="option.name" (click)="selectKelurahan(option.c_district_id)"></sui-select-option>
+                            </sui-select>
                         </div>
                         <div class="field">
                             <label>No. SIUP</label>
@@ -48,9 +48,9 @@
                         </div>
                         <div class="field">
                             <label>Bergerak Dibidang</label>
-                            <select class="ui search dropdown">
-                                <option value="">Komputer</option>
-                            </select>
+                            <sui-select class="selection" labelField="name" placeholder="Pilih Kategori">
+                                <sui-select-option *ngFor="let option of categories" [value]="option" value="option.name" (click)="selectCategories(option.mproductCategoryId)"></sui-select-option>
+                            </sui-select>
                         </div>
                         <button class="ui primary button" type="submit">Simpan</button>
                     </form>

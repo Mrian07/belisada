@@ -26,6 +26,7 @@ import { PaymentInfoComponent } from './clients/pages/seller/payment-info/paymen
 import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
+import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,13 @@ const routes: Routes = [
         component: HomeComponent,
         data: {
           title: 'home'
+        }
+      },
+      {
+        path: 'test',
+        component: ProductDetailComponent,
+        data: {
+          title: 'product'
         }
       }
     ]
@@ -61,7 +69,7 @@ const routes: Routes = [
         path: 'pop-up',
         component: PopUpComponent,
         data: {
-          title: 'popUp'
+          title: 'Login'
         }
       },
       {

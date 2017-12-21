@@ -15,11 +15,13 @@ export class AddProductsComponent implements OnInit {
   condition: string;
   selectProd: object;
   selectedCategory: string;
-  selectedOption: string;
+  selectedSubCategory: string;
+  selectedSubCategories: string;
   results = [];
   category = [];
   subcategory = [];
   subcategories? = [];
+  brands = [];
   categorySelect: Boolean = false;
   keys: string;
   description: string;
@@ -46,6 +48,29 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
+  getCategory() {
+    this.categoryService.CategoryOne().subscribe(data => {
+      this.category = data;
+    });
+  }
+
+  selectCategory(id: number) {
+    this.categoryService.CategoryTwo(id).subscribe(data => {
+      this.subcategory = data;
+    });
+  }
+
+  selectSubCategory(id: number) {
+    this.categoryService.CategoryThree(id).subscribe(data => {
+      console.log(data);
+      this.subcategories = data;
+    });
+  }
+
+  selectSubCategories(id: number) {
+    console.log(id);
+  }
+
   search(event) {
     const key = event.target.value;
     this.searchService.search(key).subscribe(data => {
@@ -64,24 +89,6 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectCondition() {
-  }
-
-  selectProduct(id: number) {
-    this.categoryService.getAll().subscribe(data => {
-      data.forEach(element => {
-        if ( element.categoryParentId === id ) {
-          const subcat = element.c2;
-          this.subcategory = subcat;
-        }
-      });
-    });
-  }
-
-  getCategory() {
-    this.categoryService.getAll().subscribe(data => {
-      this.category = data;
-    });
-
   }
 
   blur(hasil) {

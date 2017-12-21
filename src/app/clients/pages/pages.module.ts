@@ -20,6 +20,7 @@ import { PaymentInfoComponent } from './seller/payment-info/payment-info.compone
 import { StatisticsComponent } from './seller/statistics/statistics.component';
 import { HomeComponent } from './front/home/home.component';
 import { PopUpComponent } from './registration/popUp/pop-up/pop-up.component';
+import { ProductDetailComponent } from './front/product-detail/product-detail.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -42,7 +43,8 @@ import { PopUpComponent } from './registration/popUp/pop-up/pop-up.component';
     PaymentInfoComponent,
     StatisticsComponent,
     HomeComponent,
-    PopUpComponent
+    PopUpComponent,
+    ProductDetailComponent
   ]
 })
 export class ViewsModule { }

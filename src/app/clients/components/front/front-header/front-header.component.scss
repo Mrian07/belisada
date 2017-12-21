@@ -44,14 +44,15 @@
 }
 
 .menu-header1{
-    float: right;
-    margin-right:20px;
-    margin-top:10px;
+    // float: right;
+    // margin-right:20px;
+    // margin-top:10px;
 }
 
 .menu-header2{
     float: right;
     margin-right:20px;
+    width:150px;
 }
 
 .menu-header3{
@@ -62,6 +63,8 @@
 
 .header-mid-side{
     text-align:right;
+    margin-bottom:10px;
+    background: #dddddd;
 }
 
 .header-mid-menu a{
@@ -78,6 +81,7 @@
     padding: 0;
     overflow: hidden;
     margin-top:0px;
+    margin-top:100px;
 }
 
 .header-mid-menu li {
@@ -88,6 +92,7 @@
     font-weight: bold;
     // width:20%;
     text-decoration: none;
+
 }
 
 .top-bg{
@@ -96,4 +101,19 @@
     margin-right:-14px;
     padding-left:0px;
     height:88px;
+  }
+
+  .text-welcome{
+    margin-top:-26px;
+  }
+
+  .icon-user{
+    float:left;
+    padding-top:10px;
+  }
+
+  .logo{
+    padding-top:19px;
+    margin-bottom:0px;
+    padding-botom:0px;
   }
