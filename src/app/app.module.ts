@@ -69,7 +69,7 @@ import { FrontSlideShowComponent } from './clients/components/front/front-slide-
 import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
-
+import { BrandsService } from './servers/service/brands/brands.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -143,7 +143,7 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
-
+  BrandsService,
 AlamatserviceService,
 MyTopProductService,
 SalesStatusService,

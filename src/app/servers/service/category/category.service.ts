@@ -5,15 +5,15 @@ import { Injectable } from '@angular/core';
 import { AbstractRestService } from '../abstract.rest.service';
 import { Category } from '../../model/category';
 import { Category2} from '../../model/category2';
+import { Brands } from '../../model/brands';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+
 
 @Injectable()
 export class CategoryService {
 
-  constructor(private http: HttpClient, private configuration: Configuration) {
-
-  }
+  constructor(private http: HttpClient, private configuration: Configuration) {}
 
   CategoryOne(): Observable<Category[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/category/c1/')
@@ -28,6 +28,11 @@ export class CategoryService {
   CategoryThree(id: number): Observable<Category2[]> {
     return this.http.get(this.configuration.serverWithNetUrl + '/categorythree/' + id)
     .map(response => response as Category2[]);
+  }
+
+  BrandCategory(): Observable<Brands[]> {
+    return this.http.get(this.configuration.serverWithNetUrl + '/productbrand')
+    .map(response => response as Brands[]);
   }
 
 }

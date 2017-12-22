@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../../../servers/service/search/search.service';
 import { CategoryService } from '../../../../servers/service/category/category.service';
-import { forEach } from '@angular/router/src/utils/collection';
 import { ActivatedRoute } from '@angular/router';
+import { forEach } from '@angular/router/src/utils/collection';
+
 
 @Component({
   selector: 'app-add-products',
@@ -14,6 +15,7 @@ export class AddProductsComponent implements OnInit {
   editid: any;
   condition: string;
   selectProd: object;
+  selectedBrands: string;
   selectedCategory: string;
   selectedSubCategory: string;
   selectedSubCategories: string;
@@ -40,6 +42,7 @@ export class AddProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getCategory();
+    this.getBrands();
     this.condition = 'baru';
     if (this.editid.id === 'add' ) {
       this.editMode = false;
@@ -96,4 +99,32 @@ export class AddProductsComponent implements OnInit {
     this.category = [];
   }
 
+  getBrands() {
+    this.categoryService.BrandCategory().subscribe(data => {
+      this.brands = data;
+    });
+    // this.brandsService.BrandCategory().subscribe(data => {
+    //   this.brands = data;
+    //   console.log(data);
+    // });
+    // this.brandsService.BrandCategory().subscribe(data => {
+    //   //console.log(data);
+    //   this.brands = data;
+    // });
+
+  }
+  searchBrands(event) {
+    const key = event.target.value;
+    console.log(key);
+    this.brands.forEach(data => {
+
+      if (data.name === key) {
+        console.log(data.name);
+      }
+    });
+   // const merk = this.brands.find(c => c.name === key);
+    //console.log(merk);
+   // const res = this.brands.filter(item).n;
+   // console.log(res);
+  }
 }
