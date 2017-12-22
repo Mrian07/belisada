@@ -71,12 +71,9 @@ import { FrontSlideShowComponent } from './clients/components/front/front-slide-
 import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
-<<<<<<< HEAD
 import { BrandsService } from './servers/service/brands/brands.service';
-=======
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
 
->>>>>>> 32ef7386d270bf67813fe9cf53f941218b474af9
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
