@@ -7,8 +7,16 @@
 </div>
 <div class="ui segment">
   <div class="ui grid">
-    <div class="fourteen wide column">
+    <div class="ten wide column">
       <h3>Selamat datang {{user ? user.name : 'guest'}}</h3> 
+    </div>
+    <div class="four wide column right aligned">
+      <div class="ui label">
+        <i class="mail icon"></i> 23
+      </div> 
+      <div class="ui label">
+        <i class="shopping bag icon"></i> 50
+      </div> 
     </div>
     <div *ngIf="user" class="two wide column right aligned">
       <button class="ui basic button" (click)="logout()">
