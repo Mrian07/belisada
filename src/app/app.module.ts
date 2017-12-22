@@ -71,8 +71,13 @@ import { FrontSlideShowComponent } from './clients/components/front/front-slide-
 import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
+import { BrandsService } from './servers/service/brands/brands.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
 import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
+import { ProfileService } from './servers/service/profile/profile.service';
+import { ChattingComponent } from './clients/components/chatting/chatting.component';
+import { ChangePasswordComponent } from './clients/pages/seller/change-password/change-password.component';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -125,7 +130,9 @@ export function createTranslateLoader(http: HttpClient) {
     ProductDetailComponent,
     AccountLayoutComponent,
     ActivationLayoutComponent,
-    ActivationComponent
+    ActivationComponent,
+    ChattingComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -150,6 +157,7 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
+    BrandsService,
     AlamatserviceService,
     MyTopProductService,
     SalesStatusService,
@@ -159,7 +167,8 @@ export function createTranslateLoader(http: HttpClient) {
     NgxCarousel,
     RegisterService,
     HomeService,
-    SendEmailService
+    SendEmailService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })

@@ -24,6 +24,7 @@ import { ProductDetailComponent } from './front/product-detail/product-detail.co
 import { AccountLayoutComponent } from './account-layout/account-layout.component';
 import { ActivationLayoutComponent } from './account-layout/activation-layout/activation-layout.component';
 import { ActivationComponent } from './seller/activation/activation.component';
+import { ChangePasswordComponent } from './seller/change-password/change-password.component';
 
 @NgModule({
   imports: [ PagesRoutingModule ],
@@ -50,7 +51,8 @@ import { ActivationComponent } from './seller/activation/activation.component';
     ProductDetailComponent,
     AccountLayoutComponent,
     ActivationLayoutComponent,
-    ActivationComponent
+    ActivationComponent,
+    ChangePasswordComponent,
   ]
 })
 export class ViewsModule { }

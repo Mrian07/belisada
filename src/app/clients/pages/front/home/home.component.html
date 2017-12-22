@@ -44,10 +44,16 @@
 
 <hr/>
 <h1>PILIH DAN KLIK BRAND FAVORIT ANDA</h1>
-<div class="ui eight column grid">
+<div class="ui eight column grid favorit">
     <div class="column" *ngFor="let item of level_4">
         <div class="ui segment">
             <img class="ui image" src="{{ item.imageurl }}" alt="image not found"/>
         </div>
     </div>
+</div>
+
+<div class="ui grid center aligned lihat-semua">
+    <button class="ui button">
+        LIHAT SEMUA <i class="angle double right icon"></i>
+    </button>
 </div>
