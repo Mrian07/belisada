@@ -25,7 +25,8 @@
                 <div class="grid-content-wrapper">
                     <div class="item-img">
                         <span class="helper"></span>
-                        <img src="{{ item.imageurl }}" alt="image not found"/>
+                        <a routerLink="/Product-detail" class="item">
+                        <img src="{{ item.imageurl }}" alt="image not found"/></a>
                     </div>
                     <div class="item-product-info">
                         <h3 class="item-product-title">{{ item.name }}</h3>

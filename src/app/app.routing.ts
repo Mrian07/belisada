@@ -49,7 +49,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'test',
+        path: 'Product-detail',
         component: ProductDetailComponent,
         data: {
           title: 'product'
