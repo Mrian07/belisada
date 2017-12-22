@@ -74,7 +74,7 @@ import { RegisterService } from './servers/service/register/register.service';
 import { BrandsService } from './servers/service/brands/brands.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
 import { ProfileService } from './servers/service/profile/profile.service';
-
+import { SearchFilterPipe } from './clients/filter';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -126,7 +126,8 @@ export function createTranslateLoader(http: HttpClient) {
     PopUpComponent,
     ProductDetailComponent,
     AccountLayoutComponent,
-    ActivationLayoutComponent
+    ActivationLayoutComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,

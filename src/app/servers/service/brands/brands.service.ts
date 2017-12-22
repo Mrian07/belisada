@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Brands } from '../../model/brands';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { Configuration } from './../../config/configuration';;
+import { Configuration } from './../../config/configuration';
 import { AbstractRestService } from '../abstract.rest.service';
 import 'rxjs/add/operator/map';
 
