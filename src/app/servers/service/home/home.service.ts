@@ -1,3 +1,4 @@
+import { Level4 } from './../../model/home/level4';
 import { Configuration } from './../../config/configuration';
 import { Injectable } from '@angular/core';
 import { HomeView } from '../../model/home.view';
@@ -18,5 +19,10 @@ export class HomeService {
   getTopProductCategory(): Observable<TopProductCategory> {
     return this.http.get(this.configuration.serverWithApiUrl + '/home/topproductcategory')
         .map(response => response as TopProductCategory);
+  }
+
+  getProductBrand(): Observable<Level4[]> {
+    return this.http.get(this.configuration.serverWithNetUrl + '/productbrand/home')
+        .map(response => response as Level4[]);
   }
 }

@@ -1,3 +1,5 @@
+import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
+import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
 import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
 import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
@@ -86,6 +88,19 @@ const routes: Routes = [
           title: 'Register'
         }
       }
+    ]
+  },
+  {
+    path: 'account',
+    component: AccountLayoutComponent,
+    data: {
+      title: 'account'
+    },
+    children: [
+      {
+        path: 'activation',
+        component: ActivationLayoutComponent,
+      },
     ]
   },
   {
