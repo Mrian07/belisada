@@ -11,7 +11,7 @@ export class SendEmailService {
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
   SendEmail(data): Observable<SendEmail> {
-    return this.http.post(this.configuration.serverWithAccUrl + 'account/sendemail', data)
+    return this.http.post(this.configuration.serverWithAccUrl + '/account/sendemail', data)
     .map(response => response as SendEmail);
   }
 

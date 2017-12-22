@@ -57,39 +57,7 @@ export class RegistrationComponent implements OnInit {
       userType: this.userType,
       password2: this.password2
     };
-      console.log(registerData.name);
-    if (typeof registerData.name === 'undefined') {
-      swal(
-        'Opps!',
-        'Nama tidak boleh kosong.',
-        'error'
-      );
-      return false;
-    }
-    if (typeof registerData.password === 'undefined') {
-      swal(
-        'Opps!',
-        'password tidak boleh kosong.',
-        'error'
-      );
-      return false;
-    }
-    if (typeof registerData.email === 'undefined') {
-      swal(
-        'Opps!',
-        'Email tidak boleh kosong.',
-        'error'
-      );
-      return false;
-    }
-    if(this.password.length < 7) {
-      swal(
-        'Opps!',
-        'password harus 7.',
-        'error'
-      );
-      return false;
-    }else
+    console.log(registerData.name);
     if (this.password !== this.password2) {
       swal(
         'Opps!',
@@ -115,9 +83,6 @@ export class RegistrationComponent implements OnInit {
           'error'
         );
       }
-      
-
-
     });
   }
 

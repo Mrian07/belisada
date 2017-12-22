@@ -1,3 +1,5 @@
+import { SendEmailService } from './servers/service/sendEmail/send-email.service';
+import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
 import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
 import { HomeService } from './servers/service/home/home.service';
@@ -69,7 +71,12 @@ import { FrontSlideShowComponent } from './clients/components/front/front-slide-
 import { FrontGridCarouselComponent } from './clients/components/front/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
+<<<<<<< HEAD
 import { BrandsService } from './servers/service/brands/brands.service';
+=======
+import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
+
+>>>>>>> 32ef7386d270bf67813fe9cf53f941218b474af9
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -119,7 +126,9 @@ export function createTranslateLoader(http: HttpClient) {
     FrontGridCarouselComponent,
     FrontFooterComponent,
     PopUpComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AccountLayoutComponent,
+    ActivationLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -152,7 +161,8 @@ SalesStatusService,
     Configuration,
     NgxCarousel,
     RegisterService,
-    HomeService
+    HomeService,
+    SendEmailService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,185 @@
-<p>
-  product-detail works!
-</p>
+
+<div class="ui grid container">
+  <div class="four wide column">
+    <div class="ui breadcrumb">
+        <div class="gap-top">
+    <a class="section">Home</a>
+    <div class="divider"> / </div>
+    <a class="section">Store</a>
+    <div class="divider"> / </div>
+    <div class="active section">T-Shirt</div>
+        </div>
+  </div>
+</div>
+  <div class="four wide column"></div>
+  <div class="four wide column"></div>
+  <div class="four wide column"></div>
+  <div class="four wide column">
+    <img src="https://www.t-mobile.com/images/png/products/phones/Apple-iPhone-8-Plus-Gold/250x270_1.png"/>
+  </div>
+  <div class="four wide column"><h2 class="ui header">Iphone 8 White 128Gb</h2>
+    <div class="two wide column">
+        <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
+    </div>
+    <div class="ui four column grid">
+        <div class="row">
+            <div class="column"></div>
+            <div class="column"></div>
+            <div class="column"></div>
+          <div class="column"></div>
+          <div class="column"></div>
+          <div class="column"></div>
+        </div>
+        <div class="column"><h3 class="ui header">Harga: </h3>
+        </div>
+        <div class="eleven wide column price">Rp 10.000.000  
+        </div>
+        <div class="column"><h3 class="ui header">Stok: </h3>
+        </div>
+        <div class="eleven wide column stok">Tersedia
+        </div>
+        <div class="column"><h3 class="ui header">Warna: </h3>
+        </div>
+        <div class="eleven wide column stok">
+          <div class="warna"></div>
+        </div>
+        <div class="column"><h4 class="ui header">Kapasitas: </h4>
+        </div>
+        <div class="eleven wide column">
+          <div class="borderni">
+            128
+          </div>
+        </div>
+        <div class="column"><h3 class="ui header">Highlight: </h3>
+        </div>
+        <div class="eleven wide column pad" style="padding-left: 33px;"><div class="ui relaxed divided list">
+            <div class="item">
+              <i class="large github middle aligned icon"></i>
+              <div class="content">
+                <div class="description">RAM 2GB</div>
+              </div>
+            </div>
+            <div class="item">
+              <i class="large github middle aligned icon"></i>
+              <div class="content">
+                <div class="description">GSM/HSPDA</div>
+              </div>
+            </div>
+            <div class="item">
+              <i class="large github middle aligned icon"></i>
+              <div class="content">
+                <div class="description">5.5Inch</div>
+              </div>
+            </div>
+          </div>
+        </div>
+ 
+       
+       
+    
+      </div>
+  </div>
+
+  <div class="four wide column gap-top1">
+      <div class="ui list">
+          <div class="item">
+            <i class="write icon"></i>
+            <div class="content">
+              tulis ulasan
+            </div>
+          </div>
+          </div>
+
+  </div>
+  <div class="boder-kanan gap-between-elements" style="border: 1px solid;width: 288px; border-radius:10px;">
+      <div class="column">
+        <h4>Kebijakan:</h4>
+        <div class="gap-between-elements">
+         <strong>Pengembalian :</strong>  jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari
+        </div>
+        <div class="gap-between-elements"><strong>Pembayaraan :</strong>
+        <img src="https://dev.myacico.co.id/images/general/ico_bank_03.png" width="35">
+        <img src="https://dev.myacico.co.id/images/general/p-visa-small.jpg" width="35">
+        <img src="https://dev.myacico.co.id/images/general/ico_bank_02.png" width="35">
+        <img src="https://dev.myacico.co.id/images/general/ico_bank_04.png" width="35">
+        </div>
+        <div class="gap-between-elements">
+            <strong>Garansi:</strong> 1 Tahun Garansi
+        </div>
+   
+        <strong>Jumlah</strong>
+        <div class="ui segment">
+            <sui-select placeholder="Jumlah">
+                <sui-select-option value="1"></sui-select-option>
+                <sui-select-option value="2"></sui-select-option>
+                <sui-select-option value="3"></sui-select-option>
+                <sui-select-option value="4"></sui-select-option>
+            </sui-select>
+        </div>
+        <button class="ui youtube button" style="margin-left:40px;">
+            <i class="shop icon"></i>
+            <strong>Beli Sekarang</strong>
+          </button>
+      </div>
+  </div>
+</div>
+<h2 class="ui header">3 PENAWARAAN LAINNYA</h2>
+<hr>
+<div class="gap-between-elements">
+    <table class="ui single line table">
+        <thead>
+          <tr>
+            <th>Harga Produk</th>
+            <th>Lokasi Penjual</th>
+            <th>Layanan Produk</th>
+            <th>Rating Penjual</th>
+            <th>Dijual Oleh</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="eleven wide column price">Rp 10.000.000 
+                <img src="https://www.myacico.co.id/images/general/asap.png" width="50">
+              </div> 
+            </td>
+            
+            <td>Jakarta Pusat</td>
+            <td>Garansi : 1 Tahun</td>
+            <td>
+                <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
+            </td>
+            <td class="bumbu">Bumbu Kacang</td>
+            <td><button class="ui orange button">Kekeranjang</button></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+      <sui-tabset>
+          <div class="ui top attached tabular menu">
+              <a class="item" suiTabHeader="static">Static</a>
+              <a class="item" suiTabHeader="static">Static</a>
+              <a class="item" *ngFor="let tab of tabs; let i = index" [suiTabHeader]="i" [(isActive)]="active[i]">{{ tab.header }}</a>
+          </div>
+          <div class="ui bottom attached segment" *ngFor="let tab of tabs; let i = index" [suiTabContent]="i">{{ tab.content }}</div>
+          <div class="ui bottom attached segment" suiTabContent="static">
+              <p>Static tabs alongside dynamic tabs are supported.</p>
+              <p>Note that the order that <code>[suiTabContent]</code> elements are defined doesn't affect the headers.</p>
+          </div>
+      </sui-tabset>
+</div>

@@ -1,10 +1,16 @@
 .header-second{
     background: #002e43;
     color:#ffffff;
+    // float:right;
+    
 }
 
 .menu-wrapper{
-    margin-top:15px;
+    // margin-top:15px;
+    // float:right;
+    // background: #dddddd;
+    width:100%;
+    padding: 0!important;
 }
 /* mini reset */
 
@@ -18,6 +24,11 @@
   margin: 0;
   padding: 0;
 }
+
+.nav ul {
+  width: 2000px;
+}
+
 .nav a {
   text-decoration: none;
 }
@@ -29,19 +40,20 @@
 .nav,
 input {
   font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 13px;
   -webkit-font-smoothing: antialiased;
 }
 .nav {
   cursor: default;
-  display: inline-block;
-  position: relative;
+  display: table;
+  width: 100%;
   z-index: 500;
+  position: relative;
 }
 
 /* menu list */
 .nav > li {
-  float: left;
+  display: table-cell;
 }
 
 /* menu links */
@@ -57,18 +69,19 @@ input {
   position: relative;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.35);
   transition: all .3s ease;
-  width:175px;
+  // width:175px;
+  font-size:12px;
   text-align:center;
   z-index: 510;
 }
 .nav > li > a:focus,
 .nav > li:hover > a {
   background: #012333;
-  border-top:1px solid #f7982d;
+  // border-top:1px solid #f7982d;
 }
 .nav > li:first-child > a {
   border-left: none;
-  border-radius: 3px 0 0 3px;
+  // border-radius: 3px 0 0 3px;
 }
 
 /* search form */
@@ -159,3 +172,11 @@ h3 {
 .highlight {
   color: #2196f3;
 }
+
+.header-second2{
+  background:#002e43;
+  margin-bottom:10px;
+  // margin-top:-35px;
+  padding-top:0px;
+}
+

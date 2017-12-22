@@ -26,10 +26,10 @@
 .header-top-menu li {
     float: right;
     margin-right: 30px;
-    font-size:15px;
+    font-size:12px;
     display: block;
     font-weight: bold;
-    margin-top:-11px;
+    margin-top:-15px;
     // width:20%;
     text-decoration: none;
 }
@@ -44,14 +44,16 @@
 }
 
 .menu-header1{
-    float: right;
-    margin-right:20px;
-    margin-top:10px;
+    // float: right;
+    // margin-right:20px;
+    // margin-top:10px;
 }
 
 .menu-header2{
-    float: right;
-    margin-right:20px;
+    float: left;
+    // margin-right:20px;
+    font-size:12px;
+    //  width:130px;
 }
 
 .menu-header3{
@@ -62,6 +64,8 @@
 
 .header-mid-side{
     text-align:right;
+    margin-bottom:10px;
+    background: #dddddd;
 }
 
 .header-mid-menu a{
@@ -78,6 +82,7 @@
     padding: 0;
     overflow: hidden;
     margin-top:0px;
+    margin-top:100px;
 }
 
 .header-mid-menu li {
@@ -88,6 +93,7 @@
     font-weight: bold;
     // width:20%;
     text-decoration: none;
+
 }
 
 .top-bg{
@@ -96,4 +102,32 @@
     margin-right:-14px;
     padding-left:0px;
     height:88px;
+  }
+
+  .text-welcome{
+    margin-top:-26px;
+  }
+
+  .icon-user{
+    float:left;
+    padding-top:10px;
+  }
+
+  .welcome{
+    float:left
+  }
+
+  .cart{
+    float:left; 
+    margin-left:10px;
+  }
+
+  .logo{
+    padding-top:10px;
+    margin-bottom:0px;
+    padding-bottom:0px;
+  }
+
+  .promo{
+    font-size: 12px;
   }
