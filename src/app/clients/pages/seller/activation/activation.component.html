@@ -1,0 +1,8 @@
+<div *ngIf="success" class="content text-center">
+  <h2>Aktifasi Berhasil</h2>
+  <a routerLink="/login" routerLinkActive="active">Login</a>
+</div>
+<div *ngIf="!success" class="content text-center">
+  <h2>{{message}}</h2>
+  <button (click)="resendEmail()" class="ui primary button">Resend email activation</button>
+</div>

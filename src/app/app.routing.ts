@@ -29,6 +29,7 @@ import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layou
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
 import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
 
 const routes: Routes = [
   {
@@ -100,6 +101,19 @@ const routes: Routes = [
       {
         path: 'activation',
         component: ActivationLayoutComponent,
+      },
+    ]
+  },
+  {
+    path: 'seller',
+    component: PlainLayoutComponent,
+    data: {
+      title: 'Seller'
+    },
+    children: [
+      {
+        path: 'activation/:key',
+        component: ActivationComponent
       },
     ]
   },

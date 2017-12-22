@@ -72,7 +72,7 @@ import { FrontGridCarouselComponent } from './clients/components/front/front-gri
 import { FrontFooterComponent } from './clients/components/front/front-footer/front-footer.component';
 import { RegisterService } from './servers/service/register/register.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
-
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -124,7 +124,8 @@ export function createTranslateLoader(http: HttpClient) {
     PopUpComponent,
     ProductDetailComponent,
     AccountLayoutComponent,
-    ActivationLayoutComponent
+    ActivationLayoutComponent,
+    ActivationComponent
   ],
   imports: [
     BrowserModule,
@@ -141,18 +142,18 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy,
-  },
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
     CategoryService,
     LoginService,
     SearchService,
-
-AlamatserviceService,
-MyTopProductService,
-SalesStatusService,
-  Configuration,
+    AlamatserviceService,
+    MyTopProductService,
+    SalesStatusService,
+    Configuration,
     AlamatserviceService,
     Configuration,
     NgxCarousel,
