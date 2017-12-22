@@ -29,6 +29,8 @@ import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layou
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { FooterComponent } from './clients/components/footer/footer.component';
 import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
+import { ChangePasswordComponent } from './clients/pages/seller/change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -48,7 +50,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'test',
+        path: 'Product-detail',
         component: ProductDetailComponent,
         data: {
           title: 'product'
@@ -105,6 +107,19 @@ const routes: Routes = [
   },
   {
     path: 'seller',
+    component: PlainLayoutComponent,
+    data: {
+      title: 'Seller'
+    },
+    children: [
+      {
+        path: 'activation/:key',
+        component: ActivationComponent
+      },
+    ]
+  },
+  {
+    path: 'seller',
     component: FullLayoutComponent,
     data: {
       title: 'Seller'
@@ -141,6 +156,9 @@ const routes: Routes = [
       {
         path: 'info-perusahaan',
         component: InfoPerusahaanComponent,
+      }, {
+        path: 'change-password',
+        component: ChangePasswordComponent,
       }, {
         path: 'kontak',
         component: KontakComponent,

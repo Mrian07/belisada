@@ -14,4 +14,9 @@ export class RegisterService {
       .map(response => response as Register);
     }
 
+    activate(key) {
+      return this.httpClient.post(this.configuration.serverWithAccUrl + '/account/activation', {key: key})
+      .map(response => response as Register);
+    }
+
 }

@@ -3,8 +3,13 @@
     color: #2c4528;
 }
 
-.header-top-side{
+#header-top-side1{
+    margin:0px; padding:5px
+}
+
+#header-top-side2{
     text-align:right;
+    margin:0px; padding:5px
 }
 
 .header-top-menu a{
@@ -33,6 +38,15 @@
     // width:20%;
     text-decoration: none;
 }
+
+.header-top-menu li .link-red{
+    color: #921f15;
+}
+
+.header-top-menu li .link-red:hover{
+    color:#c32316;
+}
+
 
 .header-second{
     background: #002e43;
@@ -93,15 +107,22 @@
     font-weight: bold;
     // width:20%;
     text-decoration: none;
+}
 
+.header-mid-menu li .link-red2{
+    color:#f51b0a;
+}
+
+.header-mid-menu li .link-red2:hover{
+    color:#ff594b;
 }
 
 .top-bg{
-    background-image: url(../../../../../assets/img/bg-top_sub.jpg);
+    background-image: url(../../../../../assets/img/bg-top-sub.jpg);
     margin-left:-14px;
     margin-right:-14px;
     padding-left:0px;
-    height:88px;
+    height:65px;
   }
 
   .text-welcome{
@@ -123,7 +144,7 @@
   }
 
   .logo{
-    padding-top:10px;
+    padding-top:0px;
     margin-bottom:0px;
     padding-bottom:0px;
   }
@@ -131,3 +152,5 @@
   .promo{
     font-size: 12px;
   }
+
+

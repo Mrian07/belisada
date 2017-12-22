@@ -73,8 +73,12 @@ import { FrontFooterComponent } from './clients/components/front/front-footer/fr
 import { RegisterService } from './servers/service/register/register.service';
 import { BrandsService } from './servers/service/brands/brands.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
 import { ProfileService } from './servers/service/profile/profile.service';
 import { SearchFilterPipe } from './clients/filter';
+import { ChattingComponent } from './clients/components/chatting/chatting.component';
+import { ChangePasswordComponent } from './clients/pages/seller/change-password/change-password.component';
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -127,7 +131,10 @@ export function createTranslateLoader(http: HttpClient) {
     ProductDetailComponent,
     AccountLayoutComponent,
     ActivationLayoutComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    ActivationComponent,
+    ChattingComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -144,18 +151,19 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy,
-  },
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
     CategoryService,
     LoginService,
     SearchService,
-  BrandsService,
-AlamatserviceService,
-MyTopProductService,
-SalesStatusService,
-  Configuration,
+    BrandsService,
+    AlamatserviceService,
+    MyTopProductService,
+    SalesStatusService,
+    Configuration,
     AlamatserviceService,
     Configuration,
     NgxCarousel,
