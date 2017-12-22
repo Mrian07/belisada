@@ -73,6 +73,7 @@ import { FrontFooterComponent } from './clients/components/front/front-footer/fr
 import { RegisterService } from './servers/service/register/register.service';
 import { BrandsService } from './servers/service/brands/brands.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
+import { ProfileService } from './servers/service/profile/profile.service';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -159,7 +160,8 @@ SalesStatusService,
     NgxCarousel,
     RegisterService,
     HomeService,
-    SendEmailService
+    SendEmailService,
+    ProfileService
   ],
   bootstrap: [AppComponent]
 })
