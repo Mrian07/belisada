@@ -41,7 +41,7 @@
                         <div class="two wide field">
                             Category Product
                         </div>
-                        <div class="ten wide field">
+                        <div class="eleven wide field">
                             <div class="ui five wide field">
                                 <sui-select class="selection"
                                     [(ngModel)]="selectedCategory"
@@ -77,12 +77,27 @@
                             </div>
                             <div class="ten wide field">
                                 <div class="ui five wide field">
-                                    <sui-select class="selection"
-                                        [(ngModel)]="selectedOption"
-                                        labelField="name"
-                                        placeholder="Select Brand">
-                                            <sui-select-option *ngFor="let option of brands" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
-                                    </sui-select>
+                                    <input type="text" [(ngModel)]="selectedBrands" (keyup)="searchBrands($event)">
+                                    <div class="result-container" *ngIf="[brands] != 0">
+                                            <div class="result" *ngFor="let hasil of brands" (click)="productSelected(hasil)">{{ hasil.name }}</div>
+                                        </div>
+                                    <!-- <sui-select class="selection"
+                                        [(ngModel)]="selectedBrands"
+                                        labelField="option.name"
+                                        [isSearchable]="true"
+                                        placeholder="Select Brand"
+                                        [optionTemplate]="change" #templated>
+                                            <sui-select-option *ngFor="let option of brands | filter: selectedBrands" [value]="option" value="option.name" (click)="selectProduct(option.categoryParentId)"></sui-select-option>
+                                    </sui-select> -->
+                                    <!-- <sui-select class="selection"
+                    [(ngModel)]="selectedOption"
+                    [options]="options"
+                    labelField="name"
+                    [optionTemplate]="optionTemplate"
+                    [isSearchable]="true"
+                    #templated>
+            <sui-select-option *ngFor="let o of brands" [value]="o" value="o.name"></sui-select-option> -->
+        <!-- </sui-select> -->
                                 </div>
                             </div>
                         </div>
