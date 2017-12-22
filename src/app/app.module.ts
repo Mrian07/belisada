@@ -75,6 +75,7 @@ import { BrandsService } from './servers/service/brands/brands.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
 import { ProfileService } from './servers/service/profile/profile.service';
 import { ChattingComponent } from './clients/components/chatting/chatting.component';
+import { ChangePasswordComponent } from './clients/pages/seller/change-password/change-password.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -128,7 +129,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProductDetailComponent,
     AccountLayoutComponent,
     ActivationLayoutComponent,
-    ChattingComponent
+    ChattingComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -152,11 +154,11 @@ export function createTranslateLoader(http: HttpClient) {
     CategoryService,
     LoginService,
     SearchService,
-  BrandsService,
-AlamatserviceService,
-MyTopProductService,
-SalesStatusService,
-  Configuration,
+    BrandsService,
+    AlamatserviceService,
+    MyTopProductService,
+    SalesStatusService,
+    Configuration,
     AlamatserviceService,
     Configuration,
     NgxCarousel,
