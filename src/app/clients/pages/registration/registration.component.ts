@@ -21,6 +21,7 @@ export class RegistrationComponent implements OnInit {
   iscorporate = 'N';
   userType = '1';
   clickMessage = '';
+  tc: string;
 
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IContext, string, string>;
