@@ -1,87 +1,67 @@
-
-    <div class="sixteen wide column top-bg" (click)="imgTop" style='cursor: pointer;'>
-        <img src="/assets/img/bg-top-main.jpg" border='0'>
-    </div>
-
-
-<div class="ui column doubling grid header-top">
-    <div class="six wide column" id="header-top-side1"></div>
-    <div class="ten wide column" id="header-top-side2">
-        <ul class="header-top-menu">
-            <li><a href="#">LACAK PESANAN</a></li>
-            <li><a href="#">CUSTOMER CARE</a></li>
-            <li><a href="#" class="link-red">JUAL DI BELISADA</a></li>
-            <li><a href="#">DOWNLOAD APP</a></li>
-        </ul>
-    </div>
+<div class="top-bg" (click)="imgTop" style="cursor: pointer;">
+    <img src="/assets/img/bg-top-main.jpg" border="0" />
 </div>
 
-<div class="ui column doubling grid header-second">
-        <div class="three wide column"><div class="logo"><img class="ui image logo" src="/assets/img/logo.png" alt="profile picture"/></div></div>
-        <div class="ten wide column">
-            
-                <div class="ui column doubling grid">
-                    <div class="twelve wide column">
-                        <div class="header-mid-side" >
-                            <ul class="header-mid-menu">
-                                <li><a href="#" class="link-red2">Jual</a></li>
-                                <li><a href="#">Customer Service</a></li>
-                                <li><a href="#">Cara Belanja</a></li>
-                                <li><a href="#">Produk Terbaru</a></li>    
-                                <li><a href="#">Blog</a></li>
-                            </ul>
+<div class="header-top text-right">
+    <ul class="header-top-menu">
+        <li><a href="#">LACAK PESANAN</a></li>
+        <li><a href="#">CUSTOMER CARE</a></li>
+        <li><a href="#" class="link-red">JUAL DI BELISADA</a></li>
+        <li><a href="#">DOWNLOAD APP</a></li>
+    </ul>
+</div>
 
+<div class="header-second">
 
-                            <!-- <a href="#">Blog</a>
-                            <a href="#">Produk Terbaru</a>
-                            <a href="#">Cara Belanja</a>
-                            <a href="#">Customer Service</a>
-                            <a href="#">Jual</a> -->
-                        </div>
-                    </div>
-                    <div class="four wide column right aligned promo">
-                        Dapatkan Promo Menarik Di<br/>
-                        <strong>Festifal Belanja Online</strong>
-                    </div>
-                </div>
+    <div class="logo-container">
+        <span class="helper"></span>
+        <img class="ui image" src="/assets/img/logo.png" alt="profile picture"/>
+    </div>
+    
+    <div class="mid-header-container">
+        <div class="mid-header-top-container">
+            <ul class="header-mid-menu pull-left">
+                <li><a href="#" class="link-red2">Jual</a></li>
+                <li><a href="#">Customer Service</a></li>
+                <li><a href="#">Cara Belanja</a></li>
+                <li><a href="#">Produk Terbaru</a></li>    
+                <li><a href="#">Blog</a></li>
+            </ul>
 
-
-                <div class="ui column doubling grid" style="margin-top:-20px">
-                        <div class="five wide column">
-
-                            <sui-select class="selection"
-                                [(ngModel)]="selectedSearchCategory"
-                                labelField="name"
-                                placeholder="Select Category" style="position:relative; z-index: 9999!important; width: 100%">
-                                    <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
-                            </sui-select>
-
-                        </div>
-                        <div class="eleven wide column">
-                            <div class="ui icon input full-size-component">
-                            <input placeholder="Search..." type="text">
-                            <i class="inverted circular search link icon"></i>
-                            </div>
-                        </div>
-
-                </div>
-
+            <div class="pull-right text-right">
+                <span class="thin-info-text">Dapatkan Promo Menarik Di</span><br/>
+                <strong>Festifal Belanja Online</strong>
+            </div>
+            <div class="clearfix"></div>
         </div>
-        <div class="three wide column center aligned">
-            <div class="menu-header1"><img class="ui image" src="/assets/img/id.jpg" alt="image not found"/></div> 
-            <div class="menu-header" >
-                <!-- <div class="menu-header3"><img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/></div> -->
-                <div class="menu-header2"> 
 
-                    <div class='icon-user'><img class="ui image" src="/assets/img/user.jpg" alt="image not found"/></div>
-                    <div class="welcome">
-                        Selamat Datang<br/><strong>Login</strong> / <strong>Daftar</strong>
-                    </div>
-                    <div class="cart">
-                        <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
-                    </div>
+        <div class="ui left action right icon input full-width">
+            <sui-select class="selection category-search"
+                [(ngModel)]="selectedSearchCategory"
+                labelField="name"
+                placeholder="Select Category">
+                    <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
+            </sui-select>
+            <i class="search icon"></i>
+            <input type="text" placeholder="Search"/>
+        </div>
+    </div>
+
+    <div class="right-header-container">
+        <div>
+            <img class="ui image" src="/assets/img/id.jpg" alt="image not found"/>
+        </div> 
+        <div class="menu-header">
+            <div class="menu-header2">
+
+                <div class='icon-user'><img class="ui image" src="/assets/img/user.jpg" alt="image not found"/></div>
+                <div class="welcome">
+                    Selamat Datang<br/><strong>Login</strong> / <strong>Daftar</strong>
                 </div>
-                
+                <div class="cart">
+                    <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
+                </div>
             </div>
         </div>
+    </div>
 </div>
