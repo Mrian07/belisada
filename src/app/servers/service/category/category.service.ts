@@ -31,7 +31,7 @@ export class CategoryService {
   }
 
   BrandCategory(): Observable<Brands[]> {
-    return this.http.get(this.configuration.serverWithNetUrl + '/productbrand')
+    return this.http.get(this.configuration.serverWithNetUrl + '/productbrand/seller')
     .map(response => response as Brands[]);
   }
 

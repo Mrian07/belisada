@@ -15,12 +15,23 @@
 .warna{
     
     width: 22px;
-    background: red;
+    background:black;
     height: 23px;
+    float: left;
+    margin-right: 3px;
+}
+.warna3{
+    
+    width: 22px;
+    background:white;
+    height: 23px;
+    float: left;
+    margin-right: 3px;
 }
 .borderni{
     border: 1px solid !important;
-    width: 30px;
+    width: 60px;
+    
 }
 
 .border-kanan{
@@ -33,4 +44,18 @@
     color:#81D7F7;
     font-weight: bold;
     font-size: 15px;
+}
+.favorit{
+    color: black;
+    margin-left:30px;
+}
+.favoritext{
+    color: black;
+}
+.btnColor{
+    margin-left:40px; background:#F7982D
+}
+.jasa{
+    // color:red;
+    font-size: 17px;
 }

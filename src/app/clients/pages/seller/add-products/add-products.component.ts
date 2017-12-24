@@ -31,6 +31,7 @@ export class AddProductsComponent implements OnInit {
   weight: number;
   imageurl: string;
   editMode: Boolean = true;
+  toggle: Boolean = false;
 
   constructor(private searchService: SearchService, private categoryService: CategoryService,
   private route: ActivatedRoute) {
@@ -57,6 +58,15 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
+  toggleBrands() {
+
+    this.toggle = true;
+  }
+
+  blurs() {
+    this.toggle = false;
+  }
+
   selectCategory(id: number) {
     this.categoryService.CategoryTwo(id).subscribe(data => {
       this.subcategory = data;
@@ -65,7 +75,7 @@ export class AddProductsComponent implements OnInit {
 
   selectSubCategory(id: number) {
     this.categoryService.CategoryThree(id).subscribe(data => {
-      console.log(data);
+     // console.log(data);
       this.subcategories = data;
     });
   }
@@ -81,14 +91,16 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-  productSelected(hasil) {
-    this.selectProd = hasil.name;
+  productSelected(hasil: any) {
+    console.log(hasil);
+    this.selectedBrands = hasil.name;
     this.results = [];
     this.selectedCategory = hasil.category;
     this.price = hasil.pricelist;
     this.description = hasil.description;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
+    this.toggle = false;
   }
 
   selectCondition() {
@@ -103,28 +115,6 @@ export class AddProductsComponent implements OnInit {
     this.categoryService.BrandCategory().subscribe(data => {
       this.brands = data;
     });
-    // this.brandsService.BrandCategory().subscribe(data => {
-    //   this.brands = data;
-    //   console.log(data);
-    // });
-    // this.brandsService.BrandCategory().subscribe(data => {
-    //   //console.log(data);
-    //   this.brands = data;
-    // });
-
   }
-  searchBrands(event) {
-    const key = event.target.value;
-    console.log(key);
-    this.brands.forEach(data => {
 
-      if (data.name === key) {
-        console.log(data.name);
-      }
-    });
-   // const merk = this.brands.find(c => c.name === key);
-    //console.log(merk);
-   // const res = this.brands.filter(item).n;
-   // console.log(res);
-  }
 }

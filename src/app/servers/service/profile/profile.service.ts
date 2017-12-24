@@ -17,4 +17,9 @@ export class ProfileService {
     return this.http.get(this.configuration.serverWithAccUrl + '/account/profile/, { headers }')
         .map(resp => resp as Profile[]);
   }
+
+  updateProfile(updateData) {
+
+  }
+
 }

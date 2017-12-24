@@ -23,6 +23,7 @@ import { PopUpComponent } from './registration/popUp/pop-up/pop-up.component';
 import { ProductDetailComponent } from './front/product-detail/product-detail.component';
 import { AccountLayoutComponent } from './account-layout/account-layout.component';
 import { ActivationLayoutComponent } from './account-layout/activation-layout/activation-layout.component';
+import { ActivationComponent } from './seller/activation/activation.component';
 import { ChangePasswordComponent } from './seller/change-password/change-password.component';
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ChangePasswordComponent } from './seller/change-password/change-passwor
     ProductDetailComponent,
     AccountLayoutComponent,
     ActivationLayoutComponent,
-    ChangePasswordComponent
+    ActivationComponent,
+    ChangePasswordComponent,
   ]
 })
 export class ViewsModule { }

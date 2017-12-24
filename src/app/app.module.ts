@@ -73,7 +73,9 @@ import { FrontFooterComponent } from './clients/components/front/front-footer/fr
 import { RegisterService } from './servers/service/register/register.service';
 import { BrandsService } from './servers/service/brands/brands.service';
 import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
 import { ProfileService } from './servers/service/profile/profile.service';
+import { SearchFilterPipe } from './clients/filter';
 import { ChattingComponent } from './clients/components/chatting/chatting.component';
 import { ChangePasswordComponent } from './clients/pages/seller/change-password/change-password.component';
 
@@ -129,6 +131,8 @@ export function createTranslateLoader(http: HttpClient) {
     ProductDetailComponent,
     AccountLayoutComponent,
     ActivationLayoutComponent,
+    SearchFilterPipe,
+    ActivationComponent,
     ChattingComponent,
     ChangePasswordComponent
   ],
@@ -147,10 +151,11 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  providers: [{
-    provide: LocationStrategy,
-    useClass: HashLocationStrategy,
-  },
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
     CategoryService,
     LoginService,
     SearchService,
