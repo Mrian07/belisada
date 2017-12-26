@@ -12,6 +12,7 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 export class ProfileComponent implements OnInit {
   newImage: string;
   updateImg: Boolean = false;
+  edit: any;
   constructor() { }
 
   ngOnInit() {

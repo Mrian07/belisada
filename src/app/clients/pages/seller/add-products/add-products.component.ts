@@ -15,6 +15,7 @@ export class AddProductsComponent implements OnInit {
   editid: any;
   condition: string;
   selectProd: object;
+  selectCats: object;
   selectedBrands: string;
   selectedCategory: string;
   selectedSubCategory: string;
@@ -91,16 +92,20 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-  productSelected(hasil: any) {
+  categorySelected(hasil: any) {
     console.log(hasil);
-    this.selectedBrands = hasil.name;
     this.results = [];
-    this.selectedCategory = hasil.category;
+    this.selectCats = hasil.name;
     this.price = hasil.pricelist;
     this.description = hasil.description;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
     this.toggle = false;
+  }
+
+  productSelected(hasil: any) {
+    this.selectedBrands = hasil.name;
+    this.brands = [];
   }
 
   selectCondition() {

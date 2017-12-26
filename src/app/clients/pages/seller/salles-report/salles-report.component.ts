@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class SallesReportComponent implements OnInit {
 
   constructor() { }
-
+  selectedOption: string;
+  optionsLookup: string;
+  alertSelected: any;
+  options: any;
   ngOnInit() {
   }
 

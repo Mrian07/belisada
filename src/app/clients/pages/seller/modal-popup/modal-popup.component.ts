@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class ModalPopupComponent implements OnInit {
-
+  alert: any;
   constructor() { }
 
   ngOnInit() {

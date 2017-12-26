@@ -31,9 +31,9 @@
                         Nama Product
                     </div>
                     <div class="ten wide field">
-                        <input type="text" name="city" #options list="productname" (keyup)="search($event)" [(ngModel)]="selectProd"/>
+                        <input type="text" name="city" #options list="productname" (keyup)="search($event)" [(ngModel)]="selectCats"/>
                         <div class="result-container" *ngIf="[results] != 0">
-                            <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">{{ hasil.name }}</div>
+                            <div class="result" *ngFor="let hasil of results" (click)="categorySelected(hasil)">{{ hasil.name }}</div>
                         </div>
                     </div>
                 </div>

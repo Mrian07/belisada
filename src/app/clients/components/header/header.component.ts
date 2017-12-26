@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 export class HeaderComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router) { }
-  user: Object;
+  user: any;
   ngOnInit() {
     this.user = this.loginService.whoLogin();
     console.log('loged user:', this.user);

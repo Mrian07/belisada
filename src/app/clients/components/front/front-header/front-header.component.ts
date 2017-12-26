@@ -11,7 +11,8 @@ import { Category } from '../../../../servers/model/category';
 export class FrontHeaderComponent implements OnInit {
 
   categorySearch: Category[];
-
+  selectedSearchCategory: any;
+  imgTop: any;
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {

@@ -43,6 +43,7 @@ import { SendEmailService } from '../../servers/service/sendEmail/send-email.ser
 import { ProfileService } from '../../servers/service/profile/profile.service';
 import { ActivationLayoutComponent } from '../pages/account-layout/activation-layout/activation-layout.component';
 import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur/reject-retur.component';
+import { SearchService } from '../../servers/service/search/search.service';
 
 
 
@@ -94,7 +95,8 @@ import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur
     SalesStatusService,
     AlamatserviceService,
     SendEmailService,
-    ProfileService
+    ProfileService,
+    SearchService
   ]
 })
 export class SellerModules { }
