@@ -14,6 +14,7 @@ import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layou
 import { HomeComponent } from './clients/pages/front/home/home.component';
 import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
+import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 
 const routes: Routes = [
   {
@@ -78,6 +79,14 @@ const routes: Routes = [
   {
     path: 'seller',
     loadChildren: './clients/modules/seller.modules#SellerModules'
+  },
+  {
+    path: '404',
+    component: NotFoundComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/404'
   }
 ];
 

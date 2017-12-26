@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app.routing';
 import { SharedModules } from './clients/modules/shared.modules';
 import { AuthModules } from './clients/modules/auth.modules';
 import { FrontModules } from './clients/modules/front.modules';
+import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -21,6 +22,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

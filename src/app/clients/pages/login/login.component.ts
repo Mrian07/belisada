@@ -32,11 +32,10 @@ export class LoginComponent implements OnInit {
     };
 
     this.loginService.doLogin(loginData).subscribe(data => {
-      if(data.status == '0') {
+      if (data.status === '0') {
         swal( 'Error!', data.message, 'error' );
         this.loading = false;
-      }
-      else {
+      } else {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
         this.router.navigate([this.returnUrl]);
@@ -44,5 +43,4 @@ export class LoginComponent implements OnInit {
       console.log(data);
     });
   }
-
 }
