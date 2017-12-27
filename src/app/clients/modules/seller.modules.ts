@@ -98,14 +98,9 @@ import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-passwor
     AlamatserviceService,
     SendEmailService,
     ProfileService,
-<<<<<<< HEAD
-    SearchService
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-=======
     SearchService,
     ForgotPasswordService
-  ]
->>>>>>> d569e6db4c93955011c2b9c875e592df9f00025d
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SellerModules { }
