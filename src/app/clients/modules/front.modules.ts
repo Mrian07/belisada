@@ -17,6 +17,7 @@ import { FrontGridCarouselComponent } from '../components/front/front-grid-carou
 import { FrontFooterComponent } from '../components/front/front-footer/front-footer.component';
 import { ProductDetailComponent } from '../pages/front/product-detail/product-detail.component';
 import { HomeService } from '../../servers/service/home/home.service';
+import { InfoComponent } from '../pages/info/info.component';
 @NgModule({
   declarations: [
     FrontLayoutComponent,
@@ -26,7 +27,8 @@ import { HomeService } from '../../servers/service/home/home.service';
     FrontSlideShowComponent,
     FrontGridCarouselComponent,
     FrontFooterComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    InfoComponent
   ],
   imports: [
     CommonModule,
