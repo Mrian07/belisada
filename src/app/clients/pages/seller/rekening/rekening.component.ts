@@ -1,3 +1,5 @@
+import { Rekening } from './../../../../servers/model/rekening';
+import { SearchService } from './../../../../servers/service/search/search.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RekeningComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private searchService: SearchService) { }
+  searchrek = [];
   ngOnInit() {
+    this.selectCity();
   }
-
+  selectCity() {
+    this.searchService.searchRek().subscribe(data => {
+      this.searchrek = data;
+    });
+  }
 }

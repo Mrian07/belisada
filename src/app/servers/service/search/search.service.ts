@@ -1,3 +1,4 @@
+import { Rekening } from './../../model/rekening';
 import { Search } from './../../model/search';
 import { Propinsi } from './../../model/province';
 import { HttpClient } from '@angular/common/http';
@@ -15,6 +16,7 @@ export class SearchService {
 
   constructor(private http: HttpClient, private configuration: Configuration) {
   }
+ 
     search(key: string): Observable<Search[]> {
       return this.http.get(this.configuration.serverWithApiUrl + '/product/productlist/' + key)
           .map(response => response as Search[]);
@@ -43,5 +45,9 @@ export class SearchService {
     searchDesa(id: string): Observable<Desa[]> {
       return this.http.get(this.configuration.serverWithApiUrl + '/village/getlistvillagebyiddistrict/' + id)
           .map(response => response as Desa[]);
+    }
+    searchRek(): Observable<Rekening[]> {
+      return this.http.get(this.configuration.serverWithAccUrl + '/bank')
+          .map(response => response as Rekening[]);
     }
 }

@@ -16,9 +16,12 @@
                             <label>No. Rekening</label>
                             <input name="no_rek" placeholder="Masukan nomor rekening" type="text"/>
                         </div>
+                      
                         <div class="field">
-                            <label>Nama Bank</label>
-                            <input name="nm_bank" placeholder="Masukan nama bank" type="text"/>
+                                <label>Nama Bank</label>
+                                <sui-select class="selection" labelField="name" placeholder="Nama Bank">
+                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.name" (click)="selectCity()"></sui-select-option>
+                                </sui-select>
                         </div>
                         <div class="field">
                             <label>Pemilik</label>
