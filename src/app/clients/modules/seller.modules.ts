@@ -1,3 +1,4 @@
+import { ForgotPasswordService } from './../../servers/service/forgotpassword/forgot-password.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -44,7 +45,7 @@ import { ProfileService } from '../../servers/service/profile/profile.service';
 import { ActivationLayoutComponent } from '../pages/account-layout/activation-layout/activation-layout.component';
 import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur/reject-retur.component';
 import { SearchService } from '../../servers/service/search/search.service';
-
+import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
 
 
 @NgModule({
@@ -80,7 +81,8 @@ import { SearchService } from '../../servers/service/search/search.service';
     AccountLayoutComponent,
     PlainLayoutComponent,
     ActivationComponent,
-    RejectReturComponent
+    RejectReturComponent,
+    SendForgotPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -96,7 +98,8 @@ import { SearchService } from '../../servers/service/search/search.service';
     AlamatserviceService,
     SendEmailService,
     ProfileService,
-    SearchService
+    SearchService,
+    ForgotPasswordService
   ]
 })
 export class SellerModules { }

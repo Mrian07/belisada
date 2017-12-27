@@ -199,7 +199,7 @@
           </tr>
         </tbody>
       </table>
-      <!-- <sui-tabset>
+      <sui-tabset>
           <div class="ui top attached tabular menu">
               <a class="item" suiTabHeader="tab1">Deskripsi</a>
               <a class="item" suiTabHeader="tab2">Spesifikasi</a>
@@ -304,5 +304,17 @@
           <p>Belum Ada Ulasan</p>
           <p>Untuk Iphone 8</p>
       </div>
-      </sui-tabset> -->
+      </sui-tabset>
 </div>
+<ngx-carousel
+[inputs]="carouselTile"
+(carouselLoad)="carouselTileLoad($event)">
+
+      <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
+        
+          <h1>{{Tile + 1}}</h1>
+      </ngx-tile>
+
+    <button NgxCarouselPrev class='leftRs'>&lt;</button>
+    <button NgxCarouselNext class='rightRs'>&gt;</button>
+</ngx-carousel>
