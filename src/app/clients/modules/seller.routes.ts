@@ -19,6 +19,7 @@ import { KontakDetailComponent } from '../pages/seller/kontak-detail/kontak-deta
 import { FaqComponent } from '../pages/seller/faq/faq.component';
 import { PaymentInfoComponent } from '../pages/seller/payment-info/payment-info.component';
 import { StatisticsComponent } from '../pages/seller/statistics/statistics.component';
+import { OnlyLoggedInUsersGuard } from './authguard';
 
 
 
@@ -39,6 +40,7 @@ const sellerroutes: Routes = [
   {
     path: '',
     component: FullLayoutComponent,
+    canActivateChild: [OnlyLoggedInUsersGuard],
     children: [
       {
         path: 'dashboard',

@@ -26,9 +26,9 @@ export class NotificationComponent implements OnInit {
   }
 
   getalat() {
-    this.alamatserviceService.getAlamat(this.token).subscribe(data => {
-      this.address = data;
-    });
+    // this.alamatserviceService.getAlamat(this.token).subscribe(data => {
+    //   this.address = data;
+    // });
   }
 
 }

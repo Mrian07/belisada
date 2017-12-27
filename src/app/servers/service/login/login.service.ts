@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
-import { Login } from '../../model/login';
+import { Login, LoginData } from '../../model/login';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class LoginService {
   public user: Object;
+
 
   constructor(private http: HttpClient, private configuration: Configuration) {}
 
@@ -29,5 +30,8 @@ export class LoginService {
       this.user = JSON.parse(localStorage.user);
     }
     return this.user;
+  }
+  isLoggedin() {
+    return true;
   }
 }

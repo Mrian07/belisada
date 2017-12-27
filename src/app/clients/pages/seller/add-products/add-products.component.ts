@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreModule, Store } from '@ngrx/store';
 import { SearchService } from '../../../../servers/service/search/search.service';
 import { CategoryService } from '../../../../servers/service/category/category.service';
 import { ActivatedRoute } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
+import { Observable } from 'rxjs/Observable';
+import { Search } from '../../../../servers/model/search';
 
+
+interface AppState {
+  message: any;
+}
 
 @Component({
   selector: 'app-add-products',
@@ -12,6 +19,10 @@ import { forEach } from '@angular/router/src/utils/collection';
 })
 
 export class AddProductsComponent implements OnInit {
+
+  message$: Observable<Search>;
+
+
   editid: any;
   condition: string;
   selectProd: object;
@@ -34,15 +45,17 @@ export class AddProductsComponent implements OnInit {
   editMode: Boolean = true;
   toggle: Boolean = false;
 
-  constructor(private searchService: SearchService, private categoryService: CategoryService,
-  private route: ActivatedRoute) {
-    this.route.params.subscribe( id => {
-      this.editid = id;
-    });
-  }
+
+    constructor(private searchService: SearchService, private categoryService: CategoryService,
+      private route: ActivatedRoute) {
+      this.route.params.subscribe( id => {
+        this.editid = id;
+      });
+    }
 
 
   ngOnInit() {
+
     this.getCategory();
     this.getBrands();
     this.condition = 'baru';
@@ -76,7 +89,6 @@ export class AddProductsComponent implements OnInit {
 
   selectSubCategory(id: number) {
     this.categoryService.CategoryThree(id).subscribe(data => {
-     // console.log(data);
       this.subcategories = data;
     });
   }
@@ -121,5 +133,4 @@ export class AddProductsComponent implements OnInit {
       this.brands = data;
     });
   }
-
 }

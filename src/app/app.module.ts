@@ -1,18 +1,17 @@
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { HttpClient } from '@angular/common/http';
-import { HttpClientModule } from '@angular/common/http';
-
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
-
 import { AppRoutingModule } from './app.routing';
 import { SharedModules } from './clients/modules/shared.modules';
 import { AuthModules } from './clients/modules/auth.modules';
 import { FrontModules } from './clients/modules/front.modules';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
+import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
+
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -43,8 +42,10 @@ export function createTranslateLoader(http: HttpClient) {
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
-    }
+    },
+    OnlyLoggedInUsersGuard
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

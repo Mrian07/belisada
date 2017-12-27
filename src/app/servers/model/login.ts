@@ -8,3 +8,14 @@ export class Login {
 
   constructor() {}
 }
+
+export class LoginData {
+  name?: string;
+  username: string;
+  token: string;
+  isCorporate: string;
+  isCustomer: string;
+  isSeller: string;
+
+  constructor() {}
+}

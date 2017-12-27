@@ -23,10 +23,10 @@ export class SalesStatusComponent implements OnInit {
     this.getStatus();
   }
   getStatus() {
-    this.salesstatus.getstatus(this.token).subscribe(data => {
-      this.test = data;
-      console.log('ini nih', this.test);
-    });
+    // this.salesstatus.getstatus(this.token).subscribe(data => {
+    //   this.test = data;
+    //   console.log('ini nih', this.test);
+    // });
   }
 
 }
