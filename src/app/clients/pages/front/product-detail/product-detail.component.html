@@ -19,7 +19,7 @@
   </div>
   <div class="four wide column"><h2 class="ui header">Iphone 8 White 128Gb</h2>
     <div class="two wide column">
-        <!-- <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating> -->
+        <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
     </div>
     <div class="ui four column grid">
         <div class="row">
@@ -53,29 +53,65 @@
             128 GB
           </div>
         </div>
-        <div class="column"><h3 class="ui header">Highlight: </h3>
+        <div class="column"><h4 class="ui header">Highlight: </h4>
         </div>
-        <div class="eleven wide column pad" style="padding-left: 33px;"><div class="ui relaxed divided list">
-            <div class="item">
-              <i class="large github middle aligned icon"></i>
-              <div class="content">
-                <div class="description">RAM 2GB</div>
+        <div class="eleven wide column">
+            <div class="ui relaxed divided list">
+                <div class="item">
+                  <i class="large github middle aligned icon"></i>
+                  <div class="content">
+                  
+                    <div class="description">ROM 256GB</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <i class="large github middle aligned icon"></i>
+                  <div class="content">
+                   
+                    <div class="description">GSM/HSPA/LTE</div>
+                  </div>
+                </div>
+                <div class="item">
+                  <i class="large github middle aligned icon"></i>
+                  <div class="content">
+                  
+                    <div class="description">4.7 inch 3D Touch display</div>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div class="item">
-              <i class="large github middle aligned icon"></i>
-              <div class="content">
-                <div class="description">GSM/HSPDA</div>
-              </div>
-            </div>
-            <div class="item">
-              <i class="large github middle aligned icon"></i>
-              <div class="content">
-                <div class="description">5.5Inch</div>
-              </div>
-            </div>
-          </div>
         </div>
+      <div class="text-center">  </div>
+        <span class="bawah">Butuh Bantuan ? </span>
+        <table border="0">
+          <tr>
+            <td>
+                <i class="mail icon"></i>
+            </td>
+            
+            <td class="">
+              Hubungi Kami
+            </td>
+          </tr>
+          <tr>
+              <td>
+                  <i class="comment outline icon mail"></i>
+              </td>
+              <td class="mail1">
+                  Live Chat
+                </td>
+          </tr>
+          <tr>
+              <td>
+                  <i class="volume control phone icon mail"></i>
+              </td>
+              <td class="mail1">
+                 Layanan Pelanggan
+                </td>
+          </tr>
+      </table>
+    
+
+         
 
 
 
@@ -140,6 +176,18 @@
                 </td>
                 <td>Gratis pengiriman* untuk wilayah jakarta dan jaminan pengiriman dalam 2 hari</td>
               </tr>
+              <tr>
+                  <td>
+                    <img src="https://dev.myacico.co.id/images/general/s-ninjaxpress.jpg">
+                  </td>
+                  <td>Jaminan pengiriman dalam 3 hari</td>
+                </tr>
+                <tr>
+                    <td>
+                      <img src="https://dev.myacico.co.id/images/general/s-jne.jpg">
+                    </td>
+                    <td>Jaminan pengiriman dalam 2-5 hari</td>
+                  </tr>
             </table>
           </div>
 
@@ -199,7 +247,7 @@
           </tr>
         </tbody>
       </table>
-      <!-- <sui-tabset>
+      <sui-tabset>
           <div class="ui top attached tabular menu">
               <a class="item" suiTabHeader="tab1">Deskripsi</a>
               <a class="item" suiTabHeader="tab2">Spesifikasi</a>
@@ -304,5 +352,17 @@
           <p>Belum Ada Ulasan</p>
           <p>Untuk Iphone 8</p>
       </div>
-      </sui-tabset> -->
+      </sui-tabset>
 </div>
+<ngx-carousel
+[inputs]="carouselTile"
+(carouselLoad)="carouselTileLoad($event)">
+
+      <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
+        
+          <h1>{{Tile + 1}}</h1>
+      </ngx-tile>
+
+    <button NgxCarouselPrev class='leftRs'>&lt;</button>
+    <button NgxCarouselNext class='rightRs'>&gt;</button>
+</ngx-carousel>

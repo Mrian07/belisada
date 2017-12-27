@@ -1,7 +1,9 @@
+import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
+import { PlainLayoutComponent } from './../layouts/plain-layout/plain-layout.component';
+import { SendForgotPasswordComponent } from './../pages/seller/send-forgot-password/send-forgot-password.component';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { PlainLayoutComponent } from '../layouts/plain-layout/plain-layout.component';
 import { ActivationComponent } from '../pages/seller/activation/activation.component';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
@@ -22,7 +24,6 @@ import { StatisticsComponent } from '../pages/seller/statistics/statistics.compo
 import { OnlyLoggedInUsersGuard } from './authguard';
 
 
-
 const sellerroutes: Routes = [
   {
       path: '',
@@ -34,6 +35,10 @@ const sellerroutes: Routes = [
       {
         path: 'activation/:key',
         component: ActivationComponent
+      },
+      {
+        path: 'send-forgot/:key',
+        component: SendForgotPasswordComponent
       },
     ]
   },

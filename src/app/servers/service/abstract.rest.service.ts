@@ -1,18 +1,35 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';
 
 export abstract class AbstractRestService<T> {
-  constructor(protected _http: HttpClient, protected actionUrl: string) {
-  }
+    constructor(protected _http: HttpClient, protected actionUrl: string) {
+    }
 
-    getAll(): Observable<T[]> {
-        return this._http.get(this.actionUrl)
+    getAll(headers?: HttpHeaders): Observable<T[]> {
+        headers.set('Content-Type', 'application/json');
+        return this._http.get(this.actionUrl, {headers})
             .map(response => response as T[]);
     }
-    getOne(id: number): Observable<T> {
-      return this._http.get(`${this.actionUrl}${id}`)
-          .map(response => response as T);
+    getById(id: number, headers?: HttpHeaders): Observable<T> {
+        headers.set('Content-Type', 'application/json');
+        return this._http.get(`${this.actionUrl}/${id}`, {headers})
+            .map(response => response as T);
+    }
+    create(data: T, headers?: HttpHeaders): Observable<T> {
+        headers.set('Content-Type', 'application/json');
+        return this._http.post(`${this.actionUrl}/create`, data, {headers})
+            .map(response => response as T);
+    }
+    update(data: T, headers?: HttpHeaders): Observable<T> {
+        headers.set('Content-Type', 'application/json');
+        return this._http.put(`${this.actionUrl}/update`, data, {headers})
+            .map(response => response as T);
+    }
+    delete(id: number, headers?: HttpHeaders): Observable<T> {
+        headers.set('Content-Type', 'application/json');
+        return this._http.delete(`${this.actionUrl}/delete/${id}`, {headers})
+            .map(response => response as T);
     }
 }
