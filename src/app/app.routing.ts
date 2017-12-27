@@ -15,6 +15,7 @@ import { HomeComponent } from './clients/pages/front/home/home.component';
 import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
+import { InfoComponent } from './clients/pages/info/info.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,13 @@ const routes: Routes = [
         component: HomeComponent,
         data: {
           title: 'home'
+        }
+      },
+      {
+        path: 'info-jual-beli',
+        component: InfoComponent,
+        data: {
+          title: 'info'
         }
       },
       {
