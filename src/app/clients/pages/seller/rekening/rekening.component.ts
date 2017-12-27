@@ -1,6 +1,7 @@
 import { Rekening } from './../../../../servers/model/rekening';
 import { SearchService } from './../../../../servers/service/search/search.service';
 import { Component, OnInit } from '@angular/core';
+import { ProfileService } from '../../../../servers/service/profile/profile.service';
 
 @Component({
   selector: 'app-rekening',
@@ -19,4 +20,5 @@ export class RekeningComponent implements OnInit {
       this.searchrek = data;
     });
   }
+
 }

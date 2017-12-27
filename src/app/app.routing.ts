@@ -15,6 +15,7 @@ import { HomeComponent } from './clients/pages/front/home/home.component';
 import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
+import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
 import { InfoComponent } from './clients/pages/info/info.component';
 
 const routes: Routes = [
@@ -86,7 +87,7 @@ const routes: Routes = [
   },
   {
     path: 'seller',
-    loadChildren: './clients/modules/seller.modules#SellerModules'
+    loadChildren: './clients/modules/seller.modules#SellerModules',
   },
   {
     path: '404',

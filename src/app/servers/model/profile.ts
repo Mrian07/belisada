@@ -1,8 +1,7 @@
 export class Profile {
 
   name: string;
-  npwp: string;
-  phone: string;
+  email: string;
   imageAvatar: string;
   imageNPWP: string;
   dateOfBirth: string;

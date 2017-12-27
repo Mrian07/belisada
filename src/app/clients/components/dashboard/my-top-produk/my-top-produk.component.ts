@@ -23,9 +23,9 @@ export class MyTopProdukComponent implements OnInit {
     this.getWishlist();
   }
   getWishlist() {
-    this.mytopProduct.getWishlist(this.token).subscribe(data => {
-      this.topproduct = data;
-      console.log('test', this.topproduct);
-    });
+    // this.mytopProduct.getWishlist(this.token).subscribe(data => {
+    //   this.topproduct = data;
+    //   console.log('test', this.topproduct);
+    // });
   }
 }

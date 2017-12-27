@@ -6,7 +6,6 @@ import { NgModel } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { SharedModules } from './shared.modules';
 import { SellerRoutes } from './seller.routes';
-import { SuiModule, SuiRatingModule, SuiModalModule } from 'ng2-semantic-ui/dist';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
@@ -46,6 +45,7 @@ import { ActivationLayoutComponent } from '../pages/account-layout/activation-la
 import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur/reject-retur.component';
 import { SearchService } from '../../servers/service/search/search.service';
 import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
+
 
 
 @NgModule({
@@ -100,6 +100,7 @@ import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-passwor
     ProfileService,
     SearchService,
     ForgotPasswordService
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SellerModules { }
