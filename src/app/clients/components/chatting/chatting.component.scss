@@ -16,9 +16,10 @@
     width: 100%;
     padding: 10px 15px;
     white-space: nowrap;
-    background-color: #ffffff;
+    background-color: #002f44;
     border-top-left-radius: 5px; 
     border-top-right-radius: 5px;
+    border-bottom: 0.15em solid #f7982d;
 }
 .chat-container .chat-header > * {
     vertical-align: middle;
@@ -33,21 +34,63 @@
     position: relative;
     left: 20px;
     top: 10px;
+    color: #ffffff;
 }
 
 
 .chat-container .chat-content {
     width: 100%;
     background-color: #F0F4F7;
-    max-height: 500px;
+    max-height: 300px;
     overflow-y: scroll;
-    padding: 10px 15px;
+    padding: 15px;
+}
+
+.chat-container .chat-content .chat-bubble {
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+
+.chat-container .chat-content .chat-bubble.receiver {
+    float: left;
+    text-align: left;
+    color: #435698;
+    background-color: #ffffff;
+}
+
+.chat-container .chat-content .chat-bubble.receiver .chat-bubble-time {
+    color: rgba($color: #435698, $alpha: 0.5);
+}
+
+.chat-container .chat-content .chat-bubble.sender {
+    float: right;
+    text-align: right;
+    color: #ffffff;
+    background-color: #F9A94A;
+}
+
+.chat-container .chat-content .chat-bubble.sender .chat-bubble-time {
+    color: rgba($color: #ffffff, $alpha: 0.5);
+}
+
+.chat-container .chat-content .chat-bubble .chat-bubble-time {
+    float: right;
 }
 
 .chat-container .chat-footer {
     width: 100%;
     height: 50px;
     background-color: #FFFFFF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-container .chat-footer .fit-to-content {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
 }
 
 .chat-container .chat-footer .txt-chat {
@@ -56,15 +99,26 @@
     padding: 5px 15px;
 }
 
-.chat-container .chat-footer .btn-send-chat {
+.chat-container .chat-footer .btn-chat {
     height: 100%;
     border: 0;
+    padding: 0px 15px;
     cursor: pointer;
+}
+
+.chat-container .chat-footer .btn-chat.send {
     color: #ffffff;
     background-color: #192636;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-container .chat-footer .btn-chat.attach {
+    // color: #333333;
+    // background-color: #192636;
 }
 
 .float {
+    cursor: pointer;
 	position: absolute;
 	width: 60px;
 	height: 60px;
