@@ -1,3 +1,5 @@
+import { Rekening } from './../../../../servers/model/rekening';
+import { SearchService } from './../../../../servers/service/search/search.service';
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../../../servers/service/profile/profile.service';
 
@@ -8,28 +10,15 @@ import { ProfileService } from '../../../../servers/service/profile/profile.serv
 })
 export class RekeningComponent implements OnInit {
 
-  constructor(private bank: ProfileService) { }
-
-  bankList = [];
-  selectedBanks: string;
-  toggle: Boolean = false;
-
+  constructor(private searchService: SearchService) { }
+  searchrek = [];
   ngOnInit() {
+    this.selectCity();
   }
-
-  getBank() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    this.bank.getBank(user.token).subscribe(data => {
-      console.log(data);
-      this.bankList = data;
+  selectCity() {
+    this.searchService.searchRek().subscribe(data => {
+      this.searchrek = data;
     });
-  }
-
-  toggleBanks() {
-    this.toggle = true;
-  }
-  bankSelected(hasil) {
-    console.log(hasil);
   }
 
 }
