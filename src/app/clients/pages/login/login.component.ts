@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
+    this.checkToken();
   }
 
   login() {
@@ -43,5 +44,12 @@ export class LoginComponent implements OnInit {
       }
       console.log(data);
     });
+  }
+
+  checkToken() {
+    const user = JSON.parse(localStorage.user);
+    if (user) {
+      this.router.navigate([this.returnUrl]);
+    }
   }
 }

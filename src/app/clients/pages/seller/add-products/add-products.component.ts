@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { StoreModule, Store } from '@ngrx/store';
 import { SearchService } from '../../../../servers/service/search/search.service';
 import { CategoryService } from '../../../../servers/service/category/category.service';
@@ -72,6 +72,10 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
+  openDrops() {
+    this.toggle = true;
+  }
+
   toggleBrands() {
 
     this.toggle = true;
@@ -104,8 +108,11 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-  categorySelected(hasil: any) {
-    console.log(hasil);
+  productSelected(hasil: any) {
+    this.selectedCategory = hasil.category1Name;
+    this.selectedSubCategory = hasil.category2Name;
+    this.selectedSubCategories = hasil.category3Name;
+    this.selectedBrands = hasil.brandname;
     this.results = [];
     this.selectCats = hasil.name;
     this.price = hasil.pricelist;
@@ -113,24 +120,16 @@ export class AddProductsComponent implements OnInit {
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
     this.toggle = false;
-  }
 
-  productSelected(hasil: any) {
-    this.selectedBrands = hasil.name;
-    this.brands = [];
   }
-
-  selectCondition() {
-  }
-
-  blur(hasil) {
-    this.results = [];
-    this.category = [];
-  }
-
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
       this.brands = data;
+      this.toggle = false;
     });
+  }
+  @HostListener('document:click', ['$event']) clickedOutside($event) {
+    this.results = [];
+
   }
 }
