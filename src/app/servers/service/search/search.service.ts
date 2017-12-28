@@ -16,7 +16,7 @@ export class SearchService {
 
   constructor(private http: HttpClient, private configuration: Configuration) {
   }
- 
+
     search(key: string): Observable<Search[]> {
       return this.http.get(this.configuration.serverWithApiUrl + '/product/productlist/' + key)
           .map(response => response as Search[]);

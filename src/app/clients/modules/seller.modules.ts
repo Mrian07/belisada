@@ -1,3 +1,4 @@
+import { StoreService } from './../../servers/service/store/store.service';
 import { ForgotPasswordService } from './../../servers/service/forgotpassword/forgot-password.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -102,6 +103,7 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
     SearchService,
     ForgotPasswordService,
     ChangePasswordService
+    StoreService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
