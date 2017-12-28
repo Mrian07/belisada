@@ -13,9 +13,7 @@ export class LoginData {
   name?: string;
   username: string;
   token: string;
-  isCorporate: string;
-  isCustomer: string;
-  isSeller: string;
+  role: number;
 
   constructor() {}
 }

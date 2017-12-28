@@ -55,11 +55,17 @@ const routes: Routes = [
     ]
   },
   {
-  path: 'activation/:key',
-  component: ActivationComponent,
-  data: {
-    title: 'Activation'
-  }
+    path: '',
+    component: PlainLayoutComponent,
+    children: [
+      {
+      path: 'activation',
+      component: ActivationComponent,
+      data: {
+        title: 'Activation'
+      }
+    }
+  ]
 },
   {
     path: '',
