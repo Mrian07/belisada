@@ -34,7 +34,6 @@ import { ProdukReportComponent } from '../components/dashboard/produk-report/pro
 import { StatusInvoiceComponent } from '../components/dashboard/status-invoice/status-invoice.component';
 import { PaymentInfoComponent } from '../pages/seller/payment-info/payment-info.component';
 import { AccountLayoutComponent } from '../pages/account-layout/account-layout.component';
-import { PlainLayoutComponent } from '../layouts/plain-layout/plain-layout.component';
 import { ActivationComponent } from '../pages/seller/activation/activation.component';
 import { BrandsService } from '../../servers/service/brands/brands.service';
 import { AlamatserviceService } from '../../servers/service/alamat/alamatservice.service';
@@ -53,7 +52,6 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
 @NgModule({
   declarations: [
     FullLayoutComponent,
-    ActivationLayoutComponent,
     DashboardComponent,
     SidebarComponent,
     ProductComponent,
@@ -81,8 +79,6 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
     PaymentInfoComponent,
     HeaderComponent,
     AccountLayoutComponent,
-    PlainLayoutComponent,
-    ActivationComponent,
     RejectReturComponent,
     SendForgotPasswordComponent,
   ],

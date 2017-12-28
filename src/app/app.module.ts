@@ -13,6 +13,11 @@ import { FrontModules } from './clients/modules/front.modules';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
 import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
+import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
+import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
+import { ActivationService } from './servers/service/activation/activation.service';
+import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
 
 
 
@@ -25,6 +30,9 @@ export function createTranslateLoader(http: HttpClient) {
     AppComponent,
     NotFoundComponent,
     MaintenanceComponent
+    PlainLayoutComponent,
+    ActivationComponent,
+    ActivationLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
     FrontModules
   ],
   providers: [
+    ActivationService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,

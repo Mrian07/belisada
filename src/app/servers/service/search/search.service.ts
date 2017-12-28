@@ -1,7 +1,8 @@
+import { Alamat } from './../../model/alamat';
 import { Rekening } from './../../model/rekening';
 import { Search } from './../../model/search';
 import { Propinsi } from './../../model/province';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
 import { Observable } from 'rxjs/Observable';
@@ -13,12 +14,15 @@ import { Kecamatan } from '../../model/kecamatan';
 
 @Injectable()
 export class SearchService {
-
+  public user: Object;
+  token1 = this.user = JSON.parse(localStorage.user);
+  token2 = this.token1.token;
   constructor(private http: HttpClient, private configuration: Configuration) {
+
   }
 
     search(key: string): Observable<Search[]> {
-      return this.http.get(this.configuration.serverWithApiUrl + '/product/productlist/' + key)
+      return this.http.get(this.configuration.serverWithAccUrl + '/product/search/' + key)
           .map(response => response as Search[]);
     }
 
@@ -49,5 +53,14 @@ export class SearchService {
     searchRek(): Observable<Rekening[]> {
       return this.http.get(this.configuration.serverWithAccUrl + '/bank')
           .map(response => response as Rekening[]);
+    }
+    postRek(token2: string): Observable<Rekening[]> {
+      const headers = new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('asdasdasd', 'xzc')
+        .set('token', 'token2')
+        console.log('test',token2);
+      return this.http.post(this.configuration.serverWithAccUrl + '/seller/profile/bankaccount/create', { headers,token2 })
+          .map(resp => resp as Rekening[]);
     }
 }

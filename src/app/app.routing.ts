@@ -18,6 +18,8 @@ import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
 import { InfoComponent } from './clients/pages/info/info.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
+import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,13 @@ const routes: Routes = [
       }
     ]
   },
+  {
+  path: 'activation/:key',
+  component: ActivationComponent,
+  data: {
+    title: 'Activation'
+  }
+},
   {
     path: '',
     component: AuthenticationLayoutComponent,

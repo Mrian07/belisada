@@ -33,7 +33,7 @@
                     <div class="ten wide field">
                         <input type="text" name="city" #options list="productname" (keyup)="search($event)" [(ngModel)]="selectCats"/>
                         <div class="result-container" *ngIf="[results] != 0">
-                            <div class="result" *ngFor="let hasil of results " (click)="categorySelected(hasil)">{{ hasil.name }}</div>
+                            <div class="result" *ngFor="let hasil of results " (click)="productSelected(hasil)">{{ hasil.name }}</div>
                         </div>
 
                     </div>
@@ -45,30 +45,37 @@
                         </div>
                         <div class="eleven wide field">
                             <div class="ui five wide field">
-                                <sui-select class="selection"
+                                <input type="text" name="category" value="{{selectedCategory}}" disabled>
+                                <!-- <sui-select class="selection"
                                     [(ngModel)]="selectedCategory"
                                     labelField="name"
+                                    isSearchable="true"
                                     placeholder="Select Category">
-                                        <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectCategory(option.mproductCategoryId)"></sui-select-option>
-                                </sui-select>
+                                        <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectCategory(option.mProductCategoryId)"></sui-select-option>
+                                </sui-select> -->
+
+
+
                             </div>
 
                             <div class="ui five wide field">
-                                <sui-select class="selection"
+                                    <input type="text" name="subcategory" value="{{selectedSubCategory}}" disabled>
+                                <!-- <sui-select class="selection"
                                     [(ngModel)]="selectedSubCategory"
                                     labelField="name"
                                     placeholder="Select SubCategory">
                                         <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectSubCategory(option.m_product_category_id)"></sui-select-option>
-                                </sui-select>
+                                </sui-select> -->
                             </div>
 
                             <div class="ui five wide field">
-                                <sui-select class="selection"
+                                <input type="text" name="subcategory" value="{{selectedSubCategories}}" disabled>
+                                <!-- <sui-select class="selection"
                                     [(ngModel)]="selectedSubCategories"
                                     labelField="name"
                                     placeholder="Select Section">
                                         <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name" (click)="selectSubCategories(option.m_product_category_id)"></sui-select-option>
-                                </sui-select>
+                                </sui-select> -->
                             </div>
                         </div>
                     </div>
@@ -79,10 +86,11 @@
                             </div>
                             <div class="ten wide field">
                                 <div class="ui five wide field">
-                                    <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands">
+                                        <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}" disabled>
+                                    <!-- <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}">
                                     <div class="result-container" *ngIf="toggle == true">
                                         <div class="result" *ngFor="let hasil of brands | searchFilter : selectedBrands" (click)="productSelected(hasil)">{{ hasil.name }}</div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>

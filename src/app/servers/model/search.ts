@@ -1,24 +1,24 @@
 export class Search {
-  m_product_id: number;
+  productbrandid: number;
+  sku: string;
   name: string;
+  name_en: string;
   imageurl: string;
-  category: string;
+  imageurl2: string;
+  imageurl3: string;
+  imageurl4: string;
+  imageurl5: string;
+  category1Id: number;
+  category1Name: string;
+  category2Id: number;
+  category2Name: string;
+  category3Id: number;
+  category3Name: string;
   pricelist: number;
   description: string;
-  stock: number;
-  discount: number;
   description_en: string;
-  weight: number;
-  isWishList: string;
-  isOnCart: string;
-  isNewProduct: string;
-  highlight_en: string;
   highlight: string;
-  alias: string;
-  specialPrice: number;
-  istodayshipping: string;
-  name_en: string;
-  specification?: any;
+  highlight_en: string;
 
   constructor() {}
 }

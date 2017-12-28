@@ -1,3 +1,4 @@
+import { SendEmailService } from './../../../servers/service/sendEmail/send-email.service';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -17,11 +18,19 @@ export class LoginComponent implements OnInit {
   password: string;
   returnUrl: string;
   loading = false;
+  token : string;
 
-  constructor(private http: HttpClient, private loginService: LoginService, private router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private http: HttpClient,
+    private loginService: LoginService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private sendEmailService: SendEmailService
+  ) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
+    this.checkToken();
   }
 
   login() {
@@ -35,6 +44,32 @@ export class LoginComponent implements OnInit {
       if (data.status === '0') {
         swal( 'Error!', data.message, 'error' );
         this.loading = false;
+      } else if (data.status === '2') {
+        swal({
+          title: 'Warning',
+          text: data.message,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Kirim ulang email aktivasi'
+        }).then((result) => {
+          if (result.value) {
+            this.sendEmailService.SendEmail({
+              email : this.email,
+              type: 'activation'
+            }).subscribe(response => {
+              console.log(response);
+              swal({
+                type: 'success',
+                title: response.message,
+                showConfirmButton: false,
+                timer: 2000
+              });
+            });
+          }
+        });
+        this.loading = false;
       } else {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
@@ -43,5 +78,12 @@ export class LoginComponent implements OnInit {
       }
       console.log(data);
     });
+  }
+
+  checkToken() {
+    const user = JSON.parse(localStorage.user);
+    if (user) {
+      this.router.navigate([this.returnUrl]);
+    }
   }
 }
