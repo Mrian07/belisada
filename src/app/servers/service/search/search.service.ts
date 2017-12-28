@@ -50,7 +50,7 @@ export class SearchService {
       return this.http.get(this.configuration.serverWithApiUrl + '/village/getlistvillagebyiddistrict/' + id)
           .map(response => response as Desa[]);
     }
-    searchRek(): Observable<Rekening[]> {
+    searchRek(selectCity): Observable<Rekening[]> {
       return this.http.get(this.configuration.serverWithAccUrl + '/bank')
           .map(response => response as Rekening[]);
     }

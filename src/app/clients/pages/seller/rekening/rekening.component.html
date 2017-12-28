@@ -16,48 +16,39 @@
                         <div class="field">
                             <label>No. Rekening</label>
                             <input name="accountNo" placeholder="Masukan nomor rekening" type="text" [(ngModel)]="accountNo" #_accountNo="ngModel" [ngModelOptions]="{standalone: true}"/>
+                        
                         </div>
 
                         <div class="field">
                                 <label>Nama Bank</label>
-                                <sui-select class="selection" labelField="name" placeholder="Nama Bank">
-                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.name" (click)="selectCity()" [(ngModel)]="accountName" #_accountName="ngModel" [ngModelOptions]="{standalone: true}" ngDefaultControl></sui-select-option>
+                                <sui-select class="selection" labelField="name" placeholder="Nama Bank" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}">
+                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId"   [ngModelOptions]="{standalone: true}" ngDefaultControl></sui-select-option>
                                 </sui-select>
                           
                         </div>
                         <div class="field">
                             <label>Pemilik</label>
-                            <input name="pemilik" placeholder="Masukan nama pemilik" type="text"/>
+                            <input name="pemilik" placeholder="Masukan nama pemilik" [(ngModel)]="accountName" type="text"/>
                         </div>
-                        <button class="ui primary button" (click)="getalat()" type="submit">Simpan</button>
+                        <button class="ui primary button" (click)="getAllStore()" type="submit">Simpan</button>
                     </form>
                 </div>
             </div>
-            <table class="ui striped table">
+            <table class="ui striped table" >
                 <thead>
                     <tr>
                         <th>Pemilik</th>
                         <th>No. Rekening</th>
                         <th>Nama Bank</th>
-                        <th>Cabang</th>
                         <th>Ubah</th>
                         <th>Hapus</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody *ngFor="let option of postrek2">
                     <tr>
-                        <th>Iwan</th>
-                        <td>346578346</td>
-                        <td>BCA</td>
-                        <td>Puri Indah</td>
-                        <td><i class="edit icon"></i></td>
-                        <td><i class="trash icon"></i></td>
-                    </tr>
-                    <tr>
-                            <td>Budi</td>
-                            <td>346578346</td>
-                            <td>BCA</td>
-                            <td>Puri Indah</td>
+                            <td>{{option.accountName}}</td>
+                            <td>{{option.accountNo}}</td>
+                            <td>{{option.bankName}}</td>
                             <td><i class="edit icon"></i></td>
                             <td><i class="trash icon"></i></td>
                         </tr>
