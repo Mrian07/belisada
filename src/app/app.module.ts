@@ -1,3 +1,4 @@
+import { Page404Component } from './clients/pages/page-404/page-404.component';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -29,10 +30,11 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     NotFoundComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
     PlainLayoutComponent,
     ActivationComponent,
-    ActivationLayoutComponent
+    ActivationLayoutComponent,
+    Page404Component
   ],
   imports: [
     BrowserModule,
