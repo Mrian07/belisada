@@ -31,6 +31,7 @@ export class AddProductsComponent implements OnInit {
   selectedCategory: string;
   selectedSubCategory: string;
   selectedSubCategories: string;
+  selectCondition: any;
   results = [];
   category = [];
   subcategory = [];

@@ -98,7 +98,7 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
     ProfileService,
     SearchService,
     ForgotPasswordService,
-    ChangePasswordService
+    ChangePasswordService,
     StoreService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
