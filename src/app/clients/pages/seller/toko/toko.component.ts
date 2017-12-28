@@ -1,3 +1,6 @@
+import { HttpHeaders } from '@angular/common/http';
+import { Store } from './../../../../servers/model/store';
+import { StoreService } from './../../../../servers/service/store/store.service';
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../../../../servers/service/search/search.service';
 import { CategoryService } from '../../../../servers/service/category/category.service';
@@ -9,9 +12,10 @@ import { CategoryService } from '../../../../servers/service/category/category.s
 })
 export class TokoComponent implements OnInit {
 
-  constructor(private searchService: SearchService, private categoryService: CategoryService) { }
+  constructor(private searchService: SearchService, private categoryService: CategoryService, private storeService: StoreService) { }
 
-
+  store: Store;
+  stores: Store[];
   propinsi = [];
   city = [];
   kelurahan = [];
@@ -23,6 +27,14 @@ export class TokoComponent implements OnInit {
   ngOnInit() {
     this.getPropinsi();
     this.getCategoryOne();
+    this.getAllStore();
+  }
+
+  getAllStore() {
+    const user = JSON.parse(localStorage.user);
+    this.storeService.getAll({'token': user.token}).subscribe(data => {
+      this.stores = data;
+    });
   }
 
   getPropinsi() {
