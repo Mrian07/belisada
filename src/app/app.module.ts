@@ -12,6 +12,7 @@ import { AuthModules } from './clients/modules/auth.modules';
 import { FrontModules } from './clients/modules/front.modules';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
+import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
 import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
 import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
 import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
@@ -28,6 +29,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     NotFoundComponent,
+    MaintenanceComponent
     PlainLayoutComponent,
     ActivationComponent,
     ActivationLayoutComponent
