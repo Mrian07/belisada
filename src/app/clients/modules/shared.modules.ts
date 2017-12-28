@@ -6,6 +6,7 @@ import { SearchFilterPipe } from '../filter';
 import { Configuration } from '../../servers/config/configuration';
 import { CategoryService } from '../../servers/service/category/category.service';
 import { ClickOutsideDirective } from '../clickoutside';
+import { TokenService } from '../../servers/service/token/token.service';
 
 
 @NgModule ({
@@ -22,6 +23,7 @@ import { ClickOutsideDirective } from '../clickoutside';
   providers: [
     Configuration,
     CategoryService,
+    TokenService
   ]
 })
 export class SharedModules { }

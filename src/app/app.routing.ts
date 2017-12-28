@@ -95,8 +95,9 @@ const routes: Routes = [
         }
       }
     ]
-  },{
-    path:'maintenance',
+  },
+  {
+    path: 'maintenance',
     component: MaintenanceComponent,
   },
   {
