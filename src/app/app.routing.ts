@@ -94,10 +94,11 @@ const routes: Routes = [
         }
       }
     ]
-  },{
-    path:'maintenance',
+  },
+  {
+    path: 'maintenance',
     component: MaintenanceComponent,
-  }
+  },
   {
     path: 'seller',
     loadChildren: './clients/modules/seller.modules#SellerModules',

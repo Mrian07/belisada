@@ -29,7 +29,7 @@ export function createTranslateLoader(http: HttpClient) {
   declarations: [
     AppComponent,
     NotFoundComponent,
-    MaintenanceComponent
+    MaintenanceComponent,
     PlainLayoutComponent,
     ActivationComponent,
     ActivationLayoutComponent
