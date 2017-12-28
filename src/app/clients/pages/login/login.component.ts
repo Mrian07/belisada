@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../../servers/service/login/login.service';
 import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TokenService } from '../../../servers/service/token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService,
     private router: Router,
     private route: ActivatedRoute,
-    private sendEmailService: SendEmailService
+    private sendEmailService: SendEmailService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit() {
@@ -81,9 +83,25 @@ export class LoginComponent implements OnInit {
   }
 
   checkToken() {
-    const user = JSON.parse(localStorage.user);
-    if (user) {
-      this.router.navigate([this.returnUrl]);
-    }
+    this.tokenService.checkToken().subscribe(data => {
+      console.log(data);
+      if (data.status === '0') {
+        console.log('not');
+          swal({
+          title: 'Warning',
+          text: 'Login Expired, Please Relogin',
+          type: 'warning',
+          showCancelButton: false,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Re-Login'
+        }).then((result) => {
+          console.log(result);
+        });
+      }else {
+        console.log('valid');
+        this.router.navigate([this.returnUrl]);
+      }
+    });
   }
 }

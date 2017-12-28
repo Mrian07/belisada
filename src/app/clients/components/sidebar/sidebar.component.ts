@@ -29,14 +29,12 @@ export class SidebarComponent implements OnInit {
     if (!user) {
       console.log('kosong');
     }else {
-      this.profileService.getProfile(user.token).subscribe(data => {
-        console.log(data);
+      const data = JSON.parse(localStorage.user);
         if (data) {
           this.sellerName = data.name;
-          this.sellerEmail = data.email;
+          this.sellerEmail = data.username;
           this.sellerPhone = '';
         }
-      });
     }
   }
 
