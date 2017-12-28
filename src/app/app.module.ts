@@ -12,6 +12,7 @@ import { AuthModules } from './clients/modules/auth.modules';
 import { FrontModules } from './clients/modules/front.modules';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
+import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
 
 
 
@@ -22,7 +23,8 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MaintenanceComponent
   ],
   imports: [
     BrowserModule,
