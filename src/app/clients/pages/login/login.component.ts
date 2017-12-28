@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   password: string;
   returnUrl: string;
   loading = false;
+  token : string;
 
   constructor(private http: HttpClient, private loginService: LoginService, private router: Router, private route: ActivatedRoute) { }
 

@@ -6,7 +6,7 @@
 }
 .price{
     color: red;
-    font-size: 25px;
+    font-size: 16px;
 }
 .stok{
     color: green;
@@ -28,10 +28,22 @@
     float: left;
     margin-right: 3px;
 }
+.warna4{
+    
+    width: 22px;
+    background:red;
+    height: 23px;
+    float: left;
+    margin-right: 3px;
+}
 .borderni{
     border: 1px solid !important;
     width: 60px;
+    color: black;
     
+}
+.item{
+    color: black;
 }
 h1{
     min-height: 200px;
