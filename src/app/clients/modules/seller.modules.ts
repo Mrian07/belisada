@@ -45,6 +45,7 @@ import { ActivationLayoutComponent } from '../pages/account-layout/activation-la
 import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur/reject-retur.component';
 import { SearchService } from '../../servers/service/search/search.service';
 import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
+import { ChangePasswordService } from '../../servers/service/changepassword/change-password.service';
 
 
 
@@ -99,7 +100,8 @@ import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-passwor
     SendEmailService,
     ProfileService,
     SearchService,
-    ForgotPasswordService
+    ForgotPasswordService,
+    ChangePasswordService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
