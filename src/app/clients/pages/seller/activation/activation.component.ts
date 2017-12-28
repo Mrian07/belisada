@@ -28,10 +28,10 @@ export class ActivationComponent implements OnInit {
     this.email = this.route.snapshot.queryParamMap.get('email');
     console.log('query:', this.route.snapshot.queryParamMap);
     this.register.activate(this.act_key).subscribe(data => {
-      if(data.message) {
+      if (data.message) {
         this.message = data.message;
       }
-      if(data.status == '1') {
+      if (data.status === '1') {
         this.success = true;
       }
       console.log(data);
@@ -57,9 +57,9 @@ export class ActivationComponent implements OnInit {
             title: data.message,
             showConfirmButton: false,
             timer: 2000
-          })
-        })
+          });
+        });
       }
-    })
+    });
   }
 }
