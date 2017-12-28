@@ -5,20 +5,25 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SearchFilterPipe } from '../filter';
 import { Configuration } from '../../servers/config/configuration';
 import { CategoryService } from '../../servers/service/category/category.service';
+import { ClickOutsideDirective } from '../clickoutside';
+import { TokenService } from '../../servers/service/token/token.service';
 
 
 @NgModule ({
   declarations: [
-    SearchFilterPipe
+    SearchFilterPipe,
+    ClickOutsideDirective
   ],
   exports: [
     CommonModule,
     SuiModule,
-    SearchFilterPipe
+    SearchFilterPipe,
+    ClickOutsideDirective
   ],
   providers: [
     Configuration,
-    CategoryService
+    CategoryService,
+    TokenService
   ]
 })
 export class SharedModules { }

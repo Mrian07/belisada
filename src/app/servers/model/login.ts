@@ -19,3 +19,11 @@ export class LoginData {
 
   constructor() {}
 }
+
+export class Token {
+  token: string;
+  message: string;
+  status: string;
+
+  constructor() {}
+}

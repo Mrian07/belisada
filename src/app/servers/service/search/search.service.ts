@@ -22,7 +22,7 @@ export class SearchService {
   }
 
     search(key: string): Observable<Search[]> {
-      return this.http.get(this.configuration.serverWithApiUrl + '/product/productlist/' + key)
+      return this.http.get(this.configuration.serverWithAccUrl + '/product/search/' + key)
           .map(response => response as Search[]);
     }
 

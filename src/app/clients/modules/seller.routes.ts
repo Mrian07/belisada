@@ -26,23 +26,6 @@ import { OnlyLoggedInUsersGuard } from './authguard';
 
 const sellerroutes: Routes = [
   {
-      path: '',
-    component: PlainLayoutComponent,
-    data: {
-      title: 'Seller'
-    },
-    children: [
-      {
-        path: 'activation/:key',
-        component: ActivationComponent
-      },
-      {
-        path: 'send-forgot/:key',
-        component: SendForgotPasswordComponent
-      },
-    ]
-  },
-  {
     path: '',
     component: FullLayoutComponent,
     canActivateChild: [OnlyLoggedInUsersGuard],

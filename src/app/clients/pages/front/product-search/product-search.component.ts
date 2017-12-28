@@ -6,6 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-search.component.scss']
 })
 export class ProductSearchComponent implements OnInit {
+  searchable;
+  disabled;
+  options;
+  selectedOption;
+  navigation;
+  boundary;
+  selectedPage;
 
   constructor() { }
 
