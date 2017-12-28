@@ -47,6 +47,7 @@ import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur
 import { SearchService } from '../../servers/service/search/search.service';
 import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
 import { ChangePasswordService } from '../../servers/service/changepassword/change-password.service';
+import { RekeningSService } from '../../servers/service/rekening/rekening-s.service';
 
 
 
@@ -102,8 +103,9 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
     ProfileService,
     SearchService,
     ForgotPasswordService,
-    ChangePasswordService
-    StoreService
+    ChangePasswordService,
+    StoreService,
+    RekeningSService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

@@ -38,19 +38,7 @@ export class ChangePasswordComponent implements OnInit {
     }
     //console.log(changePasswordData);
     this.changePasswordService.ChangePassword(changePasswordData).subscribe(data => {
-      if (data.status === '1') {
-        swal(
-          'success',
-          data.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          data.message,
-          'error'
-        );
-      }
+      
     });
 
   }

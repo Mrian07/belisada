@@ -1,3 +1,4 @@
+import { ProductSearchComponent } from './clients/pages/front/product-search/product-search.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
@@ -47,6 +48,13 @@ const routes: Routes = [
         component: ProductDetailComponent,
         data: {
           title: 'product'
+        }
+      },
+      {
+        path: 'Product-Search',
+        component: ProductSearchComponent,
+        data: {
+          title: 'product Search'
         }
       }
     ]
