@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProfileService } from '../../../servers/service/profile/profile.service';
 import { HttpClient } from 'selenium-webdriver/http';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -29,14 +30,12 @@ export class SidebarComponent implements OnInit {
     if (!user) {
       console.log('kosong');
     }else {
-      this.profileService.getProfile(user.token).subscribe(data => {
-        console.log(data);
+      const data = JSON.parse(localStorage.user);
         if (data) {
           this.sellerName = data.name;
-          this.sellerEmail = data.email;
+          this.sellerEmail = data.username;
           this.sellerPhone = '';
         }
-      });
     }
   }
 

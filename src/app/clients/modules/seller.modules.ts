@@ -34,7 +34,6 @@ import { ProdukReportComponent } from '../components/dashboard/produk-report/pro
 import { StatusInvoiceComponent } from '../components/dashboard/status-invoice/status-invoice.component';
 import { PaymentInfoComponent } from '../pages/seller/payment-info/payment-info.component';
 import { AccountLayoutComponent } from '../pages/account-layout/account-layout.component';
-import { PlainLayoutComponent } from '../layouts/plain-layout/plain-layout.component';
 import { ActivationComponent } from '../pages/seller/activation/activation.component';
 import { BrandsService } from '../../servers/service/brands/brands.service';
 import { AlamatserviceService } from '../../servers/service/alamat/alamatservice.service';
@@ -48,11 +47,12 @@ import { SearchService } from '../../servers/service/search/search.service';
 import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
 import { ChangePasswordService } from '../../servers/service/changepassword/change-password.service';
 import { StoreComponent } from '../pages/seller/store/store.component';
+import { RekeningSService } from '../../servers/service/rekening/rekening-s.service';
+import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain-seller-layout.component';
 
 @NgModule({
   declarations: [
     FullLayoutComponent,
-    ActivationLayoutComponent,
     DashboardComponent,
     SidebarComponent,
     ProductComponent,
@@ -80,11 +80,10 @@ import { StoreComponent } from '../pages/seller/store/store.component';
     PaymentInfoComponent,
     HeaderComponent,
     AccountLayoutComponent,
-    PlainLayoutComponent,
-    ActivationComponent,
     RejectReturComponent,
     SendForgotPasswordComponent,
     StoreComponent,
+    PlainSellerLayoutComponent,
   ],
   imports: [
     CommonModule,
@@ -104,7 +103,8 @@ import { StoreComponent } from '../pages/seller/store/store.component';
     SearchService,
     ForgotPasswordService,
     ChangePasswordService,
-    StoreService
+    StoreService,
+    RekeningSService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

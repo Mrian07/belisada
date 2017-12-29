@@ -1,3 +1,5 @@
+import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
+import { ProductSearchComponent } from './clients/pages/front/product-search/product-search.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
@@ -17,6 +19,9 @@ import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
 import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
 import { InfoComponent } from './clients/pages/info/info.component';
+import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
+import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
+import { Page404Component } from './clients/pages/page-404/page-404.component';
 
 const routes: Routes = [
   {
@@ -48,9 +53,29 @@ const routes: Routes = [
         data: {
           title: 'product'
         }
+      },
+      {
+        path: 'Product-Search',
+        component: ProductSearchComponent,
+        data: {
+          title: 'product Search'
+        }
       }
     ]
   },
+  {
+    path: '',
+    component: PlainLayoutComponent,
+    children: [
+      {
+      path: 'activation',
+      component: ActivationComponent,
+      data: {
+        title: 'Activation'
+      }
+    }
+  ]
+},
   {
     path: '',
     component: AuthenticationLayoutComponent,
@@ -86,13 +111,21 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'maintenance',
+    component: MaintenanceComponent,
+  },
+  {
+    path:'404',
+    component: Page404Component,
+  },
+  {
     path: 'seller',
     loadChildren: './clients/modules/seller.modules#SellerModules',
   },
-  {
-    path: '404',
-    component: NotFoundComponent
-  },
+  // {
+  //   path: '404',
+  //   component: NotFoundComponent,
+  // },
   {
     path: '**',
     redirectTo: '/404'

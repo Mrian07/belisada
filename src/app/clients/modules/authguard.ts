@@ -17,13 +17,5 @@ export class OnlyLoggedInUsersGuard implements CanActivateChild {
     }else {
       return true;
     }
-   // this.router.navigate([this.returnUrl]);
-  //  console.log(this.userService.isLoggedin());
-  //   if (this.userService.isLoggedin()) {
-  //     return true;
-  //   } else {
-  //     window.alert('You dont have permission to view this page');
-  //     return false;
-  //   }
   }
 }
