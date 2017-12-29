@@ -1,10 +1,8 @@
-import { StoreComponent } from './../pages/seller/store/store.component';
-import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
-import { SendForgotPasswordComponent } from './../pages/seller/send-forgot-password/send-forgot-password.component';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { ActivationComponent } from '../pages/seller/activation/activation.component';
+import { StoreComponent } from './../pages/seller/store/store.component';
+import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
 import { ProductComponent } from '../pages/seller/product/product.component';
@@ -22,27 +20,10 @@ import { FaqComponent } from '../pages/seller/faq/faq.component';
 import { PaymentInfoComponent } from '../pages/seller/payment-info/payment-info.component';
 import { StatisticsComponent } from '../pages/seller/statistics/statistics.component';
 import { OnlyLoggedInUsersGuard } from './authguard';
-import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain-seller-layout.component';
+
 
 
 const sellerroutes: Routes = [
-  {
-    path: '',
-    component: PlainSellerLayoutComponent,
-    data: {
-      title: 'Seller'
-    },
-    children: [
-      {
-        path: 'activation/:key',
-        component: ActivationComponent
-      },
-      {
-        path: 'send-forgot/:key',
-        component: SendForgotPasswordComponent
-      },
-    ]
-  },
   {
     path: '',
     component: FullLayoutComponent,
