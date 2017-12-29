@@ -5,15 +5,14 @@
                 <div class="pull-left" style="width: 20%">
                     <img class="ui image" src="/assets/img/demo/C1-1.jpg" alt="profile picture"/>
                 </div>
-                <div class="pull-left" style="width: 80%; height: 140px">
-                    <div class="nav-column text-center" *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix" >
+                <div class="pull-left" style="width: 80%;">
+                    <div class="nav-column text-center" *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix">
                         
-                        <div *ngIf="ix <= 4">
+                        <div class="gap-between-elements" *ngIf="ix <= 4" style="height: 135px; border-bottom: 1px solid rgba(153,153,153, 0.5)">
                             <a href="#">
                                 <img class="ui image logo" [src]="i.imageurl" alt="profile picture"/>
                                 <h3>{{ i.name }}</h3>
                             </a>
-                            <hr/>
                         </div>
                         <div *ngIf="ix > 4">
                             <a href="#">
