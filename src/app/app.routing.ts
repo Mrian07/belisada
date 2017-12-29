@@ -115,7 +115,7 @@ const routes: Routes = [
     component: MaintenanceComponent,
   },
   {
-    path:'404',
+    path: '404',
     component: Page404Component,
   },
   {

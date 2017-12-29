@@ -1,13 +1,10 @@
-import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
-import { PlainLayoutComponent } from './../layouts/plain-layout/plain-layout.component';
-import { SendForgotPasswordComponent } from './../pages/seller/send-forgot-password/send-forgot-password.component';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { ActivationComponent } from '../pages/seller/activation/activation.component';
+import { StoreComponent } from './../pages/seller/store/store.component';
+import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
-import { ProductComponent } from '../pages/seller/product/product.component';
 import { ModalPopupComponent } from '../pages/seller/modal-popup/modal-popup.component';
 import { AddProductsComponent } from '../pages/seller/add-products/add-products.component';
 import { ProfileComponent } from '../pages/seller/profile/profile.component';
@@ -24,6 +21,7 @@ import { StatisticsComponent } from '../pages/seller/statistics/statistics.compo
 import { OnlyLoggedInUsersGuard } from './authguard';
 
 
+
 const sellerroutes: Routes = [
   {
     path: '',
@@ -33,10 +31,6 @@ const sellerroutes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-      },
-      {
-        path: 'product',
-        component: ProductComponent,
       },
       {
         path: 'modal-popup',
@@ -91,6 +85,10 @@ const sellerroutes: Routes = [
       {
         path: 'statistics',
         component: StatisticsComponent,
+      },
+      {
+        path: 'my-store',
+        component: StoreComponent
       }
     ]
   }

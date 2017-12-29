@@ -1,4 +1,4 @@
-export class Banks {
+export class Bank {
 
   name: string;
   mbankId: number;

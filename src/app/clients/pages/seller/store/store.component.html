@@ -1,0 +1,127 @@
+<h1>Daftar Toko & Product </h1>
+<div class="ui grid">
+    <div class="ui row">
+        <div class="sixteen wide column">
+            <sui-tabset>
+                <div class="ui top attached tabular menu" *ngIf="tabs === true">
+                    <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">{{ option.name }}</a>
+                </div>
+                <div class="ui top attached tabular menu" *ngIf="tabs === false">
+                    <!-- <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">{{ option.name }}</a> -->
+                    <a class="item btn-create-new-store" suiTabHeader="add-store"><i class="plus icon"></i> Buat toko baru</a>
+                </div>
+                <div class="ui bottom attached segment" suiTabContent="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">
+
+                    <div class="ui grid">
+                        <div class="thirteen wide column">
+                            <div class="ui segment">
+                                <div class="ui grid">
+                                    <div class="three wide column center aligned">
+                                        <img class="ui small image" src="/assets/img/shop.jpg">
+                                        <button class="mini positive ui button" (click)="changeData()">Ubah Data</button>
+                                    </div>
+                                    <div class="thirteen wide column">
+                                        <div class="ui grid">
+                                            <div class="five wide column">
+                                                <strong>Alamat</strong><br>{{ option.address }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Propinsi</strong><br>{{ option.regionName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kota</strong><br>{{ option.cityName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kelurahan/ Kecamatan</strong><br>
+                                                {{ option.districtName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Desa</strong><br>{{ option.villageName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kodepos</strong><br>
+                                                Petukangan
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- <div class="three wide column">
+                            <div>Jumlah transaksi sukses:</div>
+                            <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
+                             <br>
+                            <div>Jumlah transaksi pending:</div>
+                            <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
+
+                        </div> -->
+                    <!-- </div> -->
+
+
+                    <div class="ui grid">
+                        <div class="sexteen wide column">
+                            <!-- <canvas id="cvs-earning">{{ chart }}</canvas> -->
+                            <app-product></app-product>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Store -->
+                <div class="ui bottom attached segment" suiTabContent="add-store">
+                    <div class="ui grid">
+                        <div class="six wide column center aligend">
+                            <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/>
+                        </div>
+                        <div class="ten wide column">
+
+                            <form class="ui form" [formGroup]="createStoreForm" (ngSubmit)="onSubmit()" novalidate>
+                                <div class="field">
+                                    <label>Nama Toko</label>
+                                    <input name="name" placeholder="Masukan nama toko" type="text" formControlName="name"/>
+                                </div>
+                                <div class="field">
+                                    <label>Alamat</label>
+                                    <textarea name="address" placeholder="Masukan alamat" formControlName="address"></textarea>
+                                </div>
+                                <div class="field">
+                                    <label>Provinsi</label>
+                                    <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                                        <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+                                    </sui-select>
+                                </div>
+                                <div class="field">
+                                    <label>Kota</label>
+                                    <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                                        <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                                    </sui-select>
+                                </div>
+                                <div class="field">
+                                    <label>Kelurahan / Kecamatan</label>
+                                    <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                                        <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                                    </sui-select>
+                                </div>
+                                <div class="field">
+                                    <label>Desa</label>
+                                    <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
+                                        <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+                                    </sui-select>
+                                </div>
+                                <div class="field">
+                                    <label>Kode POS</label>
+                                    <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalcode"/>
+                                </div>
+                                <div class="field">
+                                    <label>Deskripsi</label>
+                                    <textarea name="description" placeholder="Deskripsi toko anda" formControlName="description"></textarea>
+                                </div>
+                                <button class="ui primary button" type="submit">Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </sui-tabset>
+        </div>
+    </div>
+</div>

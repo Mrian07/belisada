@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
 import swal from 'sweetalert2';
-
+import { Router } from '@angular/router';
 export interface IContext {
   data: string;
 }
@@ -22,13 +22,14 @@ export class RegistrationComponent implements OnInit {
   userType = '1';
   clickMessage = '';
   tc: string;
+  loading: any;
 
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IContext, string, string>;
   public open(dynamicContent: string = 'Example') {
     const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
 
-    config.closeResult = "closed!";
+    config.closeResult = 'closed!';
     config.context = { data: dynamicContent };
 
     this.modalService
@@ -36,7 +37,7 @@ export class RegistrationComponent implements OnInit {
         .onApprove(result => { /* approve callback */ })
         .onDeny(result => { /* deny callback */});
 }
-  constructor(private http: HttpClient, private categoryService: RegisterService, public modalService: SuiModalService) {  }
+  constructor(private http: HttpClient, private categoryService: RegisterService, public modalService: SuiModalService,private router: Router) {  }
 
   ngOnInit() {
   }
@@ -75,13 +76,17 @@ export class RegistrationComponent implements OnInit {
         swal(
           'success',
           data.message,
-          'success'
-        );
+          'success',
+        ).then(()=> {
+          location.reload();
+          this.router.navigateByUrl('/login');
+        });
       }else {
         swal(
           'Opps!',
           data.message,
-          'error'
+          'error',
+
         );
       }
     });

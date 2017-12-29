@@ -1,4 +1,4 @@
-<form class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+<form name="" class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
     <div class="field">
 
         <label>Nama Lengkap</label>
@@ -7,12 +7,12 @@
     </div>
     <div class="field">
         <label>No Telpon</label>
-        <input type="number" name="phone" placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
+        <input type="number" name="phone" ng-pattern="/^\d{5}$/"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
         <div *ngIf="f.submitted && !_phone.valid" class="ui pointing red basic label">Phone is required, minimum 8 character</div>
     </div>
     <div class="field">
         <label>Alamat Email</label>
-        <input type="email" name="email" placeholder="Alamat Email" [(ngModel)]="email" #_email="ngModel" required/>
+        <input type="email" name="email"  placeholder="Alamat Email" [(ngModel)]="email" #_email="ngModel" required/>
         <div *ngIf="f.submitted && !_email.valid" class="ui pointing red basic label">Email is required</div>
     </div>
     <div class="field">
@@ -31,7 +31,11 @@
         <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
       </div>
     <div class="text-center gap-between-elements">
-       <button class="ui button auth-btn-submit">Daftar Akun</button>
+       <button 
+       [ngClass]="loading?'loading':'ui button auth-btn-submit'"
+     
+       [disabled]="!f.valid"
+       >Daftar Akun</button>
     </div>
     <div class="text-center gap-between-elements">
         <a routerLink="/login" routerLinkActive="active">Sudah punya akun? Klik di sini</a>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Category } from '../../../../servers/model/category';
+import { CategoryService } from '../../../../servers/service/category/category.service';
+import { Category2 } from '../../../../servers/model/category2';
 
 @Component({
   selector: 'app-front-nav',
@@ -7,9 +10,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FrontNavComponent implements OnInit {
 
-  constructor() { }
+  c1: Category[];
+  c2: Category2[];
+  imgTop: any;
+  navigationObjects: any[] = [];
+
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    this.getNavigationCategory();
+  }
+
+  getCategoryOne(cb) {
+    this.categoryService.CategoryOne().subscribe(data => {
+      this.c1 = data;
+      cb();
+    });
+  }
+
+  getCategoryTwo(categoryOneId, cb) {
+    this.categoryService.CategoryTwo(categoryOneId).subscribe(data => {
+      this.c2 = data;
+      cb();
+    });
+  }
+
+  getNavigationCategory() {
+    this.getCategoryOne(() => {
+      this.c1.forEach((item, index) => {
+        console.log('item: ', item);
+        this.navigationObjects.push(item);
+        this.getCategoryTwo(item.mProductCategoryId, () => {
+          this.navigationObjects[index]['c2'] = this.c2;
+          console.log('this.navigationObject[index]: ', this.navigationObjects[index]);
+        });
+        // console.log('this.navigationObject: ', this.navigationObject);
+      });
+    });
   }
 
 }

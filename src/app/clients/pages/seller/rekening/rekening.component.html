@@ -11,14 +11,16 @@
                     <img src="/assets/img/card.jpg" alt="card.jpg" class="ui image"/>
                 </div>
                 <div class="ten wide column">
-          
-                    <form class="ui form">
+               
+                    <form class="ui form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
                         <div class="field">
                             <label>No. Rekening</label>
-                            <input name="accountNo" placeholder="Masukan nomor rekening" type="text" [(ngModel)]="accountNo" #_accountNo="ngModel" [ngModelOptions]="{standalone: true}"/>
                         
-                        </div>
+                            <input name="accountNo" placeholder="Masukan nomor rekening" type="number" [(ngModel)]="accountNo"  required  #_accountNo="ngModel" min="0" max="16"/>
 
+                            <div *ngIf="!_accountNo.valid" class="ui pointing red basic label">No Rek Is Required</div>
+                        </div>
+                        
                         <div class="field">
                                 <label>Nama Bank</label>
                                 <sui-select class="selection" labelField="name" placeholder="Nama Bank" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}">
@@ -28,9 +30,21 @@
                         </div>
                         <div class="field">
                             <label>Pemilik</label>
-                            <input name="pemilik" placeholder="Masukan nama pemilik" [(ngModel)]="accountName" type="text"/>
+                            <input name="pemilik" placeholder="Masukan nama pemilik" #_accountName="ngModel" [(ngModel)]="accountName" required type="text"/>
+                            <div *ngIf="!_accountName.valid" class="ui pointing red basic label">Masukan Account Name Anda</div>
                         </div>
-                        <button class="ui primary button" (click)="getAllStore()" type="submit">Simpan</button>
+                        
+                        <button 
+                        [ngClass]="loading?'loading':'ui primary button'"
+                        (click)="getAllStore7()"
+                        name = "buton13"
+                        [disabled]="!f.valid"
+                        >EDIT !! </button>
+                        <button 
+                        [ngClass]="loading?'loading':'ui primary button'"
+                        (click)="getAllStore()"
+                        [disabled]="!f.valid"
+                        >Daftar Akun</button>
                     </form>
                 </div>
             </div>
@@ -41,16 +55,29 @@
                         <th>No. Rekening</th>
                         <th>Nama Bank</th>
                         <th>Ubah</th>
+                 
                         <th>Hapus</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let option of postrek2">
+                <tbody *ngFor="let option3 of postrek2">
                     <tr>
-                            <td>{{option.accountName}}</td>
-                            <td>{{option.accountNo}}</td>
-                            <td>{{option.bankName}}</td>
-                            <td><i class="edit icon"></i></td>
-                            <td><i class="trash icon"></i></td>
+                            <td>{{option3.accountName}}</td>
+                            <td>{{option3.accountNo}}</td>
+                            <td>{{option3.bankName}}</td>
+                            <!-- <td><input name="accountNo" placeholder="Masukan nomor rekening" type="text" [(ngModel)]="mBankAccountId"  value="{{option.mBankAccountId}}" #_mBankAccountId="ngModel" [ngModelOptions]="{standalone: true}"/>{{option.mBankAccountId}}"</td> -->
+                            
+                            <td> 
+                                
+                                <button class="ui circular facebook icon button" (click)="getAllStorex(option3)">
+                                    <i class="edit icon"></i>
+                              </button>
+                             
+                            </td>
+                            <td>
+                                <button class="ui circular facebook icon button" (click)="hapusUd(option3.mBankAccountId)">
+                                    <i class="trash icon"></i>
+                                  </button>
+                            </td>
                         </tr>
                 </tbody>
             </table>

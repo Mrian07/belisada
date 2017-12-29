@@ -13,9 +13,9 @@
                             <img src="/assets/img/kristy.png" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
                         </div>
                         <div class="content">
-                            <a class="header">Kristy</a>
+                            <a class="header">{{ sellerName }}</a>
                             <div class="meta">
-                                <span class="date">Joined in 2013</span>
+                                <span class="date">{{ sellerEmail }}</span>
                             </div>
                             <div class="description">
                                 Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)
@@ -30,11 +30,12 @@
                     </div>
                 </div>
                 <div class="ten wide column">
-
-                    <form class="ui form">
+                    
+                    <form class="ui form" (ngSubmit)="f.form.valid && updateProfile()" #f="ngForm" novalidate>    
                         <div class="field">
                             <label>Nama</label>
-                            <input name="first-name" placeholder="Masukan nama" type="text"/>
+                            <input name="sellerName" placeholder="Masukan nama" value="{{ sellerName }}" type="text" [(ngModel)]="sellerName" #_sellerName="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerName.valid" class="ui pointing red basic label">Nama tidak boleh kosong</div> 
                         </div>
                         <div class="field">
                             <label>Tanggal Lahir</label>
@@ -57,16 +58,52 @@
                             </div>
                         </div>
                         <div class="field">
-                            <label>Email</label>
-                            <input name="email" placeholder="Masukan email" type="text"/>
+                            <label>Alamat</label>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Alamat tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Kota</label>
+                            <select class="ui search dropdown">
+                                <option value="">Jakarta</option>
+                            </select>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Kota tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Propinsi</label>
+                            <select name='prof' class="ui search dropdown">
+                                <option>
+                                    DKI Jakarta
+                                </option>
+                            </select>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Provinsi tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Kecamatan/ Kelurahan</label>
+                            <select class="ui search dropdown">
+                                <option value="">Petukangan</option>
+                            </select>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Kecamatan/ Kelurahan tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Kodepos</label>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Kodepos tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <label>Nomor HP</label>
-                            <input name="no_hp" placeholder="Masukan nomor handphone" type="text"/>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Nomor HP tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Nomor KTP</label>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Nomor KTP tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <label>No. NPWP</label>
-                            <input name="no_npwp" placeholder="Masukan NPWP" type="text"/>
+                            <input name="sellerNpwp" placeholder="Masukan NPWP" type="text" [(ngModel)]="sellerNpwp" #_sellerNpwp="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Nomor HP tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <div class="ui action input">
@@ -78,7 +115,7 @@
                             </div>
                         </div>
 
-                        <button class="ui primary button" type="submit" (click)="edit()">Simpan</button>
+                        <button class="ui primary button" type="submit">Simpan</button>
                     </form>
                 </div>  
             </div>

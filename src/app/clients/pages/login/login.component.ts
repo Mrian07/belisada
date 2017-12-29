@@ -78,8 +78,7 @@ export class LoginComponent implements OnInit {
               swal({
                 type: 'success',
                 title: response.message,
-                showConfirmButton: false,
-                timer: 2000
+                showConfirmButton: false
               });
             });
           }
@@ -92,6 +91,7 @@ export class LoginComponent implements OnInit {
         localStorage.user = JSON.stringify(data);
         this.loginService.isLoggedin();
         this.router.navigate([this.returnUrl]);
+        location.reload();
       }
     });
   }

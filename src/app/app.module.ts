@@ -1,4 +1,3 @@
-import { Page404Component } from './clients/pages/page-404/page-404.component';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -19,10 +18,9 @@ import { ActivationComponent } from './clients/pages/seller/activation/activatio
 import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
 import { ActivationService } from './servers/service/activation/activation.service';
 import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
+import { Page404Component } from './clients/pages/page-404/page-404.component';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/app.reducers';
-
-
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -36,7 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
     PlainLayoutComponent,
     ActivationComponent,
     ActivationLayoutComponent,
-    Page404Component
+    Page404Component,
   ],
   imports: [
     BrowserModule,
