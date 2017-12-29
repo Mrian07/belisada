@@ -58,22 +58,22 @@ export class ProfileComponent implements OnInit {
       dateOfBirth : this.sellerDateOfBirth,
     };
 
-    console.log(updateProfileData);
-    this.profileService.updateProfile(updateProfileData).subscribe(data => {
-      if (data.status === '1') {
-        swal(
-          'success',
-          data.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          data.message,
-          'error'
-        );
-      }
-    });
+    // console.log(updateProfileData);
+    // this.profileService.updateProfile(updateProfileData).subscribe(data => {
+    //   if (data.status === '1') {
+    //     swal(
+    //       'success',
+    //       data.message,
+    //       'success'
+    //     );
+    //   }else {
+    //     swal(
+    //       'Opps!',
+    //       data.message,
+    //       'error'
+    //     );
+    //   }
+    // });
 
   }
 
