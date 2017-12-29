@@ -5,10 +5,9 @@ import { SearchService } from './../../../../servers/service/search/search.servi
 import { Component, OnInit,  ViewChild } from '@angular/core';
 import swal from 'sweetalert2';
 import { ProfileService } from '../../../../servers/service/profile/profile.service';
-import { NG_VALIDATORS,Validator,
-  Validators,AbstractControl,ValidatorFn } from '@angular/forms';
-  import { Directive, ElementRef, HostListener, Input } from '@angular/core';
-  
+import { NG_VALIDATORS, Validator,
+  Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { MasterService } from '../../../../servers/service/master/master.service';
 
 @Component({
@@ -19,55 +18,31 @@ import { MasterService } from '../../../../servers/service/master/master.service
 export class RekeningComponent implements OnInit {
   @ViewChild('f') form: any;
 
-  @Input() OnlyNumber: boolean;
-  @HostListener('keydown', ['$event']) onKeyDown(event) {
-    let e = <KeyboardEvent> event;
-    if (this.OnlyNumber) {
-      if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
-        // Allow: Ctrl+A
-        (e.keyCode == 65 && e.ctrlKey === true) ||
-        // Allow: Ctrl+C
-        (e.keyCode == 67 && e.ctrlKey === true) ||
-        // Allow: Ctrl+X
-        (e.keyCode == 88 && e.ctrlKey === true) ||
-        // Allow: home, end, left, right
-        (e.keyCode >= 35 && e.keyCode <= 39)) {
-          // let it happen, don't do anything
-          return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-      }
-  }
 
   constructor(private masterService: MasterService, private searchService: SearchService, private rekeningService: RekeningSService) { }
+  public user: Object;
   searchrek: any;
   postrek1: Rekening;
   postrek2: Rekening[];
-  public user: Object;
+  loading: any;
   mBankId: number;
-  message :string;
+  message: string;
   status: string;
-  selectedCategory;
+  selectedCategory: any;
   accountName: string;
-  accountNo : string;
-  mBankAccountId;
-  id;
-
-  token1 = this.user = JSON.parse(localStorage.user);
-  token2 = this.token1.token;
+  accountNo: string;
+  mBankAccountId: number;
+  id: number;
 
   ngOnInit() {
     this.selectCity(this.mBankId);
     this.getAllStore1();
-   
+
   }
   selectCity(mBankId: number) {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
-      console.log('ini nih token', this.token1.token);
+     // console.log('ini nih token', this.token1.token);
     });
   }
   getAllStore1() {
@@ -101,17 +76,17 @@ export class RekeningComponent implements OnInit {
           'success!',
           data.message,
           'success',
-         
+
         );
-     
+
       }
-      
-     
-     
+
+
+
     });
 
   }
-  hapusUd(id){
+  hapusUd(id) {
     console.log(id);
     const user = JSON.parse(localStorage.user);
     this.rekeningService.delete(id, {'token': user.token}).subscribe(data => {

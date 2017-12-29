@@ -3,6 +3,7 @@ import { Configuration } from '../../../../servers/config/configuration';
 import { AddproductService } from '../../../../servers/service/addproduct/addproduct.service';
 import { StoreService } from '../../../../servers/service/store/store.service';
 import { SellerProduct } from '../../../../servers/model/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -11,10 +12,11 @@ import { SellerProduct } from '../../../../servers/model/product';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private storeService: StoreService, private productService: AddproductService) { }
+  constructor(private storeService: StoreService, private productService: AddproductService,
+  private routes: Router) { }
   storeId: number;
   sellerProduct: SellerProduct[];
-  totalItem: number
+  totalItem: number;
 
   ngOnInit() {
     this.getSellerStore();
@@ -36,5 +38,10 @@ export class ProductComponent implements OnInit {
       this.totalItem = data.length;
     });
   }
+
+  addProducts() {
+    this.routes.navigateByUrl('/seller/add-products/add');
+  }
+
 
 }
