@@ -6,6 +6,14 @@ import { LoginService } from '../../../servers/service/login/login.service';
 import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TokenService } from '../../../servers/service/token/token.service';
+import * as UserActions from '../../../store/app.action';
+import { LoginData } from '../../../servers/model/login';
+import { Observable } from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
+
+interface UserState {
+  users: LoginData;
+}
 
 @Component({
   selector: 'app-login',
@@ -15,11 +23,13 @@ import { TokenService } from '../../../servers/service/token/token.service';
 
 export class LoginComponent implements OnInit {
 
+  users: Observable<LoginData>;
+
   email: string;
   password: string;
   returnUrl: string;
   loading = false;
-  token : string;
+  token: string;
 
   constructor(
     private http: HttpClient,
@@ -27,12 +37,15 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private sendEmailService: SendEmailService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private store: Store<UserState>
   ) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
     this.checkToken();
+    this.users = this.store.select('users');
+    console.log(this.users);
   }
 
   login() {
@@ -73,35 +86,40 @@ export class LoginComponent implements OnInit {
         });
         this.loading = false;
       } else {
+        console.log(data);
+        this.store.dispatch(new UserActions.UserState(data));
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
         this.loginService.isLoggedin();
         this.router.navigate([this.returnUrl]);
       }
-      console.log(data);
     });
   }
 
   checkToken() {
-    this.tokenService.checkToken().subscribe(data => {
-      console.log(data);
-      if (data.status === '0') {
-        console.log('not');
-          swal({
-          title: 'Warning',
-          text: 'Login Expired, Please Relogin',
-          type: 'warning',
-          showCancelButton: false,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Re-Login'
-        }).then((result) => {
-          console.log(result);
-        });
-      }else {
-        console.log('valid');
-        this.router.navigate([this.returnUrl]);
-      }
-    });
+    if (!localStorage.user) {
+
+    }else {
+      this.tokenService.checkToken().subscribe(data => {
+        console.log(data);
+        if (data.status === '0') {
+          console.log('not');
+            swal({
+            title: 'Warning',
+            text: 'Login Expired, Please Relogin',
+            type: 'warning',
+            showCancelButton: false,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Re-Login'
+          }).then((result) => {
+            console.log(result);
+          });
+        }else {
+          console.log('valid');
+          this.router.navigate([this.returnUrl]);
+        }
+      });
+    }
   }
 }

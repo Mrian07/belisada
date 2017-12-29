@@ -1,4 +1,5 @@
 import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
+import { ProductSearchComponent } from './clients/pages/front/product-search/product-search.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
@@ -52,15 +53,28 @@ const routes: Routes = [
         data: {
           title: 'product'
         }
+      },
+      {
+        path: 'Product-Search',
+        component: ProductSearchComponent,
+        data: {
+          title: 'product Search'
+        }
       }
     ]
   },
   {
-  path: 'activation/:key',
-  component: ActivationComponent,
-  data: {
-    title: 'Activation'
-  }
+    path: '',
+    component: PlainLayoutComponent,
+    children: [
+      {
+      path: 'activation',
+      component: ActivationComponent,
+      data: {
+        title: 'Activation'
+      }
+    }
+  ]
 },
   {
     path: '',

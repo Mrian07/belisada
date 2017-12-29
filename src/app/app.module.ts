@@ -19,6 +19,8 @@ import { ActivationComponent } from './clients/pages/seller/activation/activatio
 import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
 import { ActivationService } from './servers/service/activation/activation.service';
 import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './store/app.reducers';
 
 
 
@@ -50,7 +52,8 @@ export function createTranslateLoader(http: HttpClient) {
     }),
     SharedModules,
     AuthModules,
-    FrontModules
+    FrontModules,
+    StoreModule.forRoot({ post: userReducer }),
   ],
   providers: [
     ActivationService,

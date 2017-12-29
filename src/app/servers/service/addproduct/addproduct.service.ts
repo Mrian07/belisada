@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http/src/headers';
 export class AddproductService {
 
   constructor(private http: HttpClient, private configuration: Configuration) { }
-  doLogin(productData): Observable<Product> {
+  AddProduct(productData): Observable<Product> {
     const user = JSON.parse(localStorage.user);
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
@@ -17,5 +17,4 @@ export class AddproductService {
     return this.http.post(this.configuration.serverWithAccUrl + '/seller/product/submission/create', { productData }, { headers })
         .map(response => response as Product);
   }
-
 }
