@@ -3,11 +3,8 @@
     <div class="ui row">
         <div class="sixteen wide column">
             <sui-tabset>
-                <div class="ui top attached tabular menu" *ngIf="tabs === true">
-                    <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">{{ option.name }}</a>
-                </div>
-                <div class="ui top attached tabular menu" *ngIf="tabs === false">
-                    <!-- <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">{{ option.name }}</a> -->
+                <div class="ui top attached tabular menu" >
+                    <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" [(isActive)]="tabs" *ngFor="let option of stores">{{ option.name }}</a>
                     <a class="item btn-create-new-store" suiTabHeader="add-store"><i class="plus icon"></i> Buat toko baru</a>
                 </div>
                 <div class="ui bottom attached segment" suiTabContent="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">
