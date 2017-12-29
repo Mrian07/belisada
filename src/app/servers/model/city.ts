@@ -1,7 +1,9 @@
 export class City {
 
-  c_city_id: number;
+  mcityId: number;
   name: string;
+  createdby: any;
+  updatedby: any;
 
-      constructor() {}
-  }
+  constructor() {}
+}

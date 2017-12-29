@@ -78,8 +78,7 @@ export class LoginComponent implements OnInit {
               swal({
                 type: 'success',
                 title: response.message,
-                showConfirmButton: false,
-                timer: 2000
+                showConfirmButton: false
               });
             });
           }

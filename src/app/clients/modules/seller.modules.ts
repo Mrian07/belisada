@@ -4,7 +4,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModel } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModules } from './shared.modules';
 import { SellerRoutes } from './seller.routes';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
@@ -46,9 +46,9 @@ import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur
 import { SearchService } from '../../servers/service/search/search.service';
 import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
 import { ChangePasswordService } from '../../servers/service/changepassword/change-password.service';
+import { StoreComponent } from '../pages/seller/store/store.component';
 import { RekeningSService } from '../../servers/service/rekening/rekening-s.service';
-
-
+import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain-seller-layout.component';
 
 @NgModule({
   declarations: [
@@ -82,13 +82,16 @@ import { RekeningSService } from '../../servers/service/rekening/rekening-s.serv
     AccountLayoutComponent,
     RejectReturComponent,
     SendForgotPasswordComponent,
+    StoreComponent,
+    PlainSellerLayoutComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModules,
-    SellerRoutes
+    SellerRoutes,
   ],
   providers: [
     BrandsService,

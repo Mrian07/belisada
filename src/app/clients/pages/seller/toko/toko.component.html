@@ -23,8 +23,8 @@
                     </div>
                     <div class="field">
                         <label>Provinsi</label>
-                        <sui-select class="selection" labelField="name" placeholder="Pilih Propinsi">
-                            <sui-select-option *ngFor="let option of propinsi" [value]="option" value="option.name" (click)="selectCity(option.c_region_id)"></sui-select-option>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Provinsi">
+                            <sui-select-option *ngFor="let option of province" [value]="option" value="option.name" (click)="selectCity(option.c_region_id)"></sui-select-option>
                         </sui-select>
                     </div>
                     <div class="field">
