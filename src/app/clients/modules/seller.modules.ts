@@ -1,3 +1,4 @@
+import { ProductComponent } from './../components/seller/product/product.component';
 import { StoreService } from './../../servers/service/store/store.service';
 import { ForgotPasswordService } from './../../servers/service/forgotpassword/forgot-password.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -10,7 +11,6 @@ import { SellerRoutes } from './seller.routes';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
-import { ProductComponent } from '../pages/seller/product/product.component';
 import { ModalPopupComponent } from '../pages/seller/modal-popup/modal-popup.component';
 import { AddProductsComponent } from '../pages/seller/add-products/add-products.component';
 import { ProfileComponent } from '../pages/seller/profile/profile.component';
@@ -53,7 +53,6 @@ import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain
     FullLayoutComponent,
     DashboardComponent,
     SidebarComponent,
-    ProductComponent,
     ModalPopupComponent,
     AddProductsComponent,
     ProfileComponent,
@@ -82,6 +81,7 @@ import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain
     SendForgotPasswordComponent,
     StoreComponent,
     PlainSellerLayoutComponent,
+    ProductComponent
   ],
   imports: [
     CommonModule,

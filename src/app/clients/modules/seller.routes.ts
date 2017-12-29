@@ -5,7 +5,6 @@ import { StoreComponent } from './../pages/seller/store/store.component';
 import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
-import { ProductComponent } from '../pages/seller/product/product.component';
 import { ModalPopupComponent } from '../pages/seller/modal-popup/modal-popup.component';
 import { AddProductsComponent } from '../pages/seller/add-products/add-products.component';
 import { ProfileComponent } from '../pages/seller/profile/profile.component';
@@ -32,10 +31,6 @@ const sellerroutes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-      },
-      {
-        path: 'product',
-        component: ProductComponent,
       },
       {
         path: 'modal-popup',

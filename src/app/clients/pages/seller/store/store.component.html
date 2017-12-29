@@ -1,3 +1,4 @@
+<h1>Daftar Toko & Product </h1>
 <div class="ui grid">
     <div class="ui row">
         <div class="sixteen wide column">
@@ -8,18 +9,23 @@
                 </div>
                 <div class="ui bottom attached segment" suiTabContent="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">
                     <div class="ui grid">
-                        <div class="ten wide column">
-                            <canvas id="cvs-earning">{{ chart }}</canvas>
+                        <div class="sexteen wide column">
+                            <div class="ui horizontal segments">
+                                <div class="ui segment">
+                                    <div>Jumlah transaksi sukses:</div>
+                                    <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
+                                </div>
+                                <div class="ui segment">
+                                    <div>Jumlah transaksi pending:</div>
+                                    <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="six wide column">
-                            <div class="gap-between-elements">
-                                <div>Jumlah transaksi sukses:</div>
-                                <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
-                            </div>
-                            <div class="gap-between-elements">
-                                <div>Jumlah transaksi pending:</div>
-                                <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
-                            </div>
+                    </div>        
+                    <div class="ui grid">
+                        <div class="sexteen wide column">
+                            <canvas id="cvs-earning">{{ chart }}</canvas>
+                            <app-product></app-product>
                         </div>
                     </div>
                 </div>
