@@ -8,23 +8,73 @@
                     <a class="item btn-create-new-store" suiTabHeader="add-store"><i class="plus icon"></i> Buat toko baru</a>
                 </div>
                 <div class="ui bottom attached segment" suiTabContent="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">
-                    <div class="ui grid">
+                    <!-- <div class="ui grid">
                         <div class="sexteen wide column">
                             <div class="ui horizontal segments">
+                                <div class="ui segment">
+                                    
+                                </div>    
                                 <div class="ui segment">
                                     <div>Jumlah transaksi sukses:</div>
                                     <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
                                 </div>
-                                <div class="ui segment">
+                                <div class="ui three segment">
                                     <div>Jumlah transaksi pending:</div>
                                     <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
                                 </div>
                             </div>
                         </div>
-                    </div>        
+                    </div>       -->
+                    
+                    
+                    <div class="ui grid">
+                        <div class="thirteen wide column">
+                            <div class="ui segment">
+                                <div class="ui grid">
+                                    <div class="three wide column">
+                                        <img class="ui small image" src="/assets/img/shop.jpg">
+                                    </div>
+                                    <div class="thirteen wide column">
+                                        <div class="ui grid">
+                                            <div class="five wide column">
+                                                <strong>Alamat</strong><br>Komplek
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Propinsi</strong><br>Komplek
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kota</strong><br>Komplek
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kelurahan/ Kecamatan</strong><br>
+                                                Petukangan
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Desa</strong><br>Komplek
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kodepos</strong><br>
+                                                Petukangan
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                        <div class="three wide column">
+                            <div>Jumlah transaksi sukses:</div>
+                            <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
+                             <br>   
+                            <div>Jumlah transaksi pending:</div>
+                            <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>   
+            
+                        </div>
+                    </div>    
+
+
                     <div class="ui grid">
                         <div class="sexteen wide column">
-                            <canvas id="cvs-earning">{{ chart }}</canvas>
+                            <!-- <canvas id="cvs-earning">{{ chart }}</canvas> -->
                             <app-product></app-product>
                         </div>
                     </div>
