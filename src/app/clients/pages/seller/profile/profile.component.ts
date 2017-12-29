@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ProfileService } from '../../../../servers/service/profile/profile.service';
+import swal from 'sweetalert2';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -13,9 +15,66 @@ export class ProfileComponent implements OnInit {
   newImage: string;
   updateImg: Boolean = false;
   edit: any;
-  constructor() { }
+  constructor(private profileService: ProfileService) { }
+  sellerName: string;
+  sellerEmail: string;
+  sellerPhone: string;
+  sellerNpwp: string;
+  sellerImgAvatar: string;
+  sellerImgNpwp: string;
+  sellerDateOfBirth: string;
 
   ngOnInit() {
+    this.getProfile();
+  }
+
+  getProfile() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user) {
+      console.log('kosong');
+    }else {
+      const data = JSON.parse(localStorage.user);
+        if (data) {
+          this.sellerName = data.name;
+          this.sellerEmail = data.username;
+          this.sellerPhone = data.phone;
+          this.sellerNpwp = data.npwp;
+
+          this.sellerImgAvatar = '11';
+          this.sellerImgNpwp = '22';
+          this.sellerDateOfBirth = '333';
+        }
+    }
+  }
+
+  updateProfile(){
+
+    const updateProfileData = {
+      name : this.sellerName,
+      npwp : this.sellerNpwp,
+      phone : this.sellerPhone,
+      imageAvatar : this.sellerImgAvatar,
+      imageNPWP : this.sellerImgNpwp,
+      dateOfBirth : this.sellerDateOfBirth,
+    };
+
+    console.log(updateProfileData);
+    this.profileService.updateProfile(updateProfileData).subscribe(data => {
+      if (data.status === '1') {
+        swal(
+          'success',
+          data.message,
+          'success'
+        );
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
+    });
+
   }
 
   setCanvas(e) {
