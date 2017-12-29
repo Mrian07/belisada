@@ -5,6 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { SearchFilterPipe } from '../filter';
 import { Configuration } from '../../servers/config/configuration';
 import { CategoryService } from '../../servers/service/category/category.service';
+import { MasterService } from '../../servers/service/master/master.service';
 
 
 @NgModule ({
@@ -18,7 +19,8 @@ import { CategoryService } from '../../servers/service/category/category.service
   ],
   providers: [
     Configuration,
-    CategoryService
+    CategoryService,
+    MasterService
   ]
 })
 export class SharedModules { }

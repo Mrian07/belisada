@@ -5,7 +5,7 @@ import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Headers, RequestOptions } from '@angular/http';
 import { Profile } from '../../model/profile';
 import 'rxjs/add/operator/map';
-import { Banks } from '../../model/bank';
+import { Bank } from '../../model/bank';
 
 @Injectable()
 export class ProfileService {
@@ -20,12 +20,12 @@ export class ProfileService {
         .map(resp => resp as Profile);
   }
 
-  getBank(token: string): Observable<Banks[]> {
+  getBank(token: string): Observable<Bank[]> {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('token', token);
     return this.http.get(this.configuration.serverWithAccUrl + '/bank/', { headers })
-        .map(resp => resp as Banks[]);
+        .map(resp => resp as Bank[]);
   }
 
   updateProfile(updateData) {

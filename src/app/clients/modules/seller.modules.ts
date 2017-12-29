@@ -4,7 +4,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModel } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModules } from './shared.modules';
 import { SellerRoutes } from './seller.routes';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
@@ -47,8 +47,7 @@ import { RejectReturComponent } from '../pages/seller/salles-report/reject-retur
 import { SearchService } from '../../servers/service/search/search.service';
 import { SendForgotPasswordComponent } from '../pages/seller/send-forgot-password/send-forgot-password.component';
 import { ChangePasswordService } from '../../servers/service/changepassword/change-password.service';
-
-
+import { StoreComponent } from '../pages/seller/store/store.component';
 
 @NgModule({
   declarations: [
@@ -85,13 +84,15 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
     ActivationComponent,
     RejectReturComponent,
     SendForgotPasswordComponent,
+    StoreComponent,
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModules,
-    SellerRoutes
+    SellerRoutes,
   ],
   providers: [
     BrandsService,
@@ -102,7 +103,7 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
     ProfileService,
     SearchService,
     ForgotPasswordService,
-    ChangePasswordService
+    ChangePasswordService,
     StoreService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,3 +1,4 @@
+import { StoreComponent } from './../pages/seller/store/store.component';
 import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
 import { PlainLayoutComponent } from './../layouts/plain-layout/plain-layout.component';
 import { SendForgotPasswordComponent } from './../pages/seller/send-forgot-password/send-forgot-password.component';
@@ -26,7 +27,7 @@ import { OnlyLoggedInUsersGuard } from './authguard';
 
 const sellerroutes: Routes = [
   {
-      path: '',
+    path: '',
     component: PlainLayoutComponent,
     data: {
       title: 'Seller'
@@ -108,6 +109,10 @@ const sellerroutes: Routes = [
       {
         path: 'statistics',
         component: StatisticsComponent,
+      },
+      {
+        path: 'my-store',
+        component: StoreComponent
       }
     ]
   }

@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   password: string;
   returnUrl: string;
   loading = false;
-  token : string;
+  token: string;
 
   constructor(
     private http: HttpClient,
@@ -62,8 +62,7 @@ export class LoginComponent implements OnInit {
               swal({
                 type: 'success',
                 title: response.message,
-                showConfirmButton: false,
-                timer: 2000
+                showConfirmButton: false
               });
             });
           }

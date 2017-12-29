@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../../../../servers/service/category/category.service';
-import { SearchService } from '../../../../servers/service/search/search.service';
 
 @Component({
   selector: 'app-status-invoice',

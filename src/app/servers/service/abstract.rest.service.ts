@@ -20,13 +20,13 @@ export abstract class AbstractRestService<T> {
         return this._http.get(`${this.actionUrl}/${id}`, {headers})
             .map(response => response as T);
     }
-    create(data: T, jsonHeaders): Observable<T> {
+    create(data: Object, jsonHeaders): Observable<T> {
         jsonHeaders['content-type'] = 'application/json';
         const headers = new HttpHeaders(jsonHeaders);
         return this._http.post(`${this.actionUrl}/create`, data, {headers})
             .map(response => response as T);
     }
-    update(data: T, jsonHeaders): Observable<T> {
+    update(data: Object, jsonHeaders): Observable<T> {
         jsonHeaders['content-type'] = 'application/json';
         const headers = new HttpHeaders(jsonHeaders);
         return this._http.put(`${this.actionUrl}/update`, data, {headers})
