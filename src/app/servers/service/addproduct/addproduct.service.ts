@@ -18,12 +18,12 @@ export class AddproductService {
         .map(response => response as Product);
   }
 
-  GetSellerProduct(id: number): Observable<SellerProduct> {
+  GetSellerProduct(id: number): Observable<SellerProduct[]> {
     const user = JSON.parse(localStorage.user);
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('token', user.token);
-    return this.http.get(this.configuration.serverWithAccUrl + 'seller/product/submission/' + id, { headers } )
-      .map(response => response as SellerProduct);
+    return this.http.get(this.configuration.serverWithAccUrl + '/seller/product/submission/' + id, { headers } )
+      .map(response => response as SellerProduct[]);
   }
 }
