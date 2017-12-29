@@ -39,7 +39,7 @@ export class ChattingComponent implements OnInit {
   constructor(private loginsrv: LoginService) { }
 
   ngOnInit() {
-    const url = 'http://localhost:3000';
+    const url = 'https://chat.myacico.co.id';
     let that = this;
     this.socket = io(url + '/?dat=' + this.user.token);
     this.socket.on('connect', () => {
