@@ -47,6 +47,7 @@ import { ChangePasswordService } from '../../servers/service/changepassword/chan
 import { StoreComponent } from '../pages/seller/store/store.component';
 import { RekeningSService } from '../../servers/service/rekening/rekening-s.service';
 import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain-seller-layout.component';
+import { AddproductService } from '../../servers/service/addproduct/addproduct.service';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { PlainSellerLayoutComponent } from '../layouts/plain-seller-layout/plain
     ForgotPasswordService,
     ChangePasswordService,
     StoreService,
-    RekeningSService
+    RekeningSService,
+    AddproductService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
