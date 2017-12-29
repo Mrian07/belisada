@@ -17,6 +17,17 @@
     padding: 3px;
     position: absolute;
 }
+.silver {
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+  
+  
+  }
+  .silver:hover {
+    filter: none; /* IE6-9 */
+    -webkit-filter: grayscale(0); /* Google Chrome, Safari 6+ & Opera 15+ */
+  
+  }
 
 .promo-grid-content {
     position: absolute;
