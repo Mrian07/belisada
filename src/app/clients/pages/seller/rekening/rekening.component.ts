@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
 import { ProfileService } from '../../../../servers/service/profile/profile.service';
 import { NG_VALIDATORS, Validator,
   Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-  import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import { MasterService } from '../../../../servers/service/master/master.service';
 
 @Component({
@@ -19,21 +19,19 @@ export class RekeningComponent implements OnInit {
   @ViewChild('f') form: any;
 
   constructor(private masterService: MasterService, private searchService: SearchService, private rekeningService: RekeningSService) { }
+  public user: Object;
   searchrek: any;
   postrek1: Rekening;
   postrek2: Rekening[];
-  public user: Object;
+  loading: any;
   mBankId: number;
   message: string;
   status: string;
-  selectedCategory;
+  selectedCategory: any;
   accountName: string;
   accountNo: string;
-  mBankAccountId;
-  id;
-
-  token1 = this.user = JSON.parse(localStorage.user);
-  token2 = this.token1.token;
+  mBankAccountId: number;
+  id: number;
 
   ngOnInit() {
     this.selectCity(this.mBankId);
@@ -42,7 +40,7 @@ export class RekeningComponent implements OnInit {
   selectCity(mBankId: number) {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
-      console.log('ini nih token', this.token1.token);
+     // console.log('ini nih token', this.token1.token);
     });
   }
   getAllStore1() {
@@ -75,8 +73,13 @@ export class RekeningComponent implements OnInit {
           'success!',
           data.message,
           'success',
+
         );
+
       }
+
+
+
     });
   }
   getAllStore7() {
@@ -102,7 +105,6 @@ export class RekeningComponent implements OnInit {
     console.log('ini nih2', id.accountNo);
     console.log('ini semuanya', id);
   }
-
   hapusUd(id) {
     console.log(id);
     const user = JSON.parse(localStorage.user);

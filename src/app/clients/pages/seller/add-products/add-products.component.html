@@ -195,7 +195,7 @@
             </div>
             <div class="ui centered">
                 <div class="twelve wide fields">
-                    <button *ngIf="editMode == false" class="positive ui button">Tambahkan Produk</button>
+                    <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button>
                     <button *ngIf="editMode == true" class="positive ui button">Perbarui Produk</button>
                 </div>
             </div>

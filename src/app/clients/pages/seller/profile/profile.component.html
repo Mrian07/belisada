@@ -58,9 +58,47 @@
                             </div>
                         </div>
                         <div class="field">
+                            <label>Alamat</label>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Alamat tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Kota</label>
+                            <select class="ui search dropdown">
+                                <option value="">Jakarta</option>
+                            </select>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Kota tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Propinsi</label>
+                            <select name='prof' class="ui search dropdown">
+                                <option>
+                                    DKI Jakarta
+                                </option>
+                            </select>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Provinsi tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Kecamatan/ Kelurahan</label>
+                            <select class="ui search dropdown">
+                                <option value="">Petukangan</option>
+                            </select>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Kecamatan/ Kelurahan tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Kodepos</label>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Kodepos tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
                             <label>Nomor HP</label>
                             <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
                             <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Nomor HP tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label>Nomor KTP</label>
+                            <input name="sellerPhone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="sellerPhone" #_sellerPhone="ngModel"/>
+                            <div *ngIf="f.submitted && !_sellerPhone.valid" class="ui pointing red basic label">Nomor KTP tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <label>No. NPWP</label>

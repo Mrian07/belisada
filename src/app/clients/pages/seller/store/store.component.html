@@ -1,25 +1,68 @@
+<h1>Daftar Toko & Product </h1>
 <div class="ui grid">
     <div class="ui row">
         <div class="sixteen wide column">
             <sui-tabset>
-                <div class="ui top attached tabular menu">
+                <div class="ui top attached tabular menu" *ngIf="tabs === true">
                     <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">{{ option.name }}</a>
+                </div>
+                <div class="ui top attached tabular menu" *ngIf="tabs === false">
+                    <!-- <a class="item" suiTabHeader="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">{{ option.name }}</a> -->
                     <a class="item btn-create-new-store" suiTabHeader="add-store"><i class="plus icon"></i> Buat toko baru</a>
                 </div>
                 <div class="ui bottom attached segment" suiTabContent="{{ option.mBpartnerStoreId }}" *ngFor="let option of stores">
+
                     <div class="ui grid">
-                        <div class="ten wide column">
-                            <canvas id="cvs-earning">{{ chart }}</canvas>
+                        <div class="thirteen wide column">
+                            <div class="ui segment">
+                                <div class="ui grid">
+                                    <div class="three wide column center aligned">
+                                        <img class="ui small image" src="/assets/img/shop.jpg">
+                                        <button class="mini positive ui button" (click)="changeData()">Ubah Data</button>
+                                    </div>
+                                    <div class="thirteen wide column">
+                                        <div class="ui grid">
+                                            <div class="five wide column">
+                                                <strong>Alamat</strong><br>{{ option.address }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Propinsi</strong><br>{{ option.regionName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kota</strong><br>{{ option.cityName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kelurahan/ Kecamatan</strong><br>
+                                                {{ option.districtName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Desa</strong><br>{{ option.villageName }}
+                                            </div>
+                                            <div class="five wide column">
+                                                <strong>Kodepos</strong><br>
+                                                Petukangan
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="six wide column">
-                            <div class="gap-between-elements">
-                                <div>Jumlah transaksi sukses:</div>
-                                <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
-                            </div>
-                            <div class="gap-between-elements">
-                                <div>Jumlah transaksi pending:</div>
-                                <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
-                            </div>
+                    </div>
+                        <!-- <div class="three wide column">
+                            <div>Jumlah transaksi sukses:</div>
+                            <div><strong>Rp. <span class="currency-positive">73.254.214</span></strong></div>
+                             <br>
+                            <div>Jumlah transaksi pending:</div>
+                            <div><strong>Rp. <span class="currency-negative">15.252.334</span></strong></div>
+
+                        </div> -->
+                    <!-- </div> -->
+
+
+                    <div class="ui grid">
+                        <div class="sexteen wide column">
+                            <!-- <canvas id="cvs-earning">{{ chart }}</canvas> -->
+                            <app-product></app-product>
                         </div>
                     </div>
                 </div>

@@ -34,7 +34,7 @@ export function createTranslateLoader(http: HttpClient) {
     PlainLayoutComponent,
     ActivationComponent,
     ActivationLayoutComponent,
-    Page404Component
+    Page404Component,
   ],
   imports: [
     BrowserModule,

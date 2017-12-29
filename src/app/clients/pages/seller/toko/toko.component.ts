@@ -32,12 +32,12 @@ export class TokoComponent implements OnInit {
 
   getAllStore() {
     // const a ={
-    //   this.desa = 
+    //   this.desa =
     // }
     const user = JSON.parse(localStorage.user);
     this.storeService.getAll({'token': user.token}).subscribe(data => {
       this.stores = data;
-
+      console.log(this.stores)
     });
   }
 

@@ -1,6 +1,31 @@
 <div class="menu-wrapper" role="navigation">
     <ul class="nav" role="menubar">
-        <li role="menuitem">
+        <li role="menuitem" *ngFor="let item of navigationObjects"><a href="#">{{ item.name }}</a>
+            <div class="mega-menu" aria-hidden="true" role="menu">
+                <div class="pull-left" style="width: 20%">
+                    <img class="ui image" src="/assets/img/demo/C1-1.jpg" alt="profile picture"/>
+                </div>
+                <div class="pull-left" style="width: 80%;">
+                    <div class="nav-column text-center" *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix">
+                        
+                        <div class="gap-between-elements" *ngIf="ix <= 4" style="height: 135px; border-bottom: 1px solid rgba(153,153,153, 0.5)">
+                            <a href="#">
+                                <img class="ui image logo" [src]="i.imageurl" alt="profile picture"/>
+                                <h3>{{ i.name }}</h3>
+                            </a>
+                        </div>
+                        <div *ngIf="ix > 4">
+                            <a href="#">
+                                <span>{{ i.name }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+
+
+        <!-- <li role="menuitem">
             <a href="#">Fashion & Lifestyle</a>
             <div class="mega-menu" aria-hidden="true" role="menu">
                 <div class="nav-column">
@@ -71,7 +96,7 @@
         <li role="menuitem"><a href="#">Hobi</a></li>
         <li role="menuitem"><a href="#">Peralatan Rumah</a></li>
         <li role="menuitem"><a href="#">Peralatan Kantor</a></li>
-        <li role="menuitem"><a href="#">Otomatif</a></li>
+        <li role="menuitem"><a href="#">Otomatif</a></li> -->
     </ul>
 </div>
 

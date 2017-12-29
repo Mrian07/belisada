@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Category } from '../../../../servers/model/category';
 import { Province } from '../../../../servers/model/province';
@@ -37,8 +38,10 @@ export class StoreComponent implements OnInit {
 
   store: Store;
   stores: Store[];
+  tabs: Boolean = true;
 
-  constructor(private storeService: StoreService, private categoryService: CategoryService, private masterService: MasterService) { }
+  constructor(private storeService: StoreService, private categoryService: CategoryService,
+    private masterService: MasterService, private routes: Router) { }
 
   ngOnInit() {
 
@@ -100,6 +103,11 @@ export class StoreComponent implements OnInit {
     this.storeService.getAll({'token': this.user.token}).subscribe(response => {
       console.log('getAllStore response: ', response);
       this.stores = response;
+      if (this.stores.length !== 0) {
+        this.tabs = true;
+      } else {
+        this.tabs = false;
+      }
     });
   }
 
@@ -131,5 +139,9 @@ export class StoreComponent implements OnInit {
 
   setPostalCode(postalcode) {
     this.createStoreForm.controls['postalcode'].setValue(postalcode);
+  }
+
+  changeData() {
+    this.routes.navigateByUrl('/seller/profile');
   }
 }

@@ -22,13 +22,14 @@ export class RegistrationComponent implements OnInit {
   userType = '1';
   clickMessage = '';
   tc: string;
+  loading: any;
 
   @ViewChild('modalTemplate')
   public modalTemplate: ModalTemplate<IContext, string, string>;
   public open(dynamicContent: string = 'Example') {
     const config = new TemplateModalConfig<IContext, string, string>(this.modalTemplate);
 
-    config.closeResult = "closed!";
+    config.closeResult = 'closed!';
     config.context = { data: dynamicContent };
 
     this.modalService
@@ -85,7 +86,7 @@ export class RegistrationComponent implements OnInit {
           'Opps!',
           data.message,
           'error',
-          
+
         );
       }
     });
