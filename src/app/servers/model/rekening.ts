@@ -9,5 +9,7 @@ export class Rekening {
     accountName: string;
     accountNo: string;
     //akhir dari post rekening
+    message :string;
+    status: string;
 }
 
