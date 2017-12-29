@@ -1,9 +1,9 @@
-import { StoreComponent } from './../pages/seller/store/store.component';
-import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
-import { SendForgotPasswordComponent } from './../pages/seller/send-forgot-password/send-forgot-password.component';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { StoreComponent } from './../pages/seller/store/store.component';
+import { AuthenticationLayoutComponent } from './../layouts/authentication-layout/authentication-layout.component';
+import { SendForgotPasswordComponent } from './../pages/seller/send-forgot-password/send-forgot-password.component';
 import { ActivationComponent } from '../pages/seller/activation/activation.component';
 import { FullLayoutComponent } from '../layouts/full-layout/full-layout.component';
 import { DashboardComponent } from '../pages/seller/dashboard/dashboard.component';
