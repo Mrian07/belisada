@@ -21,6 +21,7 @@ import { ActivationService } from './servers/service/activation/activation.servi
 import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
 import { StoreModule } from '@ngrx/store';
 import { userReducer } from './store/app.reducers';
+import { PlainSellerLayoutComponent } from './clients/layouts/plain-seller-layout/plain-seller-layout.component';
 
 
 
@@ -36,7 +37,8 @@ export function createTranslateLoader(http: HttpClient) {
     PlainLayoutComponent,
     ActivationComponent,
     ActivationLayoutComponent,
-    Page404Component
+    Page404Component,
+    PlainSellerLayoutComponent
   ],
   imports: [
     BrowserModule,
