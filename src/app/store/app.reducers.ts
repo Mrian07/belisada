@@ -1,36 +1,31 @@
-// import * as fromSearching from './app.action';
-// import { Search } from '../servers/model/search';
-// import { createSelector } from '@ngrx/store/src/selector';
+import * as UserActions from './app.action';
+import { LoginData, Token } from '../servers/model/login';
 
 
-// export interface SearchState {
-//   data: Search[];
-//   loaded: boolean;
-//   loading: boolean;
-// }
+export type Action = UserActions.All;
 
-// export const initialState: SearchState = {
-//   data: [
+const tokenState: Token = {
+  token: '',
+  message: '',
+  status: ''
+};
 
-// ],
-//   loaded: false,
-//   loading: false
-// };
-// console.log(initialState.data);
-// export function SearchReducer(
-//   state = initialState,
-//   action: fromSearching.Searching): SearchState {
-//     console.log(action.type);
-//   switch (action.type) {
-//     case fromSearching.SEARCHING: {
-//       return {
-//         ...state,
-//         loading : false,
-//         loaded : true
-//       };
-//     }
-//   }
-//   return state;
-// }
+const userState: LoginData = {
+  name: '',
+  username: '',
+  token: '',
+  role: 2
+};
 
-// export const getResult = (state: SearchState) => state.data;
+const newState = (state, newData) => {
+  return Object.assign({}, state, newData);
+};
+
+export function userReducer(state: LoginData = userState, action: Action) {
+  console.log(state);
+  switch (action.type) {
+    case UserActions.USERS:
+      return newState(state,  {users : action.payload});
+  }
+
+}

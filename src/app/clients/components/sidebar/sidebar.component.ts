@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProfileService } from '../../../servers/service/profile/profile.service';
 import { HttpClient } from 'selenium-webdriver/http';
 
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

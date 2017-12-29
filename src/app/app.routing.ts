@@ -64,11 +64,17 @@ const routes: Routes = [
     ]
   },
   {
-  path: 'activation/:key',
-  component: ActivationComponent,
-  data: {
-    title: 'Activation'
-  }
+    path: '',
+    component: PlainLayoutComponent,
+    children: [
+      {
+      path: 'activation',
+      component: ActivationComponent,
+      data: {
+        title: 'Activation'
+      }
+    }
+  ]
 },
   {
     path: '',
@@ -109,7 +115,7 @@ const routes: Routes = [
     component: MaintenanceComponent,
   },
   {
-    path:'404',
+    path: '404',
     component: Page404Component,
   },
   {

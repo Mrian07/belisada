@@ -17,6 +17,5 @@ export class TokenService {
     } ;
     return this.http.post(this.configuration.serverWithAccUrl + '/account/checktoken', token)
     .map(resp => resp as Token);
-
   }
 }

@@ -1,7 +1,9 @@
-export class Propinsi {
+export class Province {
 
-  c_region_id: number;
+  mregionId: number;
   name: string;
+  createdby: any;
+  updatedby: any;
 
-      constructor() {}
-  }
+  constructor() {}
+}
