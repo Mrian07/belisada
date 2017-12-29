@@ -6,4 +6,5 @@ export class Configuration {
   serverWithAccUrl = 'http://35.185.183.169:8080/belisada-dev';
   serverWithNetUrl = 'http://35.198.250.49:8080/belisada-dev';
   serverWithImgUrl = 'https://storage.googleapis.com/myacicoproductimg';
+  chatUrl = 'https://chat.myacico.co.id';
 }

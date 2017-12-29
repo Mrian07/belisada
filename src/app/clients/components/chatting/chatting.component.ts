@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {trigger, transition, style, animate, state} from '@angular/animations';
+import * as io from "socket.io-client";
+import { LoginService } from '../../../servers/service/login/login.service';
 
 @Component({
   selector: 'app-chatting',
@@ -26,11 +28,49 @@ import {trigger, transition, style, animate, state} from '@angular/animations';
 })
 export class ChattingComponent implements OnInit {
 
-  show: Boolean = false;
+  show: Boolean = JSON.parse(localStorage.chat_hide);
+  user: any = this.loginsrv.whoLogin();
+  chats: any[];
+  info: string;
+  socket: any;
+  typingTimer: Object;
+  msgInput: string;
 
-  constructor() { }
+  constructor(private loginsrv: LoginService) { }
 
   ngOnInit() {
+    const url = 'http://localhost:3000';
+    let that = this;
+    this.socket = io(url + '/?dat=' + this.user.token);
+    this.socket.on('connect', () => {
+      this.chats = [];
+      console.log('chat connected', this.socket);
+    });
+    this.socket.on('disconnect', () => {
+      console.log('you\'re offline');
+    });
+    this.socket.on('history', his => {
+      that.chats = his;
+    });
+    this.socket.on('msg', msg => {
+      that.chats.push(msg);
+      that.info = '';
+    });
+    this.socket.on('typing', () => {
+      that.info = 'typing';
+      that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
+    });
   }
 
+  send() {
+    let msg = {from: this.user.username, txt: this.msgInput, time: new Date()};
+    this.socket.emit('cln_msg', msg);
+    this.chats.push(msg);
+    this.msgInput = '';
+  }
+
+  hide() {
+    this.show = !this.show;
+    localStorage.chat_hide = this.show;
+  }
 }
