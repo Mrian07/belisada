@@ -1,9 +1,11 @@
 
 export class Category {
 
-  mproductCategoryId: number;
+  mProductCategoryId: number;
   name: string;
   nameEn: string;
+  createdby: any;
+  updatedby: any;
 
   constructor() {}
 }

@@ -13,7 +13,7 @@ export class FrontNavComponent implements OnInit {
   c1: Category[];
   c2: Category2[];
   imgTop: any;
-  navigationObject: any[] = [];
+  navigationObjects: any[] = [];
 
   constructor(private categoryService: CategoryService) { }
 
@@ -21,28 +21,32 @@ export class FrontNavComponent implements OnInit {
     this.getNavigationCategory();
   }
 
-  getCategoryOne(successCallback) {
+  getCategoryOne(cb) {
     this.categoryService.CategoryOne().subscribe(data => {
       this.c1 = data;
-      console.log('this.c1: ', this.c1);
-      successCallback();
+      cb();
     });
   }
 
-  getCategoryTwo(categoryOneId) {
+  getCategoryTwo(categoryOneId, cb) {
     this.categoryService.CategoryTwo(categoryOneId).subscribe(data => {
       this.c2 = data;
+      cb();
     });
   }
 
   getNavigationCategory() {
     this.getCategoryOne(() => {
-      for (let item in this.c1) {
+      this.c1.forEach((item, index) => {
         console.log('item: ', item);
-        // this.navigationObject.push(item);
+        this.navigationObjects.push(item);
+        this.getCategoryTwo(item.mProductCategoryId, () => {
+          this.navigationObjects[index]['c2'] = this.c2;
+          console.log('this.navigationObject[index]: ', this.navigationObjects[index]);
+        });
         // console.log('this.navigationObject: ', this.navigationObject);
-      }
-    })
+      });
+    });
   }
 
 }
