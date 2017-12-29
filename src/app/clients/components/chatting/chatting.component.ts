@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {trigger, transition, style, animate, state} from '@angular/animations';
-import * as io from "socket.io-client";
+import * as io from 'socket.io-client';
 import { LoginService } from '../../../servers/service/login/login.service';
 
 @Component({
@@ -27,8 +27,7 @@ import { LoginService } from '../../../servers/service/login/login.service';
   styleUrls: ['./chatting.component.scss']
 })
 export class ChattingComponent implements OnInit {
-
-  show: Boolean = JSON.parse(localStorage.chat_hide);
+  show: Boolean;
   user: any = this.loginsrv.whoLogin();
   chats: any[];
   info: string;
@@ -39,8 +38,12 @@ export class ChattingComponent implements OnInit {
   constructor(private loginsrv: LoginService) { }
 
   ngOnInit() {
+    const chat = localStorage.chat_hide;
+    if (chat) {
+      this.show = JSON.parse(localStorage.chat_hide);
+    }
     const url = 'https://chat.myacico.co.id';
-    let that = this;
+    const that = this;
     this.socket = io(url + '/?dat=' + this.user.token);
     this.socket.on('connect', () => {
       this.chats = [];
@@ -63,7 +66,7 @@ export class ChattingComponent implements OnInit {
   }
 
   send() {
-    let msg = {from: this.user.username, txt: this.msgInput, time: new Date()};
+    const msg = {from: this.user.username, txt: this.msgInput, time: new Date()};
     this.socket.emit('cln_msg', msg);
     this.chats.push(msg);
     this.msgInput = '';
