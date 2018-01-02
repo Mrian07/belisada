@@ -10,6 +10,9 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MasterService } from '../../../../core/service/master/master.service';
 import { Profile } from '../../../../core/model/profile';
 
+import { DatepickerOptions } from 'ng2-datepicker';
+import * as idLocale from 'date-fns/locale/id';
+
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
 
@@ -19,6 +22,14 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
+
+  options: DatepickerOptions = {
+    minYear: 1970,
+    maxYear: 2030,
+    firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
+    locale: idLocale,
+  };
+
   newImage: string;
   updateImg: Boolean = false;
   edit: any;

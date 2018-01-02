@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  chatUrl: 'https://chat.myacico.co.id'
 };
