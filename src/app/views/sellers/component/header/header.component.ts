@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { LoginService } from '../../../../core/service/login/login.service';
+import { ChatService } from '../../../../core/service/chat/chat.service';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { LoginService } from '../../../../core/service/login/login.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  constructor(private loginService: LoginService, private router: Router, private chat: ChatService) { }
   user: any;
   ngOnInit() {
     this.user = this.loginService.whoLogin();
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.loginService.logout();
+        this.chat.disconnect();
         swal(
           'Success!',
           'Anda sudah keluar dari Account Area.',

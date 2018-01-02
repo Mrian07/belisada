@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  chatUrl: 'https://chat.myacico.co.id'
+  chatUrl: 'http://localhost:3000'
 };

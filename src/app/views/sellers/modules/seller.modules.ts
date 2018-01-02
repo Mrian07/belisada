@@ -51,6 +51,7 @@ import { AddproductService } from '../../../core/service/addproduct/addproduct.s
 import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reducers';
 import { ProductEffects } from '../../../store/effects/index';
+import { ChatService } from '../../../core/service/chat/chat.service';
 
 
 @NgModule({
@@ -112,7 +113,8 @@ import { ProductEffects } from '../../../store/effects/index';
     ChangePasswordService,
     StoreService,
     RekeningSService,
-    AddproductService
+    AddproductService,
+    ChatService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

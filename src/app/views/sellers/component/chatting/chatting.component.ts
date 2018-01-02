@@ -1,7 +1,9 @@
+import { environment } from './../../../../../environments/environment';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {trigger, transition, style, animate, state} from '@angular/animations';
 import * as io from 'socket.io-client';
 import { LoginService } from '../../../../core/service/login/login.service';
+import { ChatService } from '../../../../core/service/chat/chat.service';
 
 @Component({
   selector: 'app-chatting',
@@ -29,37 +31,36 @@ import { LoginService } from '../../../../core/service/login/login.service';
 export class ChattingComponent implements OnInit {
   show: Boolean;
   user: any = this.loginsrv.whoLogin();
-  chats: any[];
+  chats = [];
   info: string;
-  socket: any;
   typingTimer: Object;
   msgInput: string;
 
-  constructor(private loginsrv: LoginService) { }
+  constructor(private loginsrv: LoginService, private chat: ChatService) { }
 
   ngOnInit() {
-    const chat = localStorage.chat_hide;
-    if (chat) {
+    console.log('chat url', environment.chatUrl);
+    const chat_hide = localStorage.chat_hide;
+    if (chat_hide) {
       this.show = JSON.parse(localStorage.chat_hide);
     }
-    const url = 'https://chat.myacico.co.id';
-    const that = this;
-    this.socket = io(url + '/?dat=' + this.user.token);
-    this.socket.on('connect', () => {
-      this.chats = [];
-      console.log('chat connected', this.socket);
+    let that = this;
+    this.chat.socket = io(environment.chatUrl + '/?dat=' + this.user.token);
+    this.chat.socket.on('connect', () => {
+      that.chats = [];
+      console.log('chat connected', that.chat.socket);
     });
-    this.socket.on('disconnect', () => {
+    this.chat.socket.on('disconnect', () => {
       console.log('you\'re offline');
     });
-    this.socket.on('history', his => {
+    this.chat.socket.on('history', his => {
       that.chats = his;
     });
-    this.socket.on('msg', msg => {
+    this.chat.socket.on('msg', msg => {
       that.chats.push(msg);
       that.info = '';
     });
-    this.socket.on('typing', () => {
+    this.chat.socket.on('typing', () => {
       that.info = 'typing';
       that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
     });
@@ -67,7 +68,7 @@ export class ChattingComponent implements OnInit {
 
   send() {
     const msg = {from: this.user.username, txt: this.msgInput, time: new Date()};
-    this.socket.emit('cln_msg', msg);
+    this.chat.socket.emit('cln_msg', msg);
     this.chats.push(msg);
     this.msgInput = '';
   }

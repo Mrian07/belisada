@@ -8,48 +8,48 @@
       <div class="twelve wide stretched column">
             <div class="ui grid">
                 <div class="six wide column center aligend">
-                    <img src="/assets/img/perusahaan.jpg" alt="perusahaan.jpg" class="ui image"/>
+                    <img src="/assets/img/company.png" alt="company.png" class="ui image"/>
               </div>
                 <div class="ten wide column">
 
-                    <form class="ui form">
+                    <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
                         <div class="field">
                             <label>Nama Perusahaan</label>
-                            <input name="nm_toko" placeholder="Masukan nama perusahaan" type="text"/>
+                            <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
                         </div>
                         <div class="field">
                             <label>Alamat Perusahaan</label>
-                            <input name="alamat" placeholder="Masukan alamat perusahaan" type="text"/>
+                            <textarea name="address" placeholder="Masukan alamat" formControlName="address"></textarea>
                         </div>
                         <div class="field">
                             <label>No. Telephone</label>
-                            <input name="provinsi" placeholder="Masukan nomor telephone" type="text"/>
+                            <input name="phone" placeholder="Masukan nama telephone" type="text" formControlName="phone"/>
                         </div>
                         <div class="field">
                             <label>Provinsi</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Province">
-                                <sui-select-option *ngFor="let option of province" [value]="option" value="option.name" (click)="selectCity(option.c_region_id)"></sui-select-option>
+                            <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                                <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Kota</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Kota">
-                                <sui-select-option *ngFor="let option of city" [value]="option" value="option.name" (click)="selectKelurahan(option.c_city_id)"></sui-select-option>
+                            <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                                <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
-                            <label>Kelurahan/ Kecamatan</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Kota">
-                                <sui-select-option *ngFor="let option of kelurahan" [value]="option" value="option.name" (click)="selectKelurahan(option.c_district_id)"></sui-select-option>
+                            <label>Kelurahan / Kecamatan</label>
+                            <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                                <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>No. SIUP</label>
-                            <input name="kodepos" placeholder="Masukan nomor SIUP" type="text"/>
+                            <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="siup"/>
                         </div>
                         <div class="field">
                             <label>No. TDP</label>
-                            <input name="kodepos" placeholder="Masukan nomor TDP" type="text"/>
+                            <input name="tdp" placeholder="Masukan nomor SIUP" type="text" formControlName="tdp"/>
                         </div>
                         <div class="field">
                             <label>Bergerak Dibidang</label>
