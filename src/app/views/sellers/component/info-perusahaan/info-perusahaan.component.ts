@@ -44,6 +44,10 @@ export class InfoPerusahaanComponent implements OnInit {
     this.getProvince();
   }
 
+  onSubmit() {
+    
+  }
+
   // getProvince() {
   //   this.masterService.getProvince('209').subscribe(data => {
   //     this.province = data;

@@ -184,6 +184,10 @@ export class ProfileComponent implements OnInit {
 
   }
 
+  onSubmit() {
+
+  }
+
   setCanvas(e) {
     if (!this.updateImg) { return false; }
     const cnv = document.createElement('canvas');
