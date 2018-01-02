@@ -2,3 +2,25 @@
     color: #ffffff!important;
     background-color: #016936!important;
 }
+
+body {
+    padding: 1em;
+}
+
+.ui.action.input input[type=file] {
+    display: none;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
