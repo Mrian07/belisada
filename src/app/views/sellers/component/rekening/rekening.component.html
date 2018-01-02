@@ -33,18 +33,22 @@
                             <input name="pemilik" placeholder="Masukan nama pemilik" #_accountName="ngModel" [(ngModel)]="accountName" required type="text"/>
                             <div *ngIf="!_accountName.valid" class="ui pointing red basic label">Masukan Account Name Anda</div>
                         </div>
-
+                        <div *ngIf="show">
+                            <button
+                                [ngClass]="loading?'loading':'ui primary button'"
+                                (click)="editRek()"
+                                name = "buton13"
+                                [disabled]="!f.valid"
+                                >EDIT !!
+                            </button>
+                        </div>
+                        <div *ngIf="show1">
                         <button
                         [ngClass]="loading?'loading':'ui primary button'"
-                        (click)="getAllStore7()"
-                        name = "buton13"
+                        (click)="saveRek()"
                         [disabled]="!f.valid"
-                        >EDIT !! </button>
-                        <button
-                        [ngClass]="loading?'loading':'ui primary button'"
-                        (click)="getAllStore()"
-                        [disabled]="!f.valid"
-                        >Daftar Akun</button>
+                        >Kirim</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -59,18 +63,21 @@
                         <th>Hapus</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let option3 of rekening | async">
+                <tbody *ngFor="let option3 of postrek2">
                     <tr>
                             <td>{{option3.accountName}}</td>
                             <td>{{option3.accountNo}}</td>
                             <td>{{option3.bankName}}</td>
+
                             <!-- <td><input name="accountNo" placeholder="Masukan nomor rekening" type="text" [(ngModel)]="mBankAccountId"  value="{{option.mBankAccountId}}" #_mBankAccountId="ngModel" [ngModelOptions]="{standalone: true}"/>{{option.mBankAccountId}}"</td> -->
 
                             <td>
+                                <form (ngSubmit)="getAllStorex(option3)">
+                                    <button class="ui circular facebook icon button" (click)="show = !show">
+                                        <i class="edit icon"></i>
+                                  </button>
+                                  </form>
 
-                                <button class="ui circular facebook icon button" (click)="getAllStorex(option3)">
-                                    <i class="edit icon"></i>
-                              </button>
 
                             </td>
                             <td>
@@ -103,4 +110,10 @@
         </div>
     </div>
 </div>
+<!-- <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>
 
+    <br>
+    <div *ngIf="show">Text to show</div> -->
+<!--
+    <button (click) ="ngetetst = !ngetetst">{{ngetetst ? 'hide' : 'Simpan'}}</button>
+    <div *ngIf="ngetetst">tes</div> -->

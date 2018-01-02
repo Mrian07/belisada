@@ -15,6 +15,7 @@ import { ForgotPasswordComponent } from './views/sellers/component/forgot-passwo
 import { RegistrationComponent } from './views/sellers/component/registration/registration.component';
 import { MaintenanceComponent } from './views/sellers/component/maintenance/maintenance.component';
 import { Page404Component } from './views/sellers/component/page-404/page-404.component';
+import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
 
 const routes: Routes = [
   {
@@ -65,6 +66,13 @@ const routes: Routes = [
       component: ActivationComponent,
       data: {
         title: 'Activation'
+      }
+    },
+    {
+      path: 'send-forgot',
+      component: SendForgotPasswordComponent,
+      data: {
+        title: 'Send-forgot'
       }
     }
   ]

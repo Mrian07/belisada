@@ -1,3 +1,5 @@
+import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
+import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -20,6 +22,7 @@ import { AuthModules } from './core/shared/auth.modules';
 import { FrontModules } from './views/front/modules/front.modules';
 import { ActivationService } from './core/service/activation/activation.service';
 import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -33,11 +36,13 @@ export function createTranslateLoader(http: HttpClient) {
     MaintenanceComponent,
     PlainLayoutComponent,
     ActivationComponent,
+    SendForgotPasswordComponent,
     ActivationLayoutComponent,
     Page404Component,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
@@ -59,6 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     ActivationService,
+    ForgotPasswordService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
