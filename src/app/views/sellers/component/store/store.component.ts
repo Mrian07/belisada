@@ -62,8 +62,8 @@ export class StoreComponent implements OnInit {
     this.createForm();
     this.getAllStore();
     this.getProvince();
-    this.mystore = this.store.select(fromProduct.getStoreState);
-    console.log(this.mystore);
+    // this.mystore = this.store.select(fromProduct.getStoreState);
+    // console.log(this.mystore);
   }
 
   createFormControls() {
