@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import swal from 'sweetalert2';
 import { ParamMap, Router, ActivatedRoute } from '@angular/router';
 import { SendEmailService } from '../../../../core/service/sendEmail/send-email.service';
@@ -16,7 +16,8 @@ export class SendForgotPasswordComponent implements OnInit {
 
   constructor(private sendEmail: SendEmailService,
     private route: ActivatedRoute,
-    private forgotPassowrd: ForgotPasswordService) {
+    private forgotPassowrd: ForgotPasswordService,
+    private router: Router) {
     this.route.params.subscribe( params => {
       this.act_key = params.key;
       console.log('ini datanya,', params);
@@ -24,6 +25,8 @@ export class SendForgotPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.act_key = this.route.snapshot.queryParamMap.get('key');
+    console.log(this.act_key);
   }
 
   pazz() {

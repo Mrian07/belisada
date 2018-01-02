@@ -39,6 +39,8 @@ export class RekeningComponent implements OnInit {
   selectedCategory: any;
   accountName: string;
   accountNo: string;
+  show = false;
+  show1 = true;
   mBankAccountId: number;
   id: number;
   rekening: Observable<any>;
@@ -48,7 +50,7 @@ export class RekeningComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     this.store.dispatch(new fromActions.GetBank(user.token));
     this.selectCity(this.mBankId);
-   // this.getAllStore1();
+   this.getAllStore1();
     this.rekening = this.store.select(fromProduct.getBankState);
 
   }
@@ -65,7 +67,7 @@ export class RekeningComponent implements OnInit {
     });
   }
 
-  getAllStore() {
+  saveRek() {
     console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
     const a = {
       accountNo : this.accountNo,
@@ -88,16 +90,11 @@ export class RekeningComponent implements OnInit {
           'success!',
           data.message,
           'success',
-
         );
-
       }
-
-
-
     });
   }
-  getAllStore7() {
+  editRek() {
     console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
     const b = {
       accountNo : this.accountNo,
@@ -107,7 +104,8 @@ export class RekeningComponent implements OnInit {
     };
     const user = JSON.parse(localStorage.user);
     this.rekeningService.update(b, {'token': user.token}).subscribe(data => {
-      return false;
+      location.reload();
+      this.show = false;
     });
   }
   getAllStorex(id) {
@@ -115,6 +113,7 @@ export class RekeningComponent implements OnInit {
     this.accountNo = id.accountNo;
     this.selectedCategory = id.mBankId;
     this.mBankAccountId = id.mBankAccountId;
+    this.show1 = false;
   }
   hapusUd(id) {
     console.log(id);
