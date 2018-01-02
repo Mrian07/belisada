@@ -34,14 +34,23 @@
                             <div *ngIf="!_accountName.valid" class="ui pointing red basic label">Masukan Account Name Anda</div>
                         </div>
                         <div *ngIf="show">
-                            <button
-                                [ngClass]="loading?'loading':'ui primary button'"
-                                (click)="editRek()"
-                                name = "buton13"
-                                [disabled]="!f.valid"
-                                >EDIT !!
-                            </button>
-                        </div>
+                                <button
+                                    [ngClass]="loading?'loading':'ui primary button'"
+                                    (click)="editRek()"
+                                    name = "buton13"
+                                    [disabled]="!f.valid"
+                                    >EDIT !!
+                                </button>
+
+                                <button
+                                    [ngClass]="loading?'loading':'ui primary button'"
+                                    (click)="cancelBtn()"
+                                    name = "buton13"
+                                    [disabled]="!f.valid"
+                                    >CANCEL
+                                </button>
+                            </div>
+
                         <div *ngIf="show1">
                         <button
                         [ngClass]="loading?'loading':'ui primary button'"
@@ -63,7 +72,7 @@
                         <th>Hapus</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let option3 of postrek2">
+                <tbody *ngFor="let option3 of rekening | async">
                     <tr>
                             <td>{{option3.accountName}}</td>
                             <td>{{option3.accountNo}}</td>

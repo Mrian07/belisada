@@ -23,7 +23,7 @@ import { TokenService } from '../service/token/token.service';
     Configuration,
     CategoryService,
     MasterService,
-    TokenService,
+    TokenService
   ]
 })
 export class SharedModules { }

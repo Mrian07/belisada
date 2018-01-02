@@ -46,4 +46,15 @@ export class AddproductService {
     return this.http.get(this.configuration.serverWithAccUrl + '/seller/profile/bankaccount', {headers})
         .map(response => response as Rekening[]);
   }
+
+  deleteBank(id, token): Observable<any> {
+    const user = JSON.parse(localStorage.user);
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json')
+    .set('token', token);
+    // return this.http.delete(`${this.actionUrl}/delete/${id}`, {headers})
+    //     .map(response => response as T);
+    return this.http.delete(this.configuration.serverWithAccUrl + '/seller/profile/bankaccount/delete/' + id, {headers})
+        .map(response => response as any);
+}
 }
