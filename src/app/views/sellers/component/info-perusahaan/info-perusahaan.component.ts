@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../../../../core/service/master/master.service';
 import { CategoryService } from '../../../../core/service/category/category.service';
+import { Province } from '../../../../core/model/province';
+import { City } from '../../../../core/model/city';
+import { District } from '../../../../core/model/district';
+import { Village } from '../../../../core/model/village';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-info-perusahaan',
@@ -9,36 +14,53 @@ import { CategoryService } from '../../../../core/service/category/category.serv
 })
 export class InfoPerusahaanComponent implements OnInit {
 
-  constructor(private masterService: MasterService, private categoryService: CategoryService) { }
+  createComForm: FormGroup;
+  name: FormControl;
+  address: FormControl;
+  province: FormControl;
+  city: FormControl;
+  district: FormControl;
+  village: FormControl;
+  phone: FormControl;
+  siup: FormControl;
+  tdp: FormControl;
 
-  province = [];
-  city = [];
+  provinces: Province[];
+  cities: City[];
+  districts: District[];
+  villages: Village[];
+
   kelurahan = [];
   categories = [];
   selectedProvince: string;
 
+  constructor(private masterService: MasterService, private categoryService: CategoryService) { }
+
   ngOnInit() {
-    this.getProvince();
+    // this.getProvince();
     this.getCategoryOne();
+    this.createFormControls();
+    this.createForm();
+    this.getProvince();
   }
 
-  getProvince() {
-    this.masterService.getProvince('209').subscribe(data => {
-      this.province = data;
-    });
-  }
+  // getProvince() {
+  //   this.masterService.getProvince('209').subscribe(data => {
+  //     this.province = data;
+  //   });
+  // }
 
-  selectCity(id) {
-    this.masterService.getCity(id).subscribe(data => {
-      this.city = data;
-    });
-  }
+  // selectCity(id) {
+  //   this.masterService.getCity(id).subscribe(data => {
+  //     this.city = data;
+  //   });
+  // }
 
-  selectKelurahan(id) {
-    this.masterService.getDistrict(id).subscribe(data => {
-      this.kelurahan = data;
-    });
-  }
+  // selectKelurahan(id) {
+  //   this.masterService.getDistrict(id).subscribe(data => {
+  //     this.kelurahan = data;
+  //   });
+  // }
 
   getCategoryOne() {
     this.categoryService.CategoryOne().subscribe(data => {
@@ -47,5 +69,58 @@ export class InfoPerusahaanComponent implements OnInit {
   }
   selectCategories(id: number) {
     console.log(id);
+  }
+
+
+  createFormControls() {
+    this.name = new FormControl('');
+    this.address = new FormControl('');
+    this.province = new FormControl('');
+    this.city = new FormControl('');
+    this.district = new FormControl('');
+    this.village = new FormControl('');
+    this.phone = new FormControl('');
+    this.siup = new FormControl('');
+    this.tdp = new FormControl('');
+  }
+
+  createForm() {
+    this.createComForm = new FormGroup({
+      name: this.name,
+      address: this.address,
+      province: this.province,
+      city: this.city,
+      district: this.district,
+      village: this.village,
+      phone: this.phone,
+      siup: this.siup,
+      tdp: this.tdp,
+    });
+  }
+
+  getProvince() {
+    // Country ID harcoded to Indonesia
+    this.masterService.getProvince('209').subscribe(data => {
+      this.provinces = data;
+    });
+  }
+
+  getCity(id) {
+    console.log(id);
+    this.masterService.getCity(id).subscribe(data => {
+      this.cities = data;
+    });
+  }
+
+  getDistrict(id) {
+    this.masterService.getDistrict(id).subscribe(data => {
+      this.districts = data;
+    });
+  }
+
+  getVillage(id) {
+    this.masterService.getVillage(id).subscribe(data => {
+      this.villages = data;
+    });
   }
 }

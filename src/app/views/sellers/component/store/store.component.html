@@ -68,10 +68,28 @@
                 <!-- Add Store -->
                 <div class="ui bottom attached segment" suiTabContent="add-store">
                     <div class="ui grid">
-                        <div class="six wide column center aligend">
-                            <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/>
+                        <div class="four wide column center aligend">
+                            <!-- <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/> -->
+                            <div class="ui card">
+                                <div class="image">
+                                    <img src="/assets/img/shop.jpg" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
+                                    <!-- <img src="/assets/img/kristy.png" alt="Profile Picture" (load)="setCanvas($event)" #avaImg /> -->
+                                </div>
+                                <div class="content">
+                                    <a class="header">Nama Toko</a>
+                                    <div class="description">
+                                        Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)
+                                    </div>
+                                </div>
+                                <div class="extra content center aligned">
+                                    <div class="upload-btn-wrapper">
+                                        <button class="ui orange button">Pilih Photo</button>
+                                        <input type="file" name="myfile" (change)="setUrl($event, avaImg)" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="ten wide column">
+                        <div class="twelve wide column">
 
                             <form class="ui form" [formGroup]="createStoreForm" (ngSubmit)="onSubmit()" novalidate>
                                 <div class="field">
