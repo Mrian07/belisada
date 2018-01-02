@@ -32,7 +32,6 @@ import { StatusInvoiceComponent } from '../component/dashboard/status-invoice/st
 import { PaymentInfoComponent } from '../component/payment-info/payment-info.component';
 import { AccountLayoutComponent } from '../component/account-layout/account-layout.component';
 import { RejectReturComponent } from '../component/salles-report/reject-retur/reject-retur.component';
-import { SendForgotPasswordComponent } from '../component/send-forgot-password/send-forgot-password.component';
 import { StoreComponent } from '../component/store/store.component';
 import { PlainSellerLayoutComponent } from '../../../core/layout/plain-seller-layout/plain-seller-layout.component';
 import { ProductComponent } from '../component/product/product.component';
@@ -86,7 +85,6 @@ import { ChatService } from '../../../core/service/chat/chat.service';
     HeaderComponent,
     AccountLayoutComponent,
     RejectReturComponent,
-    SendForgotPasswordComponent,
     StoreComponent,
     PlainSellerLayoutComponent,
     ProductComponent

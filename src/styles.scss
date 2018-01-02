@@ -43,6 +43,14 @@ body{
 /** ----------------------- **/
 
 /**
+* Overriding component style
+**/
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container {
+    z-index: 1!important;
+}
+
+/**
 *   @author Wahyu
 *   Used by form inside authentication layout
 **/
