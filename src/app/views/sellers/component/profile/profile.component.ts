@@ -8,6 +8,7 @@ import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MasterService } from '../../../../core/service/master/master.service';
+import { Profile } from '../../../../core/model/profile';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -37,7 +38,7 @@ export class ProfileComponent implements OnInit {
   imgNpwp: FormControl;
   dateOfBirth: FormControl;
 
-  user: Object;
+  user: Profile = new Profile();
   provinces: Province[];
   cities: City[];
   districts: District[];
@@ -53,34 +54,24 @@ export class ProfileComponent implements OnInit {
     this.createForm();
     this.getProvince();
     this.getProfile();
+    this.fillForms();
   }
 
   createFormControls() {
-
-    const user = JSON.parse(localStorage.getItem('user'));
-    console.log('apa:'+user);
-    if (!user) {
-      console.log('kosong');
-    }else {
-      const data = JSON.parse(localStorage.user);
-      // console.log('ini data: '+data.name);
-        if (data) {
-          this.name = new FormControl(data.name);
-          this.address = new FormControl(data.address);
-          this.province = new FormControl('');
-          this.city = new FormControl('');
-          this.district = new FormControl('');
-          this.village = new FormControl('');
-          this.postalcode = new FormControl('');
-          this.phone = new FormControl('');
-          this.ktp = new FormControl('');
-          this.npwp = new FormControl('');
-          this.imgAvatar = new FormControl('');
-          this.imgNpwp = new FormControl('');
-          this.dateOfBirth = new FormControl(new Date());
-          //this.dateOfBirth = new FormControl(data.address);
-        }
-    }
+    this.name = new FormControl('');
+    this.address = new FormControl('');
+    this.province = new FormControl('');
+    this.city = new FormControl('');
+    this.district = new FormControl('');
+    this.village = new FormControl('');
+    this.postalcode = new FormControl('');
+    this.phone = new FormControl('');
+    this.ktp = new FormControl('');
+    this.npwp = new FormControl('');
+    this.imgAvatar = new FormControl('');
+    this.imgNpwp = new FormControl('');
+    // this.dateOfBirth = new FormControl(new Date());
+    this.dateOfBirth = new FormControl('');
   }
 
   createForm() {
@@ -101,14 +92,48 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  fillForms() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    
+    this.profileService.getProfile(luser.token).subscribe(data => {
+      if (!data) {
+        console.log('kosong');
+      }else {
+        console.log('ini data: ', data);
+        this.name.setValue(data.name);
+        this.address.setValue(data.address);
+        this.province.setValue(data.regionId);
+        this.city.setValue(data.cityId);
+        this.district.setValue(data.districtId);
+        this.village.setValue(data.villageId);
+        this.postalcode.setValue(data.postal);
+        this.phone.setValue(data.phone);
+        this.ktp.setValue(data.idcard);
+        this.npwp.setValue(data.npwp);
+        this.imgAvatar.setValue(data.imageAvatar);
+        this.imgNpwp.setValue(data.imageNPWP);
+        // this.dateOfBirth = new FormControl(new Date());
+        this.dateOfBirth.setValue(data.dateOfBirth);
+      }
+    });
+  }
+
   getProfile() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
-      console.log('kosong');
-    }else {
-      const data = JSON.parse(localStorage.user);
-      this.user=data;
-    }
+    console.log('aaa');
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.profileService.getProfile(luser.token).subscribe(data => {
+      this.user = data;
+      console.log('apa:',this.user);
+    });
+
+
+    // const user = JSON.parse(localStorage.getItem('user'));
+    // if (!user) {
+    //   console.log('kosong');
+    // }else {
+    //   const data = JSON.parse(localStorage.user);
+    //   this.user=data;
+    // }
   }
 
   updateProfile(){
