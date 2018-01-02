@@ -99,13 +99,13 @@
                         </div> -->
                              
                         <div class="ui divider"></div>
-                        <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvasNpwp($event)" #avaImg >
+                        <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvasNpwp($event)" #avaImgNpwp >
                         <br>
                         <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
                         <br>
                         <div class="upload-btn-wrapper">
                             <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button>
-                            <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImg)" />
+                            <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" />
                         </div>
                             
                         <div class="ui divider"></div>     
