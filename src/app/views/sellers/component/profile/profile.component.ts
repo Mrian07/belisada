@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
   village: FormControl;
   postalcode: FormControl;
   phone: FormControl;
+  ktp: FormControl;
   npwp: FormControl;
   imgAvatar: FormControl;
   imgNpwp: FormControl;
@@ -72,6 +73,7 @@ export class ProfileComponent implements OnInit {
           this.village = new FormControl('');
           this.postalcode = new FormControl('');
           this.phone = new FormControl('');
+          this.ktp = new FormControl('');
           this.npwp = new FormControl('');
           this.imgAvatar = new FormControl('');
           this.imgNpwp = new FormControl('');
@@ -90,6 +92,7 @@ export class ProfileComponent implements OnInit {
       village: this.village,
       postalcode: this.postalcode,
       phone: this.phone,
+      ktp: this.ktp,
       npwp: this.npwp,
       imgAvatar: this.imgAvatar,
       imgNpwp: this.imgNpwp,
@@ -119,6 +122,7 @@ export class ProfileComponent implements OnInit {
       postalcode: this.postalcode,
       npwp : this.npwp,
       phone : this.phone,
+      ktp: this.ktp,
       imageAvatar : this.imgAvatar,
       imageNPWP : this.imgNpwp,
       dateOfBirth : this.dateOfBirth,
@@ -170,13 +174,6 @@ export class ProfileComponent implements OnInit {
     };
     fr.readAsDataURL(f);
   }
-
-  // edit() {
-  //   if(){
-  //     alert('Nama tidak boleh kosong');
-  //   }
-  // }
-
 
   getProvince() {
     // Country ID harcoded to Indonesia
