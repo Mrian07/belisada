@@ -39,21 +39,10 @@
                         <div class="field">
                             <label>Tanggal Lahir</label>
                             <div class="ui grid">
-                                <div class="five wide column">
-                                    <select class="ui search dropdown">
-                                        <option value="">Tanggal</option>
-                                    </select>
+                                <div class="sixteen wide column">
+                                    <ng-datepicker formControlName="dateOfBirth" [options]="options"></ng-datepicker>
                                 </div>
-                                <div class="six wide column">
-                                    <select class="ui search dropdown">
-                                        <option value="">Bulan</option>
-                                    </select>     
-                                </div>
-                                <div class="five wide column">
-                                    <select class="ui search dropdown">
-                                        <option value="">Tahun</option>
-                                    </select>  
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="field">

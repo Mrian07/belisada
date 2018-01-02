@@ -77,7 +77,8 @@ export class ProfileComponent implements OnInit {
           this.npwp = new FormControl('');
           this.imgAvatar = new FormControl('');
           this.imgNpwp = new FormControl('');
-          this.dateOfBirth = new FormControl('');
+          this.dateOfBirth = new FormControl(new Date());
+          //this.dateOfBirth = new FormControl(data.address);
         }
     }
   }
