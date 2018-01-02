@@ -7,20 +7,20 @@ import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
-import { SharedModules } from './clients/modules/shared.modules';
-import { AuthModules } from './clients/modules/auth.modules';
-import { FrontModules } from './clients/modules/front.modules';
-import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
-import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
-import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
-import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
-import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
-import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
-import { ActivationService } from './servers/service/activation/activation.service';
-import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
-import { Page404Component } from './clients/pages/page-404/page-404.component';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './store/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { MaintenanceComponent } from './views/sellers/component/maintenance/maintenance.component';
+import { PlainLayoutComponent } from './core/layout/plain-layout/plain-layout.component';
+import { ActivationComponent } from './views/sellers/component/activation/activation.component';
+import { ActivationLayoutComponent } from './core/layout/activation-layout/activation-layout.component';
+import { Page404Component } from './views/sellers/component/page-404/page-404.component';
+import { SharedModules } from './core/shared/shared.modules';
+import { AuthModules } from './core/shared/auth.modules';
+import { FrontModules } from './views/front/modules/front.modules';
+import { ActivationService } from './core/service/activation/activation.service';
+import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
+
+
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,7 +29,6 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    NotFoundComponent,
     MaintenanceComponent,
     PlainLayoutComponent,
     ActivationComponent,
@@ -51,7 +50,8 @@ export function createTranslateLoader(http: HttpClient) {
     SharedModules,
     AuthModules,
     FrontModules,
-    StoreModule.forRoot({ post: userReducer }),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
   ],
   providers: [
     ActivationService,

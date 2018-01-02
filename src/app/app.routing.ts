@@ -1,27 +1,20 @@
-import { MaintenanceComponent } from './clients/pages/maintenance/maintenance.component';
-import { ProductSearchComponent } from './clients/pages/front/product-search/product-search.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ActivationLayoutComponent } from './clients/pages/account-layout/activation-layout/activation-layout.component';
-import { AccountLayoutComponent } from './clients/pages/account-layout/account-layout.component';
-import { PopUpComponent } from './clients/pages/registration/popUp/pop-up/pop-up.component';
-import { StatisticsComponent } from './clients/pages/seller/statistics/statistics.component';
-import { PlainLayoutComponent } from './clients/layouts/plain-layout/plain-layout.component';
-import { ModalPopupComponent } from './clients/pages/seller/modal-popup/modal-popup.component';
-import { AuthenticationLayoutComponent } from './clients/layouts/authentication-layout/authentication-layout.component';
-import { LoginComponent } from './clients/pages/login/login.component';
-import { RegistrationComponent } from './clients/pages/registration/registration.component';
-import { ForgotPasswordComponent } from './clients/pages/forgot-password/forgot-password.component';
-import { FrontLayoutComponent } from './clients/layouts/front-layout/front-layout.component';
-import { HomeComponent } from './clients/pages/front/home/home.component';
-import { ProductDetailComponent } from './clients/pages/front/product-detail/product-detail.component';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
-import { NotFoundComponent } from './clients/pages/not-found/not-found.component';
-import { OnlyLoggedInUsersGuard } from './clients/modules/authguard';
-import { InfoComponent } from './clients/pages/info/info.component';
-import { ActivationComponent } from './clients/pages/seller/activation/activation.component';
-import { SendForgotPasswordComponent } from './clients/pages/seller/send-forgot-password/send-forgot-password.component';
-import { Page404Component } from './clients/pages/page-404/page-404.component';
+import { FrontLayoutComponent } from './core/layout/front-layout/front-layout.component';
+import { HomeComponent } from './views/front/component/home/home.component';
+import { InfoComponent } from './views/sellers/component/info/info.component';
+import { ProductDetailComponent } from './views/front/component/product-detail/product-detail.component';
+import { ProductSearchComponent } from './views/front/component/product-search/product-search.component';
+import { PlainLayoutComponent } from './core/layout/plain-layout/plain-layout.component';
+import { ActivationComponent } from './views/sellers/component/activation/activation.component';
+import { AuthenticationLayoutComponent } from './core/layout/authentication-layout/authentication-layout.component';
+import { LoginComponent } from './views/sellers/component/login/login.component';
+import { PopUpComponent } from './views/sellers/component/registration/popUp/pop-up/pop-up.component';
+import { ForgotPasswordComponent } from './views/sellers/component/forgot-password/forgot-password.component';
+import { RegistrationComponent } from './views/sellers/component/registration/registration.component';
+import { MaintenanceComponent } from './views/sellers/component/maintenance/maintenance.component';
+import { Page404Component } from './views/sellers/component/page-404/page-404.component';
 
 const routes: Routes = [
   {
@@ -120,12 +113,8 @@ const routes: Routes = [
   },
   {
     path: 'seller',
-    loadChildren: './clients/modules/seller.modules#SellerModules',
+    loadChildren: './views/sellers/modules/seller.modules#SellerModules'
   },
-  // {
-  //   path: '404',
-  //   component: NotFoundComponent,
-  // },
   {
     path: '**',
     redirectTo: '/404'
