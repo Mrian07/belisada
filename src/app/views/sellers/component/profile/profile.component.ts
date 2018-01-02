@@ -11,7 +11,7 @@ import { MasterService } from '../../../../core/service/master/master.service';
 import { Profile } from '../../../../core/model/profile';
 
 import { DatepickerOptions } from 'ng2-datepicker';
-import * as idLocale from 'date-fns/locale/id';
+// import * as idLocale from 'date-fns/locale/id';
 
 // const URL = '/api/';
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/';
@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
     minYear: 1970,
     maxYear: 2030,
     firstCalendarDay: 1, // 0 - Sunday, 1 - Monday
-    locale: idLocale,
+    // locale: idLocale,
   };
 
   newImage: string;
