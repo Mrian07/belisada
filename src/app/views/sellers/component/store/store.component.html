@@ -72,7 +72,7 @@
                             <!-- <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/> -->
                             <div class="ui card">
                                 <div class="image">
-                                    <img src="/assets/img/shop.jpg" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
+                                    <img src="/assets/img/shop.jpg" alt="Profile Picture" #avaImg />
                                     <!-- <img src="/assets/img/kristy.png" alt="Profile Picture" (load)="setCanvas($event)" #avaImg /> -->
                                 </div>
                                 <div class="content">
@@ -84,7 +84,7 @@
                                 <div class="extra content center aligned">
                                     <div class="upload-btn-wrapper">
                                         <button class="ui orange button">Pilih Photo</button>
-                                        <input type="file" name="myfile" (change)="setUrl($event, avaImg)" />
+                                        <input type="file" name="myfile"/>
                                     </div>
                                 </div>
                             </div>

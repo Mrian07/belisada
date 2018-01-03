@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaintenanceComponent } from './views/sellers/component/maintenance/maintenance.component';
 import { PlainLayoutComponent } from './core/layout/plain-layout/plain-layout.component';
 import { ActivationComponent } from './views/sellers/component/activation/activation.component';
@@ -57,6 +58,9 @@ export function createTranslateLoader(http: HttpClient) {
     FrontModules,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 50,
+    })
   ],
   providers: [
     ActivationService,

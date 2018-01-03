@@ -58,15 +58,63 @@ export class ProductEffects {
         })
       );
 
-      @Effect()
-      getbank$: Observable<any> = this.actions$.ofType(fromActions.GETBANK)
-        .map((action: fromActions.GetBank) => action.token)
-          .switchMap((token) =>
-          this.productService.getBank(token)
+  @Effect()
+    getbank$: Observable<any> = this.actions$.ofType(fromActions.GETBANK)
+      .map((action: fromActions.GetBank) => action.token)
+        .switchMap((token) =>
+          this.bankService.getAll({token: token})
             .switchMap( (bank: any) => {
               return [
                 new fromActions.GetBankList(bank)
               ];
             })
           );
+
+  @Effect()
+    deletebank$: Observable<any> = this.actions$.ofType(fromActions.DELETEBANKLIST)
+      .map((action: fromActions.DeleteBankList) => action.data)
+      .switchMap((data) =>
+        this.bankService.delete(data.id, {token: data.token})
+          .switchMap( (newdata: any) =>
+            this.productService.getBank(data.token)
+            .switchMap( (bank: any) => {
+              return [
+                new fromActions.DeleteBankSuccess(bank)
+              ];
+            }
+          )
+        )
+      );
+
+  @Effect()
+    addbank$: Observable<any> = this.actions$.ofType(fromActions.ADDBANK)
+      .map((action: fromActions.AddBank) => action.data)
+        .switchMap((data) =>
+          this.bankService.create(data.data, {token: data.token})
+            .switchMap( (newdata: any) =>
+              this.productService.getBank(data.token)
+              .switchMap( (bank: any) => {
+                return [
+                  new fromActions.AddBankSuccess(bank)
+                ];
+              }
+            )
+          )
+        );
+
+  @Effect()
+    editbank$: Observable<any> = this.actions$.ofType(fromActions.EDITBANK)
+      .map((action: fromActions.EditBank) => action.data)
+        .switchMap((data) =>
+          this.bankService.update(data.data, {token: data.token})
+            .switchMap( (newdata: any) =>
+              this.productService.getBank(data.token)
+              .switchMap( (bank: any) => {
+                return [
+                  new fromActions.EditBankSuccess(bank)
+                ];
+              }
+            )
+          )
+        );
 }

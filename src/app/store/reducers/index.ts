@@ -31,7 +31,7 @@ const defaultStore = {
 };
 
 const defaultBank = {
-  store: null,
+  store: [],
 };
 
 
@@ -81,8 +81,19 @@ export function BankReducer(
   action: actions.ProductAction) {
   switch (action.type) {
 
+    case actions.ADDBANKSUCCESS : {
+      console.log(action.success);
+        return action.success;
+    }
+
     case actions.GETBANKLIST : {
+      console.log(action.bank);
         return action.bank;
+    }
+
+    case actions.DELETEBANKSUCCESS : {
+      console.log(action.success);
+        return [action.success];
     }
 
     default: return [];

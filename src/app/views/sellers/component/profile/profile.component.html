@@ -15,7 +15,7 @@
                         <div class="content">
                             <a class="header">{{ user.name }}</a>
                             <div class="meta">
-                                <span class="date">{{ user.username }}</span>
+                                <span class="date">{{ user.email }}</span>
                             </div>
                             <div class="description">
                                 Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)
@@ -88,7 +88,7 @@
                             <label>No. NPWP</label>
                             <input name="npwp" placeholder="Masukan NPWP" type="text"/>
                         </div>
-                        <div class="field">
+                        <!-- <div class="field">
                             <div class="ui action input">
                                 <input type="text" placeholder="Upload file NPWP" readonly/>
                                 <input type="file"/>
@@ -96,7 +96,19 @@
                                     <i class="attach icon"></i>
                                 </div>
                             </div>
+                        </div> -->
+                             
+                        <div class="ui divider"></div>
+                        <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvasNpwp($event)" #avaImgNpwp >
+                        <br>
+                        <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
+                        <br>
+                        <div class="upload-btn-wrapper">
+                            <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button>
+                            <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" />
                         </div>
+                            
+                        <div class="ui divider"></div>     
 
                         <button class="ui primary button" type="submit">Simpan</button>
                     </form>
