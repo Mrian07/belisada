@@ -49,7 +49,7 @@
                             <input name="address" placeholder="Masukan alamat" type="text" formControlName="address" value="{{user.address}}"/>
                         </div>
                         <div class="field">
-                            <label>Provinsi {{province}}</label>
+                            <label>Provinsi</label>
                             <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
                                 <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                             </sui-select>
