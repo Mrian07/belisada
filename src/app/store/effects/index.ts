@@ -20,25 +20,26 @@ import { RekeningSService } from '../../core/service/rekening/rekening-s.service
 import { Rekening } from '../../core/model/rekening';
 @Injectable()
 export class ProductEffects {
-  constructor(private actions$: Actions, private productService: AddproductService,
+  constructor(private actions$: Actions, private addProductService: AddproductService,
   private storeService: StoreService, private bankService: RekeningSService) {}
   @Effect()
   getproduct$: Observable<any> = this.actions$.ofType(fromActions.GETPRODUCT)
       .map((action: fromActions.GetProduct) => action.productid)
       .switchMap((productid) =>
-          this.productService.GetSellerProduct(productid)
-              .switchMap( (product: SellerProduct[]) => {
-                return [
-                    new fromActions.GetProductSuccess(product)
-                ];
-              })
+        this.addProductService.GetSellerProduct(productid)
+          .switchMap( (product: any) => {
+            return [
+              new fromActions.GetProductSuccess(product)
+            ];
+          }
+        )
       );
 
   @Effect()
     addtproduct$: Observable<any> = this.actions$.ofType(fromActions.ADDPRODUCT)
     .map((payload: fromActions.AddProduct) => payload.product)
       .switchMap((product) =>
-        this.productService.AddProduct(product)
+        this.addProductService.create(product)
         .map( (addproduct: Product) => new fromActions.AddProductSuccess(true))
             .catch(err => {
               alert(err['error']['error']['message']);
@@ -47,22 +48,9 @@ export class ProductEffects {
           );
 
   @Effect()
-  getstore$: Observable<any> = this.actions$.ofType(fromActions.GETSTORE)
-    .map((action: fromActions.GetStore) => action.token)
-      .switchMap((token) =>
-        this.productService.getAll(token)
-        .switchMap( (store: MyStore[]) => {
-          return [
-            new fromActions.GetStoreList(store)
-          ];
-        })
-      );
-
-  @Effect()
     getbank$: Observable<any> = this.actions$.ofType(fromActions.GETBANK)
-      .map((action: fromActions.GetBank) => action.token)
-        .switchMap((token) =>
-          this.bankService.getAll({token: token})
+        .switchMap(() =>
+          this.bankService.getAll()
             .switchMap( (bank: any) => {
               return [
                 new fromActions.GetBankList(bank)
@@ -74,9 +62,9 @@ export class ProductEffects {
     deletebank$: Observable<any> = this.actions$.ofType(fromActions.DELETEBANKLIST)
       .map((action: fromActions.DeleteBankList) => action.data)
       .switchMap((data) =>
-        this.bankService.delete(data.id, {token: data.token})
+        this.bankService.delete(data)
           .switchMap( (newdata: any) =>
-            this.productService.getBank(data.token)
+            this.bankService.getAll()
             .switchMap( (bank: any) => {
               return [
                 new fromActions.DeleteBankSuccess(bank)
@@ -90,9 +78,9 @@ export class ProductEffects {
     addbank$: Observable<any> = this.actions$.ofType(fromActions.ADDBANK)
       .map((action: fromActions.AddBank) => action.data)
         .switchMap((data) =>
-          this.bankService.create(data.data, {token: data.token})
+          this.bankService.create(data.data)
             .switchMap( (newdata: any) =>
-              this.productService.getBank(data.token)
+              this.bankService.getAll()
               .switchMap( (bank: any) => {
                 return [
                   new fromActions.AddBankSuccess(bank)
@@ -106,9 +94,9 @@ export class ProductEffects {
     editbank$: Observable<any> = this.actions$.ofType(fromActions.EDITBANK)
       .map((action: fromActions.EditBank) => action.data)
         .switchMap((data) =>
-          this.bankService.update(data.data, {token: data.token})
+          this.bankService.update(data.data)
             .switchMap( (newdata: any) =>
-              this.productService.getBank(data.token)
+            this.bankService.getAll()
               .switchMap( (bank: any) => {
                 return [
                   new fromActions.EditBankSuccess(bank)

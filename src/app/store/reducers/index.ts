@@ -86,6 +86,11 @@ export function BankReducer(
         return action.success;
     }
 
+    case actions.EDITBANKSUCCESS : {
+      console.log(action.success);
+        return action.success;
+    }
+
     case actions.GETBANKLIST : {
       console.log(action.bank);
         return action.bank;

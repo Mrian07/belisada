@@ -55,7 +55,6 @@ export class ProfileComponent implements OnInit {
   // tgl:string;
   userImgAvatar: string;
   userImageNPWP: string;
-  idProv: string;
 
   user: Profile = new Profile();
   provinces: Province[];
@@ -118,18 +117,19 @@ export class ProfileComponent implements OnInit {
         console.log('kosong');
       }else {
         console.log('ini data: ', data);
-        this.name.setValue(data.name);
-        this.address.setValue(data.address);
-        this.province.setValue(data.regionId);
-        this.city.setValue(data.cityId);
-        this.district.setValue(data.districtId);
-        this.village.setValue(data.villageId);
-        this.postalcode.setValue(data.postal);
-        this.phone.setValue(data.phone);
-        this.ktp.setValue(data.idcard);
-        this.npwp.setValue(data.npwp);
-        this.imgAvatar.setValue(data.imageAvatar);
-        this.imgNpwp.setValue(data.imageNPWP);
+
+        // this.name.setValue(data.name);
+        // this.address.setValue(data.address);
+        // this.province.setValue(data.regionId);
+        // this.city.setValue(data.cityId);
+        // this.district.setValue(data.districtId);
+        // this.village.setValue(data.villageId);
+        // this.postalcode.setValue(data.postal);
+        // this.phone.setValue(data.phone);
+        // this.ktp.setValue(data.idcard);
+        // this.npwp.setValue(data.npwp);
+        // this.imgAvatar.setValue(data.imageAvatar);
+        // this.imgNpwp.setValue(data.imageNPWP);
         // this.dateOfBirth = new FormControl(new Date());
         this.dateOfBirth.setValue(data.dateOfBirth);
 
@@ -141,18 +141,17 @@ export class ProfileComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.profileService.getProfile(luser.token).subscribe(data => {
       this.user = data;
-      if(data.imageAvatar){
-        this.userImgAvatar = 'data:image/png;base64,'+data.imageAvatar;
-      }else{
+      if ( data.imageAvatar ){
+        this.userImgAvatar = 'data:image/png;base64,' + data.imageAvatar;
+      }else {
         this.userImgAvatar = '/assets/img/kristy.png';
       }
 
-      if(data.imageNPWP){
-        this.userImageNPWP = 'data:image/png;base64,'+data.imageNPWP;
-      }else{
+      if (data.imageNPWP) {
+        this.userImageNPWP = 'data:image/png;base64,' + data.imageNPWP;
+      }else {
         this.userImageNPWP = '/assets/img/noimage.png';
       }
-      $this.idProv = data.imageNPWP;
       console.log('gini:', data);
 
 
@@ -162,7 +161,7 @@ export class ProfileComponent implements OnInit {
 
   }
 
-  onSubmit(){
+  onSubmit() {
 
     // tgl = this.dateOfBirth.value.split("T17");
     // tgl = this.dateOfBirth.value;
@@ -170,6 +169,23 @@ export class ProfileComponent implements OnInit {
     // alert(tgl[0]);
     // console.log("this.base64Npwp", this.base64Npwp);
     const updateProfileData = {
+
+
+
+      // name : this.name,
+      // address: this.address,
+      // province: this.province,
+      // city: this.city,
+      // district: this.district,
+      // village: this.village,
+      // postalcode: this.postalcode,
+      // npwp : this.npwp,
+      // phone : this.phone,
+      // ktp: this.ktp,
+      // imageAvatar : this.imgAvatar,
+      // imageNPWP : this.imgNpwp,
+      // dateOfBirth : this.dateOfBirth,
+
 
       name : this.name.value,
       dateOfBirth: this.dateOfBirth.value,
@@ -186,19 +202,21 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.updateProfile(updateProfileData).subscribe(data => {
 
-      if (data.status === '1') {
-        swal(
-          'success',
-          data.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          data.message,
-          'error'
-        );
-      }
+      // if (data.status === '1') {
+      //   swal(
+      //     'success',
+      //     data.message,
+      //     'success'
+      //   );
+      // }else {
+      //   swal(
+      //     'Opps!',
+      //     data.message,
+      //     'error'
+      //   );
+      // }
+
+
     });
 
   }

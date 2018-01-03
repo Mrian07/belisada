@@ -31,7 +31,7 @@ export class ProductComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     const token = user.token;
     this.store.dispatch(new fromActions.GetStore(token));
-    this.storeService.getAll({'token': token}).subscribe(response => {
+    this.storeService.getAll().subscribe(response => {
       const storeId = response[0].mBpartnerStoreId;
       this.store.dispatch(new fromActions.GetProduct(storeId));
     });
