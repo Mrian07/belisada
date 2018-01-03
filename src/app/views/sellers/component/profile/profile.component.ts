@@ -112,24 +112,23 @@ export class ProfileComponent implements OnInit {
 
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
-    
     this.profileService.getProfile(luser.token).subscribe(data => {
       if (!data) {
         console.log('kosong');
       }else {
         console.log('ini data: ', data);
-        this.name.setValue(data.name);
-        this.address.setValue(data.address);
-        this.province.setValue(data.regionId);
-        this.city.setValue(data.cityId);
-        this.district.setValue(data.districtId);
-        this.village.setValue(data.villageId);
-        this.postalcode.setValue(data.postal);
-        this.phone.setValue(data.phone);
-        this.ktp.setValue(data.idcard);
-        this.npwp.setValue(data.npwp);
-        this.imgAvatar.setValue(data.imageAvatar);
-        this.imgNpwp.setValue(data.imageNPWP);
+        // this.name.setValue(data.name);
+        // this.address.setValue(data.address);
+        // this.province.setValue(data.regionId);
+        // this.city.setValue(data.cityId);
+        // this.district.setValue(data.districtId);
+        // this.village.setValue(data.villageId);
+        // this.postalcode.setValue(data.postal);
+        // this.phone.setValue(data.phone);
+        // this.ktp.setValue(data.idcard);
+        // this.npwp.setValue(data.npwp);
+        // this.imgAvatar.setValue(data.imageAvatar);
+        // this.imgNpwp.setValue(data.imageNPWP);
         // this.dateOfBirth = new FormControl(new Date());
         this.dateOfBirth.setValue(data.dateOfBirth);
       }
@@ -151,7 +150,7 @@ export class ProfileComponent implements OnInit {
       }else{
         this.userImageNPWP = '/assets/img/noimage.png';
       }
-      
+
       console.log('gini:', data);
     });
 
@@ -174,7 +173,7 @@ export class ProfileComponent implements OnInit {
     // console.log("this.base64Npwp", this.base64Npwp);
     const updateProfileData = {
 
-   
+
 
       // name : this.name,
       // address: this.address,
@@ -207,21 +206,21 @@ export class ProfileComponent implements OnInit {
     //console.log('hasil ini: ', updateProfileData);
     this.profileService.updateProfile(updateProfileData).subscribe(data => {
 
-      if (data.status === '1') {
-        swal(
-          'success',
-          data.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          data.message,
-          'error'
-        );
-      }
-    
-      
+      // if (data.status === '1') {
+      //   swal(
+      //     'success',
+      //     data.message,
+      //     'success'
+      //   );
+      // }else {
+      //   swal(
+      //     'Opps!',
+      //     data.message,
+      //     'error'
+      //   );
+      // }
+
+
     });
 
   }
