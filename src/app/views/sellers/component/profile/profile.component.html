@@ -2,7 +2,7 @@
     <div class="wide column">
         <h1>Profile</h1>
     </div>
-</div>    
+</div>
 <div class="ui segment">
     <div class="ui grid">
         <div class="twelve wide stretched column">
@@ -30,8 +30,8 @@
                     </div>
                 </div>
                 <div class="ten wide column">
-                    
-                    <form class="ui form" [formGroup]="createProfileForm" (ngSubmit)="onSubmit()" novalidate>  
+
+                    <form class="ui form" [formGroup]="createProfileForm" (ngSubmit)="onSubmit()" novalidate>
                         <div class="field">
                             <label>Nama</label>
                             <input name="name" placeholder="Masukan nama" type="text" formControlName="name"/>
@@ -59,7 +59,7 @@
                             <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
                                 <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
                             </sui-select>
-                        </div>                        
+                        </div>
                         <div class="field">
                             <label>Kelurahan / Kecamatan</label>
                             <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
@@ -88,7 +88,7 @@
                             <label>No. NPWP</label>
                             <input name="npwp" placeholder="Masukan NPWP" type="text"/>
                         </div>
-                        <!-- <div class="field">
+                        <div class="field">
                             <div class="ui action input">
                                 <input type="text" placeholder="Upload file NPWP" readonly/>
                                 <input type="file"/>
@@ -96,8 +96,8 @@
                                     <i class="attach icon"></i>
                                 </div>
                             </div>
-                        </div> -->
-                             
+                        </div>
+
                         <div class="ui divider"></div>
                         <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvasNpwp($event)" #avaImgNpwp >
                         <br>
@@ -107,12 +107,12 @@
                             <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button>
                             <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" />
                         </div>
-                            
-                        <div class="ui divider"></div>     
+
+                        <div class="ui divider"></div>
 
                         <button class="ui primary button" type="submit">Simpan</button>
                     </form>
-                </div>  
+                </div>
             </div>
         </div>
 

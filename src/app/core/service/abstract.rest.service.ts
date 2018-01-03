@@ -38,4 +38,10 @@ export abstract class AbstractRestService<T> {
         return this._http.delete(`${this.actionUrl}/delete/${id}`, {headers})
             .map(response => response as T);
     }
+    test(data: Object, jsonHeaders): Observable<T> {
+      jsonHeaders['content-type'] = 'application/json';
+      const headers = new HttpHeaders(jsonHeaders);
+      return this._http.post(`${this.actionUrl}/update`, data, {headers})
+          .map(response => response as T);
+  }
 }
