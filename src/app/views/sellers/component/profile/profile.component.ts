@@ -53,8 +53,9 @@ export class ProfileComponent implements OnInit {
   base64Avatar: string;
 
   // tgl:string;
-  userImgAvatar:string;
-  userImageNPWP:string;
+  userImgAvatar: string;
+  userImageNPWP: string;
+  idProv: string;
 
   user: Profile = new Profile();
   provinces: Province[];
@@ -112,7 +113,6 @@ export class ProfileComponent implements OnInit {
 
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
-    
     this.profileService.getProfile(luser.token).subscribe(data => {
       if (!data) {
         console.log('kosong');
@@ -132,6 +132,7 @@ export class ProfileComponent implements OnInit {
         this.imgNpwp.setValue(data.imageNPWP);
         // this.dateOfBirth = new FormControl(new Date());
         this.dateOfBirth.setValue(data.dateOfBirth);
+
       }
     });
   }
@@ -151,18 +152,14 @@ export class ProfileComponent implements OnInit {
       }else{
         this.userImageNPWP = '/assets/img/noimage.png';
       }
-      
+      $this.idProv = data.imageNPWP;
       console.log('gini:', data);
+
+
+
+
     });
 
-
-    // const user = JSON.parse(localStorage.getItem('user'));
-    // if (!user) {
-    //   console.log('kosong');
-    // }else {
-    //   const data = JSON.parse(localStorage.user);
-    //   this.user=data;
-    // }
   }
 
   onSubmit(){
@@ -173,23 +170,6 @@ export class ProfileComponent implements OnInit {
     // alert(tgl[0]);
     // console.log("this.base64Npwp", this.base64Npwp);
     const updateProfileData = {
-
-   
-
-      // name : this.name,
-      // address: this.address,
-      // province: this.province,
-      // city: this.city,
-      // district: this.district,
-      // village: this.village,
-      // postalcode: this.postalcode,
-      // npwp : this.npwp,
-      // phone : this.phone,
-      // ktp: this.ktp,
-      // imageAvatar : this.imgAvatar,
-      // imageNPWP : this.imgNpwp,
-      // dateOfBirth : this.dateOfBirth,
-
 
       name : this.name.value,
       dateOfBirth: this.dateOfBirth.value,
@@ -204,7 +184,6 @@ export class ProfileComponent implements OnInit {
       imageIDCard : '',
     };
 
-    //console.log('hasil ini: ', updateProfileData);
     this.profileService.updateProfile(updateProfileData).subscribe(data => {
 
       if (data.status === '1') {
@@ -220,8 +199,6 @@ export class ProfileComponent implements OnInit {
           'error'
         );
       }
-    
-      
     });
 
   }
