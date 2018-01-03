@@ -2,7 +2,7 @@
     <div class="wide column">
         <h1>Profile</h1>
     </div>
-</div>    
+</div>
 <div class="ui segment">
     <div class="ui grid">
         <div class="twelve wide stretched column">
@@ -10,12 +10,12 @@
                 <div class="six wide column">
                     <div class="ui card">
                         <div class="image">
-                            <img src="/assets/img/kristy.png" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
+                            <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
                         </div>
                         <div class="content">
                             <a class="header">{{ user.name }}</a>
                             <div class="meta">
-                                <span class="date">{{ user.username }}</span>
+                                <span class="date">{{ user.email }}</span>
                             </div>
                             <div class="description">
                                 Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)
@@ -30,11 +30,11 @@
                     </div>
                 </div>
                 <div class="ten wide column">
-                    
-                    <form class="ui form" [formGroup]="createProfileForm" (ngSubmit)="onSubmit()" novalidate>  
+
+                    <form class="ui form" [formGroup]="createProfileForm" (ngSubmit)="onSubmit()" novalidate>
                         <div class="field">
                             <label>Nama</label>
-                            <input name="name" placeholder="Masukan nama" type="text" formControlName="name"/>
+                            <input name="name" placeholder="Masukan nama" type="text" formControlName="name" value="{{ user.name }}"/>
                         </div>
                         <div class="field">
                             <label>Tanggal Lahir</label>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="field">
                             <label>Alamat</label>
-                            <input name="address" placeholder="Masukan alamat" type="text" formControlName="address"/>
+                            <input name="address" placeholder="Masukan alamat" type="text" formControlName="address" value="{{user.address}}"/>
                         </div>
                         <div class="field">
                             <label>Provinsi</label>
@@ -59,7 +59,7 @@
                             <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
                                 <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
                             </sui-select>
-                        </div>                        
+                        </div>
                         <div class="field">
                             <label>Kelurahan / Kecamatan</label>
                             <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
@@ -78,15 +78,15 @@
                         </div>
                         <div class="field">
                             <label>Nomor HP</label>
-                            <input name="phone" placeholder="Masukan nomor handphone" type="text"/>
+                            <input name="phone" placeholder="Masukan nomor handphone" type="text" formControlName="phone"/>
                         </div>
                         <div class="field">
                             <label>Nomor KTP</label>
-                            <input name="ktp" placeholder="Masukan nomor handphone" type="text"/>
+                            <input name="ktp" placeholder="Masukan nomor handphone" type="text" formControlName="ktp"/>
                         </div>
                         <div class="field">
                             <label>No. NPWP</label>
-                            <input name="npwp" placeholder="Masukan NPWP" type="text"/>
+                            <input name="npwp" placeholder="Masukan NPWP" type="text" formControlName="npwp"/>
                         </div>
                         <!-- <div class="field">
                             <div class="ui action input">
@@ -97,9 +97,9 @@
                                 </div>
                             </div>
                         </div> -->
-                             
+
                         <div class="ui divider"></div>
-                        <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvasNpwp($event)" #avaImgNpwp >
+                        <img class="ui middle aligned small image" src="{{userImageNPWP}}" (load)="setCanvasNpwp($event)" #avaImgNpwp >
                         <br>
                         <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
                         <br>
@@ -107,15 +107,14 @@
                             <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button>
                             <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" />
                         </div>
-                            
-                        <div class="ui divider"></div>     
+
+                        <div class="ui divider"></div>
 
                         <button class="ui primary button" type="submit">Simpan</button>
                     </form>
-                </div>  
+                </div>
             </div>
         </div>
-
         <div class="four wide column">
             <div class="ui vertical fluid right tabular menu">
                 <a routerLink="/seller/profile" class="active item">

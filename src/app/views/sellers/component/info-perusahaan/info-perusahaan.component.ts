@@ -6,7 +6,6 @@ import { City } from '../../../../core/model/city';
 import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-
 @Component({
   selector: 'app-info-perusahaan',
   templateUrl: './info-perusahaan.component.html',
@@ -15,15 +14,17 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 export class InfoPerusahaanComponent implements OnInit {
 
   createComForm: FormGroup;
-  name: FormControl;
-  address: FormControl;
   province: FormControl;
   city: FormControl;
   district: FormControl;
   village: FormControl;
-  phone: FormControl;
   siup: FormControl;
   tdp: FormControl;
+
+  corporateName: FormControl;
+  address: FormControl;
+  corporatePhone: FormControl;
+  postalcode: FormControl;
 
   provinces: Province[];
   cities: City[];
@@ -42,6 +43,10 @@ export class InfoPerusahaanComponent implements OnInit {
     this.createFormControls();
     this.createForm();
     this.getProvince();
+  }
+
+  onSubmit() {
+    
   }
 
   // getProvince() {
@@ -73,31 +78,32 @@ export class InfoPerusahaanComponent implements OnInit {
 
 
   createFormControls() {
-    this.name = new FormControl('');
+    this.corporateName = new FormControl('');
     this.address = new FormControl('');
     this.province = new FormControl('');
     this.city = new FormControl('');
     this.district = new FormControl('');
     this.village = new FormControl('');
-    this.phone = new FormControl('');
+    this.corporatePhone = new FormControl('');
     this.siup = new FormControl('');
+    this.postalcode = new FormControl('');
     this.tdp = new FormControl('');
   }
 
   createForm() {
     this.createComForm = new FormGroup({
-      name: this.name,
+      corporateName: this.corporateName,
       address: this.address,
       province: this.province,
       city: this.city,
       district: this.district,
       village: this.village,
-      phone: this.phone,
+      corporatePhone: this.corporatePhone,
+      postalCode: this.postalcode,
       siup: this.siup,
       tdp: this.tdp,
     });
   }
-
   getProvince() {
     // Country ID harcoded to Indonesia
     this.masterService.getProvince('209').subscribe(data => {
@@ -123,4 +129,9 @@ export class InfoPerusahaanComponent implements OnInit {
       this.villages = data;
     });
   }
+
+  setPostalCode(postalcode) {
+    this.createComForm.controls['postalCode'].setValue(postalcode);
+  }
+
 }

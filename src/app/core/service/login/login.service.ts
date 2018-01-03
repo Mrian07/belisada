@@ -20,7 +20,6 @@ export class LoginService {
   }
 
   logout(): void {
-      // clear token remove user from local storage to log user out
       delete this.user;
       localStorage.removeItem('user');
   }

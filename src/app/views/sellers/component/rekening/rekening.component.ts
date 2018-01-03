@@ -1,5 +1,5 @@
-import { Store } from '@ngrx/store';
-import { Component, OnInit,  ViewChild } from '@angular/core';
+import { Store, ActionsSubject } from '@ngrx/store';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NG_VALIDATORS, Validator,
   Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
 import { Directive, ElementRef, HostListener, Input } from '@angular/core';
@@ -12,6 +12,8 @@ import { SearchService } from '../../../../core/service/search/search.service';
 import { RekeningSService } from '../../../../core/service/rekening/rekening-s.service';
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
+import { Subscription } from 'rxjs/Subscription';
+import { transition } from '@angular/core/src/animation/dsl';
 
 
 @Component({
@@ -20,13 +22,14 @@ import * as fromProduct from '../../../../store/reducers';
   styleUrls: ['./rekening.component.scss']
 })
 export class RekeningComponent implements OnInit {
-  @ViewChild('f') form: any;
 
   constructor(
     private masterService: MasterService,
     private searchService: SearchService,
     private rekeningService: RekeningSService,
-    private store: Store<fromProduct.Banks>
+    private store: Store<fromProduct.Banks>,
+    private actionsSubject: ActionsSubject,
+    private ngZone: NgZone
   ) {  }
   public user: Object;
   searchrek: any;
@@ -45,83 +48,110 @@ export class RekeningComponent implements OnInit {
   id: number;
   rekening: Observable<any>;
   bank: Observable<any>;
+  token: any;
+  deletebank: Subscription;
+  editbank: Subscription;
 
   ngOnInit() {
     const user = JSON.parse(localStorage.user);
+    this.token = user.token;
     this.store.dispatch(new fromActions.GetBank(user.token));
     this.selectCity(this.mBankId);
-   this.getAllStore1();
-    this.rekening = this.store.select(fromProduct.getBankState);
+    this.deletebank = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === fromActions.DELETEBANKSUCCESS)
+        .subscribe((action: fromActions.DeleteBankSuccess) => {
+          this.ngZone.run(() => { this.rekening = Observable.of(action.success); console.log('delete Done!'); });
+           swal(
+                'Produk berhasil di hapus!',
+                'success'
+              ).then((result) => {
+              });
+        });
 
+    this.editbank = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === fromActions.EDITBANKSUCCESS)
+        .subscribe((action: fromActions.EditBankSuccess) => {
+          this.ngZone.run(() => { this.rekening = Observable.of(action.success); console.log('edit Done!'); });
+           swal(
+                'Produk berhasil di Perbarui!',
+                'success'
+              ).then((result) => {
+              });
+        });
+
+   this.rekening = this.store.select<any>(fromProduct.getBankState);
+   console.log(this.rekening);
   }
   selectCity(mBankId: number) {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
-      this.store.dispatch({type: 'GETBANK', bank: data});
-    });
-  }
-  getAllStore1() {
-    const user = JSON.parse(localStorage.user);
-    this.rekeningService.getAll({'token': user.token}).subscribe(data => {
-      this.postrek2 = data;
     });
   }
 
+  getBankList() {
+    this.rekening = this.store.select<any>(fromProduct.getBankState);
+    console.log(this.rekening);
+  }
+
   saveRek() {
-    console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
+
     const a = {
       accountNo : this.accountNo,
       accountName : this.accountName,
       mBankId : this.selectedCategory.mbankId
     };
-    const user = JSON.parse(localStorage.user);
-    this.rekeningService.create(a, {'token': user.token}).subscribe(data => {
-      this.getAllStore1();
-      this.postrek1 = data;
-      this.form.reset();
-      if (data.message === 'gagal Tambah') {
-        swal(
-          'Oops',
-          data.message,
-          'error'
-        );
-      }else {
-        swal(
-          'success!',
-          data.message,
-          'success',
-        );
-      }
-    });
+    this.store.dispatch(new fromActions.AddBank({data: a, token: this.token}));
+
+
   }
   editRek() {
-    console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
-    const b = {
-      accountNo : this.accountNo,
-      accountName : this.accountName,
-      mBankId : this.selectedCategory.mbankId,
-      mBankAccountId: this.mBankAccountId
-    };
-    const user = JSON.parse(localStorage.user);
-    this.rekeningService.update(b, {'token': user.token}).subscribe(data => {
-      location.reload();
-      this.show = false;
-    });
+    if (this.selectedCategory.mbankId === undefined) {
+      swal('Nama Bank Harus dipilih');
+    } else {
+      const b = {
+        accountNo : this.accountNo,
+        accountName : this.accountName,
+        mBankId : this.selectedCategory.mbankId,
+        mBankAccountId: this.mBankAccountId
+      };
+      this.store.dispatch(new fromActions.EditBank({data: b, token: this.token}));
+    }
   }
   getAllStorex(id) {
     this.accountName = id.accountName;
     this.accountNo = id.accountNo;
-    this.selectedCategory = id.mBankId;
+    //this.selectedCategory = id.mBankId;
     this.mBankAccountId = id.mBankAccountId;
     this.show1 = false;
+    this.selectedCategory = id.bankName;
+    console.log('fdafda', id);
   }
+
   hapusUd(id) {
-    console.log(id);
-    const user = JSON.parse(localStorage.user);
-    this.rekeningService.delete(id, {'token': user.token}).subscribe(data => {
-      this.postrek1 = data;
-      this.getAllStore1();
-     // console.log('ini', this.postrek2);
-    });
+    swal({
+      title: 'Are you sure?',
+      text: 'You wont be able to revert this!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      this.store.dispatch(new fromActions.DeleteBankList(id));
+      });
+  }
+  cancelBtn() {
+    this.show = false;
+    this.show1 = true;
+    this.clearForm();
+  }
+
+  clearForm() {
+    this.accountNo = '';
+    this.accountName = '';
+    this.mBankId = null;
+    this.mBankAccountId = null;
   }
 }

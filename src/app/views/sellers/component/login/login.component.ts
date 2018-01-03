@@ -34,7 +34,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
-    this.checkToken();
+    if (this.tokenService.getToken() === undefined) {
+    } else {
+      this.router.navigateByUrl('/seller/dashboard');
+    }
   }
 
   login() {
@@ -63,7 +66,6 @@ export class LoginComponent implements OnInit {
               email : this.email,
               type: 'activation'
             }).subscribe(response => {
-              console.log(response);
               swal({
                 type: 'success',
                 title: response.message,
@@ -80,31 +82,5 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     });
-  }
-
-  checkToken() {
-    if (!localStorage.user) {
-
-    }else {
-      this.tokenService.checkToken().subscribe(data => {
-        console.log(data);
-        if (data.status === '0') {
-          console.log('not');
-            swal({
-            title: 'Warning',
-            text: 'Login Expired, Please Relogin',
-            type: 'warning',
-            showCancelButton: false,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Re-Login'
-          }).then((result) => {
-            console.log(result);
-          });
-        }else {
-          this.router.navigate([this.returnUrl]);
-        }
-      });
-    }
   }
 }

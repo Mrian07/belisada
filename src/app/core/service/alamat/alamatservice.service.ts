@@ -8,12 +8,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AlamatserviceService {
   constructor(private http: HttpClient, private configuration: Configuration) {
   }
-  getAlamat(token: string): Observable<Alamat[]> {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('token', token);
-    return this.http.get(this.configuration.serverWithApiUrl + '/aduser/getaddress', { headers })
-        .map(resp => resp as Alamat[]);
-  }
+  // getAlamat(token: string): Observable<Alamat[]> {
+  //   // const headers = new HttpHeaders()
+  //   //   .set('Content-Type', 'application/json')
+  //   //   .set('token', token);
+  //   // return this.http.get(this.configuration.serverWithApiUrl + '/aduser/getaddress', { headers })
+  //   //     .map(resp => resp as Alamat[]);
+  //   return false;
+  // }
 }
 

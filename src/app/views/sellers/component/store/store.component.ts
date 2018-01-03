@@ -62,8 +62,8 @@ export class StoreComponent implements OnInit {
     this.createForm();
     this.getAllStore();
     this.getProvince();
-    this.mystore = this.store.select(fromProduct.getStoreState);
-    console.log(this.mystore);
+    // this.mystore = this.store.select(fromProduct.getStoreState);
+    // console.log(this.mystore);
   }
 
   createFormControls() {
@@ -104,8 +104,7 @@ export class StoreComponent implements OnInit {
         postal: model.postalcode,
         villageId: model.village.mvillageId,
       };
-      this.storeService.create(data, {'token': this.user.token}).subscribe(response => {
-        console.log('onSubmit response: ', response);
+      this.storeService.create(data).subscribe(response => {
         this.createStoreForm.reset();
         this.getAllStore();
       });
@@ -113,7 +112,7 @@ export class StoreComponent implements OnInit {
   }
 
   getAllStore() {
-    this.storeService.getAll({'token': this.user.token}).subscribe(response => {
+    this.storeService.getAll().subscribe(response => {
       console.log('getAllStore response: ', response);
       this.stores = response;
       // this.store.dispatch(new storeAction.GetStore(response));

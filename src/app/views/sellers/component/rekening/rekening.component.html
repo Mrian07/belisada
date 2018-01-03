@@ -8,7 +8,7 @@
         <div class="twelve wide stretched column">
             <div class="ui grid">
                 <div class="six wide column center aligend">
-                    <img src="/assets/img/card.jpg" alt="card.jpg" class="ui image"/>
+                    <img src="/assets/img/rekbank.png" alt="card.jpg" class="ui image"/>
                 </div>
                 <div class="ten wide column">
 
@@ -24,8 +24,9 @@
                         <div class="field">
                                 <label>Nama Bank</label>
                                 <sui-select class="selection" labelField="name" placeholder="Nama Bank" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}">
-                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId"   [ngModelOptions]="{standalone: true}" ngDefaultControl></sui-select-option>
+                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId"   [ngModelOptions]="{standalone: true}" ngDefaultControl>{{selectedCategory}}</sui-select-option>
                                 </sui-select>
+                                l
 
                         </div>
                         <div class="field">
@@ -34,14 +35,23 @@
                             <div *ngIf="!_accountName.valid" class="ui pointing red basic label">Masukan Account Name Anda</div>
                         </div>
                         <div *ngIf="show">
-                            <button
-                                [ngClass]="loading?'loading':'ui primary button'"
-                                (click)="editRek()"
-                                name = "buton13"
-                                [disabled]="!f.valid"
-                                >EDIT !!
-                            </button>
-                        </div>
+                                <button
+                                    [ngClass]="loading?'loading':'ui primary button'"
+                                    (click)="editRek()"
+                                    name = "buton13"
+                                    [disabled]="!f.valid"
+                                    >EDIT !!
+                                </button>
+
+                                <button
+                                    [ngClass]="loading?'loading':'ui primary button'"
+                                    (click)="cancelBtn()"
+                                    name = "buton13"
+                                    [disabled]="!f.valid"
+                                    >CANCEL
+                                </button>
+                            </div>
+
                         <div *ngIf="show1">
                         <button
                         [ngClass]="loading?'loading':'ui primary button'"
@@ -63,7 +73,7 @@
                         <th>Hapus</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let option3 of postrek2">
+                <tbody *ngFor="let option3 of rekening | async">
                     <tr>
                             <td>{{option3.accountName}}</td>
                             <td>{{option3.accountNo}}</td>
