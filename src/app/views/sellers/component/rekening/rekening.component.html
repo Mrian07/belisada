@@ -24,8 +24,9 @@
                         <div class="field">
                                 <label>Nama Bank</label>
                                 <sui-select class="selection" labelField="name" placeholder="Nama Bank" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}">
-                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId"   [ngModelOptions]="{standalone: true}" ngDefaultControl></sui-select-option>
+                                    <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId"   [ngModelOptions]="{standalone: true}" ngDefaultControl>{{selectedCategory}}</sui-select-option>
                                 </sui-select>
+                                l
 
                         </div>
                         <div class="field">

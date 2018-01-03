@@ -82,6 +82,7 @@ export class RekeningComponent implements OnInit {
         });
 
    this.rekening = this.store.select<any>(fromProduct.getBankState);
+   console.log(this.rekening);
   }
   selectCity(mBankId: number) {
     this.masterService.getBankList().subscribe(data => {
@@ -106,7 +107,6 @@ export class RekeningComponent implements OnInit {
 
   }
   editRek() {
-
     if (this.selectedCategory.mbankId === undefined) {
       swal('Nama Bank Harus dipilih');
     } else {
@@ -122,9 +122,11 @@ export class RekeningComponent implements OnInit {
   getAllStorex(id) {
     this.accountName = id.accountName;
     this.accountNo = id.accountNo;
-    this.selectedCategory = id.mBankId;
+    //this.selectedCategory = id.mBankId;
     this.mBankAccountId = id.mBankAccountId;
     this.show1 = false;
+    this.selectedCategory = id.bankName;
+    console.log('fdafda', id);
   }
 
   hapusUd(id) {
@@ -137,7 +139,7 @@ export class RekeningComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
-      this.store.dispatch(new fromActions.DeleteBankList({id: id, token: this.token}));
+      this.store.dispatch(new fromActions.DeleteBankList(id));
       });
   }
   cancelBtn() {

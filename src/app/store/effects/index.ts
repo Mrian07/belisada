@@ -64,7 +64,7 @@ export class ProductEffects {
       .switchMap((data) =>
         this.bankService.delete(data)
           .switchMap( (newdata: any) =>
-            this.bankService.delete(data)
+            this.bankService.getAll()
             .switchMap( (bank: any) => {
               return [
                 new fromActions.DeleteBankSuccess(bank)

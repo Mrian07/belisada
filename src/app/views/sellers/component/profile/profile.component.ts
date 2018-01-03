@@ -53,8 +53,8 @@ export class ProfileComponent implements OnInit {
   base64Avatar: string;
 
   // tgl:string;
-  userImgAvatar:string;
-  userImageNPWP:string;
+  userImgAvatar: string;
+  userImageNPWP: string;
 
   user: Profile = new Profile();
   provinces: Province[];
@@ -117,6 +117,7 @@ export class ProfileComponent implements OnInit {
         console.log('kosong');
       }else {
         console.log('ini data: ', data);
+
         // this.name.setValue(data.name);
         // this.address.setValue(data.address);
         // this.province.setValue(data.regionId);
@@ -139,15 +140,15 @@ export class ProfileComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.profileService.getProfile(luser.token).subscribe(data => {
       this.user = data;
-      if(data.imageAvatar){
-        this.userImgAvatar = 'data:image/png;base64,'+data.imageAvatar;
-      }else{
+      if ( data.imageAvatar ){
+        this.userImgAvatar = 'data:image/png;base64,' + data.imageAvatar;
+      }else {
         this.userImgAvatar = '/assets/img/kristy.png';
       }
 
-      if(data.imageNPWP){
-        this.userImageNPWP = 'data:image/png;base64,'+data.imageNPWP;
-      }else{
+      if (data.imageNPWP) {
+        this.userImageNPWP = 'data:image/png;base64,' + data.imageNPWP;
+      }else {
         this.userImageNPWP = '/assets/img/noimage.png';
       }
 
@@ -164,7 +165,7 @@ export class ProfileComponent implements OnInit {
     // }
   }
 
-  onSubmit(){
+  onSubmit() {
 
     // tgl = this.dateOfBirth.value.split("T17");
     // tgl = this.dateOfBirth.value;
