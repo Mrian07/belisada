@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
   level_5: Level5[];
 
   topProduct: TopProductCategory;
-  topProductLvl1: TopProductLvl1[];
+  topProductLvl1: TopProductCategory[];
   topProductLvl2: TopProductLvl2[];
 
   constructor(private homeService: HomeService) { }
@@ -46,8 +46,9 @@ export class HomeComponent implements OnInit {
     });
 
     this.homeService.getTopProductCategory().subscribe(data => {
-      this.topProduct = data;
-      this.topProductLvl1 = data.topProduct;
+      // this.topProduct = data;
+      console.log('data: ', data);
+      this.topProductLvl1 = data;
     });
   }
 
