@@ -25,9 +25,12 @@ export class TokoComponent implements OnInit {
   desa = [];
   categories = [];
   code: number;
+  role: any;
   selectedProvince: string;
 
   ngOnInit() {
+    const user = JSON.parse(localStorage.user);
+    this.role = user.role;
     this.getProvince();
     this.getCategoryOne();
     this.getAllStore();

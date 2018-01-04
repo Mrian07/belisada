@@ -63,18 +63,23 @@
                         </div>
                         <div class="field">
                             <label>Bergerak Dibidang</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Kategori">
-                                <sui-select-option *ngFor="let option of categories" [value]="option" value="option.name" (click)="selectCategories(option.mproductCategoryId)"></sui-select-option>
+                            <sui-select class="selection" labelField="name" placeholder="Pilih Kategori" formControlName="sectorTypeId">
+                                <sui-select-option *ngFor="let option of bidang" [value]="option" value="option.name" (click)="selectCategories(option.sectorTypeId)" ></sui-select-option>
                             </sui-select>
                         </div>
+
                         <div class="field">
-                            <div class="ui action input">
-                                <input type="text" placeholder="Upload file NPWP" readonly/>
-                                <input type="file"/>
-                                <div class="ui icon button">
-                                    <i class="attach icon"></i>
-                                </div>
-                            </div>
+                            <label>corporateNpwp</label>
+                            <input name="tdp" placeholder="Masukan nomor SIUP" type="text" formControlName="corporateNpwp"/>
+                        </div>
+                        <div class="ui divider"></div>
+                        <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvasNpwp($event)" #avaImgNpwp >
+                        <br>
+                        <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
+                        <br>
+                        <div class="upload-btn-wrapper">
+                            <!-- <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button> -->
+                            <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" formControlName="imageCorporateNpwp" />
                         </div>
 
                         <button class="ui primary button" type="submit">Simpan</button>

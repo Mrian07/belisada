@@ -1,3 +1,4 @@
+import { InfoPerusahaanService } from './../../../core/service/perusahaan/info-perusahaan.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -114,6 +115,7 @@ import { ChatService } from '../../../core/service/chat/chat.service';
     StoreService,
     RekeningSService,
     AddproductService,
+    InfoPerusahaanService,
     ChatService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

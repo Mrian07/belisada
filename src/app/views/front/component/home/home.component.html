@@ -2,7 +2,7 @@
 
 <div *ngFor="let item of topProductLvl1">
     <hr/>
-    <h1>{{ item.category }}</h1>
+    <h1>{{ item.name }}</h1>
     <div class="promo-banner-container gap-between-elements">
         <div class="promo-grid" style="padding-bottom: 40%;">
             <div class="promo-grid-content">
@@ -21,7 +21,7 @@
 
     <div class="item-grid-container">
         <div class="grid-wrapper">
-            <div class="item-grid" style="width: 16.66666667%;" *ngFor="let item of item.topProduct">
+            <div class="item-grid" style="width: 16.66666667%;" *ngFor="let item of item.list">
                 <div class="grid-content-wrapper">
                     <div class="item-img">
                         <span class="helper"></span>

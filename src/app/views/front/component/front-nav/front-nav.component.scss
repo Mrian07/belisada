@@ -31,7 +31,7 @@
 }
 
 .nav ul {
-  width: 2000px;
+  // width: 2000px;
 }
 
 .nav a {
@@ -160,10 +160,13 @@ li:hover > .mega-menu {
 }
 
 /* menu content */
+.border-nav {
+  border-bottom: 1px solid rgba(153,153,153, 0.5);
+}
 .nav-column {
-  float: left;
-  padding: 0 1.5%;
-  width: 20%;
+  // float: left;
+  // padding: 0 1.5%;
+  // width: 20%;
 }
 .nav-column a {
   color: #888;
@@ -178,8 +181,6 @@ h3 {
   color: #372f2b;
   font-size: .95em;
   font-weight: bold;
-  line-height: 1.15;
-  margin: 1.25em 0 .75em;
   text-transform: uppercase;
 }
 .highlight {

@@ -29,5 +29,8 @@ export class Profile {
   villageId: number;
   villageName: string;
 
+  status?: string;
+  message?: string;
+
   constructor() {}
 }
