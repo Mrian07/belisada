@@ -16,6 +16,7 @@ import { RegistrationComponent } from './views/sellers/component/registration/re
 import { MaintenanceComponent } from './views/sellers/component/maintenance/maintenance.component';
 import { Page404Component } from './views/sellers/component/page-404/page-404.component';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
+import { CategoryComponent } from './views/front/component/category/category.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,20 @@ const routes: Routes = [
         component: ProductSearchComponent,
         data: {
           title: 'product Search'
+        }
+      }
+    ]
+  },
+
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'category',
+        component: CategoryComponent,
+        data: {
+          title: 'category'
         }
       }
     ]
