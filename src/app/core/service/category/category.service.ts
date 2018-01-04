@@ -1,3 +1,4 @@
+import { Bidang } from './../../model/bidang';
 import { CategorySearch } from './../../model/category-search';
 import { HttpClient } from '@angular/common/http';
 import { Configuration } from './../../config/configuration';
@@ -18,6 +19,10 @@ export class CategoryService {
   CategoryOne(): Observable<Category[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/category/c1/')
     .map(response => response as Category[]);
+  }
+  test(): Observable<Bidang[]> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/businesstype')
+    .map(response => response as Bidang[]);
   }
 
   CategoryTwo(id: number): Observable<Category2[]> {
