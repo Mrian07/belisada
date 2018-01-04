@@ -88,15 +88,6 @@
                             <label>No. NPWP</label>
                             <input name="npwp" placeholder="Masukan NPWP" type="text" formControlName="npwp"/>
                         </div>
-                        <div class="field">
-                            <div class="ui action input">
-                                <input type="text" placeholder="Upload file NPWP" readonly/>
-                                <input type="file"/>
-                                <div class="ui icon button">
-                                    <i class="attach icon"></i>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="ui divider"></div>
                         <img class="ui middle aligned small image" src="{{userImageNPWP}}" (load)="setCanvasNpwp($event)" #avaImgNpwp >

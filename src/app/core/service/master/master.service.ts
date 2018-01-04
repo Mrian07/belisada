@@ -19,22 +19,22 @@ export class MasterService {
         .map(response => response as Country[]);
   }
 
-  getProvince(id: string): Observable<Province[]> {
+  getProvince(id: any): Observable<Province[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/region/' + id)
         .map(response => response as Province[]);
   }
 
-  getCity(id: string): Observable<City[]> {
+  getCity(id: any): Observable<City[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/city/' + id)
         .map(response => response as City[]);
   }
 
-  getDistrict(id: string): Observable<District[]> {
+  getDistrict(id: any): Observable<District[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/district/' + id)
         .map(response => response as District[]);
   }
 
-  getVillage(id: string): Observable<Village[]> {
+  getVillage(id: any): Observable<Village[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/village/' + id)
         .map(response => response as Village[]);
   }

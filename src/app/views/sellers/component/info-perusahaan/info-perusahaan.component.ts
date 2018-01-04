@@ -116,7 +116,7 @@ export class InfoPerusahaanComponent implements OnInit {
       corporateNpwp: model.corporateNpwp,
       imageCorporateNpwp: this.newImage
     };
-    this.infoPerusahaan.update(data, {'token': this.user.token}).subscribe(response => {
+    this.infoPerusahaan.update(data).subscribe(response => {
       console.log('ini submit ', response);
       this.createComForm.reset();
       if (response.status === '1') {
