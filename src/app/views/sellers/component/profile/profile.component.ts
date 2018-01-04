@@ -76,6 +76,24 @@ export class ProfileComponent implements OnInit {
   }
 
   createFormControls() {
+
+    // const luser = JSON.parse(localStorage.getItem('user'));
+    // this.profileService.getProfile(luser.token).subscribe(data => {
+    //   this.user = data;
+    //   if ( data.imageAvatar ) {
+    //     this.userImgAvatar = 'data:image/png;base64,' + data.imageAvatar;
+    //   }else {
+    //     this.userImgAvatar = '/assets/img/kristy.png';
+    //   }
+
+    //   if (data.imageNPWP) {
+    //     this.userImageNPWP = 'data:image/png;base64,' + data.imageNPWP;
+    //   }else {
+    //     this.userImageNPWP = '/assets/img/noimage.png';
+    //   }
+    // });
+
+
     this.name = new FormControl('');
     this.address = new FormControl('');
     this.province = new FormControl('');
@@ -152,13 +170,7 @@ export class ProfileComponent implements OnInit {
       }else {
         this.userImageNPWP = '/assets/img/noimage.png';
       }
-      console.log('gini:', data);
-
-
-
-
     });
-
   }
 
   onSubmit() {
