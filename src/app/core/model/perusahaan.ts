@@ -9,5 +9,7 @@ export class Perusahaan {
   sectorTypeId: string;
   corporateNpwp: string;
   imageCorporateNpwp: string;
+  message?: string;
+  status?: string;
   constructor() {}
 }
