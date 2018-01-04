@@ -25,6 +25,7 @@ import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './core/shared/interceptor';
+import { CategoryComponent } from './views/front/component/category/category.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -40,6 +41,7 @@ export function createTranslateLoader(http: HttpClient) {
     SendForgotPasswordComponent,
     ActivationLayoutComponent,
     Page404Component,
+    CategoryComponent,
   ],
   imports: [
     BrowserModule,
