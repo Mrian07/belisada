@@ -118,20 +118,20 @@ export class ProfileComponent implements OnInit {
       }else {
         console.log('ini data: ', data);
 
-        // this.name.setValue(data.name);
-        // this.address.setValue(data.address);
-        // this.province.setValue(data.regionId);
-        // this.city.setValue(data.cityId);
-        // this.district.setValue(data.districtId);
-        // this.village.setValue(data.villageId);
-        // this.postalcode.setValue(data.postal);
-        // this.phone.setValue(data.phone);
-        // this.ktp.setValue(data.idcard);
-        // this.npwp.setValue(data.npwp);
-        // this.imgAvatar.setValue(data.imageAvatar);
-        // this.imgNpwp.setValue(data.imageNPWP);
-        // this.dateOfBirth = new FormControl(new Date());
-        this.dateOfBirth.setValue(data.dateOfBirth);
+        this.name.setValue(data.name);
+        this.address.setValue(data.address);
+        this.province.setValue(this.provinces.find(x => x.mregionId === data.regionId));
+        this.city.setValue(data.cityId);
+        this.district.setValue(data.districtId);
+        this.village.setValue(data.villageId);
+        this.postalcode.setValue(data.postal);
+        this.phone.setValue(data.phone);
+        this.ktp.setValue(data.idcard);
+        this.npwp.setValue(data.npwp);
+        this.imgAvatar.setValue(data.imageAvatar);
+        this.imgNpwp.setValue(data.imageNPWP);
+        this.dateOfBirth = new FormControl(new Date());
+        // this.dateOfBirth.setValue(data.dateOfBirth);
 
       }
     });
@@ -143,22 +143,17 @@ export class ProfileComponent implements OnInit {
       this.user = data;
       if ( data.imageAvatar ) {
         this.userImgAvatar = 'data:image/png;base64,' + data.imageAvatar;
-      }else {
+      } else {
         this.userImgAvatar = '/assets/img/kristy.png';
       }
 
       if (data.imageNPWP) {
         this.userImageNPWP = 'data:image/png;base64,' + data.imageNPWP;
-      }else {
+      } else {
         this.userImageNPWP = '/assets/img/noimage.png';
       }
       console.log('gini:', data);
-
-
-
-
     });
-
   }
 
   onSubmit() {
