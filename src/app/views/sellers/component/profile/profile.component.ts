@@ -118,21 +118,32 @@ export class ProfileComponent implements OnInit {
       }else {
         console.log('ini data: ', data);
 
-        this.name.setValue(data.name);
-        this.address.setValue(data.address);
-        this.province.setValue(this.provinces.find(x => x.mregionId === data.regionId));
-        this.city.setValue(data.cityId);
-        this.district.setValue(data.districtId);
-        this.village.setValue(data.villageId);
-        this.postalcode.setValue(data.postal);
-        this.phone.setValue(data.phone);
-        this.ktp.setValue(data.idcard);
-        this.npwp.setValue(data.npwp);
-        this.imgAvatar.setValue(data.imageAvatar);
-        this.imgNpwp.setValue(data.imageNPWP);
-        this.dateOfBirth = new FormControl(new Date());
-        // this.dateOfBirth.setValue(data.dateOfBirth);
+        this.masterService.getCity(data.regionId).subscribe(city => {
+          this.cities = city;
+          this.masterService.getDistrict(data.cityId).subscribe(district => {
+            this.districts = district;
+            this.masterService.getVillage(data.districtId).subscribe(village => {
 
+              this.villages = village;
+
+              this.name.setValue(data.name);
+              this.address.setValue(data.address);
+              this.province.setValue(this.provinces.find(x => x.mregionId === data.regionId));
+              this.city.setValue(this.cities.find(x => x.mcityId === data.cityId));
+              // this.city.setValue(data.cityId);
+              this.district.setValue(this.districts.find(x => x.mdistrictId === data.districtId));
+              this.village.setValue(this.villages.find(x => x.mvillageId === data.villageId));
+              this.postalcode.setValue(data.postal);
+              this.phone.setValue(data.phone);
+              this.ktp.setValue(data.idcard);
+              this.npwp.setValue(data.npwp);
+              this.imgAvatar.setValue(data.imageAvatar);
+              this.imgNpwp.setValue(data.imageNPWP);
+              this.dateOfBirth = new FormControl(new Date());
+              // this.dateOfBirth.setValue(data.dateOfBirth);
+            });
+          });
+        });
       }
     });
   }
@@ -197,19 +208,19 @@ export class ProfileComponent implements OnInit {
 
     this.profileService.updateProfile(updateProfileData).subscribe(data => {
 
-      // if (data.status === '1') {
-      //   swal(
-      //     'success',
-      //     data.message,
-      //     'success'
-      //   );
-      // }else {
-      //   swal(
-      //     'Opps!',
-      //     data.message,
-      //     'error'
-      //   );
-      // }
+      if (data.status === '1') {
+        swal(
+          'success',
+          data.message,
+          'success'
+        );
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
 
 
     });
