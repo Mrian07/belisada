@@ -1,8 +1,9 @@
+import { Token } from './../../../../core/model/login';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NG_VALIDATORS, Validator,
   Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
 import { Rekening } from '../../../../core/model/rekening';
@@ -22,6 +23,7 @@ import { transition } from '@angular/core/src/animation/dsl';
   styleUrls: ['./rekening.component.scss']
 })
 export class RekeningComponent implements OnInit {
+@ViewChild('div') div:ElementRef;
 
   constructor(
     private masterService: MasterService,
@@ -40,6 +42,7 @@ export class RekeningComponent implements OnInit {
   message: string;
   status: string;
   selectedCategory: any;
+  role: any;
   accountName: string;
   accountNo: string;
   show = false;
@@ -55,8 +58,10 @@ export class RekeningComponent implements OnInit {
   ngOnInit() {
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
+    this.role = user.role;
     this.store.dispatch(new fromActions.GetBank(user.token));
     this.selectCity();
+    this.getRole();
     this.deletebank = this.actionsSubject
         .asObservable()
         .filter(action => action.type === fromActions.DELETEBANKSUCCESS)
@@ -88,8 +93,20 @@ export class RekeningComponent implements OnInit {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
     });
-  }
 
+  }
+  getRole(){
+    
+    // this.div.nativeElement.innerHTML ='';
+
+    if(this.role === 6) {
+       console.log('kampret3', this.role);
+    }else{
+       console.log('kampret');
+    }
+   
+   
+  }
   getBankList() {
     this.rekening = this.store.select<any>(fromProduct.getBankState);
     console.log(this.rekening);
@@ -122,6 +139,7 @@ export class RekeningComponent implements OnInit {
   getAllStorex(id) {
     console.log('rek: ', this.searchrek);
     console.log('id: ', id);
+    console.log('sadsd', this.role);
     console.log('this.searchrek.find(x => x.mbankId === id.mBankId): ', this.searchrek.find(x => x.mbankId === id.mBankId));
     this.accountName = id.accountName;
     this.accountNo = id.accountNo;
