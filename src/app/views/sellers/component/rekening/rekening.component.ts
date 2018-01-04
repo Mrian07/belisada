@@ -75,7 +75,7 @@ export class RekeningComponent implements OnInit {
         .subscribe((action: fromActions.EditBankSuccess) => {
           this.ngZone.run(() => { this.rekening = Observable.of(action.success); console.log('edit Done!'); });
            swal(
-                'Produk berhasil di Perbarui!',
+                'Rekening berhasil di Perbarui!',
                 'success'
               ).then((result) => {
               });
