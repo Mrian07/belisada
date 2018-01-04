@@ -47,6 +47,7 @@ export class ProfileComponent implements OnInit {
   npwp: FormControl;
   imgAvatar: FormControl;
   imgNpwp: FormControl;
+  role: any;
   dateOfBirth: FormControl;
 
   base64Npwp: string;
@@ -68,6 +69,9 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+      const user = JSON.parse(localStorage.user);
+    // this.token = user.token;
+    this.role = user.role;
     this.createFormControls();
     this.createForm();
     this.getProvince();
