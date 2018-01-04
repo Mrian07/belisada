@@ -1,0 +1,166 @@
+@import 'rwd/gridtools';
+
+.header1 {
+    grid-area: header1;
+}
+.header2 {
+    grid-area: header2;
+}
+.header3 {
+    grid-area: header3;
+}
+
+.navigation {
+    grid-area: navigation;
+}
+
+.main {
+    grid-area: main;
+}
+.see-all-footer {
+    grid-area: see-all-footer;
+}
+.agreement {
+    grid-area: agreement;
+}
+.copyright {
+    grid-area: copyright;
+}
+
+.bs.container.home {
+    display: grid;
+}
+
+@media screen and (min-width: 426px) {
+    .bs.container.home {
+        display: grid;
+        grid-template-columns: 1fr 10fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "header header header"
+            "navigation navigation navigation"
+            ". main ."
+            "footer footer footer"
+    }
+
+    .header {
+        grid-area: header;
+    
+        display: grid;
+        grid-template-columns: 2fr 8fr 2fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "header1 header1 header1"
+            "header2 header2 header2"
+            "header3 header3 header3"
+    }
+
+    .footer {
+        display: grid;
+        grid-area: footer;
+        grid-template-columns: 1fr 10fr 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "topfooter topfooter topfooter"
+        ". services ."
+        ". sitemap-footer ."
+        ". features ."
+        ". see-all-footer ."
+        ". agreement ."
+        ". copyright .";
+    }
+    .top-footer {
+        grid-area: topfooter;
+    }
+    .services {
+        display: grid;
+        grid-area: services;
+        grid-gap: 1em;
+        margin-bottom: 2em;
+    
+        h3 {
+            grid-column: 1 / 6;
+        }
+    }
+    .sitemap-footer {
+        display: grid;
+        grid-area: sitemap-footer;
+        grid-gap: 1em;
+        grid-template-columns: repeat(4, 1fr);
+        margin-bottom: 2em;
+    }
+    .features {
+        display: grid;
+        grid-area: features;
+        grid-gap: 1em;
+        grid-template-columns: repeat(3, 1fr);
+        margin-bottom: 2em;
+    }
+}
+@media screen and (max-width: 425px) {
+    .bs.container.home {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "header"
+            "navigation"
+            "main"
+            "footer"
+    }
+
+    .footer {
+        display: grid;
+        grid-area: footer;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+            "topfooter"
+            "services"
+            "sitemap-footer"
+            "features"
+            "see-all-footer"
+            "agreement"
+            "copyright";
+    }
+
+    .services {
+        display: grid;
+        grid-area: services;
+        grid-row-gap: 1em;
+        grid-template-columns: 1fr;
+        margin-bottom: 2em;
+    
+        h3 {
+            grid-column: 1;
+        }
+        div {
+            grid-column: 1;
+        }
+    }
+    .sos ul {
+        margin: 0 auto!important;
+    }
+    .pay ul {
+        margin: 0 auto!important;
+    }
+    .ship ul {
+        margin: 0 auto!important;
+    }
+    .sitemap-footer {
+        display: grid;
+        grid-area: sitemap-footer;
+        grid-row-gap: 1em;
+        grid-template-columns: 1fr;
+        margin-bottom: 2em;
+        text-align: center;
+    }
+    .features {
+        display: grid;
+        grid-area: features;
+        // grid-gap: 1em;
+        grid-template-columns: 1fr;
+        margin-bottom: 2em;
+        text-align: center;
+    }
+}

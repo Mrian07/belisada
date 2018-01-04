@@ -12,7 +12,7 @@ export class TopProductLvl2 {
   sku: string;
   rate: number;
   istodayshipping: string;
-  name_en: string;
+  nameEn: string;
 
   constructor() { }
 }

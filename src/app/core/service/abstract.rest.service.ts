@@ -8,40 +8,24 @@ export abstract class AbstractRestService<T> {
     constructor(protected _http: HttpClient, protected actionUrl: string) {
     }
 
-    getAll(jsonHeaders): Observable<T[]> {
-        jsonHeaders['content-type'] = 'application/json';
-        const headers = new HttpHeaders(jsonHeaders);
-        return this._http.get(this.actionUrl, {headers})
+    getAll(): Observable<T[]> {
+        return this._http.get(this.actionUrl)
             .map(response => response as T[]);
     }
-    getById(id: number, jsonHeaders): Observable<T> {
-        jsonHeaders['content-type'] = 'application/json';
-        const headers = new HttpHeaders(jsonHeaders);
-        return this._http.get(`${this.actionUrl}/${id}`, {headers})
+    getById(id: number): Observable<T> {
+        return this._http.get(`${this.actionUrl}/${id}`)
             .map(response => response as T);
     }
-    create(data: Object, jsonHeaders): Observable<T> {
-        jsonHeaders['content-type'] = 'application/json';
-        const headers = new HttpHeaders(jsonHeaders);
-        return this._http.post(`${this.actionUrl}/create`, data, {headers})
+    create(data: Object): Observable<T> {
+        return this._http.post(`${this.actionUrl}/create`, data)
             .map(response => response as T);
     }
-    update(data: Object, jsonHeaders): Observable<T> {
-        jsonHeaders['content-type'] = 'application/json';
-        const headers = new HttpHeaders(jsonHeaders);
-        return this._http.put(`${this.actionUrl}/update`, data, {headers})
+    update(data: Object): Observable<T> {
+        return this._http.put(`${this.actionUrl}/update`, data)
             .map(response => response as T);
     }
-    delete(id: number, jsonHeaders): Observable<T> {
-        jsonHeaders['content-type'] = 'application/json';
-        const headers = new HttpHeaders(jsonHeaders);
-        return this._http.delete(`${this.actionUrl}/delete/${id}`, {headers})
+    delete(id: number): Observable<T> {
+        return this._http.delete(`${this.actionUrl}/delete/${id}`)
             .map(response => response as T);
     }
-    test(data: Object, jsonHeaders): Observable<T> {
-      jsonHeaders['content-type'] = 'application/json';
-      const headers = new HttpHeaders(jsonHeaders);
-      return this._http.post(`${this.actionUrl}/update`, data, {headers})
-          .map(response => response as T);
-  }
 }

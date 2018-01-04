@@ -23,7 +23,8 @@ import { FrontModules } from './views/front/modules/front.modules';
 import { ActivationService } from './core/service/activation/activation.service';
 import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 import { FormsModule } from '@angular/forms';
-
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Interceptor } from './core/shared/interceptor';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -68,6 +69,10 @@ export function createTranslateLoader(http: HttpClient) {
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
+    },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
     },
     OnlyLoggedInUsersGuard,
     {provide: APP_BASE_HREF, useValue: '/'}

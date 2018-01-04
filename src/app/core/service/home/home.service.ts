@@ -16,9 +16,9 @@ export class HomeService {
         .map(response => response as HomeView);
   }
 
-  getTopProductCategory(): Observable<TopProductCategory> {
-    return this.http.get(this.configuration.serverWithApiUrl + '/home/topproductcategory')
-        .map(response => response as TopProductCategory);
+  getTopProductCategory(): Observable<TopProductCategory[]> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/home/topproduct')
+        .map(response => response as TopProductCategory[]);
   }
 
   getProductBrand(): Observable<Level4[]> {
