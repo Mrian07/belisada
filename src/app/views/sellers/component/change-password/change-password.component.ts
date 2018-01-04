@@ -9,14 +9,32 @@ import { ChangePasswordService } from '../../../../core/service/changepassword/c
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
+
   old_password: string;
   password_baru: string;
   password_ulangi: string;
-
+  token:any;
+  role: any;
   constructor(private changePasswordService: ChangePasswordService) { }
 
   ngOnInit() {
+    const user = JSON.parse(localStorage.user);
+    this.token = user.token;
+    this.role = user.role;
     this.old_password = '';
+    this.getRole();
+  }
+  getRole(){
+    
+    // this.div.nativeElement.innerHTML ='';
+
+    if(this.role === 6) {
+       console.log('kampret3', this.role);
+    }else{
+       console.log('kampret', this.role);
+    }
+   
+   
   }
 
   changePassword() {

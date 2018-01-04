@@ -88,15 +88,6 @@
                             <label>No. NPWP</label>
                             <input name="npwp" placeholder="Masukan NPWP" type="text" formControlName="npwp"/>
                         </div>
-                        <div class="field">
-                            <div class="ui action input">
-                                <input type="text" placeholder="Upload file NPWP" readonly/>
-                                <input type="file"/>
-                                <div class="ui icon button">
-                                    <i class="attach icon"></i>
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="ui divider"></div>
                         <img class="ui middle aligned small image" src="{{userImageNPWP}}" (load)="setCanvasNpwp($event)" #avaImgNpwp >
@@ -115,7 +106,8 @@
                 </div>
             </div>
         </div>
-        <div class="four wide column">
+      <div *ngIf="role == 6; else login">
+   <div class="four wide column">
             <div class="ui vertical fluid right tabular menu">
                 <a routerLink="/seller/profile" class="active item">
                     Data Diri
@@ -134,5 +126,24 @@
                 </a>
             </div>
         </div>
+</div>
+<ng-template #login>
+    <div class="four wide column">
+            <div class="ui vertical fluid right tabular menu">
+                <a routerLink="/seller/profile" class="active item">
+                    Data Diri
+                </a>
+                <a routerLink="/seller/change-password" class="item">
+                    Ubah Password
+                </a>
+                <a routerLink="/seller/rekening" class="item">
+                    Rekening Bank
+                </a>
+                <a routerLink="/seller/toko" class="item">
+                    Info Toko
+                </a>
+            </div>
+        </div>
+</ng-template>
     </div>
 </div>

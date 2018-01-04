@@ -60,24 +60,44 @@
             </div>
         </div>
     </div>
-    <div class="four wide column">
-        <div class="ui vertical fluid right tabular menu">
-            <a routerLink="/seller/profile" class="item">
-            Data Diri
-            </a>
-            <a routerLink="/seller/change-password" class="item">
-                Ubah Password
-            </a>
-            <a routerLink="/seller/rekening" class="item">
-            Rekening Bank
-            </a>
-            <a routerLink="/seller/toko" class="active item">
-            Info Toko
-            </a>
-            <a routerLink="/seller/info-perusahaan" class="item">
-            Info Perusahaan
-            </a>
+     <div *ngIf="role == 6; else login">
+   <div class="four wide column">
+            <div class="ui vertical fluid right tabular menu">
+                <a routerLink="/seller/profile" class="item">
+                    Data Diri
+                </a>
+                <a routerLink="/seller/change-password" class="item">
+                    Ubah Password
+                </a>
+                <a routerLink="/seller/rekening" class="item">
+                    Rekening Bank
+                </a>
+                <a routerLink="/seller/toko" class="active item">
+                    Info Toko
+                </a>
+                <a routerLink="/seller/info-perusahaan" class="item">
+                    Info Perusahaan
+                </a>
+            </div>
         </div>
-    </div>
+</div>
+<ng-template #login>
+    <div class="four wide column">
+            <div class="ui vertical fluid right tabular menu">
+                <a routerLink="/seller/profile" class="item">
+                    Data Diri
+                </a>
+                <a routerLink="/seller/change-password" class="item">
+                    Ubah Password
+                </a>
+                <a routerLink="/seller/rekening" class="item">
+                    Rekening Bank
+                </a>
+                <a routerLink="/seller/toko" class="active item">
+                    Info Toko
+                </a>
+            </div>
+        </div>
+</ng-template>
     </div>
 </div>
