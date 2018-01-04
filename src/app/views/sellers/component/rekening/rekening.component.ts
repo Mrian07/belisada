@@ -56,7 +56,7 @@ export class RekeningComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
     this.store.dispatch(new fromActions.GetBank(user.token));
-    this.selectCity(this.mBankId);
+    this.selectCity();
     this.deletebank = this.actionsSubject
         .asObservable()
         .filter(action => action.type === fromActions.DELETEBANKSUCCESS)
@@ -84,7 +84,7 @@ export class RekeningComponent implements OnInit {
    this.rekening = this.store.select<any>(fromProduct.getBankState);
    console.log(this.rekening);
   }
-  selectCity(mBankId: number) {
+  selectCity() {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
     });
@@ -103,9 +103,9 @@ export class RekeningComponent implements OnInit {
       mBankId : this.selectedCategory.mbankId
     };
     this.store.dispatch(new fromActions.AddBank({data: a, token: this.token}));
-
-
+    this.clearForm();
   }
+
   editRek() {
     if (this.selectedCategory.mbankId === undefined) {
       swal('Nama Bank Harus dipilih');
@@ -120,12 +120,14 @@ export class RekeningComponent implements OnInit {
     }
   }
   getAllStorex(id) {
+    console.log('rek: ', this.searchrek);
+    console.log('id: ', id);
+    console.log('this.searchrek.find(x => x.mbankId === id.mBankId): ', this.searchrek.find(x => x.mbankId === id.mBankId));
     this.accountName = id.accountName;
     this.accountNo = id.accountNo;
-    //this.selectedCategory = id.mBankId;
     this.mBankAccountId = id.mBankAccountId;
     this.show1 = false;
-    this.selectedCategory = id.bankName;
+    this.selectedCategory = this.searchrek.find(x => x.mbankId === id.mBankId);
     console.log('fdafda', id);
   }
 
