@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromProduct from '../../../../store/reducers';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-toko',
@@ -95,11 +96,17 @@ export class TokoComponent implements OnInit {
         this.mBpartnerStoreId = response[0].mBpartnerStoreId;
         this.masterService.getCity(response[0].regionId).subscribe(city => {
           this.cities = city;
+          console.log('this.cities: ', this.cities);
+          console.log('response[0].cityId: ', response[0].cityId);
           this.masterService.getDistrict(response[0].cityId).subscribe(district => {
             this.districts = district;
+            console.log('this.districts: ', this.districts);
+            console.log('response[0].districtId: ', response[0].districtId);
             this.masterService.getVillage(response[0].districtId).subscribe(village => {
 
               this.villages = village;
+              console.log('this.villages: ', this.villages);
+              console.log('response[0].villageId: ', response[0].villageId);
               this.name.setValue(response[0].name);
               this.address.setValue(response[0].address);
               this.province.setValue(this.provinces.find(x => x.mregionId === response[0].regionId));
@@ -135,10 +142,12 @@ export class TokoComponent implements OnInit {
       if (this.isUpdate) {
         this.storeService.update(data).subscribe(response => {
           this.fillForms();
+          swal('Update Sukses', 'Data berhasil diupdate', 'success');
         });
       } else {
         this.storeService.create(data).subscribe(response => {
           this.fillForms();
+          swal('Simpan Sukses', 'Data berhasil didaftarkan', 'success');
         });
       }
     }

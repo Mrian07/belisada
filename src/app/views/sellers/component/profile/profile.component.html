@@ -35,6 +35,10 @@
                         <div class="field">
                             <label>Nama</label>
                             <input name="name" placeholder="Masukan nama" type="text" formControlName="name" value="{{ user.name }}"/>
+                            <div class="form-control-feedback" *ngIf="name.invalid && name.dirty"> 
+                                Nama tidak boleh kosong
+                            </div>
+
                         </div>
                         <div class="field">
                             <label>Tanggal Lahir</label>

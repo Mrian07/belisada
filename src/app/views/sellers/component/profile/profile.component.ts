@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
+    this.name = new FormControl('', Validators.required);
     this.address = new FormControl('');
     this.province = new FormControl('');
     this.city = new FormControl('');
