@@ -56,11 +56,11 @@ export class RekeningComponent implements OnInit {
   editbank: Subscription;
 
   ngOnInit() {
+    // this.selectCity();
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
     this.role = user.role;
     this.store.dispatch(new fromActions.GetBank(user.token));
-    this.selectCity();
     this.getRole();
     this.deletebank = this.actionsSubject
         .asObservable()
@@ -92,11 +92,12 @@ export class RekeningComponent implements OnInit {
   selectCity() {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
+      console.log('askdksaldksad', data);
     });
 
   }
   getRole(){
-    
+
     // this.div.nativeElement.innerHTML ='';
 
     if(this.role === 6) {
@@ -104,8 +105,8 @@ export class RekeningComponent implements OnInit {
     }else{
        console.log('kampret');
     }
-   
-   
+
+
   }
   getBankList() {
     this.rekening = this.store.select<any>(fromProduct.getBankState);

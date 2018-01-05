@@ -1,3 +1,5 @@
+import { Perusahaan } from './../../../../core/model/perusahaan';
+import { Store } from '@ngrx/store';
 import { Bidang } from './../../../../core/model/bidang';
 import { Component, OnInit } from '@angular/core';
 import { MasterService } from '../../../../core/service/master/master.service';
@@ -9,6 +11,7 @@ import { Village } from '../../../../core/model/village';
 import swal from 'sweetalert2';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { InfoPerusahaanService } from '../../../../core/service/perusahaan/info-perusahaan.service';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-info-perusahaan',
   templateUrl: './info-perusahaan.component.html',
@@ -43,15 +46,24 @@ export class InfoPerusahaanComponent implements OnInit {
   status: string;
   message: string;
 
+  perusahaan: Observable<any>;
+
   kelurahan = [];
   bidang: Bidang[];
   categories = [];
   selectedProvince: string;
 
   constructor(private masterService: MasterService, private categoryService: CategoryService,
-    private infoPerusahaan: InfoPerusahaanService) { }
+    private infoPerusahaan: InfoPerusahaanService,
+    private store: Store<{p: {perusahaan: Perusahaan[]}}>) { }
 
   ngOnInit() {
+    // this.store.dispatch(new fromActions.GetBank(user.token));
+    this.perusahaan = this.store.select('p');
+    this.perusahaan.subscribe(x => {
+      console.log(x);
+    });
+    console.log('asdasdasdasd', this.perusahaan);
     // this.getProvince();
     this.getCategoryOne();
     this.createFormControls();
@@ -117,7 +129,7 @@ export class InfoPerusahaanComponent implements OnInit {
       // this.selectedCategory.mbankId
       sectorTypeId: model.sectorTypeId.sectorTypeId,
       corporateNpwp: model.corporateNpwp,
-      
+
       imageCorporateNpwp: this.newImage
     };
     this.infoPerusahaan.update(data).subscribe(response => {
@@ -243,7 +255,7 @@ export class InfoPerusahaanComponent implements OnInit {
 
               this.villages = village;
 
-    
+
     // corporateName: model.corporateName,
     //   address: model.address,
     //   corporatePhone: model.corporatePhone,
