@@ -12,8 +12,8 @@ export class CategoryComponent implements OnInit {
 
   // categoryView: CategoryView;
   level_3: Category2[];
-  alias: string;
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute) { 
+  alias: any;
+  constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
     this.route.params.subscribe( id => {
       this.alias = id;
     });
