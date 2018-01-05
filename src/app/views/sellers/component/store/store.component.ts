@@ -45,6 +45,7 @@ export class StoreComponent implements OnInit {
 
   stores: any;
   tabs: Boolean = true;
+  tabs1: Boolean = true;
   mystore: Observable<any>;
 
   constructor(
@@ -115,6 +116,9 @@ export class StoreComponent implements OnInit {
     this.storeService.getAll().subscribe(response => {
       console.log('getAllStore response: ', response);
       this.stores = response;
+      if (response.length === 0) {
+        this.tabs1 = false;
+      }
       // this.store.dispatch(new storeAction.GetStore(response));
     });
   }

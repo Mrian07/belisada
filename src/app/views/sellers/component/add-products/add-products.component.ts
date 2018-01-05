@@ -124,7 +124,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectSubCategories(id: number) {
-    console.log(id);
+    //console.log(id);
   }
 
   search(event) {
@@ -167,7 +167,6 @@ export class AddProductsComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     const token = user.token;
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
       this.storeId = response[0].mBpartnerStoreId;
     });
   }
@@ -183,7 +182,6 @@ export class AddProductsComponent implements OnInit {
         productId: this.productId,
         mBpartnerStoreId: this.storeId
       };
-      this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
 

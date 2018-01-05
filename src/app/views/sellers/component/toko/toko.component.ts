@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { MasterService } from '../../../../core/service/master/master.service';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { StoreService } from '../../../../core/service/store/store.service';
@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromProduct from '../../../../store/reducers';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-toko',
@@ -43,9 +44,21 @@ export class TokoComponent implements OnInit {
   isUpdate: Boolean = false;
   mBpartnerStoreId: number;
 
-  stores: any;
   tabs: Boolean = true;
   mystore: Observable<any>;
+  stores: MyStore[];
+  kelurahan = [];
+  desa = [];
+  code: string;
+  role: any;
+  selectedProvince: string;
+  namaToko: string;
+  alamatToko: string;
+  selectedProv: any;
+  selectedCity: any;
+  selectedKelurahan: any;
+  selectedDesa: any;
+  regionId: number;
 
   constructor(
     private storeService: StoreService,
@@ -65,13 +78,13 @@ export class TokoComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
-    this.address = new FormControl('');
+    this.name = new FormControl('', Validators.required);
+    this.address = new FormControl('', Validators.required);
     this.province = new FormControl('');
     this.city = new FormControl('');
     this.district = new FormControl('');
     this.village = new FormControl('');
-    this.postalcode = new FormControl('');
+    this.postalcode = new FormControl('', Validators.required);
     this.description = new FormControl('');
   }
 
@@ -98,7 +111,6 @@ export class TokoComponent implements OnInit {
           this.masterService.getDistrict(response[0].cityId).subscribe(district => {
             this.districts = district;
             this.masterService.getVillage(response[0].districtId).subscribe(village => {
-
               this.villages = village;
               this.name.setValue(response[0].name);
               this.address.setValue(response[0].address);
@@ -132,35 +144,58 @@ export class TokoComponent implements OnInit {
         postal: model.postalcode,
         villageId: model.village.mvillageId,
       };
+
+      if (this.name.value === '') {
+        swal(
+          'Opps!',
+          'Nama tidak boleh kosong',
+          'error'
+        );
+        return false;
+      } else if (this.address.value === '') {
+        swal(
+          'Opps!',
+          'Alamat tidak boleh kosong',
+          'error'
+        );
+        return false;
+      } else if (this.postalcode.value === '') {
+        swal(
+          'Opps!',
+          'Kodepos tidak boleh kosong',
+          'error'
+        );
+        return false;
+      }
+
+
       if (this.isUpdate) {
         this.storeService.update(data).subscribe(response => {
           this.fillForms();
+          swal('Update Sukses', 'Data berhasil diupdate', 'success');
         });
       } else {
         this.storeService.create(data).subscribe(response => {
           this.fillForms();
+          swal('Simpan Sukses', 'Data berhasil didaftarkan', 'success');
         });
       }
     }
   }
 
   getAllStore() {
-    this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
-      this.stores = response;
-      // this.store.dispatch(new storeAction.GetStore(response));
+    this.storeService.getAll().subscribe(data => {
+      this.stores = data;
     });
   }
 
   getProvince() {
-    // Country ID harcoded to Indonesia
     this.masterService.getProvince('209').subscribe(data => {
       this.provinces = data;
     });
   }
 
   getCity(id) {
-    console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });
@@ -185,53 +220,4 @@ export class TokoComponent implements OnInit {
   changeData() {
     this.routes.navigateByUrl('/seller/profile');
   }
-
-  // getAllStore() {
-  //   // const a ={
-  //   //   this.desa =
-  //   // }
-  //   const user = JSON.parse(localStorage.user);
-  //   this.storeService.getAll().subscribe(data => {
-  //     this.stores = data;
-  //     console.log(this.stores)
-  //   });
-  // }
-
-  // getProvince() {
-  //   this.masterService.getProvince('209').subscribe(data => {
-  //     this.province = data;
-  //   });
-  // }
-
-  // selectCity(id) {
-  //   this.masterService.getCity(id).subscribe(data => {
-  //     this.city = data;
-  //   });
-  // }
-
-  // selectKelurahan(id) {
-  //   this.masterService.getDistrict(id).subscribe(data => {
-  //     this.kelurahan = data;
-  //   });
-  // }
-
-  // selectDesa(id) {
-  //   this.masterService.getVillage(id).subscribe(data => {
-  //     this.desa = data;
-  //   });
-  // }
-
-  // postal(code) {
-  //   this.code = code;
-  // }
-
-  // getCategoryOne() {
-  //   this.categoryService.CategoryOne().subscribe(data => {
-  //     this.categories = data;
-  //   });
-  // }
-
-  // selectCategories(id: number) {
-  //   console.log(id);
-  // }
 }

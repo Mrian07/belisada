@@ -10,7 +10,47 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"/>
   <link rel="manifest" href="/manifest.json">
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="msapplication-starturl" content="/">
+  <meta name="theme-color" content="#f8992e">
+
+  <meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@belisada">
+	<meta name="twitter:title" content="Belisada">
+	<meta name="twitter:description" content="Beli apa saja ada">
+	<meta name="twitter:creator" content="Belisada">
+	<meta name="twitter:image" content="/assets/icons/android-icon-192x192.png">
+
+	<meta property="og:title" content="Belisada" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://belisada.co.id" />
+	<meta property="og:image" content="/assets/icons/android-icon-192x192.png" />
+	<meta property="og:description" content="Beli apa saja ada" />
+	<meta property="og:site_name" content="Belisada" />
+
   <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
+  <style>
+    .splash {
+      opacity: 0;
+      position: fixed;
+      height: 100%;
+      width: 100%;
+      color: #272c33;
+      padding-top: 25vh;
+      text-align: center;
+      z-index: -1;
+      font-family: monospace;
+      }
+      app-root:empty + .splash {
+        opacity: 1;
+        z-index: 100;
+      }
+      .splash h1 {
+            margin-bottom: 50px;
+      };
+    </style>
 </head>
 <body>
   <app-root></app-root>
@@ -22,5 +62,19 @@
         // init Branch
         branch.init('key_live_mbFHRaYjBrm4dOYc2XEtecldxtekMfim');
       </script>
+      <div class="splash"  id="content">
+        <img src="/assets/icons/favicon-96x96.png" width="256px" alt="Belisada Logo">
+        <h1>Belisada</h1>
+     </div>
+
+
+
+
+    <noscript>
+        <p>
+          Sorry, JavaScript must be enabled to use this app
+        </p>
+    </noscript>
+
 </body>
 </html>

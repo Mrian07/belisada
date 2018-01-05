@@ -8,9 +8,9 @@
       "type": "image\/png"
     }
   ],
-  "theme_color": "#b92b27",
+  "theme_color": "#f8992e",
   "background_color": "#ffffff",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "./?utm_source=web_app_manifest"
+  "start_url": "/"
 }
