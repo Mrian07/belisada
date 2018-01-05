@@ -5,9 +5,9 @@
         <div class="gap-top">
     <a class="section">Home</a>
     <div class="divider"> / </div>
-    <a class="section">Store</a>
+    <a class="section">{{ProductList.category2Name}}</a>
     <div class="divider"> / </div>
-    <div class="active section">Iphone</div>
+    <div class="active section">{{ProductList.category3Name}}</div>
         </div>
   </div>
 </div>
@@ -15,16 +15,17 @@
   <div class="four wide column"></div>
   <div class="four wide column"></div>
   <div class="four wide column">
-    <img src="https://www.t-mobile.com/images/png/products/phones/Apple-iPhone-8-Plus-Gold/250x270_1.png"/>
+    <img src="{{ProductList.image}}" style="width: 270px; height:auto;"/>
   </div>
-  <div class="four wide column"><h2 class="ui header">Iphone 8 White 128Gb</h2>
+  <!-- <span>{{ProductList.aliasName}}</span> -->
+  <div class="four wide column"><h2 class="kekiridikit">{{ProductList.aliasName}}</h2>
     <div class="two wide column">
         <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
         <i class="write icon"></i>tulis ulasan
     </div>
     <div class="ui four column grid">
         <div class="row">
-            <div class="column"></div>
+            <div class="column" style="width: 300px">Dijual Oleh : belisada.co.id</div>
             <div class="column"></div>
             <div class="column"></div>
           <div class="column"></div>
@@ -33,21 +34,26 @@
         </div>
         <div class="column"><h3 class="ui header">Harga: </h3>
         </div>
-       
-        <div class="eleven wide column price"><div class="row" style="width:340px">Rp. 10.0000.000
-            <span class="borderni">12% off</span> 
-            <span class="item">Hemat :</span>    
-            <span class="price">Rp. 2.000.000</span>          
-          
+
+        <div class="eleven wide column price"><div class="row" style="width:340px">Rp. {{ProductList.pricelist | number}}
+                <!-- <div *ngIf="specialPrice == 0; else login">
+                    kampret
+                </div> -->
+                <!-- <ng-template #login>
+                        <span class="borderni">12% off</span>
+                        <span class="item">Hemat :</span>
+                        <span class="price">Rp. 2.000.000</span>
+                </ng-template> -->
+                </div>
+
         </div>
-            
+        <div class="column">
         </div>
-        <div class="column"><h5 class="ui header" style="width:77px;">Harga Awal: </h5>
+        <div class="eleven wide column">
+          <!-- <img src="https://myacico.co.id/images/general/asap.png" style="width:30px;"> -->
         </div>
-        <div class="eleven wide column"><s style="padding-left:10px;">Rp 12.000.000</s>
-          <img src="https://myacico.co.id/images/general/asap.png" style="width:30px;">
-        </div>
-        <div class="column"><h3 class="ui header">Stok: </h3>
+        <div class="column">
+            <h3 class="ui header">Stok: </h3>
         </div>
         <div class="eleven wide column stok">Tersedia
             <div class="gap-between-elements"></div>
@@ -55,7 +61,7 @@
                 Belanja online murah, gratis pengiriman area Jakarta*
                 Pilih barang dengan layananUntuk pengiriman Pasti 2 hari
             </p>
-  
+
         </div>
         <div class="column"><h3 class="ui header">Warna: </h3>
         </div>
@@ -68,38 +74,38 @@
                 <div class="warna4"></div>
               </div>
         </div>
-        <div class="column"><h4 class="ui header">Kapasitas: </h4>
+        <!-- <div class="column"><h4 class="ui header">Kapasitas: </h4>
         </div>
         <div class="eleven wide column">
           <div class="borderni">
-            128 GB
+            {{ProductList.capasitas}}
           </div>
-        </div>
+        </div> -->
         <div class="column"><h4 class="ui header">Highlight: </h4>
         </div>
         <div class="eleven wide column">
             <div class="ui relaxed divided list">
                 <div class="item">
-                 
+
                   <div class="content">
-                  
-                    <div class="description">ROM 256GB</div>
+
+                    <div class="description">
+                            <!-- {{ProductList.highlight}} -->
+                            <p [innerHTML]="ProductList.highlight"></p>
+
+                    </div>
                   </div>
                 </div>
-                <div class="item">
-        
+                <!-- <div class="item">
                   <div class="content">
-                   
                     <div class="description">GSM/HSPA/LTE</div>
                   </div>
-                </div>
-                <div class="item">
-               
+                </div> -->
+                <!-- <div class="item">
                   <div class="content">
-                  
                     <div class="description">4.7 inch 3D Touch display</div>
                   </div>
-                </div>
+                </div> -->
               </div>
         </div>
       <div class="text-center">  </div>
@@ -110,7 +116,7 @@
             <td>
                 <i class="mail icon"></i>
             </td>
-            
+
             <td class="">
               Hubungi Kami
             </td>
@@ -132,9 +138,9 @@
                 </td>
           </tr>
       </table>
-    
 
-         
+
+
 
 
 
@@ -273,43 +279,10 @@
           <div class="ui bottom attached segment" suiTabContent="tab1">
               <div class="ui segment">
                 <div>
-                    <img class="ui small left floated image" src="https://staticshop.o2.co.uk/product/images/bau-35251-iphone-8-plus-space-grey-sku-header-master-130917.png?cb=0786701511f1bc4897e12bf1798f01af">
-                    <p>Jet Black hadir menjawab kebutuhan kaum urban untuk kebutuhan penggunaan smartphone keluaran
-                        Apple yang satu ini. Tampil dengan desain yang elegan dan menawan ini semakin memanjakan para penggunanya. Memiliki dimensi berat
-                        188 gram dan layar dengan lebar 5.5 inch. Menggunakan sistem proteksi lon strengthened glass dan oleophobic coating akan memberikan
-                        perlindungan sempurna pada layarnya, dan tidak ketinggalan sensor sidik jari yang melindungi privasi penggunannya.</p>
+                        <p [innerHTML]="ProductList.description"></p>
                     <div class="clearfix"></div>
                 </div>
-                <div>
-                    <img class="ui middle aligned small left floated image" src="https://bab-assets3.babapi.ooo/img/othe/5501214/2e/ca/appleiphone8silver2.png.0683962eca.999x350x350.png">
-                    <p class="peni"><strong> Peningkatan yang Signifikan </strong><p>
-                    <p>
-                        Dibekali prosesor A10 Fushion dan M10 Motion yang memberikan performa lebih baik dan lebih efisien dari segi daya. Menggunakan
-                        sistem operasi iOS 10 yang akan memaksimalkan kinerja iphone, dan kapasitas RAM 3 GB memberikan kelancaran pada setiap aplikasi
-                        yang dioperasikan. Anda tidak perlu khawatir untuk menyimpan file-file penting seperti foto, video, dan lagu karena memori internalnya
-                        menampung sebanyak 128GB.</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div>
-                    <img class="ui middle aligned small left floated image" src="https://cdn.vox-cdn.com/thumbor/_8g5V2SPROQZEJ_TTQX_E49NiDQ=/0x600/cdn.vox-cdn.com/uploads/chorus_asset/file/7059381/apple-iphone-watch-20160907-4920.0.JPG">
-                    <p class="peni"><strong> sistem dual camera </strong><p>
-                    <p>
-                        Menggunakan sistem dual kamera, dimana kedua resolusi kamera masing-masing sebesar 12 MP, kamera telephoto pada iPhone bekerja
-                        layaknya lensa optik pada kamera dslr sehingga memberikan hasil zoom yang detail dan tidak blur. Berkat dual kamera ini, anda juga dapat
-                        menggunakan mode potrait yang hanya bisa dilakukan pada kamera dslr. iPhone mampu merekam video hingga resolusi 4K yang sangat
-                        detail, juga dilengkapi dengan image stabilization untuk mereduksi adanya guncangan.</p>
-                    <div class="clearfix"></div>
-                </div>
-                <div>
-                    <img class="ui middle aligned small left floated image" src="https://i.ytimg.com/vi/CZw-q4DBE8c/hqdefault.jpg">
-                    <p class="peni"><strong> Inovasi Terbaru </strong><p>
 
-                    <p>
-                        iPhone telah tersertifikasi IP67, yakni sertifikasi ketahanan air hingga kedalaman 1 meter. Sangat berguna bagi anda sering beraktivitas di
-                        dekat air, dan juga menghindari momen yang tak terduga. iPhone memperbarui teknologi home buttonnya, kini home button menggunakan
-                        taptic engine layaknya sistem force touch pada layar</p>
-                    <div class="clearfix"></div>
-                </div>
                 <div class="clearfix"></div>
                 </div>
 
@@ -374,7 +347,7 @@
 (carouselLoad)="carouselTileLoad($event)">
 
       <ngx-tile NgxCarouselItem *ngFor="let Tile of carouselTileItems">
-        
+
           <h1>{{Tile + 1}}</h1>
       </ngx-tile>
 
