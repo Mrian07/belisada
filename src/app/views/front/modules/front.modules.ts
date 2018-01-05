@@ -1,3 +1,4 @@
+import { ProductDetailService } from './../../../core/service/product-detail/product-detail.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxCarousel } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.interface';
@@ -41,7 +42,8 @@ import { HomeService } from '../../../core/service/home/home.service';
   ],
   providers: [
     NgxCarousel,
-    HomeService
+    HomeService,
+    ProductDetailService
   ]
 })
 export class FrontModules { }

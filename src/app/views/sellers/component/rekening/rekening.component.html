@@ -1,7 +1,7 @@
 <div class="column">
     <div class="wide column">
         <h1>Profile</h1>
-        
+
     </div>
 </div>
 <div class="ui segment">
@@ -16,7 +16,7 @@
                     <form class="ui form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
                         <div class="field">
                             <label>No. Rekening</label>
-                            
+
                             <input name="accountNo" placeholder="Masukan nomor rekening" type="number" [(ngModel)]="accountNo"  required  #_accountNo="ngModel" min="0" max="16"/>
                             <div *ngIf="!_accountNo.valid" class="ui pointing red basic label">No Rek Is Required</div>
                         </div>
@@ -139,7 +139,7 @@
 </ng-template>
 
 
-        
+
     </div>
 </div>
 <!-- <button (click)="show = !show">{{show ? 'hide' : 'show'}}</button>

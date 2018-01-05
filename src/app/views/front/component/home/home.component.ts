@@ -49,6 +49,7 @@ export class HomeComponent implements OnInit {
       // this.topProduct = data;
       console.log('data: ', data);
       this.topProductLvl1 = data;
+      console.log('asdaskdksad', this.topProductLvl1);
     });
   }
 
