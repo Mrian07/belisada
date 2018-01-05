@@ -143,8 +143,8 @@ export class ProfileComponent implements OnInit {
               this.npwp.setValue(data.npwp);
               this.imgAvatar.setValue(data.imageAvatar);
               this.imgNpwp.setValue(data.imageNPWP);
-              this.dateOfBirth = new FormControl(new Date());
-              // this.dateOfBirth.setValue(data.dateOfBirth);
+              //this.dateOfBirth = new FormControl(new Date());
+               this.dateOfBirth.setValue('2018-01-05T01:48:16.651Z');
             });
           });
         });
