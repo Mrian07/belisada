@@ -7,7 +7,7 @@
         <li><a href="#">LACAK PESANAN</a></li>
         <li><a href="#">CUSTOMER CARE</a></li>
         <li> <a routerLink="/info-jual-beli" class="link-red">Jual Di Belisada</a></li>
-      
+
         <li><a href="#">DOWNLOAD APP</a></li>
     </ul>
 </div>
@@ -18,14 +18,14 @@
         <span class="helper"></span>
         <img class="ui image" src="/assets/img/logo.png" alt="profile picture"/>
     </div>
-    
+
     <div class="mid-header-container">
         <div class="mid-header-top-container">
             <ul class="header-mid-menu pull-left">
                 <li><a routerLink="/register" class="link-red2">Mulai Menjual</a></li>
                 <li><a href="#">Customer Service</a></li>
                 <li><a href="#">Cara Belanja</a></li>
-                <li><a href="#">Produk Terbaru</a></li>    
+                <li><a href="#">Produk Terbaru</a></li>
                 <li><a href="#">Blog</a></li>
             </ul>
 
@@ -40,18 +40,23 @@
             <sui-select class="selection category-search"
                 [(ngModel)]="selectedSearchCategory"
                 labelField="name"
+                (keyup)="searchK($event)"
                 placeholder="Select Category">
                     <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
             </sui-select>
             <i class="search icon"></i>
-            <input type="text" placeholder="Search"/>
+            <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" [(ngModel)]="selectedSearchCategory"/>
         </div>
+        <div class="result-container" *ngIf="[results] != 0">
+                <div class="result" *ngFor="let hasil of results " (click)="productSelected(hasil)">{{ hasil.name }}</div>
+            </div>
     </div>
+
 
     <div class="right-header-container">
         <div>
             <img class="ui image" src="/assets/img/id.jpg" alt="image not found"/>
-        </div> 
+        </div>
         <div class="menu-header">
             <div class="menu-header2">
 

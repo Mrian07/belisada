@@ -1,3 +1,4 @@
+import { SearchService } from './../../../core/service/search/search.service';
 import { ProductDetailService } from './../../../core/service/product-detail/product-detail.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,7 +6,6 @@ import { NgxCarousel } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.interfac
 import { NgxCarouselModule } from 'ngx-carousel/src/ngx-carousel.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { SearchService } from '../../../core/service/search/search.service';
 import 'hammerjs';
 import { FrontLayoutComponent } from '../../../core/layout/front-layout/front-layout.component';
 import { HomeComponent } from '../component/home/home.component';
@@ -43,6 +43,7 @@ import { HomeService } from '../../../core/service/home/home.service';
   providers: [
     NgxCarousel,
     HomeService,
+    SearchService,
     ProductDetailService
   ]
 })
