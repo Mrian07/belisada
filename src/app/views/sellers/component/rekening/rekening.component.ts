@@ -96,7 +96,7 @@ export class RekeningComponent implements OnInit {
 
   }
   getRole(){
-    
+
     // this.div.nativeElement.innerHTML ='';
 
     if(this.role === 6) {
@@ -104,8 +104,8 @@ export class RekeningComponent implements OnInit {
     }else{
        console.log('kampret');
     }
-   
-   
+
+
   }
   getBankList() {
     this.rekening = this.store.select<any>(fromProduct.getBankState);
@@ -137,16 +137,11 @@ export class RekeningComponent implements OnInit {
     }
   }
   getAllStorex(id) {
-    console.log('rek: ', this.searchrek);
-    console.log('id: ', id);
-    console.log('sadsd', this.role);
-    console.log('this.searchrek.find(x => x.mbankId === id.mBankId): ', this.searchrek.find(x => x.mbankId === id.mBankId));
     this.accountName = id.accountName;
     this.accountNo = id.accountNo;
     this.mBankAccountId = id.mBankAccountId;
     this.show1 = false;
     this.selectedCategory = this.searchrek.find(x => x.mbankId === id.mBankId);
-    console.log('fdafda', id);
   }
 
   hapusUd(id) {

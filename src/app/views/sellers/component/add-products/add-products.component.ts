@@ -134,6 +134,7 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
+        console.log(data);
       });
     }
   }
@@ -183,7 +184,8 @@ export class AddProductsComponent implements OnInit {
         productId: this.productId,
         mBpartnerStoreId: this.storeId
       };
-      this.store.dispatch(new fromActions.AddProduct(productData));
+      console.log(productData);
+     // this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
 

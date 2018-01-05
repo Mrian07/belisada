@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.getSellerStore();
     this.sellerProduct = this.store.select(fromProduct.getProductState);
+    console.log(this.sellerProduct);
   }
 
   getSellerStore() {
