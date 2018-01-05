@@ -1,6 +1,6 @@
 export class Bidang {
-  sectorTypeId: number;
-  name: string;
+  sectorTypeId: any;
+  name: any;
 
     status?: string;
     message?: string;
