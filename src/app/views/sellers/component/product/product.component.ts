@@ -7,6 +7,7 @@ import { AddproductService } from '../../../../core/service/addproduct/addproduc
 import { SellerProduct, Product } from '../../../../core/model/product';
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
+import { TruncateModule } from 'ng2-truncate';
 
 @Component({
   selector: 'app-product',

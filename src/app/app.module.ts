@@ -28,7 +28,7 @@ import { FormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './core/shared/interceptor';
 import { CategoryComponent } from './views/front/component/category/category.component';
-
+import { TruncateModule } from 'ng2-truncate';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -68,7 +68,8 @@ export function createTranslateLoader(http: HttpClient) {
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 50,
-    })
+    }),
+    TruncateModule
   ],
   providers: [
     ActivationService,
