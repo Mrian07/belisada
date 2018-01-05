@@ -24,7 +24,7 @@ export class InfoPerusahaanComponent implements OnInit {
   siup: FormControl;
   tdp: FormControl;
   newImage: string;
-
+  userimageCorporateNpwp: string;
   corporateName: FormControl;
   address: FormControl;
   corporatePhone: FormControl;
@@ -117,7 +117,7 @@ export class InfoPerusahaanComponent implements OnInit {
       // this.selectedCategory.mbankId
       sectorTypeId: model.sectorTypeId.sectorTypeId,
       corporateNpwp: model.corporateNpwp,
-      
+
       imageCorporateNpwp: this.newImage
     };
     this.infoPerusahaan.update(data).subscribe(response => {
@@ -243,7 +243,7 @@ export class InfoPerusahaanComponent implements OnInit {
 
               this.villages = village;
 
-    
+
     // corporateName: model.corporateName,
     //   address: model.address,
     //   corporatePhone: model.corporatePhone,

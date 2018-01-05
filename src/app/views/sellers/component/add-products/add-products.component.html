@@ -40,12 +40,12 @@
                 </div>
 
                 <div class="inline twelve fields">
-                        <div class="two wide field">
+                        <!-- <div class="two wide field">
                             Category Product
                         </div>
                         <div class="eleven wide field">
                             <div class="ui five wide field">
-                                <input type="text" name="category" value="{{selectedCategory}}" disabled>
+                                <input type="text" name="category" value="{{selectedCategory}}" disabled> -->
                                 <!-- <sui-select class="selection"
                                     [(ngModel)]="selectedCategory"
                                     labelField="name"
@@ -56,43 +56,43 @@
 
 
 
-                            </div>
+                            <!-- </div> -->
 
-                            <div class="ui five wide field">
-                                    <input type="text" name="subcategory" value="{{selectedSubCategory}}" disabled>
+                            <!-- <div class="ui five wide field">
+                                    <input type="text" name="subcategory" value="{{selectedSubCategory}}" disabled> -->
                                 <!-- <sui-select class="selection"
                                     [(ngModel)]="selectedSubCategory"
                                     labelField="name"
                                     placeholder="Select SubCategory">
                                         <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectSubCategory(option.m_product_category_id)"></sui-select-option>
                                 </sui-select> -->
-                            </div>
+                            <!-- </div>
 
                             <div class="ui five wide field">
-                                <input type="text" name="subcategory" value="{{selectedSubCategories}}" disabled>
+                                <input type="text" name="subcategory" value="{{selectedSubCategories}}" disabled> -->
                                 <!-- <sui-select class="selection"
                                     [(ngModel)]="selectedSubCategories"
                                     labelField="name"
                                     placeholder="Select Section">
                                         <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name" (click)="selectSubCategories(option.m_product_category_id)"></sui-select-option>
                                 </sui-select> -->
-                            </div>
-                        </div>
+                            <!-- </div> -->
+                        <!-- </div> -->
                     </div>
 
                     <div class="inline twelve fields">
-                            <div class="two wide field">
+                            <!-- <div class="two wide field">
                                 Product Name
-                            </div>
-                            <div class="ten wide field">
+                            </div> -->
+                            <!-- <div class="ten wide field">
                                 <div class="ui five wide field">
-                                        <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}" disabled>
+                                        <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}" disabled> -->
                                     <!-- <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}">
                                     <div class="result-container" *ngIf="toggle == true">
                                         <div class="result" *ngFor="let hasil of brands | searchFilter : selectedBrands" (click)="productSelected(hasil)">{{ hasil.name }}</div>
                                     </div> -->
-                                </div>
-                            </div>
+                                <!-- </div> -->
+                            <!-- </div> -->
                         </div>
             </div>
 
@@ -140,19 +140,19 @@
                             Dimensi
                         </div>
                         <div class="one wide field">
-                            <input type="text" placeholder=""/>
+                            <input type="text" placeholder="" value="{{panjang}}"/>
                         </div>
                         <div class="one wide field small">
                             Panjang
                         </div>
                         <div class="one wide field">
-                            <input type="text" placeholder=""/>
+                            <input type="text" placeholder="" value="{{lebar}}"/>
                         </div>
                         <div class="one wide field small">
                             Lebar
                         </div>
                         <div class="one wide field">
-                            <input type="text" placeholder=""/>
+                            <input type="text" placeholder="" value="{{tinggi}}"/>
                         </div>
                         <div class="one wide field small">
                             Tinggi
