@@ -47,6 +47,9 @@ export class AddProductsComponent implements OnInit {
   description: string;
   price: number;
   weight: number;
+  panjang: number;
+  lebar: number;
+  tinggi: number;
   imageurl: string;
   editMode: Boolean = true;
   toggle: Boolean = false;
@@ -126,9 +129,13 @@ export class AddProductsComponent implements OnInit {
 
   search(event) {
     const key = event.target.value;
-    this.searchService.search(key).subscribe(data => {
-      this.results = data;
-    });
+    if (key === '') {
+      this.results = [];
+    }else {
+      this.searchService.search(key).subscribe(data => {
+        this.results = data;
+      });
+    }
   }
 
   productSelected(hasil: any) {
@@ -144,7 +151,6 @@ export class AddProductsComponent implements OnInit {
     this.weight = hasil.weight;
     this.toggle = false;
     this.productId = hasil.productId;
-    console.log(hasil);
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -168,13 +174,17 @@ export class AddProductsComponent implements OnInit {
 
 
   addProducts() {
-    const productData = {
-      pricelist: this.price,
-      description: this.description,
-      productId: this.productId,
-      mBpartnerStoreId: this.storeId
-    };
-    this.store.dispatch(new fromActions.AddProduct(productData));
+    if ( this.productId === undefined) {
+      swal('Nama Product harus diisi');
+    }else {
+      const productData = {
+        pricelist: this.price,
+        description: this.description,
+        productId: this.productId,
+        mBpartnerStoreId: this.storeId
+      };
+      this.store.dispatch(new fromActions.AddProduct(productData));
+    }
   }
 
   clearAll() {
@@ -188,6 +198,9 @@ export class AddProductsComponent implements OnInit {
     this.description = '';
     this.imageurl = undefined;
     this.weight = 0;
+    this.panjang = 0;
+    this.lebar = 0;
+    this.tinggi = 0;
     this.toggle = false;
     this.productId = 0;
     this.selectedBrands = '';

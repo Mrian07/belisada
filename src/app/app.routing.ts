@@ -21,15 +21,10 @@ import { CategoryComponent } from './views/front/component/category/category.com
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
-    path: '',
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'home',
+        path: '',
         component: HomeComponent,
         data: {
           title: 'home'

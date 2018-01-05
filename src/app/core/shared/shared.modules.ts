@@ -13,6 +13,8 @@ import { TokenService } from '../service/token/token.service';
   declarations: [
     SearchFilterPipe,
   ],
+  imports: [
+  ],
   exports: [
     CommonModule,
     SuiModule,

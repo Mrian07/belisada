@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { Category2 } from '../../../../core/model/category2';
-// import { CategoryView } from '../../../../core/model/category';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-category',
@@ -12,7 +12,12 @@ export class CategoryComponent implements OnInit {
 
   // categoryView: CategoryView;
   level_3: Category2[];
-  constructor(private categoryService: CategoryService) { }
+  alias: any;
+  constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
+    this.route.params.subscribe( id => {
+      this.alias = id;
+    });
+  }
 
   ngOnInit() {
     this.categoryService.CategoryThree(1000475).subscribe(data => {

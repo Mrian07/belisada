@@ -27,7 +27,7 @@ export class InfoPerusahaanComponent implements OnInit {
   siup: FormControl;
   tdp: FormControl;
   newImage: string;
-
+  userimageCorporateNpwp: string;
   corporateName: FormControl;
   address: FormControl;
   corporatePhone: FormControl;

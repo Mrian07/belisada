@@ -53,6 +53,7 @@ import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reducers';
 import { ProductEffects } from '../../../store/effects/index';
 import { ChatService } from '../../../core/service/chat/chat.service';
+import { TruncateModule } from 'ng2-truncate';
 
 
 @NgModule({
@@ -92,6 +93,7 @@ import { ChatService } from '../../../core/service/chat/chat.service';
   ],
   imports: [
     CommonModule,
+    TruncateModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
