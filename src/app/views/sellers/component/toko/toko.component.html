@@ -16,10 +16,16 @@
                             <div class="field">
                                 <label>Nama Toko</label>
                                 <input name="name" placeholder="Masukan nama toko" type="text" formControlName="name"/>
+                                <div class="form-control-feedback alert" *ngIf="name.invalid && name.dirty"> 
+                                    Nama tidak boleh kosong
+                                </div>
                             </div>
                             <div class="field">
                                 <label>Alamat</label>
                                 <textarea name="address" placeholder="Masukan alamat" formControlName="address"></textarea>
+                                <div class="form-control-feedback alert" *ngIf="address.invalid && address.dirty"> 
+                                    Alamat tidak boleh kosong
+                                </div>
                             </div>
                             <div class="field">
                                 <label>Provinsi</label>
@@ -48,6 +54,9 @@
                             <div class="field">
                                 <label>Kode POS</label>
                                 <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalcode"/>
+                                <div class="form-control-feedback alert" *ngIf="postalcode.invalid && postalcode.dirty"> 
+                                    Kodepos tidak boleh kosong
+                                </div>
                             </div>
                             <div class="field">
                                 <label>Deskripsi</label>

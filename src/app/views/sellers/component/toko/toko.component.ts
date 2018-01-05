@@ -66,13 +66,13 @@ export class TokoComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
-    this.address = new FormControl('');
+    this.name = new FormControl('', Validators.required);
+    this.address = new FormControl('', Validators.required);
     this.province = new FormControl('');
     this.city = new FormControl('');
     this.district = new FormControl('');
     this.village = new FormControl('');
-    this.postalcode = new FormControl('');
+    this.postalcode = new FormControl('', Validators.required);
     this.description = new FormControl('');
   }
 
@@ -139,6 +139,31 @@ export class TokoComponent implements OnInit {
         postal: model.postalcode,
         villageId: model.village.mvillageId,
       };
+
+      if (this.name.value === '') {
+        swal(
+          'Opps!',
+          'Nama tidak boleh kosong',
+          'error'
+        );
+        return false;
+      } else if (this.address.value === '') {
+        swal(
+          'Opps!',
+          'Alamat tidak boleh kosong',
+          'error'
+        );
+        return false;
+      } else if (this.postalcode.value === '') {
+        swal(
+          'Opps!',
+          'Kodepos tidak boleh kosong',
+          'error'
+        );
+        return false;
+      }
+
+
       if (this.isUpdate) {
         this.storeService.update(data).subscribe(response => {
           this.fillForms();
