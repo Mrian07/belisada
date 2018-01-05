@@ -24,3 +24,24 @@
       </div>
     </div>
   </div>
+
+
+  <sui-modal [isClosable]="false" (dismissed)="alert($event)" #modal *ngIf="stores.length == 0 && isReady">
+    <div class="header">Selamat datang di store blisada</div>
+    <div class="content">
+        <p>Selamat datang user di Area Store,</p>
+        <p>Diarea ini Anda bisa melakukan penjualan produk, namun ada tahapan yang wajib Anda penuhi diantaranya:</p>
+        <p>1.Melengkapi data profile Anda pada halaman <b>Edit Profile</b>.<br>
+        2.Melengkapi data rekening bank Anda pada halaman <b>Edit Profile</b>.<br>
+        3.Mengisi informasi toko pada halaman <b>Daftar Toko & Product</b>.<br>
+        4.Melakukan penambahan produk pada halaman <b>Dashboard</b>.<br></p>
+
+        <p>Note: Anda tidak akan bisa menambah produk jika Anda belum mendaftarkan toko Anda di website belisada.co.id.</p>
+
+    </div>
+    <div class="actions">
+        <!-- <button class="ui red button" (click)="modal.deny()">Cancel</button> -->
+        <!-- <button class="ui green button" (click)="modal.approve('done')" autofocus>Ok</button> -->
+        <button class="ui green button" (click)="daftarToko()" (click)="modal.deny()" autofocus>Daftarkan Toko Anda Sekarang</button>
+    </div>
+</sui-modal>
