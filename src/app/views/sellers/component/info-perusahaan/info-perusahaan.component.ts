@@ -30,6 +30,7 @@ export class InfoPerusahaanComponent implements OnInit {
   corporatePhone: FormControl;
   postalCode: FormControl;
   sectorTypeId: FormControl;
+  userImageNPWP: string;
   corporateNpwp: FormControl;
   selectedCategory: any;
   // sectorTypeId: FormControl;
@@ -55,6 +56,8 @@ export class InfoPerusahaanComponent implements OnInit {
     this.getCategoryOne();
     this.createFormControls();
     this.createForm();
+    this.fillForms();
+    this.getProfile();
     this.getProvince();
   }
 
@@ -114,6 +117,7 @@ export class InfoPerusahaanComponent implements OnInit {
       // this.selectedCategory.mbankId
       sectorTypeId: model.sectorTypeId.sectorTypeId,
       corporateNpwp: model.corporateNpwp,
+      
       imageCorporateNpwp: this.newImage
     };
     this.infoPerusahaan.update(data).subscribe(response => {
@@ -209,6 +213,70 @@ export class InfoPerusahaanComponent implements OnInit {
       corporateNpwp: this.corporateNpwp,
       sectorTypeId: this.sectorTypeId,
       imageCorporateNpwp: this.imageCorporateNpwp
+    });
+  }
+   getProfile() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.infoPerusahaan.getProfile(luser.token).subscribe(data => {
+      this.user = data;
+      if (data.imageCorporateNpwp) {
+        this.userImageNPWP = 'data:image/png;base64,' + data.imageCorporateNpwp;
+      } else {
+        this.userImageNPWP = '/assets/img/noimage.png';
+      }
+      console.log('gini:1', data);
+    });
+  }
+  fillForms() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.infoPerusahaan.getProfile(luser.token).subscribe(data => {
+      if (!data) {
+        console.log('kosong');
+      }else {
+        console.log('ini data: ', data);
+
+        this.masterService.getCity(data.regionId).subscribe(city => {
+          this.cities = city;
+          this.masterService.getDistrict(data.cityId).subscribe(district => {
+            this.districts = district;
+            this.masterService.getVillage(data.districtId).subscribe(village => {
+
+              this.villages = village;
+
+    
+    // corporateName: model.corporateName,
+    //   address: model.address,
+    //   corporatePhone: model.corporatePhone,
+    //   postal: model.postalCode,
+    //   villageId: model.village.mvillageId,
+    //   siup: model.siup,
+    //   tdp: model.tdp,
+    //   // this.selectedCategory.mbankId
+    //   sectorTypeId: model.sectorTypeId.sectorTypeId,
+    //   corporateNpwp: model.corporateNpwp,
+    //   imageCorporateNpwp: this.newImage
+    this.siup.setValue(data.siup);
+    this.tdp.setValue(data.tdp);
+              this.corporateName.setValue(data.corporateName);
+              this.address.setValue(data.address);
+              this.province.setValue(this.provinces.find(x => x.mregionId === data.regionId));
+              this.city.setValue(this.cities.find(x => x.mcityId === data.cityId));
+              this.sectorTypeId.setValue(this.bidang.find(x => x.sectorTypeId === data.sectorTypeId));
+              // this.city.setValue(data.cityId);
+              this.district.setValue(this.districts.find(x => x.mdistrictId === data.districtId));
+              this.village.setValue(this.villages.find(x => x.mvillageId === data.villageId));
+              this.postalCode.setValue(data.postal);
+              this.corporatePhone.setValue(data.corporatePhone);
+              // this.ktp.setValue(data.idcard);
+              this.corporateNpwp.setValue(data.corporateNpwp);
+              // this.imgAvatar.setValue(data.imageAvatar);
+              // this.imageCorporateNpwp.setValue(data.imageCorporateNpwp);
+              // this.dateOfBirth = new FormControl(new Date());
+              // this.dateOfBirth.setValue(data.dateOfBirth);
+            });
+          });
+        });
+      }
     });
   }
   getProvince() {
