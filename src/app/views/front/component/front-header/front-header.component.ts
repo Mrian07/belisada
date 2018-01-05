@@ -32,6 +32,9 @@ export class FrontHeaderComponent implements OnInit {
       });
     }
   }
+  productSelected(hasil: any) {
+    console.log(hasil.productId);
+  }
   loadDataCategorySearch() {
     this.categoryService.CategoryOne().subscribe(data => {
       this.categorySearch = data;
