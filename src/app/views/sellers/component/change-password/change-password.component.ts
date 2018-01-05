@@ -24,17 +24,14 @@ export class ChangePasswordComponent implements OnInit {
     this.old_password = '';
     this.getRole();
   }
-  getRole(){
-    
+  getRole() {
     // this.div.nativeElement.innerHTML ='';
 
-    if(this.role === 6) {
+    if (this.role === 6) {
        console.log('kampret3', this.role);
-    }else{
+    } else {
        console.log('kampret', this.role);
     }
-   
-   
   }
 
   changePassword() {

@@ -80,13 +80,16 @@ export class ProfileComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('', Validators.required);
-    this.address = new FormControl('');
-    this.province = new FormControl('');
+    this.name = new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]);
+    this.address = new FormControl('', Validators.required);
+    this.province = new FormControl('', Validators.required);
     this.city = new FormControl('');
     this.district = new FormControl('');
     this.village = new FormControl('');
-    this.postalcode = new FormControl('');
+    this.postalcode = new FormControl('', Validators.required);
     this.phone = new FormControl('');
     this.ktp = new FormControl('');
     this.npwp = new FormControl('');
@@ -209,6 +212,36 @@ export class ProfileComponent implements OnInit {
       imageNPWP : this.base64Npwp,
       imageIDCard : '',
     };
+
+    if (this.name.value === '') {
+      swal(
+        'Opps!',
+        'Nama tidak boleh kosong',
+        'error'
+      );
+      return false;
+    } else if (this.dateOfBirth.value === '') {
+      swal(
+        'Opps!',
+        'Tanggal lahir tidak boleh kosong',
+        'error'
+      );
+      return false;
+    } else if (this.address.value === '') {
+      swal(
+        'Opps!',
+        'Alamat tidak boleh kosong',
+        'error'
+      );
+      return false;
+    } else if (this.postalcode.value === '') {
+      swal(
+        'Opps!',
+        'Kodepos tidak boleh kosong',
+        'error'
+      );
+      return false;
+    }
 
     this.profileService.updateProfile(updateProfileData).subscribe(data => {
 
