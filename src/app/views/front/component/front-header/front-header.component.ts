@@ -3,6 +3,7 @@ import { Category } from '../../../../core/model/category';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { SearchService } from '../../../../core/service/search/search.service';
 import { Search } from '../../../../core/model/search';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-front-header',
   templateUrl: './front-header.component.html',
@@ -15,7 +16,8 @@ export class FrontHeaderComponent implements OnInit {
   results = [];
   imgTop: any;
   selectCatsK: any;
-  constructor(private categoryService: CategoryService, private searchService: SearchService) { }
+  constructor(private categoryService: CategoryService, private searchService: SearchService,
+    private router: Router) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
@@ -33,7 +35,9 @@ export class FrontHeaderComponent implements OnInit {
     }
   }
   productSelected(hasil: any) {
-    console.log(hasil.productId);
+    this.router.navigateByUrl('/Product-detail/' + hasil.productId);
+    location.reload();
+    console.log('ini bener ga', hasil.productId);
   }
   loadDataCategorySearch() {
     this.categoryService.CategoryOne().subscribe(data => {
