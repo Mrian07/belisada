@@ -8,6 +8,7 @@
     "server": "concurrently --kill-others-on-fail \"npm run htmllint\" \"npm run lint\" \"npm run start\"",
     "server-l": "concurrently --kill-others-on-fail \"npm run htmllint-l\" \"npm run lint\" \"npm run start\"",
     "build": "ng",
+    "build:prod": "ng build --prod --aot",
     "test": "ng test",
     "htmllint": "htmllint ./src/**/*.html",
     "htmllint-l": "htmllint $(find ./src -name '*.html')",
