@@ -59,7 +59,7 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'category',
+        path: 'category/:id',
         component: CategoryComponent,
         data: {
           title: 'category'

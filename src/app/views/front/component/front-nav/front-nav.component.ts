@@ -32,6 +32,7 @@ export class FrontNavComponent implements OnInit {
   getCategoryTwo(categoryOneId, cb) {
     this.categoryService.CategoryTwo(categoryOneId).subscribe(data => {
       this.c2 = data;
+      console.log('ini puya', data);
       cb();
     });
   }
