@@ -14,7 +14,7 @@
 
 <div class="header3 header-second">
 
-    <div class="logo-container">
+    <div class="logo-container" (click)="home()">
         <span class="helper"></span>
         <img class="ui image" src="/assets/img/logo.png" alt="profile picture"/>
     </div>
@@ -38,7 +38,7 @@
 
         <div class="ui left action right icon input full-width">
             <sui-select class="selection category-search"
-                [(ngModel)]="selectedSearchCategory"
+                [(ngModel)]="selectedCategory"
                 labelField="name"
                 (keyup)="searchK($event)"
                 placeholder="Select Category">
@@ -46,10 +46,10 @@
             </sui-select>
             <i class="search icon"></i>
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" [(ngModel)]="selectedSearchCategory"/>
-        </div>
-        <div class="result-container" *ngIf="[results] != 0">
+            <div class="result-container" *ngIf="[results] != 0">
                 <div class="result" *ngFor="let hasil of results " (click)="productSelected(hasil)">{{ hasil.name }}</div>
             </div>
+        </div>
     </div>
 
 

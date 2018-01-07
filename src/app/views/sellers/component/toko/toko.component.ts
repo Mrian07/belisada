@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as fromProduct from '../../../../store/reducers';
 import swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-toko',
@@ -65,11 +66,13 @@ export class TokoComponent implements OnInit {
     private categoryService: CategoryService,
     private masterService: MasterService,
     private routes: Router,
-    private store: Store<fromProduct.Stores>
+    private store: Store<fromProduct.Stores>,
+    private title: Title
   ) {
    }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Info Toko');
     this.createFormControls();
     this.createForm();
     this.getAllStore();

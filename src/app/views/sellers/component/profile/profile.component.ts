@@ -11,6 +11,7 @@ import { MasterService } from '../../../../core/service/master/master.service';
 import { Profile } from '../../../../core/model/profile';
 
 import { DatepickerOptions } from 'ng2-datepicker';
+import { Title } from '@angular/platform-browser';
 // import * as idLocale from 'date-fns/locale/id';
 
 // const URL = '/api/';
@@ -66,9 +67,11 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller -Profile');
       const user = JSON.parse(localStorage.user);
     // this.token = user.token;
     this.role = user.role;

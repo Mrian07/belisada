@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { ChangePasswordService } from '../../../../core/service/changepassword/change-password.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-change-password',
@@ -13,11 +14,14 @@ export class ChangePasswordComponent implements OnInit {
   old_password: string;
   password_baru: string;
   password_ulangi: string;
-  token:any;
+  token: any;
   role: any;
-  constructor(private changePasswordService: ChangePasswordService) { }
+  constructor(private changePasswordService: ChangePasswordService,
+    private title: Title
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Change Password');
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
     this.role = user.role;

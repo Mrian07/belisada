@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetail } from '../../../../core/model/product-detail';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,12 +21,13 @@ export class ProductDetailComponent implements OnInit {
   ProductList: ProductDetail = new ProductDetail();
 
   aliasName;
-  constructor(private route: ActivatedRoute, private detailService: ProductDetailService) { }
+  constructor(private route: ActivatedRoute,
+    private detailService: ProductDetailService,
+    private title: Title
+  ) { }
 
   ngOnInit() {
-    // console.log(this.data3);
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-    console.log('kampret');
         this.carouselTile = {
           grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
           slide: 2,
@@ -43,7 +45,8 @@ export class ProductDetailComponent implements OnInit {
         });
         this.detailService.getProductDetail(this.productId).subscribe(data => {
           this.ProductList = data;
-          console.log('kampret 77', data.highlight);
+          console.log(data);
+          this.title.setTitle('Belisada : ' + data.name);
         });
   }
   public carouselTileLoad(evt: any) {

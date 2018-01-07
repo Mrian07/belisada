@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"/>
-  <title>Belisada Seller</title>
+  <title>Belisada</title>
   <base href="/"/>
 
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -37,7 +37,7 @@
       position: fixed;
       height: 100%;
       width: 100%;
-      color: #272c33;
+      color: #f8992e;
       padding-top: 25vh;
       text-align: center;
       z-index: -1;
@@ -53,7 +53,56 @@
     </style>
 </head>
 <body>
-  <app-root></app-root>
+  <!-- <app-root>Loading...</app-root> -->
+  <app-root>
+        <style>
+        app-root {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+
+          color: #f8992e;
+          font-family: -apple-system,
+              BlinkMacSystemFont,
+              "Segoe UI",
+              Roboto,
+              Oxygen-Sans,
+              Ubuntu,
+              Cantarell,
+              Helvetica,
+              sans-serif;
+          font-size: 2.5em;
+          text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        }
+        body {
+          background: rgb(255, 255, 255);
+          margin: 0;
+          padding: 0;
+        }
+
+        @keyframes dots {
+          50% {
+            transform: translateY(-.4rem);
+          }
+          100% {
+            transform: translateY(0);
+          }
+        }
+
+        .d {
+          animation: dots 1.5s ease-out infinite;
+        }
+        .d-2 {
+          animation-delay: .5s;
+        }
+        .d-3 {
+          animation-delay: 1s;
+        }
+        </style>
+
+        Loading Belisada<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
+      </app-root>
   <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <script>
@@ -68,7 +117,17 @@
      </div>
 
 
-
+     <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('SW registered');
+          })
+          .catch((err) => {
+            console.log('SW error', err);
+          });
+        }
+      </script>
 
     <noscript>
         <p>

@@ -13,6 +13,7 @@ import { AddproductService } from '../../../../core/service/addproduct/addproduc
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 interface AppState {
   message: any;
 }
@@ -37,6 +38,7 @@ export class AddProductsComponent implements OnInit {
   selectedSubCategory: string;
   selectedSubCategories: string;
   selectCondition: any;
+  productName: any;
   results = [];
   category = [];
   subcategory = [];
@@ -61,7 +63,9 @@ export class AddProductsComponent implements OnInit {
       private route: ActivatedRoute, private storeService: StoreService,
       private addService: AddproductService,
       private actionsSubject: ActionsSubject,
-      private store: Store<fromProduct.Products>) {
+      private store: Store<fromProduct.Products>,
+      private title: Title
+    ) {
       this.route.params.subscribe( id => {
         this.editid = id;
       });
@@ -69,7 +73,7 @@ export class AddProductsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.title.setTitle('Belisada Seller - Add Product');
     this.getCategory();
     this.getBrands();
     this.getStore();
@@ -139,6 +143,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
+    this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.selectedSubCategory = hasil.category2Name;
     this.selectedSubCategories = hasil.category3Name;
@@ -151,6 +156,10 @@ export class AddProductsComponent implements OnInit {
     this.weight = hasil.weight;
     this.toggle = false;
     this.productId = hasil.productId;
+    this.lebar = hasil.dimensionswidth;
+    this.tinggi = hasil.dimensionsheight;
+    this.panjang = hasil.dimensionslength;
+    console.log(hasil);
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -180,8 +189,15 @@ export class AddProductsComponent implements OnInit {
         pricelist: this.price,
         description: this.description,
         productId: this.productId,
-        mBpartnerStoreId: this.storeId
+        mBpartnerStoreId: this.storeId,
+        weight: this.weight,
+        dimensionswidth: this.lebar,
+        dimensionslength: this.panjang,
+        dimensionsheight: this.tinggi,
+        tag: [this.productName]
       };
+      console.log(productData);
+      this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
 

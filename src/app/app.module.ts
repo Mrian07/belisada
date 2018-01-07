@@ -29,6 +29,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './core/shared/interceptor';
 import { CategoryComponent } from './views/front/component/category/category.component';
 import { TruncateModule } from 'ng2-truncate';
+import { SeoService } from './core/service/seo.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -73,6 +74,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   providers: [
     ActivationService,
+    SeoService,
     ForgotPasswordService,
     {
       provide: LocationStrategy,
