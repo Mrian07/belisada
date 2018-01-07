@@ -14,7 +14,7 @@ import { SellerProduct } from '../../model/product';
 export class AddproductService extends AbstractRestService<Product.Product> {
 
   constructor(private http: HttpClient, private configuration: Configuration) {
-    super(http, configuration.serverWithAccUrl + '/seller/product/submission/');
+    super(http, configuration.serverWithAccUrl + '/seller/product/submission');
    }
 
      GetSellerProduct(id: number): Observable<SellerProduct[]> {

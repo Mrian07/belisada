@@ -56,6 +56,8 @@ export class Interceptor implements HttpInterceptor {
           // .then((result) => {
           //   auth.redirect();
           // });
+        }else {
+          console.log(err);
         }
       }
     });
