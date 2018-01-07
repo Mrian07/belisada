@@ -39,6 +39,9 @@ export class FrontHeaderComponent implements OnInit {
     location.reload();
     console.log('ini bener ga', hasil.productId);
   }
+  hapusbersih() {
+    this.selectedSearchCategory = '';
+  }
   loadDataCategorySearch() {
     this.categoryService.CategoryOne().subscribe(data => {
       this.categorySearch = data;
