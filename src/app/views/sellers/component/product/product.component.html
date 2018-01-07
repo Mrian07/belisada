@@ -87,8 +87,8 @@
 
                     <div class="ui right labeled input">
                         <label for="amount" class="ui label">Rp</label>
-                        <input placeholder="Amount" id="amount" value="{{ product.pricelist }}" type="text" disabled/>
-                        <a class="ui tag label">
+                        <input placeholder="Amount" id="amount" value="{{ product.pricelist | currency:'Rp '}}" type="text" disabled/>
+                        <a class="ui tag label" (click)="editProducts(product)">
                             <i class="edit icon"></i>
                         </a>
                     </div>

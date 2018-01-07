@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, HostListener } from '@angular/core';
 import { StoreModule, Store, ActionsSubject } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
@@ -14,6 +14,9 @@ import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { Title } from '@angular/platform-browser';
+import { Products } from '../../../../store/reducers';
+import { ShareService } from '../../../../core/service/shared.service';
+
 interface AppState {
   message: any;
 }
@@ -58,13 +61,16 @@ export class AddProductsComponent implements OnInit {
   productId: number;
   storeId: number;
   redirectSub: Subscription;
+  editSub: Subscription;
+  editData: any;
 
     constructor(private searchService: SearchService, private categoryService: CategoryService,
-      private route: ActivatedRoute, private storeService: StoreService,
+      private route: ActivatedRoute, private router: Router, private storeService: StoreService,
       private addService: AddproductService,
       private actionsSubject: ActionsSubject,
       private store: Store<fromProduct.Products>,
-      private title: Title
+      private title: Title,
+      private shared: ShareService
     ) {
       this.route.params.subscribe( id => {
         this.editid = id;
@@ -82,6 +88,8 @@ export class AddProductsComponent implements OnInit {
       this.editMode = false;
     } else {
       this.editMode = true;
+      this.editData = this.shared.shareData;
+      this.productSelected(this.shared.shareData);
     }
     this.redirectSub = this.actionsSubject
         .asObservable()
@@ -94,6 +102,19 @@ export class AddProductsComponent implements OnInit {
                 this.clearAll();
               });
         });
+    this.editSub = this.actionsSubject
+    .asObservable()
+    .filter(action => action.type === fromActions.EDITPRODUCTSUCCESS)
+    .subscribe((action: fromActions.EditProductSuccess) => {
+        swal(
+            'Produk berhasil di Perbaharui!',
+            'success'
+          ).then((result) => {
+            this.clearAll();
+            this.shared.shareData = '';
+            this.router.navigateByUrl('/seller/my-store');
+          });
+    });
   }
 
   getCategory() {
@@ -159,7 +180,6 @@ export class AddProductsComponent implements OnInit {
     this.lebar = hasil.dimensionswidth;
     this.tinggi = hasil.dimensionsheight;
     this.panjang = hasil.dimensionslength;
-    console.log(hasil);
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -196,8 +216,26 @@ export class AddProductsComponent implements OnInit {
         dimensionsheight: this.tinggi,
         tag: [this.productName]
       };
-      console.log(productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
+    }
+  }
+
+  updateProducts() {
+    if ( this.productId === undefined) {
+      swal('Nama Product harus diisi');
+    }else {
+      const productData = {
+        pricelist: this.price,
+        description: this.description,
+        productId: this.productId,
+        mBpartnerStoreId: this.storeId,
+        weight: this.weight,
+        dimensionswidth: this.lebar,
+        dimensionslength: this.panjang,
+        dimensionsheight: this.tinggi,
+        tag: [this.productName]
+      };
+      this.store.dispatch(new fromActions.EditProduct(productData));
     }
   }
 

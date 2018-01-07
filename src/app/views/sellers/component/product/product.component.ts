@@ -8,6 +8,8 @@ import { SellerProduct, Product } from '../../../../core/model/product';
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { TruncateModule } from 'ng2-truncate';
+import swal from 'sweetalert2';
+import { ShareService } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-product',
@@ -17,7 +19,8 @@ import { TruncateModule } from 'ng2-truncate';
 export class ProductComponent implements OnInit {
 
   constructor(private storeService: StoreService, private productService: AddproductService,
-  private routes: Router, private store: Store<fromProduct.Products>) { }
+  private routes: Router, private store: Store<fromProduct.Products>, private shared: ShareService
+) { }
 
   storeId: number;
   sellerProduct: Observable<any>;
@@ -41,6 +44,11 @@ export class ProductComponent implements OnInit {
 
   addProducts() {
     this.routes.navigateByUrl('/seller/add-products/add');
+  }
+
+  editProducts(data) {
+    this.shared.shareData = data;
+    this.routes.navigateByUrl('/seller/add-products/edit');
   }
   search(event) {
     const key = event.target.value;
