@@ -12,6 +12,7 @@ import swal from 'sweetalert2';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { InfoPerusahaanService } from '../../../../core/service/perusahaan/info-perusahaan.service';
 import { Observable } from 'rxjs/Observable';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-info-perusahaan',
   templateUrl: './info-perusahaan.component.html',
@@ -55,9 +56,12 @@ export class InfoPerusahaanComponent implements OnInit {
 
   constructor(private masterService: MasterService, private categoryService: CategoryService,
     private infoPerusahaan: InfoPerusahaanService,
-    private store: Store<{p: {perusahaan: Perusahaan[]}}>) { }
+    private store: Store<{p: {perusahaan: Perusahaan[]}}>,
+    private title: Title
+  ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Info Perusahaan');
     // this.store.dispatch(new fromActions.GetBank(user.token));
     this.perusahaan = this.store.select('p');
     this.perusahaan.subscribe(x => {

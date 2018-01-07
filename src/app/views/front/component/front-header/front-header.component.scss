@@ -205,8 +205,10 @@
   }
   .result-container {
       position: absolute;
-      width: 665px;
-      height: 320px;
+      margin-left: 196px;
+      margin-top: 38px;
+      width: 80%;
+      height: 520px;
       overflow: auto;
       z-index: 1000;
   }

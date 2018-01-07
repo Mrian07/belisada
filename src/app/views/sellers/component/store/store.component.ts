@@ -15,6 +15,7 @@ import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { ProductComponent } from '../product/product.component';
 import { MyStore } from '../../../../core/model/store';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -53,12 +54,13 @@ export class StoreComponent implements OnInit {
     private categoryService: CategoryService,
     private masterService: MasterService,
     private routes: Router,
-    private store: Store<fromProduct.Stores>
+    private store: Store<fromProduct.Stores>,
+    private title: Title
   ) {
    }
 
   ngOnInit() {
-
+    this.title.setTitle('Belisada Seller - MyStore');
     this.createFormControls();
     this.createForm();
     this.getAllStore();

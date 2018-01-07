@@ -13,6 +13,7 @@ import { AddproductService } from '../../../../core/service/addproduct/addproduc
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 interface AppState {
   message: any;
 }
@@ -61,7 +62,9 @@ export class AddProductsComponent implements OnInit {
       private route: ActivatedRoute, private storeService: StoreService,
       private addService: AddproductService,
       private actionsSubject: ActionsSubject,
-      private store: Store<fromProduct.Products>) {
+      private store: Store<fromProduct.Products>,
+      private title: Title
+    ) {
       this.route.params.subscribe( id => {
         this.editid = id;
       });
@@ -69,7 +72,7 @@ export class AddProductsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.title.setTitle('Belisada Seller - Add Product');
     this.getCategory();
     this.getBrands();
     this.getStore();

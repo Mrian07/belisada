@@ -15,6 +15,7 @@ import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { transition } from '@angular/core/src/animation/dsl';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class RekeningComponent implements OnInit {
     private rekeningService: RekeningSService,
     private store: Store<fromProduct.Banks>,
     private actionsSubject: ActionsSubject,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private title: Title
   ) {  }
   public user: Object;
   searchrek: any;
@@ -56,7 +58,7 @@ export class RekeningComponent implements OnInit {
   editbank: Subscription;
 
   ngOnInit() {
-    // this.selectCity();
+    this.title.setTitle('Belisada Seller - Rekening Bank');
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
     this.role = user.role;

@@ -4,6 +4,7 @@ import { CategoryService } from '../../../../core/service/category/category.serv
 import { SearchService } from '../../../../core/service/search/search.service';
 import { Search } from '../../../../core/model/search';
 import { Router } from '@angular/router';
+import { SeoService } from '../../../../core/service/seo.service';
 @Component({
   selector: 'app-front-header',
   templateUrl: './front-header.component.html',
@@ -12,16 +13,21 @@ import { Router } from '@angular/router';
 export class FrontHeaderComponent implements OnInit {
 
   categorySearch: Category[];
+  selectedCategory: any;
   selectedSearchCategory: any;
   results = [];
   imgTop: any;
   selectCatsK: any;
   constructor(private categoryService: CategoryService, private searchService: SearchService,
-    private router: Router) { }
+    private router: Router, private seo: SeoService) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
     console.log('kampret di home search');
+    this.seo.generateTags({
+      title: 'Home',
+      description: 'Belisada Home'
+    });
   }
 
   searchK(event) {
@@ -43,6 +49,10 @@ export class FrontHeaderComponent implements OnInit {
     this.categoryService.CategoryOne().subscribe(data => {
       this.categorySearch = data;
     });
+  }
+
+  home() {
+    this.router.navigateByUrl('/');
   }
 
 }
