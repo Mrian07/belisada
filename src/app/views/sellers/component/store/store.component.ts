@@ -46,7 +46,7 @@ export class StoreComponent implements OnInit {
 
   stores: any;
   tabs: Boolean = true;
-  tabs1: Boolean = true;
+  tabs1: Boolean;
   mystore: Observable<any>;
 
   constructor(
@@ -65,8 +65,7 @@ export class StoreComponent implements OnInit {
     this.createForm();
     this.getAllStore();
     this.getProvince();
-    // this.mystore = this.store.select(fromProduct.getStoreState);
-    // console.log(this.mystore);
+
   }
 
   createFormControls() {
@@ -116,12 +115,13 @@ export class StoreComponent implements OnInit {
 
   getAllStore() {
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
       this.stores = response;
+      //console.log(response);
       if (response.length === 0) {
         this.tabs1 = false;
+      }else {
+        this.tabs1 = true;
       }
-      // this.store.dispatch(new storeAction.GetStore(response));
     });
   }
 
