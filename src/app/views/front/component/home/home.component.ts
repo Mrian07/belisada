@@ -55,9 +55,7 @@ export class HomeComponent implements OnInit {
 
     this.homeService.getTopProductCategory().subscribe(data => {
       // this.topProduct = data;
-      console.log('data: ', data);
       this.topProductLvl1 = data;
-      console.log('asdaskdksad', this.topProductLvl1);
     });
   }
 
