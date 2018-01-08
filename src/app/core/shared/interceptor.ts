@@ -29,33 +29,20 @@ export class Interceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
        token: `${auth.getToken()}`
-       //token: 'eyJhbGciOiJIUzUxMiJ9.eyJVc2VyRGF0YSI6eyJyb2xlIjo1LCJuYW1lIjoiQnVkaSBLdXN1bWEgVXRhbWEiLCJhdmF0YXIiOiIiLCJlbWFpbCI6ImJka3VzdW1hQGdtYWlsLmNvbSJ9LCJzdWIiOiJiZGt1c3VtYUBnbWFpbC5jb20iLCJhdWQiOiJ3ZWIiLCJpYXQiOjE1MTQ4NjI3MzAsImV4cCI6MTUxNDk0OTEzMH0.VpmQjFb3mLKgeyRw_ttH8q__Oi7IUHh-2xU2P269ST0QL4GBg5YA32g8Y9p7EXNnfrsMAzXvwRZfx0qe2aq0iQ'
       }
     });
 
-    // return next.handle(request)
-    // .do(event => {
-    //   console.log(event);
-    //   if (event instanceof HttpResponse) {
-    //    // this.logger.logDebug(event);
-    //    console.log('valid');
-    //   }
-    // })
-    // .catch(err => {
-    //   console.log('Caught error', err);
-    //   return Observable.throw(err);
-    // });
+
     return next.handle(request).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
-        //auth.direct();
       }
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
-          // swal('Session Expired, Anda Harus Login ulang')
-          // .then((result) => {
-          //   auth.redirect();
-          // });
+          swal('Session Expired, Anda Harus Login ulang')
+          .then((result) => {
+            auth.redirect();
+          });
         }else {
           console.log(err);
         }

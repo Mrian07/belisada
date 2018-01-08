@@ -15,6 +15,8 @@ export const DELETEBANKLIST = 'DELETEBANKLIST';
 export const DELETEBANKSUCCESS = 'DELETEBANKSUCCESS';
 export const ADDPRODUCT = 'ADDPRODUCT';
 export const ADDPRODUCTSUCCESS = 'ADDPRODUCTSUCCESS';
+export const EDITPRODUCT = 'EDITPRODUCT';
+export const EDITPRODUCTSUCCESS = 'EDITPRODUCTSUCCESS';
 export const FAILURE = 'FAILURE';
 
 export class GetProduct implements Action {
@@ -85,6 +87,17 @@ export class AddProductSuccess implements Action {
   readonly type = ADDPRODUCTSUCCESS;
   constructor(public success: any) {}
 }
+
+export class EditProduct implements Action {
+  readonly type = EDITPRODUCT;
+  constructor(public product: any) {}
+}
+
+export class EditProductSuccess implements Action {
+  readonly type = EDITPRODUCTSUCCESS;
+  constructor(public success: any) {}
+}
+
 export class Failure implements Action {
   readonly type = FAILURE;
   constructor (public payload: {concern: 'ADDPRODUCT' | 'DELETEBANKLIST', error: any}) {}
@@ -104,4 +117,6 @@ export type ProductAction =
  | DeleteBankSuccess
  | GetStore
  | GetStoreList
+ | EditProduct
+ | EditProductSuccess
  | Failure;

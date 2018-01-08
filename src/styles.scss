@@ -68,10 +68,22 @@ body{
 }
 /** ----------------------- **/
 
+.show-on-mobile {
+    display: none;
+}
 @media only screen and (min-width: 1440px) {
     .ui.container {
         width: 1401px;
         margin-left: auto !important;
         margin-right: auto !important;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .show-on-mobile {
+        display: block!important;
+    }
+    .hide-on-mobile {
+        display: none!important;
     }
 }

@@ -58,6 +58,10 @@ export function ProductReducer(
       return action.success;
     }
 
+    case actions.EDITPRODUCTSUCCESS : {
+      return action.success;
+    }
+
     default: return [];
   }
 }

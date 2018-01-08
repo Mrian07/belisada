@@ -1,5 +1,7 @@
 import { ViewChild, Component,  OnInit, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js';
+import { ActiveLink } from '../../../../core/service/shared.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-statistics',
@@ -12,9 +14,10 @@ export class StatisticsComponent implements OnInit {
 
   chart = [];
 
-  constructor() { }
+  constructor(private active: ActiveLink, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Statistik');
     this.showCircularProgressBar();
 
     this.chart = new Chart('cvs-earning', {

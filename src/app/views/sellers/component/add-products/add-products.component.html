@@ -119,7 +119,7 @@
                             Berat
                         </div>
                         <div class="two wide field">
-                            <input type="text" placeholder="Berat" value="{{weight}}" [disabled]="true"/>
+                            <input type="text" placeholder="Berat" value="{{weight}}" [disabled]="false"/>
                         </div>
                         <div class="one wide field">
                             <div class="ui dropdown three wide field" suiDropdown>
@@ -168,7 +168,7 @@
                             Deskripsi
                         </div>
                         <div class="six wide field">
-                            <textarea [innerHTML]="description"></textarea>
+                            <textarea [innerHTML]="description" [(ngModel)]="description"></textarea>
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
             <div class="ui centered">
                 <div class="twelve wide fields">
                     <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button>
-                    <button *ngIf="editMode == true" class="positive ui button">Perbarui Produk</button>
+                    <button *ngIf="editMode == true" class="positive ui button" (click)="updateProducts()">Perbarui Produk</button>
                 </div>
             </div>
         </div>
