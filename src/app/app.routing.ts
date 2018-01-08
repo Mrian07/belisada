@@ -19,6 +19,7 @@ import { SendForgotPasswordComponent } from './views/sellers/component/send-forg
 import { CategoryComponent } from './views/front/component/category/category.component';
 import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
+import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
 
 const routes: Routes = [
   {
@@ -91,6 +92,19 @@ const routes: Routes = [
         component: SignInComponent,
         data: {
           title: 'Sign In'
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'lost-password',
+        component: LostPasswordComponent,
+        data: {
+          title: 'Lost Password'
         }
       }
     ]
