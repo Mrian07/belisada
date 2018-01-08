@@ -18,12 +18,14 @@ export class FrontHeaderComponent implements OnInit {
   results = [];
   imgTop: any;
   selectCatsK: any;
+  queryParams: any = {};
+
   constructor(private categoryService: CategoryService, private searchService: SearchService,
     private router: Router, private seo: SeoService) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
-    console.log('kampret di home search');
+    // console.log('kampret di home search');
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
@@ -43,7 +45,7 @@ export class FrontHeaderComponent implements OnInit {
   productSelected(hasil: any) {
     this.router.navigateByUrl('/Product-detail/' + hasil.productId);
     location.reload();
-    console.log('ini bener ga', hasil.productId);
+    // console.log('ini bener ga', hasil.productId);
   }
   hapusbersih() {
     this.selectedSearchCategory = '';
@@ -56,6 +58,16 @@ export class FrontHeaderComponent implements OnInit {
 
   home() {
     this.router.navigateByUrl('/');
+  }
+  searchEnter(searchKey, searchCategory) {
+    console.log('searchKey: ', searchKey);
+    console.log('searchCategory: ', searchCategory);
+    this.queryParams = { q: searchKey };
+    if (typeof searchCategory !== 'undefined') {
+      this.queryParams['parent'] = 1;
+      this.queryParams['id'] = searchCategory.mProductCategoryId;
+    }
+    this.router.navigate(['/search'], { queryParams: this.queryParams });
   }
 
 }

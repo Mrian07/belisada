@@ -62,7 +62,7 @@ export function getAuthServiceConfigs() {
     SendForgotPasswordComponent,
     ActivationLayoutComponent,
     Page404Component,
-    CategoryComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
