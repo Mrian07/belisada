@@ -74,33 +74,3 @@
         </div>
     </div>
 </div>
-
-<sui-modal [isClosable]="true" (dismissed)="alert($event)" #modal *ngIf="isLogin">
-        <div class="content">
-            <div class="ui grid">
-                <div class="eight wide column">
-                    <div class="column">
-                        <div class="ui segment">
-                            <h2><i class="shopping bag icon"></i> Login Buyer</h2>
-                            <p>Login untuk customer Belisada.</p>
-                            <a href="/sign-in" class="ui green button">Enter</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="eight wide column">
-                    <div class="column">
-                        <div class="ui segment">
-                            <h2><i class="shop icon"></i> Login Seller</h2>
-                            <p>Login untuk seller Belisada.</p>
-                            <a href="/login" class="ui olive button">Enter</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-      
-        </div>
-        <!-- <div class="actions">
-            <button class="ui red button" (click)="modal.deny()">Cancel</button> -->
-            <!-- <button class="ui green button" (click)="modal.approve('done')" autofocus>Ok</button>
-        </div> -->
-      </sui-modal>
