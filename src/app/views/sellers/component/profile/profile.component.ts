@@ -11,6 +11,7 @@ import { MasterService } from '../../../../core/service/master/master.service';
 import { Profile } from '../../../../core/model/profile';
 
 import { DatepickerOptions } from 'ng2-datepicker';
+import { Title } from '@angular/platform-browser';
 // import * as idLocale from 'date-fns/locale/id';
 
 // const URL = '/api/';
@@ -66,9 +67,11 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller -Profile');
       const user = JSON.parse(localStorage.user);
     // this.token = user.token;
     this.role = user.role;
@@ -80,13 +83,16 @@ export class ProfileComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
-    this.address = new FormControl('');
-    this.province = new FormControl('');
+    this.name = new FormControl('', [
+      Validators.required,
+      Validators.minLength(2)
+    ]);
+    this.address = new FormControl('', Validators.required);
+    this.province = new FormControl('', Validators.required);
     this.city = new FormControl('');
     this.district = new FormControl('');
     this.village = new FormControl('');
-    this.postalcode = new FormControl('');
+    this.postalcode = new FormControl('', Validators.required);
     this.phone = new FormControl('');
     this.ktp = new FormControl('');
     this.npwp = new FormControl('');
@@ -143,8 +149,8 @@ export class ProfileComponent implements OnInit {
               this.npwp.setValue(data.npwp);
               this.imgAvatar.setValue(data.imageAvatar);
               this.imgNpwp.setValue(data.imageNPWP);
-              this.dateOfBirth = new FormControl(new Date());
-              // this.dateOfBirth.setValue(data.dateOfBirth);
+              //this.dateOfBirth = new FormControl(new Date());
+               this.dateOfBirth.setValue('2018-01-05T01:48:16.651Z');
             });
           });
         });
@@ -209,6 +215,36 @@ export class ProfileComponent implements OnInit {
       imageNPWP : this.base64Npwp,
       imageIDCard : '',
     };
+
+    if (this.name.value === '') {
+      swal(
+        'Opps!',
+        'Nama tidak boleh kosong',
+        'error'
+      );
+      return false;
+    } else if (this.dateOfBirth.value === '') {
+      swal(
+        'Opps!',
+        'Tanggal lahir tidak boleh kosong',
+        'error'
+      );
+      return false;
+    } else if (this.address.value === '') {
+      swal(
+        'Opps!',
+        'Alamat tidak boleh kosong',
+        'error'
+      );
+      return false;
+    } else if (this.postalcode.value === '') {
+      swal(
+        'Opps!',
+        'Kodepos tidak boleh kosong',
+        'error'
+      );
+      return false;
+    }
 
     this.profileService.updateProfile(updateProfileData).subscribe(data => {
 

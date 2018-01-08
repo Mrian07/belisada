@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
           'Anda sudah keluar dari Account Area.',
           'success'
         ).then(()=> {
-          this.router.navigate(['home']);
+          this.router.navigateByUrl('/');
         });
       }
     });

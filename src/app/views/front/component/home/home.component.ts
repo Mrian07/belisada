@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { HomeView } from '../../../../core/model/home.view';
 import { Level1 } from '../../../../core/model/home/level1';
 import { Level2 } from '../../../../core/model/home/level2';
@@ -9,6 +10,8 @@ import { TopProductCategory } from '../../../../core/model/top-product-category'
 import { TopProductLvl1 } from '../../../../core/model/top-product-lvl1';
 import { TopProductLvl2 } from '../../../../core/model/top-product-lvl2';
 import { HomeService } from '../../../../core/service/home/home.service';
+import { SeoService } from '../../../../core/service/seo.service';
+
 
 @Component({
   selector: 'app-home',
@@ -28,10 +31,15 @@ export class HomeComponent implements OnInit {
   topProductLvl1: TopProductCategory[];
   topProductLvl2: TopProductLvl2[];
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService, private title: Title, private seo: SeoService) {
+  }
 
   ngOnInit() {
-
+    this.title.setTitle('Belisada - Home');
+    this.seo.generateTags({
+      title: 'Home',
+      description: 'Belisada Home'
+    });
     this.homeService.getHomeThumbnail().subscribe(data => {
       this.homeView = data;
       this.level_1 = data.level_1;
@@ -49,6 +57,7 @@ export class HomeComponent implements OnInit {
       // this.topProduct = data;
       console.log('data: ', data);
       this.topProductLvl1 = data;
+      console.log('asdaskdksad', this.topProductLvl1);
     });
   }
 

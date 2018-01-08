@@ -1,5 +1,9 @@
+import { ProductDetailService } from './../../../../core/service/product-detail/product-detail.service';
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
+import { ActivatedRoute } from '@angular/router';
+import { ProductDetail } from '../../../../core/model/product-detail';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,11 +15,19 @@ export class ProductDetailComponent implements OnInit {
   public carouselTile: NgxCarousel;
   tabs: any;
   act_key: any;
-  constructor() { }
+  productId: any;
+  specialPrice: 3;
+  highlight;
+  ProductList: ProductDetail = new ProductDetail();
+
+  aliasName;
+  constructor(private route: ActivatedRoute,
+    private detailService: ProductDetailService,
+    private title: Title
+  ) { }
 
   ngOnInit() {
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-
         this.carouselTile = {
           grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
           slide: 2,
@@ -28,6 +40,14 @@ export class ProductDetailComponent implements OnInit {
           touch: true,
           easing: 'ease'
         };
+        this.route.params.subscribe( params => {
+          this.productId = params.id;
+        });
+        this.detailService.getProductDetail(this.productId).subscribe(data => {
+          this.ProductList = data;
+          console.log(data);
+          this.title.setTitle('Belisada : ' + data.name);
+        });
   }
   public carouselTileLoad(evt: any) {
         const len = this.carouselTileItems.length;

@@ -55,7 +55,7 @@
               <tr>
                   <th><input type="checkbox"/></th>
                   <th>Image</th>
-                  <th>Produk</th>
+                  <th style="width:100px;">Produk</th>
                   <th>Harga</th>
                   <!-- <th>Stok</th> -->
                   <!-- <th>Edit</th>
@@ -71,7 +71,7 @@
                     <img class="ui image product-image" src="{{ product.imageurl }}" alt="image not found"/>
                 </td>
                 <td>
-                    {{ product.name }}<br/><small><i class="unhide icon"></i> 0 views</small>
+                    {{ product.name | words: 7 }}<br/><small><i class="unhide icon"></i> 0 views</small>
                 </td>
                 <td>
                     <!-- <div class="ui action input">
@@ -87,8 +87,8 @@
 
                     <div class="ui right labeled input">
                         <label for="amount" class="ui label">Rp</label>
-                        <input placeholder="Amount" id="amount" value="{{ product.pricelist }}" type="text" disabled/>
-                        <a class="ui tag label">
+                        <input placeholder="Amount" id="amount" value="{{ product.pricelist | currency:'Rp '}}" type="text" disabled/>
+                        <a class="ui tag label" (click)="editProducts(product)">
                             <i class="edit icon"></i>
                         </a>
                     </div>

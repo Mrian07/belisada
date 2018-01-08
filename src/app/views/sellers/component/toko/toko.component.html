@@ -2,7 +2,7 @@
     <div class="wide column">
         <h1>Profile</h1>
     </div>
-</div> 
+</div>
 <div class="ui segment">
   <div class="ui grid">
     <div class="twelve wide stretched column">
@@ -12,36 +12,96 @@
             </div>
             <div class="ten wide column">
 
-                <form class="ui form">
+                    <form class="ui form" [formGroup]="createStoreForm" (ngSubmit)="onSubmit()" novalidate>
+                            <div class="field">
+                                <label>Nama Toko</label>
+                                <input name="name" placeholder="Masukan nama toko" type="text" formControlName="name"/>
+                                <div class="form-control-feedback alert" *ngIf="name.invalid && name.dirty"> 
+                                    Nama tidak boleh kosong
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Alamat</label>
+                                <textarea name="address" placeholder="Masukan alamat" formControlName="address"></textarea>
+                                <div class="form-control-feedback alert" *ngIf="address.invalid && address.dirty"> 
+                                    Alamat tidak boleh kosong
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Provinsi</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                                    <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <label>Kota</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                                    <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <label>Kelurahan / Kecamatan</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                                    <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <label>Desa</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
+                                    <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <label>Kode POS</label>
+                                <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalcode"/>
+                                <div class="form-control-feedback alert" *ngIf="postalcode.invalid && postalcode.dirty"> 
+                                    Kodepos tidak boleh kosong
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label>Deskripsi</label>
+                                <textarea name="description" placeholder="Deskripsi toko anda" formControlName="description"></textarea>
+                            </div>
+                            <button class="ui primary button" type="submit">Simpan</button>
+                        </form>     
+
+
+
+
+
+
+
+
+                <!-- <form class="ui form">
                     <div class="field">
                         <label>Nama Toko</label>
-                        <input name="nm_toko" placeholder="Masukan nama toko" type="text"/>
+                        <input name="nm_toko" placeholder="Masukan nama toko" type="text" value="{{namaToko}}"/>
                     </div>
                     <div class="field">
                         <label>Alamat</label>
-                        <input name="alamat" placeholder="Masukan nomor alamat" type="text"/>
+                        <input name="alamat" placeholder="Masukan nomor alamat" type="text" value="{{alamatToko}}"/>
                     </div>
                     <div class="field">
                         <label>Provinsi</label>
-                        <sui-select class="selection" labelField="name" placeholder="Pilih Provinsi">
-                            <sui-select-option *ngFor="let option of province" [value]="option" value="option.name" (click)="selectCity(option.c_region_id)"></sui-select-option>
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Provinsi" [(ngModel)]="selectedProv" [ngModelOptions]="{standalone: true}">
+                            <sui-select-option *ngFor="let option of province" [value]="option" value="option.name" (click)="selectCity(option.mregionId)"></sui-select-option>
                         </sui-select>
                     </div>
                     <div class="field">
                         <label>Kota</label>
-                        <sui-select class="selection" labelField="name" placeholder="Pilih Kota">
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Kota" [(ngModel)]="selectedCity" [ngModelOptions]="{standalone: true}">
                             <sui-select-option *ngFor="let option of city" [value]="option" value="option.name" (click)="selectKelurahan(option.c_city_id)"></sui-select-option>
                         </sui-select>
                     </div>
                     <div class="field">
                         <label>Kelurahan/ Kecamatan</label>
-                        <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan/ Kecamatan">
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan/ Kecamatan" [(ngModel)]="selectedKelurahan" [ngModelOptions]="{standalone: true}">
                             <sui-select-option *ngFor="let option of kelurahan" [value]="option" value="option.name" (click)="selectDesa(option.c_district_id)"></sui-select-option>
                         </sui-select>
                     </div>
                     <div class="field">
                         <label>Desa</label>
-                        <sui-select class="selection" labelField="name" placeholder="Pilih Desa">
+                        <sui-select class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="selectedDesa" [ngModelOptions]="{standalone: true}">
                             <sui-select-option *ngFor="let option of desa" [value]="option" value="option.name" (click)="postal(option.postal)"></sui-select-option>
                         </sui-select>
                     </div>
@@ -56,7 +116,7 @@
                         </sui-select>
                     </div>
                     <button class="ui primary button" type="submit">Simpan</button>
-                </form>
+                </form> -->
             </div>
         </div>
     </div>

@@ -38,7 +38,7 @@
                                             </div>
                                             <div class="five wide column">
                                                 <strong>Kodepos</strong><br/>
-                                                Petukangan
+                                                {{ option.postal }}
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +67,8 @@
 
                 <!-- Add Store -->
                 <div class="ui bottom attached segment" suiTabContent="add-store">
-                    <div class="ui grid">
+                    <div class="twelve wide column" align="center" *ngIf="tabs1 == true">Toko Sudah Ada</div>
+                    <div class="ui grid" *ngIf="tabs1 == false">
                         <div class="four wide column center aligend">
                             <!-- <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/> -->
                             <div class="ui card">

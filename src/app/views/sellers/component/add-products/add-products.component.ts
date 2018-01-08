@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, HostListener } from '@angular/core';
 import { StoreModule, Store, ActionsSubject } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
@@ -13,6 +13,10 @@ import { AddproductService } from '../../../../core/service/addproduct/addproduc
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
+import { Products } from '../../../../store/reducers';
+import { ShareService } from '../../../../core/service/shared.service';
+
 interface AppState {
   message: any;
 }
@@ -37,6 +41,7 @@ export class AddProductsComponent implements OnInit {
   selectedSubCategory: string;
   selectedSubCategories: string;
   selectCondition: any;
+  productName: any;
   results = [];
   category = [];
   subcategory = [];
@@ -47,18 +52,26 @@ export class AddProductsComponent implements OnInit {
   description: string;
   price: number;
   weight: number;
+  panjang: number;
+  lebar: number;
+  tinggi: number;
   imageurl: string;
   editMode: Boolean = true;
   toggle: Boolean = false;
   productId: number;
   storeId: number;
   redirectSub: Subscription;
+  editSub: Subscription;
+  editData: any;
 
     constructor(private searchService: SearchService, private categoryService: CategoryService,
-      private route: ActivatedRoute, private storeService: StoreService,
+      private route: ActivatedRoute, private router: Router, private storeService: StoreService,
       private addService: AddproductService,
       private actionsSubject: ActionsSubject,
-      private store: Store<fromProduct.Products>) {
+      private store: Store<fromProduct.Products>,
+      private title: Title,
+      private shared: ShareService
+    ) {
       this.route.params.subscribe( id => {
         this.editid = id;
       });
@@ -66,7 +79,7 @@ export class AddProductsComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.title.setTitle('Belisada Seller - Add Product');
     this.getCategory();
     this.getBrands();
     this.getStore();
@@ -75,6 +88,8 @@ export class AddProductsComponent implements OnInit {
       this.editMode = false;
     } else {
       this.editMode = true;
+      this.editData = this.shared.shareData;
+      this.productSelected(this.shared.shareData);
     }
     this.redirectSub = this.actionsSubject
         .asObservable()
@@ -87,6 +102,19 @@ export class AddProductsComponent implements OnInit {
                 this.clearAll();
               });
         });
+    this.editSub = this.actionsSubject
+    .asObservable()
+    .filter(action => action.type === fromActions.EDITPRODUCTSUCCESS)
+    .subscribe((action: fromActions.EditProductSuccess) => {
+        swal(
+            'Produk berhasil di Perbaharui!',
+            'success'
+          ).then((result) => {
+            this.clearAll();
+            this.shared.shareData = '';
+            this.router.navigateByUrl('/seller/my-store');
+          });
+    });
   }
 
   getCategory() {
@@ -121,17 +149,22 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectSubCategories(id: number) {
-    console.log(id);
+    //console.log(id);
   }
 
   search(event) {
     const key = event.target.value;
-    this.searchService.search(key).subscribe(data => {
-      this.results = data;
-    });
+    if (key === '') {
+      this.results = [];
+    }else {
+      this.searchService.search(key).subscribe(data => {
+        this.results = data;
+      });
+    }
   }
 
   productSelected(hasil: any) {
+    this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.selectedSubCategory = hasil.category2Name;
     this.selectedSubCategories = hasil.category3Name;
@@ -144,7 +177,9 @@ export class AddProductsComponent implements OnInit {
     this.weight = hasil.weight;
     this.toggle = false;
     this.productId = hasil.productId;
-    console.log(hasil);
+    this.lebar = hasil.dimensionswidth;
+    this.tinggi = hasil.dimensionsheight;
+    this.panjang = hasil.dimensionslength;
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -161,20 +196,47 @@ export class AddProductsComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     const token = user.token;
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
       this.storeId = response[0].mBpartnerStoreId;
     });
   }
 
 
   addProducts() {
-    const productData = {
-      pricelist: this.price,
-      description: this.description,
-      productId: this.productId,
-      mBpartnerStoreId: this.storeId
-    };
-    this.store.dispatch(new fromActions.AddProduct(productData));
+    if ( this.productId === undefined) {
+      swal('Nama Product harus diisi');
+    }else {
+      const productData = {
+        pricelist: this.price,
+        description: this.description,
+        productId: this.productId,
+        mBpartnerStoreId: this.storeId,
+        weight: this.weight,
+        dimensionswidth: this.lebar,
+        dimensionslength: this.panjang,
+        dimensionsheight: this.tinggi,
+        tag: [this.productName]
+      };
+      this.store.dispatch(new fromActions.AddProduct(productData));
+    }
+  }
+
+  updateProducts() {
+    if ( this.productId === undefined) {
+      swal('Nama Product harus diisi');
+    }else {
+      const productData = {
+        pricelist: this.price,
+        description: this.description,
+        productId: this.productId,
+        mBpartnerStoreId: this.storeId,
+        weight: this.weight,
+        dimensionswidth: this.lebar,
+        dimensionslength: this.panjang,
+        dimensionsheight: this.tinggi,
+        tag: [this.productName]
+      };
+      this.store.dispatch(new fromActions.EditProduct(productData));
+    }
   }
 
   clearAll() {
@@ -188,6 +250,9 @@ export class AddProductsComponent implements OnInit {
     this.description = '';
     this.imageurl = undefined;
     this.weight = 0;
+    this.panjang = 0;
+    this.lebar = 0;
+    this.tinggi = 0;
     this.toggle = false;
     this.productId = 0;
     this.selectedBrands = '';

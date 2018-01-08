@@ -15,6 +15,7 @@ import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { transition } from '@angular/core/src/animation/dsl';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class RekeningComponent implements OnInit {
     private rekeningService: RekeningSService,
     private store: Store<fromProduct.Banks>,
     private actionsSubject: ActionsSubject,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private title: Title
   ) {  }
   public user: Object;
   searchrek: any;
@@ -56,11 +58,11 @@ export class RekeningComponent implements OnInit {
   editbank: Subscription;
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Rekening Bank');
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
     this.role = user.role;
     this.store.dispatch(new fromActions.GetBank(user.token));
-    this.selectCity();
     this.getRole();
     this.deletebank = this.actionsSubject
         .asObservable()
@@ -80,7 +82,7 @@ export class RekeningComponent implements OnInit {
         .subscribe((action: fromActions.EditBankSuccess) => {
           this.ngZone.run(() => { this.rekening = Observable.of(action.success); console.log('edit Done!'); });
            swal(
-                'Produk berhasil di Perbarui!',
+                'Rekening berhasil di Perbarui!',
                 'success'
               ).then((result) => {
               });
@@ -92,11 +94,12 @@ export class RekeningComponent implements OnInit {
   selectCity() {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
+      console.log('askdksaldksad', data);
     });
 
   }
   getRole(){
-    
+
     // this.div.nativeElement.innerHTML ='';
 
     if(this.role === 6) {
@@ -104,8 +107,8 @@ export class RekeningComponent implements OnInit {
     }else{
        console.log('kampret');
     }
-   
-   
+
+
   }
   getBankList() {
     this.rekening = this.store.select<any>(fromProduct.getBankState);
@@ -137,16 +140,11 @@ export class RekeningComponent implements OnInit {
     }
   }
   getAllStorex(id) {
-    console.log('rek: ', this.searchrek);
-    console.log('id: ', id);
-    console.log('sadsd', this.role);
-    console.log('this.searchrek.find(x => x.mbankId === id.mBankId): ', this.searchrek.find(x => x.mbankId === id.mBankId));
     this.accountName = id.accountName;
     this.accountNo = id.accountNo;
     this.mBankAccountId = id.mBankAccountId;
     this.show1 = false;
     this.selectedCategory = this.searchrek.find(x => x.mbankId === id.mBankId);
-    console.log('fdafda', id);
   }
 
   hapusUd(id) {

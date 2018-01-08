@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -9,9 +10,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 })
 export class SearchDashboardComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Dashboard');
    // this.getCategory();
   }
   search(event) {

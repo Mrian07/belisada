@@ -12,6 +12,7 @@
               </div>
                 <div class="ten wide column">
 
+
                     <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
                         <div class="field">
                             <label>Nama Perusahaan</label>
@@ -21,6 +22,7 @@
                             <label>Alamat Perusahaan</label>
                             <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
                         </div>
+
                         <div class="field">
                             <label>No. Telephone</label>
                             <input name="phone" placeholder="Masukan nama telephone" type="text" formControlName="corporatePhone"/>
@@ -77,6 +79,8 @@
                         <br>
                         <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
                         <br>
+                         <div class="ui divider"></div>
+                        <img class="ui middle aligned small image" src="{{userimageCorporateNpwp}}" (load)="setCanvasNpwp($event)" #avaImgNpwp >
                         <div class="upload-btn-wrapper">
                             <!-- <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button> -->
                             <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" formControlName="imageCorporateNpwp" />
@@ -87,6 +91,13 @@
                 </div>
             </div>
         </div>
+        asdasdasd
+        <div *ngFor="let a of (perusahaan | async).perusahaan; let i = index">
+                <!-- asdasdsadsad -->
+
+                    {{a.corporateName}}
+
+                </div>
         <div class="four wide column">
             <div class="ui vertical fluid right tabular menu">
                 <a routerLink="/seller/profile" class="item">

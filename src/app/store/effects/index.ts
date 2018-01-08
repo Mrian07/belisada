@@ -48,6 +48,14 @@ export class ProductEffects {
           );
 
   @Effect()
+    editproduct$: Observable<any> = this.actions$.ofType(fromActions.EDITPRODUCT)
+      .map((action: fromActions.EditProduct) => action.product)
+        .switchMap((data) =>
+          this.addProductService.update(data)
+          .map( (editproduct: any) => new fromActions.EditProductSuccess(true))
+        );
+
+  @Effect()
     getbank$: Observable<any> = this.actions$.ofType(fromActions.GETBANK)
         .switchMap(() =>
           this.bankService.getAll()

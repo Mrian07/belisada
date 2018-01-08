@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { StoreService } from '../../../../core/service/store/store.service';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +9,6 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
   // veryfyProduct: number;
   // rejectedProduct: number;
   // sendProduct: number;
@@ -26,13 +27,16 @@ export class DashboardComponent implements OnInit {
 
   // productList = [];
   // isi di atas sudah di pidah di  dashboard/status-invoice.ts
-
-  constructor() {
+  stores: any[] = [];
+  isReady: Boolean = false;
+  constructor(private storeService: StoreService, private router: Router) {
     // private categoryService: CategoryService, private searchService: SearchService, private router: Router
     // tadi nya ada di dalem () sekarang pindah ke search-dashboard/search-dasboard.ts
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getAllStore();
+  }
     // this.veryfyProduct = this.verify.length;
     // this.rejectedProduct = this.rejected.length;
     // this.sendProduct = this.send.length;
@@ -67,4 +71,18 @@ export class DashboardComponent implements OnInit {
   //   this.router.navigate(['seller/add-products']);
   // }
   // ^^ pindah ke search-dashboard/search-dasboard.ts
+
+  daftarToko() {
+    this.router.navigateByUrl('/seller/my-store');
+  }
+
+  getAllStore() {
+    this.storeService.getAll().subscribe(response => {
+      console.log('getAllStore response: ', response);
+      this.stores = response;
+      this.isReady = true;
+    });
+  }
 }
+
+

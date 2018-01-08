@@ -19,6 +19,9 @@ export class Search {
   description_en: string;
   highlight: string;
   highlight_en: string;
+  dimensionsheight: number;
+  dimensionslength: number;
+  dimensionswidth: number;
 
   constructor() {}
 }

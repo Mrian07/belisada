@@ -15,6 +15,7 @@ import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { ProductComponent } from '../product/product.component';
 import { MyStore } from '../../../../core/model/store';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -45,6 +46,7 @@ export class StoreComponent implements OnInit {
 
   stores: any;
   tabs: Boolean = true;
+  tabs1: Boolean;
   mystore: Observable<any>;
 
   constructor(
@@ -52,18 +54,18 @@ export class StoreComponent implements OnInit {
     private categoryService: CategoryService,
     private masterService: MasterService,
     private routes: Router,
-    private store: Store<fromProduct.Stores>
+    private store: Store<fromProduct.Stores>,
+    private title: Title
   ) {
    }
 
   ngOnInit() {
-
+    this.title.setTitle('Belisada Seller - MyStore');
     this.createFormControls();
     this.createForm();
     this.getAllStore();
     this.getProvince();
-    // this.mystore = this.store.select(fromProduct.getStoreState);
-    // console.log(this.mystore);
+
   }
 
   createFormControls() {
@@ -113,9 +115,13 @@ export class StoreComponent implements OnInit {
 
   getAllStore() {
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
       this.stores = response;
-      // this.store.dispatch(new storeAction.GetStore(response));
+      //console.log(response);
+      if (response.length === 0) {
+        this.tabs1 = false;
+      }else {
+        this.tabs1 = true;
+      }
     });
   }
 

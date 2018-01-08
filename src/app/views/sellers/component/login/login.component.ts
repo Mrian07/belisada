@@ -7,6 +7,7 @@ import { LoginData } from '../../../../core/model/login';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { SendEmailService } from '../../../../core/service/sendEmail/send-email.service';
 import { TokenService } from '../../../../core/service/token/token.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -29,10 +30,12 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private sendEmailService: SendEmailService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada - Login');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
     if (this.tokenService.getToken() === undefined) {
     } else {
