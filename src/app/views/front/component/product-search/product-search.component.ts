@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/filter';
+import { SearchService } from '../../../../core/service/search/search.service';
 
 @Component({
   selector: 'app-product-search',
@@ -14,9 +17,16 @@ export class ProductSearchComponent implements OnInit {
   boundary;
   selectedPage;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private searchService: SearchService) { }
 
   ngOnInit() {
+    console.log('saerch');
+    this.route.queryParams
+      .subscribe(params => {
+        this.searchService.productList(params).subscribe(response => {
+          console.log('response: ', response);
+        });
+    });
   }
 
 }

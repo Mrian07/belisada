@@ -8,6 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'angular5-social-login';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -36,6 +37,23 @@ export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
+// Configs
+export function getAuthServiceConfigs() {
+  const config = new AuthServiceConfig(
+      [
+        {
+          id: FacebookLoginProvider.PROVIDER_ID,
+          provider: new FacebookLoginProvider('Your-Facebook-app-id')
+        },
+        {
+          id: GoogleLoginProvider.PROVIDER_ID,
+          provider: new GoogleLoginProvider('874374052364-t59q5b9psp1cpsn1b1t87aoogab6d072.apps.googleusercontent.com')
+        },
+      ]
+  );
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    SocialLoginModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production
     }),
@@ -85,6 +104,10 @@ export function createTranslateLoader(http: HttpClient) {
     { provide: HTTP_INTERCEPTORS,
       useClass: Interceptor,
       multi: true
+    },
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
     },
     OnlyLoggedInUsersGuard,
     {provide: APP_BASE_HREF, useValue: '/'}

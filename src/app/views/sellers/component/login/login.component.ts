@@ -3,6 +3,11 @@ import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { Router, ActivatedRoute } from '@angular/router';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular5-social-login';
 import { LoginData } from '../../../../core/model/login';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { SendEmailService } from '../../../../core/service/sendEmail/send-email.service';
@@ -27,6 +32,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private loginService: LoginService,
+    private socialAuthService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
     private sendEmailService: SendEmailService,
@@ -85,5 +91,18 @@ export class LoginComponent implements OnInit {
         this.router.navigate([this.returnUrl]);
       }
     });
+  }
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    }else if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + 'sign in data : ' , userData);
+      }
+    );
   }
 }

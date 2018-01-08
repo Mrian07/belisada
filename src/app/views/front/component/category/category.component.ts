@@ -26,8 +26,12 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     this.categoryService.CategoryThree(this.m_product_category_id).subscribe(data => {
       this.level_3 = data;
-      // console.log('ini', data);
+      console.log('ini apa ya', this.level_3);
     });
+  }
+  dapatkanList() {
+    console.log('sdsd', this.level_3[0].m_product_category_id);
+    return false;
   }
   reloadr() {
     location.reload();
