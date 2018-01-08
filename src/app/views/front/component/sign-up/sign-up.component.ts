@@ -19,10 +19,12 @@ export class SignUpComponent implements OnInit {
   name: string;
   password2: string;
   iscorporate = 'N';
-  userType = '1';
+  userType = '2';
   clickMessage = '';
   tc: string;
   loading: any;
+  isReady: Boolean = false;
+
 
   constructor(
     private http: HttpClient,
@@ -34,6 +36,10 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada Buyer - Registration');
+  }
+
+  popUp() {
+    this.isReady = true;
   }
 
   register() {
