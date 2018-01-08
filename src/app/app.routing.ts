@@ -17,6 +17,7 @@ import { MaintenanceComponent } from './views/sellers/component/maintenance/main
 import { Page404Component } from './views/sellers/component/page-404/page-404.component';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
 import { CategoryComponent } from './views/front/component/category/category.component';
+import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,19 @@ const routes: Routes = [
         component: CategoryComponent,
         data: {
           title: 'category'
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'sign-up',
+        component: SignUpComponent,
+        data: {
+          title: 'Sign Up'
         }
       }
     ]

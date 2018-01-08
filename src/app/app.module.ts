@@ -30,6 +30,7 @@ import { Interceptor } from './core/shared/interceptor';
 import { CategoryComponent } from './views/front/component/category/category.component';
 import { TruncateModule } from 'ng2-truncate';
 import { SeoService } from './core/service/seo.service';
+import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,7 +45,8 @@ export function createTranslateLoader(http: HttpClient) {
     SendForgotPasswordComponent,
     ActivationLayoutComponent,
     Page404Component,
-    CategoryComponent
+    CategoryComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

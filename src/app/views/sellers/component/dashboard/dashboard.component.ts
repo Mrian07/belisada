@@ -73,7 +73,7 @@ export class DashboardComponent implements OnInit {
   // ^^ pindah ke search-dashboard/search-dasboard.ts
 
   daftarToko() {
-    this.router.navigateByUrl('/seller/my-store');
+    this.router.navigateByUrl('/seller/toko');
   }
 
   getAllStore() {
