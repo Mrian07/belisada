@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { ActiveLink } from '../../../../../core/service/shared.service';
 
 
 @Component({
@@ -10,11 +11,14 @@ import { Title } from '@angular/platform-browser';
 })
 export class SearchDashboardComponent implements OnInit {
 
-  constructor(private router: Router, private title: Title) { }
+  constructor(
+    private router: Router,
+    private title: Title,
+    private active: ActiveLink
+  ) { }
 
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Dashboard');
-   // this.getCategory();
   }
   search(event) {
     const key = event.target.value;

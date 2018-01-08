@@ -4,6 +4,7 @@ import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semanti
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../../../core/service/register/register.service';
+import { Title } from '@angular/platform-browser';
 export interface IContext {
   data: string;
 }
@@ -40,9 +41,12 @@ export class RegistrationComponent implements OnInit {
   constructor(private http: HttpClient,
     private categoryService: RegisterService,
     public modalService: SuiModalService,
-    private router: Router) {  }
+    private router: Router,
+    private title: Title
+  ) {  }
 
   ngOnInit() {
+    this.title.setTitle('Belisada Seller - Registration');
   }
   popUp() {
     swal(
