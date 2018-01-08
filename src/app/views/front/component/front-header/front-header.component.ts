@@ -5,6 +5,8 @@ import { SearchService } from '../../../../core/service/search/search.service';
 import { Search } from '../../../../core/model/search';
 import { Router } from '@angular/router';
 import { SeoService } from '../../../../core/service/seo.service';
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-front-header',
   templateUrl: './front-header.component.html',
@@ -19,9 +21,14 @@ export class FrontHeaderComponent implements OnInit {
   imgTop: any;
   selectCatsK: any;
   queryParams: any = {};
+  isLogin: Boolean = false;
+
+  title: string;
+  text: string;
+  type: string;
 
   constructor(private categoryService: CategoryService, private searchService: SearchService,
-    private router: Router, private seo: SeoService) { }
+  private router: Router, private seo: SeoService) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
@@ -70,5 +77,40 @@ export class FrontHeaderComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: this.queryParams });
   }
 
+  login() {
+    // this.isLogin = true;
+  swal({
+    title: 'Login Akun',
+    // text: 'Silakan login sesuai dengan type akun Anda',
+    type: 'info',
+    html:
+      '<div class="content">' +
+      '<div class="ui grid">' +
+          '<div class="eight wide column">' +
+              '<div class="column">' +
+                  '<div class="ui segment">' +
+                      '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
+                      // '<p>Login untuk customer Belisada.</p>' +
+                      '<a href="/sign-in" class="ui green button">Enter</a>' +
+                  '</div>' +
+              '</div>' +
+          '</div>' +
+          '<div class="eight wide column">' +
+              '<div class="column">' +
+                  '<div class="ui segment">' +
+                      '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
+                      // '<p>Login untuk seller Belisada.</p>' +
+                      '<a href="/login" class="ui olive button">Enter</a>' +
+                  '</div>' +
+              '</div>' +
+          '</div>' +
+      '</div>' +
 
+  '</div>',
+      showCloseButton: true,
+      showConfirmButton: false,
+      confirmButtonText: 'Yes, delete it!'
+  } );
+
+}
 }

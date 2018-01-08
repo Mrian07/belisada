@@ -1,0 +1,112 @@
+<div class="ui center aligned grid border-form">
+  <div class="six wide column">
+      <div class="ui segment">
+
+        <div class='title'><i class="chevron circle right icon"></i> Buat Akun</div>
+
+              <form name="" class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+                  <div class="field">
+              
+                      <label>Nama Lengkap</label>
+                      <input type="text" name="name" placeholder="Nama Lengkap"  [(ngModel)]="name" #_name="ngModel" required minlength="3"/>
+                      <div *ngIf="f.submitted && !_name.valid" class="ui pointing red basic label">Name is required and minimum 3 character</div>
+                  </div>
+                  <div class="field">
+                      <label>No Telpon</label>
+                      <input type="number" name="phone" ng-pattern="/^\d{5}$/"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
+                      <div *ngIf="f.submitted && !_phone.valid" class="ui pointing red basic label">Phone is required, minimum 8 character</div>
+                  </div>
+                  <div class="field">
+                      <label>Alamat Email</label>
+                      <input type="email" name="email"  placeholder="Alamat Email" [(ngModel)]="email" #_email="ngModel" required/>
+                      <div *ngIf="f.submitted && !_email.valid" class="ui pointing red basic label">Email is required</div>
+                  </div>
+                  <div class="field">
+                      <label>Password</label>
+                      <input type="password" name="password" placeholder="Minimal 7 karakter" [(ngModel)]="password" #_password="ngModel" required minlength="7"/>
+                      <div *ngIf="f.submitted && !_password.valid" class="ui pointing red basic label">Password is required, minimum 7 character</div>
+                  </div>
+                  <div class="field">
+                      <label>Ulangi Password</label>
+                      <input type="password" name="password2" placeholder="Minimal 7 karakter" [(ngModel)]="password2" #_password2="ngModel" required validateEqual="password"/>
+                      <div *ngIf="f.submitted && !_password2.valid" class="ui pointing red basic label">Password mismatch</div>
+                  </div>
+                  <div class="ui checkbox gap-between-elements">
+                      <input type="checkbox" name="tc" [(ngModel)]="tc" required #_tc="ngModel">
+                      <label>saya telah membaca dan menyetujui <a class="pointer" (click)= "popUp()">Kebijakan belisada</a></label>
+                      <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
+                    </div>
+                  <div class="text-center gap-between-elements">
+                     <button 
+                     [ngClass]="loading?'loading':'ui button auth-btn-submit'"
+                   
+                     [disabled]="!f.valid"
+                     >Daftar Akun</button>
+                  </div>
+                  <div class="text-center gap-between-elements">
+                      <a routerLink="/sign-in" routerLinkActive="active">Sudah punya akun? Klik di sini</a>
+                  </div>
+              </form>
+
+
+<!-- 
+              <div class="text-center gap-between-elements">
+                  <button class="ui facebook button socmed">
+                      <i class="facebook icon"></i>
+                      Sign in with Facebook
+                  </button>
+              </div>
+              <div class="text-center gap-between-elements">
+                  <button class="ui google plus button socmed">
+                      <i class="google plus icon"></i>
+                      Sign in with Google
+                  </button>
+              </div>
+              <div class="text-center gap-between-elements">
+                  <p>
+                      Dengan menekan Daftar Akun, saya mengkonfrimasi telah menyetujui
+                      Syarat dan Ketentuan, serta Kebijakan Privasi myACICO
+                  </p>
+              </div>
+              
+              <ng-template let-context let-modal="modal" #modalTemplate>
+                  <div class="header">Example</div>
+                  <div class="content">
+                      <p>{{ context.data }}</p>
+                  </div>
+                  <div class="actions">
+                      <button class="ui red button" (click)="modal.deny('denied')">Cancel</button>
+                      <button class="ui green button" (click)="modal.approve('approved')" autofocus>OK</button>
+                  </div>
+              </ng-template> -->
+
+
+
+          </div>
+        </div>
+  </div>
+
+
+<sui-modal [isClosable]="true" (dismissed)="alert($event)" #modal *ngIf="isReady">
+  <div class="header">Kebijakan Belisada</div>
+  <div class="content">
+      <p>Selamat datang user di Area Store,</p>
+      <p>Diarea ini Anda bisa melakukan penjualan produk, namun ada tahapan yang wajib Anda penuhi diantaranya:</p>
+      <p>1.Melengkapi data profile Anda pada halaman <b>Edit Profile</b>.<br>
+      2.Melengkapi data rekening bank Anda pada halaman <b>Edit Profile</b>.<br>
+      3.Mengisi informasi toko pada halaman <b>Daftar Toko & Product</b>.<br>
+      4.Melakukan penambahan produk pada halaman <b>Dashboard</b>.<br></p>
+
+      <p>Note: Anda tidak akan bisa menambah produk jika Anda belum mendaftarkan toko Anda di website belisada.co.id.</p>
+
+  </div>
+  <div class="actions">
+      <!-- <button class="ui red button" (click)="modal.deny()">Cancel</button> -->
+      <button class="ui green button" (click)="modal.approve('done')" autofocus>Ok</button>
+  </div>
+</sui-modal> 
+
+        
+        
+
+
