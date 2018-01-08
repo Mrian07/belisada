@@ -1,9 +1,10 @@
 <div class="ui grid b-cat" >
   <div class="four wide center aligned column " *ngFor="let item of level_3">
       <div class='bg-cat'>
-          <a routerLink="" (click)="dapatkanList()" class="item">
+          <a routerLink="/Prodyct/{{ item.m_product_category_id }}"  (click)="dapatkanList()" class="item">
             <img class="ui centered medium image" src="{{ item.imageurl }}" alt="image not found"/><br>
             {{ item.name }}
+            {{ item.m_product_category_id }}
           </a>
 
       </div>

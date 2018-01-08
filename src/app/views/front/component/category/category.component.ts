@@ -30,7 +30,7 @@ export class CategoryComponent implements OnInit {
     });
   }
   dapatkanList() {
-    console.log('sdsd', this.level_3[0].m_product_category_id);
+    console.log('sdsd');
     return false;
   }
   reloadr() {
