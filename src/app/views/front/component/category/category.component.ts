@@ -28,7 +28,6 @@ export class CategoryComponent implements OnInit {
       this.level_3 = data;
       // console.log('ini', data);
     });
-
   }
   reloadr() {
     location.reload();
