@@ -8,7 +8,7 @@ import { Configuration } from '../config/configuration';
 import { CategoryService } from '../service/category/category.service';
 import { MasterService } from '../service/master/master.service';
 import { TokenService } from '../service/token/token.service';
-import { ShareService } from '../service/shared.service';
+import { ShareService, ActiveLink } from '../service/shared.service';
 
 @NgModule ({
   declarations: [
@@ -27,7 +27,8 @@ import { ShareService } from '../service/shared.service';
     CategoryService,
     MasterService,
     TokenService,
-    ShareService
+    ShareService,
+    ActiveLink
   ]
 })
 export class SharedModules { }

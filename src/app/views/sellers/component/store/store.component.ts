@@ -16,6 +16,7 @@ import * as fromProduct from '../../../../store/reducers';
 import { ProductComponent } from '../product/product.component';
 import { MyStore } from '../../../../core/model/store';
 import { Title } from '@angular/platform-browser';
+import { ActiveLink } from '../../../../core/service/shared.service';
 
 
 
@@ -55,7 +56,8 @@ export class StoreComponent implements OnInit {
     private masterService: MasterService,
     private routes: Router,
     private store: Store<fromProduct.Stores>,
-    private title: Title
+    private title: Title,
+    private active: ActiveLink
   ) {
    }
 
@@ -65,7 +67,6 @@ export class StoreComponent implements OnInit {
     this.createForm();
     this.getAllStore();
     this.getProvince();
-
   }
 
   createFormControls() {

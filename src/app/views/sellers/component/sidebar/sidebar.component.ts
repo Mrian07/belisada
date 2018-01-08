@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
+import { ActiveLink } from '../../../../core/service/shared.service';
 
 
 @Component({
@@ -10,7 +11,9 @@ import { ProfileService } from '../../../../core/service/profile/profile.service
 })
 export class SidebarComponent implements OnInit {
   constructor(private router: Router,
-  private profileService: ProfileService) {  }
+  private profileService: ProfileService,
+  private active: ActiveLink
+) {  }
   sellerName: string;
   sellerEmail: string;
   sellerPhone: string;

@@ -35,7 +35,6 @@ export class TokenService {
       const user = JSON.parse(localStorage.user);
       return user.token;
     }
-
   }
 
   redirect() {

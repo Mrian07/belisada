@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { ActiveLink } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-salles-report',
@@ -8,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class SallesReportComponent implements OnInit {
 
-  constructor(private title: Title) { }
+  constructor(private title: Title, private active: ActiveLink) { }
   selectedOption: string;
   optionsLookup: string;
   alertSelected: any;
