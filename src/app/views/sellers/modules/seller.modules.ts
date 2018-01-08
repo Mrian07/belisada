@@ -54,6 +54,7 @@ import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reduce
 import { ProductEffects } from '../../../store/effects/index';
 import { ChatService } from '../../../core/service/chat/chat.service';
 import { TruncateModule } from 'ng2-truncate';
+import { ProductListComponent } from '../component/product-list/product-list.component';
 
 
 @NgModule({
@@ -89,7 +90,8 @@ import { TruncateModule } from 'ng2-truncate';
     RejectReturComponent,
     StoreComponent,
     PlainSellerLayoutComponent,
-    ProductComponent
+    ProductComponent,
+    ProductListComponent
   ],
   imports: [
     CommonModule,
