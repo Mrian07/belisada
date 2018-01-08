@@ -32,6 +32,7 @@ import { CategoryComponent } from './views/front/component/category/category.com
 import { TruncateModule } from 'ng2-truncate';
 import { SeoService } from './core/service/seo.service';
 import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
+import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -64,7 +65,8 @@ export function getAuthServiceConfigs() {
     ActivationLayoutComponent,
     Page404Component,
     CategoryComponent,
-    SignUpComponent
+    SignUpComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,

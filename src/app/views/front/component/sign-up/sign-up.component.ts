@@ -24,8 +24,7 @@ export class SignUpComponent implements OnInit {
   tc: string;
   loading: any;
   isReady: Boolean = false;
-
-
+  
   constructor(
     private http: HttpClient,
     private categoryService: RegisterService,

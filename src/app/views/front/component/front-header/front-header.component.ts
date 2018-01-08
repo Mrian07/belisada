@@ -19,9 +19,10 @@ export class FrontHeaderComponent implements OnInit {
   imgTop: any;
   selectCatsK: any;
   queryParams: any = {};
+  isLogin: Boolean = false;
 
   constructor(private categoryService: CategoryService, private searchService: SearchService,
-    private router: Router, private seo: SeoService) { }
+  private router: Router, private seo: SeoService) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
@@ -70,4 +71,7 @@ export class FrontHeaderComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: this.queryParams });
   }
 
+  login() {
+    this.isLogin = true;
+  }
 }
