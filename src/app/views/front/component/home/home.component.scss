@@ -53,11 +53,6 @@
     bottom: -3px;
     left: -3px;
 }
-.item-grid {
-    box-sizing: border-box;
-    padding: 3px;
-    float: left;
-}
 .grid-content-wrapper {
     background-color: #ffffff;
 }
@@ -110,10 +105,55 @@
 
 }
 
-.lihat-semua{
+.lihat-semua {
     margin-bottom:30px;
 }
 
-.favorit{
+.brand-favorit {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-gap: 1em;
     margin-bottom:30px;
+}
+
+.top-category {
+    display: grid;
+}
+
+.catalog-top-product {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1em;
+}
+.item-grid {
+    display: grid;
+    margin: 0;
+    .item-img {
+        height: 175px;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .catalog-top-product {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 0;
+    }
+    .item-grid {
+        display: grid;
+        margin: 0;
+        grid-template-columns: 33.33% auto;
+        .item-img {
+            grid-column: 1;
+            height: auto;
+            padding: 0;
+            margin: 0;
+        }
+    }
+    .brand-favorit {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 1em;
+        margin-bottom:30px;
+    }
 }

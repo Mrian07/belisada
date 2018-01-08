@@ -1,15 +1,5 @@
 @import 'rwd/gridtools';
 
-.header1 {
-    grid-area: header1;
-}
-.header2 {
-    grid-area: header2;
-}
-.header3 {
-    grid-area: header3;
-}
-
 .navigation {
     grid-area: navigation;
 }
@@ -117,6 +107,19 @@
 }
 
 @media screen and (max-width: 425px) {
+    .ui[class*="left action"].input>input {
+        border: 1px solid rgba(34,36,38,.15)!important;
+        border-radius: .28571429rem!important;
+    }
+    .mid-header-container {
+        position: absolute;
+        top: 100px;
+        width: 100%;
+        padding: 5px 10px!important;
+    }
+    .search-by-category {
+        grid-area: search-by-category;
+    }
     .bs.container.home {
         display: grid;
         grid-template-columns: 1fr;
@@ -124,8 +127,14 @@
         grid-template-areas:
             "header"
             "navigation"
+            "search-by-category"
             "main"
             "footer"
+    }
+
+    .main {
+        padding: 0 10px;
+        margin-top: 55px;
     }
 
     .left-image {
