@@ -18,6 +18,8 @@ export class FrontHeaderComponent implements OnInit {
   results = [];
   imgTop: any;
   selectCatsK: any;
+  queryParams: any = {};
+
   constructor(private categoryService: CategoryService, private searchService: SearchService,
     private router: Router, private seo: SeoService) { }
 
@@ -56,6 +58,16 @@ export class FrontHeaderComponent implements OnInit {
 
   home() {
     this.router.navigateByUrl('/');
+  }
+  searchEnter(searchKey, searchCategory) {
+    console.log('searchKey: ', searchKey);
+    console.log('searchCategory: ', searchCategory);
+    this.queryParams = { q: searchKey };
+    if (typeof searchCategory !== 'undefined') {
+      this.queryParams['parent'] = 1;
+      this.queryParams['id'] = searchCategory.mProductCategoryId;
+    }
+    this.router.navigate(['/search'], { queryParams: this.queryParams });
   }
 
 }

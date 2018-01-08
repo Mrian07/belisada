@@ -46,7 +46,7 @@
                     <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
             </sui-select>
             <i class="search icon"></i>
-            <input type="text" class="search-bar" name="city" #options list="productname" (keyup)="searchK($event)" [(ngModel)]="selectedSearchCategory"/>
+            <input type="text" class="search-bar" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory"/>
             <div class="result-container" *ngIf="[results] != 0">
                 <div class="result" *ngFor="let hasil of results " (click)="productSelected(hasil)">{{ hasil.name }}</div>
             </div>
