@@ -45,7 +45,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'Product-Search',
+        path: 'search',
         component: ProductSearchComponent,
         data: {
           title: 'product Search'

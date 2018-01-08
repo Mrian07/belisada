@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-product-search',
@@ -14,9 +16,14 @@ export class ProductSearchComponent implements OnInit {
   boundary;
   selectedPage;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    console.log('saerch');
+    this.route.queryParams
+      .subscribe(params => {
+        console.log('params: ', params);
+    });
   }
 
 }
