@@ -32,7 +32,6 @@ export class FrontNavComponent implements OnInit {
   getCategoryTwo(categoryOneId, cb) {
     this.categoryService.CategoryTwo(categoryOneId).subscribe(data => {
       this.c2 = data;
-      // console.log('ini puya', data);
       cb();
     });
   }
@@ -44,7 +43,6 @@ export class FrontNavComponent implements OnInit {
         this.navigationObjects.push(item);
         this.getCategoryTwo(item.mProductCategoryId, () => {
           this.navigationObjects[index]['c2'] = this.c2;
-          // console.log('this.navigationObject[index]: ', this.navigationObjects[index]);
         });
         // console.log('this.navigationObject: ', this.navigationObject);
       });
