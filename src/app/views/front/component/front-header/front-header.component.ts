@@ -70,4 +70,5 @@ export class FrontHeaderComponent implements OnInit {
     this.router.navigate(['/search'], { queryParams: this.queryParams });
   }
 
+
 }

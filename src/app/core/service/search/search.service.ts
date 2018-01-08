@@ -1,3 +1,4 @@
+import { ProductSearchResault } from './../../model/product-search-resut';
 import { Search } from './../../model/search';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -16,12 +17,12 @@ export class SearchService {
         .map(response => response as Search[]);
   }
 
-  productList(queryParams): Observable<PorductList> {
+  productList(queryParams): Observable<ProductSearchResault> {
     let params = new HttpParams();
     Object.keys(queryParams).forEach(function(k){
       params = params.append(k, queryParams[k]);
     });
     return this.http.get(this.configuration.serverWithAccUrl + '/product/search/', {params: params})
-        .map(response => response as PorductList[]);
+        .map(response => response as ProductSearchResault);
   }
 }

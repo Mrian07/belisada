@@ -50,6 +50,13 @@ const routes: Routes = [
         data: {
           title: 'product Search'
         }
+      },
+      {
+        path: 'product-list',
+        component: ProductSearchComponent,
+        data: {
+          title: 'product List'
+        }
       }
     ]
   },
