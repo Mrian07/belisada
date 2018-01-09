@@ -18,10 +18,17 @@ import { StoreService } from '../../core/service/store/store.service';
 import { MyStore } from '../../core/model/store';
 import { RekeningSService } from '../../core/service/rekening/rekening-s.service';
 import { Rekening } from '../../core/model/rekening';
+import { LoginService } from '../../core/service/login/login.service';
+import { Login, LoginData } from '../../core/model/login';
 @Injectable()
 export class ProductEffects {
-  constructor(private actions$: Actions, private addProductService: AddproductService,
-  private storeService: StoreService, private bankService: RekeningSService) {}
+  constructor(
+    private actions$: Actions,
+    private addProductService: AddproductService,
+    private storeService: StoreService,
+    private bankService: RekeningSService,
+    private loginService: LoginService
+) {}
   @Effect()
   getproduct$: Observable<any> = this.actions$.ofType(fromActions.GETPRODUCT)
       .map((action: fromActions.GetProduct) => action.productid)
@@ -111,6 +118,17 @@ export class ProductEffects {
                 ];
               }
             )
+          )
+        );
+
+  @Effect()
+    login$: Observable<any> = this.actions$.ofType(fromActions.LOGIN)
+        .map((action: fromActions.Login) => action.data)
+        .switchMap((logindata: any) =>
+          this.loginService.doLogin(LoginData)
+            .switchMap( (login: any) => {
+              return [new fromActions.LoginSuccess(login)];
+            }
           )
         );
 }

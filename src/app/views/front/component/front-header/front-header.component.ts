@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Category } from '../../../../core/model/category';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { SearchService } from '../../../../core/service/search/search.service';
@@ -10,7 +10,7 @@ import swal from 'sweetalert2';
 @Component({
   selector: 'app-front-header',
   templateUrl: './front-header.component.html',
-  styleUrls: ['./front-header.component.scss']
+  styleUrls: ['./front-header.component.scss'],
 })
 export class FrontHeaderComponent implements OnInit {
 
@@ -38,6 +38,9 @@ export class FrontHeaderComponent implements OnInit {
       description: 'Belisada Home'
     });
   }
+  @HostListener('document:click', ['$event']) clickedOutside($event) {
+    this.results = [];
+  }
 
   searchK(event) {
     const key = event.target.value;
@@ -49,6 +52,12 @@ export class FrontHeaderComponent implements OnInit {
       });
     }
   }
+
+  onClickOutside(event: Object) {
+    if (event && event['value'] === true) {
+    }
+  }
+
   productSelected(hasil: any) {
     this.router.navigateByUrl('/Product-detail/' + hasil.productId);
     this.results = [];
@@ -73,7 +82,7 @@ export class FrontHeaderComponent implements OnInit {
       this.queryParams['id'] = searchCategory.mProductCategoryId;
     }
     this.router.navigate(['/search'], { queryParams: this.queryParams });
-
+    this.selectedSearchCategory = '';
   }
 
   login() {

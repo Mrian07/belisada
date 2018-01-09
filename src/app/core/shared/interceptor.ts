@@ -24,14 +24,13 @@ export class Interceptor implements HttpInterceptor {
     const token = auth.getToken();
     const sendtoken = {
       token : token
-    } ;
+    };
 
-    request = request.clone({
-      setHeaders: {
-       token: `${auth.getToken()}`
-      }
-    });
-
+      request = request.clone({
+        setHeaders: {
+          token: `${auth.getToken()}`
+         },
+      });
 
     return next.handle(request).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
