@@ -38,27 +38,28 @@ export class ProductSearchComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         this.pages = [];
-        console.log('saerch:', params);
-        if(params.page) this.currentPage = params.page;
+        //console.log('saerch:', params);
+        if (params.page) { this.currentPage = params.page; }
         this.searchService.productList(params).subscribe(response => {
           this.productSearchResault = response;
           this.total = response.productCount;
           this.start = (this.currentPage - 1) * this.limit;
           this.end = this.start + this.limit;
-          if(this.end > this.total) this.end = this.total;
+          if (this.end > this.total) { this.end = this.total; }
           this.lastPages = response.pageCount;
           console.log('rage', (this.currentPage - 3), (this.currentPage - (-4)));
-          for(let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-            if(r > 0 && r <= this.lastPages) this.pages.push(r);
+          for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+            if (r > 0 && r <= this.lastPages) { this.pages.push(r); }
           }
-          console.log('response: ',  this.productSearchResault);
+          //console.log('response: ',  this.productSearchResault);
         });
     });
   }
 
   setPage(page: number) {
-    if(page < 1 || page > this.lastPages) return false;
+    if (page < 1 || page > this.lastPages) { return false; }
     this.router.navigate(['/search'], { queryParams: { page: page}, queryParamsHandling: 'merge' });
+    window.scrollTo(0, 0);
   }
 
 }
