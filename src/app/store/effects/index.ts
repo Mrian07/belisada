@@ -124,11 +124,10 @@ export class ProductEffects {
   @Effect()
     login$: Observable<any> = this.actions$.ofType(fromActions.LOGIN)
         .map((action: fromActions.Login) => action.data)
-        .switchMap((logindata) =>
+        .switchMap((logindata: any) =>
           this.loginService.doLogin(LoginData)
-            .map( (login: any) => {
-              return new fromActions.LoginSuccess(login)
-              ;
+            .switchMap( (login: any) => {
+              return [new fromActions.LoginSuccess(login)];
             }
           )
         );
