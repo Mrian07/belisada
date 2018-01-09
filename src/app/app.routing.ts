@@ -17,6 +17,9 @@ import { MaintenanceComponent } from './views/sellers/component/maintenance/main
 import { Page404Component } from './views/sellers/component/page-404/page-404.component';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
 import { CategoryComponent } from './views/front/component/category/category.component';
+import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
+import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
+import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
 
 const routes: Routes = [
   {
@@ -50,6 +53,13 @@ const routes: Routes = [
         data: {
           title: 'product Search'
         }
+      },
+      {
+        path: 'product-list',
+        component: ProductSearchComponent,
+        data: {
+          title: 'product List'
+        }
       }
     ]
   },
@@ -63,6 +73,45 @@ const routes: Routes = [
         component: CategoryComponent,
         data: {
           title: 'category'
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'sign-up',
+        component: SignUpComponent,
+        data: {
+          title: 'Sign Up'
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'sign-in',
+        component: SignInComponent,
+        data: {
+          title: 'Sign In'
+        }
+      }
+    ]
+  },
+  {
+    path: '',
+    component: FrontLayoutComponent,
+    children: [
+      {
+        path: 'lost-password',
+        component: LostPasswordComponent,
+        data: {
+          title: 'Lost Password'
         }
       }
     ]

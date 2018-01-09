@@ -1,39 +1,62 @@
-.doteed{
-    border-top: dotted 3px;
+.wrapper{
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-template-areas:
+    "header-search header-search"
+    "sidebar-search main-search";
 }
-.bawah{
-    padding-top: 30px;
+.filter{
+    display: grid;
+    // grid-area: filter;
+    text-align: center;
+    grid-template-columns: 130px 170px auto;
 }
-.bawa2{
-    margin-top:17px;
-}
-.ui.button{
-    background: #f2f2f2;
-}
-.meyah{
-    color: red;
-}
-.pricelist{
-    color: #8a0202;
+.pricelist {
     font-weight: bold;
     font-family: 'Open Sans', sans-serif !important;
     font-size: 1.6em;
+    color: #8a0202;
+}
+.prodimg {
+    // grid-area: prodimg;
+}
+.highlight {
+    // grid-area: highlight;
+}
+.price {
+    // grid-area: price;
+}
+.search-results {
+    display: grid;
+    grid-template-columns: 200px auto 200px;
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    // grid-area: search-results;
+}
+.kanan {
+    float: right;
+    color: red
 }
 .yu{
     font-family: 'Roboto Condensed', sans-serif;
-    font-size: 10pt;
+    font-size: 8pt;
     color: #4ba240;
+    margin-left: 30px;
 }
-.yu3{
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 10pt;
-    color:skyblue;
+.kananDikit {
+    margin-left: 30px;
 }
-.yu1{
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 10pt;
-    color: black;
+.header-search {
+    grid-area: header-search;
 }
-.zxc{
-    color: transparent;
+.sidebar-search {
+    grid-area: sidebar-search;
+}
+.main-search {
+    grid-area: main-search;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 1em;
+    // grid-template-areas: "filter" "search-results"
 }
