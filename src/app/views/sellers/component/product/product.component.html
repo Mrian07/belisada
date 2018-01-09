@@ -6,7 +6,7 @@
           <div class="ten wide column">
               <div class="ui right aligned category search">
                   <div class="ui icon input">
-                      <input class="prompt" placeholder="Cari produk..." type="text"/>
+                      <input class="prompt" [(ngModel)]="queryString" placeholder="Cari produk..." type="text"/>
                       <i class="search icon"></i>
                   </div>
                   <div class="results"></div>
@@ -62,7 +62,7 @@
                   <th>Hapus</th> -->
               </tr>
           </thead>
-          <tbody *ngFor="let product of sellerProduct | async">
+          <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString">
             <tr>
                 <td class="collapsing">
                     <input type="checkbox"/>
@@ -86,8 +86,8 @@
                     </div> -->
 
                     <div class="ui right labeled input">
-                        <label for="amount" class="ui label"><i class="money icon"></i></label>
-                        <input placeholder="Amount" id="amount" value="{{ product.pricelist | currency:'Rp '}}" type="text" disabled/>
+                        <label for="amount" class="ui label">Rp.</label>
+                        <input placeholder="Amount" id="amount" value="{{ product.pricelist | number}}" type="text" disabled/>
                         <a class="ui tag label" (click)="editProducts(product)">
                             <i class="edit icon"></i>
                         </a>

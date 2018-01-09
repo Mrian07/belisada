@@ -37,6 +37,14 @@ export class TokenService {
     }
   }
 
+  getUser() {
+    const json = localStorage.user;
+    if (json) {
+      const user = JSON.parse(localStorage.user);
+      return user;
+    }
+  }
+
   redirect() {
     localStorage.removeItem('user');
     location.assign('/login');

@@ -41,9 +41,9 @@ export class FrontHeaderComponent implements OnInit {
 
   searchK(event) {
     const key = event.target.value;
-    if (key === '') {
+    if (key === '' || event.key === 'Enter') {
       this.results = [];
-    }else {
+    } else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
       });
@@ -51,7 +51,7 @@ export class FrontHeaderComponent implements OnInit {
   }
   productSelected(hasil: any) {
     this.router.navigateByUrl('/Product-detail/' + hasil.productId);
-    location.reload();
+    this.results = [];
     // console.log('ini bener ga', hasil.productId);
   }
   hapusbersih() {
@@ -67,14 +67,13 @@ export class FrontHeaderComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
   searchEnter(searchKey, searchCategory) {
-    console.log('searchKey: ', searchKey);
-    console.log('searchCategory: ', searchCategory);
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;
       this.queryParams['id'] = searchCategory.mProductCategoryId;
     }
     this.router.navigate(['/search'], { queryParams: this.queryParams });
+
   }
 
   login() {
