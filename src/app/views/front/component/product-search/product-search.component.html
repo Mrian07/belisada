@@ -13,7 +13,7 @@
     </div>
     <div class="main-search">
         <div class="filter">
-            Items 1 to 10 of 638
+            Items {{start + 1}} to {{end}} of {{total}}
             <div>
                 Tampilan
                 <i class="list layout icon"></i>
@@ -56,22 +56,22 @@
         <div class="paging">
             <ul>
                 <li>
-                    <a>First</a>
+                    <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
                 </li>
                 <li>
-                    <a>Previous</a>
+                    <a (click)="setPage(currentPage - 1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+                </li>
+                <li *ngFor="let p of pages">
+                    <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
                 </li>
                 <li>
-                    <a>1</a>
+                    <a (click)="setPage(currentPage + 1)" [ngClass]="{disabled:currentPage == lastPages}">Next</a>
                 </li>
                 <li>
-                    <a>Next</a>
-                </li>
-                <li>
-                    <a>Last</a>
+                    <a (click)="setPage(lastPages)" [ngClass]="{disabled:currentPage == lastPages}">Last</a>
                 </li>
             </ul>
         </div>
     </div>
-    </div>
+</div>
 
