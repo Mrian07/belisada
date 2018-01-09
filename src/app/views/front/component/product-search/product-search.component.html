@@ -35,14 +35,15 @@
 
             </div>
         </div>
-        <div class="search-results" *ngFor="let item of         productSearchResault.productList">
-            <div class="prodimg"><img class="ui medium image" src="{{item.imageurl}}"></div>
+        <div class="search-results" *ngFor="let item of productSearchResault.productList">
+            <div class="prodimg">
+                 <img class="ui medium image" src="{{item.imageurl}}"></div>
             <!-- <div class="clear-fix"></div> -->
-            <div class="highlight"><strong>{{item.name}}</strong>
+            <div class="highlight">
+                <a routerLink="/Product-detail/{{item.productId}}" class="item"> <strong>{{item.name}}</strong></a>
             <ul>
-                <li>asdsad</li>
-                <li>asdasdsa</li>
-                <li>asdasdsad</li>
+                <li>{{item.highlight}}</li>
+
             </ul>
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
