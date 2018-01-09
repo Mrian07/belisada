@@ -105,10 +105,10 @@
                             Harga
                         </div>
                         <div class="two wide field">
-                            <input type="number" min="0" max="100000000000000" placeholder="Harga" value="{{price}}"/>
+                            <input type="number" placeholder="Harga" pattern="[0-9]{10}" value="{{price}}"/>
                         </div>
                         <div class="seven wide field small">
-                            Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : {{ price | currency:'Rp ' }} )</span>
+                            Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : Rp. {{ price | number }} )</span>
                         </div>
                     </div>
                 </div>

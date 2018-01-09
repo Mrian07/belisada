@@ -25,6 +25,7 @@ export class ProductComponent implements OnInit {
   storeId: number;
   sellerProduct: Observable<any>;
   totalItem: Observable<any>;
+  queryString: any;
 
   ngOnInit() {
     this.getSellerStore();

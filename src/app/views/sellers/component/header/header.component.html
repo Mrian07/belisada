@@ -2,27 +2,27 @@
   <div class="ui grid">
     <div class="sixteen wide column ">
       <a routerLink="/seller/dashboard"><img class="ui image logo" src="/assets/img/logo.png" alt="profile picture"/></a>
-    </div>  
+    </div>
   </div>
 </div>
 <div class="ui segment">
   <div class="ui grid">
     <div class="ten wide column">
-      <h3>Selamat datang {{user ? user.name : 'guest'}}</h3> 
+      <h3>Selamat datang {{user ? user.name : 'guest'}}</h3>
     </div>
     <div class="four wide column right aligned">
-      <div class="ui label">
+      <!-- <div class="ui label">
         <i class="mail icon"></i> 23
-      </div> 
+      </div>
       <div class="ui label">
         <i class="shopping bag icon"></i> 50
-      </div> 
+      </div>  -->
     </div>
     <div *ngIf="user" class="two wide column right aligned">
       <button class="ui basic button" (click)="logout()">
         <i class="icon user"></i>
         Logout
       </button>
-    </div>  
+    </div>
   </div>
 </div>

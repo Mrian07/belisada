@@ -4,6 +4,10 @@
             <input placeholder="Masukan nomor order Anda..." type="text" (keydown)="search($event)"/>
             <button class="ui green button" (click)="search($event)">Search</button>
         </div>
+        <div class="five wide column mymargin">
+                <a class="ui {{btnColor}} big label">{{ storeStatus }}</a>
+        </div>
+
     </div>
     <div class="eleven wide column">
         <div class="ui segment column">
