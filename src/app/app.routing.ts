@@ -20,6 +20,7 @@ import { CategoryComponent } from './views/front/component/category/category.com
 import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
+import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
 
 const routes: Routes = [
   {
@@ -132,6 +133,13 @@ const routes: Routes = [
       component: SendForgotPasswordComponent,
       data: {
         title: 'Send-forgot'
+      }
+    },
+    {
+      path: 'buyer/dashboard',
+      component: BuyerDashboardComponent,
+      data: {
+        title: 'Buyer Dashboard'
       }
     }
   ]
