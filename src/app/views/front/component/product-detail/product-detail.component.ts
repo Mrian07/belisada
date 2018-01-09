@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
   specialPrice: 3;
   highlight;
   ProductList: ProductDetail = new ProductDetail();
+  ProductImage: string;
 
   aliasName;
   constructor(private route: ActivatedRoute,
@@ -44,6 +45,7 @@ export class ProductDetailComponent implements OnInit {
           this.productId = params.id;
           this.detailService.getProductDetail(this.productId).subscribe(data => {
             this.ProductList = data;
+            this.ProductImage = data.image[0];
             this.title.setTitle('Belisada - ' + data.name);
           });
         });

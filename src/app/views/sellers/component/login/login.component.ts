@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
       username : this.email,
       password : this.password
     };
-   // this.store.dispatch(new fromActions.Login(loginData));
     this.loginService.doLogin(loginData).subscribe(data => {
       if (data.status === '0') {
         swal( 'Error!', data.message, 'error' );
