@@ -44,7 +44,6 @@ export class ProductDetailComponent implements OnInit {
           this.productId = params.id;
           this.detailService.getProductDetail(this.productId).subscribe(data => {
             this.ProductList = data;
-            console.log(data);
             this.title.setTitle('Belisada - ' + data.name);
           });
         });
