@@ -55,9 +55,9 @@
               <tr>
                   <th><input type="checkbox"/></th>
                   <th>Image</th>
-                  <th style="width:100px;">Produk</th>
+                  <th>Produk</th>
                   <th>Harga</th>
-                  <!-- <th>Stok</th> -->
+                  <th>Status</th>
                   <!-- <th>Edit</th>
                   <th>Hapus</th> -->
               </tr>
@@ -86,14 +86,14 @@
                     </div> -->
 
                     <div class="ui right labeled input">
-                        <label for="amount" class="ui label">Rp</label>
+                        <label for="amount" class="ui label"><i class="money icon"></i></label>
                         <input placeholder="Amount" id="amount" value="{{ product.pricelist | currency:'Rp '}}" type="text" disabled/>
                         <a class="ui tag label" (click)="editProducts(product)">
                             <i class="edit icon"></i>
                         </a>
                     </div>
                 </td>
-                <!-- <td><small>12</small></td> -->
+                <td><small><a class="ui yellow label">{{product.status}}</a></small></td>
                 <!-- <td><i class="edit icon"></i></td>
                 <td><i class="trash outline icon"></i></td> -->
             </tr>

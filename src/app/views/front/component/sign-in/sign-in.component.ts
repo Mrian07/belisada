@@ -14,20 +14,19 @@ import { SendEmailService } from '../../../../core/service/sendEmail/send-email.
 import { TokenService } from '../../../../core/service/token/token.service';
 import { Title } from '@angular/platform-browser';
 
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss']
 })
-
-export class LoginComponent implements OnInit {
+export class SignInComponent implements OnInit {
 
   email: string;
   password: string;
   returnUrl: string;
   loading = false;
   token: string;
+  isReady: Boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -92,6 +91,7 @@ export class LoginComponent implements OnInit {
       }
     });
   }
+
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     if (socialPlatform === 'facebook') {

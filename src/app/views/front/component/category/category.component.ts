@@ -1,9 +1,9 @@
+import { SearchService } from './../../../../core/service/search/search.service';
 import { Category2 } from './../../../../core/model/category2';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from '../../../../core/service/category/category.service';
-import { ActivatedRoute } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
@@ -14,10 +14,16 @@ export class CategoryComponent implements OnInit {
   // categoryView: CategoryView;
   level_3: Category2[];
   m_product_category_id: any;
+  queryParams: any = {};
+  id;
   alias: Category2 = new Category2();
 
-  constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
-
+  constructor(private categoryService: CategoryService, private route: ActivatedRoute,  private router: Router,
+  private search: SearchService) {
+    this.route.params.subscribe( params => {
+      this.m_product_category_id = params.id;
+      // console.log('ah', this.m_product_category_id);
+    });
   }
 
   ngOnInit() {
@@ -29,9 +35,12 @@ export class CategoryComponent implements OnInit {
       });
     });
   }
-  dapatkanList() {
-    console.log('sdsd', this.level_3[0].m_product_category_id);
-    return false;
+  dapatkanList(id) {
+    this.queryParams =  {
+      parent : 3,
+      id : id
+    };
+    this.router.navigate(['/product-list'], { queryParams: this.queryParams });
   }
   reloadr() {
     location.reload();

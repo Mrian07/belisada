@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { ActiveLink } from '../../../../../core/service/shared.service';
+import { StoreService } from '../../../../../core/service/store/store.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -14,7 +16,8 @@ export class SearchDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private title: Title,
-    private active: ActiveLink
+    private active: ActiveLink,
+    private storeService: StoreService,
   ) { }
 
   ngOnInit() {
@@ -22,17 +25,21 @@ export class SearchDashboardComponent implements OnInit {
   }
   search(event) {
     const key = event.target.value;
-    // this.searchService.searchProduct(key).subscribe(data => {
-    //   console.log(data);
-    // });
   }
-  // getCategory() {
-  //   this.categoryService.getAll().subscribe(data => {
-  //     console.log(data);
-  //   });
-  // }
+
   addProducts() {
-    this.router.navigate(['seller/add-products/add']);
+    this.storeService.getAll().subscribe(response => {
+      if (response.length === 0) {
+        swal(
+          'Anda belum membuat Toko!',
+          'klik OK untuk melanjutkan'
+        ).then((result) => {
+          this.router.navigateByUrl('seller/toko');
+        });
+      }else {
+        this.router.navigate(['seller/add-products/add']);
+      }
+    });
   }
 
 }
