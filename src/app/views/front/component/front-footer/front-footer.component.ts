@@ -15,15 +15,10 @@ export class FrontFooterComponent implements OnInit {
 
   agree() {
     const el = document.getElementById('agreement');
-    el.style.display = el.style.display == 'none' || el.style.display == '' ? 'block' : 'none';
+    el.style.display = el.style.display === 'none' || el.style.display === '' ? 'block' : 'none';
   }
 
   btnTop() {
     window.scrollTo(0, 0);
-    // document.body.scrollTop = 0; // For Safari
-    // document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    // $('html, body').animate({scrollTop: 0}, 1000);
-         // return false;
-
   }
 }

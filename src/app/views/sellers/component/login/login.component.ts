@@ -13,7 +13,11 @@ import { LoginService } from '../../../../core/service/login/login.service';
 import { SendEmailService } from '../../../../core/service/sendEmail/send-email.service';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { Title } from '@angular/platform-browser';
-
+import { Subscription } from 'rxjs/Subscription';
+import { Store, ActionsSubject } from '@ngrx/store/';
+import * as fromActions from '../../../../store/actions';
+import * as fromProduct from '../../../../store/reducers';
+import { Login } from '../../../../store/actions';
 
 @Component({
   selector: 'app-login',
@@ -28,6 +32,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
   loading = false;
   token: string;
+  loginSub: Subscription;
 
   constructor(
     private http: HttpClient,
@@ -35,6 +40,8 @@ export class LoginComponent implements OnInit {
     private socialAuthService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
+    private actionsSubject: ActionsSubject,
+    private store: Store<fromProduct.User>,
     private sendEmailService: SendEmailService,
     private tokenService: TokenService,
     private title: Title
@@ -47,6 +54,24 @@ export class LoginComponent implements OnInit {
     } else {
       this.router.navigateByUrl('/seller/dashboard');
     }
+    this.loginSub = this.actionsSubject
+    .asObservable()
+    .filter(action => action.type === fromActions.LOGINSUCCESS)
+    .subscribe((action: fromActions.LoginSuccess) => {
+      this.loading = false;
+      console.log(action);
+      localStorage.user = JSON.stringify(action);
+      //this.router.navigateByUrl('/seller/dashboard');
+        // swal(
+        //     'Produk berhasil di Perbaharui!',
+        //     'success'
+        //   ).then((result) => {
+
+        //     // this.clearAll();
+        //     // this.shared.shareData = '';
+        //     this.router.navigateByUrl('/seller/dashboard');
+        //   });
+    });
   }
 
   login() {
@@ -55,7 +80,7 @@ export class LoginComponent implements OnInit {
       username : this.email,
       password : this.password
     };
-
+    this.store.dispatch(new fromActions.Login(loginData));
     this.loginService.doLogin(loginData).subscribe(data => {
       if (data.status === '0') {
         swal( 'Error!', data.message, 'error' );

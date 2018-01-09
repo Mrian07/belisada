@@ -14,6 +14,10 @@ export interface Bank {
   bank: any;
 }
 
+export interface User {
+  user: any;
+}
+
 export const productAdapter = createEntityAdapter<Product>();
 export interface Products extends EntityState<Product> { }
 
@@ -23,22 +27,27 @@ export interface Stores extends EntityState<Store> { }
 export const bankAdapter = createEntityAdapter<Bank>();
 export interface Banks extends EntityState<Bank> { }
 
+export const userAdapter = createEntityAdapter<User>();
+export interface Users extends EntityState<User> { }
+
 const defaultProduct = {
   product: null,
 };
 const defaultStore = {
   store: null,
 };
-
 const defaultBank = {
   store: [],
 };
-
+const defaultUser = {
+  store: null,
+};
 
 
 export const initialStateProduct: Product = productAdapter.getInitialState(defaultProduct);
 export const initialStateStore: Stores = storeAdapter.getInitialState(defaultStore);
 export const initialStateBank: Banks = bankAdapter.getInitialState(defaultProduct);
+export const initialStateUser: Users = userAdapter.getInitialState(defaultUser);
 
 export function ProductReducer(
   state: Product = initialStateProduct,
@@ -109,9 +118,24 @@ export function BankReducer(
   }
 }
 
+export function UserReducer(
+  state: Users = initialStateUser,
+  action: actions.ProductAction) {
+
+  switch (action.type) {
+
+    case actions.LOGINSUCCESS : {
+        return action.success;
+    }
+
+    default: return state;
+  }
+}
+
 export const getProductState = createFeatureSelector<Products>('product');
 export const getStoreState = createFeatureSelector<Stores>('store');
 export const getBankState = createFeatureSelector<Banks>('bank');
+export const getUserState = createFeatureSelector<Users>('user');
 
 
 
