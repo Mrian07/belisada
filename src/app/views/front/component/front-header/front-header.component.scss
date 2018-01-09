@@ -50,6 +50,7 @@
     box-sizing: border-box;
     white-space: nowrap;
     padding: 5px;
+    margin-top: 15px;
     // float: left;
 }
 
@@ -97,6 +98,7 @@
     // margin-right:20px;
     font-size:12px;
     //  width:130px;
+    margin-top: 19px;
 }
 
 .menu-header3 {
@@ -168,7 +170,24 @@
 }
 
 .welcome {
-    float:left
+    float: left;
+    margin-left: 5px;
+}
+
+.welcome a:link {
+    color:#f8992e;
+}
+
+.welcome a:active {
+    color:#f8992e;
+}
+
+.welcome a:visited {
+    color:#f8992e;
+}
+
+.welcome a:hover {
+    color:#fec380;
 }
 
 .cart {

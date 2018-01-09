@@ -16,7 +16,7 @@ export class Page404Component implements OnInit {
   }
 
   backToHome() {
-    this.routes.navigateByUrl('/home');
+    this.routes.navigateByUrl('/');
   }
 
 }
