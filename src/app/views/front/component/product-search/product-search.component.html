@@ -11,13 +11,13 @@
         <p> Brand <i class="plus icon kanan"></i> </p>
         <hr>
     </div>
-    <div class="main-search">
+    <div class="main-search" [ngClass]="listStyleType">
         <div class="filter">
             Items {{start + 1}} to {{end}} of {{total}}
             <div>
                 Tampilan
-                <i class="list layout icon"></i>
-                <i class="grid layout icon"></i>
+                <i class="list layout icon" (click)="listStyle('list-row')"></i>
+                <i class="grid layout icon" (click)="listStyle('list-grid')"></i>
             </div>
             <div>
                     <span>Atur Berdasarkan : </span>
