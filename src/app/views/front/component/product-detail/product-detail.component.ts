@@ -48,6 +48,9 @@ export class ProductDetailComponent implements OnInit {
             this.title.setTitle('Belisada - ' + data.name);
           });
         });
+
+        window.scrollTo(0, 0);
+
   }
   public carouselTileLoad(evt: any) {
         const len = this.carouselTileItems.length;
