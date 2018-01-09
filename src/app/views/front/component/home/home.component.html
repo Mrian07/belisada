@@ -21,13 +21,15 @@
 
     <div class="catalog-top-product">
         <!-- <div class="grid-wrapper"> -->
+            
             <div class="item-grid ui segment" *ngFor="let item of item.list">
+                <a routerLink="/Product-detail/{{item.productId}}" class="item">
                 <!-- <div class="ui segment"> -->
                     <div class="item-img">
                         <span class="helper"></span>
-                        <a routerLink="/Product-detail/{{item.productId}}" class="item">
+                        <!-- <a routerLink="/Product-detail/{{item.productId}}" class="item"> -->
 
-                        <img src="{{ item.imageurl }}" alt="image not found"/></a>
+                        <img src="{{ item.imageurl }}" alt="image not found"/>
                     </div>
                     <div class="item-product-info">
                         <h3 class="item-product-title">{{ item.name }}</h3>
@@ -36,8 +38,10 @@
                             <!-- <sui-rating class="star" [ngModel]="4.0" [maximum]="5" [isReadonly]="true"></sui-rating><span class="rating-text">(55)</span> -->
                         </div>
                     </div>
+                </a>
                 <!-- </div> -->
             </div>
+            
             <!-- <div class="clearfix"></div> -->
         <!-- </div> -->
     </div>
