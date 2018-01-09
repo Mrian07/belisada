@@ -54,8 +54,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   onClickOutside(event: Object) {
-    if(event && event['value'] === true) {
-      //this.active = false;
+    if (event && event['value'] === true) {
     }
   }
 
@@ -83,7 +82,7 @@ export class FrontHeaderComponent implements OnInit {
       this.queryParams['id'] = searchCategory.mProductCategoryId;
     }
     this.router.navigate(['/search'], { queryParams: this.queryParams });
-
+    this.selectedSearchCategory = '';
   }
 
   login() {
