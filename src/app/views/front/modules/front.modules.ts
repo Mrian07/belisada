@@ -19,6 +19,7 @@ import { InfoComponent } from '../../sellers/component/info/info.component';
 import { ProductSearchComponent } from '../component/product-search/product-search.component';
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
+import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HomeService } from '../../../core/service/home/home.service';
     FrontFooterComponent,
     ProductDetailComponent,
     InfoComponent,
+    BuyerDashboardComponent,
     ProductSearchComponent
   ],
   imports: [
