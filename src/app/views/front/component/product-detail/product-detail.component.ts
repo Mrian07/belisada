@@ -42,11 +42,11 @@ export class ProductDetailComponent implements OnInit {
         };
         this.route.params.subscribe( params => {
           this.productId = params.id;
-        });
-        this.detailService.getProductDetail(this.productId).subscribe(data => {
-          this.ProductList = data;
-          console.log(data);
-          this.title.setTitle('Belisada : ' + data.name);
+          this.detailService.getProductDetail(this.productId).subscribe(data => {
+            this.ProductList = data;
+            console.log(data);
+            this.title.setTitle('Belisada - ' + data.name);
+          });
         });
   }
   public carouselTileLoad(evt: any) {

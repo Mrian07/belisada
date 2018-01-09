@@ -17,16 +17,16 @@ export class CategoryComponent implements OnInit {
   alias: Category2 = new Category2();
 
   constructor(private categoryService: CategoryService, private route: ActivatedRoute) {
-    this.route.params.subscribe( params => {
-      this.m_product_category_id = params.id;
-      // console.log('ah', this.m_product_category_id);
-    });
+
   }
 
   ngOnInit() {
-    this.categoryService.CategoryThree(this.m_product_category_id).subscribe(data => {
-      this.level_3 = data;
-      console.log('ini apa ya', this.level_3);
+    this.route.params.subscribe( params => {
+      this.m_product_category_id = params.id;
+      this.categoryService.CategoryThree(this.m_product_category_id).subscribe(data => {
+        this.level_3 = data;
+        console.log('ini apa ya', this.level_3);
+      });
     });
   }
   dapatkanList() {
