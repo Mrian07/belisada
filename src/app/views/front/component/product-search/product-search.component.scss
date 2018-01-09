@@ -4,6 +4,7 @@
     grid-template-areas:
     "header-search header-search"
     "sidebar-search main-search";
+    grid-gap: 1em;
 }
 .filter{
     display: grid;
