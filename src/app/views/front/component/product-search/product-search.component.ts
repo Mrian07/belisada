@@ -38,10 +38,11 @@ export class ProductSearchComponent implements OnInit {
     this.route.queryParams
       .subscribe(params => {
         this.pages = [];
-        //console.log('saerch:', params);
+        console.log('saerch:', params);
         if (params.page) { this.currentPage = params.page; }
         this.searchService.productList(params).subscribe(response => {
           this.productSearchResault = response;
+          console.log(response);
           this.total = response.productCount;
           this.start = (this.currentPage - 1) * this.limit;
           this.end = this.start + this.limit;
