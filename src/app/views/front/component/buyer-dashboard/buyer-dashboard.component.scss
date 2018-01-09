@@ -28,9 +28,12 @@
   .nested > div{
 
   }
+  .menyamping {
+      float:left;
+  }
 .grid-container {
   display: grid;
-  grid:
+  grid-template-areas:
     'menu header  header header header header header header'
     'menu main  main main main right right kananbanget'
     'menu footer  footer footer footer footer footer footer';
@@ -66,6 +69,9 @@
 .po2{
     color: yellow;
     float: right;
+}
+.isi{
+    background-color: #0071bf;
 }
 .gs2x {
     color: white;
