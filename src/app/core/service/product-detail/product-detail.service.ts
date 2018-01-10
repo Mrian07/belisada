@@ -9,7 +9,6 @@ import { AbstractRestService } from '../abstract.rest.service';
 export class ProductDetailService {
   constructor(private http: HttpClient, private configuration: Configuration) {}
   getProductDetail(productId: number): Observable<ProductDetail> {
-    console.log(productId);
     return this.http.get(this.configuration.serverWithAccUrl + '/product/detail/' + productId)
         .map(response => response as ProductDetail);
   }

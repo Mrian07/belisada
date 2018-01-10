@@ -24,7 +24,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./rekening.component.scss']
 })
 export class RekeningComponent implements OnInit {
-@ViewChild('div') div:ElementRef;
+@ViewChild('div') div: ElementRef;
 
   constructor(
     private masterService: MasterService,

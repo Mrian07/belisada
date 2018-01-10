@@ -23,36 +23,46 @@ export class ProductSearchComponent implements OnInit {
   boundary;
   selectedPage;
 
-  constructor(private router: Router, private route: ActivatedRoute, private searchService: SearchService) { }
-  currentPage: number = 1;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private searchService: SearchService
+  ) { }
+
+  currentPage = 1;
   lastPages: number;
-  start: number = 0;
-  end: number = 0;
-  total: number = 0;
-  limit: number = 10;
+  start = 0;
+  end = 0;
+  total = 0;
+  limit = 10;
   pages: any = [];
-  listStyleType: string = 'list-row';
+  listStyleType = 'list-row';
 
   ngOnInit() {
-    // this.test();
-    // this.dapatkanListBarang(this.m_product_category_id);
     this.route.queryParams
       .subscribe(params => {
         this.pages = [];
-        console.log('saerch:', params);
-        if (params.page) { this.currentPage = params.page; }
+
+        if (params.page) {
+          this.currentPage = params.page;
+        }
+
         this.searchService.productList(params).subscribe(response => {
           this.productSearchResault = response;
-          console.log(response);
           this.total = response.productCount;
           this.start = (this.currentPage - 1) * this.limit;
           this.end = this.start + this.limit;
-          if (this.end > this.total) { this.end = this.total; }
+
+          if (this.end > this.total) {
+            this.end = this.total;
+          }
+
           this.lastPages = response.pageCount;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-            if (r > 0 && r <= this.lastPages) { this.pages.push(r); }
+            if (r > 0 && r <= this.lastPages) {
+              this.pages.push(r);
+            }
           }
-          //console.log('response: ',  this.productSearchResault);
         });
     });
   }

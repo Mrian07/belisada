@@ -1,6 +1,6 @@
 <app-front-slide-show></app-front-slide-show>
 
-<div class="top-category" *ngFor="let item of topProductLvl1">
+<div class="top-category" *ngFor="let item of topHomeProductLvl1 | async ">
     <hr/>
     <h1>{{ item.name }}</h1>
     <div class="promo-banner-container gap-between-elements">
@@ -51,7 +51,7 @@
 <!-- <h1>PILIH DAN KLIK BRAND FAVORIT ANDA</h1> -->
 <h3>PILIH DAN KLIK BRAND FAVORIT ANDA</h3>
 <div class="brand-favorit">
-    <div *ngFor="let item of level_4">
+    <div *ngFor="let item of level_4 | async">
         <div class="ui segment">
             <img class="ui image silver" src="{{ item.imageurl }}" alt="image not found"/>
         </div>

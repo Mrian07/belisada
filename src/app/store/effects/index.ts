@@ -20,6 +20,7 @@ import { RekeningSService } from '../../core/service/rekening/rekening-s.service
 import { Rekening } from '../../core/model/rekening';
 import { LoginService } from '../../core/service/login/login.service';
 import { Login, LoginData } from '../../core/model/login';
+import { HomeService } from '../../core/service/home/home.service';
 @Injectable()
 export class ProductEffects {
   constructor(
@@ -27,7 +28,8 @@ export class ProductEffects {
     private addProductService: AddproductService,
     private storeService: StoreService,
     private bankService: RekeningSService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private homeService: HomeService
 ) {}
   @Effect()
   getproduct$: Observable<any> = this.actions$.ofType(fromActions.GETPRODUCT)

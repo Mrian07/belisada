@@ -92,7 +92,7 @@ export function getAuthServiceConfigs() {
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
-      maxAge: 50,
+      maxAge: 25,
     }),
     TruncateModule
   ],
