@@ -18,9 +18,17 @@ export class SidebarComponent implements OnInit {
   sellerEmail: string;
   sellerPhone: string;
 
+  pathArray: any;
+  activeLink: any;
 
   ngOnInit() {
     this.getProfile();
+    this.getUri();
+  }
+
+  getUri() {
+    this.pathArray = window.location.pathname.split( '/' );
+    this.activeLink = this.pathArray[2];
   }
 
   editProfile() {
