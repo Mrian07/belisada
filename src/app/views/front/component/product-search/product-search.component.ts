@@ -31,6 +31,7 @@ export class ProductSearchComponent implements OnInit {
   total: number = 0;
   limit: number = 10;
   pages: any = [];
+  listStyleType: string = 'list-row';
 
   ngOnInit() {
     // this.test();
@@ -48,7 +49,6 @@ export class ProductSearchComponent implements OnInit {
           this.end = this.start + this.limit;
           if (this.end > this.total) { this.end = this.total; }
           this.lastPages = response.pageCount;
-          console.log('rage', (this.currentPage - 3), (this.currentPage - (-4)));
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
             if (r > 0 && r <= this.lastPages) { this.pages.push(r); }
           }
@@ -61,6 +61,9 @@ export class ProductSearchComponent implements OnInit {
     if (page < 1 || page > this.lastPages) { return false; }
     this.router.navigate(['/search'], { queryParams: { page: page}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
+  }
+  listStyle(sty: string) {
+    this.listStyleType = sty;
   }
 
 }

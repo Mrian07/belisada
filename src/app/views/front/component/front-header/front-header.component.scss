@@ -170,7 +170,24 @@
 }
 
 .welcome {
-    float:left
+    float: left;
+    margin-left: 5px;
+}
+
+.welcome a:link {
+    color:#f8992e;
+}
+
+.welcome a:active {
+    color:#f8992e;
+}
+
+.welcome a:visited {
+    color:#f8992e;
+}
+
+.welcome a:hover {
+    color:#fec380;
 }
 
 .cart {
