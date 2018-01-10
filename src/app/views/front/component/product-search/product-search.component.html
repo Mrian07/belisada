@@ -12,29 +12,29 @@
         <hr>
     </div>
     <div class="main-search" [ngClass]="listStyleType">
-        <div class="filter">
-            Items {{start + 1}} to {{end}} of {{total}}
-            <div>
+        <ul class="filter">
+            <li>Items {{start + 1}} to {{end}} of {{total}}</li>
+            <li>
                 Tampilan
                 <i class="list layout icon" (click)="listStyle('list-row')"></i>
                 <i class="grid layout icon" (click)="listStyle('list-grid')"></i>
-            </div>
-            <div>
-                    <span>Atur Berdasarkan : </span>
-                    <sui-select class="selection"
-                    [(ngModel)]="selectedOption"
-                    [options]="options"
-                    labelField="name"
-                    [isSearchable]="searchable"
-                    [isDisabled]="disabled"
-                    #select>
-                    <sui-select-option *ngFor="let option of select.filteredOptions"
-                    [value]="option">
-                    </sui-select-option>
-                    </sui-select>
+            </li>
+            <li class="sort-filter">
+                <span>Atur Berdasarkan : </span>
+                <sui-select class="selection"
+                [(ngModel)]="selectedOption"
+                [options]="options"
+                labelField="name"
+                [isSearchable]="searchable"
+                [isDisabled]="disabled"
+                #select>
+                <sui-select-option *ngFor="let option of select.filteredOptions"
+                [value]="option">
+                </sui-select-option>
+                </sui-select>
 
-            </div>
-        </div>
+            </li>
+        </ul>
         <div class="search-results" *ngFor="let item of productSearchResault.productList">
             <div class="prodimg">
                  <img class="ui medium image" src="{{item.imageurl}}"></div>

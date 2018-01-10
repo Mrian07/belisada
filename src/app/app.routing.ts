@@ -1,3 +1,4 @@
+import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
 import { SidebarBuyerComponent } from './views/front/component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,8 +23,24 @@ import { SignUpComponent } from './views/front/component/sign-up/sign-up.compone
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
 import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
+import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
+import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 
 const routes: Routes = [
+  {
+
+    path: '',
+    component: BuyerLayoutComponent,
+    children: [
+      {
+        path: 'test-buyer',
+        component: DashboardBuyerComponent,
+        data: {
+          title: 'home'
+        }
+      },
+    ]
+  },
   {
     path: '',
     component: FrontLayoutComponent,
@@ -146,6 +163,13 @@ const routes: Routes = [
     {
       path: 'buyer/sidebar',
       component: SidebarBuyerComponent,
+      data: {
+        title: 'Buyer Dashboard'
+      }
+    },
+    {
+      path: 'buyer/shiping-address',
+      component: ShipingAddressComponent,
       data: {
         title: 'Buyer Dashboard'
       }

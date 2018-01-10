@@ -21,6 +21,7 @@ import { ProductSearchComponent } from '../component/product-search/product-sear
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
+import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dash
     FrontFooterComponent,
     ProductDetailComponent,
     InfoComponent,
+    ShipingAddressComponent,
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent
