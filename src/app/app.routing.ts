@@ -1,3 +1,4 @@
+import { SidebarBuyerComponent } from './views/front/component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
@@ -141,7 +142,15 @@ const routes: Routes = [
       data: {
         title: 'Buyer Dashboard'
       }
+    },
+    {
+      path: 'buyer/sidebar',
+      component: SidebarBuyerComponent,
+      data: {
+        title: 'Buyer Dashboard'
+      }
     }
+
   ]
 },
   {
