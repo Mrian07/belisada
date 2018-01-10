@@ -1,3 +1,4 @@
+import { SidebarBuyerComponent } from './../component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { SearchService } from './../../../core/service/search/search.service';
 import { ProductDetailService } from './../../../core/service/product-detail/product-detail.service';
 import { NgModule } from '@angular/core';
@@ -24,6 +25,7 @@ import { StoreModule } from '@ngrx/store';
 import { HomeReducer, DetailReducer } from '../../../store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
+import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { HomeEffects } from '../../../store/effects/front';
     FrontFooterComponent,
     ProductDetailComponent,
     InfoComponent,
+    ShipingAddressComponent,
     BuyerDashboardComponent,
+    SidebarBuyerComponent,
     ProductSearchComponent
   ],
   imports: [

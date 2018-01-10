@@ -53,10 +53,17 @@ export class HomeComponent implements OnInit {
 
   }
 
+<<<<<<< HEAD
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.topHomeProductLvl1 = Observable.of(data.home);
       this.level_4 = Observable.of(data.brands);
+=======
+    this.homeService.getTopProductCategory().subscribe(data => {
+      // this.topProduct = data;
+      this.topProductLvl1 = data;
+      console.log(data[0]);
+>>>>>>> 0734b645df94803dfdd3f708d7647eadb7236bdc
     });
   }
 

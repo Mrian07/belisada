@@ -22,9 +22,17 @@ export class SidebarComponent implements OnInit {
   status3: Boolean = false;
   status4: Boolean = false;
 
+  pathArray: any;
+  activeLink: any;
 
   ngOnInit() {
     this.getProfile();
+    this.getUri();
+  }
+
+  getUri() {
+    this.pathArray = window.location.pathname.split( '/' );
+    this.activeLink = this.pathArray[2];
   }
 
   editProfile() {

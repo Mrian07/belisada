@@ -2,10 +2,10 @@
     display: grid;
     grid-template-columns: 120px 350px 130px 130px 130px;}
 .item2 { grid-area: menu;
-    
+
 }
-.item3 { grid-area: main; }
-.item4 { grid-area: right; }
+// .item3 { grid-area: main; }
+// .item4 { grid-area: right; }
 .item5 { grid-area: footer; }
 .bawahDikit{
     padding-top: 30px;
@@ -34,9 +34,9 @@
 .grid-container {
   display: grid;
   grid-template-areas:
-    'menu header  header header header header header header'
-    'menu main  main main main right right kananbanget'
-    'menu footer  footer footer footer footer footer footer';
+    'menu header  header'
+    'menu main  main '
+    'menu footer  footer';
   grid-gap: 10px;
 //   background-color: #2196F3;
   padding: 10px;

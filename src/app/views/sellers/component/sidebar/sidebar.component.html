@@ -21,18 +21,18 @@
   </div>
 
   <div class="ui link list">
-    <hr/>
-    <a routerLink="/seller/dashboard" class="active item" >Dashboard</a>
-    <a routerLink="/seller/kontak" class="item">Kontak Pesan</a>
-    <a routerLink="/seller/payment-info" class="item">Payment Info</a>
+    <hr/> 
+    <a routerLink="/seller/dashboard" [ngClass]="(activeLink=='dashboard')?'active item':'item'">Dashboard</a>
+    <a routerLink="/seller/kontak" [ngClass]="(activeLink=='kontak')?'active item':'item'">Kontak Pesan</a>
+    <a routerLink="/seller/payment-info" [ngClass]="(activeLink=='payment-info')?'active item':'item'">Payment Info</a>
     <!-- <a routerLink="/seller/my-store" class="item">Daftar Toko & Product</a> -->
-    <a routerLink="/seller/product-list" class="item">Product</a>
-    <a routerLink="/seller/salles-report" class="item">Sales Report</a>
+    <a routerLink="/seller/product-list" [ngClass]="(activeLink=='product-list')?'active item':'item'">Product</a>
+    <a routerLink="/seller/salles-report" [ngClass]="(activeLink=='salles-report')?'active item':'item'">Sales Report</a>
     <a class="item">Statistik</a>
     <hr/>
     <a class="item">Courier Service</a>
     <a class="item">Payment Gateway</a>
-    <a routerLink="/seller/faq" class="item">FAQ</a>
+    <a routerLink="/seller/faq" [ngClass]="(activeLink=='faq')?'active item':'item'">FAQ</a>
     <a class="item">myADS</a>
     <a class="item">Upgrade Account</a>
   </div>

@@ -21,4 +21,6 @@ export class FrontFooterComponent implements OnInit {
   btnTop() {
     window.scrollTo(0, 0);
   }
+
+
 }
