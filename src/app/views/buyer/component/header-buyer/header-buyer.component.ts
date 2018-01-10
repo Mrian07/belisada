@@ -12,4 +12,8 @@ export class HeaderBuyerComponent implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+     alert('ini namanya logout');
+  }
+
 }
