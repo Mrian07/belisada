@@ -19,15 +19,15 @@
 }
 .list-grid .search-results {
     width: 25%;
-    display: inline-table;
+    display: inline-grid;
     padding: 10px;
 }
-.list-row .search-results:after {
+.search-results:after {
     display: block;
-    height: 1px;
+    height: 6px;
     clear: both;
     content: '';
-    border-bottom: 1px solid;
+    border-bottom: 1px solid #ccc;
     margin-bottom: 10px;
 }
 .list-row .search-results {
@@ -36,7 +36,6 @@
 .list-row .prodimg {
     width: 200px;
     float: left;
-    margin-right: 15px;
 }
 .list-row .pricelist {
     width: 200px;
@@ -47,11 +46,15 @@
     font-family: 'Open Sans', sans-serif !important;
     font-size: 1.6em;
     color: #8a0202;
+    text-align: center;
+    padding: 15px 0;
 }
 .prodimg {
     // grid-area: prodimg;
 }
 .highlight {
+    float: left;
+    padding: 10px 15px;
     // grid-area: highlight;
 }
 .price {
@@ -72,10 +75,6 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-size: 8pt;
     color: #4ba240;
-    margin-left: 30px;
-}
-.kananDikit {
-    margin-left: 30px;
 }
 .header-search {
     grid-area: header-search;

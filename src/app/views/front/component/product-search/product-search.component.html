@@ -45,9 +45,9 @@
             <p [innerHTML]="item.highlight"></p>
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
-                <span class="yu"><i class="info circle icon"></i>Stok Tersedia</span>
+                <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div>
                 <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
-                <sui-rating class="star kananDikit" [ngModel]="3" [maximum]="5"></sui-rating>
+                <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
             </div>
 
             <!-- <div class="clear-fix"></div> -->
