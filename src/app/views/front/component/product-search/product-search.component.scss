@@ -7,11 +7,18 @@
     grid-gap: 1em;
 }
 .filter{
-    margin-bottom: 15px;
-    display: grid;
-    grid-area: filter;
-    text-align: center;
-    grid-template-columns: 130px 170px auto;
+    padding: 0;
+    height: 40px;
+    list-style-type: none;
+    margin: 0 0 15px;
+}
+.filter li {
+    float: left;
+    line-height: 38px;
+    padding: 0 15px;
+}
+.filter li.sort-filter {
+    float: right;
 }
 .list-grid i.list:hover, .list-row i.grid:hover {
     cursor: pointer;
