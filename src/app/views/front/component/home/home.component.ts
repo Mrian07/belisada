@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Store, ActionsSubject } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { HomeView } from '../../../../core/model/home.view';
 import { Level1 } from '../../../../core/model/home/level1';
 import { Level2 } from '../../../../core/model/home/level2';
@@ -11,7 +13,9 @@ import { TopProductLvl1 } from '../../../../core/model/top-product-lvl1';
 import { TopProductLvl2 } from '../../../../core/model/top-product-lvl2';
 import { HomeService } from '../../../../core/service/home/home.service';
 import { SeoService } from '../../../../core/service/seo.service';
-
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-home',
@@ -20,43 +24,46 @@ import { SeoService } from '../../../../core/service/seo.service';
 })
 export class HomeComponent implements OnInit {
 
-  homeView: HomeView;
-  level_1: Level1[];
-  level_2: Level2[];
-  level_3: Level3[];
-  level_4: Level4[];
-  level_5: Level5[];
+  level_4: Observable<Level4[]>;
+  topHomeProductLvl1: Observable<TopProductCategory[]>;
+  homeload: Subscription;
 
-  topProduct: TopProductCategory;
-  topProductLvl1: TopProductCategory[];
-  topProductLvl2: TopProductLvl2[];
-
-  constructor(private homeService: HomeService, private title: Title, private seo: SeoService) {
+  constructor(
+    private homeService: HomeService,
+    private actionsSubject: ActionsSubject,
+    private title: Title,
+    private seo: SeoService,
+    private store: Store<fromProduct.Homes>
+  ) {
   }
 
   ngOnInit() {
+    this.store.dispatch(new frontActions.GetHome());
     this.title.setTitle('Belisada - Home');
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
     });
-    this.homeService.getHomeThumbnail().subscribe(data => {
-      this.homeView = data;
-      this.level_1 = data.level_1;
-      this.level_2 = data.level_2;
-      this.level_3 = data.level_3;
-      // this.level_4 = data.level_4;
-      this.level_5 = data.level_5;
-    });
+    this.homeload = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === frontActions.GETHOMESUCCESS)
+        .subscribe((action: frontActions.GetHomeSuccess) => {
+          this.loadHome();
+        });
 
-    this.homeService.getProductBrand().subscribe(data => {
-      this.level_4 = data;
-    });
+  }
 
+<<<<<<< HEAD
+  loadHome() {
+    this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
+      this.topHomeProductLvl1 = Observable.of(data.home);
+      this.level_4 = Observable.of(data.brands);
+=======
     this.homeService.getTopProductCategory().subscribe(data => {
       // this.topProduct = data;
       this.topProductLvl1 = data;
       console.log(data[0]);
+>>>>>>> 0734b645df94803dfdd3f708d7647eadb7236bdc
     });
   }
 

@@ -21,6 +21,10 @@ import { ProductSearchComponent } from '../component/product-search/product-sear
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
+import { StoreModule } from '@ngrx/store';
+import { HomeReducer, DetailReducer } from '../../../store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 
 @NgModule({
@@ -44,7 +48,10 @@ import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-ad
     NgxCarouselModule,
     RouterModule,
     FormsModule,
-    SharedModules
+    SharedModules,
+    StoreModule.forFeature('home', HomeReducer),
+    StoreModule.forFeature('detail', DetailReducer),
+    EffectsModule.forFeature([HomeEffects])
   ],
   providers: [
     NgxCarousel,

@@ -27,6 +27,7 @@ export class ProductComponent implements OnInit {
   totalItem: Observable<any>;
   queryString: any;
 
+
   ngOnInit() {
     this.getSellerStore();
     this.sellerProduct = this.store.select(fromProduct.getProductState);
