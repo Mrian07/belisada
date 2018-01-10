@@ -1,3 +1,4 @@
+import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy } from '@angular/common';
@@ -34,6 +35,10 @@ import { SeoService } from './core/service/seo.service';
 import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
+// import { DashboardBuyerComponent } from './views/front/component/buyer/dashboard-buyer/dashboard-buyer.component';
+import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
+import { HeaderBuyerComponent } from './views/buyer/component/header-buyer/header-buyer.component';
+import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sidebar-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -67,7 +72,11 @@ export function getAuthServiceConfigs() {
     CategoryComponent,
     SignUpComponent,
     SignInComponent,
-    LostPasswordComponent
+    LostPasswordComponent,
+    DashboardBuyerComponent,
+    BuyerLayoutComponent,
+    HeaderBuyerComponent,
+    SidebarBuyerComponent
   ],
   imports: [
     BrowserModule,
