@@ -33,7 +33,7 @@ const routes: Routes = [
     component: BuyerLayoutComponent,
     children: [
       {
-        path: 'test',
+        path: 'dashboard',
         component: DashboardBuyerComponent,
         data: {
           title: 'home'

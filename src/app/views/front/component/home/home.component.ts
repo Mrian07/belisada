@@ -47,8 +47,6 @@ export class HomeComponent implements OnInit {
       this.level_3 = data.level_3;
       // this.level_4 = data.level_4;
       this.level_5 = data.level_5;
-
-      console.log(data);
     });
 
     this.homeService.getProductBrand().subscribe(data => {
@@ -58,6 +56,7 @@ export class HomeComponent implements OnInit {
     this.homeService.getTopProductCategory().subscribe(data => {
       // this.topProduct = data;
       this.topProductLvl1 = data;
+      console.log(data[0]);
     });
   }
 
