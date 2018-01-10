@@ -35,11 +35,8 @@ warna2
                 <div class='main-menu'>
                     
                                         
-                    <div class="ui link list">
-                        <a routerLink="/seller/dashboard" class='item'>Komputer</a>
-                        <a routerLink="/seller/kontak" class='item'>Gatget</a>
-                        <a routerLink="/seller/dashboard" class='item'>Audio & Visual</a>
-                        <a routerLink="/seller/dashboard" class='item'>Hoby</a>
+                    <div class="ui link list" *ngFor="let item of navigationObjects">
+                        <a routerLink="/seller/dashboard" class='item'>{{ item.name }}</a>
                     </div>
 
                 </div>
