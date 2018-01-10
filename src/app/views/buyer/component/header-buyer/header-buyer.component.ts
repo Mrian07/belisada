@@ -13,7 +13,7 @@ export class HeaderBuyerComponent implements OnInit {
   }
 
   logout() {
-     alert('ini namanya logout');
+     alert('Percayalah ini namanya logout');
   }
 
 }
