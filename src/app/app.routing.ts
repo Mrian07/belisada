@@ -29,11 +29,11 @@ import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer
 const routes: Routes = [
   {
 
-    path: '',
+    path: 'buyer',
     component: BuyerLayoutComponent,
     children: [
       {
-        path: 'test-buyer',
+        path: 'test',
         component: DashboardBuyerComponent,
         data: {
           title: 'home'
