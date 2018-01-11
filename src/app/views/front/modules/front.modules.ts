@@ -16,7 +16,6 @@ import { FrontSlideShowComponent } from '../component/front-slide-show/front-sli
 import { FrontGridCarouselComponent } from '../component/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from '../component/front-footer/front-footer.component';
 import { ProductDetailComponent } from '../component/product-detail/product-detail.component';
-import { InfoComponent } from '../../sellers/component/info/info.component';
 import { ProductSearchComponent } from '../component/product-search/product-search.component';
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
@@ -26,6 +25,7 @@ import { HomeReducer, DetailReducer } from '../../../store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
+import { InfoComponent } from '../component/info/info.component';
 
 @NgModule({
   declarations: [

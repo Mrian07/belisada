@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy, NgZone} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
@@ -17,6 +17,7 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -33,7 +34,8 @@ export class HomeComponent implements OnInit {
     private actionsSubject: ActionsSubject,
     private title: Title,
     private seo: SeoService,
-    private store: Store<fromProduct.Homes>
+    private store: Store<fromProduct.Homes>,
+    private ngZone: NgZone
   ) {
   }
 
@@ -44,6 +46,7 @@ export class HomeComponent implements OnInit {
       title: 'Home',
       description: 'Belisada Home'
     });
+
     this.homeload = this.actionsSubject
         .asObservable()
         .filter(action => action.type === frontActions.GETHOMESUCCESS)
@@ -53,17 +56,10 @@ export class HomeComponent implements OnInit {
 
   }
 
-<<<<<<< HEAD
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.topHomeProductLvl1 = Observable.of(data.home);
       this.level_4 = Observable.of(data.brands);
-=======
-    this.homeService.getTopProductCategory().subscribe(data => {
-      // this.topProduct = data;
-      this.topProductLvl1 = data;
-      console.log(data[0]);
->>>>>>> 0734b645df94803dfdd3f708d7647eadb7236bdc
     });
   }
 
