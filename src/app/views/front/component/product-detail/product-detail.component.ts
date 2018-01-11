@@ -82,9 +82,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
       this.ProductList = data;
-      if (data.image.length !== 0) {
-        this.ProductImage = data.image[0];
-      }
+
       this.title.setTitle('Belisada - ' + data.name);
     });
   }

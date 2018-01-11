@@ -19,6 +19,9 @@ import { mergeMap } from 'rxjs/operator/mergeMap';
 import { HomeService } from '../../core/service/home/home.service';
 import { ProductDetailService } from '../../core/service/product-detail/product-detail.service';
 import { SearchService } from '../../core/service/search/search.service';
+import { CategoryService } from '../../core/service/category/category.service';
+
+
 @Injectable()
 export class HomeEffects {
   constructor(
@@ -26,6 +29,7 @@ export class HomeEffects {
     private homeService: HomeService,
     private detailService: ProductDetailService,
     private searchService: SearchService,
+    private categoryService: CategoryService,
 ) {}
 
   @Effect()
@@ -64,10 +68,20 @@ export class HomeEffects {
   .map((action: frontActions.GetList) => action.params)
     .switchMap((params) =>
       this.searchService.productList(params)
-      .delay(1000)
       .map( (list) => {
         return new frontActions.GetListSuccess(list);
       }
     )
-);
+  );
+
+  @Effect()
+  getcategory$: Observable<any> = this.actions$.ofType(frontActions.GETCATEGORY)
+  .map((action: frontActions.GetCategory) => action.params)
+    .switchMap((params) =>
+      this.categoryService.CategoryThree(params)
+      .map( (list) => {
+        return new frontActions.GetCategorySuccess(list);
+      }
+    )
+  );
 }
