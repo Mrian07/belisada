@@ -1,9 +1,10 @@
+import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
+import { SidebarBuyerComponent } from './views/front/component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { FrontLayoutComponent } from './core/layout/front-layout/front-layout.component';
 import { HomeComponent } from './views/front/component/home/home.component';
-import { InfoComponent } from './views/sellers/component/info/info.component';
 import { ProductDetailComponent } from './views/front/component/product-detail/product-detail.component';
 import { ProductSearchComponent } from './views/front/component/product-search/product-search.component';
 import { PlainLayoutComponent } from './core/layout/plain-layout/plain-layout.component';
@@ -20,8 +21,34 @@ import { CategoryComponent } from './views/front/component/category/category.com
 import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
+import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
+import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
+import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
+import { InfoComponent } from './views/front/component/info/info.component';
+import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 
 const routes: Routes = [
+  {
+
+    path: 'buyer',
+    component: BuyerLayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardBuyerComponent,
+        data: {
+          title: 'home'
+        }
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordBuyerComponent,
+        data: {
+          title: 'Change Password'
+        }
+      },
+    ]
+  },
   {
     path: '',
     component: FrontLayoutComponent,
@@ -133,7 +160,29 @@ const routes: Routes = [
       data: {
         title: 'Send-forgot'
       }
+    },
+    {
+      path: 'buyer/dashboard',
+      component: BuyerDashboardComponent,
+      data: {
+        title: 'Buyer Dashboard'
+      }
+    },
+    {
+      path: 'buyer/sidebar',
+      component: SidebarBuyerComponent,
+      data: {
+        title: 'Buyer Dashboard'
+      }
+    },
+    {
+      path: 'buyer/shiping-address',
+      component: ShipingAddressComponent,
+      data: {
+        title: 'Buyer Dashboard'
+      }
     }
+
   ]
 },
   {

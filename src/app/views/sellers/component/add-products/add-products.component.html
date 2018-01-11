@@ -105,7 +105,7 @@
                             Harga
                         </div>
                         <div class="two wide field">
-                            <input type="number" placeholder="Harga" pattern="[0-9]{10}" value="{{price}}"/>
+                            <input type="number" placeholder="Harga" pattern="[0-9]{10}" [(ngModel)]="price" value="{{price}}"/>
                         </div>
                         <div class="seven wide field small">
                             Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : Rp. {{ price | number }} )</span>
@@ -140,19 +140,19 @@
                             Dimensi
                         </div>
                         <div class="one wide field">
-                            <input type="text" placeholder="" value="{{panjang}}"/>
+                            <input type="text" placeholder="" [(ngModel)]="panjang" value="{{panjang}}"/>
                         </div>
                         <div class="one wide field small">
                             Panjang
                         </div>
                         <div class="one wide field">
-                            <input type="text" placeholder="" value="{{lebar}}"/>
+                            <input type="text" placeholder="" [(ngModel)]="lebar" value="{{lebar}}"/>
                         </div>
                         <div class="one wide field small">
                             Lebar
                         </div>
                         <div class="one wide field">
-                            <input type="text" placeholder="" value="{{tinggi}}"/>
+                            <input type="text" placeholder="" [(ngModel)]="tinggi" value="{{tinggi}}"/>
                         </div>
                         <div class="one wide field small">
                             Tinggi

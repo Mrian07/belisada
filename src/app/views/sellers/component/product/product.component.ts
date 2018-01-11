@@ -14,7 +14,7 @@ import { ShareService } from '../../../../core/service/shared.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrls: ['./product.component.scss']
+  styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
 
@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   sellerProduct: Observable<any>;
   totalItem: Observable<any>;
   queryString: any;
+
 
   ngOnInit() {
     this.getSellerStore();

@@ -11,30 +11,30 @@
         <p> Brand <i class="plus icon kanan"></i> </p>
         <hr>
     </div>
-    <div class="main-search">
-        <div class="filter">
-            Items 1 to 10 of 638
-            <div>
+    <div class="main-search" [ngClass]="listStyleType">
+        <ul class="filter">
+            <li>Items {{start + 1}} to {{end}} of {{total}}</li>
+            <li>
                 Tampilan
-                <i class="list layout icon"></i>
-                <i class="grid layout icon"></i>
-            </div>
-            <div>
-                    <span>Atur Berdasarkan : </span>
-                    <sui-select class="selection"
-                    [(ngModel)]="selectedOption"
-                    [options]="options"
-                    labelField="name"
-                    [isSearchable]="searchable"
-                    [isDisabled]="disabled"
-                    #select>
-                    <sui-select-option *ngFor="let option of select.filteredOptions"
-                    [value]="option">
-                    </sui-select-option>
-                    </sui-select>
+                <i class="list layout icon" (click)="listStyle('list-row')"></i>
+                <i class="grid layout icon" (click)="listStyle('list-grid')"></i>
+            </li>
+            <li class="sort-filter">
+                <span>Atur Berdasarkan : </span>
+                <sui-select class="selection"
+                [(ngModel)]="selectedOption"
+                [options]="options"
+                labelField="name"
+                [isSearchable]="searchable"
+                [isDisabled]="disabled"
+                #select>
+                <sui-select-option *ngFor="let option of select.filteredOptions"
+                [value]="option">
+                </sui-select-option>
+                </sui-select>
 
-            </div>
-        </div>
+            </li>
+        </ul>
         <div class="search-results" *ngFor="let item of productSearchResault.productList">
             <div class="prodimg">
                  <img class="ui medium image" src="{{item.imageurl}}"></div>
@@ -45,33 +45,33 @@
             <p [innerHTML]="item.highlight"></p>
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
-                <span class="yu"><i class="info circle icon"></i>Stok Tersedia</span>
+                <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div>
                 <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
-                <sui-rating class="star kananDikit" [ngModel]="3" [maximum]="5"></sui-rating>
+                <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
             </div>
 
             <!-- <div class="clear-fix"></div> -->
         </div>
-        
+
         <div class="paging">
             <ul>
                 <li>
-                    <a>First</a>
+                    <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
                 </li>
                 <li>
-                    <a>Previous</a>
+                    <a (click)="setPage(currentPage - 1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+                </li>
+                <li *ngFor="let p of pages">
+                    <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
                 </li>
                 <li>
-                    <a>1</a>
+                    <a (click)="setPage(currentPage + 1)" [ngClass]="{disabled:currentPage == lastPages}">Next</a>
                 </li>
                 <li>
-                    <a>Next</a>
-                </li>
-                <li>
-                    <a>Last</a>
+                    <a (click)="setPage(lastPages)" [ngClass]="{disabled:currentPage == lastPages}">Last</a>
                 </li>
             </ul>
         </div>
     </div>
-    </div>
+</div>
 

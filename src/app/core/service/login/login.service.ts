@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
 import { Login, LoginData } from '../../model/login';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 
 @Injectable()

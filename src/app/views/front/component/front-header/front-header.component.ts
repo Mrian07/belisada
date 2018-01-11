@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Category } from '../../../../core/model/category';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { SearchService } from '../../../../core/service/search/search.service';
 import { Search } from '../../../../core/model/search';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../../core/service/seo.service';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
@@ -19,10 +19,11 @@ interface ICartItemWithProduct extends CartItem {
   totalCost: number;
 }
 
+
 @Component({
   selector: 'app-front-header',
   templateUrl: './front-header.component.html',
-  styleUrls: ['./front-header.component.scss']
+  styleUrls: ['./front-header.component.scss'],
 })
 export class FrontHeaderComponent implements OnInit, OnDestroy {
 
@@ -49,6 +50,7 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
     private categoryService: CategoryService,
     private searchService: SearchService,
     private router: Router,
+    private route: ActivatedRoute,
     private seo: SeoService,
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService) { }
@@ -80,6 +82,9 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
   public removeProductFromCart(productId: number, quantity: number): void {
     this.shoppingCartService.addItem(productId, -quantity);
   }
+  @HostListener('document:click', ['$event']) clickedOutside($event) {
+    this.results = [];
+  }
 
   searchK(event) {
     const key = event.target.value;
@@ -91,6 +96,12 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
       });
     }
   }
+
+  onClickOutside(event: Object) {
+    if (event && event['value'] === true) {
+    }
+  }
+
   productSelected(hasil: any) {
     this.router.navigateByUrl('/Product-detail/' + hasil.productId);
     this.results = [];
@@ -106,7 +117,8 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
   }
 
   home() {
-    this.router.navigateByUrl('/');
+    location.replace('/');
+    // this.router.navigateByUrl('');
   }
   searchEnter(searchKey, searchCategory) {
     this.queryParams = { q: searchKey };
@@ -115,7 +127,7 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
       this.queryParams['id'] = searchCategory.mProductCategoryId;
     }
     this.router.navigate(['/search'], { queryParams: this.queryParams });
-
+    this.selectedSearchCategory = '';
   }
 
   login() {

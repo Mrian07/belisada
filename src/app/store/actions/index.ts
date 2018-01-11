@@ -19,6 +19,9 @@ export const EDITPRODUCT = 'EDITPRODUCT';
 export const EDITPRODUCTSUCCESS = 'EDITPRODUCTSUCCESS';
 export const FAILURE = 'FAILURE';
 
+export const LOGIN = 'LOGIN';
+export const LOGINSUCCESS = 'LOGINSUCCESS';
+
 export class GetProduct implements Action {
   readonly type = GETPRODUCT;
   constructor(public productid: any) {}
@@ -98,6 +101,16 @@ export class EditProductSuccess implements Action {
   constructor(public success: any) {}
 }
 
+export class Login implements Action {
+  readonly type = LOGIN;
+  constructor(public data: any) { console.log(data); }
+}
+
+export class LoginSuccess implements Action {
+  readonly type = LOGINSUCCESS;
+  constructor(public success: any) {}
+}
+
 export class Failure implements Action {
   readonly type = FAILURE;
   constructor (public payload: {concern: 'ADDPRODUCT' | 'DELETEBANKLIST', error: any}) {}
@@ -119,4 +132,6 @@ export type ProductAction =
  | GetStoreList
  | EditProduct
  | EditProductSuccess
+ | Login
+ | LoginSuccess
  | Failure;

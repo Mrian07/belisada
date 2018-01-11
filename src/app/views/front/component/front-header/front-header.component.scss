@@ -113,6 +113,7 @@
     // margin-right:20px;
     font-size:12px;
     //  width:130px;
+    margin-top: 19px;
 }
 
 .menu-header3 {
@@ -186,6 +187,22 @@
 .welcome {
     float:left;
     padding-left: 7px;
+}
+
+.welcome a:link {
+    color:#f8992e;
+}
+
+.welcome a:active {
+    color:#f8992e;
+}
+
+.welcome a:visited {
+    color:#f8992e;
+}
+
+.welcome a:hover {
+    color:#fec380;
 }
 
 .cart {

@@ -9,7 +9,6 @@ export class SearchFilterPipe implements PipeTransform {
           } else {
             const cari = v.name.toLowerCase().indexOf(search.toLowerCase()) !== -1;
             if (cari === true) {
-              console.log(v);
               return v;
             }
           }

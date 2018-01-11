@@ -2,10 +2,17 @@ import { ProductDetailService } from './../../../../core/service/product-detail/
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { ActivatedRoute } from '@angular/router';
+import { Store, ActionsSubject } from '@ngrx/store';
+import { Observable } from 'rxjs/Observable';
 import { ProductDetail } from '../../../../core/model/product-detail';
 import { Title } from '@angular/platform-browser';
+
 import { Product } from '../../../../core/model/product';
 import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,12 +30,16 @@ export class ProductDetailComponent implements OnInit {
   highlight;
   quantity;
   ProductList: ProductDetail = new ProductDetail();
+  ProductImage: string;
+  getDetailProd: Subscription;
 
   aliasName;
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
+    private shoppingCartService: ShoppingCartService,
+    private actionsSubject: ActionsSubject,
     private title: Title,
-    private shoppingCartService: ShoppingCartService
+    private store: Store<fromProduct.Details>
   ) { }
 
   ngOnInit() {
@@ -47,13 +58,14 @@ export class ProductDetailComponent implements OnInit {
     };
     this.route.params.subscribe( params => {
       this.productId = params.id;
-      this.detailService.getProductDetail(this.productId).subscribe(data => {
-        this.ProductList = data;
-        console.log(data);
-        this.title.setTitle('Belisada - ' + data.name);
-      });
+      this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
-
+    this.getDetailProd = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
+        .subscribe((action: frontActions.GetDetailSuccess) => {
+          this.getDetail();
+        });
     window.scrollTo(0, 0);
   }
 
@@ -64,6 +76,14 @@ export class ProductDetailComponent implements OnInit {
         this.carouselTileItems.push(i);
       }
     }
+  }
+
+  getDetail() {
+    this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
+      this.ProductList = data;
+      this.ProductImage = data.image[0];
+      this.title.setTitle('Belisada - ' + data.name);
+    });
   }
 
   public addProductToCart(productId: number, quantity: number): void {
