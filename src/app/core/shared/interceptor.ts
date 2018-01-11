@@ -42,8 +42,13 @@ export class Interceptor implements HttpInterceptor {
           .then((result) => {
             auth.redirect();
           });
+        }else if (err.status === 404) {
+          this.routes.navigateByUrl('/maintenance');
+        }else if (err.status === 500) {
+          this.routes.navigateByUrl('/maintenance');
         }else {
           console.log(err);
+          alert(err.message);
         }
       }
     });

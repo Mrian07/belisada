@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
     if (this.tokenService.getToken() === undefined) {
     } else {
-      this.router.navigateByUrl('/seller/dashboard');
+      this.router.navigateByUrl('/buyer/dashboard');
     }
   }
 

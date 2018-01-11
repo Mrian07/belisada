@@ -105,7 +105,6 @@ export class FrontHeaderComponent implements OnInit {
   productSelected(hasil: any) {
     this.router.navigateByUrl('/Product-detail/' + hasil.productId);
     this.results = [];
-    // console.log('ini bener ga', hasil.productId);
   }
   hapusbersih() {
     this.selectedSearchCategory = '';
@@ -118,7 +117,6 @@ export class FrontHeaderComponent implements OnInit {
 
   home() {
     location.replace('/');
-    // this.router.navigateByUrl('');
   }
   searchEnter(searchKey, searchCategory) {
     this.queryParams = { q: searchKey };

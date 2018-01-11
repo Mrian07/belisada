@@ -29,6 +29,7 @@ export class ProductDetailComponent implements OnInit {
   act_key: any;
   productId: any;
   specialPrice: 3;
+  percent: any;
   highlight;
   quantity;
   ProductList: ProductDetail = new ProductDetail();
@@ -63,11 +64,11 @@ export class ProductDetailComponent implements OnInit {
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
     this.getDetailProd = this.actionsSubject
-        .asObservable()
-        .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
-        .subscribe((action: frontActions.GetDetailSuccess) => {
-          this.getDetail();
-        });
+    .asObservable()
+    .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
+    .subscribe((action: frontActions.GetDetailSuccess) => {
+      this.getDetail();
+    });
     window.scrollTo(0, 0);
   }
 
@@ -85,6 +86,7 @@ export class ProductDetailComponent implements OnInit {
       this.ProductList = data;
       console.log('this.ProductList: ', this.ProductList);
       this.ProductImage = data.image[0];
+
       this.title.setTitle('Belisada - ' + data.name);
     });
   }

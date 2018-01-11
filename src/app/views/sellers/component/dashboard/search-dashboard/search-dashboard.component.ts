@@ -69,13 +69,14 @@ export class SearchDashboardComponent implements OnInit {
 
   getStatus() {
     const user = this.tokenService.getUser();
+    console.log(user);
       if ( user.stores[0].statusCode === '4') {
         this.storeStatus = user.stores[0].status;
         this.status = true;
         this.btnColor = 'green';
       } else {
         this.storeStatus = user.stores[0].status;
-        this.status = true;
+        this.status = false;
         this.btnColor = 'red';
       }
   }

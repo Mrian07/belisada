@@ -15,8 +15,10 @@
   <div class="four wide column"></div>
   <div class="four wide column"></div>
   <div class="four wide column">
-    <img [src]="ProductImage" style="width: 270px; height:auto;"/>
-  </div>
+      <div *ngFor=" let image of ProductList.image;  let i=index">
+            <img *ngIf="i === 0" [src]="image" style="width: 270px; height:auto;"/>
+      </div>
+    </div>
   <!-- <span>{{ProductList.aliasName}}</span> -->
   <div class="four wide column"><h2 class="kekiridikit">{{ProductList.aliasName}}</h2>
     <div class="two wide column">

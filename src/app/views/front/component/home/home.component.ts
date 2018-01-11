@@ -37,10 +37,10 @@ export class HomeComponent implements OnInit {
     private store: Store<fromProduct.Homes>,
     private ngZone: NgZone
   ) {
+    this.store.dispatch(new frontActions.GetHome());
   }
 
   ngOnInit() {
-    this.store.dispatch(new frontActions.GetHome());
     this.title.setTitle('Belisada - Home');
     this.seo.generateTags({
       title: 'Home',
@@ -48,12 +48,11 @@ export class HomeComponent implements OnInit {
     });
 
     this.homeload = this.actionsSubject
-        .asObservable()
-        .filter(action => action.type === frontActions.GETHOMESUCCESS)
-        .subscribe((action: frontActions.GetHomeSuccess) => {
-          this.loadHome();
-        });
-
+    .asObservable()
+    .filter(action => action.type === frontActions.GETHOMESUCCESS)
+    .subscribe((action: frontActions.GetHomeSuccess) => {
+      this.loadHome();
+    });
   }
 
   loadHome() {
