@@ -25,6 +25,7 @@ import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard
 import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { InfoComponent } from './views/front/component/info/info.component';
+import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,13 @@ const routes: Routes = [
         component: DashboardBuyerComponent,
         data: {
           title: 'home'
+        }
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordBuyerComponent,
+        data: {
+          title: 'Change Password'
         }
       },
     ]
