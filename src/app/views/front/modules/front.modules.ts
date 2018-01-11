@@ -23,7 +23,7 @@ import { ShoppingCartService } from '../../../core/service/shopping-cart/shoppin
 import { ProductService } from '../../../core/service/product/product.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
 import { StoreModule } from '@ngrx/store';
-import { HomeReducer, DetailReducer, ListReducer, CategoryReducer } from '../../../store/reducers';
+import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, NavReducer } from '../../../store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
@@ -55,6 +55,7 @@ import { InfoComponent } from '../component/info/info.component';
     StoreModule.forFeature('detail', DetailReducer),
     StoreModule.forFeature('list', ListReducer),
     StoreModule.forFeature('category', CategoryReducer),
+    StoreModule.forFeature('navigation', NavReducer),
     EffectsModule.forFeature([HomeEffects])
   ],
   providers: [
