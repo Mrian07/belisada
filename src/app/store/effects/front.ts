@@ -17,12 +17,14 @@ import { map } from 'rxjs/operator/map';
 import { mergeMap } from 'rxjs/operator/mergeMap';
 import { HomeService } from '../../core/service/home/home.service';
 import { ProductDetailService } from '../../core/service/product-detail/product-detail.service';
+import { SearchService } from '../../core/service/search/search.service';
 @Injectable()
 export class HomeEffects {
   constructor(
     private actions$: Actions,
     private homeService: HomeService,
     private detailService: ProductDetailService,
+    private searchService: SearchService,
 ) {}
 
   @Effect()
@@ -55,4 +57,15 @@ export class HomeEffects {
         }
       )
   );
+
+  @Effect()
+  getlist$: Observable<any> = this.actions$.ofType(frontActions.GETLIST)
+  .map((action: frontActions.GetList) => action.params)
+    .switchMap((params) =>
+      this.searchService.productList(params)
+      .map( (list) => {
+        return new frontActions.GetListSuccess(list);
+      }
+    )
+);
 }
