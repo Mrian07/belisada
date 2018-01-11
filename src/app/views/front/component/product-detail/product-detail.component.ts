@@ -6,6 +6,10 @@ import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ProductDetail } from '../../../../core/model/product-detail';
 import { Title } from '@angular/platform-browser';
+
+import { Product } from '../../../../core/model/product';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+
 import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
@@ -15,6 +19,7 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
+
 export class ProductDetailComponent implements OnInit {
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
@@ -23,6 +28,7 @@ export class ProductDetailComponent implements OnInit {
   productId: any;
   specialPrice: 3;
   highlight;
+  quantity;
   ProductList: ProductDetail = new ProductDetail();
   ProductImage: string;
   getDetailProd: Subscription;
@@ -30,6 +36,7 @@ export class ProductDetailComponent implements OnInit {
   aliasName;
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
+    private shoppingCartService: ShoppingCartService,
     private actionsSubject: ActionsSubject,
     private title: Title,
     private store: Store<fromProduct.Details>
@@ -60,21 +67,26 @@ export class ProductDetailComponent implements OnInit {
           this.getDetail();
         });
     window.scrollTo(0, 0);
+  }
 
-  }
   public carouselTileLoad(evt: any) {
-        const len = this.carouselTileItems.length;
-        if (len <= 30) {
-          for (let i = len; i < len + 10; i++) {
-            this.carouselTileItems.push(i);
-          }
-        }
+    const len = this.carouselTileItems.length;
+    if (len <= 30) {
+      for (let i = len; i < len + 10; i++) {
+        this.carouselTileItems.push(i);
+      }
+    }
   }
+
   getDetail() {
     this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
       this.ProductList = data;
       this.ProductImage = data.image[0];
       this.title.setTitle('Belisada - ' + data.name);
     });
+  }
+
+  public addProductToCart(productId: number, quantity: number): void {
+    this.shoppingCartService.addItem(productId, +quantity);
   }
 }

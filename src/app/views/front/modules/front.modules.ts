@@ -19,9 +19,11 @@ import { ProductDetailComponent } from '../component/product-detail/product-deta
 import { ProductSearchComponent } from '../component/product-search/product-search.component';
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
+import { ShoppingCartService } from '../../../core/service/shopping-cart/shopping-cart.service';
+import { ProductService } from '../../../core/service/product/product.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
 import { StoreModule } from '@ngrx/store';
-import { HomeReducer, DetailReducer } from '../../../store/reducers';
+import { HomeReducer, DetailReducer, ListReducer } from '../../../store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
@@ -51,13 +53,16 @@ import { InfoComponent } from '../component/info/info.component';
     SharedModules,
     StoreModule.forFeature('home', HomeReducer),
     StoreModule.forFeature('detail', DetailReducer),
+    StoreModule.forFeature('list', ListReducer),
     EffectsModule.forFeature([HomeEffects])
   ],
   providers: [
     NgxCarousel,
     HomeService,
     SearchService,
-    ProductDetailService
+    ProductDetailService,
+    ShoppingCartService,
+    ProductService
   ]
 })
 export class FrontModules { }

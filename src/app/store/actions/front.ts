@@ -5,6 +5,8 @@ export const GETDETAIL = 'GETDETAIL';
 export const GETDETAILSSUCCESS = 'GETDETAILSUCCESS';
 export const GETHOME = 'GETHOME';
 export const GETHOMESUCCESS = 'GETHOMESUCCESS';
+export const GETLIST = 'GETLIST';
+export const GETLISTSUCCESS = 'GETLISTSUCCESS';
 
 
 export class GetHome implements Action {
@@ -19,7 +21,7 @@ export class GetHomeSuccess implements Action {
 
 export class GetDetail implements Action {
   readonly type = GETDETAIL;
-  constructor(public id: any) { console.log(id); }
+  constructor(public id: any) {}
 }
 
 export class GetDetailSuccess implements Action {
@@ -27,8 +29,21 @@ export class GetDetailSuccess implements Action {
   constructor(public detail: any) {}
 }
 
+export class GetList implements Action {
+  readonly type = GETLIST;
+  constructor(public params: any) { }
+}
+
+export class GetListSuccess implements Action {
+  readonly type = GETLISTSUCCESS;
+  constructor(public list: any) {}
+}
+
 export type HomeAction =
  | GetHome
  | GetHomeSuccess
+ | GetList
+ | GetListSuccess
  | GetDetail
  | GetDetailSuccess;
+
