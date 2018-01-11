@@ -39,6 +39,7 @@ import { LostPasswordComponent } from './views/front/component/lost-password/los
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
 import { HeaderBuyerComponent } from './views/buyer/component/header-buyer/header-buyer.component';
 import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sidebar-buyer.component';
+import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -76,7 +77,8 @@ export function getAuthServiceConfigs() {
     DashboardBuyerComponent,
     BuyerLayoutComponent,
     HeaderBuyerComponent,
-    SidebarBuyerComponent
+    SidebarBuyerComponent,
+    CartBuyerComponent
   ],
   imports: [
     BrowserModule,
