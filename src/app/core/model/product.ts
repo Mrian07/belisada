@@ -1,13 +1,24 @@
 export class Product {
 
+  mBpartnerStoreId: number;
   pricelist: number;
   productId: number;
-  mBpartnerStoreId: number;
-  description: string;
-  message?: string;
-  status?: string;
+  specialPrice: number;
+  weight: number;
+  aliasName: string;
+  imageurl: string;
+  name: string;
 
-  constructor() {}
+  public updateFrom(src: Product): void {
+    this.mBpartnerStoreId = src.mBpartnerStoreId;
+    this.pricelist = src.pricelist;
+    this.productId = src.productId;
+    this.specialPrice = src.specialPrice;
+    this.weight = src.weight;
+    this.aliasName = src.aliasName;
+    this.imageurl = src.imageurl;
+    this.name = src.name;
+  }
 }
 
 export class SellerProduct {
