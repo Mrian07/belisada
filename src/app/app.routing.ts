@@ -1,3 +1,4 @@
+import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
 import { SidebarBuyerComponent } from './views/front/component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,7 @@ import { SignUpComponent } from './views/front/component/sign-up/sign-up.compone
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
 import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
-import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
+// import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 
 const routes: Routes = [
@@ -39,6 +40,13 @@ const routes: Routes = [
           title: 'home'
         }
       },
+      {
+        path: 'tet',
+        component: BillingAddressComponent,
+        data: {
+          title: 'home'
+        }
+      }
     ]
   },
   {
@@ -169,7 +177,7 @@ const routes: Routes = [
     },
     {
       path: 'buyer/shiping-address',
-      component: ShipingAddressComponent,
+      component: BillingAddressComponent,
       data: {
         title: 'Buyer Dashboard'
       }

@@ -1,3 +1,4 @@
+import { BillingAddress } from './core/model/billing-address';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
@@ -26,7 +27,7 @@ import { AuthModules } from './core/shared/auth.modules';
 import { FrontModules } from './views/front/modules/front.modules';
 import { ActivationService } from './core/service/activation/activation.service';
 import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './core/shared/interceptor';
 import { CategoryComponent } from './views/front/component/category/category.component';
@@ -39,6 +40,7 @@ import { LostPasswordComponent } from './views/front/component/lost-password/los
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
 import { HeaderBuyerComponent } from './views/buyer/component/header-buyer/header-buyer.component';
 import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sidebar-buyer.component';
+import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -76,7 +78,8 @@ export function getAuthServiceConfigs() {
     DashboardBuyerComponent,
     BuyerLayoutComponent,
     HeaderBuyerComponent,
-    SidebarBuyerComponent
+    SidebarBuyerComponent,
+    BillingAddressComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,7 @@ export function getAuthServiceConfigs() {
       enabled: environment.production
     }),
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,

@@ -1,3 +1,5 @@
+import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
+// import { BillingAddress } from './../../../core/model/billing-address';
 import { SidebarBuyerComponent } from './../component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { SearchService } from './../../../core/service/search/search.service';
 import { ProductDetailService } from './../../../core/service/product-detail/product-detail.service';
@@ -22,6 +24,7 @@ import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
+import { BillingAddress } from '../../../core/model/billing-address';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,7 @@ import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-ad
     NgxCarousel,
     HomeService,
     SearchService,
+    BilingAddressService,
     ProductDetailService
   ]
 })
