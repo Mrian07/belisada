@@ -7,6 +7,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/empty';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
 import * as fromActions from '../../store/actions';
 import * as frontActions from '../../store/actions/front';
 import { SellerProduct, Product } from '../../core/model/product';
@@ -63,6 +64,7 @@ export class HomeEffects {
   .map((action: frontActions.GetList) => action.params)
     .switchMap((params) =>
       this.searchService.productList(params)
+      .delay(1000)
       .map( (list) => {
         return new frontActions.GetListSuccess(list);
       }

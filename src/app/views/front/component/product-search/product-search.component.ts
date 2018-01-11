@@ -62,9 +62,10 @@ export class ProductSearchComponent implements OnInit {
   listStyleType = 'list-row';
   pageParams: any;
   getDetailData: Subscription;
+  loading: Boolean;
 
   ngOnInit() {
-
+    this.loading = true;
   }
 
   setPage(page: number) {
@@ -78,6 +79,7 @@ export class ProductSearchComponent implements OnInit {
 
   getDetailDatas() {
     this.store.select<any>(fromProduct.getListState).subscribe(response => {
+      this.loading = false;
       this.productSearchResault = response;
       this.total = response.productCount;
       this.start = (this.currentPage - 1) * this.limit;

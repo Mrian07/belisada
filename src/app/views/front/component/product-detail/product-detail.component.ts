@@ -27,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   act_key: any;
   productId: any;
   specialPrice: 3;
+  percent: any;
   highlight;
   quantity;
   ProductList: ProductDetail = new ProductDetail();

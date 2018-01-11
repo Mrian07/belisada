@@ -10,10 +10,10 @@
                         *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix">
 
                         <div class="top-categories" *ngIf="ix <= 4">
-                            <a routerLink="/category/{{ i.m_product_category_id }}">
+                            <div (click)="toList(i.m_product_category_id)">
                                 <img class="ui image logo" [src]="i.imageurl" alt="Image not found"/>
                                 <h3>{{ i.name }}</h3>
-                            </a>
+                            </div>
                         </div>
                         <div *ngIf="ix > 4">
                             <div (click)="toList(i.m_product_category_id)" class="item" style="cursor: pointer;">
