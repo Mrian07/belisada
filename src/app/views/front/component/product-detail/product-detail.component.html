@@ -169,14 +169,14 @@
 
         <strong>Jumlah</strong>
         <div class="ui segment">
-            <sui-select placeholder="Jumlah">
+            <sui-select [(ngModel)]="quantity" placeholder="Jumlah">
                 <sui-select-option value="1"></sui-select-option>
                 <sui-select-option value="2"></sui-select-option>
                 <sui-select-option value="3"></sui-select-option>
                 <sui-select-option value="4"></sui-select-option>
             </sui-select>
         </div>
-        <button class="ui youtube button gap-between-elements btnColor" style="margin-left:40px; background:#F7982D">
+        <button class="ui youtube button gap-between-elements btnColor" (click)="addProductToCart(ProductList.productId, quantity)" style="margin-left:40px; background:#F7982D">
             <i class="shop icon"></i>
             <strong>Beli Sekarang</strong>
           </button>

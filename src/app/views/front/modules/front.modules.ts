@@ -19,6 +19,8 @@ import { InfoComponent } from '../../sellers/component/info/info.component';
 import { ProductSearchComponent } from '../component/product-search/product-search.component';
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
+import { ShoppingCartService } from '../../../core/service/shopping-cart/shopping-cart.service';
+import { ProductService } from '../../../core/service/product/product.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { HomeService } from '../../../core/service/home/home.service';
     NgxCarousel,
     HomeService,
     SearchService,
-    ProductDetailService
+    ProductDetailService,
+    ShoppingCartService,
+    ProductService
   ]
 })
 export class FrontModules { }

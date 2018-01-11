@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Category } from '../../../../core/model/category';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { SearchService } from '../../../../core/service/search/search.service';
@@ -6,13 +6,29 @@ import { Search } from '../../../../core/model/search';
 import { Router } from '@angular/router';
 import { SeoService } from '../../../../core/service/seo.service';
 import swal from 'sweetalert2';
+import { Observable } from 'rxjs/Observable';
+import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import { Subscription } from 'rxjs/Subscription';
+import { Product } from '../../../../core/model/product';
+import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
+import { ProductService } from '../../../../core/service/product/product.service';
+
+interface ICartItemWithProduct extends CartItem {
+  product: Product;
+  totalCost: number;
+}
 
 @Component({
   selector: 'app-front-header',
   templateUrl: './front-header.component.html',
   styleUrls: ['./front-header.component.scss']
 })
-export class FrontHeaderComponent implements OnInit {
+export class FrontHeaderComponent implements OnInit, OnDestroy {
+
+  public cart: Observable<ShoppingCart>;
+  public cartItems: ICartItemWithProduct[] = [];
+  public itemCount: number;
 
   categorySearch: Category[];
   selectedCategory: any;
@@ -27,8 +43,15 @@ export class FrontHeaderComponent implements OnInit {
   text: string;
   type: string;
 
-  constructor(private categoryService: CategoryService, private searchService: SearchService,
-  private router: Router, private seo: SeoService) { }
+  private cartSubscription: Subscription;
+
+  constructor(
+    private categoryService: CategoryService,
+    private searchService: SearchService,
+    private router: Router,
+    private seo: SeoService,
+    private shoppingCartService: ShoppingCartService,
+    private productService: ProductService) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
@@ -37,6 +60,25 @@ export class FrontHeaderComponent implements OnInit {
       title: 'Home',
       description: 'Belisada Home'
     });
+    this.cart = this.shoppingCartService.get();
+    this.cartSubscription = this.cart.subscribe((cart) => {
+      this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
+      this.cartItems = [];
+      cart.items.forEach(item => {
+        this.productService.get(item.productId).subscribe((product) => {
+          // const product = prod;
+          this.cartItems.push({
+            ...item,
+            product,
+            totalCost: product.pricelist * item.quantity });
+            console.log('this.cartItems: ', this.cartItems);
+        });
+      });
+    });
+  }
+
+  public removeProductFromCart(productId: number, quantity: number): void {
+    this.shoppingCartService.addItem(productId, -quantity);
   }
 
   searchK(event) {
@@ -78,38 +120,41 @@ export class FrontHeaderComponent implements OnInit {
 
   login() {
     // this.isLogin = true;
-  swal({
-    title: 'Login Akun',
-    // text: 'Silakan login sesuai dengan type akun Anda',
-    type: 'info',
-    html:
-      '<div class="content">' +
-      '<div class="ui grid">' +
-          '<div class="eight wide column">' +
-              '<div class="column">' +
-                  '<div class="ui segment">' +
-                      '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
-                      // '<p>Login untuk customer Belisada.</p>' +
-                      '<a href="/sign-in" class="ui green button">Enter</a>' +
-                  '</div>' +
-              '</div>' +
-          '</div>' +
-          '<div class="eight wide column">' +
-              '<div class="column">' +
-                  '<div class="ui segment">' +
-                      '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
-                      // '<p>Login untuk seller Belisada.</p>' +
-                      '<a href="/login" class="ui olive button">Enter</a>' +
-                  '</div>' +
-              '</div>' +
-          '</div>' +
-      '</div>' +
+    swal({
+      title: 'Login Akun',
+      // text: 'Silakan login sesuai dengan type akun Anda',
+      type: 'info',
+      html:
+        '<div class="content">' +
+        '<div class="ui grid">' +
+            '<div class="eight wide column">' +
+                '<div class="column">' +
+                    '<div class="ui segment">' +
+                        '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
+                        // '<p>Login untuk customer Belisada.</p>' +
+                        '<a href="/sign-in" class="ui green button">Enter</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+            '<div class="eight wide column">' +
+                '<div class="column">' +
+                    '<div class="ui segment">' +
+                        '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
+                        // '<p>Login untuk seller Belisada.</p>' +
+                        '<a href="/login" class="ui olive button">Enter</a>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>' +
 
-  '</div>',
-      showCloseButton: true,
-      showConfirmButton: false,
-      confirmButtonText: 'Yes, delete it!'
-  } );
+    '</div>',
+        showCloseButton: true,
+        showConfirmButton: false,
+        confirmButtonText: 'Yes, delete it!'
+    } );
+  }
 
-}
+  ngOnDestroy(): void {
+    throw new Error('Method not implemented.');
+  }
 }

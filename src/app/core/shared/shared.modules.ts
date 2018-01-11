@@ -9,6 +9,7 @@ import { CategoryService } from '../service/category/category.service';
 import { MasterService } from '../service/master/master.service';
 import { TokenService } from '../service/token/token.service';
 import { ShareService, ActiveLink } from '../service/shared.service';
+import { LocalStorageService } from '../service/storage.service';
 
 @NgModule ({
   declarations: [
@@ -28,7 +29,8 @@ import { ShareService, ActiveLink } from '../service/shared.service';
     MasterService,
     TokenService,
     ShareService,
-    ActiveLink
+    ActiveLink,
+    LocalStorageService
   ]
 })
 export class SharedModules { }
