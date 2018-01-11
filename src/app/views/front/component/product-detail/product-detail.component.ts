@@ -14,6 +14,8 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 
+import swal from 'sweetalert2';
+
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -81,6 +83,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
       this.ProductList = data;
+      console.log('this.ProductList: ', this.ProductList);
       this.ProductImage = data.image[0];
       this.title.setTitle('Belisada - ' + data.name);
     });

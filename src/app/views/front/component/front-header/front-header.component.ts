@@ -25,7 +25,7 @@ interface ICartItemWithProduct extends CartItem {
   templateUrl: './front-header.component.html',
   styleUrls: ['./front-header.component.scss'],
 })
-export class FrontHeaderComponent implements OnInit, OnDestroy {
+export class FrontHeaderComponent implements OnInit {
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
@@ -166,7 +166,7 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
     } );
   }
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngOnDestroy(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 }
