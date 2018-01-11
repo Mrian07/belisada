@@ -41,6 +41,8 @@ import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.co
 import { HeaderBuyerComponent } from './views/buyer/component/header-buyer/header-buyer.component';
 import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sidebar-buyer.component';
 import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
+import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
+import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -79,7 +81,9 @@ export function getAuthServiceConfigs() {
     BuyerLayoutComponent,
     HeaderBuyerComponent,
     SidebarBuyerComponent,
-    BillingAddressComponent
+    BillingAddressComponent,
+    CartBuyerComponent,
+    ChangePasswordBuyerComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +109,7 @@ export function getAuthServiceConfigs() {
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
-      maxAge: 50,
+      maxAge: 25,
     }),
     TruncateModule
   ],

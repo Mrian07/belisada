@@ -22,7 +22,6 @@ export const FAILURE = 'FAILURE';
 export const LOGIN = 'LOGIN';
 export const LOGINSUCCESS = 'LOGINSUCCESS';
 
-
 export class GetProduct implements Action {
   readonly type = GETPRODUCT;
   constructor(public productid: any) {}

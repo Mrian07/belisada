@@ -17,6 +17,10 @@ export class SidebarComponent implements OnInit {
   sellerName: string;
   sellerEmail: string;
   sellerPhone: string;
+  status1: Boolean = true;
+  status2: Boolean = false;
+  status3: Boolean = false;
+  status4: Boolean = false;
 
   pathArray: any;
   activeLink: any;

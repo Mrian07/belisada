@@ -18,13 +18,17 @@ import { FrontSlideShowComponent } from '../component/front-slide-show/front-sli
 import { FrontGridCarouselComponent } from '../component/front-grid-carousel/front-grid-carousel.component';
 import { FrontFooterComponent } from '../component/front-footer/front-footer.component';
 import { ProductDetailComponent } from '../component/product-detail/product-detail.component';
-import { InfoComponent } from '../../sellers/component/info/info.component';
 import { ProductSearchComponent } from '../component/product-search/product-search.component';
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
+import { StoreModule } from '@ngrx/store';
+import { HomeReducer, DetailReducer } from '../../../store/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
+import { InfoComponent } from '../component/info/info.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,10 @@ import { BillingAddress } from '../../../core/model/billing-address';
     NgxCarouselModule,
     RouterModule,
     FormsModule,
-    SharedModules
+    SharedModules,
+    StoreModule.forFeature('home', HomeReducer),
+    StoreModule.forFeature('detail', DetailReducer),
+    EffectsModule.forFeature([HomeEffects])
   ],
   providers: [
     NgxCarousel,

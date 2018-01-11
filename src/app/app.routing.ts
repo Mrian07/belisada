@@ -6,7 +6,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
 import { FrontLayoutComponent } from './core/layout/front-layout/front-layout.component';
 import { HomeComponent } from './views/front/component/home/home.component';
-import { InfoComponent } from './views/sellers/component/info/info.component';
 import { ProductDetailComponent } from './views/front/component/product-detail/product-detail.component';
 import { ProductSearchComponent } from './views/front/component/product-search/product-search.component';
 import { PlainLayoutComponent } from './core/layout/plain-layout/plain-layout.component';
@@ -26,6 +25,8 @@ import { LostPasswordComponent } from './views/front/component/lost-password/los
 import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
 // import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
+import { InfoComponent } from './views/front/component/info/info.component';
+import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,7 @@ const routes: Routes = [
     component: BuyerLayoutComponent,
     children: [
       {
-        path: 'test',
+        path: 'dashboard',
         component: DashboardBuyerComponent,
         data: {
           title: 'home'
@@ -46,7 +47,14 @@ const routes: Routes = [
         data: {
           title: 'home'
         }
-      }
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordBuyerComponent,
+        data: {
+          title: 'Change Password'
+        }
+      },
     ]
   },
   {

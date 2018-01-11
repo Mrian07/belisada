@@ -3,9 +3,10 @@ import { Category } from '../../../../core/model/category';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { SearchService } from '../../../../core/service/search/search.service';
 import { Search } from '../../../../core/model/search';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../../core/service/seo.service';
 import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-front-header',
@@ -28,7 +29,7 @@ export class FrontHeaderComponent implements OnInit {
   type: string;
 
   constructor(private categoryService: CategoryService, private searchService: SearchService,
-  private router: Router, private seo: SeoService) { }
+  private router: Router, private seo: SeoService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadDataCategorySearch();
@@ -73,7 +74,8 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   home() {
-    this.router.navigateByUrl('/');
+    location.replace('/');
+    //this.router.navigateByUrl('');
   }
   searchEnter(searchKey, searchCategory) {
     this.queryParams = { q: searchKey };
