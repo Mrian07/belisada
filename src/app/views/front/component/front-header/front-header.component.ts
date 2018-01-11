@@ -75,7 +75,6 @@ export class FrontHeaderComponent implements OnInit {
 
   home() {
     location.replace('/');
-    //this.router.navigateByUrl('');
   }
   searchEnter(searchKey, searchCategory) {
     this.queryParams = { q: searchKey };

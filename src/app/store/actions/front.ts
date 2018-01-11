@@ -46,4 +46,3 @@ export type HomeAction =
  | GetListSuccess
  | GetDetail
  | GetDetailSuccess;
-

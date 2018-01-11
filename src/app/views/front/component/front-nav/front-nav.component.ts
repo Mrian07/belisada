@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Category } from '../../../../core/model/category';
 import { Category2 } from '../../../../core/model/category2';
 import { CategoryService } from '../../../../core/service/category/category.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class FrontNavComponent implements OnInit {
   imgTop: any;
   navigationObjects: any[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private router: Router) { }
 
   ngOnInit() {
     this.getNavigationCategory();
@@ -47,6 +48,9 @@ export class FrontNavComponent implements OnInit {
         // console.log('this.navigationObject: ', this.navigationObject);
       });
     });
+  }
+  toList(id: number) {
+    this.router.navigateByUrl('/category/' + id);
   }
 
 }

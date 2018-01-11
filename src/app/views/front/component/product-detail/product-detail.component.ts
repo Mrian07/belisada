@@ -54,11 +54,11 @@ export class ProductDetailComponent implements OnInit {
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
     this.getDetailProd = this.actionsSubject
-        .asObservable()
-        .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
-        .subscribe((action: frontActions.GetDetailSuccess) => {
-          this.getDetail();
-        });
+    .asObservable()
+    .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
+    .subscribe((action: frontActions.GetDetailSuccess) => {
+      this.getDetail();
+    });
     window.scrollTo(0, 0);
 
   }
@@ -73,7 +73,9 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
       this.ProductList = data;
-      this.ProductImage = data.image[0];
+      if (data.image.length !== 0) {
+        this.ProductImage = data.image[0];
+      }
       this.title.setTitle('Belisada - ' + data.name);
     });
   }
