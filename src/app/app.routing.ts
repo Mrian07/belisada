@@ -1,3 +1,4 @@
+import { ShippingComponent } from './views/front/component/shipping/shipping.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
@@ -94,6 +95,12 @@ const routes: Routes = [
         component: CartComponent,
         data: {
           title: 'Cart'
+        }
+      }, {
+        path: 'shipping',
+        component: ShippingComponent,
+        data: {
+          title: 'shipping'
         }
       }
     ]

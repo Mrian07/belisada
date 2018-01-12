@@ -1,3 +1,4 @@
+import { ShippingComponent } from './views/front/component/shipping/shipping.component';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
@@ -82,7 +83,8 @@ export function getAuthServiceConfigs() {
     SidebarBuyerComponent,
     CartBuyerComponent,
     ChangePasswordBuyerComponent,
-    CartComponent
+    CartComponent,
+    ShippingComponent
   ],
   imports: [
     BrowserModule,
