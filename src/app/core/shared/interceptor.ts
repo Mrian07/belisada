@@ -43,12 +43,20 @@ export class Interceptor implements HttpInterceptor {
             auth.redirect();
           });
         }else if (err.status === 404) {
-          this.routes.navigateByUrl('/maintenance');
+          swal('Oops!...something wrong...')
+          .then((result) => {
+            this.routes.navigateByUrl('/maintenance');
+          });
         }else if (err.status === 500) {
-          this.routes.navigateByUrl('/maintenance');
+          swal('Oops!...something wrong...')
+          .then((result) => {
+            this.routes.navigateByUrl('/maintenance');
+          });
         }else {
-          console.log(err);
-          alert(err.message);
+          swal('Oops!...something wrong...')
+          .then((result) => {
+            this.routes.navigateByUrl('/maintenance');
+          });
         }
       }
     });

@@ -4,15 +4,12 @@
 
     <!-- <h4 class="ui header" style='font-size:50px;margin-top:10px'><i class="address book icon"></i></h4> -->
     <!-- <img class="ui medium circular image" src="/assets/img/kristy.png"> -->
-    <p><img class="ui medium rounded image" src="/assets/img/kristy.png" alt="profile picture"/></p>
+    <p>
+        <img class="ui medium rounded image" [src]="sellerimage" alt="profile picture"/>
+    </p>
     <strong>{{sellerName}}</strong>
   </div>
 
-  <p>
-    {{sellerEmail}}<br/>
-    <!-- {{sellerPhone}}<br/> -->
-    Basic Seller
-  </p>
 
   <div class="ui center aligned basic segment">
     <button class="ui youtube button" (click)="editProfile()">
@@ -21,7 +18,7 @@
   </div>
 
   <div class="ui link list">
-    <hr/> 
+    <hr/>
     <a routerLink="/seller/dashboard" [ngClass]="(activeLink=='dashboard')?'active item':'item'">Dashboard</a>
     <a routerLink="/seller/kontak" [ngClass]="(activeLink=='kontak')?'active item':'item'">Kontak Pesan</a>
     <a routerLink="/seller/payment-info" [ngClass]="(activeLink=='payment-info')?'active item':'item'">Payment Info</a>

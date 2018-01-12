@@ -24,7 +24,6 @@ import { SalesStatusComponent } from '../component/dashboard/sales-status/sales-
 import { FaqComponent } from '../component/faq/faq.component';
 import { StatisticsComponent } from '../component/statistics/statistics.component';
 import { HeaderComponent } from '../component/header/header.component';
-import { ChattingComponent } from '../component/chatting/chatting.component';
 import { FooterComponent } from '../component/footer/footer.component';
 import { NotificationComponent } from '../component/dashboard/notification/notification.component';
 import { MyTopProdukComponent } from '../component/dashboard/my-top-produk/my-top-produk.component';
@@ -52,9 +51,9 @@ import { AddproductService } from '../../../core/service/addproduct/addproduct.s
 import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reducers';
 import { ProductEffects } from '../../../store/effects/index';
-import { ChatService } from '../../../core/service/chat/chat.service';
 import { TruncateModule } from 'ng2-truncate';
 import { ProductListComponent } from '../component/product-list/product-list.component';
+import { ChattingComponent } from '../component/chatting/chatting.component';
 
 
 @NgModule({
@@ -77,7 +76,6 @@ import { ProductListComponent } from '../component/product-list/product-list.com
     StatisticsComponent,
     HeaderComponent,
     FooterComponent,
-    ChattingComponent,
     SearchDashboardComponent,
     DashboardComponent,
     NotificationComponent,
@@ -91,7 +89,8 @@ import { ProductListComponent } from '../component/product-list/product-list.com
     StoreComponent,
     PlainSellerLayoutComponent,
     ProductComponent,
-    ProductListComponent
+    ProductListComponent,
+    ChattingComponent
   ],
   imports: [
     CommonModule,
@@ -120,7 +119,6 @@ import { ProductListComponent } from '../component/product-list/product-list.com
     RekeningSService,
     AddproductService,
     InfoPerusahaanService,
-    ChatService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
