@@ -1,8 +1,60 @@
+<div class="wrapper" *ngFor="let item of ship">
+    <div class="wrapper2">
+        <div class="kk">
+           <table border=0>
+               <tr>
+                  <td class="xxp"> <i class="checkmark icon bilu"></i><span class="ac">{{item.addressName}}</span></td>
+               </tr>
+               <tr>
+                   <td>Nama Penerima :</td>
+               </tr>
+               <tr>
+                   <td>{{item.name}}</td>
+               </tr>
+           </table>
+           <div class="gap-betweens-elements"></div>
+           <button class="btnlooklikelink">Delete</button>
+           <button class="btnlooklikelink">Update</button>
+        </div>
+        <div>
+        <div class="ui raised segment sskn">
+                <a class="ui red ribbon label">Alamat Pengiriman</a>
+                <div class="gap-betweens-elements"></div>
+                <span>{{item.address}}</span>
+                <div class="gap-betweens-elements"></div>
+                <span>{{item.cityName}}</span>
+                <div class="gap-betweens-elements"></div>
+                <span>Kecamatan : {{item.districtName}}</span>
+                <div class="gap-betweens-elements"></div>
+                <span>Kelurahan : {{item.villageName}} , {{item.postal}}</span>
+                     <hr>
+                <div class="wreaper47">
+                        <div>
+                            <strong>Provinsi : </strong>
+                            <div class="gap-betweens-elements"></div>
+                            {{item.regionName}}
+                        </div>
+                        <div>
+                                <strong>Kota : </strong>
+                                <div class="gap-betweens-elements"></div>
+                                {{item.cityName}}
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+  </div>
+
+
 <div class="column">
         <div class="wide column">
             <h1>Input alamat </h1>
         </div>
     </div>
+   <!-- <div *ngFor="let item of ship">
+       {{item.address}}
+       {{item.cityName}}
+   </div> -->
     <div class="ui segment">
         <div class="ui grid">
           <div class="twelve wide stretched column">

@@ -15,6 +15,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./shipping-address.component.scss']
 })
 export class ShippingAddressComponent implements OnInit {
+  user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
    address: FormControl;
@@ -26,7 +27,7 @@ export class ShippingAddressComponent implements OnInit {
  province: FormControl;
  city: FormControl;
  district: FormControl;
- ship: ShippingAddress[];
+ ship;
  // village: FormControl;
  provinces: Province[];
  cities: City[];
@@ -43,6 +44,7 @@ export class ShippingAddressComponent implements OnInit {
     this.createFormControls();
     this.createForm();
     this.getProvince();
+    this.fillForms();
     // this.getAllStore1();
     console.log('dn', luser);
   }
@@ -110,6 +112,13 @@ export class ShippingAddressComponent implements OnInit {
       // this.getAllStore();
     });
   }
+  fillForms() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.shipingServ.getSip(luser.token).subscribe(data => {
+      this.ship = data;
+      console.log('ah elah', data);
+           });
+      }
 
   getProvince() {
     // Country ID harcoded to Indonesia
