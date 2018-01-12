@@ -35,7 +35,10 @@
 
             </li>
         </ul>
+        <p class="text-center" *ngIf="loading">loading</p>
+
         <div class="search-results" *ngFor="let item of productSearchResault.productList">
+
             <div class="prodimg">
                  <img class="ui medium image" src="{{item.imageurl}}"></div>
             <!-- <div class="clear-fix"></div> -->

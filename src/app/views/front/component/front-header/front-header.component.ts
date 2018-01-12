@@ -25,7 +25,7 @@ interface ICartItemWithProduct extends CartItem {
   templateUrl: './front-header.component.html',
   styleUrls: ['./front-header.component.scss'],
 })
-export class FrontHeaderComponent implements OnInit, OnDestroy {
+export class FrontHeaderComponent implements OnInit {
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
@@ -105,7 +105,6 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
   productSelected(hasil: any) {
     this.router.navigateByUrl('/Product-detail/' + hasil.productId);
     this.results = [];
-    // console.log('ini bener ga', hasil.productId);
   }
   hapusbersih() {
     this.selectedSearchCategory = '';
@@ -118,7 +117,6 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
 
   home() {
     location.replace('/');
-    // this.router.navigateByUrl('');
   }
   searchEnter(searchKey, searchCategory) {
     this.queryParams = { q: searchKey };
@@ -166,7 +164,7 @@ export class FrontHeaderComponent implements OnInit, OnDestroy {
     } );
   }
 
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngOnDestroy(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 }

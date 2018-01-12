@@ -37,6 +37,14 @@ export interface List {
   productlist: any;
 }
 
+export interface Category {
+  category: any;
+}
+
+export interface Nav {
+  navigation: any;
+}
+
 export const productAdapter = createEntityAdapter<Product>();
 export interface Products extends EntityState<Product> { }
 
@@ -57,6 +65,12 @@ export interface Details extends EntityState<Detail> { }
 
 export const listAdapter = createEntityAdapter<List>();
 export interface Lists extends EntityState<List> { }
+
+export const categoryAdapter = createEntityAdapter<Category>();
+export interface Categorys extends EntityState<Category> { }
+
+export const navAdapter = createEntityAdapter<Nav>();
+export interface Navs extends EntityState<Nav> { }
 
 
 
@@ -87,6 +101,14 @@ const defaultList = {
   productlist: null,
 };
 
+const defaultCategory = {
+  category: null,
+};
+
+const defaultNav = {
+  navigation: null,
+};
+
 
 export const initialStateProduct: Product = productAdapter.getInitialState(defaultProduct);
 export const initialStateStore: Stores = storeAdapter.getInitialState(defaultStore);
@@ -95,6 +117,8 @@ export const initialStateUser: Users = userAdapter.getInitialState(defaultUser);
 export const initialStateHome: Homes = homeAdapter.getInitialState(defaultHome);
 export const initialStateDetail: Details = brandAdapter.getInitialState(defaultDetail);
 export const initialStateList: Lists = listAdapter.getInitialState(defaultList);
+export const initialStateCategory: Categorys = categoryAdapter.getInitialState(defaultCategory);
+export const initialStateNavs: Navs = navAdapter.getInitialState(defaultNav);
 
 export function ProductReducer(
   state: Product = initialStateProduct,
@@ -219,6 +243,32 @@ export function ListReducer(
   }
 }
 
+export function CategoryReducer(
+  state: Categorys = initialStateCategory,
+  action: front.HomeAction) {
+
+  switch (action.type) {
+
+    case front.GETCATEGORYSUCCESS : {
+      return action.list;
+    }
+    default: return {};
+  }
+}
+
+export function NavReducer(
+  state: Navs = initialStateNavs,
+  action: front.HomeAction) {
+
+  switch (action.type) {
+
+    case front.GETNAVSUCCESS : {
+      return action.nav;
+    }
+    default: return {};
+  }
+}
+
 export const getProductState = createFeatureSelector<Products>('product');
 export const getStoreState = createFeatureSelector<Stores>('store');
 export const getBankState = createFeatureSelector<Banks>('bank');
@@ -226,4 +276,6 @@ export const getUserState = createFeatureSelector<Users>('user');
 export const getHomeState = createFeatureSelector<Homes>('home');
 export const getDetailState = createFeatureSelector<Details>('detail');
 export const getListState = createFeatureSelector<Lists>('list');
+export const getCategoryState = createFeatureSelector<Categorys>('category');
+export const getNavState = createFeatureSelector<Navs>('navigation');
 
