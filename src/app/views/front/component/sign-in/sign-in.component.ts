@@ -41,7 +41,7 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada - Login');
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'seller/dashboard';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'buyer/test';
     if (this.tokenService.getToken() === undefined) {
     } else {
       this.router.navigateByUrl('/buyer/dashboard');

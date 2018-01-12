@@ -32,6 +32,11 @@ export class ProductDetailComponent implements OnInit {
   percent: any;
   highlight;
   quantity;
+  kamp: any;
+  diskon2: any;
+  popx: any;
+  diskon3: any;
+  // percent: any;
   ProductList: ProductDetail = new ProductDetail();
   ProductImage: string;
   getDetailProd: Subscription;
@@ -84,6 +89,16 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
       this.ProductList = data;
+      const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
+      const diskon = 1 - harga;
+      this.kamp = (this.ProductList.pricelist - this.ProductList.specialPrice);
+      this.diskon2 = diskon * 100;
+      this.diskon3 = this.ProductList.pricelist * this.diskon2;
+      console.log('ini3', this.diskon2);
+      this.popx = Math.round(this.diskon2);
+      console.log(this.popx);
+      console.log(this.kamp);
+      console.log('ini', this.diskon3);
       console.log('this.ProductList: ', this.ProductList);
       this.ProductImage = data.image[0];
 
@@ -92,6 +107,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public addProductToCart(productId: number, quantity: number): void {
+    console.log('ini nih');
+    console.log('productId', quantity);
     this.shoppingCartService.addItem(productId, +quantity);
   }
 }

@@ -2,7 +2,7 @@ import { Perusahaan } from './../../model/perusahaan';
 import { Injectable } from '@angular/core';
 import { Configuration } from './../../config/configuration';
 import { AbstractRestService } from '../abstract.rest.service';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class InfoPerusahaanService extends AbstractRestService<Perusahaan> {
 
