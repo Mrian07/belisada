@@ -28,8 +28,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { InfoComponent } from '../component/info/info.component';
-import { ChattingComponent } from '../../sellers/component/chatting/chatting.component';
-import { ChatService } from '../../../core/service/chat/chat.service';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +45,6 @@ import { ChatService } from '../../../core/service/chat/chat.service';
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
-    ChattingComponent
   ],
   imports: [
     CommonModule,
@@ -68,7 +66,6 @@ import { ChatService } from '../../../core/service/chat/chat.service';
     ProductDetailService,
     ShoppingCartService,
     ProductService,
-    ChatService
   ]
 })
 export class FrontModules { }

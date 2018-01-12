@@ -12,6 +12,7 @@ import { Profile } from '../../../../core/model/profile';
 
 import { DatepickerOptions } from 'ng2-datepicker';
 import { Title } from '@angular/platform-browser';
+import { ShareService } from '../../../../core/service/shared.service';
 // import * as idLocale from 'date-fns/locale/id';
 
 @Component({
@@ -61,7 +62,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
-    private title: Title
+    private title: Title,
+    private sharedService: ShareService
   ) { }
 
   ngOnInit() {
@@ -112,6 +114,13 @@ export class ProfileComponent implements OnInit {
       this.userImgAvatar = data.imageAvatar ?'data:image/png;base64,' + data.imageAvatar : '/assets/img/kristy.png';
       this.userImageKTP = data.imageIDCard ? 'data:image/png;base64,' + data.imageIDCard : '/assets/img/noimage.png';
       this.userImageNPWP = data.imageNPWP ? 'data:image/png;base64,' + data.imageNPWP : '/assets/img/noimage.png';
+      const sharedData = {
+        image: this.userImgAvatar,
+        name: this.fm.name,
+        email: this.fm.email
+      };
+      this.sharedService.shareData = sharedData;
+      console.log(sharedData);
     });
   }
 

@@ -30,27 +30,20 @@ export class SearchDashboardComponent implements OnInit {
     private sharedService: ShareService
   ) { }
 
-  @Output() messageEvent = new EventEmitter<string>();
-
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Dashboard');
     this.getStoreData();
     this.storeService.getStatus().subscribe(data => {
-      console.log(data[0].status);
-      this.messageEvent.emit(data[0].note);
       this.sharedService.shareData = data[0].note;
       if ( data[0].statusCode === '4') {
         this.storeStatus = data[0].status;
         this.status = true;
         this.btnColor = 'green';
-        this.note = data[0].note;
       } else {
-        this.note = data[0].note;
         this.storeStatus = data[0].status;
         this.status = false;
         this.btnColor = 'red';
       }
-      console.log(this.storeStatus);
     });
   }
   search(event) {
@@ -83,25 +76,10 @@ export class SearchDashboardComponent implements OnInit {
 
   getStoreData() {
     this.storeService.getAll().subscribe(response => {
-      console.log(response[0].mBpartnerStoreId);
       this.storeId = response[0].mBpartnerStoreId;
-     // this.getStatus();
     });
   }
 
-  getStatus() {
-    // const user = this.tokenService.getUser();
-    // console.log(user);
-    //   if ( user.stores[0].statusCode === '4') {
-    //     this.storeStatus = user.stores[0].status;
-    //     this.status = true;
-    //     this.btnColor = 'green';
-    //   } else {
-    //     this.storeStatus = user.stores[0].status;
-    //     this.status = false;
-    //     this.btnColor = 'red';
-    //   }
-  }
 
 
 }

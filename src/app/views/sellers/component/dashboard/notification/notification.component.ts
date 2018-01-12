@@ -20,12 +20,12 @@ export class NotificationComponent implements OnInit {
     private alamatserviceService: AlamatserviceService,
     private sharedService: ShareService,
     private router: Router
-  ) {}
+  ) { this.message = 'loading'; }
 
   ngOnInit() {
     setTimeout(() => {
       this.message = this.sharedService.shareData;
-    }, 1000);
+    }, 500);
   }
 
   toProfile() {
