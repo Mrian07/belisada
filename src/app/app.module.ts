@@ -41,6 +41,7 @@ import { HeaderBuyerComponent } from './views/buyer/component/header-buyer/heade
 import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sidebar-buyer.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
+import { CartComponent } from './views/front/component/cart/cart.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -80,7 +81,8 @@ export function getAuthServiceConfigs() {
     HeaderBuyerComponent,
     SidebarBuyerComponent,
     CartBuyerComponent,
-    ChangePasswordBuyerComponent
+    ChangePasswordBuyerComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

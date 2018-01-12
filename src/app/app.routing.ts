@@ -1,3 +1,5 @@
+import { CartComponent } from './views/front/component/cart/cart.component';
+import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
 import { SidebarBuyerComponent } from './views/front/component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { NgModule } from '@angular/core';
@@ -86,6 +88,12 @@ const routes: Routes = [
         component: ProductSearchComponent,
         data: {
           title: 'product List'
+        }
+      }, {
+        path: 'cart',
+        component: CartComponent,
+        data: {
+          title: 'Cart'
         }
       }
     ]

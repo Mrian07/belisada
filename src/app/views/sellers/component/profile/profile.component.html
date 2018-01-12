@@ -10,7 +10,7 @@
                 <div class="six wide column">
                     <div class="ui card">
                         <div class="image">
-                            <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event)" #avaImg />
+                            <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event,'imageAvatar')" #avaImg />
                         </div>
                         <div class="content">
                             <a class="header">{{ user.name }}</a>
@@ -31,81 +31,77 @@
                 </div>
                 <div class="ten wide column">
 
-                    <form class="ui form" [formGroup]="createProfileForm" (ngSubmit)="onSubmit()" novalidate>
+                    <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
                         <div class="field">
                             <label>Nama</label>
-                            <input name="name" placeholder="Masukan nama" type="text" formControlName="name" value="{{ user.name }}"/>
-                            <div class="form-control-feedback alert" *ngIf="name.invalid && name.dirty"> 
-                                Nama tidak boleh kosong
-                            </div>
+                            <input name="name" #name placeholder="Masukan nama" type="text" [(ngModel)]="fm.name" required/>
+                            <div *ngIf="f.submitted && name.invalid" class="ui pointing red basic label">Nama tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <label>Tanggal Lahir</label>
-                            <!-- <div class="ui grid">
-                                <div class="sixteen wide column"> -->
-                                    <ng-datepicker formControlName="dateOfBirth" [options]="options"></ng-datepicker>
-                                <!-- </div>
-                            </div> -->
+                            <ng-datepicker name="dateOfBirth" [options]="options" [(ngModel)]="fm.dateOfBirth"></ng-datepicker>
+                            <pre>{{fm.dateOfBirth | json}}</pre>
                         </div>
                         <div class="field">
                             <label>Alamat</label>
-                            <input name="address" placeholder="Masukan alamat" type="text" formControlName="address" value="{{user.address}}"/>
-                            <div class="form-control-feedback alert" *ngIf="address.invalid && address.dirty"> 
-                                Alamat tidak boleh kosong
-                            </div>
+                            <input name="address" #address placeholder="Masukan alamat" type="text" [(ngModel)]="fm.address" required/>
+                            <div *ngIf="f.submitted && address.invalid" class="ui pointing red basic label">Alamat tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <label>Provinsi</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                            <sui-select name="province" class="selection" labelField="name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
                                 <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Kota</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                            <sui-select class="selection" labelField="name" name="city" placeholder="Pilih Kota" [(ngModel)]="adr.city">
                                 <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Kelurahan / Kecamatan</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                            <sui-select class="selection" labelField="name" name="district" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
                                 <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Desa</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
-                                <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+                            <sui-select name="village" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
+                                <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setVilage(option)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Kode POS</label>
-                            <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalcode"/>
-                            <div class="form-control-feedback alert" *ngIf="postalcode.invalid && postalcode.dirty"> 
-                                Kodepos tidak boleh kosong
-                            </div>
+                            <input name="postal" #postal placeholder="Masukan kode POS" type="text" [(ngModel)]="fm.postal" required/>
+                            <div *ngIf="f.submitted && postal.invalid" class="ui pointing red basic label">Kodepos tidak boleh kosong</div>
                         </div>
                         <div class="field">
                             <label>Nomor HP</label>
-                            <input name="phone" placeholder="Masukan nomor handphone" type="text" formControlName="phone"/>
+                            <input name="phone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
                         </div>
                         <div class="field">
                             <label>Nomor KTP</label>
-                            <input name="ktp" placeholder="Masukan nomor handphone" type="text" formControlName="ktp"/>
+                            <input name="ktp" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.idcard"/>
+                        </div>
+                        <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
+                        <div class="upload-btn-wrapper">
+                            <button class="ui green button"><i class="cloud icon"></i> Upload file KTP</button>
+                            <input type="file" name="fileNpwp" (change)="setUrl($event, imgKTP)" />
                         </div>
                         <div class="field">
                             <label>No. NPWP</label>
-                            <input name="npwp" placeholder="Masukan NPWP" type="text" formControlName="npwp"/>
+                            <input name="npwp" placeholder="Masukan NPWP" type="text"  [(ngModel)]="fm.npwp"/>
                         </div>
 
-                        <div class="ui divider"></div>
-                        <img class="ui middle aligned small image" src="{{userImageNPWP}}" (load)="setCanvasNpwp($event)" #avaImgNpwp >
-                        <br>
+                        <!-- <div class="ui divider"></div> -->
+                        <img class="ui middle aligned small image" src="{{userImageNPWP}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
+                        <!-- <br>
                         <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
-                        <br>
+                        <br> -->
                         <div class="upload-btn-wrapper">
                             <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button>
-                            <input type="file" name="fileNpwp" (change)="setUrlNpwp($event, avaImgNpwp)" />
+                            <input type="file" name="fileNpwp" (change)="setUrl($event, imgNpwp)" />
                         </div>
 
                         <div class="ui divider"></div>
