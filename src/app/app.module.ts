@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 import { ShippingComponent } from './views/front/component/shipping/shipping.component';
-=======
 import { BillingAddress } from './core/model/billing-address';
->>>>>>> f9ebe468a5762dbc731ef951ce6ce1121a203ed7
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
