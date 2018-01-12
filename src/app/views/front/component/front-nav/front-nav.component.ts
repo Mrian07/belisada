@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store, ActionsSubject } from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
 import { Category } from '../../../../core/model/category';
 import { Category2 } from '../../../../core/model/category2';
 import { CategoryService } from '../../../../core/service/category/category.service';
-import { Router } from '@angular/router';
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
+
 
 
 @Component({
@@ -17,9 +22,15 @@ export class FrontNavComponent implements OnInit {
   imgTop: any;
   navigationObjects: any[] = [];
 
-  constructor(private categoryService: CategoryService, private router: Router) { }
+  constructor(
+    private categoryService: CategoryService,
+    private router: Router,
+    private store: Store<fromProduct.Navs>
+  ) {
+  }
 
   ngOnInit() {
+    this.store.dispatch(new frontActions.GetNav());
     this.getNavigationCategory();
   }
 

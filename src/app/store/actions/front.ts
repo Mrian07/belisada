@@ -9,6 +9,8 @@ export const GETLIST = 'GETLIST';
 export const GETLISTSUCCESS = 'GETLISTSUCCESS';
 export const GETCATEGORY = 'GETCATEGORY';
 export const GETCATEGORYSUCCESS = 'GETCATEGORYSUCCESS';
+export const GETNAV = 'GETNAV';
+export const GETNAVSUCCESS = 'GETNAVSUCCESS';
 
 
 export class GetHome implements Action {
@@ -51,6 +53,16 @@ export class GetCategorySuccess implements Action {
   constructor(public list: any) {}
 }
 
+export class GetNav implements Action {
+  readonly type = GETNAV;
+  constructor() { }
+}
+
+export class GetNavSuccess implements Action {
+  readonly type = GETNAVSUCCESS;
+  constructor(public nav: any) {}
+}
+
 export type HomeAction =
  | GetHome
  | GetHomeSuccess
@@ -58,5 +70,7 @@ export type HomeAction =
  | GetListSuccess
  | GetCategory
  | GetCategorySuccess
+ | GetNav
+ | GetNavSuccess
  | GetDetail
  | GetDetailSuccess;
