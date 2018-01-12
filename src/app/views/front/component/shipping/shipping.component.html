@@ -62,16 +62,31 @@
           <p><strong>Email:</strong> dewa@yahoo.com</p>
           <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p>
         </div>
-        <div class="ui grid">
+        <!-- <div class="ui grid">
           <div class="sixteen right aligned wide column">
             <button class="ui right labeled icon button green" (click)="next()">
               Next
               <i class="right chevron icon"></i>
             </button>
           </div>
-        </div>
+        </div> -->
        
       </div>
       
     </div>
   </div>
+
+  <div class="ui grid">
+      <div class="left floated left aligned eight wide column">
+          <button class="ui left labeled icon button green" (click)="prev()">
+            <i class="chevron left icon"></i>
+            Previous
+          </button>
+      </div>
+      <div class="right floated right aligned eight wide column">
+          <button class="ui right labeled icon button green" (click)="next()">
+            Next
+            <i class="right chevron icon"></i>
+          </button>
+      </div>
+    </div>
