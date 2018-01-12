@@ -13,6 +13,7 @@ import { Profile } from '../../../../core/model/profile';
 import { DatepickerOptions } from 'ng2-datepicker';
 import { Title } from '@angular/platform-browser';
 import { ShareService } from '../../../../core/service/shared.service';
+import { DatePipe } from "@angular/common";
 // import * as idLocale from 'date-fns/locale/id';
 
 @Component({
@@ -23,28 +24,13 @@ import { ShareService } from '../../../../core/service/shared.service';
 export class ProfileComponent implements OnInit {
 
   options: DatepickerOptions = {
-    displayFormat: 'DD-MMM-YYYY',
+    minYear: 1970,
+    displayFormat: 'DD MMM YYYY',
   };
 
-  newImage: string;
   updateImg: Boolean = false;
-  edit: any;
 
-  createProfileForm: FormGroup;
-  name: FormControl;
-  address: FormControl;
-  province: FormControl;
-  city: FormControl;
-  district: FormControl;
-  village: FormControl;
-  postalcode: FormControl;
-  phone: FormControl;
-  ktp: FormControl;
-  npwp: FormControl;
-  imgAvatar: FormControl;
-  imgNpwp: FormControl;
   role: any;
-  dateOfBirth: FormControl;
 
   // tgl:string;
   userImgAvatar: string;
@@ -58,12 +44,14 @@ export class ProfileComponent implements OnInit {
   villages: Village[];
   fm: any = {};
   adr: any = {};
+  dob: Date;
 
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
     private title: Title,
-    private sharedService: ShareService
+    private sharedService: ShareService,
+    private datePipe: DatePipe
   ) { }
 
   ngOnInit() {
@@ -72,7 +60,6 @@ export class ProfileComponent implements OnInit {
     // this.token = user.token;
     this.role = user.role;
     this.getProvince(this.fillForms.bind(this));
-    // this.fillForms();
   }
 
   fillForms() {
@@ -81,13 +68,17 @@ export class ProfileComponent implements OnInit {
       if (!data) {
         return console.log('kosong');
       }
-      console.log('ini data: ', data);
+      // console.log('ini data: ', data);
+      if(data.dateOfBirth && data.dateOfBirth != '') {
+        let tl = data.dateOfBirth.split('-');
+        if(tl.length == 3) {
+          this.dob = new Date(+(tl[2]), (+(tl[1]) - 1), +(tl[0]));
+        }
+      }
+
       this.fm = {
         name : data.name,
-        dateOfBirth : data.dateOfBirth,
         address: data.address,
-        // imageAvatar : data.imgAvatar,
-        // imageNPWP : data.imgNpwp,
         postal: data.postal,
         npwp : data.npwp,
         phone : data.phone,
@@ -120,40 +111,17 @@ export class ProfileComponent implements OnInit {
         email: this.fm.email
       };
       this.sharedService.shareData = sharedData;
-      console.log(sharedData);
+      // console.log(sharedData);
     });
   }
 
-  onSubmit() {
-    console.log('submit:', this.fm);
-    // if(this.newAvatar) {
-    //   this.fm.imageAvatar = this.newAvatar;
-    // }
-    // if(this.newNPWP) {
-    //   this.fm.imageNPWP = this.newNPWP;
-    // }
-    // if(this.newIDCard) {
-    //   this.fm.imageIDCard = this.newIDCard;
-    // }
+  setDOB(d) {
+    this.fm.dateOfBirth = this.datePipe.transform(d, 'dd-MM-yyyy');
+    // console.log('newDOB:', this.fm.dateOfBirth);
+  }
 
-    // tgl = this.dateOfBirth.value.split("T17");
-    // tgl = this.dateOfBirth.value;
-    // console.log("tgl", this.dateOfBirth.value);
-    // alert(tgl[0]);
-    // console.log("this.base64Npwp", this.base64Npwp);
-    // const updateProfileData = {
-      // name : this.name.value,
-      // dateOfBirth: this.dateOfBirth.value,
-      // address : this.address.value,
-      // postal: this.postalcode.value,
-      // villageId : this.village.value.mvillageId,
-      // phone : this.phone.value,
-      // idcard : this.ktp.value,
-      // npwp : this.npwp.value,
-      // imageAvatar : this.base64Avatar,
-      // imageNPWP : this.base64Npwp,
-      // imageIDCard : '',
-    // };
+  onSubmit() {
+    // console.log('submit:', this.fm);
 
     this.profileService.updateProfile(this.fm).subscribe(data => {
 
@@ -211,7 +179,7 @@ export class ProfileComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
+    // console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });
