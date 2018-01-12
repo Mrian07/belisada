@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import { ShippingComponent } from './views/front/component/shipping/shipping.component';
+=======
+import { BillingAddress } from './core/model/billing-address';
+>>>>>>> f9ebe468a5762dbc731ef951ce6ce1121a203ed7
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
 import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
@@ -27,7 +31,7 @@ import { AuthModules } from './core/shared/auth.modules';
 import { FrontModules } from './views/front/modules/front.modules';
 import { ActivationService } from './core/service/activation/activation.service';
 import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Interceptor } from './core/shared/interceptor';
 import { CategoryComponent } from './views/front/component/category/category.component';
@@ -40,6 +44,7 @@ import { LostPasswordComponent } from './views/front/component/lost-password/los
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
 import { HeaderBuyerComponent } from './views/buyer/component/header-buyer/header-buyer.component';
 import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sidebar-buyer.component';
+import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
@@ -81,6 +86,7 @@ export function getAuthServiceConfigs() {
     BuyerLayoutComponent,
     HeaderBuyerComponent,
     SidebarBuyerComponent,
+    BillingAddressComponent,
     CartBuyerComponent,
     ChangePasswordBuyerComponent,
     CartComponent,
@@ -93,6 +99,7 @@ export function getAuthServiceConfigs() {
       enabled: environment.production
     }),
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
