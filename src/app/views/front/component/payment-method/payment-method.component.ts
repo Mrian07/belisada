@@ -18,7 +18,7 @@ export class PaymentMethodComponent implements OnInit {
   }
 
   next() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/confirm-order');
   }
 
 }

@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarBuyerComponent implements OnInit {
 
+  editProfile: any;
+
   constructor() { }
 
   ngOnInit() {
