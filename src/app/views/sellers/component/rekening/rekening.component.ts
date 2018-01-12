@@ -61,6 +61,7 @@ export class RekeningComponent implements OnInit {
     this.title.setTitle('Belisada Seller - Rekening Bank');
     const user = JSON.parse(localStorage.user);
     this.token = user.token;
+    this.selectCity();
     this.role = user.role;
     this.store.dispatch(new fromActions.GetBank(user.token));
     this.getRole();

@@ -1,7 +1,7 @@
    <div class="head-buyer">
       <div class="ui grid">
         <div class="three wide column">
-              <img class="ui small image" src="/assets/img/logo_buyer_belisada.png">
+            <a routerLink="/buyer/dashboard"><img class="ui small image" src="/assets/img/logo_buyer_belisada.png"></a>
         </div>
         <div class="six wide column">
             <!-- <sui-search placeholder="Example Search..."
@@ -18,9 +18,6 @@
               <div class="results"></div>
             </div>
         </div>
-        <div class="two wide column">
-            <div class='trs-buyer'>My Transaction</div>
-        </div>
         <div class="three wide column ">
           <div class='account-buyer'>
             <div class="ui dropdown" suiDropdown>
@@ -28,8 +25,8 @@
               <i class="dropdown icon"></i>
               <div class="menu" suiDropdownMenu>
                   <div class="item">Profile</div>
-                  <div class="item">Change Password</div>
-                  <div class="item">Ulasan</div>
+                  <div class="item"><a routerLink="/buyer/change-password">Change Password</a></div>
+                  <div class="item"><a routerLink="/buyer/tet">biling alamat</a></div>
 
                   <!-- <div class="item">
                       <span class="description">ctrl + o</span>

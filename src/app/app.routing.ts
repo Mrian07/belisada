@@ -42,15 +42,15 @@ const routes: Routes = [
         }
       },
       {
-        path: 'tet',
-        component: BillingAddressComponent,
+        path: 'change-password',
+        component: ChangePasswordBuyerComponent,
         data: {
-          title: 'home'
+          title: 'Change Password'
         }
       },
       {
-        path: 'change-password',
-        component: ChangePasswordBuyerComponent,
+        path: 'tet',
+        component: BillingAddressComponent,
         data: {
           title: 'Change Password'
         }
