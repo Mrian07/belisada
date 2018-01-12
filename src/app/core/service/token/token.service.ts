@@ -50,6 +50,10 @@ export class TokenService {
     location.assign('/login');
   }
 
+  getSellerStatus(id): Observable<any> {
+   return this.http.put(this.configuration.serverWithAccUrl + '/profile/store/revision/' + id, id)
+   .map(resp => resp as any);
+  }
 
 
 }

@@ -12,9 +12,10 @@ export class StoreService extends AbstractRestService<MyStore> {
     super(http, configuration.serverWithAccUrl + '/seller/profile/store');
   }
 
-  getStatus(id: any): Observable<any> {
-    return this.http.post(this.configuration.serverWithAccUrl + '/seller/profile/store/check', id)
+  getStatus(): Observable<any> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/seller/profile/store/')
         .map(response => response as any[]);
   }
+
 
 }
