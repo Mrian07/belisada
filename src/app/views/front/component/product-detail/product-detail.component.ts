@@ -42,6 +42,7 @@ export class ProductDetailComponent implements OnInit {
   ProductImage: string;
   getDetailProd: Subscription;
   category2Id: number;
+  login4: any;
 
   aliasName;
   constructor(private route: ActivatedRoute,
