@@ -39,8 +39,7 @@
                         </div>
                         <div class="field">
                             <label>Tanggal Lahir</label>
-                            <ng-datepicker name="dateOfBirth" [options]="options" [(ngModel)]="fm.dateOfBirth"></ng-datepicker>
-                            <pre>{{fm.dateOfBirth | json}}</pre>
+                            <ng-datepicker name="dateOfBirth" [options]="options" [(ngModel)]="dob" (ngModelChange)="setDOB($event)"></ng-datepicker>
                         </div>
                         <div class="field">
                             <label>Alamat</label>
