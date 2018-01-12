@@ -1,3 +1,4 @@
+import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
 // import { ShippingAddressComponent } from './views/buyer/shipping-address/shipping-address.component';
@@ -133,6 +134,12 @@ const routes: Routes = [
         component: ConfirmOrderComponent,
         data: {
           title: 'Confirm Order'
+        }
+      }, {
+        path: 'finish-order',
+        component: FinihOrderComponent,
+        data: {
+          title: 'Finish Order'
         }
       }
     ]
