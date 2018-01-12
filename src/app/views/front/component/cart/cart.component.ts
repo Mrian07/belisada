@@ -6,6 +6,7 @@ import { Product } from '../../../../core/model/product';
 import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { Router } from '@angular/router';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -27,7 +28,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private shoppingCartService: ShoppingCartService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,5 +64,9 @@ export class CartComponent implements OnInit {
 
   public removeProductFromCart(productId: number, quantity: number): void {
     this.shoppingCartService.addItem(productId, -quantity);
+  }
+
+  next() {
+    this.router.navigateByUrl('/shipping');
   }
 }

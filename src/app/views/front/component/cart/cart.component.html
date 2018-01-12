@@ -80,7 +80,7 @@
     <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4>
   </div>  
   <div class="eight wide right aligned column">  
-    <button class="ui right labeled icon button green">
+      <button class="ui right labeled icon button green" (click)="next()">
         Next
         <i class="right chevron icon"></i>
       </button>
