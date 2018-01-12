@@ -93,7 +93,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
-        console.log('detail', data);
+        console.log('detail');
         this.ProductList = data;
         this.category2Id = data.category2Id;
         const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
@@ -111,7 +111,14 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public addProductToCart(productId: number, quantity: number): void {
-    this.shoppingCartService.addItem(productId, +quantity);
+    if (quantity === undefined) {
+      swal(
+        'Belisada.co.id',
+        'Jumlah harus di pilih!'
+      );
+    }else {
+      this.shoppingCartService.addItem(productId, +quantity);
+    }
   }
 
   home() {
