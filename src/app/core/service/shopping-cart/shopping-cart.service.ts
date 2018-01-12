@@ -8,6 +8,7 @@ import { LocalStorageService } from '../storage.service';
 import { CartItem } from '../../model/shoppingcart/cart-item';
 import { ProductService } from '../product/product.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 const CART_KEY = 'cart';
 
@@ -19,7 +20,8 @@ export class ShoppingCartService {
   private products: Product[];
   private deliveryOptions: DeliveryOption[];
 
-  public constructor(private storageService: LocalStorageService, private productService: ProductService) {
+
+  public constructor(private storageService: LocalStorageService, private productService: ProductService, private routes: Router) {
     this.storage = this.storageService.get();
 
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
@@ -81,6 +83,7 @@ export class ShoppingCartService {
             `Continue to Shop`,
         }).then((result) => {
           console.log('result: ', result);
+          this.routes.navigateByUrl('/cart');
         });
       }
       if (idx === array.length - 1) {
