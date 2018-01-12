@@ -1,3 +1,7 @@
+.ui.selection.dropdown.active, .ui.selection.dropdown.visible {
+    z-index: 501!important;
+}
+
 .header-top {
     background: #f7982d;
     color: #2c4528;
@@ -81,7 +85,6 @@
     background-color: #4d4e4e!important;
     color: #ffffff!important;
     position:relative;
-    z-index: 9999!important;
 }
 
 .cart-counter {
