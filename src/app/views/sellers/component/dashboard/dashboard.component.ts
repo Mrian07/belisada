@@ -27,6 +27,7 @@ export class DashboardComponent implements OnInit {
 
   // productList = [];
   // isi di atas sudah di pidah di  dashboard/status-invoice.ts
+  receiveMessage: any;
   stores: any[] = [];
   isReady: Boolean = false;
   constructor(private storeService: StoreService, private router: Router) {

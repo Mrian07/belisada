@@ -14,6 +14,7 @@ export class SidebarBuyerComponent implements OnInit {
   c2: Category2[];
   imgTop: any;
   navigationObjects: any[] = [];
+  editProfile: any;
 
   constructor(private categoryService: CategoryService) { }
 

@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./change-password-buyer.component.scss']
 })
 export class ChangePasswordBuyerComponent implements OnInit {
-
+  old_password: string;
+  password_baru: string;
+  password_ulangi: string;
+  changePassword: any;
+  token: any;
+  role: any;
   constructor() { }
 
   ngOnInit() {
@@ -27,11 +32,7 @@ export class ChangePasswordBuyerComponent implements OnInit {
 // })
 // export class ChangePasswordBuyerComponent implements OnInit {
 
-//   old_password: string;
-//   password_baru: string;
-//   password_ulangi: string;
-//   token: any;
-//   role: any;
+
 //   constructor(private changePasswordService: ChangePasswordService,
 //     private title: Title
 //   ) { }
