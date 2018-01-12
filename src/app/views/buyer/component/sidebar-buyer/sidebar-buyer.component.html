@@ -19,20 +19,20 @@ warna2
             <p><img class="ui medium rounded image" src="/assets/img/kristy.png" alt="profile picture"/></p>
             <strong>USERNAME</strong>
             </div>
-        
+
             <div class="ui center aligned basic segment">
             <button class="ui blue button btn-shop" (click)="editProfile()">
                 <i class="shop icon"></i> 4 item dalam keranjang
             </button>
             </div>
-        </div>    
+        </div>
         <div class='side-second'>
             <div class='index-menu'>
                 <p><a routerLink="/buyer/dashboard" class="menu-top-side"><i class="home icon"></i> Home</a></p>
                 <p><a routerLink="#" class="menu-top-side"><i class="empty heart icon"></i> Wishlist</a></p>
                 <p><a routerLink="#" class="menu-top-side"><i class="mail icon"></i> Inbox</a></p>
                 <p>Shop By Categories</p>
-                <div class='main-menu'>              
+                <div class='main-menu'>
                     <div class="ui link list" *ngFor="let item of navigationObjects">
                         <a routerLink="/seller/dashboard" class='item'>{{ item.name }}</a>
                     </div>

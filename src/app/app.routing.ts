@@ -1,3 +1,4 @@
+import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
@@ -24,7 +25,7 @@ import { SignUpComponent } from './views/front/component/sign-up/sign-up.compone
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
 import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
-import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
+// import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
@@ -45,6 +46,13 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordBuyerComponent,
+        data: {
+          title: 'Change Password'
+        }
+      },
+      {
+        path: 'tet',
+        component: BillingAddressComponent,
         data: {
           title: 'Change Password'
         }
@@ -185,7 +193,7 @@ const routes: Routes = [
     },
     {
       path: 'buyer/shiping-address',
-      component: ShipingAddressComponent,
+      component: BillingAddressComponent,
       data: {
         title: 'Buyer Dashboard'
       }

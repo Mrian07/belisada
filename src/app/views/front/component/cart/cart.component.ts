@@ -12,4 +12,7 @@ export class CartComponent implements OnInit {
   ngOnInit() {
   }
 
+  delete() {
+    alert('delete');
+  }
 }
