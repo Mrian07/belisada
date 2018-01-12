@@ -1,31 +1,29 @@
-<body>
-<div class="bg-cart">
 
 <!-- <h1 class='title-page'>Keranjang Belanja</h1> -->
 
-<div class="ui grid">
+<div class="ui grid b-step">
     <div class="sixteen wide center aligned column">
 
-<div class="ui ordered steps">
-    <div class="completed step">
-        <div class="content">
-          <div class="title">Cart</div>
-          <div class="description">List keranjang belanja Anda</div>
+      <div class="ui ordered steps">
+        <div class="completed step">
+            <div class="content">
+              <div class="title">Your Cart</div>
+              <div class="description">List keranjang belanja Anda</div>
+            </div>
+          </div>
+        <div class="active step">
+          <div class="content">
+            <div class="title">Shipping & Billing</div>
+            <div class="description">Masukan informasi shipping & billing</div>
+          </div>
+        </div>
+        <div class="active step">
+          <div class="content">
+            <div class="title">Confirm Order</div>
+            <div class="description">Verify order details</div>
+          </div>
         </div>
       </div>
-    <div class="active step">
-      <div class="content">
-        <div class="title">Shipping & Billing</div>
-        <div class="description">Masukan informasi shipping & billing</div>
-      </div>
-    </div>
-    <div class="active step">
-      <div class="content">
-        <div class="title">Confirm Order</div>
-        <div class="description">Verify order details</div>
-      </div>
-    </div>
-  </div>
 
   </div>
 </div>
@@ -64,7 +62,9 @@
           </td>
           <td class="valTd" data-title="Sub Total">Rp.10.000.000</td>
           <td class="valTd" data-title="Hapus">
-              <i class="trash outline icon"></i>
+              <button class="circular ui icon button" (click)="delete()">
+                <i class="trash outline icon"></i>
+              </button>
           </td>
         </tr>
       </tbody>
@@ -73,5 +73,15 @@
   </div>
 </div>
 
+<div class="ui grid b-step">
+  <div class="eight wide left aligned column">
+    <h4>Total: Rp.10.000.000</h4>
+  </div>  
+  <div class="eight wide right aligned column">  
+    <button class="ui right labeled icon button green">
+        Next
+        <i class="right chevron icon"></i>
+      </button>
+    <div class="ui buttons"></div>
+  </div>
 </div>
-</body>
