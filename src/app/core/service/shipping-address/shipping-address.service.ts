@@ -14,7 +14,7 @@ export class ShippingAddressService extends AbstractRestService<ShippingAddress>
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('token', token);
-    return this.http.get(this.configuration.serverWithAccUrl + '/buyer/address/billing', { headers })
+    return this.http.get(this.configuration.serverWithAccUrl + '/buyer/address/shipping', { headers })
         .map(resp => resp as ShippingAddress);
   }
 
