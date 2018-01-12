@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-category',
@@ -29,7 +30,8 @@ export class CategoryComponent implements OnInit {
     private search: SearchService,
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.Categorys>,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private title: Title
 ) {
     this.route.params.subscribe( params => {
       this.m_product_category_id = params.id;
@@ -42,12 +44,16 @@ export class CategoryComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)
     .subscribe((action: frontActions.GetCategorySuccess) => {
-      this.ngZone.run(() => { this.Category(); });
+       this.Category();
     });
   }
 
   Category() {
-    this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
+    this.ngZone.run(() => {
+      this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
+      console.log('category');
+      this.title.setTitle('Belisada - Category');
+    } );
   }
 
   dapatkanList(id) {

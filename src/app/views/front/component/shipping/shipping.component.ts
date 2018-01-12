@@ -14,7 +14,11 @@ export class ShippingComponent implements OnInit {
   }
 
   next() {
-    this.router.navigateByUrl('/payment');
+    this.router.navigateByUrl('/payment-method');
+  }
+
+  prev() {
+    this.router.navigateByUrl('/cart');
   }
 
 }

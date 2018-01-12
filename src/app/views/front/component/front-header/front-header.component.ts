@@ -80,7 +80,24 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   public removeProductFromCart(productId: number, quantity: number): void {
-    this.shoppingCartService.addItem(productId, -quantity);
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Apakah Anda Yakin?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, Hapus!'
+    }).then((result) => {
+      this.shoppingCartService.addItem(productId, -quantity);
+      if (result.value) {
+        swal(
+          'Dihapus!',
+          'Belanjaan Anda berhasil dihapus',
+          'success'
+        );
+      }
+    });
   }
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];

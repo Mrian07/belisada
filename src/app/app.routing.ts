@@ -1,5 +1,6 @@
 import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
 // import { ShippingAddressComponent } from './views/buyer/shipping-address/shipping-address.component';
+import { PaymentMethodComponent } from './views/front/component/payment-method/payment-method.component';
 import { ShippingComponent } from './views/front/component/shipping/shipping.component';
 import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
@@ -119,6 +120,12 @@ const routes: Routes = [
         component: ShippingComponent,
         data: {
           title: 'shipping'
+        }
+      }, {
+        path: 'payment-method',
+        component: PaymentMethodComponent,
+        data: {
+          title: 'payment method'
         }
       }
     ]

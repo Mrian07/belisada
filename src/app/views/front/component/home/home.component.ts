@@ -41,7 +41,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.title.setTitle('Belisada - Home');
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
@@ -51,14 +50,18 @@ export class HomeComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETHOMESUCCESS)
     .subscribe((action: frontActions.GetHomeSuccess) => {
-      this.ngZone.run(() => { this.loadHome(); });
+      this.loadHome();
     });
   }
 
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
-      this.topHomeProductLvl1 = Observable.of(data.home);
-      this.level_4 = Observable.of(data.brands);
+      this.ngZone.run(() => {
+        console.log('home');
+        this.title.setTitle('Belisada - Home');
+        this.topHomeProductLvl1 = Observable.of(data.home);
+        this.level_4 = Observable.of(data.brands);
+        });
     });
   }
 
