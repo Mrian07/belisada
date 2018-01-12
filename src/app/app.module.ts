@@ -45,6 +45,7 @@ import { BillingAddressComponent } from './views/buyer/component/billing-address
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
+import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
 import { PaymentMethodComponent } from './views/front/component/payment-method/payment-method.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 export function createTranslateLoader(http: HttpClient) {
@@ -89,6 +90,8 @@ export function getAuthServiceConfigs() {
     CartBuyerComponent,
     ChangePasswordBuyerComponent,
     CartComponent,
+    ShippingAddressComponent,
+    // ShippingComponent,
     ShippingComponent,
     PaymentMethodComponent,
     ConfirmOrderComponent

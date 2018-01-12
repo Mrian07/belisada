@@ -84,6 +84,7 @@ export class ShoppingCartService {
         }).then((result) => {
           console.log('result: ', result);
           this.routes.navigateByUrl('/cart');
+
         });
       }
       if (idx === array.length - 1) {
@@ -102,6 +103,29 @@ export class ShoppingCartService {
     const cart = this.retrieve();
     cart.deliveryOptionId = deliveryOption.id;
     this.calculateCart(cart, (modifiedCart, product, idx, array) => {
+      this.save(modifiedCart);
+      if (idx === array.length - 1) {
+        this.dispatch(modifiedCart);
+      }
+    });
+  }
+
+  public updateQuantity(productId: number, quantity: number) {
+    const cart = this.retrieve();
+    let item = cart.items.find((p) => p.productId === productId);
+    if (item === undefined) {
+      item = new CartItem();
+      item.productId = productId;
+      cart.items.push(item);
+    }
+
+    item.quantity += quantity;
+    cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
+    if (cart.items.length === 0) {
+      cart.deliveryOptionId = undefined;
+    }
+
+    this.calculateCart(cart, (modifiedCart, prod, idx, array) => {
       this.save(modifiedCart);
       if (idx === array.length - 1) {
         this.dispatch(modifiedCart);

@@ -1,3 +1,4 @@
+import { ShippingAddressService } from './../../../core/service/shipping-address/shipping-address.service';
 import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
 // import { BillingAddress } from './../../../core/model/billing-address';
 import { SidebarBuyerComponent } from './../component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
@@ -68,6 +69,7 @@ import { ChattingFrontComponent } from '../../sellers/component/chatting/chattin
     HomeService,
     SearchService,
     BilingAddressService,
+    ShippingAddressService,
     ProductDetailService,
     ShoppingCartService,
     ProductService,
