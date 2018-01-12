@@ -12,6 +12,7 @@ import { ShareService, ActiveLink } from '../service/shared.service';
 import { LocalStorageService } from '../service/storage.service';
 import { AddproductService } from '../service/addproduct/addproduct.service';
 import { ChatService } from '../service/chat/chat.service';
+import { DatePipe } from "@angular/common";
 
 @NgModule ({
   declarations: [
@@ -34,6 +35,7 @@ import { ChatService } from '../service/chat/chat.service';
     ActiveLink,
     LocalStorageService,
     ChatService,
+    DatePipe
   ]
 })
 export class SharedModules { }
