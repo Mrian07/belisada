@@ -31,7 +31,7 @@ import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
-
+import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +48,7 @@ import { InfoComponent } from '../component/info/info.component';
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
+    ChattingFrontComponent
   ],
   imports: [
     CommonModule,

@@ -61,20 +61,23 @@ export class ShoppingCartService {
                 <img class="ui image" src="` + prod.imageurl + `"/>
               </div>
               <div class="detail-add-to-cart">
-                <span class="name-added-to-cart">` + prod.name + `</span>
-                <span class="added-to-cart">WAS ADDED TO YOUR CART</span>
+                <div class="detail-add-to-cart-container">
+                  <span class="name-added-to-cart">` + prod.name + `</span>
+                  <span class="added-to-cart">WAS ADDED TO YOUR CART</span>
+                </div>
               </div>
             </div>
             `,
           showCloseButton: true,
           showCancelButton: true,
           focusConfirm: false,
+          buttonsStyling: false,
+          confirmButtonClass: 'bs-btn btn-modal-view-cart',
+          cancelButtonClass: 'bs-btn btn-modal-contionue-shopping',
           confirmButtonText:
-            '<i class="fa fa-thumbs-up"></i> Great!',
-          confirmButtonAriaLabel: 'Thumbs up, great!',
+            `View Cart`,
           cancelButtonText:
-            '<i class="fa fa-thumbs-down"></i>',
-          cancelButtonAriaLabel: 'Thumbs down',
+            `Continue to Shop`,
         }).then((result) => {
           console.log('result: ', result);
         });
