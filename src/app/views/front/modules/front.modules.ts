@@ -21,14 +21,18 @@ import { ProductDetailComponent } from '../component/product-detail/product-deta
 import { ProductSearchComponent } from '../component/product-search/product-search.component';
 import { SharedModules } from '../../../core/shared/shared.modules';
 import { HomeService } from '../../../core/service/home/home.service';
+import { ShoppingCartService } from '../../../core/service/shopping-cart/shopping-cart.service';
+import { ProductService } from '../../../core/service/product/product.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
 import { StoreModule } from '@ngrx/store';
-import { HomeReducer, DetailReducer } from '../../../store/reducers';
+import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, NavReducer } from '../../../store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
+import { ChattingComponent } from '../../sellers/component/chatting/chatting.component';
+import { ChatService } from '../../../core/service/chat/chat.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,8 @@ import { InfoComponent } from '../component/info/info.component';
     ShipingAddressComponent,
     BuyerDashboardComponent,
     SidebarBuyerComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    ChattingComponent
   ],
   imports: [
     CommonModule,
@@ -54,6 +59,9 @@ import { InfoComponent } from '../component/info/info.component';
     SharedModules,
     StoreModule.forFeature('home', HomeReducer),
     StoreModule.forFeature('detail', DetailReducer),
+    StoreModule.forFeature('list', ListReducer),
+    StoreModule.forFeature('category', CategoryReducer),
+    StoreModule.forFeature('navigation', NavReducer),
     EffectsModule.forFeature([HomeEffects])
   ],
   providers: [
@@ -61,7 +69,10 @@ import { InfoComponent } from '../component/info/info.component';
     HomeService,
     SearchService,
     BilingAddressService,
-    ProductDetailService
+    ProductDetailService,
+    ShoppingCartService,
+    ProductService,
+    ChatService
   ]
 })
 export class FrontModules { }

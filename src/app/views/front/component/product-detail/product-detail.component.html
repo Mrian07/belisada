@@ -126,10 +126,10 @@
     </div>
 
     <div>
-        <button class="ui youtube button gap-between-elements btnColor" style="background:#F7982D; width: 153px">
-            <i class="shop icon"></i>
-            <strong>Beli Sekarang</strong>
-          </button>
+            <button class="ui youtube button gap-between-elements btnColor" (click)="addProductToCart(ProductList.productId, quantity)" style="margin-left:40px; background:#F7982D">
+                    <i class="shop icon"></i>
+                    <strong>Beli Sekarang</strong>
+                  </button>
           <div class="gap-between-elements"></div>
           <div class="content favorit gap-between-elements">
             <strong><i class="empty heart icon"></i></strong>  <a href="#" class="item favoritext">Tambahkan Ke Favorites</a>
@@ -148,7 +148,7 @@
             <strong>Garansi : </strong><span>1 Tahun Garansi</span>
             <div class="gap-between-elements"></div>
             <strong>Jumlah : </strong>
-            <sui-select placeholder="Jumlah">
+            <sui-select placeholder="Jumlah" [(ngModel)]="quantity">
                 <sui-select-option value="1"></sui-select-option>
                 <sui-select-option value="2"></sui-select-option>
                 <sui-select-option value="3"></sui-select-option>
@@ -216,15 +216,11 @@
           <div>
               <strong>Dijual Oleh</strong>
               <div class="gap-between-elements"></div>
-              <span class="xx">Bumbu Kacang </span>
+              <span></span>
 
           </div>
           <div>
-                <div class="gap-between-elements"></div>
-                <button class="ui youtube button gap-between-elements btnColor3" style="background:#F7982D; width: 153px">
-                        <i class="shop icon"></i>
-                        <strong>Beli Sekarang</strong>
-                      </button>
+              asd3
           </div>
 
       </div>

@@ -47,17 +47,17 @@
             <i class="search icon"></i>
             <input type="text" class="search-bar" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory"/>
             <div class="result-container" *ngIf="[results] != 0">
-                <div class="result" *ngFor="let hasil of results " (click)="productSelected(hasil)">{{ hasil.name }}</div>
+                <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">{{ hasil.name }}</div>
             </div>
         </div>
     </div>
 
 
     <div class="right-header-container">
-        <div class="language">
-            <img class="ui image" src="/assets/img/id.jpg" alt="image not found"/>
-        </div>
-        <div class="menu-header">
+        <div class="pull-bot-grid">
+            <div class="language">
+                <img class="ui image" src="/assets/img/id.jpg" alt="image not found"/>
+            </div>
             <div class="menu-header2">
 
                 <div class="icon-user">
@@ -67,7 +67,50 @@
                     Selamat Datang<br/><a href="#" (click)="login()"><strong>Login</strong></a> / <a href="/register"><strong>Daftar</strong></a>
                 </div>
                 <div class="cart">
+                    <span class="cart-counter">{{ itemCount }}</span>
                     <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
+
+                    <div class="shopping-cart ui segment">
+                        <h5>RECENTLY ADDED</h5>
+                        <div class="ui divider"></div>
+
+                        <div class="cart-item" *ngFor="let item of cartItems">
+                            <div class="item-img">
+                                <a routerLink="/Product-detail/{{item.product.productId}}">
+                                    <img class="ui image" [src]="item.product.imageurl" alt=""/>
+                                </a>
+                            </div>
+                            <div class="item-detail">
+                                <div class="detail-wrapper">
+                                    <span class="product-name"><a routerLink="/Product-detail/{{item.product.productId}}">{{ item.product.name }}</a></span>
+                                    <span class="product-price">{{ item.quantity }} x <strong>{{ item.product.pricelist | currency:'Rp ' }}</strong></span>
+                                </div>
+                            </div>
+                            <div class="item-action">
+                                <a class="remove" title="Remove this item" (click)="removeProductFromCart(item.product.productId, item.quantity)">×</a>
+                            </div>
+                            <div class="ui divider grid-devider"></div>
+                        </div>
+                        
+                        <div class="subtotal">
+                            <div class="subtotal-text pull-left">
+                                <strong>Subtotal:</strong>
+                            </div>
+                            <div class="subtotal-price pull-right">
+                                <strong>{{(cart | async).grossTotal | currency:'Rp '}}</strong>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="ui divider"></div>
+                        <div class="btn-cart-group">
+                            <div class="view-cart">
+                                <button>View Cart</button>
+                            </div>
+                            <div class="checkout">
+                                <button>Checkout</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

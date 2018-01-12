@@ -43,6 +43,7 @@ import { SidebarBuyerComponent } from './views/buyer/component/sidebar-buyer/sid
 import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
+import { CartComponent } from './views/front/component/cart/cart.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -83,7 +84,8 @@ export function getAuthServiceConfigs() {
     SidebarBuyerComponent,
     BillingAddressComponent,
     CartBuyerComponent,
-    ChangePasswordBuyerComponent
+    ChangePasswordBuyerComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

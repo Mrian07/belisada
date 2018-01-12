@@ -6,28 +6,37 @@ import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ProductDetail } from '../../../../core/model/product-detail';
 import { Title } from '@angular/platform-browser';
+
+import { Product } from '../../../../core/model/product';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+
 import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
+
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
+
 export class ProductDetailComponent implements OnInit {
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
   tabs: any;
   act_key: any;
   productId: any;
-  // specialPrice: 3;
+  specialPrice: 3;
+  percent: any;
   highlight;
-  kamp:any;
+  quantity;
+  kamp: any;
   diskon2: any;
   popx: any;
   diskon3: any;
-  percent: any;
+  // percent: any;
   ProductList: ProductDetail = new ProductDetail();
   ProductImage: string;
   getDetailProd: Subscription;
@@ -35,6 +44,7 @@ export class ProductDetailComponent implements OnInit {
   aliasName;
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
+    private shoppingCartService: ShoppingCartService,
     private actionsSubject: ActionsSubject,
     private title: Title,
     private store: Store<fromProduct.Details>
@@ -59,22 +69,23 @@ export class ProductDetailComponent implements OnInit {
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
     this.getDetailProd = this.actionsSubject
-        .asObservable()
-        .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
-        .subscribe((action: frontActions.GetDetailSuccess) => {
-          this.getDetail();
-        });
+    .asObservable()
+    .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
+    .subscribe((action: frontActions.GetDetailSuccess) => {
+      this.getDetail();
+    });
     window.scrollTo(0, 0);
+  }
 
-  }
   public carouselTileLoad(evt: any) {
-        const len = this.carouselTileItems.length;
-        if (len <= 30) {
-          for (let i = len; i < len + 10; i++) {
-            this.carouselTileItems.push(i);
-          }
-        }
+    const len = this.carouselTileItems.length;
+    if (len <= 30) {
+      for (let i = len; i < len + 10; i++) {
+        this.carouselTileItems.push(i);
+      }
+    }
   }
+
   getDetail() {
     this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
       this.ProductList = data;
@@ -88,8 +99,16 @@ export class ProductDetailComponent implements OnInit {
       console.log(this.popx);
       console.log(this.kamp);
       console.log('ini', this.diskon3);
+      console.log('this.ProductList: ', this.ProductList);
       this.ProductImage = data.image[0];
+
       this.title.setTitle('Belisada - ' + data.name);
     });
+  }
+
+  public addProductToCart(productId: number, quantity: number): void {
+    console.log('ini nih');
+    console.log('productId', quantity);
+    this.shoppingCartService.addItem(productId, +quantity);
   }
 }

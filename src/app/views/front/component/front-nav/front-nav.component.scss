@@ -7,7 +7,7 @@
     background: #002e43;
     color:#ffffff;
     // float:right;
-    
+
 }
 
 .menu-wrapper{
@@ -87,6 +87,7 @@ input {
 .nav > li:focus,
 .nav > li:hover {
   background: #012333;
+  transition:all 9.9s ease;
   // border-top:1px solid #f7982d;
 }
 .nav > li:first-child > a {
@@ -199,7 +200,7 @@ h3 {
   .nav {
     display: block;
   }
-  
+
   /* menu list */
   .nav > li {
     display: block;

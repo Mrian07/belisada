@@ -1,9 +1,13 @@
 import { ProductSearchResault } from './../../../../core/model/product-search-resut';
 import { PorductList } from './../../../../core/model/product-list';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import { SearchService } from '../../../../core/service/search/search.service';
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
+import { Store, ActionsSubject} from '@ngrx/store';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-product-search',
@@ -17,8 +21,6 @@ export class ProductSearchComponent implements OnInit {
   m_product_category_id;
   selectedOption;
   productSearchResault: ProductSearchResault = new ProductSearchResault();
-  // alias: Category2 = new Category2();
-  // productList: PorductList = new PorductList();
   navigation;
   boundary;
   selectedPage;
@@ -26,8 +28,29 @@ export class ProductSearchComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private searchService: SearchService
-  ) { }
+    private actionsSubject: ActionsSubject,
+    private searchService: SearchService,
+    private store: Store<fromProduct.Lists>
+  ) {
+  //   this.router.routeReuseStrategy.shouldReuseRoute = function(){
+  //     return false;
+  //  };
+   this.route.queryParams
+      .subscribe(params => {
+
+        if (params.page) {
+          this.currentPage = params.page;
+        }
+        this.store.dispatch(new frontActions.GetList(params));
+        this.getDetailData = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === frontActions.GETLISTSUCCESS)
+        .subscribe((action: frontActions.GetListSuccess) => {
+          this.getDetailDatas();
+        });
+    });
+
+  }
 
   currentPage = 1;
   lastPages: number;
@@ -37,34 +60,12 @@ export class ProductSearchComponent implements OnInit {
   limit = 10;
   pages: any = [];
   listStyleType = 'list-row';
+  pageParams: any;
+  getDetailData: Subscription;
+  loading: Boolean;
 
   ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        this.pages = [];
-
-        if (params.page) {
-          this.currentPage = params.page;
-        }
-
-        this.searchService.productList(params).subscribe(response => {
-          this.productSearchResault = response;
-          this.total = response.productCount;
-          this.start = (this.currentPage - 1) * this.limit;
-          this.end = this.start + this.limit;
-
-          if (this.end > this.total) {
-            this.end = this.total;
-          }
-
-          this.lastPages = response.pageCount;
-          for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-            if (r > 0 && r <= this.lastPages) {
-              this.pages.push(r);
-            }
-          }
-        });
-    });
+    this.loading = true;
   }
 
   setPage(page: number) {
@@ -76,4 +77,23 @@ export class ProductSearchComponent implements OnInit {
     this.listStyleType = sty;
   }
 
+  getDetailDatas() {
+    this.store.select<any>(fromProduct.getListState).subscribe(response => {
+      this.loading = false;
+      this.productSearchResault = response;
+      this.total = response.productCount;
+      this.start = (this.currentPage - 1) * this.limit;
+      this.end = this.start + this.limit;
+      this.pages = [];
+      if (this.end > this.total) {
+        this.end = this.total;
+      }
+      this.lastPages = response.pageCount;
+      for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+        if (r > 0 && r <= this.lastPages) {
+          this.pages.push(r);
+        }
+      }
+    });
+  }
 }
