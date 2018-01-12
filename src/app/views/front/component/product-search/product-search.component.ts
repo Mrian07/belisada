@@ -8,6 +8,7 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Store, ActionsSubject} from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-search',
@@ -24,6 +25,7 @@ export class ProductSearchComponent implements OnInit {
   navigation;
   boundary;
   selectedPage;
+  keys: string;
 
   constructor(
     private router: Router,
@@ -31,14 +33,15 @@ export class ProductSearchComponent implements OnInit {
     private actionsSubject: ActionsSubject,
     private searchService: SearchService,
     private store: Store<fromProduct.Lists>,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private title: Title
   ) {
   //   this.router.routeReuseStrategy.shouldReuseRoute = function(){
   //     return false;
   //  };
    this.route.queryParams
       .subscribe(params => {
-
+        this.keys = params.q;
         if (params.page) {
           this.currentPage = params.page;
         }
@@ -66,7 +69,7 @@ export class ProductSearchComponent implements OnInit {
   loading: Boolean;
 
   ngOnInit() {
-    this.loading = true;
+
   }
 
   setPage(page: number) {

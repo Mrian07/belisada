@@ -48,6 +48,7 @@ export class ShoppingCartService {
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
     if (cart.items.length === 0) {
       cart.deliveryOptionId = undefined;
+      this.empty();
     }
 
     this.calculateCart(cart, (modifiedCart, prod, idx, array) => {
