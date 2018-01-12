@@ -1,7 +1,7 @@
-import { BillingAddress } from './../../../../core/model/billing-address';
-import { BilingAddressService } from './../../../../core/service/billing-address/biling-address.service';
-import { MasterService } from './../../../../core/service/master/master.service';
+import { ShippingAddressService } from './../../../../core/service/shipping-address/shipping-address.service';
+import { ShippingAddress } from './../../../../core/model/shipping-address';
 import { Component, OnInit } from '@angular/core';
+import { MasterService } from './../../../../core/service/master/master.service';
 import { Province } from '../../../../core/model/province';
 import { City } from '../../../../core/model/city';
 import swal from 'sweetalert2';
@@ -10,52 +10,41 @@ import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-shiping-address',
-  templateUrl: './billing-address.component.html',
-  styleUrls: ['./billing-address.component.scss']
+  selector: 'app-shipping-address',
+  templateUrl: './shipping-address.component.html',
+  styleUrls: ['./shipping-address.component.scss']
 })
-export class BillingAddressComponent implements OnInit {
+export class ShippingAddressComponent implements OnInit {
   createComForm: FormGroup;
-   name: FormControl;
-    address: FormControl;
-    addressName: FormControl;
-    postalCode: FormControl;
-    vilaggeId: FormControl;
-    phone: FormControl;
-    addressType: FormControl;
-  province: FormControl;
-  city: FormControl;
-  district: FormControl;
-  // village: FormControl;
-  provinces: Province[];
-  cities: City[];
-  districts: District[];
-  villages: Village[];
-
-
-  // perusahaan: Observable<any>;
-
-  kelurahan = [];
-  // bidang: Bidang[];
-  categories = [];
-  selectedProvince: string;
-
-  constructor(private masterService: MasterService, private iniService: BilingAddressService ) { }
+  name: FormControl;
+   address: FormControl;
+   addressName: FormControl;
+   postalCode: FormControl;
+   vilaggeId: FormControl;
+   phone: FormControl;
+   addressType: FormControl;
+ province: FormControl;
+ city: FormControl;
+ district: FormControl;
+ ship: ShippingAddress[];
+ // village: FormControl;
+ provinces: Province[];
+ cities: City[];
+ districts: District[];
+ villages: Village[];
+ kelurahan = [];
+ // bidang: Bidang[];
+ categories = [];
+ selectedProvince: string;
+  constructor(private masterService: MasterService, private shipingServ: ShippingAddressService) { }
 
   ngOnInit() {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();
     this.getProvince();
-    // console.log('kampret1', luser);
-  }
-
-  getToken() {
-    const json = localStorage.user;
-    if (json) {
-      const user = JSON.parse(localStorage.user);
-      return user.token;
-    }
+    // this.getAllStore1();
+    console.log('dn', luser);
   }
   createFormControls() {
     this.name = new FormControl('');
@@ -68,9 +57,7 @@ export class BillingAddressComponent implements OnInit {
     this.district = new FormControl('');
     this.vilaggeId = new FormControl('');
     this.postalCode = new FormControl('');
-
   }
-
   createForm() {
     this.createComForm = new FormGroup({
       name: this.name,
@@ -85,6 +72,7 @@ export class BillingAddressComponent implements OnInit {
       postalCode: this.postalCode,
     });
   }
+
   onSubmit() {
     const model = this.createComForm.value;
     const data = {
@@ -103,7 +91,7 @@ export class BillingAddressComponent implements OnInit {
       villageId: model.vilaggeId.mvillageId
       // asdasd2
     };
-    this.iniService.create(data).subscribe(response => {
+    this.shipingServ.create(data).subscribe(response => {
       console.log('ini submit ', response);
       this.createComForm.reset();
       if (response.status === '1') {

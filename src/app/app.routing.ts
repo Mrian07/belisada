@@ -1,3 +1,7 @@
+import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
+// import { ShippingAddressComponent } from './views/buyer/shipping-address/shipping-address.component';
+import { PaymentMethodComponent } from './views/front/component/payment-method/payment-method.component';
+import { ShippingComponent } from './views/front/component/shipping/shipping.component';
 import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
@@ -29,6 +33,7 @@ import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
+import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 
 const routes: Routes = [
   {
@@ -53,6 +58,13 @@ const routes: Routes = [
       {
         path: 'tet',
         component: BillingAddressComponent,
+        data: {
+          title: 'Change Password'
+        }
+      },
+      {
+        path: 'shippingAddress',
+        component: ShippingAddressComponent,
         data: {
           title: 'Change Password'
         }
@@ -102,6 +114,18 @@ const routes: Routes = [
         component: CartComponent,
         data: {
           title: 'Cart'
+        }
+      }, {
+        path: 'shipping',
+        component: ShippingComponent,
+        data: {
+          title: 'shipping'
+        }
+      }, {
+        path: 'payment-method',
+        component: PaymentMethodComponent,
+        data: {
+          title: 'payment method'
         }
       }
     ]

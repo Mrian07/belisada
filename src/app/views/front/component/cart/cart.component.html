@@ -49,26 +49,22 @@
           </tr>
         </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let item of cartItems">
           <td class="valTd" data-title="Image">
-              <img class="ui tiny image" src="/assets/img/noimage.png">
+            <img class="ui tiny image" [src]="item.product.imageurl" style="margin: 0 auto;">
           </td>
           <td class="valTd" data-title="Nama">
-              <p>Komputer
-            </td>
-          <td class="valTd" data-title="Harga">
-            Rp.10.000.000
+            {{ item.product.name }}
           </td>
-          <td class="valTd" data-title="Jumlah">
-              <select class="ui compact selection dropdown">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
+          <td class="valTd text-right" data-title="Harga">
+            {{ item.product.pricelist | currency:'Rp ' }}
           </td>
-          <td class="valTd" data-title="Sub Total">Rp.10.000.000</td>
+          <td class="valTd text-right" data-title="Jumlah">
+            <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/>
+          </td>
+          <td class="valTd text-right" data-title="Sub Total">{{ item.totalCost | currency:'Rp ' }}</td>
           <td class="valTd" data-title="Hapus">
-              <button class="circular ui icon button" (click)="delete()">
+              <button class="circular ui icon button" (click)="removeProductFromCart()">
                 <i class="trash outline icon"></i>
               </button>
           </td>
@@ -81,10 +77,10 @@
 
 <div class="ui grid b-step">
   <div class="eight wide left aligned column">
-    <h4>Total: Rp.10.000.000</h4>
+    <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4>
   </div>  
   <div class="eight wide right aligned column">  
-    <button class="ui right labeled icon button green">
+      <button class="ui right labeled icon button green" (click)="next()">
         Next
         <i class="right chevron icon"></i>
       </button>
