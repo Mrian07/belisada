@@ -47,7 +47,7 @@ export class BillingAddressComponent implements OnInit {
     this.createFormControls();
     this.createForm();
     this.getProvince();
-    console.log('kampret1', luser);
+    // console.log('kampret1', luser);
   }
 
   getToken() {
@@ -122,6 +122,7 @@ export class BillingAddressComponent implements OnInit {
       // this.getAllStore();
     });
   }
+
   getProvince() {
     // Country ID harcoded to Indonesia
     this.masterService.getProvince('209').subscribe(data => {

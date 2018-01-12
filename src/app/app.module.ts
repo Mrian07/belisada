@@ -1,3 +1,4 @@
+import { ShippingComponent } from './views/front/component/shipping/shipping.component';
 import { BillingAddress } from './core/model/billing-address';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
@@ -87,7 +88,8 @@ export function getAuthServiceConfigs() {
     CartBuyerComponent,
     ChangePasswordBuyerComponent,
     CartComponent,
-    ShippingAddressComponent
+    ShippingAddressComponent,
+    ShippingComponent
   ],
   imports: [
     BrowserModule,

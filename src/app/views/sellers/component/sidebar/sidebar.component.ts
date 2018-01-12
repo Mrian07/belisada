@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
-import { ActiveLink } from '../../../../core/service/shared.service';
+import { ActiveLink, ShareService } from '../../../../core/service/shared.service';
+import { TokenService } from '../../../../core/service/token/token.service';
 
 
 @Component({
@@ -12,11 +13,14 @@ import { ActiveLink } from '../../../../core/service/shared.service';
 export class SidebarComponent implements OnInit {
   constructor(private router: Router,
   private profileService: ProfileService,
-  private active: ActiveLink
+  private active: ActiveLink,
+  private sharedService: ShareService,
+  private tokenService: TokenService
 ) {  }
   sellerName: string;
   sellerEmail: string;
   sellerPhone: string;
+  sellerimage: string;
   status1: Boolean = true;
   status2: Boolean = false;
   status3: Boolean = false;
@@ -40,18 +44,17 @@ export class SidebarComponent implements OnInit {
   }
 
   getProfile() {
-
-    const user = JSON.parse(localStorage.getItem('user'));
-    if (!user) {
-      console.log('kosong');
-    }else {
-      const data = JSON.parse(localStorage.user);
-        if (data) {
-          this.sellerName = data.name;
-          this.sellerEmail = data.username;
-          this.sellerPhone = '';
-        }
-    }
+    this.profileService.getProfile(this.tokenService.getToken()).subscribe(data => {
+      this.sellerName = data.name;
+      this.sellerEmail = data.email;
+      this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
+      // const sharedData = {
+      //   image: this.sellerimage,
+      //   name: this.sellerName,
+      //   email: this.sellerEmail
+      // };
+      // this.sharedService.shareData = sharedData;
+    });
   }
 
 }

@@ -1,6 +1,6 @@
 import { ProductSearchResault } from './../../../../core/model/product-search-resut';
 import { PorductList } from './../../../../core/model/product-list';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import { SearchService } from '../../../../core/service/search/search.service';
@@ -30,7 +30,8 @@ export class ProductSearchComponent implements OnInit {
     private route: ActivatedRoute,
     private actionsSubject: ActionsSubject,
     private searchService: SearchService,
-    private store: Store<fromProduct.Lists>
+    private store: Store<fromProduct.Lists>,
+    private ngZone: NgZone
   ) {
   //   this.router.routeReuseStrategy.shouldReuseRoute = function(){
   //     return false;
@@ -46,7 +47,7 @@ export class ProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
-          this.getDetailDatas();
+          this.ngZone.run(() => { this.getDetailDatas(); });
         });
     });
 

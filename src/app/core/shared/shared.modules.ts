@@ -11,6 +11,7 @@ import { TokenService } from '../service/token/token.service';
 import { ShareService, ActiveLink } from '../service/shared.service';
 import { LocalStorageService } from '../service/storage.service';
 import { AddproductService } from '../service/addproduct/addproduct.service';
+import { ChatService } from '../service/chat/chat.service';
 
 @NgModule ({
   declarations: [
@@ -31,7 +32,8 @@ import { AddproductService } from '../service/addproduct/addproduct.service';
     TokenService,
     ShareService,
     ActiveLink,
-    LocalStorageService
+    LocalStorageService,
+    ChatService,
   ]
 })
 export class SharedModules { }

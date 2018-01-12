@@ -1,3 +1,4 @@
+import { ShippingAddressService } from './../../../core/service/shipping-address/shipping-address.service';
 import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
 // import { BillingAddress } from './../../../core/model/billing-address';
 import { SidebarBuyerComponent } from './../component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
@@ -31,8 +32,7 @@ import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
-import { ChattingComponent } from '../../sellers/component/chatting/chatting.component';
-import { ChatService } from '../../../core/service/chat/chat.service';
+import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { ChatService } from '../../../core/service/chat/chat.service';
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
-    ChattingComponent
+    ChattingFrontComponent
   ],
   imports: [
     CommonModule,
@@ -69,10 +69,10 @@ import { ChatService } from '../../../core/service/chat/chat.service';
     HomeService,
     SearchService,
     BilingAddressService,
+    ShippingAddressService,
     ProductDetailService,
     ShoppingCartService,
     ProductService,
-    ChatService
   ]
 })
 export class FrontModules { }

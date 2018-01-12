@@ -21,5 +21,7 @@ export class ShippingAddress {
   regionName: string;
   countryName: string;
   // akhir dari get
+  message?: string;
+  status?: string;
 
 }

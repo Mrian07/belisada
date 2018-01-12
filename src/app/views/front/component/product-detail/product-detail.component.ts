@@ -1,5 +1,5 @@
 import { ProductDetailService } from './../../../../core/service/product-detail/product-detail.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { ActivatedRoute } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
@@ -47,7 +47,8 @@ export class ProductDetailComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private actionsSubject: ActionsSubject,
     private title: Title,
-    private store: Store<fromProduct.Details>
+    private store: Store<fromProduct.Details>,
+    private ngZone: NgZone
   ) { }
 
   ngOnInit() {
@@ -72,7 +73,7 @@ export class ProductDetailComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
     .subscribe((action: frontActions.GetDetailSuccess) => {
-      this.getDetail();
+      this.ngZone.run(() => { this.getDetail(); });
     });
     window.scrollTo(0, 0);
   }

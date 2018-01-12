@@ -2,7 +2,7 @@ import { SearchService } from './../../../../core/service/search/search.service'
 import { Category2 } from './../../../../core/model/category2';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as frontActions from '../../../../store/actions/front';
@@ -29,6 +29,7 @@ export class CategoryComponent implements OnInit {
     private search: SearchService,
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.Categorys>,
+    private ngZone: NgZone
 ) {
     this.route.params.subscribe( params => {
       this.m_product_category_id = params.id;
@@ -41,7 +42,7 @@ export class CategoryComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)
     .subscribe((action: frontActions.GetCategorySuccess) => {
-      this.Category();
+      this.ngZone.run(() => { this.Category(); });
     });
   }
 
