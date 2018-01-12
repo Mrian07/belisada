@@ -52,29 +52,34 @@ export class ShoppingCartService {
 
     this.calculateCart(cart, (modifiedCart, prod, idx, array) => {
       this.save(modifiedCart);
-      // if (prod.productId === productId) {
-      //   swal({
-      //     // title: prod.name,
-      //     html:
-      //       `<div class="pull-left"><img class="ui image" src="` + prod.imageurl + `"></div>
-      //       <div class="pull-left">` + prod.name + `</div>`,
-      //     imageWidth: 400,
-      //     imageHeight: 200,
-      //     showCloseButton: true,
-      //     showCancelButton: true,
-      //     focusConfirm: false,
-      //     confirmButtonText:
-      //       '<i class="fa fa-thumbs-up"></i> Great!',
-      //     confirmButtonAriaLabel: 'Thumbs up, great!',
-      //     cancelButtonText:
-      //     '<i class="fa fa-thumbs-down"></i>',
-      //     cancelButtonAriaLabel: 'Thumbs down',
-      //   }).then((result) => {
-      //     console.log('result: ', result);
-      //   });
-      // }
+      if (prod.productId === productId) {
+        swal({
+          // title: prod.name,
+          html:
+            `<div class="add-to-card-info">
+              <div class="">
+                <img class="ui image" src="` + prod.imageurl + `"/>
+              </div>
+              <div class="detail-add-to-cart">
+                <span class="name-added-to-cart">` + prod.name + `</span>
+                <span class="added-to-cart">WAS ADDED TO YOUR CART</span>
+              </div>
+            </div>
+            `,
+          showCloseButton: true,
+          showCancelButton: true,
+          focusConfirm: false,
+          confirmButtonText:
+            '<i class="fa fa-thumbs-up"></i> Great!',
+          confirmButtonAriaLabel: 'Thumbs up, great!',
+          cancelButtonText:
+            '<i class="fa fa-thumbs-down"></i>',
+          cancelButtonAriaLabel: 'Thumbs down',
+        }).then((result) => {
+          console.log('result: ', result);
+        });
+      }
       if (idx === array.length - 1) {
-        swal('Produk berhasil ditambahkan ke keranjang');
         this.dispatch(modifiedCart);
       }
     });

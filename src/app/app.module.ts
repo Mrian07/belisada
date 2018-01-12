@@ -80,7 +80,7 @@ export function getAuthServiceConfigs() {
     HeaderBuyerComponent,
     SidebarBuyerComponent,
     CartBuyerComponent,
-    ChangePasswordBuyerComponent
+    ChangePasswordBuyerComponent,
   ],
   imports: [
     BrowserModule,
