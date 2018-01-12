@@ -1,7 +1,7 @@
 import { ProductDetailService } from './../../../../core/service/product-detail/product-detail.service';
 import { Component, OnInit, NgZone } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 import { ProductDetail } from '../../../../core/model/product-detail';
@@ -15,6 +15,7 @@ import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 
 import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-product-detail',
@@ -40,6 +41,7 @@ export class ProductDetailComponent implements OnInit {
   ProductList: ProductDetail = new ProductDetail();
   ProductImage: string;
   getDetailProd: Subscription;
+  category2Id: number;
 
   aliasName;
   constructor(private route: ActivatedRoute,
@@ -47,6 +49,7 @@ export class ProductDetailComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private actionsSubject: ActionsSubject,
     private title: Title,
+    private router: Router,
     private store: Store<fromProduct.Details>,
     private ngZone: NgZone
   ) { }
@@ -73,7 +76,7 @@ export class ProductDetailComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
     .subscribe((action: frontActions.GetDetailSuccess) => {
-      this.ngZone.run(() => { this.getDetail(); });
+       this.getDetail();
     });
     window.scrollTo(0, 0);
   }
@@ -88,28 +91,30 @@ export class ProductDetailComponent implements OnInit {
   }
 
   getDetail() {
-    this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
-      this.ProductList = data;
-      const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
-      const diskon = 1 - harga;
-      this.kamp = (this.ProductList.pricelist - this.ProductList.specialPrice);
-      this.diskon2 = diskon * 100;
-      this.diskon3 = this.ProductList.pricelist * this.diskon2;
-      console.log('ini3', this.diskon2);
-      this.popx = Math.round(this.diskon2);
-      console.log(this.popx);
-      console.log(this.kamp);
-      console.log('ini', this.diskon3);
-      console.log('this.ProductList: ', this.ProductList);
-      this.ProductImage = data.image[0];
-
-      this.title.setTitle('Belisada - ' + data.name);
+    this.ngZone.run(() => {
+      this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
+        console.log('detail', data);
+        this.ProductList = data;
+        this.category2Id = data.category2Id;
+        const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
+        const diskon = 1 - harga;
+        this.kamp = (this.ProductList.pricelist - this.ProductList.specialPrice);
+        this.diskon2 = diskon * 100;
+        this.diskon3 = this.ProductList.pricelist * this.diskon2;
+        this.popx = Math.round(this.diskon2);
+        if (data.image !== undefined) {
+          this.ProductImage = data.image[0];
+        }
+        this.title.setTitle('Belisada - ' + data.name);
+      });
     });
   }
 
   public addProductToCart(productId: number, quantity: number): void {
-    console.log('ini nih');
-    console.log('productId', quantity);
     this.shoppingCartService.addItem(productId, +quantity);
+  }
+
+  home() {
+    this.router.navigateByUrl('/');
   }
 }

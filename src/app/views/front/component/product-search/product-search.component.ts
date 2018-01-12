@@ -47,7 +47,7 @@ export class ProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
-          this.ngZone.run(() => { this.getDetailDatas(); });
+         this.getDetailDatas();
         });
     });
 
@@ -79,22 +79,25 @@ export class ProductSearchComponent implements OnInit {
   }
 
   getDetailDatas() {
-    this.store.select<any>(fromProduct.getListState).subscribe(response => {
-      this.loading = false;
-      this.productSearchResault = response;
-      this.total = response.productCount;
-      this.start = (this.currentPage - 1) * this.limit;
-      this.end = this.start + this.limit;
-      this.pages = [];
-      if (this.end > this.total) {
-        this.end = this.total;
-      }
-      this.lastPages = response.pageCount;
-      for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-        if (r > 0 && r <= this.lastPages) {
-          this.pages.push(r);
+    this.ngZone.run(() => {
+      this.store.select<any>(fromProduct.getListState).subscribe(response => {
+        console.log('list');
+        this.loading = false;
+        this.productSearchResault = response;
+        this.total = response.productCount;
+        this.start = (this.currentPage - 1) * this.limit;
+        this.end = this.start + this.limit;
+        this.pages = [];
+        if (this.end > this.total) {
+          this.end = this.total;
         }
-      }
+        this.lastPages = response.pageCount;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.lastPages) {
+            this.pages.push(r);
+          }
+        }
+      });
     });
   }
 }
