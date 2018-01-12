@@ -44,7 +44,7 @@ export class ProfileComponent implements OnInit {
   villages: Village[];
   fm: any = {};
   adr: any = {};
-  dob: string;
+  dob: Date;
 
   constructor(
     private profileService: ProfileService,
@@ -72,7 +72,7 @@ export class ProfileComponent implements OnInit {
       if(data.dateOfBirth && data.dateOfBirth != '') {
         let tl = data.dateOfBirth.split('-');
         if(tl.length == 3) {
-          this.dob = new Date(tl[2], (tl[1] - 1), tl[0]);
+          this.dob = new Date(+(tl[2]), (+(tl[1]) - 1), +(tl[0]));
         }
       }
 
