@@ -42,12 +42,12 @@ export class CategoryComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)
     .subscribe((action: frontActions.GetCategorySuccess) => {
-      this.Category();
+      this.ngZone.run(() => { this.Category(); });
     });
   }
 
   Category() {
-    this.ngZone.run(() => { this.level_3 = this.store.select<any>(fromProduct.getCategoryState); });
+    this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
   }
 
   dapatkanList(id) {
