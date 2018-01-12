@@ -167,4 +167,8 @@ export class FrontHeaderComponent implements OnInit {
   // ngOnDestroy(): void {
   //   throw new Error('Method not implemented.');
   // }
+
+  viewCart() {
+    this.router.navigateByUrl('/cart');
+  }
 }
