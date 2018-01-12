@@ -84,6 +84,7 @@ export class ShoppingCartService {
         }).then((result) => {
           console.log('result: ', result);
           this.routes.navigateByUrl('/cart');
+
         });
       }
       if (idx === array.length - 1) {
