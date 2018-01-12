@@ -1,6 +1,6 @@
 import { ProductSearchResault } from './../../../../core/model/product-search-resut';
 import { PorductList } from './../../../../core/model/product-list';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
 import { SearchService } from '../../../../core/service/search/search.service';
@@ -8,6 +8,7 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Store, ActionsSubject} from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-search',
@@ -24,20 +25,23 @@ export class ProductSearchComponent implements OnInit {
   navigation;
   boundary;
   selectedPage;
+  keys: string;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private actionsSubject: ActionsSubject,
     private searchService: SearchService,
-    private store: Store<fromProduct.Lists>
+    private store: Store<fromProduct.Lists>,
+    private ngZone: NgZone,
+    private title: Title
   ) {
   //   this.router.routeReuseStrategy.shouldReuseRoute = function(){
   //     return false;
   //  };
    this.route.queryParams
       .subscribe(params => {
-
+        this.keys = params.q;
         if (params.page) {
           this.currentPage = params.page;
         }
@@ -46,7 +50,7 @@ export class ProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
-          this.getDetailDatas();
+         this.getDetailDatas();
         });
     });
 
@@ -65,7 +69,7 @@ export class ProductSearchComponent implements OnInit {
   loading: Boolean;
 
   ngOnInit() {
-    this.loading = true;
+
   }
 
   setPage(page: number) {
@@ -78,22 +82,25 @@ export class ProductSearchComponent implements OnInit {
   }
 
   getDetailDatas() {
-    this.store.select<any>(fromProduct.getListState).subscribe(response => {
-      this.loading = false;
-      this.productSearchResault = response;
-      this.total = response.productCount;
-      this.start = (this.currentPage - 1) * this.limit;
-      this.end = this.start + this.limit;
-      this.pages = [];
-      if (this.end > this.total) {
-        this.end = this.total;
-      }
-      this.lastPages = response.pageCount;
-      for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-        if (r > 0 && r <= this.lastPages) {
-          this.pages.push(r);
+    this.ngZone.run(() => {
+      this.store.select<any>(fromProduct.getListState).subscribe(response => {
+        console.log('list');
+        this.loading = false;
+        this.productSearchResault = response;
+        this.total = response.productCount;
+        this.start = (this.currentPage - 1) * this.limit;
+        this.end = this.start + this.limit;
+        this.pages = [];
+        if (this.end > this.total) {
+          this.end = this.total;
         }
-      }
+        this.lastPages = response.pageCount;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.lastPages) {
+            this.pages.push(r);
+          }
+        }
+      });
     });
   }
 }
