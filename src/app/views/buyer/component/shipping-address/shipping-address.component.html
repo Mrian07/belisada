@@ -11,11 +11,21 @@
                <tr>
                    <td>{{item.name}}</td>
                </tr>
+               <tr>
+                   <td></td>
+               </tr>
+               <tr>
+
+
+                   <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
+                   <td><button class="btnlooklikelink">Update</button></td>
+               </tr>
+
            </table>
            <div class="gap-betweens-elements"></div>
-           <button class="btnlooklikelink">Delete</button>
-           <button class="btnlooklikelink">Update</button>
+
         </div>
+
         <div>
         <div class="ui raised segment sskn">
                 <a class="ui red ribbon label">Alamat Pengiriman</a>

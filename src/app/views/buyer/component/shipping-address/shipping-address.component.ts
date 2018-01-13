@@ -23,10 +23,12 @@ export class ShippingAddressComponent implements OnInit {
    postalCode: FormControl;
    vilaggeId: FormControl;
    phone: FormControl;
+   kampret: ShippingAddress;
    addressType: FormControl;
  province: FormControl;
  city: FormControl;
  district: FormControl;
+ id: number;
  ship;
  // village: FormControl;
  provinces: Province[];
@@ -111,6 +113,7 @@ export class ShippingAddressComponent implements OnInit {
       }
       // this.getAllStore();
     });
+    this.fillForms();
   }
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
@@ -118,6 +121,18 @@ export class ShippingAddressComponent implements OnInit {
       this.ship = data;
       console.log('ah elah', data);
            });
+      }
+
+      btnDelete(id) {
+        console.log(id);
+        const user = JSON.parse(localStorage.user);
+        this.shipingServ.delete(id).subscribe(data => {
+          this.kampret = data;
+          this.fillForms();
+          alert('kampret berhasil di hapus');
+
+          // console.log('ini', this.postrek2);
+        });
       }
 
   getProvince() {
