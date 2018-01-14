@@ -94,7 +94,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getDetailState).subscribe(data => {
-        console.log('detail');
+        console.log('detail', data);
         this.ProductList = data;
         this.category2Id = data.category2Id;
         const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
