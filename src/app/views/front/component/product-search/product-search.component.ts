@@ -67,9 +67,14 @@ export class ProductSearchComponent implements OnInit {
   pageParams: any;
   getDetailData: Subscription;
   loading: Boolean;
+  pageTitle: string;
 
   ngOnInit() {
-
+    if (this.keys === undefined) {
+      this.title.setTitle('Belisada - Product List');
+    } else {
+      this.title.setTitle('Belisada - Search Result');
+    }
   }
 
   setPage(page: number) {
@@ -84,7 +89,6 @@ export class ProductSearchComponent implements OnInit {
   getDetailDatas() {
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
-        console.log('list');
         this.loading = false;
         this.productSearchResault = response;
         this.total = response.productCount;

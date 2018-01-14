@@ -12,11 +12,14 @@ import { ShareService, ActiveLink } from '../service/shared.service';
 import { LocalStorageService } from '../service/storage.service';
 import { AddproductService } from '../service/addproduct/addproduct.service';
 import { ChatService } from '../service/chat/chat.service';
-import { DatePipe } from "@angular/common";
+import { DatePipe } from '@angular/common/';
+import { SanitizeHtmlPipe } from '../pipe/sanitizer';
+
 
 @NgModule ({
   declarations: [
     SearchFilterPipe,
+    SanitizeHtmlPipe
   ],
   imports: [
   ],
@@ -25,6 +28,7 @@ import { DatePipe } from "@angular/common";
     SuiModule,
     NgDatepickerModule,
     SearchFilterPipe,
+    SanitizeHtmlPipe
   ],
   providers: [
     Configuration,

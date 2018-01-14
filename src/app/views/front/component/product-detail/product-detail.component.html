@@ -93,7 +93,7 @@
 
     <div class="ui grid">
             <div class="three wide column">Highlight</div>
-            <div class="four wide column"><p [innerHTML]="ProductList.highlight"></p></div>
+            <div class="four wide column"><p [innerHTML]="ProductList.highlight | sanitizeHtml"></p></div>
           </div>
           <div class="gap-between-elements3"></div>
           <table border=0>
