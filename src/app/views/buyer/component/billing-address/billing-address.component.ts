@@ -20,7 +20,7 @@ export class BillingAddressComponent implements OnInit {
     address: FormControl;
     addressName: FormControl;
     postalCode: FormControl;
-    vilaggeId: FormControl;
+    villageId: FormControl;
     phone: FormControl;
     addressType: FormControl;
   province: FormControl;
@@ -31,7 +31,8 @@ export class BillingAddressComponent implements OnInit {
   cities: City[];
   districts: District[];
   villages: Village[];
-
+  adr: any = {};
+  fm: any = {};
 
   // perusahaan: Observable<any>;
 
@@ -47,6 +48,7 @@ export class BillingAddressComponent implements OnInit {
     this.createFormControls();
     this.createForm();
     this.getProvince();
+    this.fillForms();
     // console.log('kampret1', luser);
   }
 
@@ -66,7 +68,7 @@ export class BillingAddressComponent implements OnInit {
     this.city = new FormControl('');
     this.province = new FormControl('');
     this.district = new FormControl('');
-    this.vilaggeId = new FormControl('');
+    this.villageId = new FormControl('');
     this.postalCode = new FormControl('');
 
   }
@@ -81,7 +83,7 @@ export class BillingAddressComponent implements OnInit {
       city: this.city,
       province: this.province,
       district: this.district,
-      vilaggeId: this.vilaggeId,
+      villageId: this.villageId,
       postalCode: this.postalCode,
     });
   }
@@ -100,7 +102,7 @@ export class BillingAddressComponent implements OnInit {
       district: model.district,
       postal: model.postalCode,
       // villageId: model.village.mvillageId,
-      villageId: model.vilaggeId.mvillageId
+      villageId: model.villageId.mvillageId
       // asdasd2
     };
     this.iniService.create(data).subscribe(response => {
@@ -120,6 +122,44 @@ export class BillingAddressComponent implements OnInit {
         );
       }
       // this.getAllStore();
+    });
+  }
+  fillForms() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.iniService.getProfile(luser.token).subscribe(data => {
+      if (!data) {
+        console.log('kosong');
+      }else {
+        console.log('ini data: ', data);
+        console.log('kampret luh', data[0].regionId);
+        this.masterService.getCity(data[0].regionId).subscribe(city => {
+          this.cities = city;
+          this.masterService.getDistrict(data[0].cityId).subscribe(district => {
+            this.districts = district;
+            this.masterService.getVillage(data[0].districtId).subscribe(village => {
+
+              this.villages = village;
+              this.addressName.setValue(data[0].addressName);
+              this.name.setValue(data[0].name);
+              this.address.setValue(data[0].address);
+              this.province.setValue(this.provinces.find(x => x.mregionId === data[0].regionId));
+              this.city.setValue(this.cities.find(x => x.mcityId === data[0].cityId));
+              // this.sectorTypeId.setValue(this.bidang.find(x => x.sectorTypeId === data.sectorTypeId));
+              // this.city.setValue(data.cityId);
+              this.district.setValue(this.districts.find(x => x.mdistrictId === data[0].districtId));
+              this.villageId.setValue(this.villages.find(x => x.mvillageId === data[0].villageId));
+              this.postalCode.setValue(data[0].postal);
+              // this.corporatePhone.setValue(data.corporatePhone);
+              // this.ktp.setValue(data.idcard);
+              // this.corporateNpwp.setValue(data.corporateNpwp);
+              // this.imgAvatar.setValue(data.imageAvatar);
+              // this.imageCorporateNpwp.setValue(data.imageCorporateNpwp);
+              // this.dateOfBirth = new FormControl(new Date());
+              // this.dateOfBirth.setValue(data.dateOfBirth);
+            });
+          });
+        });
+      }
     });
   }
 

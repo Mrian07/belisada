@@ -15,7 +15,7 @@
                         <div class="field">
 
                             <label>Nama</label>
-                            <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
+                            <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name" [(ngModel)]="fm.name" required/>
                         </div>
                         <div class="field">
                                 <label>Disimpan sebagai</label>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="field">
                             <label>Desa</label>
-                            <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
+                            <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="villageId">
                                 <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                             </sui-select>
                         </div>

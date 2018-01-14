@@ -111,9 +111,8 @@ export class ShippingAddressComponent implements OnInit {
           'error'
         );
       }
-      // this.getAllStore();
+      this.fillForms();
     });
-    this.fillForms();
   }
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
@@ -129,7 +128,7 @@ export class ShippingAddressComponent implements OnInit {
         this.shipingServ.delete(id).subscribe(data => {
           this.kampret = data;
           this.fillForms();
-          alert('kampret berhasil di hapus');
+          // alert('kampret berhasil di hapus');
 
           // console.log('ini', this.postrek2);
         });

@@ -3,9 +3,24 @@ export class BillingAddress {
     address: string;
     addressName: string;
     postal: string;
-    vilaggeId: number;
+    villageId: number;
     phone: string;
     addressType: string;
+
+    // untuk get
+    addressId: number;
+    districtId: number;
+    cityId: number;
+    regionId: number;
+    countryId: number;
+    // postal: number;
+    villageName: string;
+    districtName: string;
+    cityName: string;
+    regionName: string;
+    countryName: string;
+
+    // akhir dari get
 
     message?: string;
     status?: string;
