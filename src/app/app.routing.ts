@@ -1,3 +1,4 @@
+import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
 import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
@@ -76,6 +77,12 @@ const routes: Routes = [
         component: ProductTopBuyerComponent,
         data: {
           title: 'Product Top Buyer'
+        }
+      }, {
+        path: 'profile-buyer',
+        component: ProfileBuyerComponent,
+        data: {
+          title: 'Profile Buyer'
         }
       }
     ]
