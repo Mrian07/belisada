@@ -25,7 +25,6 @@ export class AddShippingComponent implements OnInit {
   vilaggeId: FormControl;
   phone: FormControl;
   shippingAddress: ShippingAddress;
-  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   district: FormControl;
