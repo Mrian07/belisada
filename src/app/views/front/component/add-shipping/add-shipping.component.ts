@@ -24,12 +24,8 @@ export class AddShippingComponent implements OnInit {
   postalCode: FormControl;
   vilaggeId: FormControl;
   phone: FormControl;
-<<<<<<< HEAD
-  kampret: ShippingAddress;
-=======
   shippingAddress: ShippingAddress;
   addressType: FormControl;
->>>>>>> a83cad2bbb6d6525e35647d08b712b6ed5c977cc
   province: FormControl;
   city: FormControl;
   district: FormControl;
