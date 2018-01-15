@@ -18,28 +18,27 @@ export class ShippingAddressComponent implements OnInit {
   user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
-   address: FormControl;
-   addressName: FormControl;
-   postalCode: FormControl;
-   vilaggeId: FormControl;
-   phone: FormControl;
-   kampret: ShippingAddress;
-   addressType: FormControl;
- province: FormControl;
- city: FormControl;
- district: FormControl;
- id: number;
- ship;
- // village: FormControl;
- provinces: Province[];
- cities: City[];
- districts: District[];
- villages: Village[];
- kelurahan = [];
- // bidang: Bidang[];
- categories = [];
- selectedProvince: string;
-  constructor(private masterService: MasterService, private shipingServ: ShippingAddressService) { }
+  address: FormControl;
+  addressName: FormControl;
+  postalCode: FormControl;
+  vilaggeId: FormControl;
+  phone: FormControl;
+  shippingAddress: ShippingAddress;
+  addressType: FormControl;
+  province: FormControl;
+  city: FormControl;
+  district: FormControl;
+  id: number;
+  ship;
+  provinces: Province[];
+  cities: City[];
+  districts: District[];
+  villages: Village[];
+  kelurahan = [];
+  categories = [];
+  selectedProvince: string;
+
+  constructor(private masterService: MasterService, private shippingAddressService: ShippingAddressService) { }
 
   ngOnInit() {
     const luser = JSON.parse(localStorage.getItem('user'));
@@ -47,7 +46,6 @@ export class ShippingAddressComponent implements OnInit {
     this.createForm();
     this.getProvince();
     this.fillForms();
-    // this.getAllStore1();
     console.log('dn', luser);
   }
   createFormControls() {
@@ -80,7 +78,6 @@ export class ShippingAddressComponent implements OnInit {
   onSubmit() {
     const model = this.createComForm.value;
     const data = {
-      // asdsad
       name: model.name,
       address: model.address,
       addressType: model.addressType,
@@ -88,14 +85,11 @@ export class ShippingAddressComponent implements OnInit {
       phone: model.phone,
       city: model.city,
       province: model.province,
-      // this.selectedCategory.mbankId
       district: model.district,
       postal: model.postalCode,
-      // villageId: model.village.mvillageId,
       villageId: model.vilaggeId.mvillageId
-      // asdasd2
     };
-    this.shipingServ.create(data).subscribe(response => {
+    this.shippingAddressService.create(data).subscribe(response => {
       console.log('ini submit ', response);
       this.createComForm.reset();
       if (response.status === '1') {
@@ -115,27 +109,22 @@ export class ShippingAddressComponent implements OnInit {
     });
   }
   fillForms() {
-    const luser = JSON.parse(localStorage.getItem('user'));
-    this.shipingServ.getSip(luser.token).subscribe(data => {
+    this.shippingAddressService.getAll().subscribe(data => {
       this.ship = data;
       console.log('ah elah', data);
-           });
-      }
+    });
+  }
 
-      btnDelete(id) {
-        console.log(id);
-        const user = JSON.parse(localStorage.user);
-        this.shipingServ.delete(id).subscribe(data => {
-          this.kampret = data;
-          this.fillForms();
-          // alert('kampret berhasil di hapus');
-
-          // console.log('ini', this.postrek2);
-        });
-      }
+  btnDelete(id) {
+    console.log(id);
+    const user = JSON.parse(localStorage.user);
+    this.shippingAddressService.delete(id).subscribe(data => {
+      this.shippingAddress = data;
+      this.fillForms();
+    });
+  }
 
   getProvince() {
-    // Country ID harcoded to Indonesia
     this.masterService.getProvince('209').subscribe(data => {
       this.provinces = data;
     });
