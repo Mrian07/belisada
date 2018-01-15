@@ -23,8 +23,9 @@ export class ShoppingCartService {
 
   public constructor(private storageService: LocalStorageService, private productService: ProductService, private routes: Router) {
     this.storage = this.storageService.get();
-
+    console.log(this.storage);
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
+      console.log(observer);
       this.subscribers.push(observer);
       observer.next(this.retrieve());
       return () => {
@@ -36,6 +37,7 @@ export class ShoppingCartService {
   public get(): Observable<ShoppingCart> {
     return this.subscriptionObservable;
   }
+
 
   public addItem(productId: number, quantity: number): void {
     const cart = this.retrieve();
@@ -83,7 +85,11 @@ export class ShoppingCartService {
             `Continue to Shop`,
         }).then((result) => {
           console.log('result: ', result);
-          this.routes.navigateByUrl('/cart');
+          if (result.dismiss === 'cancel') {
+
+          } else {
+            this.routes.navigateByUrl('/cart');
+          }
 
         });
       }
@@ -149,9 +155,9 @@ export class ShoppingCartService {
     const cart = new ShoppingCart();
     const storedCart = this.storage.getItem(CART_KEY);
     if (storedCart) {
+      console.log(storedCart);
       cart.updateFrom(JSON.parse(storedCart));
     }
-
     return cart;
   }
 

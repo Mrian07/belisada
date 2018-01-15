@@ -22,6 +22,7 @@ export class CategoryComponent implements OnInit {
   queryParams: any = {};
   alias: Category2 = new Category2();
   loadCategory: Subscription;
+  total: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -51,6 +52,9 @@ export class CategoryComponent implements OnInit {
   Category() {
     this.ngZone.run(() => {
       this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
+      this.level_3.subscribe(data => {
+        this.total = data.length;
+      })
       console.log('category');
       this.title.setTitle('Belisada - Category');
     } );

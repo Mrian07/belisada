@@ -10,11 +10,12 @@ import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-shipping-address',
-  templateUrl: './shipping-address.component.html',
-  styleUrls: ['./shipping-address.component.scss']
+  selector: 'app-add-shipping',
+  templateUrl: './add-shipping.component.html',
+  styleUrls: ['./add-shipping.component.scss']
 })
-export class ShippingAddressComponent implements OnInit {
+export class AddShippingComponent implements OnInit {
+
   user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
@@ -24,7 +25,6 @@ export class ShippingAddressComponent implements OnInit {
   vilaggeId: FormControl;
   phone: FormControl;
   shippingAddress: ShippingAddress;
-  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   district: FormControl;
@@ -48,10 +48,10 @@ export class ShippingAddressComponent implements OnInit {
     this.fillForms();
     console.log('dn', luser);
   }
+
   createFormControls() {
     this.name = new FormControl('');
     this.address = new FormControl('');
-    this.addressType = new FormControl('');
     this.addressName = new FormControl('');
     this.phone = new FormControl('');
     this.city = new FormControl('');
@@ -64,7 +64,6 @@ export class ShippingAddressComponent implements OnInit {
     this.createComForm = new FormGroup({
       name: this.name,
       address: this.address,
-      addressType: this.addressType,
       addressName: this.addressName,
       phone: this.phone,
       city: this.city,
@@ -80,7 +79,6 @@ export class ShippingAddressComponent implements OnInit {
     const data = {
       name: model.name,
       address: model.address,
-      addressType: model.addressType,
       addressName: model.addressName,
       phone: model.phone,
       city: model.city,
@@ -94,8 +92,9 @@ export class ShippingAddressComponent implements OnInit {
       this.createComForm.reset();
       if (response.status === '1') {
         swal(
-          'success',
-          response.message,
+          'Success',
+          'Data shipping berhasil ditambahkan',
+        //  response.message,
           'success'
         );
       }else {
@@ -111,7 +110,6 @@ export class ShippingAddressComponent implements OnInit {
   fillForms() {
     this.shippingAddressService.getAll().subscribe(data => {
       this.ship = data;
-      console.log('ah elah', data);
     });
   }
 

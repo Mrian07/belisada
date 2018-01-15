@@ -1,42 +1,27 @@
-<!-- <div class="warna1">
-    <img class="ui centered small circular image" src="/assets/img/kristy.png">
-<span class="tlsan">Username</span> -->
-<!-- <br/> -->
-<!-- <button class="ui facebook button gls">
-        <i class="in cart icon"></i>
-        4 item dalam keranjang
-      </button>
-</div>
-
-<div class="warna2">
-warna2
-</div> -->
-
-
 <div class="ui left aligned bg-sidebar">
-        <div class='side-first'>
-            <div class="ui center aligned basic segment">
-            <p><img class="ui medium circular image" src="/assets/img/kristy.png" alt="profile picture"/></p>
-            <strong>USERNAME</strong>
-            </div>
-
-            <div class="ui center aligned basic segment">
-            <button class="ui blue button btn-shop" (click)="editProfile()">
-                <i class="shop icon"></i> 4 item dalam keranjang
-            </button>
-            </div>
+    <div class='side-first'>
+        <div class="ui center aligned basic segment">
+        <p><img class="ui medium circular image" src="/assets/img/kristy.png" alt="profile picture"/></p>
+        <strong>USERNAME</strong>
         </div>
-        <div class='side-second'>
-            <div class='index-menu'>
-                <p><a routerLink="/buyer/dashboard" class="menu-top-side"><i class="home icon"></i> Home</a></p>
-                <p><a routerLink="#" class="menu-top-side"><i class="empty heart icon"></i> Wishlist</a></p>
-                <p><a routerLink="#" class="menu-top-side"><i class="mail icon"></i> Inbox</a></p>
-                <p>Shop By Categories</p>
-                <div class='main-menu'>
-                    <div class="ui link list" *ngFor="let item of navigationObjects">
-                        <a routerLink="/seller/dashboard" class='item'>{{ item.name }}</a>
-                    </div>
+
+        <div class="ui center aligned basic segment">
+        <button class="ui blue button btn-shop" (click)="editProfileBuyer()">
+            Edit Profile
+        </button>
+        </div>
+    </div>
+    <div class='side-second'>
+        <div class='index-menu'>
+            <p><a routerLink="/buyer/dashboard" class="menu-top-side"><i class="home icon"></i> Home</a></p>
+            <p><a routerLink="#" class="menu-top-side"><i class="empty heart icon"></i> Wishlist</a></p>
+            <p><a routerLink="#" class="menu-top-side"><i class="mail icon"></i> Inbox</a></p>
+            <p>Shop By Categories</p>
+            <div class='main-menu'>
+                <div class="ui link list" *ngFor="let item of navigationObjects">
+                    <a routerLink="/buyer/product-top-buyer/{{ item.mProductCategoryId }}" class='item'>{{ item.name }}</a>
                 </div>
             </div>
         </div>
-      </div>
+    </div>
+</div>

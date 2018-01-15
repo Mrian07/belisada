@@ -1,24 +1,26 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, NgZone } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import swal from 'sweetalert2';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 import { Category } from '../../../../core/model/category';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { SearchService } from '../../../../core/service/search/search.service';
 import { Search } from '../../../../core/model/search';
-import { Router, ActivatedRoute } from '@angular/router';
 import { SeoService } from '../../../../core/service/seo.service';
-import swal from 'sweetalert2';
-import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
 import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
-import { Subscription } from 'rxjs/Subscription';
 import { Product } from '../../../../core/model/product';
 import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { ProductService } from '../../../../core/service/product/product.service';
+import { TokenService } from '../../../../core/service/token/token.service';
+import { ProfileService } from '../../../../core/service/profile/profile.service';
+import { LoginService } from '../../../../core/service/login/login.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
   totalCost: number;
 }
-
 
 @Component({
   selector: 'app-front-header',
@@ -39,33 +41,55 @@ export class FrontHeaderComponent implements OnInit {
   selectCatsK: any;
   queryParams: any = {};
   isLogin: Boolean = false;
-
+  user: any;
   title: string;
   text: string;
   type: string;
+  loginState: Boolean;
+  userName: string;
+  avatar: string;
+  grossTotal: number;
 
   private cartSubscription: Subscription;
 
   constructor(
     private categoryService: CategoryService,
     private searchService: SearchService,
+    private profileService: ProfileService,
     private router: Router,
+    private auth: TokenService,
     private route: ActivatedRoute,
     private seo: SeoService,
     private shoppingCartService: ShoppingCartService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private loginService: LoginService,
+    private ngzone: NgZone
+  ) {
+    this.user = this.auth.getUser();
+    if (this.user) {
+      this.loginState = true;
+    }else {
+      this.loginState = false;
+      this.avatar = '/assets/img/cart.jpg';
+    }
+  }
 
   ngOnInit() {
+    this.getProfile();
     this.loadDataCategorySearch();
-    // console.log('kampret di home search');
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
     });
-    this.cart = this.shoppingCartService.get();
+    this.ngzone.run(() => {
+      this.cart = this.shoppingCartService.get();
+      console.log(this.cart);
+    });
+
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.cartItems = [];
+      this.grossTotal = cart.grossTotal;
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
@@ -99,6 +123,7 @@ export class FrontHeaderComponent implements OnInit {
       }
     });
   }
+
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
   }
@@ -187,5 +212,37 @@ export class FrontHeaderComponent implements OnInit {
 
   viewCart() {
     this.router.navigateByUrl('/cart');
+  }
+
+  getProfile() {
+    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
+      this.userName = data.name;
+      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+    });
+  }
+  logout() {
+
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Anda yakin akan logout?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak!',
+      confirmButtonClass: 'btn btn-success',
+      cancelButtonClass: 'btn btn-danger',
+      buttonsStyling: true,
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        localStorage.removeItem('user');
+        setTimeout(() => {
+          location.replace('/');
+        }, 300);
+      } else if (result.dismiss === 'cancel') {
+      }
+    });
   }
 }

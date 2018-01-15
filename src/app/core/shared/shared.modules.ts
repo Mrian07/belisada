@@ -14,6 +14,7 @@ import { AddproductService } from '../service/addproduct/addproduct.service';
 import { ChatService } from '../service/chat/chat.service';
 import { DatePipe } from '@angular/common/';
 import { SanitizeHtmlPipe } from '../pipe/sanitizer';
+import { ProfileService } from '../service/profile/profile.service';
 
 
 @NgModule ({
@@ -39,7 +40,8 @@ import { SanitizeHtmlPipe } from '../pipe/sanitizer';
     ActiveLink,
     LocalStorageService,
     ChatService,
-    DatePipe
+    DatePipe,
+    ProfileService
   ]
 })
 export class SharedModules { }

@@ -25,12 +25,12 @@ export class FrontNavComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private store: Store<fromProduct.Navs>
+
   ) {
   }
 
   ngOnInit() {
-    this.store.dispatch(new frontActions.GetNav());
+    // this.store.dispatch(new frontActions.GetNav());
     this.getNavigationCategory();
   }
 
@@ -51,7 +51,7 @@ export class FrontNavComponent implements OnInit {
   getNavigationCategory() {
     this.getCategoryOne(() => {
       this.c1.forEach((item, index) => {
-        // console.log('item: ', item);
+        console.log('item: ', item);
         this.navigationObjects.push(item);
         this.getCategoryTwo(item.mProductCategoryId, () => {
           this.navigationObjects[index]['c2'] = this.c2;
