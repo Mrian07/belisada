@@ -1,0 +1,59 @@
+<p>Silakan isi kolom dibawah ini dengan lengkap dan benar untuk menambah data shipping.</p>
+<div class="sexten wide column">
+    <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="field">
+
+            <label>Nama</label>
+            <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
+        </div>
+        <div class="field">
+            <label>Disimpan sebagai</label>
+            <input name="address" placeholder="Masukan nama perusahaan" type="text" formControlName="addressType"/>
+        </div>
+
+        <div class="field">
+            <label>Alamat</label>
+            <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
+        </div>
+
+        <div class="field">
+            <label>Alamat Nama</label>
+            <textarea name="address" placeholder="Masukan alamat" formControlName="addressName" ></textarea>
+        </div>
+        <div class="field">
+            <label>Provinsi</label>
+            <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+            </sui-select>
+        </div>
+        <div class="field">
+            <label>Kota</label>
+            <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+            </sui-select>
+        </div>
+        <div class="field">
+            <label>Kelurahan / Kecamatan</label>
+            <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+            </sui-select>
+        </div>
+        <div class="field">
+            <label>Desa</label>
+            <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
+                <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+            </sui-select>
+        </div>
+        <div class="field">
+            <label>Kode POS</label>
+            <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
+        </div>
+        <div class="field">
+            <label>Telepon</label>
+            <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="phone"/>
+        </div>
+
+        <button class="ui primary button" type="submit">Simpan</button>
+    </form>
+</div>
+
