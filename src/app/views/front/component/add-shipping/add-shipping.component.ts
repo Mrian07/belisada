@@ -103,8 +103,9 @@ export class AddShippingComponent implements OnInit {
       this.createComForm.reset();
       if (response.status === '1') {
         swal(
-          'success',
-          response.message,
+          'Success',
+          'Data shipping berhasil ditambahkan',
+        //  response.message,
           'success'
         );
       }else {
@@ -121,7 +122,6 @@ export class AddShippingComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.shipingServ.getSip(luser.token).subscribe(data => {
       this.ship = data;
-      console.log('ah elah', data);
            });
       }
 
