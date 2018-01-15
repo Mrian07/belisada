@@ -45,7 +45,7 @@ export class Interceptor implements HttpInterceptor {
         }else if (err.status === 404) {
           swal('Oops!...something wrong...')
           .then((result) => {
-            this.routes.navigateByUrl('/maintenance');
+            this.routes.navigateByUrl('/404');
           });
         }else if (err.status === 500) {
           swal('Oops!...something wrong...')

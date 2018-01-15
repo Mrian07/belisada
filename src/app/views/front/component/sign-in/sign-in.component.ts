@@ -44,7 +44,7 @@ export class SignInComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'buyer/test';
     if (this.tokenService.getToken() === undefined) {
     } else {
-      this.router.navigateByUrl('/buyer/dashboard');
+      // this.router.navigateByUrl('/');
     }
   }
 
@@ -87,7 +87,8 @@ export class SignInComponent implements OnInit {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
         this.loginService.isLoggedin();
-        this.router.navigate([this.returnUrl]);
+        // this.router.navigate([this.returnUrl]);
+        this.router.navigateByUrl('/');
       }
     });
   }

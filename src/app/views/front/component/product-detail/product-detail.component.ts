@@ -40,7 +40,7 @@ export class ProductDetailComponent implements OnInit {
   diskon3: any;
   // percent: any;
   ProductList: ProductDetail = new ProductDetail();
-  ProductImage: string;
+  ProductImage: any;
   getDetailProd: Subscription;
   category2Id: number;
   login4: any;
@@ -49,6 +49,7 @@ export class ProductDetailComponent implements OnInit {
   otherStore: number;
   storeList: Array<any>;
   aliasName;
+  theImage: string;
 
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
@@ -108,7 +109,8 @@ export class ProductDetailComponent implements OnInit {
           this.diskon2 = diskon * 100;
           this.diskon3 = this.ProductList.pricelist * this.diskon2;
           this.popx = Math.round(this.diskon2);
-          this.ProductImage = this.ProductList.image[0];
+          this.ProductImage = this.ProductList.image;
+          this.theImage = this.ProductImage[0];
           this.title.setTitle('Belisada - ' + this.ProductList.name);
         }
         if (data.stores !== undefined) {
@@ -118,6 +120,10 @@ export class ProductDetailComponent implements OnInit {
          // console.log(this.storeData);
         }
       });
+  }
+
+  setimage(image) {
+    this.theImage = image;
   }
 
   public addProductToCart(productId: number, quantity: number): void {

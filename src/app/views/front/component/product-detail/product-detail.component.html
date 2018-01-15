@@ -15,7 +15,12 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [src]="ProductImage" style="width: 270px; height:auto;" onError="this.src='/assets/img/no-image.png'"/>
+        <img [imageZoom]="theImage" [src]="theImage" [style.width.px]="320" [style.height.px]="320" [lensWidth]="500" [lensHeight]="500">
+    </div>
+    <div class="thumbnail-container">
+        <div class="thumbnail">
+        <img [src]="image" *ngFor="let image of ProductImage" (click)="setimage(image)">
+        </div>
     </div>
     <div>
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
