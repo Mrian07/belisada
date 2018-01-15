@@ -64,6 +64,9 @@ export class ProfileBuyerComponent implements OnInit {
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.profileService.getProfileBuyer(luser.token).subscribe(data => {
+
+      console.log('batan', data);
+
       if (!data) {
         return console.log('kosong');
       }
