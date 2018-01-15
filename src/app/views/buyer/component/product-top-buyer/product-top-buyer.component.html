@@ -1,0 +1,19 @@
+<div class="ui grid">
+  <div class="four wide column" *ngFor="let item of allProduct">
+    <div class="border-item">
+      <img class="ui tiny spaced image" src="{{item.imageurl}}" alt="profile picture"/>
+    </div>
+    <div class="border-item-second"> 
+
+        <div class="ui grid">
+          <div class="twelve wide column">
+              <small>{{item.name}}</small><br>
+              Rp.{{ item.pricelist | number }}
+          </div>
+          <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
+        </div>
+
+    </div>
+  </div>
+
+</div>

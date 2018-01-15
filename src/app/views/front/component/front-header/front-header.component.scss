@@ -190,16 +190,16 @@
     padding-top:10px;
 }
 
+.avatar {
+    width: 60px;
+}
+
 .welcome {
     float:left;
     padding-left: 7px;
 }
 
 .welcome a:link {
-    color:#f8992e;
-}
-
-.welcome a:active {
     color:#f8992e;
 }
 
@@ -211,8 +211,12 @@
     color:#fec380;
 }
 
+.welcome a:active {
+    color:#f8992e;
+}
+
 .cart {
-    float:left; 
+    float:left;
     margin-left:10px;
 }
 
@@ -456,3 +460,22 @@
 }
  // akhir
 
+//flag
+.flagdropdown {
+     position: relative;
+     display: inline-block;
+}
+
+.flagdropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.flagdropdown:hover .flagdropdown-content {
+     display: block;
+}

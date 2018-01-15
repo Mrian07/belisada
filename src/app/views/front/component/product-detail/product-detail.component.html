@@ -14,8 +14,13 @@
 </div>
 </div>
 <div class="wrapper">
-    <div>
-        <img [src]="ProductImage" style="width: 270px; height:auto;"/>
+    <div align="right">
+        <img [imageZoom]="theImage" [src]="theImage" [style.width.px]="320" [style.height.px]="320" [lensWidth]="500" [lensHeight]="500">
+    </div>
+    <div class="thumbnail-container">
+        <div class="thumbnail">
+        <img [src]="image" *ngFor="let image of ProductImage" (click)="setimage(image)">
+        </div>
     </div>
     <div>
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
@@ -34,7 +39,7 @@
     </table>
     <ng-template #login2>
            <table border="1">
-               kampret
+
            </table>
             </ng-template> -->
             <div *ngIf="ProductList.specialPrice !== 0; else login2">
@@ -126,13 +131,19 @@
     </div>
 
     <div>
-            <button class="ui youtube button gap-between-elements btnColor" (click)="addProductToCart(ProductList.productId, quantity)" style="margin-left:40px; background:#F7982D">
+            <button type="submit" style="border: 0; background: transparent" class="poi" (click)="addProductToCart(ProductList.productId, quantity)">
+                    <img src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
+                </button>
+
+            <!-- <button class="ui youtube button gap-between-elements btnColor"  style="margin-left:40px; background:#F7982D">
                     <i class="shop icon"></i>
                     <strong>Beli Sekarang</strong>
-                  </button>
+                  </button> -->
           <div class="gap-between-elements"></div>
           <div class="content favorit gap-between-elements">
-            <strong><i class="empty heart icon"></i></strong>  <a href="#" class="item favoritext">Tambahkan Ke Favorites</a>
+                <button type="submit" style="border: 0; background: transparent" class="poi">
+                        <img src="/assets/img/zzzzz.jpg" width="200px" height="auto" alt="submit" />
+                    </button>
            </div>
            <div class="gap-between-elements4"></div>
            <span><strong>Kebijakan</strong></span>
@@ -183,10 +194,10 @@
   <div class="gap-between-elements"></div>
   <div class="wrapper3">
     <div>
-        <strong>3 Penawaran Lainnya </strong>
+        <strong>{{ otherStore }} Penawaran Lainnya </strong>
         <hr>
-      </div>
-      <div class="wraper4">
+    </div>
+      <div class="wraper4" *ngFor="let list of storeList">
           <div>
              <strong>Harga Produk</strong>
               <div class="gap-between-elements"></div>
@@ -221,3 +232,18 @@
 
       </div>
   </div>
+  <sui-tabset>
+    <div class="ui top attached tabular menu">
+        <a class="item" suiTabHeader="1">Deskripsi</a>
+        <a class="item" suiTabHeader="2">Spesifikasi</a>
+        <a class="item" suiTabHeader="3">Ulasan</a>
+        <a class="item" suiTabHeader="4">Pertanyaan</a>
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="1">
+        <p [innerHTML]="ProductList.description | sanitizeHtml"></p>
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="2">Spesifikasi Masih Belum Tersedia</div>
+    <div class="ui bottom attached segment" suiTabContent="3">Belum ada Ulasan Untuk {{ProductList.name}}</div>
+    <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
+</sui-tabset>
+

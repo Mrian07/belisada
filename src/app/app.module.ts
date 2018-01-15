@@ -50,6 +50,8 @@ import { PaymentMethodComponent } from './views/front/component/payment-method/p
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
 import { AddShippingComponent } from './views/front/component/add-shipping/add-shipping.component';
+import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
+import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -98,13 +100,15 @@ export function getAuthServiceConfigs() {
     PaymentMethodComponent,
     ConfirmOrderComponent,
     FinihOrderComponent,
-    AddShippingComponent
+    AddShippingComponent,
+    ProductTopBuyerComponent,
+    ProfileBuyerComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     FormsModule,
     ReactiveFormsModule,

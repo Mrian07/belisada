@@ -1,3 +1,4 @@
+import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
 import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
@@ -36,6 +37,7 @@ import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
+import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 
 const routes: Routes = [
   {
@@ -70,7 +72,19 @@ const routes: Routes = [
         data: {
           title: 'Change Password'
         }
-      },
+      }, {
+        path: 'product-top-buyer/:id',
+        component: ProductTopBuyerComponent,
+        data: {
+          title: 'Product Top Buyer'
+        }
+      }, {
+        path: 'profile-buyer',
+        component: ProfileBuyerComponent,
+        data: {
+          title: 'Profile Buyer'
+        }
+      }
     ]
   },
   {
