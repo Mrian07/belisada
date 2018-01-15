@@ -115,7 +115,7 @@ export class ProductDetailComponent implements OnInit {
           this.storeData = data.stores;
           this.otherStore = data.stores.productCount;
           this.storeList = data.stores.productList;
-          console.log(this.storeData);
+         // console.log(this.storeData);
         }
       });
   }

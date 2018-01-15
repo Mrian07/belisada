@@ -15,7 +15,7 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [src]="ProductImage" style="width: 270px; height:auto;"/>
+        <img [src]="ProductImage" style="width: 270px; height:auto;" onError="this.src='/assets/img/no-image.png'"/>
     </div>
     <div>
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
