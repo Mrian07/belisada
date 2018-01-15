@@ -39,7 +39,7 @@
     </table>
     <ng-template #login2>
            <table border="1">
-               kampret
+
            </table>
             </ng-template> -->
             <div *ngIf="ProductList.specialPrice !== 0; else login2">
@@ -185,13 +185,6 @@
 
     </div>
   </div>
-  <div class="ui top attached tabular menu">
-    <div class="active item">Deskripsi</div>
-  </div>
-  <div class="ui bottom attached active tab segment">
-    <p [innerHTML]="ProductList.description | sanitizeHtml"></p>
-    <p></p>
-  </div>
   <div class="gap-between-elements"></div>
   <div class="wrapper3">
     <div>
@@ -233,4 +226,17 @@
 
       </div>
   </div>
-
+  <sui-tabset>
+    <div class="ui top attached tabular menu">
+        <a class="item" suiTabHeader="1">Deskripsi</a>
+        <a class="item" suiTabHeader="2">Spesifikasi</a>
+        <a class="item" suiTabHeader="3">Ulasan</a>
+        <a class="item" suiTabHeader="4">Pertanyaan</a>
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="1">
+        <p [innerHTML]="ProductList.description | sanitizeHtml"></p>
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="2">Spesifikasi Masih Belum Tersedia</div>
+    <div class="ui bottom attached segment" suiTabContent="3">Belum ada Ulasan Untuk {{ProductList.name}}</div>
+    <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
+</sui-tabset>
