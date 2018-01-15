@@ -71,7 +71,13 @@ const routes: Routes = [
         data: {
           title: 'Change Password'
         }
-      },
+      }, {
+        path: 'product-top-buyer/:id',
+        component: ProductTopBuyerComponent,
+        data: {
+          title: 'Product Top Buyer'
+        }
+      }
     ]
   },
   {
@@ -235,12 +241,6 @@ const routes: Routes = [
       component: BillingAddressComponent,
       data: {
         title: 'Buyer Dashboard'
-      }
-    }, {
-      path: 'product-top-buyer',
-      component: ProductTopBuyerComponent,
-      data: {
-        title: 'Product Top Buyer'
       }
     }
 
