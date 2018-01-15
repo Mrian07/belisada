@@ -12,15 +12,17 @@ export class ProductTopBuyerComponent implements OnInit {
 
   productId: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private product: Product , private productService: ProductService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) { }
+  // constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.productTop();
+     this.productTop();
   }
 
   productTop() {
       this.route.params.subscribe( params => {
       this.productId = params.id;
+      console.log('this.productId: ', this.productId);
       this.productService.ProductNew(this.productId).subscribe(datas => {
         console.log(datas);
       });

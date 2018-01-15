@@ -6,8 +6,8 @@ import { Configuration } from '../../config/configuration';
 
 @Injectable()
 export class ProductService {
-  private products: Observable<Product[]>;
-  private product: Observable<Product>;
+  // private products: Observable<Product[]>;
+  // private product: Observable<Product>;
 
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
@@ -16,9 +16,10 @@ export class ProductService {
         .map(response => response as Product);
   }
 
-  public ProductNew(id: number): Observable<Product> {
+  ProductNew(id: number): Observable<Product> {
+    console.log('kampret: ', id);
     return this.http.get(this.configuration.serverWithAccUrl + '/product/search?parent=1&itemperpage=6&ob=5&id=' + id)
-        .map(response => response as Product);
-  }
+        .map(resp => resp as Product);
+    }
 
 }
