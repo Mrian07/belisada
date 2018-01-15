@@ -7,6 +7,7 @@ import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -29,10 +30,12 @@ export class CartComponent implements OnInit {
   constructor(
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada - Your Cart');
     window.scrollTo(0, 0);
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
