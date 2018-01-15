@@ -12,7 +12,7 @@ export class ProductTopBuyerComponent implements OnInit {
   productId: any;
   productData: any;
   allProduct: any;
-  
+
   constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) { }
 
   ngOnInit() {
@@ -25,7 +25,6 @@ export class ProductTopBuyerComponent implements OnInit {
       this.productService.ProductNew(this.productId).subscribe(datas => {
         this.productData = datas;
         this.allProduct = this.productData.productList;
-        console.log(this.allProduct);
       });
     });
   }
