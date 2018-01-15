@@ -2,7 +2,7 @@
   <div class="four wide center aligned column " *ngFor="let item of level_3 | async">
       <div class='bg-cat'>
           <div (click)="dapatkanList(item.m_product_category_id)" class="item" style="cursor: pointer;">
-            <img class="ui centered medium image" [src]="item.imageurl" alt="image not found" onError="this.src=''" /><br>
+            <img class="ui centered medium image" [src]="item.imageurl" alt="{{item.name}}"onError="this.src='/assets/img/no-image.png'" /><br>
             {{ item.name }}
             {{ item.m_product_category_id }}
           </div>

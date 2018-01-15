@@ -55,12 +55,19 @@ export class HomeEffects {
   @Effect()
   getdetail$: Observable<any> = this.actions$.ofType(frontActions.GETDETAIL)
     .map((action: frontActions.GetDetail) => action.id)
-      .switchMap((id) =>
+      .mergeMap((id) =>
         this.detailService.getProductDetail(id)
-        .map( (detail) => {
-          return new frontActions.GetDetailSuccess(detail);
+        .switchMap((detail) =>
+          this.detailService.getStore(detail.brandname)
+          .map((stores: any) => {
+            const detailData = {
+              detail: detail,
+              stores: stores
+            };
+            return  new frontActions.GetDetailSuccess(detailData) ;
         }
       )
+    )
   );
 
   @Effect()

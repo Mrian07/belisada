@@ -41,7 +41,6 @@ import { MyTopProductService } from '../../../core/service/mytopproduct/my-top-p
 import { SalesStatusService } from '../../../core/service/salesstatus/sales-status.service';
 import { AlamatserviceService } from '../../../core/service/alamat/alamatservice.service';
 import { SendEmailService } from '../../../core/service/sendEmail/send-email.service';
-import { ProfileService } from '../../../core/service/profile/profile.service';
 import { SearchService } from '../../../core/service/search/search.service';
 import { ForgotPasswordService } from '../../../core/service/forgotpassword/forgot-password.service';
 import { ChangePasswordService } from '../../../core/service/changepassword/change-password.service';
@@ -111,7 +110,6 @@ import { ChattingComponent } from '../component/chatting/chatting.component';
     SalesStatusService,
     AlamatserviceService,
     SendEmailService,
-    ProfileService,
     SearchService,
     ForgotPasswordService,
     ChangePasswordService,

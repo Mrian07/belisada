@@ -49,6 +49,8 @@ import { ShippingAddressComponent } from './views/buyer/component/shipping-addre
 import { PaymentMethodComponent } from './views/front/component/payment-method/payment-method.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
+import { AddShippingComponent } from './views/front/component/add-shipping/add-shipping.component';
+import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -96,13 +98,15 @@ export function getAuthServiceConfigs() {
     ShippingComponent,
     PaymentMethodComponent,
     ConfirmOrderComponent,
-    FinihOrderComponent
+    FinihOrderComponent,
+    AddShippingComponent,
+    ProductTopBuyerComponent
   ],
   imports: [
     BrowserModule,
     SocialLoginModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production
+      enabled: environment.production,
     }),
     FormsModule,
     ReactiveFormsModule,
