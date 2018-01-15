@@ -12,4 +12,9 @@ export class ProductDetailService {
     return this.http.get(this.configuration.serverWithAccUrl + '/product/detail/' + productId)
         .map(response => response as ProductDetail);
   }
+
+  getStore(name: string): Observable<any> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/product/offerlisting?name=' + name)
+    .map(response => response as any);
+  }
 }
