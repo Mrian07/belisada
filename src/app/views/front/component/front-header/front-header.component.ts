@@ -13,6 +13,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { Product } from '../../../../core/model/product';
 import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { ProductService } from '../../../../core/service/product/product.service';
+import { TokenService } from '../../../../core/service/token/token.service';
+import { ProfileService } from '../../../../core/service/profile/profile.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -39,25 +41,37 @@ export class FrontHeaderComponent implements OnInit {
   selectCatsK: any;
   queryParams: any = {};
   isLogin: Boolean = false;
-
+  user: any;
   title: string;
   text: string;
   type: string;
+  loginState: Boolean;
+  userName: string;
+  avatar: string;
 
   private cartSubscription: Subscription;
 
   constructor(
     private categoryService: CategoryService,
     private searchService: SearchService,
+    private profileService: ProfileService,
     private router: Router,
+    private auth: TokenService,
     private route: ActivatedRoute,
     private seo: SeoService,
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService) { }
 
   ngOnInit() {
+    this.user = this.auth.getUser();
+    if (this.user) {
+      this.loginState = true;
+    }else {
+      this.loginState = false;
+      this.avatar = '/assets/img/cart.jpg';
+    }
+    this.getProfile();
     this.loadDataCategorySearch();
-    // console.log('kampret di home search');
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
@@ -187,5 +201,18 @@ export class FrontHeaderComponent implements OnInit {
 
   viewCart() {
     this.router.navigateByUrl('/cart');
+  }
+
+  getProfile() {
+    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
+      this.userName = data.name;
+      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+    });
+  }
+  logout() {
+    localStorage.removeItem('user');
+    setTimeout(() => {
+      location.reload();
+    }, 300);
   }
 }

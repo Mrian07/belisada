@@ -83,7 +83,11 @@ export class ShoppingCartService {
             `Continue to Shop`,
         }).then((result) => {
           console.log('result: ', result);
-          this.routes.navigateByUrl('/cart');
+          if (result.dismiss === 'cancel') {
+
+          } else {
+            this.routes.navigateByUrl('/cart');
+          }
 
         });
       }

@@ -61,10 +61,13 @@
             <div class="menu-header2">
 
                 <div class="icon-user">
-                    <img class="ui image" src="/assets/img/user.jpg" alt="image not found"/>
+                    <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                 </div>
-                <div class="welcome">
+                <div class="welcome" *ngIf="loginState === false">
                     Selamat Datang<br/><a href="#" (click)="login()"><strong>Login</strong></a> / <a href="/register"><strong>Daftar</strong></a>
+                </div>
+                <div class="welcome" *ngIf="loginState === true">
+                    {{userName}}<br/><a (click)="logout()"><strong>Logout</strong></a>
                 </div>
                 <div class="cart">
                     <span class="cart-counter">{{ itemCount }}</span>
@@ -91,7 +94,7 @@
                             </div>
                             <div class="ui divider grid-devider"></div>
                         </div>
-                        
+
                         <div class="subtotal">
                             <div class="subtotal-text pull-left">
                                 <strong>Subtotal:</strong>

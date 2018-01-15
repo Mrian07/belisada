@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
             ...item,
             product,
             totalCost: product.pricelist * item.quantity });
-            console.log('this.cartItems: ', this.cartItems);
+            //console.log('this.cartItems: ', this.cartItems);
         });
       });
     });
