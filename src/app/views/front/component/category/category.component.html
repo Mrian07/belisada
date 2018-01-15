@@ -1,4 +1,5 @@
 <div class="ui grid b-cat" >
+    <p class="text-center" *ngIf="total === 0">Tidak ada Product</p>
   <div class="four wide center aligned column " *ngFor="let item of level_3 | async">
       <div class='bg-cat'>
           <div (click)="dapatkanList(item.m_product_category_id)" class="item" style="cursor: pointer;">

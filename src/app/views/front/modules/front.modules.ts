@@ -33,6 +33,7 @@ import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-ad
 import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
 import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
+import {ImageZoomModule} from 'angular2-image-zoom';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { ChattingFrontComponent } from '../../sellers/component/chatting/chattin
     StoreModule.forFeature('list', ListReducer),
     StoreModule.forFeature('category', CategoryReducer),
     StoreModule.forFeature('navigation', NavReducer),
-    EffectsModule.forFeature([HomeEffects])
+    EffectsModule.forFeature([HomeEffects]),
+    ImageZoomModule
   ],
   providers: [
     NgxCarousel,

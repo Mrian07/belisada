@@ -23,7 +23,6 @@ export class ShoppingCartService {
 
   public constructor(private storageService: LocalStorageService, private productService: ProductService, private routes: Router) {
     this.storage = this.storageService.get();
-
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
       this.subscribers.push(observer);
       observer.next(this.retrieve());
