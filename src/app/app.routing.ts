@@ -36,6 +36,7 @@ import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
+import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 
 const routes: Routes = [
   {
@@ -234,6 +235,12 @@ const routes: Routes = [
       component: BillingAddressComponent,
       data: {
         title: 'Buyer Dashboard'
+      }
+    }, {
+      path: 'product-top-buyer',
+      component: ProductTopBuyerComponent,
+      data: {
+        title: 'Product Top Buyer'
       }
     }
 

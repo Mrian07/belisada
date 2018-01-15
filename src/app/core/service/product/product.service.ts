@@ -15,4 +15,10 @@ export class ProductService {
     return this.http.get(this.configuration.serverWithAccUrl + '/product/detail/simple/' + productId)
         .map(response => response as Product);
   }
+
+  public ProductNew(id: number): Observable<Product> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/product/search?parent=1&itemperpage=6&ob=5&id=' + id)
+        .map(response => response as Product);
+  }
+
 }

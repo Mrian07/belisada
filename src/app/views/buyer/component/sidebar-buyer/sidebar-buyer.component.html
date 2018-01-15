@@ -34,7 +34,7 @@ warna2
                 <p>Shop By Categories</p>
                 <div class='main-menu'>
                     <div class="ui link list" *ngFor="let item of navigationObjects">
-                        <a routerLink="/seller/dashboard" class='item'>{{ item.name }}</a>
+                        <a routerLink="/product-top-buyer/?id={{ item.mProductCategoryId }}" class='item'>{{ item.name }}</a>
                     </div>
                 </div>
             </div>
