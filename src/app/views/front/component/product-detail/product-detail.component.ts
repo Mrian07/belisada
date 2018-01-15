@@ -103,6 +103,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
+          console.log(data.detail);
           const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
           const diskon = 1 - harga;
           this.kamp = (this.ProductList.pricelist - this.ProductList.specialPrice);
