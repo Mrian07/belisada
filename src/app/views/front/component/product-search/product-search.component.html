@@ -40,7 +40,7 @@
         <div class="search-results" *ngFor="let item of productSearchResault.productList">
 
             <div class="prodimg">
-                 <img class="ui medium image" src="{{item.imageurl}}"></div>
+                 <img class="ui medium image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'"></div>
             <!-- <div class="clear-fix"></div> -->
             <div class="highlight">
                 <a routerLink="/Product-detail/{{item.productId}}" class="item"> <strong>{{item.name}}</strong></a>
