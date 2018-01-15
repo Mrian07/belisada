@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Product } from '../../../../core/model/product';
 import { ProductService } from '../../../../core/service/product/product.service';
 
 @Component({
@@ -11,9 +10,10 @@ import { ProductService } from '../../../../core/service/product/product.service
 export class ProductTopBuyerComponent implements OnInit {
 
   productId: any;
-
+  productData: any;
+  allProduct: any;
+  
   constructor(private route: ActivatedRoute, private router: Router, private productService: ProductService) { }
-  // constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
      this.productTop();
@@ -22,9 +22,10 @@ export class ProductTopBuyerComponent implements OnInit {
   productTop() {
       this.route.params.subscribe( params => {
       this.productId = params.id;
-      console.log('this.productId: ', this.productId);
       this.productService.ProductNew(this.productId).subscribe(datas => {
-        console.log(datas);
+        this.productData = datas;
+        this.allProduct = this.productData.productList;
+        console.log(this.allProduct);
       });
     });
   }

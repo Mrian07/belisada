@@ -17,8 +17,7 @@ export class ProductService {
   }
 
   ProductNew(id: number): Observable<Product> {
-    console.log('kampret: ', id);
-    return this.http.get(this.configuration.serverWithAccUrl + '/product/search?parent=1&itemperpage=6&ob=5&id=' + id)
+    return this.http.get(this.configuration.serverWithAccUrl + '/product/search?parent=1&itemperpage=12&ob=5&id=' + id)
         .map(resp => resp as Product);
     }
 
