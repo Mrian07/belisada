@@ -46,37 +46,44 @@
 <div class="ui grid">
   <div class="two column row">
     <div class="column">
-      <div class="ui segment">
-        <div class="ui action input">
-          <select class="ui compact selection dropdown">
-            <option value="all">Pilih Shipping</option>
-            <option selected="" value="articles">Jalan Ahmad Dahlan, Jakarta Selatan.</option>
-            <option value="products">Jl. Gatot Kaca</option>
-          </select>
-          <div type="submit" class="ui instagram button">Tambah Shipping</div>
-        </div>
-        <br>
-        <br>
-        <p><strong>Nama:</strong> Dewa Awan</p>
-        <p><strong>Email:</strong> dewa@yahoo.com</p>
-        <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p>
-      </div>
+
+        <sui-tabset>
+            <div class="ui top attached tabular menu">
+                <a class="item" suiTabHeader="1">Shipping</a>
+                <a class="item" suiTabHeader="2">Tambah Shipping</a>
+            </div>
+            <div class="ui bottom attached segment" suiTabContent="1">
+                <div class="ui labeled action input">
+
+                    <div class="ui label">
+                        Pilih alamat shipping:
+                      </div>
+
+                  <select class="ui compact selection dropdown">
+                    <option value="all">-Pilih-</option>
+                    <option selected="" value="articles">Jalan Ahmad Dahlan, Jakarta Selatan.</option>
+                    <option value="products">Jl. Gatot Kaca</option>
+                  </select>
+                  <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
+                </div>
+                <div class="ui segment">
+                  <p><strong>Nama:</strong> Dewa Awan</p>
+                  <p><strong>Email:</strong> dewa@yahoo.com</p>
+                  <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p>
+                </div>
+            
+
+            </div>
+            <div class="ui bottom attached segment" suiTabContent="2"><app-add-shipping></app-add-shipping></div>
+        </sui-tabset>
+
     </div>
     <div class="column">
       <div class="ui segment">
         <p><strong>Nama:</strong> Dewa Awan</p>
         <p><strong>Email:</strong> dewa@yahoo.com</p>
         <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p>
-      </div>
-      <!-- <div class="ui grid">
-        <div class="sixteen right aligned wide column">
-          <button class="ui right labeled icon button green" (click)="next()">
-            Next
-            <i class="right chevron icon"></i>
-          </button>
-        </div>
-      </div> -->
-      
+      </div>      
     </div>
     
   </div>
