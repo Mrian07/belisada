@@ -9,8 +9,9 @@ export class BilingAddressService extends AbstractRestService<BillingAddress> {
 
   constructor(private http: HttpClient, private configuration: Configuration) {
     super(http, configuration.serverWithAccUrl + '/buyer/address/billing');
-   }
-   getProfile(token: string) {
+  }
+
+  getProfile(token: string) {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
       .set('token', token);

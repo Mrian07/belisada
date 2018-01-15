@@ -1,6 +1,6 @@
 import { ShippingAddressService } from './../../../../core/service/shipping-address/shipping-address.service';
 import { ShippingAddress } from './../../../../core/model/shipping-address';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, EventEmitter, Output } from '@angular/core';
 import { MasterService } from './../../../../core/service/master/master.service';
 import { Province } from '../../../../core/model/province';
 import { City } from '../../../../core/model/city';
@@ -8,6 +8,7 @@ import swal from 'sweetalert2';
 import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ShareService } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-add-shipping',
@@ -15,6 +16,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./add-shipping.component.scss']
 })
 export class AddShippingComponent implements OnInit {
+
+  shippingAddressList: ShippingAddress[];
 
   user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
@@ -39,7 +42,13 @@ export class AddShippingComponent implements OnInit {
   categories = [];
   selectedProvince: string;
 
-  constructor(private masterService: MasterService, private shippingAddressService: ShippingAddressService) { }
+  @Output() triggerEvent = new EventEmitter<Boolean>();
+
+  constructor(
+    private masterService: MasterService,
+    private ngZone: NgZone,
+    private shareService: ShareService,
+    private shippingAddressService: ShippingAddressService) { }
 
   ngOnInit() {
     const luser = JSON.parse(localStorage.getItem('user'));
@@ -90,6 +99,12 @@ export class AddShippingComponent implements OnInit {
     };
     this.shippingAddressService.create(data).subscribe(response => {
       console.log('ini submit ', response);
+      this.triggerEvent.emit(true);
+      // this.ngZone.run(() => {
+      //   this.shareService.shareData = response;
+      //   this.shippingAddressList = this.shareService.shareData;
+      //   console.log('this.shippingAddressList: ', this.shippingAddressList);
+      // });
       this.createComForm.reset();
       if (response.status === '1') {
         swal(
