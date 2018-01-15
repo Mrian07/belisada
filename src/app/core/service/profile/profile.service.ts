@@ -37,4 +37,21 @@ export class ProfileService {
       .map(resp => resp as Profile);
   }
 
+  getProfileBuyer(token: string) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('token', token);
+    return this.http.get(this.configuration.serverWithAccUrl + '/buyer/profile/personaldata/', { headers })
+        .map(resp => resp as Profile);
+  }
+
+  updateProfileBuyer(updateData) {
+    const user = JSON.parse(localStorage.user);
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('token', user.token);
+    return this.http.put(this.configuration.serverWithAccUrl + '/buyer/profile/personaldata/update/', updateData, { headers })
+      .map(resp => resp as Profile);
+  }
+
 }

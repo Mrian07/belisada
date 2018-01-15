@@ -67,7 +67,7 @@
     margin-bottom: 3em!important;
 }
 .pz {
-    margin-left: 50px;
+    margin-left: 100px;
 }
 .cio {
     border-bottom: 1px solid;
@@ -79,7 +79,7 @@
 }
 .wrapper{
     display:grid;
-    grid-template-columns: 27% 50% 22%;
+    grid-template-columns: 20% 43% 26%;
     /*
     grid-column-gap:1em;
     grid-row-gap:1em;
@@ -103,6 +103,10 @@
     grid-row-gap:1em;
     */
     grid-gap:1em;
+  }
+  .poi {
+      cursor: pointer;
+
   }
   .xx {
       color:#18B9D0;
