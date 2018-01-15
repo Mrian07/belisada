@@ -48,12 +48,6 @@ export class SidebarComponent implements OnInit {
       this.sellerName = data.name;
       this.sellerEmail = data.email;
       this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
-      // const sharedData = {
-      //   image: this.sellerimage,
-      //   name: this.sellerName,
-      //   email: this.sellerEmail
-      // };
-      // this.sharedService.shareData = sharedData;
     });
   }
 

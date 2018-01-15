@@ -1,9 +1,12 @@
+import { ShareService } from './../../../../core/service/shared.service';
+import { Router } from '@angular/router';
 import { environment } from './../../../../../environments/environment';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {trigger, transition, style, animate, state} from '@angular/animations';
 import * as io from 'socket.io-client';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { ChatService } from '../../../../core/service/chat/chat.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-chatting-front',
@@ -35,46 +38,62 @@ export class ChattingFrontComponent implements OnInit {
   info: string;
   typingTimer: Object;
   msgInput: string;
+  soc: any;
 
-  constructor(private loginsrv: LoginService, private chat: ChatService) { }
+  constructor(private loginsrv: LoginService, private chat: ChatService, private router: Router, private shared: ShareService) { }
 
   ngOnInit() {
-    console.log('chat url', environment.chatUrl);
-    const chat_hide = localStorage.chat_hide;
-    if (chat_hide) {
-      this.show = JSON.parse(localStorage.chat_hide);
-    }
     let that = this;
-    this.chat.socket = io(environment.chatUrl + '/?dat=' + this.user.token);
-    this.chat.socket.on('connect', () => {
-      that.chats = [];
-      console.log('chat connected', that.chat.socket);
-    });
-    this.chat.socket.on('disconnect', () => {
-      console.log('you\'re offline');
-    });
-    this.chat.socket.on('history', his => {
-      that.chats = his;
-    });
-    this.chat.socket.on('msg', msg => {
-      that.chats.push(msg);
-      that.info = '';
-    });
-    this.chat.socket.on('typing', () => {
-      that.info = 'typing';
-      that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
-    });
+    let socket = this.chat.connect({
+      connect: function() {
+        that.chats = [];
+        // console.log('chat connected', that.chat.socket);
+        const chat_hide = localStorage.chat_hide;
+        if (chat_hide) {
+          this.show = JSON.parse(localStorage.chat_hide);
+        }
+      },
+      history: his => {
+        that.chats = his;
+      },
+      msg: msg => {
+        that.chats.push(msg);
+        that.info = '';
+      },
+      typing: () => {
+        that.info = 'typing';
+        that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
+      }
+    }).then(soc => {
+      this.soc = soc;
+      console.log('chat ok:', soc);
+    }, err => {
+      console.log('chat:', err);
+    })
+
   }
 
   send() {
     const msg = {from: this.user.username, txt: this.msgInput, time: new Date()};
-    this.chat.socket.emit('cln_msg', msg);
+    this.soc.emit('cln_msg', msg);
     this.chats.push(msg);
     this.msgInput = '';
   }
 
   hide() {
-    this.show = !this.show;
-    localStorage.chat_hide = this.show;
+    if(this.soc) {
+      this.show = !this.show;
+      localStorage.chat_hide = this.show;
+    }
+    else {
+      swal({
+        title: 'Warning',
+        text: 'Anda harus login untuk melanjutkan',
+        type: 'warning',
+      }).then(() => {
+        this.shared.shareData = '/';
+        this.router.navigate(['/login']);
+      })
+    }
   }
 }

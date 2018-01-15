@@ -1,3 +1,4 @@
+import { ShareService } from './../../../../core/service/shared.service';
 import { HttpClient } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
@@ -36,15 +37,16 @@ export class SignInComponent implements OnInit {
     private route: ActivatedRoute,
     private sendEmailService: SendEmailService,
     private tokenService: TokenService,
-    private title: Title
+    private title: Title,
+    private shared: ShareService
   ) { }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Login');
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'buyer/test';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.shared.shareData || 'buyer/test';
     if (this.tokenService.getToken() === undefined) {
     } else {
-      this.router.navigateByUrl('/buyer/dashboard');
+      // this.router.navigateByUrl('/');
     }
   }
 
@@ -87,7 +89,8 @@ export class SignInComponent implements OnInit {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
         this.loginService.isLoggedin();
-        this.router.navigate([this.returnUrl]);
+        // this.router.navigate([this.returnUrl]);
+        this.router.navigateByUrl('/');
       }
     });
   }

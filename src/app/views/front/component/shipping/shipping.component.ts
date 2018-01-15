@@ -5,6 +5,7 @@ import { ShippingAddress } from '../../../../core/model/shipping-address';
 import { BilingAddressService } from '../../../../core/service/billing-address/biling-address.service';
 import { BillingAddress } from '../../../../core/model/billing-address';
 import { ShareService } from '../../../../core/service/shared.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shipping',
@@ -27,12 +28,15 @@ export class ShippingComponent implements OnInit {
   constructor(
     private router: Router,
     private ngZone: NgZone,
+    private title: Title,
     private shareService: ShareService,
     private shippingAddressService: ShippingAddressService,
     private bilingAddressService: BilingAddressService
   ) { }
 
   ngOnInit() {
+    this.title.setTitle('Belisada - Shipping & Billing Address');
+
     this.getAllShippingAddress();
 
     this.bilingAddressService.getAll().subscribe(datas => {
