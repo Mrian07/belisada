@@ -180,6 +180,13 @@
 
     </div>
   </div>
+  <div class="ui top attached tabular menu">
+    <div class="active item">Tab</div>
+  </div>
+  <div class="ui bottom attached active tab segment">
+    <p [innerHTML]="ProductList.description | sanitizeHtml"></p>
+    <p></p>
+  </div>
   <div class="gap-between-elements"></div>
   <div class="wrapper3">
     <div>
@@ -221,3 +228,4 @@
 
       </div>
   </div>
+
