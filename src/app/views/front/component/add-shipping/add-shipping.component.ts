@@ -25,7 +25,6 @@ export class AddShippingComponent implements OnInit {
   vilaggeId: FormControl;
   phone: FormControl;
   kampret: ShippingAddress;
-  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   district: FormControl;
@@ -56,7 +55,6 @@ export class AddShippingComponent implements OnInit {
   createFormControls() {
     this.name = new FormControl('');
     this.address = new FormControl('');
-    this.addressType = new FormControl('');
     this.addressName = new FormControl('');
     this.phone = new FormControl('');
     this.city = new FormControl('');
@@ -69,7 +67,6 @@ export class AddShippingComponent implements OnInit {
     this.createComForm = new FormGroup({
       name: this.name,
       address: this.address,
-      addressType: this.addressType,
       addressName: this.addressName,
       phone: this.phone,
       city: this.city,
@@ -86,7 +83,6 @@ export class AddShippingComponent implements OnInit {
       // asdsad
       name: model.name,
       address: model.address,
-      addressType: model.addressType,
       addressName: model.addressName,
       phone: model.phone,
       city: model.city,
