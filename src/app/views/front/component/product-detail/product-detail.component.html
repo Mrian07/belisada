@@ -183,10 +183,10 @@
   <div class="gap-between-elements"></div>
   <div class="wrapper3">
     <div>
-        <strong>3 Penawaran Lainnya </strong>
+        <strong>{{ otherStore }} Penawaran Lainnya </strong>
         <hr>
-      </div>
-      <div class="wraper4">
+    </div>
+      <div class="wraper4" *ngFor="let list of storeList">
           <div>
              <strong>Harga Produk</strong>
               <div class="gap-between-elements"></div>

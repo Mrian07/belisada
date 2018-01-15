@@ -46,6 +46,8 @@ export class ProductDetailComponent implements OnInit {
   login4: any;
   detailData: Subscription;
   storeData: any;
+  otherStore: number;
+  storeList: Array<any>;
   aliasName;
 
   constructor(private route: ActivatedRoute,
@@ -111,6 +113,9 @@ export class ProductDetailComponent implements OnInit {
         }
         if (data.stores !== undefined) {
           this.storeData = data.stores;
+          this.otherStore = data.stores.productCount;
+          this.storeList = data.stores.productList;
+          console.log(this.storeData);
         }
       });
   }
