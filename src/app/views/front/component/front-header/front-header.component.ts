@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { ProductService } from '../../../../core/service/product/product.service';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
+import { LoginService } from '../../../../core/service/login/login.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -47,6 +48,7 @@ export class FrontHeaderComponent implements OnInit {
   loginState: Boolean;
   userName: string;
   avatar: string;
+  grossTotal: number;
 
   private cartSubscription: Subscription;
 
@@ -59,9 +61,10 @@ export class FrontHeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private seo: SeoService,
     private shoppingCartService: ShoppingCartService,
-    private productService: ProductService) { }
-
-  ngOnInit() {
+    private productService: ProductService,
+    private loginService: LoginService,
+    private ngzone: NgZone
+  ) {
     this.user = this.auth.getUser();
     if (this.user) {
       this.loginState = true;
@@ -69,16 +72,24 @@ export class FrontHeaderComponent implements OnInit {
       this.loginState = false;
       this.avatar = '/assets/img/cart.jpg';
     }
+  }
+
+  ngOnInit() {
     this.getProfile();
     this.loadDataCategorySearch();
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
     });
-    this.cart = this.shoppingCartService.get();
+    this.ngzone.run(() => {
+      this.cart = this.shoppingCartService.get();
+      console.log(this.cart);
+    });
+
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.cartItems = [];
+      this.grossTotal = cart.grossTotal;
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
@@ -210,6 +221,7 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
   logout() {
+
     swal({
       title: 'Belisada.co.id',
       text: 'Anda yakin akan logout?',
@@ -226,7 +238,9 @@ export class FrontHeaderComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         localStorage.removeItem('user');
-        location.reload();
+        setTimeout(() => {
+          location.replace('/');
+        }, 300);
       } else if (result.dismiss === 'cancel') {
       }
     });
