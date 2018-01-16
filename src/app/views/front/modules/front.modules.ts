@@ -34,6 +34,7 @@ import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
 import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
 import {ImageZoomModule} from 'angular2-image-zoom';
+import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import {ImageZoomModule} from 'angular2-image-zoom';
   ],
   imports: [
     CommonModule,
+    TruncateModule,
     NgxCarouselModule,
     RouterModule,
     FormsModule,

@@ -50,7 +50,7 @@
             <div class="highlight">
                 <a routerLink="/Product-detail/{{item.productId}}" class="item"> <strong>{{item.name}}</strong></a>
 
-            <p [innerHTML]="item.highlight"></p>
+            <p [innerHTML]="item.highlight | sanitizeHtml"></p>
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
                 <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div>
