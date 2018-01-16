@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener, NgZone } from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
@@ -32,6 +32,7 @@ export class FrontHeaderComponent implements OnInit {
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
+  private cartSubscription: Subscription;
 
   categorySearch: Category[];
   selectedCategory: any;
@@ -50,8 +51,6 @@ export class FrontHeaderComponent implements OnInit {
   avatar: string;
   grossTotal: number;
 
-  private cartSubscription: Subscription;
-
   constructor(
     private categoryService: CategoryService,
     private searchService: SearchService,
@@ -63,26 +62,62 @@ export class FrontHeaderComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private loginService: LoginService,
-    private ngzone: NgZone
   ) {
+  }
+
+  ngOnInit() {
     this.user = this.auth.getUser();
     if (this.user) {
       this.loginState = true;
+      this.getProfile();
     }else {
       this.loginState = false;
       this.avatar = '/assets/img/user.jpg';
       this.itemCount = 0;
     }
-  }
-
-  ngOnInit() {
-    this.getProfile();
-    this.loadDataCategorySearch();
+    this.categoryService.CategoryOne().subscribe(data => {
+      this.categorySearch = data;
+    });
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
     });
+    this.shoppingCart();
+  }
 
+  @HostListener('document:click', ['$event']) clickedOutside($event) {
+    this.results = [];
+  }
+
+  searchK(event) {
+    const key = event.target.value;
+    if (key === '' || event.key === 'Enter') {
+      this.results = [];
+    } else {
+      this.searchService.search(key).subscribe(data => {
+        this.results = data;
+      });
+    }
+  }
+
+  searchEnter(searchKey, searchCategory) {
+    this.queryParams = { q: searchKey };
+    if (typeof searchCategory !== 'undefined') {
+      this.queryParams['parent'] = 1;
+      this.queryParams['id'] = searchCategory.mProductCategoryId;
+    }
+    this.router.navigate(['/search'], { queryParams: this.queryParams });
+    this.selectedSearchCategory = '';
+  }
+
+  getProfile() {
+    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
+      this.userName = data.name;
+      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+    });
+  }
+
+  shoppingCart() {
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
@@ -121,24 +156,12 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
 
-  @HostListener('document:click', ['$event']) clickedOutside($event) {
-    this.results = [];
-  }
-
-  searchK(event) {
-    const key = event.target.value;
-    if (key === '' || event.key === 'Enter') {
-      this.results = [];
-    } else {
-      this.searchService.search(key).subscribe(data => {
-        this.results = data;
-      });
-    }
+  home() {
+    this.router.navigateByUrl('/');
   }
 
   onClickOutside(event: Object) {
-    if (event && event['value'] === true) {
-    }
+    if (event && event['value'] === true) {}
   }
 
   productSelected(hasil: any) {
@@ -148,24 +171,10 @@ export class FrontHeaderComponent implements OnInit {
   hapusbersih() {
     this.selectedSearchCategory = '';
   }
-  loadDataCategorySearch() {
-    this.categoryService.CategoryOne().subscribe(data => {
-      this.categorySearch = data;
-    });
-  }
 
-  home() {
-    this.router.navigateByUrl('/');
-  }
-  searchEnter(searchKey, searchCategory) {
-    this.queryParams = { q: searchKey };
-    if (typeof searchCategory !== 'undefined') {
-      this.queryParams['parent'] = 1;
-      this.queryParams['id'] = searchCategory.mProductCategoryId;
-    }
-    this.router.navigate(['/search'], { queryParams: this.queryParams });
-    this.selectedSearchCategory = '';
-  }
+
+
+
 
   login() {
     // this.isLogin = true;
@@ -203,22 +212,13 @@ export class FrontHeaderComponent implements OnInit {
     } );
   }
 
-  // ngOnDestroy(): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
   viewCart() {
     this.router.navigateByUrl('/cart');
   }
 
-  getProfile() {
-    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
-      this.userName = data.name;
-      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
-    });
-  }
-  logout() {
 
+  logout() {
     swal({
       title: 'Belisada.co.id',
       text: 'Anda yakin akan logout?',
