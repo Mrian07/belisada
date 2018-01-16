@@ -5,6 +5,7 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../../../core/service/register/register.service';
 import { Title } from '@angular/platform-browser';
+import { TokenService } from '../../../../core/service/token/token.service';
 export interface IContext {
   data: string;
 }
@@ -42,11 +43,19 @@ export class RegistrationComponent implements OnInit {
     private categoryService: RegisterService,
     public modalService: SuiModalService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private auth: TokenService
   ) {  }
 
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Registration');
+    const user = this.auth.getUser();
+    if (user) {
+      const role = user.role;
+      if (role === 2) {
+        this.router.navigateByUrl('/seller/dashboard');
+      }else {}
+    }
   }
   popUp() {
     swal(
