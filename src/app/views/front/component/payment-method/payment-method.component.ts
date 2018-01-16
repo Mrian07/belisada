@@ -26,18 +26,19 @@ export class PaymentMethodComponent implements OnInit {
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.PaymentMethods>
   ) {
-    // this.store.dispatch(new frontActions.GetPaymentMethod());
+    //
   }
 
   ngOnInit() {
+    this.store.dispatch(new frontActions.GetPaymentMethod());
     this.title.setTitle('Belisada - Payment Method');
 
-    this.subscription = this.actionsSubject
-    .asObservable()
-    .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
-    .subscribe((action: frontActions.GetPaymentMethodSuccess) => {
-      this.getPaymentMethods();
-    });
+    // this.subscription = this.actionsSubject
+    // .asObservable()
+    // .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
+    // .subscribe((action: frontActions.GetPaymentMethodSuccess) => {
+    //   this.getPaymentMethods();
+    // });
   }
 
   getPaymentMethods() {

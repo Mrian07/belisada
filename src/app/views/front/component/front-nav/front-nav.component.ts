@@ -67,9 +67,9 @@ export class FrontNavComponent implements OnInit {
   //   console.log('ah', data);
   //   this.router.navigateByUrl('/category/' + data.aliasname + '/' + data.m_product_category_id );
   // }
-  toList(id: number, aliasname: string) {
+  toList(aliasname, id) {
     // this.router.navigate(['/category/' + aliasname], {relativeTo: this.route});
-    this.router.navigateByUrl('/category/' + id + '/' + aliasname);
+    this.router.navigateByUrl('/category/' + aliasname + '/' + id);
   // toList(id: number) {
   //   this.shared.shareData = id;
   //   this.router.navigateByUrl('/category/' + id);

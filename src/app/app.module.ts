@@ -52,6 +52,7 @@ import { FinihOrderComponent } from './views/front/component/finih-order/finih-o
 import { AddShippingComponent } from './views/front/component/add-shipping/add-shipping.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
+import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
@@ -106,6 +107,7 @@ export function getAuthServiceConfigs() {
     AddShippingComponent,
     ProductTopBuyerComponent,
     ProfileBuyerComponent,
+    WishlistBuyerComponent,
     TransactionBuyerComponent,
     OrderDetailBuyerComponent,
     ConfirmationBuyerComponent

@@ -291,7 +291,7 @@ export function PaymentMethodReducer(
     case front.GET_PAYMENT_METHOD_SUCCESS : {
       return action.paymentMethods;
     }
-    default: return {};
+    default: return [];
   }
 }
 

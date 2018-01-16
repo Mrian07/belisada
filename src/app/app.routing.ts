@@ -36,6 +36,7 @@ import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
+import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
 
 const routes: Routes = [
   {
@@ -196,19 +197,29 @@ const routes: Routes = [
             data: {
               title: 'Product Top Buyer'
             }
-          }, {
+          },
+          {
             path: 'profile-buyer',
             component: ProfileBuyerComponent,
             data: {
               title: 'Profile Buyer'
             }
-          }, {
+          },
+          {
+            path: 'wishlist-buyer',
+            component: WishlistBuyerComponent,
+            data: {
+              title: 'Profile Buyer'
+          }
+        },
+          {
             path: 'transaction-buyer',
             component: TransactionBuyerComponent,
             data: {
               title: 'Transaction Buyer'
             }
-          }, {
+          },
+           {
             path: 'order-detail-buyer',
             component: OrderDetailBuyerComponent,
             data: {
@@ -231,7 +242,7 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'category/:id/:aliasname',
+        path: 'category/:aliasname/:id',
         component: CategoryComponent,
         data: {
           title: 'category'

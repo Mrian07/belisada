@@ -102,20 +102,17 @@ export class HomeEffects {
       .mergeMap(() =>
         this.paymentMethodService.getPaymentMethod()
         .switchMap((datas) =>
-          datas.map(x => {
-            console.log('x: ', x);
-            this.paymentMethodService.getPaymentMethodDetail(x.code)
-            .switchMap( paymentMethodDetails => {
-              console.log('paymentMethodDetails: ', paymentMethodDetails);
+           this.paymentMethodService.getPaymentMethodDetail(datas[0].code)
+            .switchMap( (paymentMethodDetails) => {
               const paymentMethodDto = {
-                paymentMethod: x,
+                paymentMethod: datas,
                 paymentMethodDetails: paymentMethodDetails
               };
               return [
                 new frontActions.GetPaymentMethodSuccess(paymentMethodDto)
               ];
-            });
-          })
-      )
-    );
+            })
+          )
+        );
+
 }
