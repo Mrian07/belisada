@@ -3,6 +3,8 @@ import { Category } from '../../../../core/model/category';
 import { Category2 } from '../../../../core/model/category2';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import { Router } from '@angular/router';
+import { TokenService } from '../../../../core/service/token/token.service';
+import { ProfileService } from '../../../../core/service/profile/profile.service';
 
 @Component({
   selector: 'app-sidebar-buyer',
@@ -17,9 +19,19 @@ export class SidebarBuyerComponent implements OnInit {
   navigationObjects: any[] = [];
   editProfile: any;
 
-  constructor(private categoryService: CategoryService, private router: Router) { }
+  buyerName: string;
+  buyerEmail: string;
+  buyerImage: string;
+
+  constructor(
+    private categoryService: CategoryService,
+    private router: Router,
+    private profileService: ProfileService,
+    private tokenService: TokenService
+  ) { }
 
   ngOnInit() {
+    this.getProfileBuyer();
     this.getNavigationCategory();
   }
 
@@ -52,6 +64,14 @@ export class SidebarBuyerComponent implements OnInit {
 
   editProfileBuyer() {
     this.router.navigate(['/buyer/profile-buyer']);
+  }
+
+  getProfileBuyer() {
+    this.profileService.getProfileBuyer(this.tokenService.getToken()).subscribe(data => {
+      this.buyerName = data.name;
+      this.buyerEmail = data.email;
+      this.buyerImage = 'data:image/png;base64,' + data.imageAvatar;
+    });
   }
 
 }
