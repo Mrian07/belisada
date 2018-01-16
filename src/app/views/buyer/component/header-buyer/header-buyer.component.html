@@ -4,8 +4,22 @@
             <!-- <a routerLink="/buyer/dashboard"><img class="ui small image" src="/assets/img/logo_buyer_belisada.png"></a> -->
      
         </div>
-        <div class="four wide right aligned column ">
-          <div class='account-buyer'>
+        <div class="two wide right aligned column ">
+            <div class='simple-nav-buyer'>
+                <div class="ui dropdown" suiDropdown>
+                    <div class="text">My Transaction</div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu" suiDropdownMenu>
+                        <div class="item"><a routerLink="/buyer/profile-buyer">Konfirmasi Pembayaran</a></div>
+                        <div class="item"><a routerLink="/buyer/change-password">Status Pemesanan</a></div>
+                        <div class="item"><a routerLink="/buyer/tet">Order History</a></div>
+                        <div class="item"><a routerLink="/buyer/shippingAddress">Konfirmasi Penerimaan</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="two wide right aligned column ">
+          <div class='simple-nav-buyer'>
             <div class="ui dropdown" suiDropdown>
               <div class="text">Account</div>
               <i class="dropdown icon"></i>
