@@ -73,7 +73,33 @@
                     Selamat Datang<br/><a (click)="login()" style="cursor: pointer;"><strong>Login</strong></a> / <a (click)="register()"><strong>Daftar</strong></a>
                 </div>
                 <div class="welcome" *ngIf="loginState === true">
-                    {{userName}}<br/><a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a>
+                    <div class='dropdown-profile'>
+                        <!-- <span>{{userName}}<br/><a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a></span> -->
+                        <div style="cursor: pointer; padding-top:10px;">Akun Anda</div>
+                        <div class="dropdown-profile-content">
+
+                            <div class="ui grid">
+                                <div class="ten wide column"><strong>Selamat datang,<br> {{userName}}</strong></div>
+                                <div class="six wide column">
+                                        <button class="mini ui right labeled red icon button" (click)="logout()">
+                                        <i class="sign out icon"></i>
+                                        Logout
+                                        </button>
+                                    
+                                    <!-- <a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a> -->
+                                </div>
+                            </div>
+                            <div class='dropdown-menu-account'>
+                                <a routerLink="/buyer/dashboard">Dashboard</a><br>
+                                <a routerLink="/buyer/profile-buyer">Profile</a><br>
+                                <a routerLink="/buyer/change-password">Change Password</a><br>
+                                <a routerLink="/buyer/change-password">Billing</a><br>
+                                <a routerLink="/buyer/shippingAddress">Shipping</a><br>
+                            </div>
+
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="cart">
                     <span class="cart-counter">{{ itemCount }}</span>

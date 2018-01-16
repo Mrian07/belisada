@@ -2,14 +2,12 @@ import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/pro
 import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
 import { ShippingAddressComponent } from './views/buyer/component/shipping-address/shipping-address.component';
-// import { ShippingAddressComponent } from './views/buyer/shipping-address/shipping-address.component';
 import { PaymentMethodComponent } from './views/front/component/payment-method/payment-method.component';
 import { ShippingComponent } from './views/front/component/shipping/shipping.component';
 import { BillingAddressComponent } from './views/buyer/component/billing-address/billing-address.component';
 import { CartComponent } from './views/front/component/cart/cart.component';
 import { CartBuyerComponent } from './views/buyer/component/cart-buyer/cart-buyer.component';
 import { BuyerLayoutComponent } from './core/layout/buyer-layout/buyer-layout.component';
-import { SidebarBuyerComponent } from './views/front/component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PreloadAllModules, PreloadingStrategy } from '@angular/router';
@@ -31,63 +29,60 @@ import { CategoryComponent } from './views/front/component/category/category.com
 import { SignUpComponent } from './views/front/component/sign-up/sign-up.component';
 import { SignInComponent } from './views/front/component/sign-in/sign-in.component';
 import { LostPasswordComponent } from './views/front/component/lost-password/lost-password.component';
-import { BuyerDashboardComponent } from './views/front/component/buyer-dashboard/buyer-dashboard.component';
-// import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
-import { ShipingAddressComponent } from './views/front/component/buyer-dashboard/shiping-address/shiping-address.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 
 const routes: Routes = [
   {
 
-    path: 'buyer',
-    component: BuyerLayoutComponent,
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardBuyerComponent,
-        data: {
-          title: 'home'
-        }
-      },
-      {
-        path: 'change-password',
-        component: ChangePasswordBuyerComponent,
-        data: {
-          title: 'Change Password'
-        }
-      },
-      {
-        path: 'tet',
-        component: BillingAddressComponent,
-        data: {
-          title: 'Change Password'
-        }
-      },
-      {
-        path: 'shippingAddress',
-        component: ShippingAddressComponent,
-        data: {
-          title: 'Change Password'
-        }
-      }, {
-        path: 'product-top-buyer/:id',
-        component: ProductTopBuyerComponent,
-        data: {
-          title: 'Product Top Buyer'
-        }
-      }, {
-        path: 'profile-buyer',
-        component: ProfileBuyerComponent,
-        data: {
-          title: 'Profile Buyer'
-        }
-      }
-    ]
-  },
-  {
+  //   path: 'buyer',
+  //   component: BuyerLayoutComponent,
+  //   children: [
+  //     {
+  //       path: 'dashboard',
+  //       component: DashboardBuyerComponent,
+  //       data: {
+  //         title: 'home'
+  //       }
+  //     },
+  //     {
+  //       path: 'change-password',
+  //       component: ChangePasswordBuyerComponent,
+  //       data: {
+  //         title: 'Change Password'
+  //       }
+  //     },
+  //     {
+  //       path: 'tet',
+  //       component: BillingAddressComponent,
+  //       data: {
+  //         title: 'Change Password'
+  //       }
+  //     },
+  //     {
+  //       path: 'shippingAddress',
+  //       component: ShippingAddressComponent,
+  //       data: {
+  //         title: 'Change Password'
+  //       }
+  //     }, {
+  //       path: 'product-top-buyer/:id',
+  //       component: ProductTopBuyerComponent,
+  //       data: {
+  //         title: 'Product Top Buyer'
+  //       }
+  //     }, {
+  //       path: 'profile-buyer',
+  //       component: ProfileBuyerComponent,
+  //       data: {
+  //         title: 'Profile Buyer'
+  //       }
+  //     }
+  //   ]
+  // },
+  // {
     path: '',
     component: FrontLayoutComponent,
     children: [
@@ -155,7 +150,57 @@ const routes: Routes = [
         data: {
           title: 'Finish Order'
         }
-      }
+      }, {
+        path: 'dashboard',
+        component: DashboardBuyerComponent,
+        data: {
+          title: 'home'
+        }
+      }, {
+        path: 'buyer',
+        component: BuyerLayoutComponent,
+        children: [
+          {
+            path: 'dashboard',
+            component: DashboardBuyerComponent,
+            data: {
+              title: 'home'
+            }
+          },
+          {
+            path: 'change-password',
+            component: ChangePasswordBuyerComponent,
+            data: {
+              title: 'Change Password'
+            }
+          },
+          {
+            path: 'tet',
+            component: BillingAddressComponent,
+            data: {
+              title: 'Change Password'
+            }
+          },
+          {
+            path: 'shippingAddress',
+            component: ShippingAddressComponent,
+            data: {
+              title: 'Change Password'
+            }
+          }, {
+            path: 'product-top-buyer/:id',
+            component: ProductTopBuyerComponent,
+            data: {
+              title: 'Product Top Buyer'
+            }
+          }, {
+            path: 'profile-buyer',
+            component: ProfileBuyerComponent,
+            data: {
+              title: 'Profile Buyer'
+            }
+          }
+      },
     ]
   },
 
@@ -227,20 +272,6 @@ const routes: Routes = [
       component: SendForgotPasswordComponent,
       data: {
         title: 'Send-forgot'
-      }
-    },
-    {
-      path: 'buyer/dashboard',
-      component: BuyerDashboardComponent,
-      data: {
-        title: 'Buyer Dashboard'
-      }
-    },
-    {
-      path: 'buyer/sidebar',
-      component: SidebarBuyerComponent,
-      data: {
-        title: 'Buyer Dashboard'
       }
     },
     {
