@@ -108,7 +108,7 @@ export class ChattingFrontComponent implements OnInit {
       type: 'warning',
     }).then(res => {
       if(res.value) {
-        this.chat.disconnect();
+        this.soc.emit('close_msg');
       }
     })
   }
