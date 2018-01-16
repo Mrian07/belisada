@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Category } from '../../../../core/model/category';
@@ -27,7 +27,9 @@ export class FrontNavComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-    private shared: ShareService
+    private route: ActivatedRoute,
+    private shared: ShareService,
+    private store: Store<fromProduct.Navs>
   ) {
   }
 
@@ -46,6 +48,7 @@ export class FrontNavComponent implements OnInit {
   getCategoryTwo(categoryOneId, cb) {
     this.categoryService.CategoryTwo(categoryOneId).subscribe(data => {
       this.c2 = data;
+      console.log('ka', data);
       cb();
     });
   }
@@ -60,9 +63,17 @@ export class FrontNavComponent implements OnInit {
       });
     });
   }
-  toList(id: number) {
-    this.shared.shareData = id;
-    this.router.navigateByUrl('/category/' + id);
+  // toList(data) {
+  //   this.shared.shareData = data;
+  //   console.log('ah', data);
+  //   this.router.navigateByUrl('/category/' + data.aliasname + '/' + data.m_product_category_id );
+  // }
+  toList(id: number, aliasname: string) {
+    // this.router.navigate(['/category/' + aliasname], {relativeTo: this.route});
+    this.router.navigateByUrl('/category/' + id + '/' + aliasname);
+  // toList(id: number) {
+  //   this.shared.shareData = id;
+  //   this.router.navigateByUrl('/category/' + id);
   }
 
 }
