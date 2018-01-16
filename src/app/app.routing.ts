@@ -1,3 +1,4 @@
+import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
 import { FinihOrderComponent } from './views/front/component/finih-order/finih-order.component';
 import { ConfirmOrderComponent } from './views/front/component/confirm-order/confirm-order.component';
@@ -198,6 +199,12 @@ const routes: Routes = [
             component: ProfileBuyerComponent,
             data: {
               title: 'Profile Buyer'
+            }
+          }, {
+            path: 'transaction-buyer',
+            component: TransactionBuyerComponent,
+            data: {
+              title: 'Transaction Buyer'
             }
           }
         ]

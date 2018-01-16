@@ -52,6 +52,7 @@ import { FinihOrderComponent } from './views/front/component/finih-order/finih-o
 import { AddShippingComponent } from './views/front/component/add-shipping/add-shipping.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
+import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -102,7 +103,8 @@ export function getAuthServiceConfigs() {
     FinihOrderComponent,
     AddShippingComponent,
     ProductTopBuyerComponent,
-    ProfileBuyerComponent
+    ProfileBuyerComponent,
+    TransactionBuyerComponent
   ],
   imports: [
     BrowserModule,
