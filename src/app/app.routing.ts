@@ -235,7 +235,7 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'category/:id/:aliasname',
+        path: 'category/:aliasname/:id',
         component: CategoryComponent,
         data: {
           title: 'category'
