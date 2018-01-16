@@ -35,8 +35,12 @@
 
             </li>
         </ul>
-        <p class="text-center" *ngIf="loading">loading</p>
-        <p class="text-center" *ngIf="total === 0">Tidak Ada Produk</p>
+        <!-- <p class="text-center" *ngIf="loading === true">loading</p> -->
+        <p class="text-center" *ngIf="loading === false && total === 0">Tidak Ada Produk</p>
+        <div class="ui active centered inline loader" *ngIf="loading === true">
+                <div class="ui small text loader">Loading</div>
+              </div>
+              <p></p>
 
         <div class="search-results" *ngFor="let item of productSearchResault.productList">
 
@@ -46,7 +50,7 @@
             <div class="highlight">
                 <a routerLink="/Product-detail/{{item.productId}}" class="item"> <strong>{{item.name}}</strong></a>
 
-            <p [innerHTML]="item.highlight"></p>
+            <p [innerHTML]="item.highlight | sanitizeHtml"></p>
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
                 <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div>

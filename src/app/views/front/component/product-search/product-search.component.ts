@@ -66,7 +66,7 @@ export class ProductSearchComponent implements OnInit {
   listStyleType = 'list-row';
   pageParams: any;
   getDetailData: Subscription;
-  loading: Boolean;
+  loading = true;
   pageTitle: string;
 
   ngOnInit() {
@@ -87,6 +87,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   getDetailDatas() {
+    this.loading = true;
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
         this.loading = false;

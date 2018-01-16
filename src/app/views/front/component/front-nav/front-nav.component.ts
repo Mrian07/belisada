@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Category } from '../../../../core/model/category';
@@ -7,6 +7,7 @@ import { Category2 } from '../../../../core/model/category2';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
+import { ShareService } from '../../../../core/service/shared.service';
 
 
 
@@ -21,11 +22,14 @@ export class FrontNavComponent implements OnInit {
   c2: Category2[];
   imgTop: any;
   navigationObjects: any[] = [];
+  alias: string;
 
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-
+    private route: ActivatedRoute,
+    private shared: ShareService,
+    private store: Store<fromProduct.Navs>
   ) {
   }
 
@@ -51,17 +55,24 @@ export class FrontNavComponent implements OnInit {
   getNavigationCategory() {
     this.getCategoryOne(() => {
       this.c1.forEach((item, index) => {
-        console.log('item: ', item);
         this.navigationObjects.push(item);
         this.getCategoryTwo(item.mProductCategoryId, () => {
           this.navigationObjects[index]['c2'] = this.c2;
         });
-        // console.log('this.navigationObject: ', this.navigationObject);
       });
     });
   }
-  toList(id: number) {
-    this.router.navigateByUrl('/category/' + id);
+  // toList(data) {
+  //   this.shared.shareData = data;
+  //   console.log('ah', data);
+  //   this.router.navigateByUrl('/category/' + data.aliasname + '/' + data.m_product_category_id );
+  // }
+  toList(id: number, aliasname: string) {
+    // this.router.navigate(['/category/' + aliasname], {relativeTo: this.route});
+    this.router.navigateByUrl('/category/' + id + '/' + aliasname);
+  // toList(id: number) {
+  //   this.shared.shareData = id;
+  //   this.router.navigateByUrl('/category/' + id);
   }
 
 }

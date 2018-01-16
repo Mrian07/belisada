@@ -35,6 +35,7 @@ import { InfoComponent } from '../component/info/info.component';
 import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
 import {ImageZoomModule} from 'angular2-image-zoom';
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
+import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { PaymentMethodService } from '../../../core/service/payment-method/payme
   ],
   imports: [
     CommonModule,
+    TruncateModule,
     NgxCarouselModule,
     RouterModule,
     FormsModule,

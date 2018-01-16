@@ -9,6 +9,8 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { Title } from '@angular/platform-browser';
+import { ShareService } from '../../../../core/service/shared.service';
+// import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-category',
@@ -19,6 +21,7 @@ export class CategoryComponent implements OnInit {
 
   level_3: Observable<Category2[]>;
   m_product_category_id: any;
+  editData: any;
   queryParams: any = {};
   alias: Category2 = new Category2();
   loadCategory: Subscription;
@@ -28,6 +31,7 @@ export class CategoryComponent implements OnInit {
     private categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
+    private shared: ShareService,
     private search: SearchService,
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.Categorys>,
@@ -41,6 +45,9 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Location.search({});
+    this.editData = this.shared.shareData;
+    console.log(this.editData);
     this.loadCategory = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)
@@ -54,7 +61,7 @@ export class CategoryComponent implements OnInit {
       this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
       this.level_3.subscribe(data => {
         this.total = data.length;
-      })
+      });
       console.log('category');
       this.title.setTitle('Belisada - Category');
     } );

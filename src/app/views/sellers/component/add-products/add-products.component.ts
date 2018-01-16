@@ -49,7 +49,7 @@ export class AddProductsComponent implements OnInit {
   brands = [];
   categorySelect: Boolean = false;
   keys: string;
-  description: string;
+  description: any;
   price: number;
   weight: number;
   panjang: number;

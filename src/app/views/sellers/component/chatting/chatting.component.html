@@ -3,24 +3,29 @@
         <div class="chat-header text-center">
             <!-- <span class="cs-profile-name">Udin Seblak</span>
             <img class="cs-profile-picture pull-right" src="/assets/img/kristy.png" alt="image not found"/> -->
+            <div class="pull-right">
+                <i (click)="hide()" title="hide" class="minus icon link"></i>
+                <i *ngIf="soc && soc.connected" (click)="disconnect()" class="remove icon link" title="disconnect"></i>
+            </div>
             <div class="clearfix"></div>
         </div>
       <div class="chat-content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <div class="chat-bubble" *ngFor="let c of chats" [ngClass]="c.from==user.username?'sender':'receiver'">
-                  <p class="chat-bubble-text">{{c.txt}}</p>
+                <p class="chat-bubble-text">{{c.txt}}</p>
                 <span class="chat-bubble-time">{{c.time | date:"h:mma"}}</span>
             </div>
+            <div class="ui indeterminate text loader" [ngClass]="{active:connecting}">Connecting ...</div>
         </div>
         <div class="chat-footer">
             <div class="ui action input stretch fit-to-content">
-                <input type="text" [(ngModel)]="msgInput" (keydown.enter)="send()" class="txt-chat" placeholder="Write your message" />
-                <button class="btn-chat attach"><i class="attach icon"></i></button>
-                <button class="btn-chat send" (click)="send()"><i class="send icon"></i></button>
+                <input type="text" [(ngModel)]="msgInput" (keydown.enter)="send()" class="txt-chat" placeholder="Write your message" [disabled]="!soc || soc.disconnected"/>
+                <button class="btn-chat attach" [disabled]="!soc || soc.disconnected"><i class="attach icon"></i></button>
+                <button class="btn-chat send" (click)="send()" [disabled]="!soc || soc.disconnected"><i class="send icon"></i></button>
             </div>
         </div>
     </div>
 
-    <a (click)="hide()" class="float">
+    <a *ngIf="!show" (click)="hide()" class="float">
         <i class="talk icon my-float"></i>
     </a>
 </div>

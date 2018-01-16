@@ -131,7 +131,7 @@ export class BillingAddressComponent implements OnInit {
         console.log('kosong');
       }else {
         console.log('ini data: ', data);
-        console.log('kampret luh', data[0].regionId);
+        // console.log('kampret luh', data[0].regionId);
         this.masterService.getCity(data[0].regionId).subscribe(city => {
           this.cities = city;
           this.masterService.getDistrict(data[0].cityId).subscribe(district => {
