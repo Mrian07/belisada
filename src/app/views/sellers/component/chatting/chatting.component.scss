@@ -7,7 +7,7 @@
 .chat-container {
     position: absolute;
     min-width: 370px;
-    bottom: 75px;
+    bottom: 0;
     right: 0;
 }
 
@@ -23,6 +23,9 @@
 }
 .chat-container .chat-header > * {
     vertical-align: middle;
+}
+.chat-container .chat-header i.link {
+    color: #eee;
 }
 .chat-container .chat-header .cs-profile-picture {
     width: 45px;

@@ -39,19 +39,24 @@ export class ChattingFrontComponent implements OnInit {
   typingTimer: Object;
   msgInput: string;
   soc: any;
+  connecting: boolean = true;
 
   constructor(private loginsrv: LoginService, private chat: ChatService, private router: Router, private shared: ShareService) { }
 
   ngOnInit() {
     let that = this;
-    let socket = this.chat.connect({
+    this.chat.connect({
       connect: function() {
         that.chats = [];
+        that.connecting = false;
         // console.log('chat connected', that.chat.socket);
         const chat_hide = localStorage.chat_hide;
         if (chat_hide) {
           this.show = JSON.parse(localStorage.chat_hide);
         }
+      },
+      reconnect_attempt: () => {
+        console.log('reconnecting');
       },
       history: his => {
         that.chats = his;
@@ -95,5 +100,16 @@ export class ChattingFrontComponent implements OnInit {
         this.router.navigate(['/login']);
       })
     }
+  }
+  disconnect() {
+    swal({
+      showCancelButton: true,
+      text: 'Akhiri percakapan?',
+      type: 'warning',
+    }).then(res => {
+      if(res.value) {
+        this.chat.disconnect();
+      }
+    })
   }
 }
