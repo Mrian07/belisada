@@ -11,8 +11,8 @@ export const GETCATEGORY = 'GETCATEGORY';
 export const GETCATEGORYSUCCESS = 'GETCATEGORYSUCCESS';
 export const GETNAV = 'GETNAV';
 export const GETNAVSUCCESS = 'GETNAVSUCCESS';
-export const GET_SHIPPING_ADDRESS = 'GET_SHIPPING_ADDRESS';
-export const GET_SHIPPING_ADDRESS_SUCCESS = 'GET_SHIPPING_ADDRESS_SUCCESS';
+export const GET_PAYMENT_METHOD = 'GET_PAYMENT_METHOD';
+export const GET_PAYMENT_METHOD_SUCCESS = 'GET_PAYMENT_METHOD_SUCCESS';
 
 
 export class GetHome implements Action {
@@ -65,14 +65,14 @@ export class GetNavSuccess implements Action {
   constructor(public nav: any) {}
 }
 
-export class GetShippingAddress implements Action {
-  readonly type = GET_SHIPPING_ADDRESS;
+export class GetPaymentMethod implements Action {
+  readonly type = GET_PAYMENT_METHOD;
   constructor() { }
 }
 
-export class GetShippingAddressSuccess implements Action {
-  readonly type = GET_SHIPPING_ADDRESS_SUCCESS;
-  constructor(public nav: any) {}
+export class GetPaymentMethodSuccess implements Action {
+  readonly type = GET_PAYMENT_METHOD_SUCCESS;
+  constructor(public paymentMethods: any) {}
 }
 
 export type HomeAction =
@@ -86,5 +86,5 @@ export type HomeAction =
  | GetNavSuccess
  | GetDetail
  | GetDetailSuccess
- | GetShippingAddress
- | GetShippingAddressSuccess;
+ | GetPaymentMethod
+ | GetPaymentMethodSuccess;

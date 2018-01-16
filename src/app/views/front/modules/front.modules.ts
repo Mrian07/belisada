@@ -26,7 +26,7 @@ import { ShoppingCartService } from '../../../core/service/shopping-cart/shoppin
 import { ProductService } from '../../../core/service/product/product.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
 import { StoreModule } from '@ngrx/store';
-import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, NavReducer } from '../../../store/reducers';
+import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, NavReducer, PaymentMethodReducer } from '../../../store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
@@ -34,6 +34,7 @@ import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
 import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
 import {ImageZoomModule} from 'angular2-image-zoom';
+import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import {ImageZoomModule} from 'angular2-image-zoom';
     StoreModule.forFeature('list', ListReducer),
     StoreModule.forFeature('category', CategoryReducer),
     StoreModule.forFeature('navigation', NavReducer),
+    StoreModule.forFeature('paymentMethod', PaymentMethodReducer),
     EffectsModule.forFeature([HomeEffects]),
     ImageZoomModule
   ],
@@ -75,6 +77,7 @@ import {ImageZoomModule} from 'angular2-image-zoom';
     ProductDetailService,
     ShoppingCartService,
     ProductService,
+    PaymentMethodService
   ]
 })
 export class FrontModules { }

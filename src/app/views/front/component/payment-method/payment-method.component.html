@@ -43,15 +43,15 @@
                 <div class="ui grid">
                     <div class="ui three column grid">
                         <div class="row">
-                            <div class="column">
+                            <div class="column" *ngFor="let paymentMethod of paymentMethods">
 
                                 <div class="ui form">
                                     <div class="grouped fields">
-                                        <label>CREDIT CARD</label>
+                                        <label>{{ paymentMethod.name }}</label>
                                         <div class="field">
                                             <div class="ui radio checkbox">
-                                                <input name="example2" checked="checked" type="radio">
-                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_01.png'></label>
+                                                <input name="example2" checked="checked" type="radio"/>
+                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_01.png'/></label>
                                             </div>
                                         </div>
                                         <div class="field">
@@ -63,48 +63,6 @@
                                     </div>
                                 </div>
                                 
-                            </div>
-                            <div class="column">
-
-                                <div class="ui form">
-                                    <div class="grouped fields">
-                                        <label>TRANSFER BANK</label>
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <input name="example2" checked="checked" type="radio">
-                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_06.png'></label>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <input name="example2" type="radio">
-                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_03.png'></label>
-                                            </div>
-                                        </div>
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <input name="example2" type="radio">
-                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_04.png'></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="column">
-
-                                <div class="ui form">
-                                    <div class="grouped fields">
-                                        <label>ONLINE PAYMENT</label>
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <input name="example2" checked="checked" type="radio">
-                                                <label><img class="ui right spaced image" src='/assets/img/card/p-bcaklikpay.jpg'></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
