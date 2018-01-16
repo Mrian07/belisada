@@ -70,7 +70,8 @@ export class FrontHeaderComponent implements OnInit {
       this.loginState = true;
     }else {
       this.loginState = false;
-      this.avatar = '/assets/img/cart.jpg';
+      this.avatar = '/assets/img/user.jpg';
+      this.itemCount = 0;
     }
   }
 
@@ -81,15 +82,12 @@ export class FrontHeaderComponent implements OnInit {
       title: 'Home',
       description: 'Belisada Home'
     });
-    this.ngzone.run(() => {
-      this.cart = this.shoppingCartService.get();
-      console.log(this.cart);
-    });
 
+    this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
-      this.cartItems = [];
       this.grossTotal = cart.grossTotal;
+      this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
@@ -97,7 +95,6 @@ export class FrontHeaderComponent implements OnInit {
             ...item,
             product,
             totalCost: product.pricelist * item.quantity });
-            console.log('this.cartItems: ', this.cartItems);
         });
       });
     });
