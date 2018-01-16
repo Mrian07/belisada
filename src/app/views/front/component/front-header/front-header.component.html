@@ -74,8 +74,8 @@
                 </div>
                 <div class="welcome" *ngIf="loginState === true">
                     <div class='dropdown-profile'>
-                        <!-- <span>{{userName}}<br/><a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a></span> -->
-                        <div style="cursor: pointer; padding-top:10px;">Akun Anda</div>
+                        <span>{{userName}}<br/><a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a></span>
+                        <!-- <div style="cursor: pointer; padding-top:10px;">Akun Anda</div> -->
                         <div class="dropdown-profile-content">
 
                             <div class="ui grid">
@@ -85,7 +85,7 @@
                                         <i class="sign out icon"></i>
                                         Logout
                                         </button>
-                                    
+
                                     <!-- <a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a> -->
                                 </div>
                             </div>
@@ -99,7 +99,7 @@
 
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="cart">
                     <span class="cart-counter">{{ itemCount }}</span>
