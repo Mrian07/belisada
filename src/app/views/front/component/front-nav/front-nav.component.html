@@ -10,13 +10,13 @@
                         *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix">
 
                         <div class="top-categories" *ngIf="ix <= 4">
-                            <div (click)="toList(i.m_product_category_id,i.aliasname)" style="cursor: pointer;">
+                            <div (click)="toList(i.m_product_category_id, i.aliasname)" style="cursor: pointer;">
                                 <img class="ui image logo" [src]="i.imageurl" alt="Image not found" onError="this.src='/assets/img/no-image.png'"/>
                                 <h3>{{ i.name }}</h3>
                             </div>
                         </div>
                         <div *ngIf="ix > 4">
-                            <div (click)="toList(i.m_product_category_id,i.aliasname)" class="item" style="cursor: pointer;">
+                            <div (click)="toList(i.m_product_category_id, i.aliasname)" class="item" style="cursor: pointer;">
                                 <span>{{ i.name }}</span>
                             </div>
                         </div>

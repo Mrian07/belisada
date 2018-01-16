@@ -4,8 +4,8 @@
     <hr/>
     <h1>{{ item.name }}</h1>
     <div class="promo-banner-container gap-between-elements">
-        <div class="promo-grid" style="padding-bottom: 40%;">
-            <div class="promo-grid-content">
+        <div class="promo-grid">
+            <!-- <div class="promo-grid-content">
                 <div class="promo-grid-cell" style="width: 66.67%;height: 100.00%;left: 0.00%;top: 0.00%;">
                     <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl2 + ')'}"></span>
                 </div>
@@ -13,6 +13,18 @@
                     <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl3 + ')'}"></span>
                 </div>
                 <div class="promo-grid-cell" style="width: 33.33%;height: 50.00%;left: 66.67%;top: 50.00%;">
+                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl4 + ')'}"></span>
+                </div>
+            </div> -->
+
+            <div class="promo-grid-content">
+                <div class="promo-grid-cell banner1">
+                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl2 + ')'}"></span>
+                </div>
+                <div class="promo-grid-cell banner2">
+                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl3 + ')'}"></span>
+                </div>
+                <div class="promo-grid-cell banner3">
                     <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl4 + ')'}"></span>
                 </div>
             </div>

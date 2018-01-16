@@ -36,6 +36,7 @@ export class ShoppingCartService {
     return this.subscriptionObservable;
   }
 
+
   public addItem(productId: number, quantity: number): void {
     const cart = this.retrieve();
     let item = cart.items.find((p) => p.productId === productId);
@@ -81,7 +82,6 @@ export class ShoppingCartService {
           cancelButtonText:
             `Continue to Shop`,
         }).then((result) => {
-          console.log('result: ', result);
           if (result.dismiss === 'cancel') {
 
           } else {
@@ -154,12 +154,10 @@ export class ShoppingCartService {
     if (storedCart) {
       cart.updateFrom(JSON.parse(storedCart));
     }
-
     return cart;
   }
 
   private save(cart: ShoppingCart): void {
-    console.log('cart: ', cart);
     this.storage.setItem(CART_KEY, JSON.stringify(cart));
   }
 

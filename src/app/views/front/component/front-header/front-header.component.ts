@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
@@ -15,6 +15,7 @@ import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { ProductService } from '../../../../core/service/product/product.service';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
+import { LoginService } from '../../../../core/service/login/login.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -31,6 +32,7 @@ export class FrontHeaderComponent implements OnInit {
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
+  private cartSubscription: Subscription;
 
   categorySearch: Category[];
   selectedCategory: any;
@@ -47,8 +49,7 @@ export class FrontHeaderComponent implements OnInit {
   loginState: Boolean;
   userName: string;
   avatar: string;
-
-  private cartSubscription: Subscription;
+  grossTotal: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -59,25 +60,68 @@ export class FrontHeaderComponent implements OnInit {
     private route: ActivatedRoute,
     private seo: SeoService,
     private shoppingCartService: ShoppingCartService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private loginService: LoginService,
+  ) {
+  }
 
   ngOnInit() {
     this.user = this.auth.getUser();
     if (this.user) {
       this.loginState = true;
+      this.getProfile();
     }else {
       this.loginState = false;
-      this.avatar = '/assets/img/cart.jpg';
+      this.avatar = '/assets/img/user.jpg';
+      this.itemCount = 0;
     }
-    this.getProfile();
-    this.loadDataCategorySearch();
+    this.categoryService.CategoryOne().subscribe(data => {
+      this.categorySearch = data;
+    });
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
     });
+    this.shoppingCart();
+  }
+
+  @HostListener('document:click', ['$event']) clickedOutside($event) {
+    this.results = [];
+  }
+
+  searchK(event) {
+    const key = event.target.value;
+    if (key === '' || event.key === 'Enter') {
+      this.results = [];
+    } else {
+      this.searchService.search(key).subscribe(data => {
+        this.results = data;
+      });
+    }
+  }
+
+  searchEnter(searchKey, searchCategory) {
+    this.queryParams = { q: searchKey };
+    if (typeof searchCategory !== 'undefined') {
+      this.queryParams['parent'] = 1;
+      this.queryParams['id'] = searchCategory.mProductCategoryId;
+    }
+    this.router.navigate(['/search'], { queryParams: this.queryParams });
+    this.selectedSearchCategory = '';
+  }
+
+  getProfile() {
+    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
+      this.userName = data.name;
+      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+    });
+  }
+
+  shoppingCart() {
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
+      this.grossTotal = cart.grossTotal;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -86,7 +130,6 @@ export class FrontHeaderComponent implements OnInit {
             ...item,
             product,
             totalCost: product.pricelist * item.quantity });
-            console.log('this.cartItems: ', this.cartItems);
         });
       });
     });
@@ -113,24 +156,12 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
 
-  @HostListener('document:click', ['$event']) clickedOutside($event) {
-    this.results = [];
-  }
-
-  searchK(event) {
-    const key = event.target.value;
-    if (key === '' || event.key === 'Enter') {
-      this.results = [];
-    } else {
-      this.searchService.search(key).subscribe(data => {
-        this.results = data;
-      });
-    }
+  home() {
+    this.router.navigateByUrl('/');
   }
 
   onClickOutside(event: Object) {
-    if (event && event['value'] === true) {
-    }
+    if (event && event['value'] === true) {}
   }
 
   productSelected(hasil: any) {
@@ -140,75 +171,54 @@ export class FrontHeaderComponent implements OnInit {
   hapusbersih() {
     this.selectedSearchCategory = '';
   }
-  loadDataCategorySearch() {
-    this.categoryService.CategoryOne().subscribe(data => {
-      this.categorySearch = data;
-    });
-  }
 
-  home() {
-    this.router.navigateByUrl('/');
-  }
-  searchEnter(searchKey, searchCategory) {
-    this.queryParams = { q: searchKey };
-    if (typeof searchCategory !== 'undefined') {
-      this.queryParams['parent'] = 1;
-      this.queryParams['id'] = searchCategory.mProductCategoryId;
-    }
-    this.router.navigate(['/search'], { queryParams: this.queryParams });
-    this.selectedSearchCategory = '';
+  register() {
+    this.router.navigateByUrl('/sign-up');
   }
 
   login() {
+    this.router.navigateByUrl('/sign-in');
     // this.isLogin = true;
-    swal({
-      title: 'Login Akun',
-      // text: 'Silakan login sesuai dengan type akun Anda',
-      type: 'info',
-      html:
-        '<div class="content">' +
-        '<div class="ui grid">' +
-            '<div class="eight wide column">' +
-                '<div class="column">' +
-                    '<div class="ui segment">' +
-                        '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
-                        // '<p>Login untuk customer Belisada.</p>' +
-                        '<a href="/sign-in" class="ui green button">Enter</a>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="eight wide column">' +
-                '<div class="column">' +
-                    '<div class="ui segment">' +
-                        '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
-                        // '<p>Login untuk seller Belisada.</p>' +
-                        '<a href="/login" class="ui olive button">Enter</a>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-        '</div>' +
+    // swal({
+    //   title: 'Login Akun',
+    //   // text: 'Silakan login sesuai dengan type akun Anda',
+    //   type: 'info',
+    //   html:
+    //     '<div class="content">' +
+    //     '<div class="ui grid">' +
+    //         '<div class="eight wide column">' +
+    //             '<div class="column">' +
+    //                 '<div class="ui segment">' +
+    //                     '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
+    //                     // '<p>Login untuk customer Belisada.</p>' +
+    //                     '<a href="/sign-in" class="ui green button">Enter</a>' +
+    //                 '</div>' +
+    //             '</div>' +
+    //         '</div>' +
+    //         '<div class="eight wide column">' +
+    //             '<div class="column">' +
+    //                 '<div class="ui segment">' +
+    //                     '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
+    //                     // '<p>Login untuk seller Belisada.</p>' +
+    //                     '<a href="/login" class="ui olive button">Enter</a>' +
+    //                 '</div>' +
+    //             '</div>' +
+    //         '</div>' +
+    //     '</div>' +
 
-    '</div>',
-        showCloseButton: true,
-        showConfirmButton: false,
-        confirmButtonText: 'Yes, delete it!'
-    } );
+    // '</div>',
+    //     showCloseButton: true,
+    //     showConfirmButton: false,
+    //     confirmButtonText: 'Yes, delete it!'
+    // } );
   }
 
-  // ngOnDestroy(): void {
-  //   throw new Error('Method not implemented.');
-  // }
 
   viewCart() {
     this.router.navigateByUrl('/cart');
   }
 
-  getProfile() {
-    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
-      this.userName = data.name;
-      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
-    });
-  }
+
   logout() {
     swal({
       title: 'Belisada.co.id',
@@ -226,7 +236,9 @@ export class FrontHeaderComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         localStorage.removeItem('user');
-        location.reload();
+        setTimeout(() => {
+          location.replace('/');
+        }, 300);
       } else if (result.dismiss === 'cancel') {
       }
     });

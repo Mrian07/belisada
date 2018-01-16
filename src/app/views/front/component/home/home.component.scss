@@ -17,6 +17,24 @@
     padding: 3px;
     position: absolute;
 }
+.promo-grid-cell.banner1 {
+    width: 50.00%;
+    height: 100.00%;
+    left: 0.00%;
+    top: 0.00%;
+}
+.promo-grid-cell.banner2 {
+    width: 25.00%;
+    height: 100.00%;
+    left: 50.00%;
+    top: 0.00%;
+}
+.promo-grid-cell.banner3 {
+    width: 25.00%;
+    height: 100.00%;
+    left: 75.00%;
+    top: 0.00%;
+}
 .silver {
     filter: gray; /* IE6-9 */
     -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
@@ -37,7 +55,7 @@
     left: -3px;
 }
 .promo-grid {
-    padding: 0 0 50%;
+    padding: 0 0 20%;
     position: relative;
 }
 
@@ -161,5 +179,29 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 1em;
         margin-bottom:30px;
+    }
+
+    .promo-grid {
+        padding: 0 0 40%;
+        position: relative;
+    }
+
+    .promo-grid-cell.banner1 {
+        width: 66.66%;
+        height: 100.00%;
+        left: 0.00%;
+        top: 0.00%;
+    }
+    .promo-grid-cell.banner2 {
+        width: 33.33%;
+        height: 50.00%;
+        left: 66.66%;
+        top: 0.00%;
+    }
+    .promo-grid-cell.banner3 {
+        width: 33.33%;
+        height: 50.00%;
+        left: 66.66%;
+        top: 50.00%;
     }
 }

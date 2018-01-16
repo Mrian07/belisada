@@ -22,6 +22,7 @@ export class FrontNavComponent implements OnInit {
   c2: Category2[];
   imgTop: any;
   navigationObjects: any[] = [];
+  alias: string;
 
   constructor(
     private categoryService: CategoryService,
@@ -33,7 +34,7 @@ export class FrontNavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new frontActions.GetNav());
+    // this.store.dispatch(new frontActions.GetNav());
     this.getNavigationCategory();
   }
 
@@ -55,12 +56,10 @@ export class FrontNavComponent implements OnInit {
   getNavigationCategory() {
     this.getCategoryOne(() => {
       this.c1.forEach((item, index) => {
-        // console.log('item: ', item);
         this.navigationObjects.push(item);
         this.getCategoryTwo(item.mProductCategoryId, () => {
           this.navigationObjects[index]['c2'] = this.c2;
         });
-        // console.log('this.navigationObject: ', this.navigationObject);
       });
     });
   }
@@ -72,6 +71,9 @@ export class FrontNavComponent implements OnInit {
   toList(id: number, aliasname: string) {
     // this.router.navigate(['/category/' + aliasname], {relativeTo: this.route});
     this.router.navigateByUrl('/category/' + id + '/' + aliasname);
+  // toList(id: number) {
+  //   this.shared.shareData = id;
+  //   this.router.navigateByUrl('/category/' + id);
   }
 
 }

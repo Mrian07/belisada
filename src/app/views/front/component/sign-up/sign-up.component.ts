@@ -5,6 +5,11 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { RegisterService } from '../../../../core/service/register/register.service';
 import { Title } from '@angular/platform-browser';
+import {
+  AuthService,
+  FacebookLoginProvider,
+  GoogleLoginProvider
+} from 'angular5-social-login';
 
 @Component({
   selector: 'app-sign-up',
@@ -24,13 +29,14 @@ export class SignUpComponent implements OnInit {
   tc: string;
   loading: any;
   isReady: Boolean = false;
-  
+
   constructor(
     private http: HttpClient,
     private categoryService: RegisterService,
     public modalService: SuiModalService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private socialAuthService: AuthService
   ) { }
 
   ngOnInit() {
@@ -83,4 +89,17 @@ export class SignUpComponent implements OnInit {
     });
   }
 
+  public socialSignIn(socialPlatform: string) {
+    let socialPlatformProvider;
+    if (socialPlatform === 'facebook') {
+      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+    }else if (socialPlatform === 'google') {
+      socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+    }
+    this.socialAuthService.signIn(socialPlatformProvider).then(
+      (userData) => {
+        console.log(socialPlatform + 'sign in data : ' , userData);
+      }
+    );
+  }
 }

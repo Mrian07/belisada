@@ -5,7 +5,29 @@
 </div>
 <div class="ui segment">
   <div class="ui grid">
-      <div class="sexteen wide stretched column">
+        <div class="six wide column">
+            <div class="ui card">
+                <div class="image">
+                    <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+                </div>
+                <div class="content">
+                    <a class="header">{{ user.name }}</a>
+                    <div class="meta">
+                        <span class="date">{{ user.email }}</span>
+                    </div>
+                    <div class="description">
+                        Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)
+                    </div>
+                </div>
+                <div class="extra content center aligned">
+                    <div class="upload-btn-wrapper">
+                        <button class="ui orange button">Pilih Photo</button>
+                        <input type="file" name="myfile" (change)="setUrl($event, avaImg)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ten wide stretched column">
 
 
                   <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -56,11 +78,6 @@
                           <label>Nomor HP</label>
                           <input name="phone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
                       </div>
-                      <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
-                      <div class="upload-btn-wrapper">
-                          <button class="ui green button"><i class="cloud icon"></i> Upload file KTP</button>
-                          <input type="file" name="fileNpwp" (change)="setUrl($event, imgKTP)" />
-                      </div>  
 
                       <div class="ui divider"></div>
 
