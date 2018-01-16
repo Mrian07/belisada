@@ -200,7 +200,8 @@ const routes: Routes = [
               title: 'Profile Buyer'
             }
           }
-      },
+        ]
+      }
     ]
   },
 
