@@ -61,6 +61,7 @@ export class HomeComponent implements OnInit {
         this.title.setTitle('Belisada - Home');
         this.topHomeProductLvl1 = Observable.of(data.home);
         this.level_4 = Observable.of(data.brands);
+        console.log(this.level_4);
         });
     });
   }
