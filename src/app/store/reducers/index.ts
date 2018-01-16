@@ -45,6 +45,10 @@ export interface Nav {
   navigation: any;
 }
 
+export interface PaymentMethod {
+  paymentMethods: any;
+}
+
 export const productAdapter = createEntityAdapter<Product>();
 export interface Products extends EntityState<Product> { }
 
@@ -71,6 +75,9 @@ export interface Categorys extends EntityState<Category> { }
 
 export const navAdapter = createEntityAdapter<Nav>();
 export interface Navs extends EntityState<Nav> { }
+
+export const paymentMethodAdapter = createEntityAdapter<PaymentMethod>();
+export interface PaymentMethods extends EntityState<PaymentMethod> { }
 
 
 
@@ -109,6 +116,11 @@ const defaultNav = {
   navigation: null,
 };
 
+const defaultPaymentMethod = {
+  paymentMethods: [],
+};
+
+
 
 export const initialStateProduct: Product = productAdapter.getInitialState(defaultProduct);
 export const initialStateStore: Stores = storeAdapter.getInitialState(defaultStore);
@@ -119,6 +131,7 @@ export const initialStateDetail: Details = brandAdapter.getInitialState(defaultD
 export const initialStateList: Lists = listAdapter.getInitialState(defaultList);
 export const initialStateCategory: Categorys = categoryAdapter.getInitialState(defaultCategory);
 export const initialStateNavs: Navs = navAdapter.getInitialState(defaultNav);
+export const initialStatePaymentMethods: PaymentMethods = paymentMethodAdapter.getInitialState(defaultPaymentMethod);
 
 export function ProductReducer(
   state: Product = initialStateProduct,
@@ -269,6 +282,19 @@ export function NavReducer(
   }
 }
 
+export function PaymentMethodReducer(
+  state: PaymentMethods = initialStatePaymentMethods,
+  action: front.HomeAction) {
+
+  switch (action.type) {
+
+    case front.GET_PAYMENT_METHOD_SUCCESS : {
+      return action.paymentMethods;
+    }
+    default: return {};
+  }
+}
+
 export const getProductState = createFeatureSelector<Products>('product');
 export const getStoreState = createFeatureSelector<Stores>('store');
 export const getBankState = createFeatureSelector<Banks>('bank');
@@ -278,4 +304,5 @@ export const getDetailState = createFeatureSelector<Details>('detail');
 export const getListState = createFeatureSelector<Lists>('list');
 export const getCategoryState = createFeatureSelector<Categorys>('category');
 export const getNavState = createFeatureSelector<Navs>('navigation');
+export const getPaymentMethodState = createFeatureSelector<PaymentMethods>('paymentMethod');
 

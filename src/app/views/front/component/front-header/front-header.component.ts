@@ -16,6 +16,7 @@ import { ProductService } from '../../../../core/service/product/product.service
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import { LoginService } from '../../../../core/service/login/login.service';
+import { TruncateModule } from 'ng2-truncate';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;

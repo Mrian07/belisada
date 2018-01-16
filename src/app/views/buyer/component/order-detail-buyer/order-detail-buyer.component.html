@@ -1,0 +1,74 @@
+<p><a routerLink="/buyer/transaction-buyer" class="menu-top-side"><i class="angle double left icon"></i>Kembali</a></p>
+<table class="ui very basic collapsing celled table">
+    <thead>
+      <tr><th>Tanggal Order</th>
+      <th>Total Pembayaran</th>
+      <th>Metode Pembayaran</th>
+      <th>Order Number</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td>
+            09 Januari 2018 13:29:12 WIB
+          </td>
+          <td>
+              Rp.229.500
+          </td>
+          <td>
+              Bank Transfer
+          </td>
+          <td>
+              ORD/09012018/22
+          </td>
+          <td>
+              SHIPPING
+          </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+<hr size='1' color='#dddddd'>
+  <div class="row animated rollIn">
+      <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+          <thead class="cf">
+            <tr>
+              <th>Image</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Sub Total</th>
+              <th>Hapus</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td class="valTd" data-title="Image">
+              <img class="ui tiny image" [src]="item.product.imageurl" style="margin: 0 auto;">
+            </td>
+            <td class="valTd" data-title="Nama">
+              {{ item.product.name }}
+            </td>
+            <td class="valTd text-right" data-title="Harga">
+              {{ item.product.pricelist | currency:'Rp ' }}
+            </td>
+            <td class="valTd text-right" data-title="Jumlah">
+              <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/>
+            </td>
+            <td class="valTd text-right" data-title="Sub Total">{{ item.totalCost | currency:'Rp ' }}</td>
+            <td class="valTd" data-title="Hapus">
+                <button class="circular ui icon button" (click)="removeProductFromCart()">
+                  <i class="trash outline icon"></i>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+    </div>
+  </div>  
+
+  <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4>

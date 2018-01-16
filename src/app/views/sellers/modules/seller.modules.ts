@@ -50,10 +50,10 @@ import { AddproductService } from '../../../core/service/addproduct/addproduct.s
 import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reducers';
 import { ProductEffects } from '../../../store/effects/index';
-import { TruncateModule } from 'ng2-truncate';
 import { ProductListComponent } from '../component/product-list/product-list.component';
 import { ChattingComponent } from '../component/chatting/chatting.component';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 
 
 @NgModule({

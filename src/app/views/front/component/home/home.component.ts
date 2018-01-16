@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private actionsSubject: ActionsSubject,
+    private store: Store<fromProduct.Homes>,
     private title: Title,
     private seo: SeoService,
-    private store: Store<fromProduct.Homes>,
     private ngZone: NgZone
   ) {
     this.store.dispatch(new frontActions.GetHome());
@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
       title: 'Home',
       description: 'Belisada Home'
     });
+    this.title.setTitle('Belisada - Home');
 
     this.homeload = this.actionsSubject
     .asObservable()
@@ -57,11 +58,8 @@ export class HomeComponent implements OnInit {
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.ngZone.run(() => {
-        console.log('home');
-        this.title.setTitle('Belisada - Home');
         this.topHomeProductLvl1 = Observable.of(data.home);
         this.level_4 = Observable.of(data.brands);
-        console.log(this.level_4);
         });
     });
   }
