@@ -1,3 +1,4 @@
+import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
@@ -212,6 +213,12 @@ const routes: Routes = [
             component: OrderDetailBuyerComponent,
             data: {
               title: 'Order Detail Buyer'
+            }
+          }, {
+            path: 'confirmation-buyer',
+            component: ConfirmationBuyerComponent,
+            data: {
+              title: 'Confirmation Buyer'
             }
           }
         ]

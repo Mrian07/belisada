@@ -54,6 +54,7 @@ import { ProductTopBuyerComponent } from './views/buyer/component/product-top-bu
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
+import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -106,7 +107,8 @@ export function getAuthServiceConfigs() {
     ProductTopBuyerComponent,
     ProfileBuyerComponent,
     TransactionBuyerComponent,
-    OrderDetailBuyerComponent
+    OrderDetailBuyerComponent,
+    ConfirmationBuyerComponent
   ],
   imports: [
     BrowserModule,
