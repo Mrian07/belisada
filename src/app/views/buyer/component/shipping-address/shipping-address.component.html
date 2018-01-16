@@ -13,13 +13,16 @@
                    <td>{{item.name}}</td>
                </tr>
                <tr>
-                   <td></td>
+                   <td>Phone : </td>
+               </tr>
+               <tr>
+                   <td>{{item.phone}}</td>
                </tr>
                <tr>
 
 
                    <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
-                   <td><button class="btnlooklikelink">Update</button></td>
+                   <td><button class="btnlooklikelink" (click)="getAllStorex(item)">Update</button></td>
                </tr>
 
            </table>
@@ -138,3 +141,4 @@
                     </div>
                 </div>
             </div>
+

@@ -53,6 +53,7 @@ import { ProductEffects } from '../../../store/effects/index';
 import { TruncateModule } from 'ng2-truncate';
 import { ProductListComponent } from '../component/product-list/product-list.component';
 import { ChattingComponent } from '../component/chatting/chatting.component';
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 
 @NgModule({
@@ -102,7 +103,9 @@ import { ChattingComponent } from '../component/chatting/chatting.component';
     StoreModule.forFeature('product', ProductReducer),
     StoreModule.forFeature('store', StoreReducer),
     StoreModule.forFeature('bank', BankReducer),
-    EffectsModule.forFeature([ProductEffects])
+    EffectsModule.forFeature([ProductEffects]),
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot()
   ],
   providers: [
     BrandsService,

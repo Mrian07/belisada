@@ -114,6 +114,43 @@ export class ShippingAddressComponent implements OnInit {
       console.log('ah elah', data);
     });
   }
+  getAllStorex(id) {
+    const model = this.createComForm.value;
+    //
+    this.masterService.getCity(id.regionId).subscribe(city => {
+      this.cities = city;
+      this.masterService.getDistrict(id.cityId).subscribe(district => {
+        this.districts = district;
+        this.masterService.getVillage(id.districtId).subscribe(village => {
+
+          this.villages = village;
+          this.addressName.setValue(id.addressName);
+          this.name.setValue(id.name);
+          this.address.setValue(id.address);
+          this.province.setValue(this.provinces.find(x => x.mregionId === id.regionId));
+          this.city.setValue(this.cities.find(x => x.mcityId === id.cityId));
+          // this.sectorTypeId.setValue(this.bidang.find(x => x.sectorTypeId === data.sectorTypeId));
+          // this.city.setValue(data.cityId);
+          this.district.setValue(this.districts.find(x => x.mdistrictId === id.districtId));
+          this.vilaggeId.setValue(this.villages.find(x => x.mvillageId === id.villageId));
+          this.postalCode.setValue(id.postal);
+          // this.corporatePhone.setValue(data.corporatePhone);
+          // this.ktp.setValue(data.idcard);
+          // this.corporateNpwp.setValue(data.corporateNpwp);
+          // this.imgAvatar.setValue(data.imageAvatar);
+          // this.imageCorporateNpwp.setValue(data.imageCorporateNpwp);
+          // this.dateOfBirth = new FormControl(new Date());
+          // this.dateOfBirth.setValue(data.dateOfBirth);
+        });
+      });
+    });
+    // this.name = id.name;
+    // this.accountNo = id.accountNo;
+    // this.selectedCategory = id.mBankId;
+    // this.mBankAccountId = id.mBankAccountId;
+    // this.show1 = false;
+    console.log('ini semuanya', id);
+  }
 
   btnDelete(id) {
     console.log(id);

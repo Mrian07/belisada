@@ -172,44 +172,45 @@ export class FrontHeaderComponent implements OnInit {
     this.selectedSearchCategory = '';
   }
 
-
-
-
+  register() {
+    this.router.navigateByUrl('/sign-up');
+  }
 
   login() {
+    this.router.navigateByUrl('/sign-in');
     // this.isLogin = true;
-    swal({
-      title: 'Login Akun',
-      // text: 'Silakan login sesuai dengan type akun Anda',
-      type: 'info',
-      html:
-        '<div class="content">' +
-        '<div class="ui grid">' +
-            '<div class="eight wide column">' +
-                '<div class="column">' +
-                    '<div class="ui segment">' +
-                        '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
-                        // '<p>Login untuk customer Belisada.</p>' +
-                        '<a href="/sign-in" class="ui green button">Enter</a>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-            '<div class="eight wide column">' +
-                '<div class="column">' +
-                    '<div class="ui segment">' +
-                        '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
-                        // '<p>Login untuk seller Belisada.</p>' +
-                        '<a href="/login" class="ui olive button">Enter</a>' +
-                    '</div>' +
-                '</div>' +
-            '</div>' +
-        '</div>' +
+    // swal({
+    //   title: 'Login Akun',
+    //   // text: 'Silakan login sesuai dengan type akun Anda',
+    //   type: 'info',
+    //   html:
+    //     '<div class="content">' +
+    //     '<div class="ui grid">' +
+    //         '<div class="eight wide column">' +
+    //             '<div class="column">' +
+    //                 '<div class="ui segment">' +
+    //                     '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
+    //                     // '<p>Login untuk customer Belisada.</p>' +
+    //                     '<a href="/sign-in" class="ui green button">Enter</a>' +
+    //                 '</div>' +
+    //             '</div>' +
+    //         '</div>' +
+    //         '<div class="eight wide column">' +
+    //             '<div class="column">' +
+    //                 '<div class="ui segment">' +
+    //                     '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
+    //                     // '<p>Login untuk seller Belisada.</p>' +
+    //                     '<a href="/login" class="ui olive button">Enter</a>' +
+    //                 '</div>' +
+    //             '</div>' +
+    //         '</div>' +
+    //     '</div>' +
 
-    '</div>',
-        showCloseButton: true,
-        showConfirmButton: false,
-        confirmButtonText: 'Yes, delete it!'
-    } );
+    // '</div>',
+    //     showCloseButton: true,
+    //     showConfirmButton: false,
+    //     confirmButtonText: 'Yes, delete it!'
+    // } );
   }
 
 

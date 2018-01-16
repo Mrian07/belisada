@@ -33,6 +33,7 @@
     "@ngrx/store-devtools": "^4.1.1",
     "@ngx-translate/core": "^9.0.2",
     "@ngx-translate/http-loader": "^2.0.0",
+    "angular-froala-wysiwyg": "^2.7.3",
     "angular2-image-zoom": "^1.2.1",
     "angular5-social-login": "^1.0.9",
     "chart.js": "^2.7.1",

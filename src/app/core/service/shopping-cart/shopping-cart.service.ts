@@ -82,7 +82,6 @@ export class ShoppingCartService {
           cancelButtonText:
             `Continue to Shop`,
         }).then((result) => {
-          console.log('result: ', result);
           if (result.dismiss === 'cancel') {
 
           } else {
@@ -153,14 +152,12 @@ export class ShoppingCartService {
     const cart = new ShoppingCart();
     const storedCart = this.storage.getItem(CART_KEY);
     if (storedCart) {
-      console.log(storedCart);
       cart.updateFrom(JSON.parse(storedCart));
     }
     return cart;
   }
 
   private save(cart: ShoppingCart): void {
-    console.log('cart: ', cart);
     this.storage.setItem(CART_KEY, JSON.stringify(cart));
   }
 

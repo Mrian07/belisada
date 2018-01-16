@@ -200,7 +200,8 @@ const routes: Routes = [
               title: 'Profile Buyer'
             }
           }
-      },
+        ]
+      }
     ]
   },
 
@@ -209,7 +210,7 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'category/:id',
+        path: 'category/:id/:aliasname',
         component: CategoryComponent,
         data: {
           title: 'category'
