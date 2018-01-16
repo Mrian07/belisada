@@ -1,8 +1,13 @@
+import { PaymentMethods } from './../../../../store/reducers/index';
 import { PaymentMethod } from './../../../../core/model/PaymentMethod';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaymentMethodService } from '../../../../core/service/payment-method/payment-method.service';
 import { Title } from '@angular/platform-browser';
+import { ActionsSubject, Store } from '@ngrx/store';
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-payment-method',
@@ -11,14 +16,33 @@ import { Title } from '@angular/platform-browser';
 })
 export class PaymentMethodComponent implements OnInit {
 
-  paymentMethod: PaymentMethod[];
+  paymentMethods: PaymentMethod[];
+  subscription: Subscription;
 
-  constructor(private router: Router, private title: Title, private paymentMethodService: PaymentMethodService) { }
+  constructor(
+    private router: Router,
+    private title: Title,
+    private paymentMethodService: PaymentMethodService,
+    private actionsSubject: ActionsSubject,
+    private store: Store<fromProduct.PaymentMethods>
+  ) {
+    // this.store.dispatch(new frontActions.GetPaymentMethod());
+  }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Payment Method');
-    this.paymentMethodService.getPaymentMethod().subscribe(datas => {
-      this.paymentMethod = datas;
+
+    this.subscription = this.actionsSubject
+    .asObservable()
+    .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
+    .subscribe((action: frontActions.GetPaymentMethodSuccess) => {
+      this.getPaymentMethods();
+    });
+  }
+
+  getPaymentMethods() {
+    this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(data => {
+      console.log('data: ', data);
     });
   }
 

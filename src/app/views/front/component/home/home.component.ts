@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private actionsSubject: ActionsSubject,
+    private store: Store<fromProduct.Homes>,
     private title: Title,
     private seo: SeoService,
-    private store: Store<fromProduct.Homes>,
     private ngZone: NgZone
   ) {
     this.store.dispatch(new frontActions.GetHome());

@@ -20,6 +20,8 @@ import { HomeService } from '../../core/service/home/home.service';
 import { ProductDetailService } from '../../core/service/product-detail/product-detail.service';
 import { SearchService } from '../../core/service/search/search.service';
 import { CategoryService } from '../../core/service/category/category.service';
+import { PaymentMethodService } from '../../core/service/payment-method/payment-method.service';
+import { PaymentMethodDto } from '../../core/model/paymentMethodDto';
 
 
 @Injectable()
@@ -30,6 +32,7 @@ export class HomeEffects {
     private detailService: ProductDetailService,
     private searchService: SearchService,
     private categoryService: CategoryService,
+    private paymentMethodService: PaymentMethodService
 ) {}
 
   @Effect()
@@ -92,4 +95,27 @@ export class HomeEffects {
       }
     )
   );
+
+  @Effect()
+  getPaymentMethods$: Observable<any> = this.actions$.ofType(frontActions.GET_PAYMENT_METHOD)
+      .map((action: frontActions.GetPaymentMethod) => action)
+      .mergeMap(() =>
+        this.paymentMethodService.getPaymentMethod()
+        .switchMap((datas) =>
+          datas.map(x => {
+            console.log('x: ', x);
+            this.paymentMethodService.getPaymentMethodDetail(x.code)
+            .switchMap( paymentMethodDetails => {
+              console.log('paymentMethodDetails: ', paymentMethodDetails);
+              const paymentMethodDto = {
+                paymentMethod: x,
+                paymentMethodDetails: paymentMethodDetails
+              };
+              return [
+                new frontActions.GetPaymentMethodSuccess(paymentMethodDto)
+              ];
+            });
+          })
+      )
+    );
 }
