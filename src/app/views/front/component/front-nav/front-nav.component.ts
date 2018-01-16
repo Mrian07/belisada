@@ -7,6 +7,7 @@ import { Category2 } from '../../../../core/model/category2';
 import { CategoryService } from '../../../../core/service/category/category.service';
 import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
+import { ShareService } from '../../../../core/service/shared.service';
 
 
 
@@ -21,11 +22,12 @@ export class FrontNavComponent implements OnInit {
   c2: Category2[];
   imgTop: any;
   navigationObjects: any[] = [];
+  alias: string;
 
   constructor(
     private categoryService: CategoryService,
     private router: Router,
-
+    private shared: ShareService
   ) {
   }
 
@@ -59,6 +61,7 @@ export class FrontNavComponent implements OnInit {
     });
   }
   toList(id: number) {
+    this.shared.shareData = id;
     this.router.navigateByUrl('/category/' + id);
   }
 
