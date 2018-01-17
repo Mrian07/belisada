@@ -37,6 +37,7 @@ import { ChattingFrontComponent } from '../../sellers/component/chatting/chattin
 import {ImageZoomModule} from 'angular2-image-zoom';
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
+import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
 import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
 
 @NgModule({
@@ -83,7 +84,8 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
     ShoppingCartService,
     ProductService,
     PaymentMethodService,
-    EmailNewsLetterService
+    EmailNewsLetterService,
+    FreightRateService
   ]
 })
 export class FrontModules { }
