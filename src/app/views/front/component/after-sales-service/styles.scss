@@ -1,0 +1,148 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+
+    background-color: rgb(242, 242, 242);
+    font-family: 'Lato', sans-serif;
+
+}
+
+/**
+*   @author Achmad Ricky Budianto
+*   CSS global tools
+**/
+.pull-left {
+    float: left;
+}
+.pull-right {
+    float: right;
+}
+.clearfix {
+    clear: both;
+}
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.text-right {
+    text-align: right;
+}
+.text-justify {
+    text-align: justify;
+}
+.gap-between-elements {
+    margin-bottom: 1em!important;
+}
+.full-size-component {
+    width:100%;
+}
+.full-width {
+    width: 100%!important;
+}
+/** ----------------------- **/
+
+/**
+* Overriding component style
+**/
+
+.ngx-datepicker-container .ngx-datepicker-calendar-container {
+    z-index: 1!important;
+}
+
+/**
+*   @author Wahyu
+*   Used by form inside authentication layout
+**/
+.button.auth-btn-submit {
+    color: #ffffff;
+    background: #3cb878;
+    width: 200px;
+}
+.button.auth-btn-submit:hover {
+    color: #ffffff;
+    background: #3cb878;
+}
+.button.socmed {
+    width: 220px;
+}
+/** ----------------------- **/
+
+.show-on-mobile {
+    display: none;
+}
+@media only screen and (min-width: 1440px) {
+    .ui.container {
+        width: 1401px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .show-on-mobile {
+        display: block!important;
+    }
+    .hide-on-mobile {
+        display: none!important;
+    }
+}
+
+
+.add-to-card-info {
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 100px auto;
+
+    .detail-add-to-cart {
+        text-align: left;
+        font-size: 1em;
+        display: grid;
+        
+        span {
+            display: block;
+        }
+        .detail-add-to-cart-container {
+            align-self: center;
+
+            .name-added-to-cart {
+                font-size: 1em;
+                color: #333;
+                font-weight: 700;
+                margin-bottom: 10px;
+            }
+            .added-to-cart {
+                font-size: 0.75em;
+            }
+        }
+    }
+}
+
+.bs-btn {
+    border: 1px solid transparent;
+    border-top: 0;
+    border-bottom: 0;
+    margin: 0 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    border-radius: 0.25rem;
+    transition: all 0.15s ease-in-out;
+    color: #fff;
+}
+.btn-modal-view-cart {
+    background-color: #002E43;
+    border-color: #002E43;
+}
+.btn-modal-view-cart:hover {
+    background-color: #F8992E;
+    border-color: #F8992E;
+}
+.btn-modal-contionue-shopping {
+    background-color: #F8992E;
+    border-color: #F8992E;
+}
+.btn-modal-contionue-shopping:hover {
+    background-color: #002E43;
+    border-color: #002E43;
+}
