@@ -19,7 +19,7 @@ export class AddShippingComponent implements OnInit {
 
   shippingAddressList: ShippingAddress[];
 
-  user = JSON.parse(localStorage.user);
+  //user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
   address: FormControl;
@@ -50,12 +50,12 @@ export class AddShippingComponent implements OnInit {
     private shippingAddressService: ShippingAddressService) { }
 
   ngOnInit() {
-    const luser = JSON.parse(localStorage.getItem('user'));
+   // const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();
     this.getProvince();
     this.fillForms();
-    console.log('dn', luser);
+   // console.log('dn', luser);
   }
 
   createFormControls() {

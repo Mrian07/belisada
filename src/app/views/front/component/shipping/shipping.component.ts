@@ -29,7 +29,7 @@ export class ShippingComponent implements OnInit {
 
   selShippingAddress: any = '';
   selBillingAddress: any = '';
-
+  totalbilling: number;
   isTriggered: Boolean = false;
 
 
@@ -47,20 +47,18 @@ export class ShippingComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada - Shipping & Billing Address');
-
     this.getAllShippingAddress();
-
     this.bilingAddressService.getAll().subscribe(datas => {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
-        console.log('this.billingAddressList: ', this.billingAddressList);
+       // console.log('this.billingAddressList: ', this.billingAddressList);
       });
     });
   }
 
   receiveTrigger($event) {
-    console.log('receiveTrigger($event): ', $event);
+   // console.log('receiveTrigger($event): ', $event);
     this.getAllShippingAddress();
   }
 
@@ -69,21 +67,21 @@ export class ShippingComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.shippingAddressList = this.shareService.shareData;
-        console.log('this.shippingAddressList: ', this.shippingAddressList);
+        //console.log('this.shippingAddressList: ', this.shippingAddressList);
       });
     });
   }
 
   getShippingAddress(selShippingAddress) {
-    console.log(selShippingAddress);
+    //console.log(selShippingAddress);
     this.shippingAddress = this.shippingAddressList.find(x => x.addressId === +selShippingAddress);
-    console.log('this.shippingAddress: ', this.shippingAddress);
+    //console.log('this.shippingAddress: ', this.shippingAddress);
   }
 
   getBillingAddress(selBillingAddress) {
-    console.log(selBillingAddress);
+    //console.log(selBillingAddress);
     this.billingAddress = this.billingAddressList.find(x => x.addressId === +selBillingAddress);
-    console.log('this.shippingAddress: ', this.billingAddress);
+   // console.log('this.shippingAddress: ', this.billingAddress);
   }
 
   getCheckout() {
