@@ -1,3 +1,4 @@
+import { FaqSellerComponent } from './../component/faq-seller/faq-seller.component';
 import { ProductListComponent } from './../component/product-list/product-list.component';
 import { NgModule } from '@angular/core';
 import { Routes } from '@angular/router';
@@ -15,7 +16,6 @@ import { ChangePasswordComponent } from '../component/change-password/change-pas
 import { KontakComponent } from '../component/kontak/kontak.component';
 import { SallesReportComponent } from '../component/salles-report/salles-report.component';
 import { KontakDetailComponent } from '../component/kontak-detail/kontak-detail.component';
-import { FaqComponent } from '../component/faq/faq.component';
 import { PaymentInfoComponent } from '../component/payment-info/payment-info.component';
 import { StatisticsComponent } from '../component/statistics/statistics.component';
 import { StoreComponent } from '../component/store/store.component';
@@ -74,8 +74,8 @@ const sellerroutes: Routes = [
         component: KontakDetailComponent,
       },
       {
-        path: 'faq',
-        component: FaqComponent,
+        path: 'faq-seller',
+        component: FaqSellerComponent,
       },
       {
         path: 'payment-info',

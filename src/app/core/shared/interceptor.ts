@@ -40,7 +40,7 @@ export class Interceptor implements HttpInterceptor {
         if (err.status === 401) {
           swal('Session Expired, Anda Harus Login ulang')
           .then((result) => {
-            auth.redirect();
+            this.routes.navigateByUrl('/sign-in');
           });
         }else if (err.status === 404) {
           swal('Oops!...something wrong...')

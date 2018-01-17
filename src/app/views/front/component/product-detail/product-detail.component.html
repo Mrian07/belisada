@@ -1,11 +1,11 @@
 
 <div class="ui grid container">
-  <div class="four wide column">
+  <div class="six wide column">
     <div class="ui breadcrumb">
         <div class="gap-top">
     <a class="section" (click)="home()">Home</a>
     <div class="divider"> / </div>
-    <a routerLink="/category/{{ProductList.category2Id}}" class="section">{{ProductList.category2Name}}</a>
+    <a routerLink="/category/{{ProductList.category2Id}}/{{ProductList.category2Name}}" class="section">{{ProductList.category2Name}}</a>
     <!-- <a class="section"></a> -->
     <div class="divider"> / </div>
     <div class="active section">{{ProductList.category3Name}}</div>
@@ -15,14 +15,14 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [imageZoom]="theImage" [src]="theImage" [style.width.px]="320" [style.height.px]="320" [lensWidth]="500" [lensHeight]="500">
+        <img [imageZoom]="theImage" [src]="theImage" [style.width.px]="320" [style.height.px]="320" [lensWidth]="600" [lensHeight]="600">
     </div>
     <div class="thumbnail-container">
         <div class="thumbnail">
         <img [src]="image" *ngFor="let image of ProductImage" (click)="setimage(image)">
         </div>
     </div>
-    <div style="border-right:1px solid;">
+    <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
     <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
@@ -98,7 +98,7 @@
 
     <div class="ui grid">
             <div class="three wide column">Highlight</div>
-            <div class="four wide column"><p [innerHTML]="ProductList.highlight | sanitizeHtml"></p></div>
+            <div class="nine wide column"><p [innerHTML]="ProductList.highlight | sanitizeHtml"></p></div>
           </div>
           <div class="gap-between-elements3"></div>
           <table border=0>

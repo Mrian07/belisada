@@ -35,7 +35,7 @@
         <!-- <div class="grid-wrapper"> -->
 
             <div class="item-grid ui segment" *ngFor="let item of item.list">
-                <a routerLink="/Product-detail/{{item.productId}}" class="item">
+                <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;">
                 <!-- <div class="ui segment"> -->
                     <div class="item-img">
                         <span class="helper"></span>

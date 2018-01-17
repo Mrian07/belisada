@@ -1,4 +1,14 @@
 import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
+import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
+import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
+import { WarrantyComponent } from './views/front/component/warranty/warranty.component';
+import { ReturnCancelComponent } from './views/front/component/return-cancel/return-cancel.component';
+import { HowOrderComponent } from './views/front/component/how-order/how-order.component';
+import { FaqComponent } from './views/front/component/faq/faq.component';
+import { PrivacyPolicyComponent } from './views/front/component/privacy-policy/privacy-policy.component';
+import { TermsConditionsComponent } from './views/front/component/terms-conditions/terms-conditions.component';
+import { AboutUsComponent } from './views/front/component/about-us/about-us.component';
+import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
@@ -38,56 +48,11 @@ import { ChangePasswordBuyerComponent } from './views/buyer/component/change-pas
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
 import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja/cara-berbelanja.component';
+import { CareerComponent } from './views/front/component/career/career.component';
+import { CopyrightPolicyComponent } from './views/front/component/copyright-policy/copyright-policy.component';
 
 const routes: Routes = [
   {
-
-  //   path: 'buyer',
-  //   component: BuyerLayoutComponent,
-  //   children: [
-  //     {
-  //       path: 'dashboard',
-  //       component: DashboardBuyerComponent,
-  //       data: {
-  //         title: 'home'
-  //       }
-  //     },
-  //     {
-  //       path: 'change-password',
-  //       component: ChangePasswordBuyerComponent,
-  //       data: {
-  //         title: 'Change Password'
-  //       }
-  //     },
-  //     {
-  //       path: 'tet',
-  //       component: BillingAddressComponent,
-  //       data: {
-  //         title: 'Change Password'
-  //       }
-  //     },
-  //     {
-  //       path: 'shippingAddress',
-  //       component: ShippingAddressComponent,
-  //       data: {
-  //         title: 'Change Password'
-  //       }
-  //     }, {
-  //       path: 'product-top-buyer/:id',
-  //       component: ProductTopBuyerComponent,
-  //       data: {
-  //         title: 'Product Top Buyer'
-  //       }
-  //     }, {
-  //       path: 'profile-buyer',
-  //       component: ProfileBuyerComponent,
-  //       data: {
-  //         title: 'Profile Buyer'
-  //       }
-  //     }
-  //   ]
-  // },
-  // {
     path: '',
     component: FrontLayoutComponent,
     children: [
@@ -113,7 +78,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'Product-detail/:id',
+        path: 'Product-detail/:id/:alias',
         component: ProductDetailComponent,
         data: {
           title: 'product'
@@ -169,6 +134,72 @@ const routes: Routes = [
           title: 'home'
         }
       }, {
+        path: 'about-us',
+        component: AboutUsComponent,
+        data: {
+          title: 'About Us'
+        }
+      }, {
+        path: 'career',
+        component: CareerComponent,
+        data: {
+          title: 'Career'
+        }
+      }, {
+        path: 'terms-conditions',
+        component: TermsConditionsComponent,
+        data: {
+          title: 'Terms Conditions'
+        }
+      }, {
+        path: 'privacy-policy',
+        component: PrivacyPolicyComponent,
+        data: {
+          title: 'Privacy Policy'
+        }
+      }, {
+        path: 'copyright-policy',
+        component: CopyrightPolicyComponent,
+        data: {
+          title: 'Copyright Policy'
+        }
+      }, {
+        path: 'faq',
+        component: FaqComponent,
+        data: {
+          title: 'FAQ'
+        }
+      }, {
+        path: 'how-order',
+        component: HowOrderComponent,
+        data: {
+          title: 'How Order'
+        }
+      }, {
+        path: 'return-cancel',
+        component: ReturnCancelComponent,
+        data: {
+          title: 'Return Cancel'
+        }
+      }, {
+        path: 'warranty',
+        component: WarrantyComponent,
+        data: {
+          title: 'warranty'
+        }
+      }, {
+        path: 'contact-us',
+        component: ContactUsComponent,
+        data: {
+          title: 'Contact Us'
+        }
+      }, {
+        path: 'after-sales-service',
+        component: AfterSalesServiceComponent,
+        data: {
+          title: 'After Sales Service'
+        }
+      }, {
         path: 'buyer',
         component: BuyerLayoutComponent,
         children: [
@@ -187,7 +218,7 @@ const routes: Routes = [
             }
           },
           {
-            path: 'tet',
+            path: 'billingAddress',
             component: BillingAddressComponent,
             data: {
               title: 'Change Password'
@@ -239,6 +270,13 @@ const routes: Routes = [
             component: InboxBuyerComponent,
             data: {
               title: 'Order Detail Buyer'
+          }
+        },
+          {
+            path: 'confirmation-buyer',
+            component: ConfirmationBuyerComponent,
+            data: {
+              title: 'Confirmation Buyer'
             }
           }
         ]
@@ -251,7 +289,7 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'category/:aliasname/:id',
+        path: 'category/:id/:aliasname',
         component: CategoryComponent,
         data: {
           title: 'category'

@@ -1,3 +1,4 @@
+import swal from 'sweetalert2';
 import { Component, OnInit, NgZone, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ShippingAddressService } from '../../../../core/service/shipping-address/shipping-address.service';
@@ -76,7 +77,11 @@ export class ShippingComponent implements OnInit {
   }
 
   next() {
-    this.router.navigateByUrl('/payment-method');
+    if (this.shippingAddress && this.billingAddress) {
+      this.router.navigateByUrl('/payment-method');
+    } else {
+      swal('Pastikan anda memilih alamat pengiriman dan alamat penagihan');
+    }
   }
 
   prev() {

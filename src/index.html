@@ -1,129 +1,124 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <title>Belisada</title>
-  <base href="/"/>
+    <head>
+    <meta charset="utf-8"/>
+    <title>Belisada</title>
+    <base href="/"/>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"/>
-    <link rel="manifest" href="/manifest.json">
-    <link rel="icon" type="image/x-icon" href="favicon.ico"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#5bbad5">
-    <meta name="theme-color" content="#ffffff">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css"/>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato"/>
+        <link rel="manifest" href="/manifest.json">
+        <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+        <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png">
+        <link rel="manifest" href="/manifest.json">
+        <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="theme-color" content="#ffffff">
 
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="msapplication-starturl" content="/">
-  <meta name="theme-color" content="#f8992e">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="msapplication-starturl" content="/">
+        <meta name="theme-color" content="#f8992e">
 
-  <meta name="twitter:card" content="summary">
-	<meta name="twitter:site" content="@belisada">
-	<meta name="twitter:title" content="Belisada">
-	<meta name="twitter:description" content="Beli apa saja ada">
-	<meta name="twitter:creator" content="Belisada">
-	<meta name="twitter:image" content="/assets/icons/android-chrome-192x192.png">
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:site" content="@belisada">
+        <meta name="twitter:title" content="Belisada">
+        <meta name="twitter:description" content="Beli apa saja ada">
+        <meta name="twitter:creator" content="Belisada">
+        <meta name="twitter:image" content="/assets/icons/android-chrome-192x192.png">
 
-	<meta property="og:title" content="Belisada" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="https://belisada.co.id" />
-	<meta property="og:image" content="/assets/icons/android-chrome-192x192.png" />
-	<meta property="og:description" content="Beli apa saja ada" />
-	<meta property="og:site_name" content="Belisada" />
+        <meta property="og:title" content="Belisada" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://belisada.co.id" />
+        <meta property="og:image" content="/assets/icons/android-chrome-192x192.png" />
+        <meta property="og:description" content="Beli apa saja ada" />
+        <meta property="og:site_name" content="Belisada" />
 
-  <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
-  <style>
-    .splash {
-      opacity: 0;
-      position: fixed;
-      height: 100%;
-      width: 100%;
-      color: #f8992e;
-      padding-top: 25vh;
-      text-align: center;
-      z-index: -1;
-      font-family: monospace;
-      }
-      app-root:empty + .splash {
-        opacity: 1;
-        z-index: 100;
-      }
-      .splash h1 {
-            margin-bottom: 50px;
-      };
-    </style>
-</head>
-<body>
-  <!-- <app-root>Loading...</app-root> -->
-  <app-root>
+        <script type="text/javascript" src="https://cdn.ywxi.net/js/1.js" async></script>
         <style>
-        app-root {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: 100vh;
-
-          color: #f8992e;
-          font-family: -apple-system,
-              BlinkMacSystemFont,
-              "Segoe UI",
-              Roboto,
-              Oxygen-Sans,
-              Ubuntu,
-              Cantarell,
-              Helvetica,
-              sans-serif;
-          font-size: 2.5em;
-          text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-        }
-        body {
-          background: rgb(255, 255, 255);
-          margin: 0;
-          padding: 0;
-        }
-
-        @keyframes dots {
-          50% {
-            transform: translateY(-.4rem);
-          }
-          100% {
-            transform: translateY(0);
-          }
-        }
-
-        .d {
-          animation: dots 1.5s ease-out infinite;
-        }
-        .d-2 {
-          animation-delay: .5s;
-        }
-        .d-3 {
-          animation-delay: 1s;
-        }
+            .splash {
+            opacity: 0;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            color: #f8992e;
+            padding-top: 25vh;
+            text-align: center;
+            z-index: -1;
+            font-family: monospace;
+            }
+            app-root:empty + .splash {
+                opacity: 1;
+                z-index: 100;
+            }
+            .splash h1 {
+                    margin-bottom: 50px;
+            };
         </style>
+    </head>
+        <body>
+            <app-root>
+                <style>
+                    app-root {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100vh;
 
-        Loading Belisada<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
-      </app-root>
-  <!-- Include a polyfill for ES6 Promises (optional) for IE11 and Android browser -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
-  <script>
-        // load Branch
-        (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent".split(" "), 0);
-        // init Branch
-        branch.init('key_live_mbFHRaYjBrm4dOYc2XEtecldxtekMfim');
-      </script>
-      <div class="splash"  id="content">
-        <img src="/assets/icons/android-chrome-512x512.png" width="512px" alt="Belisada Logo">
-        <h1>Belisada</h1>
-     </div>
+                        color: #f8992e;
+                        font-family: -apple-system,
+                            BlinkMacSystemFont,
+                            "Segoe UI",
+                            Roboto,
+                            Oxygen-Sans,
+                            Ubuntu,
+                            Cantarell,
+                            Helvetica,
+                            sans-serif;
+                        font-size: 2.5em;
+                        text-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+                        }
+                        body {
+                            background: rgb(255, 255, 255);
+                            margin: 0;
+                            padding: 0;
+                        }
+
+                        @keyframes dots {
+                        50% {
+                            transform: translateY(-.4rem);
+                        }
+                        100% {
+                            transform: translateY(0);
+                        }
+                        }
+
+                        .d {
+                        animation: dots 1.5s ease-out infinite;
+                        }
+                        .d-2 {
+                        animation-delay: .5s;
+                        }
+                        .d-3 {
+                        animation-delay: 1s;
+                        }
+                </style>
+            Loading Belisada<span class="d">.</span><span class="d d-2">.</span><span class="d d-3">.</span>
+        </app-root>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+        <script>
+            (function(b,r,a,n,c,h,_,s,d,k){if(!b[n]||!b[n]._q){for(;s<_.length;)c(h,_[s++]);d=r.createElement(a);d.async=1;d.src="https://cdn.branch.io/branch-latest.min.js";k=r.getElementsByTagName(a)[0];k.parentNode.insertBefore(d,k);b[n]=h}})(window,document,"script","branch",function(b,r){b[r]=function(){b._q.push([r,arguments])}},{_q:[],_v:1},"addListener applyCode autoAppIndex banner closeBanner closeJourney creditHistory credits data deepview deepviewCta first getCode init link logout redeem referrals removeListener sendSMS setBranchViewData setIdentity track validateCode trackCommerceEvent".split(" "), 0);
+            branch.init('key_live_mbFHRaYjBrm4dOYc2XEtecldxtekMfim');
+        </script>
+        <div class="splash"  id="content">
+            <img src="/assets/icons/android-chrome-512x512.png" width="512px" alt="Belisada Logo">
+            <h1>Belisada</h1>
+        </div>
 
 
-     <script>
+     <!-- <script>
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker.register('/ngsw-worker.js')
           .then((registration) => {
@@ -133,13 +128,10 @@
             console.log('SW error', err);
           });
         }
-      </script>
+      </script> -->
 
-    <noscript>
-        <p>
-          Sorry, JavaScript must be enabled to use this app
-        </p>
-    </noscript>
-
-</body>
+        <noscript>
+            <p>Sorry, JavaScript must be enabled to use this app</p>
+        </noscript>
+    </body>
 </html>

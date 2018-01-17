@@ -81,30 +81,59 @@
 
         </div>
         <div class="column">
-            <div class="ui segment">
-                <div class="ui labeled action input">
 
-                    <div class="ui label">
-                        Pilih alamat penagihan:
-                    </div>
-
-                    <select class="ui compact selection dropdown" [(ngModel)]="selBillingAddress" (change)="getBillingAddress(selBillingAddress)">
-                        <option value="">-Pilih-</option>
-                        <option *ngFor="let item of billingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
-                    </select>
-                    <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
+            <sui-tabset>
+                <div class="ui top attached tabular menu">
+                    <a class="item" suiTabHeader="1">Billing</a>
+                    <a class="item" suiTabHeader="2">Tambah Billing</a>
                 </div>
+                <div class="ui bottom attached segment" suiTabContent="1">
+                   
 
-                <div class="ui segment" *ngIf="billingAddress">
-                    <p><strong>{{ billingAddress.name }} - {{ billingAddress.phone }}</strong><br>
-                        {{ billingAddress.address }}<br>
-                        {{ billingAddress.districtName }}, {{ billingAddress.cityName }}, {{ billingAddress.postal }}<br>
-                        {{ billingAddress.regionName }} - {{ billingAddress.countryName }}<br>
-                    </p>
-                    <!-- <p><strong>Email:</strong> dewa@yahoo.com</p>
-                    <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p> -->
+                        <div class="ui labeled action input">
+        
+                            <div class="ui label">
+                                Pilih alamat penagihan:
+                            </div>
+        
+                            <select class="ui compact selection dropdown" [(ngModel)]="selBillingAddress" (change)="getBillingAddress(selBillingAddress)">
+                                <option value="">-Pilih-</option>
+                                <option *ngFor="let item of billingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
+                            </select>
+                            <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
+                        </div>
+        
+                        <div class="ui segment" *ngIf="billingAddress">
+                            <p><strong>{{ billingAddress.name }} - {{ billingAddress.phone }}</strong><br>
+                                {{ billingAddress.address }}<br>
+                                {{ billingAddress.districtName }}, {{ billingAddress.cityName }}, {{ billingAddress.postal }}<br>
+                                {{ billingAddress.regionName }} - {{ billingAddress.countryName }}<br>
+                            </p>
+                            <!-- <p><strong>Email:</strong> dewa@yahoo.com</p>
+                            <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p> -->
+                        </div>
+               
+
+
                 </div>
-            </div>      
+                <div class="ui bottom attached segment" suiTabContent="2">
+                    <app-add-billing></app-add-billing>
+                </div>
+            </sui-tabset>
+
+
+
+
+
+
+
+
+
+
+
+
+            
+                 
         </div>
         
     </div>

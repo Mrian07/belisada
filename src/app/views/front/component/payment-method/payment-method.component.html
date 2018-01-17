@@ -43,26 +43,22 @@
                 <div class="ui grid">
                     <div class="ui three column grid">
                         <div class="row">
-                            <div class="column" *ngFor="let paymentMethod of paymentMethods">
+                            <div class="column" *ngFor="let item of paymentMethodDtos">
 
                                 <div class="ui form">
                                     <div class="grouped fields">
-                                        <label>{{ paymentMethod.name }}</label>
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
+                                        <label>{{ item.paymentMethod.name }}</label>
+                                        <div class="ui field segment" *ngFor="let detail of item.paymentMethodDetails">
+                                            <div class="ui radio checkbox" style="margin-left: 5px; margin-top: 5px;">
                                                 <input name="example2" checked="checked" type="radio"/>
-                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_01.png'/></label>
+                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_03.png'/></label>
                                             </div>
-                                        </div>
-                                        <div class="field">
-                                            <div class="ui radio checkbox">
-                                                <input name="example2" type="radio">
-                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_02.png'></label>
+                                            <div class="padding-box">
+                                                <p>{{ detail.bankName }}<br>{{ detail.accountNo }}<br>{{ detail.accountName }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -116,7 +112,7 @@
                     <button class="ui grey button">Gunakan Kode</button>
                 </div>
             </div>
-        </div>  
+        </div>
 
     </div>
 </div>
