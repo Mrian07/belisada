@@ -7,6 +7,10 @@ import { BilingAddressService } from '../../../../core/service/billing-address/b
 import { BillingAddress } from '../../../../core/model/billing-address';
 import { ShareService } from '../../../../core/service/shared.service';
 import { Title } from '@angular/platform-browser';
+import { Checkout } from '../../../../core/model/checkout';
+import { LocalStorageService } from '../../../../core/service/storage.service';
+
+const CHECKOUT_KEY  = 'checkout';
 
 @Component({
   selector: 'app-shipping',
@@ -14,6 +18,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./shipping.component.scss']
 })
 export class ShippingComponent implements OnInit {
+
+  private storage: Storage;
 
   shippingAddress: ShippingAddress;
   shippingAddressList: ShippingAddress[];
@@ -26,14 +32,18 @@ export class ShippingComponent implements OnInit {
 
   isTriggered: Boolean = false;
 
+
   constructor(
     private router: Router,
     private ngZone: NgZone,
     private title: Title,
+    private storageService: LocalStorageService,
     private shareService: ShareService,
     private shippingAddressService: ShippingAddressService,
     private bilingAddressService: BilingAddressService
-  ) { }
+  ) {
+    this.storage = this.storageService.get();
+  }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Shipping & Billing Address');
@@ -76,8 +86,21 @@ export class ShippingComponent implements OnInit {
     console.log('this.shippingAddress: ', this.billingAddress);
   }
 
+  getCheckout() {
+    const checkout = new Checkout();
+      const storedCheckout = this.storage.getItem(CHECKOUT_KEY);
+      if (storedCheckout) {
+        checkout.updateFrom(JSON.parse(storedCheckout));
+    }
+    return checkout;
+  }
+
   next() {
     if (this.shippingAddress && this.billingAddress) {
+      const checkout = this.getCheckout();
+      checkout.shippingAddress = this.shippingAddress.villageId;
+      checkout.billingAddress = this.billingAddress.villageId;
+      this.storage.setItem(CHECKOUT_KEY, JSON.stringify(checkout));
       this.router.navigateByUrl('/payment-method');
     } else {
       swal('Pastikan anda memilih alamat pengiriman dan alamat penagihan');
@@ -87,5 +110,4 @@ export class ShippingComponent implements OnInit {
   prev() {
     this.router.navigateByUrl('/cart');
   }
-
 }
