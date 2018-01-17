@@ -39,12 +39,15 @@
   </div> -->
   <p>Kirimkan bukti transfer Anda dengan meng-klik tombol <b>Upload Bukti Transfer</b> dibawah.</p>
   <div class="fields">
-      <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
+      
       <div class="upload-btn-wrapper">
+          <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvas($event, 'imageIDCard')" #imageTrans >
           <button class="ui green button"><i class="cloud icon"></i> Upload Bukti Transfer</button>
-          <input type="file" name="fileNpwp" (change)="setUrl($event, imgKTP)" />
+          <input type="file" name="fileTrans" (change)="setUrl($event, imageTrans)" />
       </div>
   </div>
+
+
   <button class="ui primary button">
     Kirim Konfirmasi
   </button>
