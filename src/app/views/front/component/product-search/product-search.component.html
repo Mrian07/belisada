@@ -48,7 +48,7 @@
                  <img class="ui medium image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'"></div>
             <!-- <div class="clear-fix"></div> -->
             <div class="highlight">
-                <a routerLink="/Product-detail/{{item.productId}}" class="item"> <strong>{{item.name}}</strong></a>
+                <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name}}</strong></a>
 
             <p [innerHTML]="item.highlight | sanitizeHtml"></p>
             </div>

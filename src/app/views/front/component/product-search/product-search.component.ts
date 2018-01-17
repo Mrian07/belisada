@@ -108,4 +108,8 @@ export class ProductSearchComponent implements OnInit {
       });
     });
   }
+
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
 }
