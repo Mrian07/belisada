@@ -9,6 +9,7 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { PaymentMethodDto } from '../../../../core/model/paymentMethodDto';
+import { ShareService } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-payment-method',
@@ -25,14 +26,15 @@ export class PaymentMethodComponent implements OnInit {
     private title: Title,
     private paymentMethodService: PaymentMethodService,
     private actionsSubject: ActionsSubject,
-    private store: Store<fromProduct.PaymentMethods>
+    private store: Store<fromProduct.PaymentMethods>,
+    private shared: ShareService
   ) {
     this.store.dispatch(new frontActions.GetPaymentMethod());
   }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Payment Method');
-
+    console.log('shared:', this.shared.shareData);
     this.subscription = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
@@ -44,7 +46,6 @@ export class PaymentMethodComponent implements OnInit {
   getPaymentMethods() {
     this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(datas => {
       this.paymentMethodDtos = datas;
-      //console.log('this.paymentMethodDtos: ', this.paymentMethodDtos);
     });
   }
 
