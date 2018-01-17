@@ -49,19 +49,16 @@
                                     <div class="grouped fields">
                                         <label>{{ item.paymentMethod.name }}</label>
                                         <div class="ui field segment" *ngFor="let detail of item.paymentMethodDetails">
-                                            <div class="ui radio checkbox">
+                                            <div class="ui radio checkbox" style="margin-left: 5px; margin-top: 5px;">
                                                 <input name="example2" checked="checked" type="radio"/>
                                                 <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_03.png'/></label>
                                             </div>
-                                            <div>
-                                                <p>{{ detail.accountName }}</p>
-                                                <p>{{ detail.accountNo }}</p>
-                                                <p>{{ detail.bankName }}</p>
+                                            <div class="padding-box">
+                                                <p>{{ detail.bankName }}<br>{{ detail.accountNo }}<br>{{ detail.accountName }}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
@@ -115,7 +112,7 @@
                     <button class="ui grey button">Gunakan Kode</button>
                 </div>
             </div>
-        </div>  
+        </div>
 
     </div>
 </div>
