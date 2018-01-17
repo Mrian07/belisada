@@ -40,15 +40,14 @@ export class CategoryComponent implements OnInit {
 ) {
     this.route.params.subscribe( params => {
       this.m_product_category_id = params.id;
-      console.log(params.id);
       this.store.dispatch(new frontActions.GetCategory(params.id));
     });
   }
 
   ngOnInit() {
     // Location.search({});
-    this.editData = this.shared.shareData;
-    console.log(this.editData);
+    // this.editData = this.shared.shareData;
+    // console.log(this.editData);
     this.loadCategory = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)

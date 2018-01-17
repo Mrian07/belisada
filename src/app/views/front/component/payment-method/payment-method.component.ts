@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { PaymentMethodDto } from '../../../../core/model/paymentMethodDto';
 import { FreightRateService } from '../../../../core/service/freight-rate/freight-rate.service';
 import { LocalStorageService } from '../../../../core/service/storage.service';
+import { ShareService } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-payment-method',
@@ -31,7 +32,8 @@ export class PaymentMethodComponent implements OnInit {
     private paymentMethodService: PaymentMethodService,
     private freightRateService: FreightRateService,
     private actionsSubject: ActionsSubject,
-    private store: Store<fromProduct.PaymentMethods>
+    private store: Store<fromProduct.PaymentMethods>,
+    private shared: ShareService
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
@@ -39,7 +41,7 @@ export class PaymentMethodComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada - Payment Method');
-
+    console.log('shared:', this.shared.shareData);
     this.subscription = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
@@ -55,7 +57,6 @@ export class PaymentMethodComponent implements OnInit {
   getPaymentMethods() {
     this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(datas => {
       this.paymentMethodDtos = datas;
-      console.log('this.paymentMethodDtos: ', this.paymentMethodDtos);
     });
   }
 

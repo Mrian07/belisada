@@ -1,0 +1,30 @@
+.wrapper{
+    display:grid;
+    grid-template-columns: 15% 50% 35%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+  .numberCircle {
+    border-radius: 50%;
+    // behavior: url(PIE.htc);
+    font-size: 25px;
+    width: 36px;
+    height: 36px;
+    float:right;
+    padding: 5px;
+    background: #fff;
+    color: #fff;
+    text-align: center;
+    background-color: #F8982F
+  }
+
+  .wrapper > div{
+    // background:#eee;
+    padding:1em;
+  }
+  .wrapper > div:nth-child(odd){
+    // background:#ddd;
+  }

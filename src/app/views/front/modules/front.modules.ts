@@ -38,6 +38,7 @@ import {ImageZoomModule} from 'angular2-image-zoom';
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
+import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { FreightRateService } from '../../../core/service/freight-rate/freight-r
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
+    CaraBerbelanjaComponent,
     ChattingFrontComponent
   ],
   imports: [
