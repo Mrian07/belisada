@@ -23,7 +23,7 @@
     <a routerLink="/seller/kontak" [ngClass]="(activeLink=='kontak')?'active item':'item'">Kontak Pesan</a>
     <a routerLink="/seller/payment-info" [ngClass]="(activeLink=='payment-info')?'active item':'item'">Payment Info</a>
     <!-- <a routerLink="/seller/my-store" class="item">Daftar Toko & Product</a> -->
-    <a routerLink="/seller/product-list" [ngClass]="(activeLink=='product-list')?'active item':'item'">Product</a>
+    <a (click)="goToProduct()" [ngClass]="(activeLink=='product-list')?'active item':'item'">Product</a>
     <a routerLink="/seller/salles-report" [ngClass]="(activeLink=='salles-report')?'active item':'item'">Sales Report</a>
     <a class="item">Statistik</a>
     <hr/>
