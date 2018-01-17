@@ -36,6 +36,7 @@ import { ChattingFrontComponent } from '../../sellers/component/chatting/chattin
 import {ImageZoomModule} from 'angular2-image-zoom';
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
+import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
+    CaraBerbelanjaComponent,
     ChattingFrontComponent
   ],
   imports: [

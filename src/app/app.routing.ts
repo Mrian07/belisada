@@ -1,3 +1,4 @@
+import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
@@ -36,6 +37,7 @@ import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
+import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja/cara-berbelanja.component';
 
 const routes: Routes = [
   {
@@ -101,6 +103,13 @@ const routes: Routes = [
         component: InfoComponent,
         data: {
           title: 'info'
+        }
+      },
+      {
+        path: 'cara-berbelanja',
+        component: CaraBerbelanjaComponent,
+        data: {
+          title: 'cara'
         }
       },
       {
@@ -221,6 +230,13 @@ const routes: Routes = [
            {
             path: 'order-detail-buyer',
             component: OrderDetailBuyerComponent,
+            data: {
+              title: 'Order Detail Buyer'
+            }
+          },
+          {
+            path: 'inbox-buyer',
+            component: InboxBuyerComponent,
             data: {
               title: 'Order Detail Buyer'
             }
