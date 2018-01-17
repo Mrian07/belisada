@@ -19,7 +19,7 @@ export class AddBillingComponent implements OnInit {
 
   billingAddressList: BillingAddress[];
 
-  user = JSON.parse(localStorage.user);
+  //user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
   address: FormControl;
@@ -40,6 +40,7 @@ export class AddBillingComponent implements OnInit {
   kelurahan = [];
   categories = [];
   selectedProvince: string;
+  totalbilling: number;
 
   @Output() triggerEvent = new EventEmitter<Boolean>();
 
@@ -51,12 +52,12 @@ export class AddBillingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const luser = JSON.parse(localStorage.getItem('user'));
+   // const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();
     this.getProvince();
     this.fillForms();
-    console.log('dn', luser);
+  //  console.log('dn', luser);
   }
 
   createFormControls() {
@@ -107,7 +108,9 @@ export class AddBillingComponent implements OnInit {
           'Data billing berhasil ditambahkan',
         //  response.message,
           'success'
-        );
+        ).then(result => {
+          location.reload();
+        });
       }else {
         swal(
           'Opps!',

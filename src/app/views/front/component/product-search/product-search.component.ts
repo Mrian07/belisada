@@ -20,12 +20,15 @@ export class ProductSearchComponent implements OnInit {
   disabled;
   options;
   m_product_category_id;
-  selectedOption;
+  selectedOption: any;
   productSearchResault: ProductSearchResault = new ProductSearchResault();
   navigation;
   boundary;
   selectedPage;
   keys: string;
+  sortOrder: any;
+  Params: any;
+  catId: number;
 
   constructor(
     private router: Router,
@@ -36,21 +39,33 @@ export class ProductSearchComponent implements OnInit {
     private ngZone: NgZone,
     private title: Title
   ) {
-  //   this.router.routeReuseStrategy.shouldReuseRoute = function(){
-  //     return false;
-  //  };
-   this.route.queryParams
+
+    const sortOrder = [
+      {sort: 'Paling Sesuai', ob: 6 },
+      {sort: 'Terbaru', ob: 5},
+      {sort: 'Termahal', ob: 4},
+      {sort: 'Termurah', ob: 3},
+      {sort: 'Z-A', ob: 2},
+      {sort: 'A-Z', ob: 1},
+    ];
+    this.sortOrder = sortOrder;
+
+    this.route.queryParams
       .subscribe(params => {
         this.keys = params.q;
         if (params.page) {
           this.currentPage = params.page;
         }
+        console.log(params);
+        this.catId = params.id;
+        this.Params = params;
         this.store.dispatch(new frontActions.GetList(params));
         this.getDetailData = this.actionsSubject
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
-         this.getDetailDatas();
+          this.loading = false;
+          this.getDetailDatas();
         });
     });
 
@@ -70,11 +85,23 @@ export class ProductSearchComponent implements OnInit {
   pageTitle: string;
 
   ngOnInit() {
+
     if (this.keys === undefined) {
       this.title.setTitle('Belisada - Product List');
     } else {
       this.title.setTitle('Belisada - Search Result');
     }
+  }
+
+  sortThis(ob) {
+    console.log(this.loading);
+    console.log(ob);
+    this.Params =  {
+      parent : 3,
+      id : this.catId,
+      ob : ob
+    };
+    this.router.navigate(['/product-list'], { queryParams: this.Params });
   }
 
   setPage(page: number) {

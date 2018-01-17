@@ -204,10 +204,17 @@ const routes: Routes = [
         component: BuyerLayoutComponent,
         children: [
           {
+            path: '',
+            component: DashboardBuyerComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
             path: 'dashboard',
             component: DashboardBuyerComponent,
             data: {
-              title: 'home'
+              title: 'dashboard'
             }
           },
           {

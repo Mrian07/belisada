@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./wishlist-buyer.component.scss']
 })
 export class WishlistBuyerComponent implements OnInit {
-
+  readonly: any;
+  rating: any;
   constructor() { }
 
   ngOnInit() {

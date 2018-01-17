@@ -10,19 +10,18 @@
     <div class="ten wide column">
       <h3>Selamat datang {{user ? user.name : 'guest'}}</h3>
     </div>
-    <div class="four wide column right aligned">
-      <!-- <div class="ui label">
-        <i class="mail icon"></i> 23
-      </div>
-      <div class="ui label">
-        <i class="shopping bag icon"></i> 50
-      </div>  -->
-    </div>
-    <div *ngIf="user" class="two wide column right aligned">
-      <button class="ui basic button" (click)="logout()">
+    <div *ngIf="user" class="six wide column right aligned">
+
+        <div class="ui buttons">
+          <button class="ui teal button" (click)="goBuyer()"><i class="shopping bag icon"></i> Dashboard Buyer</button>
+          <div class="or"></div>
+          <button class="ui button" (click)="logout()"><i class="icon user"></i> Logout</button>
+        </div>
+
+      <!-- <button class="ui basic button" (click)="logout()">
         <i class="icon user"></i>
         Logout
-      </button>
+      </button> -->
     </div>
   </div>
 </div>
