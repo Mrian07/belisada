@@ -12,6 +12,11 @@ import { PaymentMethodDto } from '../../../../core/model/paymentMethodDto';
 import { FreightRateService } from '../../../../core/service/freight-rate/freight-rate.service';
 import { LocalStorageService } from '../../../../core/service/storage.service';
 import { ShareService } from '../../../../core/service/shared.service';
+import { Checkout } from '../../../../core/model/checkout';
+import { FreightRate } from '../../../../core/model/FreightRate';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+
+const CHECKOUT_KEY  = 'checkout';
 
 @Component({
   selector: 'app-payment-method',
@@ -22,7 +27,10 @@ export class PaymentMethodComponent implements OnInit {
 
   private storage: Storage;
 
+  shippingMethod: any = '';
+
   paymentMethodDtos: PaymentMethodDto[];
+  freightRates: FreightRate[];
   subscription: Subscription;
 
   constructor(
@@ -33,10 +41,20 @@ export class PaymentMethodComponent implements OnInit {
     private freightRateService: FreightRateService,
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.PaymentMethods>,
-    private shared: ShareService
+    private shared: ShareService,
+    private shoppingCartService: ShoppingCartService,
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
+  }
+
+  getCheckout() {
+    const checkout = new Checkout();
+    const storedCheckout = this.storage.getItem(CHECKOUT_KEY);
+    if (storedCheckout) {
+      checkout.updateFrom(JSON.parse(storedCheckout));
+    }
+    return checkout;
   }
 
   ngOnInit() {
@@ -49,8 +67,11 @@ export class PaymentMethodComponent implements OnInit {
       this.getPaymentMethods();
     });
 
-    this.freightRateService.getFreightRates(123).subscribe(response => {
-      console.log('response: ', response);
+    const checkout = this.getCheckout();
+
+    this.freightRateService.getFreightRates(checkout.shippingAddress).subscribe(response => {
+      this.freightRates = response;
+      console.log('this.freightRates: ', this.freightRates);
     });
   }
 
@@ -58,6 +79,15 @@ export class PaymentMethodComponent implements OnInit {
     this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(datas => {
       this.paymentMethodDtos = datas;
     });
+  }
+
+  selectShippingMethod(shippingMethodId) {
+    console.log('shippingMethodId: ', shippingMethodId);
+    if (shippingMethodId !== '') {
+      this.shoppingCartService.setDeliveryOption(+shippingMethodId);
+    } else {
+      console.log('aaaaaa');
+    }
   }
 
   prev() {

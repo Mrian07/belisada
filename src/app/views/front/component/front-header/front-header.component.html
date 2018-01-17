@@ -120,7 +120,7 @@
                             <div class="item-detail">
                                 <div class="detail-wrapper">
                                     <span class="product-name"><a routerLink="/Product-detail/{{item.product.productId}}">{{ item.product.name }}</a></span>
-                                    <span class="product-price">{{ item.quantity }} x <strong>{{ item.product.pricelist | currency:'Rp ' }}</strong></span>
+                                    <span class="product-price">{{ item.quantity }} x <strong>Rp {{ item.product.pricelist | number }}</strong></span>
                                 </div>
                             </div>
                             <div class="item-action">
@@ -134,7 +134,7 @@
                                 <strong>Subtotal:</strong>
                             </div>
                             <div class="subtotal-price pull-right">
-                                <strong>{{grossTotal | currency:'Rp '}}</strong>
+                                <strong>Rp {{grossTotal | number}}</strong>
                             </div>
                             <div class="clearfix"></div>
                         </div>

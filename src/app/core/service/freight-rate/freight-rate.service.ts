@@ -10,6 +10,7 @@ export class FreightRateService {
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
   getFreightRates(villageId): Observable<FreightRate[]> {
+    console.log(villageId);
     return this.http.get(this.configuration.serverWithAccUrl + '/freight/rates?to=' + villageId)
         .map(response => response as FreightRate[]);
   }
