@@ -16,6 +16,7 @@ import { SeoService } from '../../../../core/service/seo.service';
 import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -35,7 +36,8 @@ export class HomeComponent implements OnInit {
     private store: Store<fromProduct.Homes>,
     private title: Title,
     private seo: SeoService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private router: Router
   ) {
     this.store.dispatch(new frontActions.GetHome());
   }
@@ -63,5 +65,7 @@ export class HomeComponent implements OnInit {
         });
     });
   }
-
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
 }
