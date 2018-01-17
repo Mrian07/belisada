@@ -40,6 +40,7 @@ export class CategoryComponent implements OnInit {
 ) {
     this.route.params.subscribe( params => {
       this.m_product_category_id = params.id;
+      console.log(params.id);
       this.store.dispatch(new frontActions.GetCategory(params.id));
     });
   }

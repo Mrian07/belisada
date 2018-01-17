@@ -56,6 +56,7 @@ import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/w
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
+import { AddBillingComponent } from './views/front/component/add-billing/add-billing.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -110,7 +111,8 @@ export function getAuthServiceConfigs() {
     WishlistBuyerComponent,
     TransactionBuyerComponent,
     OrderDetailBuyerComponent,
-    ConfirmationBuyerComponent
+    ConfirmationBuyerComponent,
+    AddBillingComponent
   ],
   imports: [
     BrowserModule,

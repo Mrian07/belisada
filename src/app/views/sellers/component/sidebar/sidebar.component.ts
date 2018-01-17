@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import { ActiveLink, ShareService } from '../../../../core/service/shared.service';
 import { TokenService } from '../../../../core/service/token/token.service';
-
+import { StoreService } from '../../../../core/service/store/store.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,7 +16,8 @@ export class SidebarComponent implements OnInit {
   private profileService: ProfileService,
   private active: ActiveLink,
   private sharedService: ShareService,
-  private tokenService: TokenService
+  private tokenService: TokenService,
+  private storeService: StoreService
 ) {  }
   sellerName: string;
   sellerEmail: string;
@@ -25,6 +27,7 @@ export class SidebarComponent implements OnInit {
   status2: Boolean = false;
   status3: Boolean = false;
   status4: Boolean = false;
+  status: any;
 
   pathArray: any;
   activeLink: any;
@@ -32,6 +35,13 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
     this.getProfile();
     this.getUri();
+    this.getStoreStatus();
+  }
+
+  getStoreStatus() {
+    this.storeService.getStatus().subscribe(data => {
+      this.status = data[0].statusCode;
+    });
   }
 
   getUri() {
@@ -49,6 +59,18 @@ export class SidebarComponent implements OnInit {
       this.sellerEmail = data.email;
       this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
     });
+  }
+  goToProduct() {
+    if (this.status === '2') {
+      swal(
+        'Belisada.co.id',
+        'Toko Anda belum diverifikasi!'
+      ).then((result) => {
+       // this.router.navigateByUrl('seller/toko');
+      });
+    }else {
+      this.router.navigateByUrl('seller/product-list');
+    }
   }
 
 }

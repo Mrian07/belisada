@@ -53,8 +53,8 @@ export class SearchDashboardComponent implements OnInit {
   addProducts() {
     if (this.status === false) {
       swal(
-        'Toko Anda belum diverifikasi!',
-        'klik OK untuk melanjutkan'
+        'Belisada.co.id',
+        'Toko Anda belum diverifikasi!'
       ).then((result) => {
        // this.router.navigateByUrl('seller/toko');
       });
