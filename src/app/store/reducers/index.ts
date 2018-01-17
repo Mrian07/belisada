@@ -265,7 +265,7 @@ export function CategoryReducer(
     case front.GETCATEGORYSUCCESS : {
       return action.list;
     }
-    default: return {};
+    default: return [];
   }
 }
 
