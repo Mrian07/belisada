@@ -44,6 +44,7 @@ export class PaymentMethodComponent implements OnInit {
   getPaymentMethods() {
     this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(datas => {
       this.paymentMethodDtos = datas;
+      //console.log('this.paymentMethodDtos: ', this.paymentMethodDtos);
     });
   }
 

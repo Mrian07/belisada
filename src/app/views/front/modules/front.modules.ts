@@ -1,3 +1,4 @@
+import { EmailNewsLetterService } from './../../../core/service/email-news-letter/email-news-letter.service';
 import { ShippingAddressService } from './../../../core/service/shipping-address/shipping-address.service';
 import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
 // import { BillingAddress } from './../../../core/model/billing-address';
@@ -79,7 +80,8 @@ import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
     ProductDetailService,
     ShoppingCartService,
     ProductService,
-    PaymentMethodService
+    PaymentMethodService,
+    EmailNewsLetterService
   ]
 })
 export class FrontModules { }
