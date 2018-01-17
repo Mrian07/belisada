@@ -57,6 +57,17 @@ import { TransactionBuyerComponent } from './views/buyer/component/transaction-b
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
 import { AddBillingComponent } from './views/front/component/add-billing/add-billing.component';
+import { AboutUsComponent } from './views/front/component/about-us/about-us.component';
+import { CareerComponent } from './views/front/component/career/career.component';
+import { TermsConditionsComponent } from './views/front/component/terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './views/front/component/privacy-policy/privacy-policy.component';
+import { CopyrightPolicyComponent } from './views/front/component/copyright-policy/copyright-policy.component';
+import { FaqComponent } from './views/front/component/faq/faq.component';
+import { HowOrderComponent } from './views/front/component/how-order/how-order.component';
+import { ReturnCancelComponent } from './views/front/component/return-cancel/return-cancel.component';
+import { WarrantyComponent } from './views/front/component/warranty/warranty.component';
+import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
+import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -112,7 +123,18 @@ export function getAuthServiceConfigs() {
     TransactionBuyerComponent,
     OrderDetailBuyerComponent,
     ConfirmationBuyerComponent,
-    AddBillingComponent
+    AddBillingComponent,
+    AboutUsComponent,
+    CareerComponent,
+    TermsConditionsComponent,
+    PrivacyPolicyComponent,
+    CopyrightPolicyComponent,
+    FaqComponent,
+    HowOrderComponent,
+    ReturnCancelComponent,
+    WarrantyComponent,
+    ContactUsComponent,
+    AfterSalesServiceComponent
   ],
   imports: [
     BrowserModule,

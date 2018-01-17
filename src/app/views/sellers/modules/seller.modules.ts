@@ -1,3 +1,4 @@
+import { FaqSellerComponent } from '../component/faq-seller/faq-seller.component';
 import { InfoPerusahaanService } from './../../../core/service/perusahaan/info-perusahaan.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -21,7 +22,6 @@ import { KontakComponent } from '../component/kontak/kontak.component';
 import { KontakDetailComponent } from '../component/kontak-detail/kontak-detail.component';
 import { SallesReportComponent } from '../component/salles-report/salles-report.component';
 import { SalesStatusComponent } from '../component/dashboard/sales-status/sales-status.component';
-import { FaqComponent } from '../component/faq/faq.component';
 import { StatisticsComponent } from '../component/statistics/statistics.component';
 import { HeaderComponent } from '../component/header/header.component';
 import { FooterComponent } from '../component/footer/footer.component';
@@ -72,7 +72,6 @@ import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
     KontakDetailComponent,
     SallesReportComponent,
     SalesStatusComponent,
-    FaqComponent,
     StatisticsComponent,
     HeaderComponent,
     FooterComponent,
@@ -90,7 +89,8 @@ import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
     PlainSellerLayoutComponent,
     ProductComponent,
     ProductListComponent,
-    ChattingComponent
+    ChattingComponent,
+    FaqSellerComponent
   ],
   imports: [
     CommonModule,
