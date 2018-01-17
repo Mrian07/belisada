@@ -43,11 +43,11 @@
                 <div class="ui grid">
                     <div class="ui three column grid">
                         <div class="row">
-                            <div class="column" *ngFor="let paymentMethod of paymentMethods">
+                            <div class="column" *ngFor="let item of paymentMethodDtos">
 
                                 <div class="ui form">
                                     <div class="grouped fields">
-                                        <label>{{ paymentMethod.name }}</label>
+                                        <label>{{ item.paymentMethod.name }}</label>
                                         <div class="field">
                                             <div class="ui radio checkbox">
                                                 <input name="example2" checked="checked" type="radio"/>
