@@ -82,12 +82,12 @@
         </div>
         <div class="column">
 
-            <sui-tabset>
+            <!-- <sui-tabset> -->
                 <div class="ui top attached tabular menu">
-                    <a class="item" suiTabHeader="1">Billing</a>
-                    <a class="item" suiTabHeader="2" *ngIf="totalbilling === 0">Tambah Billing</a>
+                    <!-- <a class="item" >Billing</a> -->
+                    <!-- <a class="item" suiTabHeader="2" *ngIf="billingAddressList.length === 0">Tambah Billing</a> -->
                 </div>
-                <div class="ui bottom attached segment" suiTabContent="1">
+                <div class="ui bottom attached segment" *ngIf="!billing" >
 
 
                         <div class="ui labeled action input">
@@ -116,10 +116,10 @@
 
 
                 </div>
-                <div class="ui bottom attached segment" suiTabContent="2">
+                <div class="ui bottom attached segment" *ngIf="billing">
                     <app-add-billing></app-add-billing>
                 </div>
-            </sui-tabset>
+            <!-- </sui-tabset> -->
 
 
 

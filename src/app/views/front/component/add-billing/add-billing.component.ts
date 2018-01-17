@@ -124,8 +124,6 @@ export class AddBillingComponent implements OnInit {
   fillForms() {
     this.billingAddressService.getAll().subscribe(data => {
       this.ship = data;
-      this.totalbilling = data.length;
-      console.log(this.totalbilling);
     });
   }
 

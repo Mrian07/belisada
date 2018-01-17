@@ -29,8 +29,11 @@ export class ShippingComponent implements OnInit {
 
   selShippingAddress: any = '';
   selBillingAddress: any = '';
-  totalbilling: number;
+  totalbilling: BillingAddress[];
   isTriggered: Boolean = false;
+  billing: Boolean = false;
+  first: Boolean;
+  second: Boolean;
 
 
   constructor(
@@ -46,13 +49,18 @@ export class ShippingComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.title.setTitle('Belisada - Shipping & Billing Address');
     this.getAllShippingAddress();
+
     this.bilingAddressService.getAll().subscribe(datas => {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
-       // console.log('this.billingAddressList: ', this.billingAddressList);
+        if (this.billingAddressList.length === 0) {
+          this.billing = true;
+        }
+        console.log('this.billingAddressList: ', this.billingAddressList);
       });
     });
   }
