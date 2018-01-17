@@ -179,7 +179,7 @@ const routes: Routes = [
             }
           },
           {
-            path: 'tet',
+            path: 'billingAddress',
             component: BillingAddressComponent,
             data: {
               title: 'Change Password'
