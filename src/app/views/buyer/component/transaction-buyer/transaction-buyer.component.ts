@@ -17,4 +17,8 @@ export class TransactionBuyerComponent implements OnInit {
     this.router.navigate(['/buyer/order-detail-buyer']);
   }
 
+  orderConfirm() {
+    this.router.navigate(['/buyer/confirmation-buyer']);
+  }
+
 }

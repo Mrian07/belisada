@@ -1,3 +1,4 @@
+import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/profile-buyer.component';
@@ -35,6 +36,7 @@ import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer
 import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
+import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
 
 const routes: Routes = [
   {
@@ -103,7 +105,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'Product-detail/:id',
+        path: 'Product-detail/:id/:alias',
         component: ProductDetailComponent,
         data: {
           title: 'product'
@@ -195,23 +197,39 @@ const routes: Routes = [
             data: {
               title: 'Product Top Buyer'
             }
-          }, {
+          },
+          {
             path: 'profile-buyer',
             component: ProfileBuyerComponent,
             data: {
               title: 'Profile Buyer'
             }
-          }, {
+          },
+          {
+            path: 'wishlist-buyer',
+            component: WishlistBuyerComponent,
+            data: {
+              title: 'Profile Buyer'
+          }
+        },
+          {
             path: 'transaction-buyer',
             component: TransactionBuyerComponent,
             data: {
               title: 'Transaction Buyer'
             }
-          }, {
+          },
+           {
             path: 'order-detail-buyer',
             component: OrderDetailBuyerComponent,
             data: {
               title: 'Order Detail Buyer'
+            }
+          }, {
+            path: 'confirmation-buyer',
+            component: ConfirmationBuyerComponent,
+            data: {
+              title: 'Confirmation Buyer'
             }
           }
         ]
@@ -224,7 +242,7 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       {
-        path: 'category/:id/:aliasname',
+        path: 'category/:aliasname/:id',
         component: CategoryComponent,
         data: {
           title: 'category'

@@ -22,7 +22,7 @@
         <img [src]="image" *ngFor="let image of ProductImage" (click)="setimage(image)">
         </div>
     </div>
-    <div>
+    <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
     <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
