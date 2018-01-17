@@ -55,6 +55,8 @@ import { ProfileBuyerComponent } from './views/buyer/component/profile-buyer/pro
 import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
 import { TransactionBuyerComponent } from './views/buyer/component/transaction-buyer/transaction-buyer.component';
 import { OrderDetailBuyerComponent } from './views/buyer/component/order-detail-buyer/order-detail-buyer.component';
+import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
+// import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja/cara-berbelanja.component';
 import { ConfirmationBuyerComponent } from './views/buyer/component/confirmation-buyer/confirmation-buyer.component';
 import { AddBillingComponent } from './views/front/component/add-billing/add-billing.component';
 import { AboutUsComponent } from './views/front/component/about-us/about-us.component';
@@ -122,6 +124,8 @@ export function getAuthServiceConfigs() {
     WishlistBuyerComponent,
     TransactionBuyerComponent,
     OrderDetailBuyerComponent,
+    InboxBuyerComponent,
+    // CaraBerbelanjaComponent
     ConfirmationBuyerComponent,
     AddBillingComponent,
     AboutUsComponent,

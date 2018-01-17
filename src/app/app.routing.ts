@@ -1,3 +1,4 @@
+import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
 import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
 import { WarrantyComponent } from './views/front/component/warranty/warranty.component';
@@ -46,6 +47,7 @@ import { InfoComponent } from './views/front/component/info/info.component';
 import { ChangePasswordBuyerComponent } from './views/buyer/component/change-password-buyer/change-password-buyer.component';
 import { ProductTopBuyerComponent } from './views/buyer/component/product-top-buyer/product-top-buyer.component';
 import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/wishlist-buyer.component';
+import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja/cara-berbelanja.component';
 import { CareerComponent } from './views/front/component/career/career.component';
 import { CopyrightPolicyComponent } from './views/front/component/copyright-policy/copyright-policy.component';
 
@@ -66,6 +68,13 @@ const routes: Routes = [
         component: InfoComponent,
         data: {
           title: 'info'
+        }
+      },
+      {
+        path: 'cara-berbelanja',
+        component: CaraBerbelanjaComponent,
+        data: {
+          title: 'cara'
         }
       },
       {
@@ -255,7 +264,15 @@ const routes: Routes = [
             data: {
               title: 'Order Detail Buyer'
             }
-          }, {
+          },
+          {
+            path: 'inbox-buyer',
+            component: InboxBuyerComponent,
+            data: {
+              title: 'Order Detail Buyer'
+          }
+        },
+          {
             path: 'confirmation-buyer',
             component: ConfirmationBuyerComponent,
             data: {
