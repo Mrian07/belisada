@@ -45,4 +45,7 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  goBuyer(){
+    this.router.navigateByUrl('/buyer');
+  }
 }

@@ -5,6 +5,7 @@ import { CategoryService } from '../../../../core/service/category/category.serv
 import { Router } from '@angular/router';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar-buyer',
@@ -68,10 +69,40 @@ export class SidebarBuyerComponent implements OnInit {
 
   getProfileBuyer() {
     this.profileService.getProfileBuyer(this.tokenService.getToken()).subscribe(data => {
+      console.log('iniloh', data);
       this.buyerName = data.name;
       this.buyerEmail = data.email;
       this.buyerImage = 'data:image/png;base64,' + data.imageAvatar;
     });
+  }
+
+  goSeller() {
+
+    const user = JSON.parse(localStorage.user);
+    this.router.navigateByUrl('/buyer/dashboard');
+
+    if (user.role === 3 || user.role === 2) {
+      this.router.navigateByUrl('/seller/dashboard');
+    } else {
+
+      swal({
+        title: 'Warning',
+        text: 'Silakan daftarkan diri Anda sebagai Seller',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Daftarkan'
+      }).then((result) => {
+        if (result.value) {
+          this.router.navigateByUrl('/register');
+          } else {
+            return false;
+          }
+        }
+
+    }
+
   }
 
 }
