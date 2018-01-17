@@ -45,6 +45,7 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // Location.search({});
     // this.editData = this.shared.shareData;
     // console.log(this.editData);
@@ -70,7 +71,8 @@ export class CategoryComponent implements OnInit {
   dapatkanList(id) {
     this.queryParams =  {
       parent : 3,
-      id : id
+      id : id,
+      ob : 6
     };
     this.router.navigate(['/product-list'], { queryParams: this.queryParams });
   }

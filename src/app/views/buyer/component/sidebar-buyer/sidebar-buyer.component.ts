@@ -96,11 +96,11 @@ export class SidebarBuyerComponent implements OnInit {
       }).then((result) => {
         if (result.value) {
           this.router.navigateByUrl('/register');
-          } else {
+        } else {
             return false;
-          }
         }
-
+      }
+      );
     }
 
   }
