@@ -304,7 +304,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'Asap',
+        path: 'asap',
         component: AsapComponent,
         data: {
           title: 'asap'

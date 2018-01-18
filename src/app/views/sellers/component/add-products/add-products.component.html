@@ -217,7 +217,7 @@
                     </div>
                     <br>
                     <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
-                        <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned mini image"></p>
+                        <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned mini image" style="cursor:pointer;"></p>
                     <button *ngIf="editMode == true" class="positive ui button" (click)="updateProducts()">Perbarui Produk</button>
                 </div>
             </div>

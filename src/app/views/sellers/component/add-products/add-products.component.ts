@@ -298,4 +298,7 @@ export class AddProductsComponent implements OnInit {
     this.selectedBrands = '';
   }
 
+  asapPage() {
+    this.router.navigateByUrl('/asap');
+  }
 }
