@@ -24,19 +24,21 @@
         <div class='title'>
           Hubungi Kami
         </div>
+        <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="ui form">
           <div class="three fields">
             <div class="field">
               <label>Nama</label>
-              <input type="text" name='nama'>
+              <input type="text" formControlName="name">
+              <!-- <div *ngIf="f.submitted && name.invalid" class="ui pointing red basic label">name tidak boleh kosong</div> -->
             </div>
             <div class="field">
               <label>Email</label>
-              <input type="text" name='email'>
+              <input type="text" formControlName="email">
             </div>
             <div class="field">
-              <label>Keperluan Anda</label>
-              <select class="ui fluid dropdown">
+              <label>Keperluan</label>
+              <select formControlName="issue" class="ui fluid dropdown">
                 <option value="">-Pilih-</option>
                 <option value="Product Issue">Product Issue</option>
                 <option value="Customer Relation">Customer Relation</option>
@@ -46,15 +48,13 @@
               </select>
             </div>
           </div>
-      
           <div class="field">
             <label>Pesan</label>
-            <textarea name='pesan'></textarea>
+            <textarea formControlName="message"></textarea>
           </div>
-          <div class="ui submit button">Kirim</div>
+          <button class="ui button" type="submit">Kirim</button>
         </div>
-        
-
+      </form>
     </div>
   </div>
 </div>
