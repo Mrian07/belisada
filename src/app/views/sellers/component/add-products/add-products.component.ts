@@ -65,6 +65,8 @@ export class AddProductsComponent implements OnInit {
   editSub: Subscription;
   editData: any;
   asap: any;
+  quantity: any;
+  selectedQuantity: any;
 
     constructor(private searchService: SearchService, private categoryService: CategoryService,
       private route: ActivatedRoute, private router: Router, private storeService: StoreService,
@@ -77,6 +79,8 @@ export class AddProductsComponent implements OnInit {
       this.route.params.subscribe( id => {
         this.editid = id;
       });
+      const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      this.quantity = quantity;
     }
 
 
@@ -123,6 +127,10 @@ export class AddProductsComponent implements OnInit {
     this.categoryService.CategoryOne().subscribe(data => {
       this.category = data;
     });
+  }
+
+  getQuantity(q) {
+    this.selectedQuantity = q;
   }
 
   openDrops() {
@@ -207,7 +215,7 @@ export class AddProductsComponent implements OnInit {
 
 
   addProducts() {
-    console.log(this.description);
+    console.log(this.selectedQuantity);
     if ( this.productId === undefined) {
       swal('Nama Product harus diisi');
     }else {
@@ -222,9 +230,10 @@ export class AddProductsComponent implements OnInit {
         dimensionsheight: this.tinggi,
         specialPrice: this.specialPrice,
         isAsapShipping: 'N',
+        stok: this.selectedQuantity,
         tag: [this.productName]
       };
-      this.store.dispatch(new fromActions.AddProduct(productData));
+    this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
 
@@ -244,6 +253,7 @@ export class AddProductsComponent implements OnInit {
         dimensionsheight: this.tinggi,
         specialPrice: this.specialPrice,
         isAsapShipping: 'Y',
+        stok: this.selectedQuantity,
         tag: [this.productName]
       };
       this.store.dispatch(new fromActions.AddProduct(productData));

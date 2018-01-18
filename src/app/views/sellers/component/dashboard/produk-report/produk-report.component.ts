@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { TokenService } from '../../../../../core/service/token/token.service';
+import * as fromActions from '../../../../../store/actions';
+import * as fromProduct from '../../../../../store/reducers';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-produk-report',
@@ -13,7 +18,6 @@ export class ProdukReportComponent implements OnInit {
   pendingProduct: number;
   returnProduct: number;
   searchText: string;
-
   verify = [];
   rejected = [];
   send = [];
@@ -21,7 +25,18 @@ export class ProdukReportComponent implements OnInit {
   pending = [];
   return = [];
   productList = [];
-  constructor() { }
+  storeId: number;
+  sellerProduct: Observable<any>;
+
+  constructor(
+    private user: TokenService,
+    private store: Store<fromProduct.Products>
+  ) {
+    const users = this.user.getUser();
+    this.storeId = users.stores[0].mBpartnerStoreId;
+    //console.log(this.storeId);
+
+   }
 
   ngOnInit() {
     this.veryfyProduct = this.verify.length;

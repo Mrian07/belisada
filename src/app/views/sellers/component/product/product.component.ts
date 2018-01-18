@@ -25,21 +25,13 @@ export class ProductComponent implements OnInit {
   storeId: number;
   sellerProduct: Observable<any>;
   totalItem: Observable<any>;
-  queryString: any;
+  queryString: any = '';
 
 
   ngOnInit() {
     this.getSellerStore();
     this.storeService.getStatus().subscribe(data => {
-      if ( data[0].statusCode === '4') {
-        this.sellerProduct = this.store.select(fromProduct.getProductState);
-      } else {
-        swal(
-          'Belisada.co.id',
-          'Toko Anda belum diverifikasi!'
-        );
-        this.routes.navigateByUrl('seller/dashboard');
-      }
+      this.sellerProduct = this.store.select(fromProduct.getProductState);
     });
   }
 

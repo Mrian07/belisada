@@ -93,7 +93,12 @@
                         </a>
                     </div>
                 </td>
-                <td><small><a class="ui yellow label">{{product.status}}</a></small></td>
+                <td>
+                    <small>
+                            <a class="ui small label" *ngIf="product.statusCode === '1'">{{product.status}}</a>
+                            <a class="ui small yellow label" *ngIf="product.statusCode === '2'">{{product.status}}</a>
+                    </small>
+                </td>
                 <!-- <td><i class="edit icon"></i></td>
                 <td><i class="trash outline icon"></i></td> -->
             </tr>
