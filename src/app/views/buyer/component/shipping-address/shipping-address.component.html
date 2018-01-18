@@ -1,7 +1,7 @@
 <sui-tabset>
     <div class="ui top attached tabular menu">
-        <a class="item" suiTabHeader="1">Tambah Shipping</a>
-        <a class="item" suiTabHeader="2">Data Shipping</a>
+        <a class="item" suiTabHeader="1" [(isActive)]="firstActive">Tambah Shipping</a>
+        <a class="item" suiTabHeader="2" [(isActive)]="secondActive">Data Shipping</a>
     </div>
     <div class="ui bottom attached segment" suiTabContent="1">
 
@@ -87,7 +87,7 @@
         
         
                            <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
-                           <td><button class="btnlooklikelink" (click)="getAllStorex(item)">Update</button></td>
+                           <td><button class="btnlooklikelink" (click)="getAllStorex(item)" (click)="firstActive = true">Update</button></td>
                        </tr>
         
                    </table>
