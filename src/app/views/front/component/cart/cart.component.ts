@@ -24,6 +24,7 @@ export class CartComponent implements OnInit {
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
+  itemsTotal: number;
 
   private cartSubscription: Subscription;
 
@@ -38,9 +39,9 @@ export class CartComponent implements OnInit {
     this.title.setTitle('Belisada - Your Cart');
     window.scrollTo(0, 0);
     this.cart = this.shoppingCartService.get();
-    console.log('this.cart: ', this.cart);
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
+      this.itemsTotal = cart.itemsTotal;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -49,7 +50,6 @@ export class CartComponent implements OnInit {
             ...item,
             product,
             totalCost: product.pricelist * item.quantity });
-            console.log('this.cartItems: ', this.cartItems);
         });
       });
     });

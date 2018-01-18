@@ -38,6 +38,7 @@ import { ChattingFrontComponent } from '../../sellers/component/chatting/chattin
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
 import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
 import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
+import { CheckoutService } from '../../../core/service/checkout/checkout.service';
 import { EmailSendService } from '../../../core/service/email-send/email-send.service';
 import { AsapComponent } from '../component/asap/asap.component';
 
@@ -86,6 +87,8 @@ import { AsapComponent } from '../component/asap/asap.component';
     ProductService,
     PaymentMethodService,
     EmailNewsLetterService,
+    FreightRateService,
+    CheckoutService,
     EmailSendService,
     FreightRateService
   ]
