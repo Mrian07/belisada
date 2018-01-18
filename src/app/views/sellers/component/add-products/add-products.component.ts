@@ -221,7 +221,7 @@ export class AddProductsComponent implements OnInit {
     }else {
       const productData = {
         pricelist: this.price,
-        description:'',
+        description: '',
         productId: this.productId,
         mBpartnerStoreId: this.storeId,
         weight: this.weight,
@@ -273,8 +273,12 @@ export class AddProductsComponent implements OnInit {
         dimensionswidth: this.lebar,
         dimensionslength: this.panjang,
         dimensionsheight: this.tinggi,
+        specialPrice: this.specialPrice,
+        isAsapShipping: this.asap ,
+        stok: this.selectedQuantity,
         tag: [this.productName]
       };
+      console.log(productData);
       this.store.dispatch(new fromActions.EditProduct(productData));
     }
   }
