@@ -55,7 +55,7 @@
             <div class="prodimg">
                  <img class="ui medium image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'"></div>
             <!-- <div class="clear-fix"></div> -->
-            <div class="highlight" align="center">
+            <div class="highlight">
                 <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name}}</strong></a>
 
             <p [innerHTML]="item.highlight | sanitizeHtml"></p>
