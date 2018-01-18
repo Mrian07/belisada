@@ -54,23 +54,26 @@ export class ContactUsComponent implements OnInit {
       message: model.message
     };
 
-    this.shippingAddressService.create(data).subscribe(data => {
 
-      if (data.status === '1') {
-        swal(
-          'success',
-          data.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          data.message,
-          'error'
-        );
-      }
 
-    });
+
+    // this.shippingAddressService.create(data).subscribe(data => {
+
+    //   if (data.name === '') {
+    //     swal(
+    //       'success',
+    //       data.message,
+    //       'success'
+    //     );
+    //   }else {
+    //     swal(
+    //       'Opps!',
+    //       data.message,
+    //       'error'
+    //     );
+    //   }
+
+    // });
 
   }
 }
