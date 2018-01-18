@@ -76,7 +76,7 @@ export class SignUpComponent implements OnInit {
           'success',
         ).then(()=> {
           location.reload();
-          this.router.navigateByUrl('/login');
+          this.router.navigateByUrl('/sign-in');
         });
       }else {
         swal(

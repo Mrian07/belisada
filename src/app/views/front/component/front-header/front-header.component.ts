@@ -73,7 +73,7 @@ export class FrontHeaderComponent implements OnInit {
       this.getProfile();
     }else {
       this.loginState = false;
-      this.avatar = '/assets/img/user.jpg';
+      this.avatar = 'assets/img/user.jpg';
       this.itemCount = 0;
     }
     this.categoryService.CategoryOne().subscribe(data => {
@@ -112,9 +112,16 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   getProfile() {
+    console.log(this.auth.getToken())
     this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
       this.userName = data.name;
-      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+      console.log(data);
+      if (data.imageAvatar === '') {
+        this.avatar = 'assets/img/user.jpg';
+      }else {
+        this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+      }
+
     });
   }
 
