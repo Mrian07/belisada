@@ -17,5 +17,8 @@ export class StoreService extends AbstractRestService<MyStore> {
         .map(response => response as any[]);
   }
 
-
+  getApproveProduct(id: number): Observable<any> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/seller/product/legitimate/' + id )
+        .map(response => response as any[]);
+  }
 }

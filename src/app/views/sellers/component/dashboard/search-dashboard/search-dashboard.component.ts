@@ -34,15 +34,19 @@ export class SearchDashboardComponent implements OnInit {
     this.title.setTitle('Belisada Seller - Dashboard');
     this.getStoreData();
     this.storeService.getStatus().subscribe(data => {
-      this.sharedService.shareData = data[0].note;
-      if ( data[0].statusCode === '4') {
-        this.storeStatus = data[0].status;
-        this.status = true;
-        this.btnColor = 'green';
-      } else {
-        this.storeStatus = data[0].status;
-        this.status = false;
-        this.btnColor = 'red';
+      if (data) {
+        if (this.sharedService.shareData) {
+          this.sharedService.shareData = data[0].note;
+        }
+        if ( data[0].statusCode === '4') {
+          this.storeStatus = data[0].status;
+          this.status = true;
+          this.btnColor = 'green';
+        } else {
+          this.storeStatus = data[0].status;
+          this.status = false;
+          this.btnColor = 'red';
+        }
       }
     });
   }
@@ -76,7 +80,9 @@ export class SearchDashboardComponent implements OnInit {
 
   getStoreData() {
     this.storeService.getAll().subscribe(response => {
-      this.storeId = response[0].mBpartnerStoreId;
+      if (response) {
+        this.storeId = response[0].mBpartnerStoreId;
+      }
     });
   }
 

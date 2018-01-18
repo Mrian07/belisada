@@ -23,24 +23,44 @@ export class ProductComponent implements OnInit {
 ) { }
 
   storeId: number;
+  check: Boolean;
+  st: Boolean = true;
   sellerProduct: Observable<any>;
   totalItem: Observable<any>;
-  queryString: any;
-
+  queryString: any = '';
+  status: any;
 
   ngOnInit() {
     this.getSellerStore();
     this.storeService.getStatus().subscribe(data => {
       if ( data[0].statusCode === '4') {
-        this.sellerProduct = this.store.select(fromProduct.getProductState);
+        this.status = true;
       } else {
+        this.status = false;
         swal(
           'Belisada.co.id',
           'Toko Anda belum diverifikasi!'
-        );
-        this.routes.navigateByUrl('seller/dashboard');
+        ).then((result) => {
+         this.routes.navigateByUrl('seller/dashboard');
+        });
       }
+      this.sellerProduct = this.store.select(fromProduct.getProductState);
     });
+  }
+
+  checks(i) {
+    console.log(i);
+  }
+
+  checkAll(z) {
+    if (z === true) {
+      this.st = false;
+      this.check = true;
+    }else if (z === false) {
+      this.st = true;
+      this.check = false;
+    }
+    console.log(z);
   }
 
   getSellerStore() {

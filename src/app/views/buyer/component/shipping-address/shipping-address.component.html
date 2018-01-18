@@ -1,95 +1,11 @@
-
-<button (click)="scroll(target)">Kmpret</button>
-
-
-<div class="wrapper" *ngFor="let item of ship">
-    <div class="wrapper2">
-        <div class="kk">
-           <table border=0>
-               <tr>
-                  <td class="xxp"> <i class="checkmark icon bilu"></i><span class="ac">{{item.addressName}}</span></td>
-               </tr>
-               <tr>
-                   <td>Nama Penerima :</td>
-               </tr>
-               <tr>
-                   <td>{{item.name}}</td>
-               </tr>
-               <tr>
-                   <td>Phone : </td>
-               </tr>
-               <tr>
-                   <td>{{item.phone}}</td>
-               </tr>
-               <tr>
-
-
-                   <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
-                   <td>
-                        <form (ngSubmit)="getAllStorex(item)">
-                                <button class="btnlooklikelink" (click)="show = !show">
-                                    <!-- <i class="edit icon"></i> -->
-                                    update
-                              </button>
-                              </form>
-                       <!-- <button class="btnlooklikelink" (click)="getAllStorex(item)">Update
-
-
-                       </button> -->
-
-                    </td>
-               </tr>
-
-           </table>
-           <div class="gap-betweens-elements"></div>
-
-        </div>
-
-        <div>
-        <div class="ui raised segment sskn">
-                <a class="ui red ribbon label">Alamat Pengiriman</a>
-                <div class="gap-betweens-elements"></div>
-                <span>{{item.address}}</span>
-                <div class="gap-betweens-elements"></div>
-                <span>{{item.cityName}}</span>
-                <div class="gap-betweens-elements"></div>
-                <span>Kecamatan : {{item.districtName}}</span>
-                <div class="gap-betweens-elements"></div>
-                <span>Kelurahan : {{item.villageName}} , {{item.postal}}</span>
-                     <hr>
-                <div class="wreaper47">
-                        <div>
-                            <strong>Provinsi : </strong>
-                            <div class="gap-betweens-elements"></div>
-                            {{item.regionName}}
-                        </div>
-                        <div>
-                                <strong>Kota : </strong>
-                                <div class="gap-betweens-elements"></div>
-                                {{item.cityName}}
-                        </div>
-                    </div>
-                </div>
-        </div>
+<sui-tabset>
+    <div class="ui top attached tabular menu">
+        <a class="item" suiTabHeader="1" [(isActive)]="firstActive">Tambah Shipping</a>
+        <a class="item" suiTabHeader="2" [(isActive)]="secondActive">Data Shipping</a>
     </div>
-  </div>
+    <div class="ui bottom attached segment" suiTabContent="1">
 
-
-
-<div class="column">
-        <div class="wide column">
-            <h1>Input alamat </h1>
-        </div>
-    </div>
-   <!-- <div *ngFor="let item of ship">
-       {{item.address}}
-       {{item.cityName}}
-   </div> -->
-   <div #target>Your target</div>
-    <div class="ui segment">
-        <div class="ui grid">
-          <div class="twelve wide stretched column">
-                <div class="ui grid">
+         <div class="ui grid">
                     <div class="six wide column center aligend">
                         <img src="/assets/img/company.png" alt="company.png" class="ui image"/>
                   </div>
@@ -170,18 +86,74 @@
                     </div>
                 </div>
             </div>
-            <!-- <div *ngIf="show">
-                <button
 
-                    (click)="edit()"
-                    name = "buton13"
-                    [disabled]="!f.valid"
-                    >Kampret
-                </button>
+    <!-- </div> -->
+    <div class="ui bottom attached segment" suiTabContent="2">
+
+        <div class="wrapper" *ngFor="let item of ship">
+            <div class="wrapper2">
+                <div class="kk">
+                   <table border=0>
+                       <tr>
+                          <td class="xxp"> <i class="checkmark icon bilu"></i><span class="ac">{{item.addressName}}</span></td>
+                       </tr>
+                       <tr>
+                           <td>Nama Penerima :</td>
+                       </tr>
+                       <tr>
+                           <td>{{item.name}}</td>
+                       </tr>
+                       <tr>
+                           <td>Phone : </td>
+                       </tr>
+                       <tr>
+                           <td>{{item.phone}}</td>
+                       </tr>
+                       <tr>
+                           <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
+                           <td>
+                             <form (ngSubmit)="getAllStorex(item)">
+                                <button class="btnlooklikelink" (click)="show = !show; firstActive = true">
+                                    <!-- <i class="edit icon"></i> -->
+                                    <!-- (click)="firstActive = true" -->
+                                    update
+                              </button>
+                              </form></td>
+                       </tr>
+
+                   </table>
+                   <div class="gap-betweens-elements"></div>
+
+                </div>
+
+                <div>
+                <div class="ui raised segment sskn">
+                        <a class="ui red ribbon label">Alamat Pengiriman</a>
+                        <div class="gap-betweens-elements"></div>
+                        <span>{{item.address}}</span>
+                        <div class="gap-betweens-elements"></div>
+                        <span>{{item.cityName}}</span>
+                        <div class="gap-betweens-elements"></div>
+                        <span>Kecamatan : {{item.districtName}}</span>
+                        <div class="gap-betweens-elements"></div>
+                        <span>Kelurahan : {{item.villageName}} , {{item.postal}}</span>
+                        <hr>
+                        <div class="wreaper47">
+                            <div>
+                                <strong>Provinsi : </strong>
+                                <div class="gap-betweens-elements"></div>
+                                {{item.regionName}}
+                            </div>
+                            <div>
+                                <strong>Kota : </strong>
+                                <div class="gap-betweens-elements"></div>
+                                {{item.cityName}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form (ngSubmit)="edit()">
-                <button class="ui circular facebook icon button" (click)="show = !show">
-                    <i class="edit icon"></i>
-                    edit
-              </button>
-              </form> -->
+        </div>
+
+    </div>
+</sui-tabset>

@@ -50,7 +50,9 @@
                                         <label>{{ item.paymentMethod.name }}</label>
                                         <div class="ui field segment" *ngFor="let detail of item.paymentMethodDetails">
                                             <div class="ui radio checkbox" style="margin-left: 5px; margin-top: 5px;">
-                                                <input name="example2" checked="checked" type="radio"/>
+                                                <input name="example2" checked="checked" type="radio"
+                                                    [(ngModel)]="paymentMethodId"
+                                                    [ngModelOptions]="{standalone: true}" value="{{ detail.mBankAccountId }}~{{ item.paymentMethod.code }}"/>
                                                 <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_03.png'/></label>
                                             </div>
                                             <div class="padding-box">
@@ -91,7 +93,7 @@
                                     </select>
                                 </div> -->
                                 <div class="field">
-                                    Ongkos kirim: <b>Rp.20.000</b>
+                                    Ongkos kirim: <b>Rp {{ deliveryTotal | number }}</b>
                                 </div>
                             </form>
 

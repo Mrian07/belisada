@@ -106,8 +106,6 @@ export class BillingAddressComponent implements OnInit {
       // asdasd2
     };
     this.iniService.create(data).subscribe(response => {
-      console.log('ini submit ', response);
-      this.createComForm.reset();
       if (response.status === '1') {
         swal(
           'success',
@@ -149,6 +147,7 @@ export class BillingAddressComponent implements OnInit {
               this.district.setValue(this.districts.find(x => x.mdistrictId === data[0].districtId));
               this.villageId.setValue(this.villages.find(x => x.mvillageId === data[0].villageId));
               this.postalCode.setValue(data[0].postal);
+              this.phone.setValue(data[0].phone);
               // this.corporatePhone.setValue(data.corporatePhone);
               // this.ktp.setValue(data.idcard);
               // this.corporateNpwp.setValue(data.corporateNpwp);

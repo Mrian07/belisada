@@ -22,6 +22,7 @@ import { SearchService } from '../../core/service/search/search.service';
 import { CategoryService } from '../../core/service/category/category.service';
 import { PaymentMethodService } from '../../core/service/payment-method/payment-method.service';
 import { PaymentMethodDto } from '../../core/model/paymentMethodDto';
+import { error } from 'selenium-webdriver';
 
 
 @Injectable()
@@ -50,10 +51,10 @@ export class HomeEffects {
             return [
               new frontActions.GetHomeSuccess(output)
             ];
-          }
+          })
+          .catch(err => Observable.of({type: frontActions.FAILURE, payload: err}))
         )
-      )
-    );
+      );
 
   @Effect()
   getdetail$: Observable<any> = this.actions$.ofType(frontActions.GETDETAIL)
@@ -92,8 +93,8 @@ export class HomeEffects {
       this.categoryService.CategoryThree(params)
       .map( (list) => {
         return new frontActions.GetCategorySuccess(list);
-      }
-    )
+      })
+      .catch(err => Observable.of({type: frontActions.FAILURE, payload: err}))
   );
 
   @Effect()

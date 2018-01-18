@@ -31,6 +31,8 @@ export class ShippingAddressComponent implements OnInit {
   district: FormControl;
   id: number;
   addressId: FormControl;
+  firstActive: any;
+  secondActive: any;
   ship;
   provinces: Province[];
   cities: City[];
@@ -143,6 +145,7 @@ export class ShippingAddressComponent implements OnInit {
           this.district.setValue(this.districts.find(x => x.mdistrictId === id.districtId));
           this.vilaggeId.setValue(this.villages.find(x => x.mvillageId === id.villageId));
           this.postalCode.setValue(id.postal);
+          this.phone.setValue(id.phone);
           // this.corporatePhone.setValue(data.corporatePhone);
           // this.ktp.setValue(data.idcard);
           // this.corporateNpwp.setValue(data.corporateNpwp);

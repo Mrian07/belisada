@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 import { Checkout } from '../../model/checkout';
 import { FreightRateService } from '../freight-rate/freight-rate.service';
 import { FreightRate } from '../../model/FreightRate';
+import { ShippingAddress } from '../../model/shipping-address';
+import { ShippingAddressService } from '../shipping-address/shipping-address.service';
 
 const CART_KEY = 'cart';
 const CHECKOUT_KEY = 'checkout';
@@ -24,11 +26,15 @@ export class ShoppingCartService {
   private products: Product[];
   private deliveryOptions: DeliveryOption[];
 
+  shippingAddress: ShippingAddress = new ShippingAddress();
+  shippingAddressList: ShippingAddress[];
+
 
   public constructor(
     private storageService: LocalStorageService,
     private productService: ProductService,
     private freightRateService: FreightRateService,
+    private shippingAddressService: ShippingAddressService,
     private routes: Router
   ) {
     this.storage = this.storageService.get();
@@ -112,6 +118,7 @@ export class ShoppingCartService {
   }
 
   public setDeliveryOption(deliveryOptionId: number): void {
+    console.log('deliveryOptionId: ', deliveryOptionId);
     const cart = this.retrieve();
     cart.deliveryOptionId = deliveryOptionId;
     this.calculateCart(cart, (modifiedCart, product, idx, array) => {
@@ -169,14 +176,26 @@ export class ShoppingCartService {
 
       cb(cart, cb);
     } else {
-      this.freightRateService.getFreightRates(checkout.shippingAddress).subscribe(response => {
-        console.log('cart.deliveryOptionId: ', cart.deliveryOptionId);
-        console.log('response.find((x) => x.shipperId === cart.deliveryOptionId): ',
-        response.find((x) => x.shipperId === cart.deliveryOptionId));
-        cart.itemsTotal += item.quantity * product.pricelist;
-        cart.deliveryTotal += item.quantity * product.weight * response.find((x) => x.shipperId === cart.deliveryOptionId).amount;
-        cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
-        cb(cart, cb);
+      this.shippingAddressService.getAll().subscribe(datas => {
+        this.shippingAddress = datas.find((x) => x.addressId === checkout.shippingAddress);
+
+        this.freightRateService.getFreightRates(this.shippingAddress.villageId).subscribe(response => {
+          if (cart.deliveryOptionId === 0) {
+            cart.deliveryTotal = 0;
+          } else {
+            cart.deliveryTotal += (item.quantity * product.weight * response.find((x) => x.shipperId === cart.deliveryOptionId).amount);
+          }
+          console.log('item: ', item);
+          console.log('product: ', product);
+          console.log('cart.deliveryOptionId: ', cart.deliveryOptionId);
+          console.log('response.find((x) => x.shipperId === cart.deliveryOptionId): ',
+          response.find((x) => x.shipperId === cart.deliveryOptionId));
+          cart.itemsTotal += item.quantity * product.pricelist;
+          // cart.deliveryTotal += item.quantity * product.weight * response.find((x) => x.shipperId === cart.deliveryOptionId).amount;
+          cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
+          console.log('cart.deliveryTotal: ', cart.deliveryTotal);
+          cb(cart, cb);
+        });
       });
     }
   }

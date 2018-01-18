@@ -1,3 +1,4 @@
+import swal from 'sweetalert2';
 import { PaymentMethods } from './../../../../store/reducers/index';
 import { PaymentMethod } from './../../../../core/model/PaymentMethod';
 import { Component, OnInit } from '@angular/core';
@@ -15,6 +16,12 @@ import { ShareService } from '../../../../core/service/shared.service';
 import { Checkout } from '../../../../core/model/checkout';
 import { FreightRate } from '../../../../core/model/FreightRate';
 import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import { Observable } from 'rxjs/Observable';
+import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { ShippingAddressService } from '../../../../core/service/shipping-address/shipping-address.service';
+import { BilingAddressService } from '../../../../core/service/billing-address/biling-address.service';
+import { ShippingAddress } from '../../../../core/model/shipping-address';
+import { BillingAddress } from '../../../../core/model/billing-address';
 
 const CHECKOUT_KEY  = 'checkout';
 
@@ -27,11 +34,23 @@ export class PaymentMethodComponent implements OnInit {
 
   private storage: Storage;
 
+  public cart: Observable<ShoppingCart>;
+  public deliveryTotal: number;
+  private cartSubscription: Subscription;
+
   shippingMethod: any = '';
 
   paymentMethodDtos: PaymentMethodDto[];
   freightRates: FreightRate[];
   subscription: Subscription;
+  checkout: Checkout;
+  paymentMethodId: any;
+
+  shippingAddress: ShippingAddress = new ShippingAddress();
+  shippingAddressList: ShippingAddress[];
+
+  billingAddress: BillingAddress = new BillingAddress();
+  billingAddressList: BillingAddress[];
 
   constructor(
     private router: Router,
@@ -43,13 +62,15 @@ export class PaymentMethodComponent implements OnInit {
     private store: Store<fromProduct.PaymentMethods>,
     private shared: ShareService,
     private shoppingCartService: ShoppingCartService,
+    private shippingAddressService: ShippingAddressService,
+    private bilingAddressService: BilingAddressService,
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
   }
 
   getCheckout() {
-    const checkout = new Checkout();
+   const checkout = new Checkout();
     const storedCheckout = this.storage.getItem(CHECKOUT_KEY);
     if (storedCheckout) {
       checkout.updateFrom(JSON.parse(storedCheckout));
@@ -67,12 +88,10 @@ export class PaymentMethodComponent implements OnInit {
       this.getPaymentMethods();
     });
 
-    const checkout = this.getCheckout();
+    this.checkout = this.getCheckout();
 
-    this.freightRateService.getFreightRates(checkout.shippingAddress).subscribe(response => {
-      this.freightRates = response;
-      console.log('this.freightRates: ', this.freightRates);
-    });
+    this.getShippingAddress();
+    this.shoppingCart();
   }
 
   getPaymentMethods() {
@@ -81,13 +100,42 @@ export class PaymentMethodComponent implements OnInit {
     });
   }
 
+  getShippingAddress() {
+    this.shippingAddressService.getAll().subscribe(datas => {
+      this.shippingAddress = datas.find((x) => x.addressId === this.checkout.shippingAddress);
+
+      this.freightRateService.getFreightRates(this.shippingAddress.villageId).subscribe(response => {
+        this.freightRates = response;
+        console.log('this.freightRates: ', this.freightRates);
+      });
+    });
+  }
+
+  getBillingAddress() {
+    this.bilingAddressService.getAll().subscribe(datas => {
+      this.billingAddress = datas.find((x) => x.addressId === this.checkout.billingAddress);
+    });
+  }
+
   selectShippingMethod(shippingMethodId) {
-    console.log('shippingMethodId: ', shippingMethodId);
-    if (shippingMethodId !== '') {
-      this.shoppingCartService.setDeliveryOption(+shippingMethodId);
+    const courier = this.freightRates.find((x) => x.shipperId === +shippingMethodId);
+    console.log('courier: ', courier);
+    if (courier) {
+      this.checkout.courierId = courier.shipperId;
+      this.checkout.courierAmt = courier.amount;
+      this.checkout.courierName = courier.shipperName;
+      this.checkout.isoncePickup = 'Y';
     } else {
-      console.log('aaaaaa');
+      this.checkout.courierId = -1;
     }
+    this.shoppingCartService.setDeliveryOption(+shippingMethodId);
+  }
+
+  shoppingCart() {
+    this.cart = this.shoppingCartService.get();
+    this.cartSubscription = this.cart.subscribe((cart) => {
+      this.deliveryTotal = cart.deliveryTotal;
+    });
   }
 
   prev() {
@@ -95,7 +143,23 @@ export class PaymentMethodComponent implements OnInit {
   }
 
   next() {
-    this.router.navigateByUrl('/confirm-order');
+    if (this.paymentMethodId) {
+      const arr = this.paymentMethodId.split('~');
+      this.checkout.mBankAccountId = arr[0];
+      this.checkout.paymentMethod = arr[1];
+    } else {
+      this.checkout.mBankAccountId = -1;
+    }
+
+
+    if (this.checkout.courierId && this.checkout.mBankAccountId) {
+      this.storage.setItem(CHECKOUT_KEY, JSON.stringify(this.checkout));
+      this.router.navigateByUrl('/confirm-order');
+    } else {
+      swal('Pastikan payment method dan kirir pengiriman terpilih');
+    }
+    console.log('this.checkout: ', this.checkout);
+    // this.router.navigateByUrl('/confirm-order');
   }
 
 }

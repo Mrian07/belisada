@@ -50,7 +50,7 @@ export class FrontHeaderComponent implements OnInit {
   loginState: Boolean;
   userName: string;
   avatar: string;
-  grossTotal: number;
+  itemsTotal: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -73,7 +73,7 @@ export class FrontHeaderComponent implements OnInit {
       this.getProfile();
     }else {
       this.loginState = false;
-      this.avatar = '/assets/img/user.jpg';
+      this.avatar = 'assets/img/user.jpg';
       this.itemCount = 0;
     }
     this.categoryService.CategoryOne().subscribe(data => {
@@ -112,9 +112,16 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   getProfile() {
+    console.log(this.auth.getToken())
     this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
       this.userName = data.name;
-      this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+      console.log(data);
+      if (data.imageAvatar === '') {
+        this.avatar = 'assets/img/user.jpg';
+      }else {
+        this.avatar = 'data:image/png;base64,' + data.imageAvatar;
+      }
+
     });
   }
 
@@ -122,7 +129,7 @@ export class FrontHeaderComponent implements OnInit {
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
-      this.grossTotal = cart.grossTotal;
+      this.itemsTotal = cart.itemsTotal;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -166,7 +173,8 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
-    this.router.navigateByUrl('/Product-detail/' + hasil.productId);
+    console.log(hasil);
+    this.router.navigateByUrl('/Product-detail/' + hasil.productId + '/' + hasil.aliasName);
     this.results = [];
   }
   hapusbersih() {
