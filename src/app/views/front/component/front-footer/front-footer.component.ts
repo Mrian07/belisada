@@ -8,7 +8,7 @@ import { EmailNewsLetterService } from '../../../../core/service/email-news-lett
   styleUrls: ['./front-footer.component.scss']
 })
 export class FrontFooterComponent implements OnInit {
-
+  emailSubscription: any;
   constructor(private emailNewsLetterService: EmailNewsLetterService) { }
 
   ngOnInit() {

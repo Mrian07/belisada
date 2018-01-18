@@ -28,6 +28,10 @@ const sellerroutes: Routes = [
     canActivateChild: [OnlyLoggedInUsersGuard],
     children: [
       {
+        path: '',
+        component: DashboardComponent,
+      },
+      {
         path: 'dashboard',
         component: DashboardComponent,
       },

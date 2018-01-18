@@ -77,19 +77,19 @@
                             <form class="ui form">
                                 <div class="field">
                                     <label>Kurir Pengiriman</label>
-                                    <select class="ui compact selection dropdown">
+                                    <select class="ui compact selection dropdown" [(ngModel)]="shippingMethod" [ngModelOptions]="{standalone: true}" (change)="selectShippingMethod(shippingMethod)">
                                         <option value="">-Pilih-</option>
-                                        <option selected="" value="Jne">JNE</option>
-                                        <option value="Ninja">Ninja</option>
+                                        <option *ngFor="let item of freightRates" [value]="item.shipperId">{{ item.shipperName }}</option>
+                                        <!-- <option value="Ninja">Ninja</option> -->
                                     </select>
                                 </div>
-                                <div class="field">
+                                <!-- <div class="field">
                                     <label>Paket Pengiriman</label>
                                     <select class="ui compact selection dropdown">
                                         <option value="">-Pilih-</option>
                                         <option selected="" value="Regular">Regular</option>
                                     </select>
-                                </div>
+                                </div> -->
                                 <div class="field">
                                     Ongkos kirim: <b>Rp.20.000</b>
                                 </div>

@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-detail-buyer.component.scss']
 })
 export class OrderDetailBuyerComponent implements OnInit {
-
+  cartItems: any;
+  cart;
   constructor() { }
 
   ngOnInit() {
