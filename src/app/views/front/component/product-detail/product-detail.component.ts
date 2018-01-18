@@ -146,7 +146,7 @@ export class ProductDetailComponent implements OnInit {
   home() {
     this.router.navigateByUrl('/');
   }
-  asap() {
+  asap3() {
     this.router.navigateByUrl('/Asap');
     // console.log(this.router.navigateByUrl('/Asap'));
   }
