@@ -50,6 +50,7 @@ import { WishlistBuyerComponent } from './views/buyer/component/wishlist-buyer/w
 import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja/cara-berbelanja.component';
 import { CareerComponent } from './views/front/component/career/career.component';
 import { CopyrightPolicyComponent } from './views/front/component/copyright-policy/copyright-policy.component';
+import { AsapComponent } from './views/front/component/asap/asap.component';
 
 const routes: Routes = [
   {
@@ -300,6 +301,13 @@ const routes: Routes = [
         component: CategoryComponent,
         data: {
           title: 'category'
+        }
+      },
+      {
+        path: 'Asap',
+        component: AsapComponent,
+        data: {
+          title: 'asap'
         }
       }
     ]

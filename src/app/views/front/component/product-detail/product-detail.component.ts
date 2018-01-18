@@ -146,7 +146,10 @@ export class ProductDetailComponent implements OnInit {
   home() {
     this.router.navigateByUrl('/');
   }
-
+  asap3() {
+    this.router.navigateByUrl('/Asap');
+    // console.log(this.router.navigateByUrl('/Asap'));
+  }
   ngOnDestroy() {
     this.detailData.unsubscribe();
   }
