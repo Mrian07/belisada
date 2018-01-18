@@ -51,9 +51,6 @@ export class ContactUsComponent implements OnInit {
 
   onSubmit() {
     if (!this.createComForm.valid) {
-      // if (this.name.invalid) {
-      //   swal('Nama tidak boleh kosong');
-      // }
       return;
     } else {
       const model = this.createComForm.value;
