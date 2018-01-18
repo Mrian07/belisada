@@ -21,6 +21,7 @@ export class ContactUsComponent implements OnInit {
 
   constructor(
     private title: Title,
+    private emailSendService: EmailSendService
   ) { }
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class ContactUsComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
+    this.name = new FormControl('', Validators.required);
     this.email = new FormControl('');
     this.issue = new FormControl('');
     this.message = new FormControl('');
@@ -56,25 +57,23 @@ export class ContactUsComponent implements OnInit {
     };
 
 
+    this.emailSendService.emailContactUs(data).subscribe(data => {
 
+      if (data.status === '1') {
+        swal(
+          'success',
+          data.message,
+          'success'
+        );
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
 
-    // this.shippingAddressService.create(data).subscribe(data => {
-
-    //   if (data.name === '') {
-    //     swal(
-    //       'success',
-    //       data.message,
-    //       'success'
-    //     );
-    //   }else {
-    //     swal(
-    //       'Opps!',
-    //       data.message,
-    //       'error'
-    //     );
-    //   }
-
-    // });
+    });
 
   }
 }
