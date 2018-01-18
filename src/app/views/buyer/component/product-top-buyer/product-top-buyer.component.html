@@ -1,6 +1,6 @@
 <div class="ui grid">
   <div class="four wide column" *ngFor="let item of allProduct">
-    <div class="border-item" (click)="detail('item.productId','item.aliasName')" style="cursor: pointer;">
+    <div class="border-item" (click)="detail(item.productId, item.aliasName)" style="cursor: pointer;">
       <img class="ui tiny spaced image" src="{{item.imageurl}}" alt="profile picture"/>
     </div>
     <div class="border-item-second"> 

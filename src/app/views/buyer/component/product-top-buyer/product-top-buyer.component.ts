@@ -31,7 +31,7 @@ export class ProductTopBuyerComponent implements OnInit {
   }
 
   detail(id: string, alias: string) {
-    alert(id);
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
   }
 
 }
