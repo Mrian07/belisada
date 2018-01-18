@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ShareService } from '../../../../core/service/shared.service';
+import { EmailSendService } from './../../../../core/service/email-send/email-send.service';
 
 @Component({
   selector: 'app-contact-us',
