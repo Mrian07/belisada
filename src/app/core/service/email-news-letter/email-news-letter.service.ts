@@ -10,7 +10,7 @@ export class EmailNewsLetterService {
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
   newsLetterSubscription(data): Observable<EmailNewsLetter> {
-    return this.http.post(this.configuration.serverWithAccUrl + '/newsletter/create', data)
+    return this.http.post(this.configuration.serverWithAccUrl + '/newsletter/contactus', data)
       .map(response => response as EmailNewsLetter);
   }
 
