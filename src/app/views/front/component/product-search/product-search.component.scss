@@ -26,9 +26,11 @@
 }
 .list-grid .search-results {
     width: 25%;
+
     display: inline-grid;
     padding: 10px;
 }
+
 .search-results:after {
     display: block;
     height: 6px;
@@ -44,6 +46,7 @@
     width: 200px;
     float: left;
 }
+
 .list-row .pricelist {
     width: 200px;
     float: right;
@@ -62,6 +65,7 @@
 .highlight {
     float: left;
     padding: 10px 15px;
+    height: 220px;
     // grid-area: highlight;
 }
 .price {

@@ -51,6 +51,7 @@ export class AddProductsComponent implements OnInit {
   keys: string;
   description: any;
   price: number;
+  specialPrice: any;
   weight: number;
   panjang: number;
   lebar: number;
@@ -63,6 +64,7 @@ export class AddProductsComponent implements OnInit {
   redirectSub: Subscription;
   editSub: Subscription;
   editData: any;
+  asap: any;
 
     constructor(private searchService: SearchService, private categoryService: CategoryService,
       private route: ActivatedRoute, private router: Router, private storeService: StoreService,
@@ -164,6 +166,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
+    console.log(hasil);
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.selectedSubCategory = hasil.category2Name;
@@ -172,6 +175,7 @@ export class AddProductsComponent implements OnInit {
     this.results = [];
     this.selectCats = hasil.name;
     this.price = hasil.pricelist;
+    this.specialPrice = hasil.specialPrice;
     this.description = hasil.description;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
@@ -180,6 +184,7 @@ export class AddProductsComponent implements OnInit {
     this.lebar = hasil.dimensionswidth;
     this.tinggi = hasil.dimensionsheight;
     this.panjang = hasil.dimensionslength;
+    this.asap = hasil.isAsapShipping;
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -208,13 +213,37 @@ export class AddProductsComponent implements OnInit {
     }else {
       const productData = {
         pricelist: this.price,
-        description: this.description,
+        description:'',
         productId: this.productId,
         mBpartnerStoreId: this.storeId,
         weight: this.weight,
         dimensionswidth: this.lebar,
         dimensionslength: this.panjang,
         dimensionsheight: this.tinggi,
+        specialPrice: this.specialPrice,
+        isAsapShipping: 'N',
+        tag: [this.productName]
+      };
+      this.store.dispatch(new fromActions.AddProduct(productData));
+    }
+  }
+
+  addProductsAsap() {
+    console.log(this.description);
+    if ( this.productId === undefined) {
+      swal('Nama Product harus diisi');
+    }else {
+      const productData = {
+        pricelist: this.price,
+        description: '',
+        productId: this.productId,
+        mBpartnerStoreId: this.storeId,
+        weight: this.weight,
+        dimensionswidth: this.lebar,
+        dimensionslength: this.panjang,
+        dimensionsheight: this.tinggi,
+        specialPrice: this.specialPrice,
+        isAsapShipping: 'Y',
         tag: [this.productName]
       };
       this.store.dispatch(new fromActions.AddProduct(productData));
