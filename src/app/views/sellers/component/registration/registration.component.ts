@@ -52,9 +52,9 @@ export class RegistrationComponent implements OnInit {
     const user = this.auth.getUser();
     if (user) {
       const role = user.role;
-      if (role === 2) {
+     // if (role === 2) {
         this.router.navigateByUrl('/seller/dashboard');
-      }else {}
+    //  }else {}
     }
   }
   popUp() {
