@@ -1,5 +1,6 @@
 .b-cat{
     margin-top:20px;
+    margin-bottom:20px;
 }
 
 .bg-cat{
@@ -9,8 +10,10 @@
 }
 
 .bg-cat:hover{
-    background:#f8f6f6;
+    // background:#f8f6f6;
     padding:10px 5px;
+    border:1px solid #dddddd;
+    box-shadow: 5px 5px #e2dfdf;
 }
 
 .bg-cat a:link{

@@ -20,24 +20,6 @@
                 <i class="grid layout icon" (click)="listStyle('list-grid')"></i>
             </li>
             <li class="sort-filter">
-                <!-- <span>Atur Berdasarkan : </span> -->
-                <!-- <sui-select class="selection"
-                [(ngModel)]="selectedOption"
-                [options]="options"
-                labelField="name"
-                [isSearchable]="searchable"
-                [isDisabled]="disabled"
-                #select>
-                <sui-select-option *ngFor="let option of sortOrder"
-                [value]="option.ob" value="option.sort">
-                </sui-select-option>
-                </sui-select> -->
-                <!-- <sui-select class="selection"
-                    [(ngModel)]="selectedOption"
-                    labelField="name"
-                    placeholder="Atur Berdasarkan">
-                        <sui-select-option *ngFor="let option of sortOrder" [value]="option" value="option.name" (click)="sortThis()">{{ option.name }}</sui-select-option>
-                </sui-select> -->
                 <sui-select placeholder="Atur Berdasarkan" [(ngModel)]="selectedOption" class="selection">
                     <sui-select-option *ngFor="let option of sortOrder" value="{{option.sort}}" [value]="option.ob" (click)="sortThis(option.ob)" ></sui-select-option>
                 </sui-select>
@@ -55,7 +37,7 @@
             <div class="prodimg">
                  <img class="ui medium image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'"></div>
             <!-- <div class="clear-fix"></div> -->
-            <div class="highlight" align="center">
+            <div class="highlight">
                 <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name}}</strong></a>
 
             <p [innerHTML]="item.highlight | sanitizeHtml"></p>

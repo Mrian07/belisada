@@ -40,7 +40,8 @@ export class SidebarComponent implements OnInit {
 
   getStoreStatus() {
     this.storeService.getStatus().subscribe(data => {
-      this.status = data[0].statusCode;
+      console.log(data);
+        this.status = data[0].statusCode;
     });
   }
 
@@ -57,7 +58,11 @@ export class SidebarComponent implements OnInit {
     this.profileService.getProfile(this.tokenService.getToken()).subscribe(data => {
       this.sellerName = data.name;
       this.sellerEmail = data.email;
-      this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
+      if (data.imageAvatar === '') {
+        this.sellerimage = 'assets/img/kristy.png';
+      }else {
+        this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
+      }
     });
   }
   goToProduct() {

@@ -51,6 +51,7 @@ export class AddProductsComponent implements OnInit {
   keys: string;
   description: any;
   price: number;
+  specialPrice: any;
   weight: number;
   panjang: number;
   lebar: number;
@@ -63,6 +64,9 @@ export class AddProductsComponent implements OnInit {
   redirectSub: Subscription;
   editSub: Subscription;
   editData: any;
+  asap: any;
+  quantity: any;
+  selectedQuantity: any;
 
     constructor(private searchService: SearchService, private categoryService: CategoryService,
       private route: ActivatedRoute, private router: Router, private storeService: StoreService,
@@ -75,6 +79,8 @@ export class AddProductsComponent implements OnInit {
       this.route.params.subscribe( id => {
         this.editid = id;
       });
+      const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      this.quantity = quantity;
     }
 
 
@@ -123,6 +129,10 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
+  getQuantity(q) {
+    this.selectedQuantity = q;
+  }
+
   openDrops() {
     this.toggle = true;
   }
@@ -164,6 +174,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
+    console.log(hasil);
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.selectedSubCategory = hasil.category2Name;
@@ -172,6 +183,7 @@ export class AddProductsComponent implements OnInit {
     this.results = [];
     this.selectCats = hasil.name;
     this.price = hasil.pricelist;
+    this.specialPrice = hasil.specialPrice;
     this.description = hasil.description;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
@@ -180,6 +192,7 @@ export class AddProductsComponent implements OnInit {
     this.lebar = hasil.dimensionswidth;
     this.tinggi = hasil.dimensionsheight;
     this.panjang = hasil.dimensionslength;
+    this.asap = hasil.isAsapShipping;
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -202,19 +215,45 @@ export class AddProductsComponent implements OnInit {
 
 
   addProducts() {
-    console.log(this.description);
+    console.log(this.selectedQuantity);
     if ( this.productId === undefined) {
       swal('Nama Product harus diisi');
     }else {
       const productData = {
         pricelist: this.price,
-        description: this.description,
+        description:'',
         productId: this.productId,
         mBpartnerStoreId: this.storeId,
         weight: this.weight,
         dimensionswidth: this.lebar,
         dimensionslength: this.panjang,
         dimensionsheight: this.tinggi,
+        specialPrice: this.specialPrice,
+        isAsapShipping: 'N',
+        stok: this.selectedQuantity,
+        tag: [this.productName]
+      };
+    this.store.dispatch(new fromActions.AddProduct(productData));
+    }
+  }
+
+  addProductsAsap() {
+    console.log(this.description);
+    if ( this.productId === undefined) {
+      swal('Nama Product harus diisi');
+    }else {
+      const productData = {
+        pricelist: this.price,
+        description: '',
+        productId: this.productId,
+        mBpartnerStoreId: this.storeId,
+        weight: this.weight,
+        dimensionswidth: this.lebar,
+        dimensionslength: this.panjang,
+        dimensionsheight: this.tinggi,
+        specialPrice: this.specialPrice,
+        isAsapShipping: 'Y',
+        stok: this.selectedQuantity,
         tag: [this.productName]
       };
       this.store.dispatch(new fromActions.AddProduct(productData));
@@ -259,4 +298,7 @@ export class AddProductsComponent implements OnInit {
     this.selectedBrands = '';
   }
 
+  asapPage() {
+    this.router.navigateByUrl('/asap');
+  }
 }

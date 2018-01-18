@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreService } from '../../../../../core/service/store/store.service';
+import { Observable } from 'rxjs/Observable';
+import { Product } from '../../../../../core/model/product';
 
 @Component({
   selector: 'app-status-invoice',
@@ -6,33 +9,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./status-invoice.component.scss']
 })
 export class StatusInvoiceComponent implements OnInit {
-  productList = [];
-  constructor() { }
+  productList: Observable<Product[]>;
+
+  constructor(
+    private storeService: StoreService
+  ) { }
 
   ngOnInit() {
-    this.productList = [
-      {
-        'orderId': '#5765675655',
-        'product': 'Asus ROG',
-        'qty': '3',
-        'status': 'success',
-        'date': '2017-12-09'
-      },
-      {
-        'orderId': '#5765675615',
-        'product': 'Macbook pro 15"',
-        'qty': '1',
-        'status': 'success',
-        'date': '2017-12-10'
-      },
-      {
-        'orderId': '#5765675673',
-        'product': 'iPhone X',
-        'qty': '6',
-        'status': 'pending',
-        'date': '2017-12-20'
-      }
-    ];
+    // this.storeService.getApproveProduct(4).subscribe(data => {
+    //   console.log('approve', data);
+    //   this.productList = Observable.of(data.productList);
+    // });
   }
 
 }

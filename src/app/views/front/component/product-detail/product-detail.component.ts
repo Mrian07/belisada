@@ -50,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
   storeList: Array<any>;
   aliasName;
   theImage: string;
+  asap: Boolean = true;
 
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
@@ -103,6 +104,11 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
+          if ( this.ProductList.isAsapShipping === 'Y') {
+            this.asap = true;
+          }else {
+            this.asap = false;
+          }
           const harga = (this.ProductList.specialPrice / this.ProductList.pricelist);
           const diskon = 1 - harga;
           this.kamp = (this.ProductList.pricelist - this.ProductList.specialPrice);
@@ -139,6 +145,10 @@ export class ProductDetailComponent implements OnInit {
 
   home() {
     this.router.navigateByUrl('/');
+  }
+  asap3() {
+    this.router.navigateByUrl('/asap');
+    // console.log(this.router.navigateByUrl('/Asap'));
   }
 
   ngOnDestroy() {

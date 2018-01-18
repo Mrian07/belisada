@@ -1,10 +1,3 @@
-import { EmailNewsLetterService } from './../../../core/service/email-news-letter/email-news-letter.service';
-import { ShippingAddressService } from './../../../core/service/shipping-address/shipping-address.service';
-import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
-// import { BillingAddress } from './../../../core/model/billing-address';
-import { SidebarBuyerComponent } from './../component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
-import { SearchService } from './../../../core/service/search/search.service';
-import { ProductDetailService } from './../../../core/service/product-detail/product-detail.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxCarousel } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.interface';
@@ -12,6 +5,16 @@ import { NgxCarouselModule } from 'ngx-carousel/src/ngx-carousel.module';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import 'hammerjs';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { ImageZoomModule} from 'angular2-image-zoom';
+import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
+import { EmailNewsLetterService } from './../../../core/service/email-news-letter/email-news-letter.service';
+import { ShippingAddressService } from './../../../core/service/shipping-address/shipping-address.service';
+import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
+import { SidebarBuyerComponent } from './../component/buyer-dashboard/sidebar-buyer/sidebar-buyer.component';
+import { SearchService } from './../../../core/service/search/search.service';
+import { ProductDetailService } from './../../../core/service/product-detail/product-detail.service';
 import { FrontLayoutComponent } from '../../../core/layout/front-layout/front-layout.component';
 import { HomeComponent } from '../component/home/home.component';
 import { FrontHeaderComponent } from '../component/front-header/front-header.component';
@@ -26,20 +29,18 @@ import { HomeService } from '../../../core/service/home/home.service';
 import { ShoppingCartService } from '../../../core/service/shopping-cart/shopping-cart.service';
 import { ProductService } from '../../../core/service/product/product.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
-import { StoreModule } from '@ngrx/store';
-import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, NavReducer, PaymentMethodReducer } from '../../../store/reducers';
-import { EffectsModule } from '@ngrx/effects';
+import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, PaymentMethodReducer } from '../../../store/reducers';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
 import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
-import {ImageZoomModule} from 'angular2-image-zoom';
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
-import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
 import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
 import { CheckoutService } from '../../../core/service/checkout/checkout.service';
+import { EmailSendService } from '../../../core/service/email-send/email-send.service';
+import { AsapComponent } from '../component/asap/asap.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CheckoutService } from '../../../core/service/checkout/checkout.service
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
+    AsapComponent,
     CaraBerbelanjaComponent,
     ChattingFrontComponent
   ],
@@ -70,7 +72,6 @@ import { CheckoutService } from '../../../core/service/checkout/checkout.service
     StoreModule.forFeature('detail', DetailReducer),
     StoreModule.forFeature('list', ListReducer),
     StoreModule.forFeature('category', CategoryReducer),
-    StoreModule.forFeature('navigation', NavReducer),
     StoreModule.forFeature('paymentMethod', PaymentMethodReducer),
     EffectsModule.forFeature([HomeEffects]),
     ImageZoomModule
@@ -87,7 +88,9 @@ import { CheckoutService } from '../../../core/service/checkout/checkout.service
     PaymentMethodService,
     EmailNewsLetterService,
     FreightRateService,
-    CheckoutService
+    CheckoutService,
+    EmailSendService,
+    FreightRateService
   ]
 })
 export class FrontModules { }
