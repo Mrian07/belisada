@@ -95,25 +95,36 @@
             <div style="height:300px;">
             <div class="gap-between-elementsiii"></div>
              <span>Hubungi Layanan Purna Jual Kami. Gratis</span>
-
+             <form class="ui form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
              <table>
                  <tr>
-                     <td> <input type="text" placeholder="subjek..." [(ngModel)]="issue"></td>
-                     <td> <input type="text" placeholder="alamat email..." [(ngModel)]="email"></td>
-                 </tr>
+                     <td> <input type="text" placeholder="subjek..." [(ngModel)]="issue" #_issue="ngModel" [ngModelOptions]="{standalone: true}" required min="0" max="16">
+                        <!-- <div *ngIf="!_issue.valid" class="ui pointing red basic label">No Rek Is Required</div> -->
+                    </td>
+                     <td> <input type="email" placeholder="alamat email..." [(ngModel)]="email" #_email="ngModel" [ngModelOptions]="{standalone: true}" required min="0" max="16"></td>
+                     <!-- <div *ngIf="!_email.valid" class="ui pointing red basic label">kamrp</div> -->
+                    </tr>
                  <tr>
-                        <td> <input type="text" placeholder="nama..." [(ngModel)]="name"></td>
-                        <td> <input type="text" placeholder="no telpon..." [(ngModel)]="phone"></td>
+                        <td> <input type="text" placeholder="nama..." [(ngModel)]="name" #_name="ngModel" [ngModelOptions]="{standalone: true}" required></td>
+                        <!-- <div *ngIf="!_name.valid" class="ui pointing red basic label">kamrp</div> -->
+                        <td> <input type="text" placeholder="no telpon..." [(ngModel)]="phone" #_phone="ngModel" [ngModelOptions]="{standalone: true}" required></td>
+                        <!-- <div *ngIf="!_phone.valid" class="ui pointing red basic label">kamrp</div> -->
                     </tr>
                     <tr>
-                            <td> <input type="text" placeholder="order id..." [(ngModel)]="orderNumber"></td>
-                            <td> <input type="text" placeholder="perusahaan..." [(ngModel)]="company"></td>
+                            <td> <input type="text" placeholder="order id..." [(ngModel)]="orderNumber" #_orderNumber="ngModel" [ngModelOptions]="{standalone: true}" required></td>
+                            <!-- <div *ngIf="!_orderNumber.valid" class="ui pointing red basic label">kamrp</div> -->
+                            <td> <input type="text" placeholder="perusahaan..." [(ngModel)]="company" [ngModelOptions]="{standalone: true}" required></td>
                         </tr>
                         <tr>
-                            <td colspan=2><textarea class="textA" [(ngModel)]="message"></textarea></td>
+                            <td colspan=2><textarea class="textA" [(ngModel)]="message" [ngModelOptions]="{standalone: true}" required></textarea></td>
                         </tr>
+
              </table>
-             <button class="fluid ui button textB" (click)="poerna()">Kirim</button>
+
+            </form>
+             <button class="fluid ui button textB" (click)="poerna()"
+             [disabled]="!f.valid"
+             >Kirim</button>
              <div class="gap-between-elementsiii"></div>
 
 

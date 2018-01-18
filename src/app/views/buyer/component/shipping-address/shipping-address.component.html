@@ -1,4 +1,7 @@
 
+<button (click)="scroll(target)">Kmpret</button>
+
+
 <div class="wrapper" *ngFor="let item of ship">
     <div class="wrapper2">
         <div class="kk">
@@ -22,7 +25,19 @@
 
 
                    <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
-                   <td><button class="btnlooklikelink" (click)="getAllStorex(item)">Update</button></td>
+                   <td>
+                        <form (ngSubmit)="getAllStorex(item)">
+                                <button class="btnlooklikelink" (click)="show = !show">
+                                    <!-- <i class="edit icon"></i> -->
+                                    update
+                              </button>
+                              </form>
+                       <!-- <button class="btnlooklikelink" (click)="getAllStorex(item)">Update
+
+
+                       </button> -->
+
+                    </td>
                </tr>
 
            </table>
@@ -70,6 +85,7 @@
        {{item.address}}
        {{item.cityName}}
    </div> -->
+   <div #target>Your target</div>
     <div class="ui segment">
         <div class="ui grid">
           <div class="twelve wide stretched column">
@@ -80,7 +96,7 @@
                     <div class="ten wide column">
                         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
                             <div class="field">
-
+                                    <input name="addressId" placeholder="Masukan nama perusahaan" type="hidden" formControlName="addressId"/>
                                 <label>Nama</label>
                                 <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
                             </div>
@@ -134,11 +150,38 @@
 
 
 
-
-
-                            <button class="ui primary button" type="submit">Simpan</button>
                         </form>
+                            <div *ngIf="show">
+                                    <button
+
+                                        (click)="edit()"
+                                        name = "buton13"
+                                        >Edit Nich
+                                    </button>
+                                </div>
+                                <div *ngIf="show1">
+                                        <button
+                                        class="ui primary button"
+                                        (click)="onSubmit()"
+                                        >Kirim</button>
+                                        </div>
+                            <!-- <button class="ui primary button" type="submit"  (click)="onSubmit()">Simpan</button> -->
+
                     </div>
                 </div>
             </div>
+            <!-- <div *ngIf="show">
+                <button
 
+                    (click)="edit()"
+                    name = "buton13"
+                    [disabled]="!f.valid"
+                    >Kampret
+                </button>
+            </div>
+            <form (ngSubmit)="edit()">
+                <button class="ui circular facebook icon button" (click)="show = !show">
+                    <i class="edit icon"></i>
+                    edit
+              </button>
+              </form> -->

@@ -1,6 +1,6 @@
 import { ShippingAddressService } from './../../../../core/service/shipping-address/shipping-address.service';
 import { ShippingAddress } from './../../../../core/model/shipping-address';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MasterService } from './../../../../core/service/master/master.service';
 import { Province } from '../../../../core/model/province';
 import { City } from '../../../../core/model/city';
@@ -15,6 +15,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   styleUrls: ['./shipping-address.component.scss']
 })
 export class ShippingAddressComponent implements OnInit {
+  @ViewChild('f') form: any;
   user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
@@ -29,6 +30,7 @@ export class ShippingAddressComponent implements OnInit {
   city: FormControl;
   district: FormControl;
   id: number;
+  addressId: FormControl;
   ship;
   provinces: Province[];
   cities: City[];
@@ -36,6 +38,8 @@ export class ShippingAddressComponent implements OnInit {
   villages: Village[];
   kelurahan = [];
   categories = [];
+  show = false;
+  show1 = true;
   selectedProvince: string;
 
   constructor(private masterService: MasterService, private shippingAddressService: ShippingAddressService) { }
@@ -55,6 +59,7 @@ export class ShippingAddressComponent implements OnInit {
     this.addressName = new FormControl('');
     this.phone = new FormControl('');
     this.city = new FormControl('');
+    this.addressId = new FormControl('');
     this.province = new FormControl('');
     this.district = new FormControl('');
     this.vilaggeId = new FormControl('');
@@ -62,6 +67,7 @@ export class ShippingAddressComponent implements OnInit {
   }
   createForm() {
     this.createComForm = new FormGroup({
+      addressId: this.addressId,
       name: this.name,
       address: this.address,
       addressType: this.addressType,
@@ -115,6 +121,8 @@ export class ShippingAddressComponent implements OnInit {
     });
   }
   getAllStorex(id) {
+    this.show1 = false;
+
     const model = this.createComForm.value;
     //
     this.masterService.getCity(id.regionId).subscribe(city => {
@@ -125,6 +133,7 @@ export class ShippingAddressComponent implements OnInit {
 
           this.villages = village;
           this.addressName.setValue(id.addressName);
+          this.addressId.setValue(id.addressId);
           this.name.setValue(id.name);
           this.address.setValue(id.address);
           this.province.setValue(this.provinces.find(x => x.mregionId === id.regionId));
@@ -150,6 +159,27 @@ export class ShippingAddressComponent implements OnInit {
     // this.mBankAccountId = id.mBankAccountId;
     // this.show1 = false;
     console.log('ini semuanya', id);
+    console.log('bismilah', id.addressId);
+    // this.form.reset();
+  }
+  edit() {
+    // console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
+    const model = this.createComForm.value;
+    const b = {
+      name: model.name,
+      address: model.address,
+      addressName: model.addressName,
+      postal: model.postalCode,
+      villageId: model.vilaggeId.mvillageId,
+      phone: model.phone,
+      addressId: model.addressId
+      //
+    };
+    const user = JSON.parse(localStorage.user);
+    this.shippingAddressService.update(b).subscribe(data => {
+      // location.reload();
+      this.show = false;
+    });
   }
 
   btnDelete(id) {
@@ -189,5 +219,8 @@ export class ShippingAddressComponent implements OnInit {
   setPostalCode(postalcode) {
     this.createComForm.controls['postalCode'].setValue(postalcode);
   }
+  scroll(el) {
+    el.scrollIntoView();
+}
 
 }
