@@ -1,3 +1,4 @@
+import { EmailSendService } from './../../../core/service/email-send/email-send.service';
 import { EmailNewsLetterService } from './../../../core/service/email-news-letter/email-news-letter.service';
 import { ShippingAddressService } from './../../../core/service/shipping-address/shipping-address.service';
 import { BilingAddressService } from './../../../core/service/billing-address/biling-address.service';
@@ -85,7 +86,8 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
     ProductService,
     PaymentMethodService,
     EmailNewsLetterService,
-    FreightRateService
+    FreightRateService,
+    EmailSendService
   ]
 })
 export class FrontModules { }

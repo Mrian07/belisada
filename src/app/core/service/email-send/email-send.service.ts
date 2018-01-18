@@ -13,7 +13,7 @@ export class EmailSendService {
       .map(response => response as EmailSend);
   }
   emailContactUs(data): Observable<EmailSend> {
-    return this.http.post(this.configuration.serverWithAccUrl + 'email/send/contactus', data)
+    return this.http.post(this.configuration.serverWithAccUrl + '/email/send/contactus', data)
       .map(response => response as EmailSend);
   }
 

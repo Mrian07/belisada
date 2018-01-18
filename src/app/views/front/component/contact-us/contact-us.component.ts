@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ShareService } from '../../../../core/service/shared.service';
 import { EmailSendService } from './../../../../core/service/email-send/email-send.service';
 
 @Component({
@@ -21,12 +20,12 @@ export class ContactUsComponent implements OnInit {
 
   constructor(
     private title: Title,
-    private emailSendService: EmailSendService
+    private emailSendService: EmailSendService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
     this.title.setTitle('Belisada.co.id');
-    //this.fillForms.bind(this)
     this.createFormControls();
     this.createForm();
   }
@@ -56,24 +55,13 @@ export class ContactUsComponent implements OnInit {
       message: model.message
     };
 
-
     this.emailSendService.emailContactUs(data).subscribe(data => {
+      swal(
+        'success',
+        'Pesan Anda berhasil dikirim, <br>Staff kami akan segera menindak lanjuti.<br>Terima kasih.',
+        'success'
+      );
 
-      if (data.status === '1') {
-        swal(
-          'success',
-          data.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          data.message,
-          'error'
-        );
-      }
-
-    });
-
+      this.createComForm.reset();
   }
 }
