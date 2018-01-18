@@ -29,6 +29,8 @@ export class ShippingAddressComponent implements OnInit {
   city: FormControl;
   district: FormControl;
   id: number;
+  firstActive: any;
+  secondActive: any;
   ship;
   provinces: Province[];
   cities: City[];
