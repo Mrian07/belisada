@@ -202,6 +202,7 @@ export class AddProductsComponent implements OnInit {
 
 
   addProducts() {
+    console.log(this.description);
     if ( this.productId === undefined) {
       swal('Nama Product harus diisi');
     }else {

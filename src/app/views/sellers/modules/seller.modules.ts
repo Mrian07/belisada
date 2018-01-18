@@ -52,9 +52,8 @@ import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reduce
 import { ProductEffects } from '../../../store/effects/index';
 import { ProductListComponent } from '../component/product-list/product-list.component';
 import { ChattingComponent } from '../component/chatting/chatting.component';
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
-
+import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
   declarations: [
@@ -95,6 +94,7 @@ import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
   imports: [
     CommonModule,
     TruncateModule,
+    NgxEditorModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
@@ -104,8 +104,6 @@ import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
     StoreModule.forFeature('store', StoreReducer),
     StoreModule.forFeature('bank', BankReducer),
     EffectsModule.forFeature([ProductEffects]),
-    FroalaEditorModule.forRoot(),
-    FroalaViewModule.forRoot()
   ],
   providers: [
     BrandsService,

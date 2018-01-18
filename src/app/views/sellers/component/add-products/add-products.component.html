@@ -167,7 +167,8 @@
                         <div class="two wide field">
                             Deskripsi
                         </div>
-                        <div class="ten wide field" [froalaEditor] [(ngModel)]="description">
+                        <div>
+                            <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="description"></app-ngx-editor>
                         </div>
                     </div>
                 </div>

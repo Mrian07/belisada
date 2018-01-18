@@ -9,8 +9,12 @@ import { CartItem } from '../../model/shoppingcart/cart-item';
 import { ProductService } from '../product/product.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { Checkout } from '../../model/checkout';
+import { FreightRateService } from '../freight-rate/freight-rate.service';
+import { FreightRate } from '../../model/FreightRate';
 
 const CART_KEY = 'cart';
+const CHECKOUT_KEY = 'checkout';
 
 @Injectable()
 export class ShoppingCartService {
@@ -21,7 +25,12 @@ export class ShoppingCartService {
   private deliveryOptions: DeliveryOption[];
 
 
-  public constructor(private storageService: LocalStorageService, private productService: ProductService, private routes: Router) {
+  public constructor(
+    private storageService: LocalStorageService,
+    private productService: ProductService,
+    private freightRateService: FreightRateService,
+    private routes: Router
+  ) {
     this.storage = this.storageService.get();
     this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
       this.subscribers.push(observer);
@@ -102,9 +111,9 @@ export class ShoppingCartService {
     this.dispatch(newCart);
   }
 
-  public setDeliveryOption(deliveryOption: DeliveryOption): void {
+  public setDeliveryOption(deliveryOptionId: number): void {
     const cart = this.retrieve();
-    cart.deliveryOptionId = deliveryOption.id;
+    cart.deliveryOptionId = deliveryOptionId;
     this.calculateCart(cart, (modifiedCart, product, idx, array) => {
       this.save(modifiedCart);
       if (idx === array.length - 1) {
@@ -138,14 +147,38 @@ export class ShoppingCartService {
 
   private calculateCart(cart: ShoppingCart, cb) {
     cart.itemsTotal = 0;
+    cart.deliveryTotal = 0;
     cart.items.forEach((item, idx, array) => {
       this.productService.get(item.productId).subscribe(response => {
-        cart.itemsTotal += item.quantity * response.pricelist;
-        cart.deliveryTotal = cart.deliveryOptionId ? this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price : 0;
-        cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
-        cb(cart, response, idx, array);
+
+        // cart.deliveryTotal = cart.deliveryOptionId ? this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price : 0;
+        this.getDeliveryPrice(cart, item, response, () => {
+          cb(cart, response, idx, array);
+        });
       });
     });
+  }
+
+  private getDeliveryPrice(cart, item, product, cb) {
+    const checkout = this.retrieveCheckout();
+    if (checkout.shippingAddress === undefined) {
+      console.log('checkout: ', checkout);
+      cart.itemsTotal += item.quantity * product.pricelist;
+      cart.deliveryTotal = 0;
+      cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
+
+      cb(cart, cb);
+    } else {
+      this.freightRateService.getFreightRates(checkout.shippingAddress).subscribe(response => {
+        console.log('cart.deliveryOptionId: ', cart.deliveryOptionId);
+        console.log('response.find((x) => x.shipperId === cart.deliveryOptionId): ',
+        response.find((x) => x.shipperId === cart.deliveryOptionId));
+        cart.itemsTotal += item.quantity * product.pricelist;
+        cart.deliveryTotal += item.quantity * product.weight * response.find((x) => x.shipperId === cart.deliveryOptionId).amount;
+        cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
+        cb(cart, cb);
+      });
+    }
   }
 
   private retrieve(): ShoppingCart {
@@ -155,6 +188,15 @@ export class ShoppingCartService {
       cart.updateFrom(JSON.parse(storedCart));
     }
     return cart;
+  }
+
+  private retrieveCheckout(): Checkout {
+    const checkout = new Checkout();
+    const storedCheckout = this.storage.getItem(CHECKOUT_KEY);
+    if (storedCheckout) {
+      checkout.updateFrom(JSON.parse(storedCheckout));
+    }
+    return checkout;
   }
 
   private save(cart: ShoppingCart): void {
