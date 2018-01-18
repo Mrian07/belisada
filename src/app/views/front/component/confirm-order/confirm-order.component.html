@@ -45,16 +45,20 @@
   <div class="two column row">
     <div class="column">
       <div class="ui segment">
-        <p><strong>Nama:</strong> Dewa Awan</p>
-        <p><strong>Email:</strong> dewa@yahoo.com</p>
-        <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p>
+        <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
+          {{ shippingAddress.address }}<br>
+          {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
+          {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
+        </p>
       </div>
     </div>
     <div class="column">
       <div class="ui segment">
-        <p><strong>Nama:</strong> Dewa Awan</p>
-        <p><strong>Email:</strong> dewa@yahoo.com</p>
-        <p><strong>Alamat:</strong> Jalan Ahmad Dahlan, Jakarta Selatan.</p>
+        <p><strong>{{ billingAddress.name }} - {{ billingAddress.phone }}</strong><br>
+          {{ billingAddress.address }}<br>
+          {{ billingAddress.districtName }}, {{ billingAddress.cityName }}, {{ billingAddress.postal }}<br>
+          {{ billingAddress.regionName }} - {{ billingAddress.countryName }}<br>
+        </p>
       </div>
       
     </div>
@@ -78,27 +82,27 @@
           </tr>
         </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let item of cartItems">
           <td class="valTd" data-title="Image">
-            <img class="ui tiny image" src='/assets/img/noimage.png'>
+            <img class="ui tiny image" [src]="item.product.imageurl" style="margin: 0 auto;">
           </td>
           <td class="valTd" data-title="Nama">
-            Komputer
+              {{ item.product.name }}
           </td>
           <td class="valTd text-right" data-title="Harga">
-            Rp.10.000.000
+            Rp {{ item.product.pricelist | number }}
           </td>
           <td class="valTd text-right" data-title="Jumlah">
-            1
+            {{ item.quantity }}
           </td>
-          <td class="valTd text-right" data-title="Sub Total">Rp.10.000.000</td>
+          <td class="valTd text-right" data-title="Sub Total">Rp {{ item.totalCost | number }}</td>
         </tr>
       </tbody>
     </table>
 
   </div>
 </div>  
-<div class='b-tot-cart'>TOTAL: Rp.10.000.000</div>
+<div class='b-tot-cart'>TOTAL: Rp {{ itemsTotal | number }}</div>
 </div>
 
 <div class='bg-rinci'>
@@ -113,10 +117,8 @@
           </div>
           <div class="four wide column">
             <b>Ongkos Kirim</b><br><br>
-            Kurir Pengiriman: JNE<br>
-            Paket Pengiriman: Regular<br>
-            Ongkos Kirim: Rp.20.000
-
+            Kurir Pengiriman: {{ freightRate.shipperName }}<br>
+            Ongkos Kirim: Rp {{ deliveryTotal | number }}
           </div>
           <div class="four wide column">
             <b>Kode Promo</b><br><br>
@@ -124,17 +126,13 @@
           </div>
         </div>  
 
-  
-
-
-
     </div>
     <div class="six wide column"><b>Rincian</b><br><br>
-      Total Belanja: Rp.10.000.000 (+)<br>
-      Ongkos Kirim: Rp.20.000 (+)<br>
+      Total Belanja: Rp {{ itemsTotal | number }} (+)<br>
+      Ongkos Kirim: Rp {{ deliveryTotal | number }} (+)<br>
       Potongan: Rp.0 (-)<br>
       <div class='b-total'>
-        TOTAL PEMBAYARAN: <font color='red'>Rp.10.020.000</font>
+        TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
       </div>
     
     </div>

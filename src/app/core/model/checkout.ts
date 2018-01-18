@@ -1,6 +1,6 @@
 export class Checkout {
 
-    userId: number;
+    // userId: number;
     grandTotal: number;
     paymentMethod: string;
     billingAddress: number;
@@ -12,7 +12,7 @@ export class Checkout {
     mBankAccountId: number;
 
     public updateFrom(src: Checkout) {
-        this.userId = src.userId;
+        // this.userId = src.userId;
         this.grandTotal = src.grandTotal;
         this.paymentMethod = src.paymentMethod;
         this.billingAddress = src.billingAddress;
@@ -23,6 +23,14 @@ export class Checkout {
         this.courierAmt = src.courierAmt;
         this.mBankAccountId = src.mBankAccountId;
     }
+
+    constructor() { }
+}
+
+export class CheckoutResponse {
+
+    message: string;
+    status: string;
 
     constructor() { }
 }

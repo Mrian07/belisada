@@ -39,6 +39,7 @@ import { PaymentMethodService } from '../../../core/service/payment-method/payme
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
 import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
+import { CheckoutService } from '../../../core/service/checkout/checkout.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
     ProductService,
     PaymentMethodService,
     EmailNewsLetterService,
-    FreightRateService
+    FreightRateService,
+    CheckoutService
   ]
 })
 export class FrontModules { }

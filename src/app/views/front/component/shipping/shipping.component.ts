@@ -66,7 +66,6 @@ export class ShippingComponent implements OnInit {
   }
 
   receiveTrigger($event) {
-   // console.log('receiveTrigger($event): ', $event);
     this.getAllShippingAddress();
   }
 
@@ -75,21 +74,16 @@ export class ShippingComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.shippingAddressList = this.shareService.shareData;
-        //console.log('this.shippingAddressList: ', this.shippingAddressList);
       });
     });
   }
 
   getShippingAddress(selShippingAddress) {
-    //console.log(selShippingAddress);
     this.shippingAddress = this.shippingAddressList.find(x => x.addressId === +selShippingAddress);
-    //console.log('this.shippingAddress: ', this.shippingAddress);
   }
 
   getBillingAddress(selBillingAddress) {
-    //console.log(selBillingAddress);
     this.billingAddress = this.billingAddressList.find(x => x.addressId === +selBillingAddress);
-   // console.log('this.shippingAddress: ', this.billingAddress);
   }
 
   getCheckout() {
@@ -104,8 +98,8 @@ export class ShippingComponent implements OnInit {
   next() {
     if (this.shippingAddress && this.billingAddress) {
       const checkout = this.getCheckout();
-      checkout.shippingAddress = this.shippingAddress.villageId;
-      checkout.billingAddress = this.billingAddress.villageId;
+      checkout.shippingAddress = this.shippingAddress.addressId;
+      checkout.billingAddress = this.billingAddress.addressId;
       this.storage.setItem(CHECKOUT_KEY, JSON.stringify(checkout));
       this.router.navigateByUrl('/payment-method');
     } else {

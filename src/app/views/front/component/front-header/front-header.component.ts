@@ -50,7 +50,7 @@ export class FrontHeaderComponent implements OnInit {
   loginState: Boolean;
   userName: string;
   avatar: string;
-  grossTotal: number;
+  itemsTotal: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -122,7 +122,7 @@ export class FrontHeaderComponent implements OnInit {
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
-      this.grossTotal = cart.grossTotal;
+      this.itemsTotal = cart.itemsTotal;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
