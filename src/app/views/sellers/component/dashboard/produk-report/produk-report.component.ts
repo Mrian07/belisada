@@ -33,7 +33,7 @@ export class ProdukReportComponent implements OnInit {
     private store: Store<fromProduct.Products>
   ) {
     const users = this.user.getUser();
-    this.storeId = users.stores[0].mBpartnerStoreId;
+   // this.storeId = users.stores[0].mBpartnerStoreId;
     //console.log(this.storeId);
 
    }

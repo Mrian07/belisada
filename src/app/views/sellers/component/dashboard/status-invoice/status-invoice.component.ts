@@ -16,10 +16,10 @@ export class StatusInvoiceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.storeService.getApproveProduct(4).subscribe(data => {
-      console.log('approve', data);
-      this.productList = Observable.of(data.productList);
-    });
+    // this.storeService.getApproveProduct(4).subscribe(data => {
+    //   console.log('approve', data);
+    //   this.productList = Observable.of(data.productList);
+    // });
   }
 
 }
