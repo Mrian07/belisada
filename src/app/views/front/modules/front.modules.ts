@@ -39,6 +39,8 @@ import { PaymentMethodService } from '../../../core/service/payment-method/payme
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
 import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
+import { EmailSendService } from '../../../core/service/email-send/email-send.service';
+import { AsapComponent } from '../component/asap/asap.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
     BuyerDashboardComponent,
     SidebarBuyerComponent,
     ProductSearchComponent,
+    AsapComponent,
     CaraBerbelanjaComponent,
     ChattingFrontComponent
   ],
@@ -85,6 +88,7 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
     ProductService,
     PaymentMethodService,
     EmailNewsLetterService,
+    EmailSendService,
     FreightRateService
   ]
 })

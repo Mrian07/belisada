@@ -9,11 +9,11 @@ export class EmailSendService {
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
   emailAftersales(data): Observable<EmailSend> {
-    return this.http.post(this.configuration.serverWithAccUrl + 'email/send/aftersales', data)
+    return this.http.post(this.configuration.serverWithAccUrl + '/email/send/aftersales', data)
       .map(response => response as EmailSend);
   }
   emailContactUs(data): Observable<EmailSend> {
-    return this.http.post(this.configuration.serverWithAccUrl + 'email/send/aftersales', data)
+    return this.http.post(this.configuration.serverWithAccUrl + '/email/send/aftersales', data)
       .map(response => response as EmailSend);
   }
 

@@ -95,24 +95,25 @@
             <div style="height:300px;">
             <div class="gap-between-elementsiii"></div>
              <span>Hubungi Layanan Purna Jual Kami. Gratis</span>
+
              <table>
                  <tr>
-                     <td> <input type="text" placeholder="subjek..."></td>
-                     <td> <input type="text" placeholder="alamat email..."></td>
+                     <td> <input type="text" placeholder="subjek..." [(ngModel)]="issue"></td>
+                     <td> <input type="text" placeholder="alamat email..." [(ngModel)]="email"></td>
                  </tr>
                  <tr>
-                        <td> <input type="text" placeholder="nama..."></td>
-                        <td> <input type="text" placeholder="no telpon..."></td>
+                        <td> <input type="text" placeholder="nama..." [(ngModel)]="name"></td>
+                        <td> <input type="text" placeholder="no telpon..." [(ngModel)]="phone"></td>
                     </tr>
                     <tr>
-                            <td> <input type="text" placeholder="order id..."></td>
-                            <td> <input type="text" placeholder="perusahaan..."></td>
+                            <td> <input type="text" placeholder="order id..." [(ngModel)]="orderNumber"></td>
+                            <td> <input type="text" placeholder="perusahaan..." [(ngModel)]="company"></td>
                         </tr>
                         <tr>
-                            <td colspan=2><textarea class="textA"></textarea></td>
+                            <td colspan=2><textarea class="textA" [(ngModel)]="message"></textarea></td>
                         </tr>
              </table>
-             <button class="fluid ui button textB">Kirim</button>
+             <button class="fluid ui button textB" (click)="poerna()">Kirim</button>
              <div class="gap-between-elementsiii"></div>
 
 
