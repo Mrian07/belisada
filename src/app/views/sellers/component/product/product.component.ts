@@ -38,6 +38,7 @@ export class ProductComponent implements OnInit {
           'Belisada.co.id',
           'Toko Anda belum diverifikasi!'
         );
+        this.routes.navigateByUrl('seller/dashboard');
       }
     });
   }
