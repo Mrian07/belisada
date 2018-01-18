@@ -13,6 +13,7 @@ export const GETNAV = 'GETNAV';
 export const GETNAVSUCCESS = 'GETNAVSUCCESS';
 export const GET_PAYMENT_METHOD = 'GET_PAYMENT_METHOD';
 export const GET_PAYMENT_METHOD_SUCCESS = 'GET_PAYMENT_METHOD_SUCCESS';
+export const FAILURE = 'FAILURE';
 
 
 export class GetHome implements Action {
@@ -75,7 +76,13 @@ export class GetPaymentMethodSuccess implements Action {
   constructor(public paymentMethods: any) {}
 }
 
+export class Failure implements Action {
+  readonly type = FAILURE;
+  constructor (public payload: {concern: 'GETCATEGORY' | 'GETHOME' | 'GET_PAYMENT_METHOD', error: any}) {}
+}
+
 export type HomeAction =
+ | Failure
  | GetHome
  | GetHomeSuccess
  | GetList

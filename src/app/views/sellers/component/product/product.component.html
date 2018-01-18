@@ -53,7 +53,7 @@
       <table class="ui single line table">
           <thead>
               <tr>
-                  <th><input type="checkbox"/></th>
+                  <th><input type="checkbox" (click)="checkAll(st)"/></th>
                   <th>Image</th>
                   <th>Produk</th>
                   <th>Harga</th>
@@ -62,10 +62,10 @@
                   <th>Hapus</th> -->
               </tr>
           </thead>
-          <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString">
+          <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString ; let i = index">
             <tr>
                 <td class="collapsing">
-                    <input type="checkbox"/>
+                    <input type="checkbox" checked="{{check}}" (change)="checks(i)"/>
                 </td>
                 <td class="collapsing">
                     <img class="ui image product-image" src="{{ product.imageurl }}" alt="image not found"/>
@@ -97,6 +97,8 @@
                     <small>
                             <a class="ui small label" *ngIf="product.statusCode === '1'">{{product.status}}</a>
                             <a class="ui small yellow label" *ngIf="product.statusCode === '2'">{{product.status}}</a>
+                            <a class="ui small orange label" *ngIf="product.statusCode === '3'">{{product.status}}</a>
+                            <a class="ui small green label" *ngIf="product.statusCode === '4'">{{product.status}}</a>
                     </small>
                 </td>
                 <!-- <td><i class="edit icon"></i></td>

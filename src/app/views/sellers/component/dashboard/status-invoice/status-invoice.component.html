@@ -8,19 +8,18 @@
           <!-- <table class="ui striped table">
               <thead>
                 <tr>
-                  <th>Date</th>
-                  <th>Order ID</th>
-                  <th>Product</th>
+                  <th>Product Name</th>
+                  <th>SKU</th>
                   <th>Qty</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let list of productList">
-                  <td>{{ list.date }}</td>
-                  <td>{{ list.orderId }}</td>
-                  <td>{{ list.product }}</td>
+                <tr *ngFor="let list of productList | async">
+                  <td>{{ list.name }}</td>
+                  <td>{{ list.pricelist }}</td>
+                  <td>{{ list. }}</td>
                   <td>{{ list.qty }}</td>
                   <td>{{ list.status }}</td>
                   <td><i class="search icon"></i></td>

@@ -23,6 +23,8 @@ export class ProductComponent implements OnInit {
 ) { }
 
   storeId: number;
+  check: Boolean;
+  st: Boolean = true;
   sellerProduct: Observable<any>;
   totalItem: Observable<any>;
   queryString: any = '';
@@ -33,6 +35,21 @@ export class ProductComponent implements OnInit {
     this.storeService.getStatus().subscribe(data => {
       this.sellerProduct = this.store.select(fromProduct.getProductState);
     });
+  }
+
+  checks(i) {
+    console.log(i);
+  }
+
+  checkAll(z) {
+    if (z === true) {
+      this.st = false;
+      this.check = true;
+    }else if (z === false) {
+      this.st = true;
+      this.check = false;
+    }
+    console.log(z);
   }
 
   getSellerStore() {

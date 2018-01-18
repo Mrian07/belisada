@@ -51,7 +51,6 @@ export class ProductEffects {
         this.addProductService.create(product)
         .map( (addproduct: Product) => new fromActions.AddProductSuccess(true))
             .catch(err => {
-              alert(err['error']['error']['message']);
                 return Observable.of(new fromActions.Failure({concern: 'ADDPRODUCT', error: err}));
               })
           );

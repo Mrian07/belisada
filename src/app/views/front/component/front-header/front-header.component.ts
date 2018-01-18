@@ -166,7 +166,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
-    //console.log(hasil);
+    console.log(hasil);
     this.router.navigateByUrl('/Product-detail/' + hasil.productId + '/' + hasil.aliasName);
     this.results = [];
   }
