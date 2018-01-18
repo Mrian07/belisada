@@ -161,16 +161,24 @@ export class ShoppingCartService {
 
   private getDeliveryPrice(cart, item, product, cb) {
     const checkout = this.retrieveCheckout();
-    this.freightRateService.getFreightRates(checkout.shippingAddress).subscribe(response => {
-      console.log('cart.deliveryOptionId: ', cart.deliveryOptionId);
-      console.log('response.find((x) => x.shipperId === cart.deliveryOptionId): ',
-        response.find((x) => x.shipperId === cart.deliveryOptionId));
+    if (checkout.shippingAddress === undefined) {
+      console.log('checkout: ', checkout);
       cart.itemsTotal += item.quantity * product.pricelist;
-      cart.deliveryTotal += item.quantity * product.weight * response.find((x) => x.shipperId === cart.deliveryOptionId).amount;
+      cart.deliveryTotal = 0;
       cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
 
       cb(cart, cb);
-    });
+    } else {
+      this.freightRateService.getFreightRates(checkout.shippingAddress).subscribe(response => {
+        console.log('cart.deliveryOptionId: ', cart.deliveryOptionId);
+        console.log('response.find((x) => x.shipperId === cart.deliveryOptionId): ',
+        response.find((x) => x.shipperId === cart.deliveryOptionId));
+        cart.itemsTotal += item.quantity * product.pricelist;
+        cart.deliveryTotal += item.quantity * product.weight * response.find((x) => x.shipperId === cart.deliveryOptionId).amount;
+        cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
+        cb(cart, cb);
+      });
+    }
   }
 
   private retrieve(): ShoppingCart {
