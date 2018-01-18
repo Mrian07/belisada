@@ -32,12 +32,9 @@ export class ContactUsComponent implements OnInit {
 
   createFormControls() {
     this.name = new FormControl('', Validators.required);
-    this.email = new FormControl('', [
-      Validators.required,
-      Validators.pattern('[^ @]*@[^ @]*')
-    ]);
-    this.issue = new FormControl('', Validators.required);
-    this.message = new FormControl('', Validators.required);
+    this.email = new FormControl('');
+    this.issue = new FormControl('');
+    this.message = new FormControl('');
   }
 
   createForm() {
@@ -50,25 +47,22 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.createComForm.valid) {
-      return;
-    } else {
-      const model = this.createComForm.value;
-      const data = {
-        name: model.name,
-        email: model.email,
-        issue: model.issue,
-        message: model.message
-      };
+    const model = this.createComForm.value;
+    const data = {
+      name: model.name,
+      email: model.email,
+      issue: model.issue,
+      message: model.message
+    };
 
-      this.emailSendService.emailContactUs(data).subscribe(response => {
-        swal(
-          'success',
-          'Pesan Anda berhasil dikirim, <br>Staff kami akan segera menindak lanjuti.<br>Terima kasih.',
-          'success'
-        );
-        this.createComForm.reset();
-      });
-    }
-  }
+    this.emailSendService.emailContactUs(data).subscribe(data => {
+      swal(
+        'success',
+        'Pesan Anda berhasil dikirim, <br>Staff kami akan segera menindak lanjuti.<br>Terima kasih.',
+        'success'
+      );
+
+      this.createComForm.reset();
+  });
+}
 }

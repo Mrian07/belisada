@@ -160,6 +160,19 @@
                     </div>
                 </div>
 
+                <div class="ui form">
+                        <div class="inline five fields">
+                            <div class="two wide field">
+                                Quantity
+                            </div>
+                            <div class="one wide field">
+                                <sui-select placeholder="jumlah" [(ngModel)]="selectedQuantity" class="selection">
+                                    <sui-select-option *ngFor="let option of quantity" value="{{option}}" [value]="option" (click)="getQuantity(option)" ></sui-select-option>
+                                </sui-select>
+                            </div>
+                        </div>
+                    </div>
+
                 <h3>Deskripsi Produk</h3>
                 <div class="garis"></div>
                 <div class="ui form">
@@ -195,7 +208,7 @@
             </div>
             <div class="ui centered">
                 <div class="twelve wide fields">
-                        <div class="ui buttons">
+                        <div class="ui buttons" *ngIf="editMode == false">
                     <!-- <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button> -->
                         <button class="ui red button"  (click)="addProducts()">Tambahkan Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
                         <div class="or"></div>
@@ -203,8 +216,8 @@
 
                     </div>
                     <br>
-                    <p><span style="color:black;">*pelajari tentang</span>
-                        <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned mini image"></p>
+                    <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
+                        <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned mini image" style="cursor:pointer;"></p>
                     <button *ngIf="editMode == true" class="positive ui button" (click)="updateProducts()">Perbarui Produk</button>
                 </div>
             </div>
