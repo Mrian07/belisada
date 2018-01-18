@@ -61,15 +61,15 @@ export class AddBillingComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
-    this.address = new FormControl('');
-    this.addressName = new FormControl('');
-    this.phone = new FormControl('');
-    this.city = new FormControl('');
-    this.province = new FormControl('');
-    this.district = new FormControl('');
-    this.vilaggeId = new FormControl('');
-    this.postalCode = new FormControl('');
+    this.name = new FormControl('', Validators.required);
+    this.address = new FormControl('', Validators.required);
+    this.addressName = new FormControl('', Validators.required);
+    this.phone = new FormControl('', Validators.required);
+    this.city = new FormControl('', Validators.required);
+    this.province = new FormControl('', Validators.required);
+    this.district = new FormControl('', Validators.required);
+    this.vilaggeId = new FormControl('', Validators.required);
+    this.postalCode = new FormControl('', Validators.required);
   }
   createForm() {
     this.createComForm = new FormGroup({
@@ -86,41 +86,47 @@ export class AddBillingComponent implements OnInit {
   }
 
   onSubmit() {
-    const model = this.createComForm.value;
-    const data = {
-      name: model.name,
-      address: model.address,
-      addressName: model.addressName,
-      phone: model.phone,
-      city: model.city,
-      province: model.province,
-      district: model.district,
-      postal: model.postalCode,
-      villageId: model.vilaggeId.mvillageId
-    };
-    this.billingAddressService.create(data).subscribe(response => {
-      console.log('ini submit ', response);
-      this.triggerEvent.emit(true);
-      this.createComForm.reset();
-      if (response.status === '1') {
-        swal(
-          'Success',
-          'Data billing berhasil ditambahkan',
-        //  response.message,
-          'success'
-        ).then(result => {
-          location.reload();
-        });
-      }else {
-        swal(
-          'Opps!',
-          response.message,
-          'error'
-        );
-      }
-      this.fillForms();
-    });
+
+    if (!this.createComForm.valid) {
+      return;
+    } else {
+      const model = this.createComForm.value;
+      const data = {
+        name: model.name,
+        address: model.address,
+        addressName: model.addressName,
+        phone: model.phone,
+        city: model.city,
+        province: model.province,
+        district: model.district,
+        postal: model.postalCode,
+        villageId: model.vilaggeId.mvillageId
+      };
+      this.billingAddressService.create(data).subscribe(response => {
+        console.log('ini submit ', response);
+        this.triggerEvent.emit(true);
+        this.createComForm.reset();
+        if (response.status === '1') {
+          swal(
+            'Success',
+            'Data billing berhasil ditambahkan',
+          //  response.message,
+            'success'
+          ).then(result => {
+            location.reload();
+          });
+        }else {
+          swal(
+            'Opps!',
+            response.message,
+            'error'
+          );
+        }
+        this.fillForms();
+      });
+    }
   }
+
   fillForms() {
     this.billingAddressService.getAll().subscribe(data => {
       this.ship = data;
