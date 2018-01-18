@@ -81,7 +81,7 @@
                         </div>
                         <div class="field">
                             <label>Nomor KTP</label>
-                            <input name="ktp" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.idcard"/>
+                            <input name="ktp" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
                         </div>
                         <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
                         <div class="upload-btn-wrapper">
@@ -89,8 +89,8 @@
                             <input type="file" name="fileNpwp" (change)="setUrl($event, imgKTP)" />
                         </div>
                         <div class="field">
-                            <label>No. NPWP</label>
-                            <input name="npwp" placeholder="Masukan NPWP" type="text"  [(ngModel)]="fm.npwp"/>
+                            <label>Nomor NPWP</label>
+                            <input name="npwp" placeholder="Masukan nomor NPWP" type="text"  [(ngModel)]="fm.npwp"/>
                         </div>
 
                         <!-- <div class="ui divider"></div> -->

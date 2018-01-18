@@ -52,7 +52,8 @@
         </div>
         <div class="field">
             <label>Telepon</label>
-            <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="phone"/>
+            <input name="siup" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
+            <div class="form-control-feedback" *ngIf="phone.invalid && (phone.dirty || f.submitted)">Telepon tidak boleh kosong</div>
         </div>
 
         <button class="ui primary button" type="submit">Simpan</button>
