@@ -70,7 +70,7 @@
                     <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                 </div>
                 <div class="welcome" *ngIf="loginState === false">
-                    Selamat Datang<br/><a (click)="login()" style="cursor: pointer;"><strong>Login</strong></a> / <a (click)="register()"><strong>Daftar</strong></a>
+                    Selamat Datang<br/><a (click)="login()" class='go-link'><strong>Login</strong></a> / <a (click)="register()" class='go-link'><strong>Daftar</strong></a>
                 </div>
                 <div class="welcome" *ngIf="loginState === true">
                     <div class='dropdown-profile'>
