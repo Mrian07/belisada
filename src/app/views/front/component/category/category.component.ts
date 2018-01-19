@@ -25,7 +25,9 @@ export class CategoryComponent implements OnInit {
   queryParams: any = {};
   alias: Category2 = new Category2();
   loadCategory: Subscription;
+  loadError: Subscription;
   total: number;
+  pageError: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -46,14 +48,21 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit() {
 
-    // Location.search({});
-    // this.editData = this.shared.shareData;
-    // console.log(this.editData);
     this.loadCategory = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)
     .subscribe((action: frontActions.GetCategorySuccess) => {
        this.Category();
+       this.pageError = false;
+    });
+    this.loadError = this.actionsSubject
+    .asObservable()
+    .filter(action => action.type === frontActions.FAILURE)
+    .subscribe((action: frontActions.Failure) => {
+      console.log('err', action);
+      this.pageError = true;
+     // this.level_3 = Observable.of(er);
+       //this.Category();
     });
   }
 
