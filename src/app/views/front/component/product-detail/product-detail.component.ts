@@ -81,6 +81,7 @@ export class ProductDetailComponent implements OnInit {
       this.productId = params.id;
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
+    // this.ininih(this.productId);
     this.getDetailProd = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
@@ -142,7 +143,27 @@ export class ProductDetailComponent implements OnInit {
       this.shoppingCartService.addItem(productId, +quantity);
     }
   }
-
+  ininih(productId) {
+    const data3 = {
+      productId: productId
+    };
+    this.detailService.create(data3).subscribe(response => {
+      if (response.status === '1') {
+        swal('Terimakasih, Item Anda Sudah Masuk Kedalam Wishlist');
+      } else {
+        swal(response.message);
+      }
+    });
+  }
+  // ininih(productId) {
+  //   const data3 = {
+  //     productId: productId
+  //   };
+  //   this.detailService.wishListCreate(data3).subscribe(response => {
+  //       console.log('berhasil cuy');
+  //   });
+  //   console.log('ini loh3333', this.productId);
+  // }
   home() {
     this.router.navigateByUrl('/');
   }

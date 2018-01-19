@@ -70,6 +70,7 @@ import { ReturnCancelComponent } from './views/front/component/return-cancel/ret
 import { WarrantyComponent } from './views/front/component/warranty/warranty.component';
 import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
+// import { WishlistComponent } from './core/model/wishlist/wishlist.component';
 // import { AsapComponent } from './views/front/component/asap/asap.component';
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -140,6 +141,7 @@ export function getAuthServiceConfigs() {
     WarrantyComponent,
     ContactUsComponent,
     AfterSalesServiceComponent,
+    // WishlistComponent,
     // AsapComponent
   ],
   imports: [
