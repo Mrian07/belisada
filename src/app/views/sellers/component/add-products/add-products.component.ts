@@ -131,7 +131,7 @@ export class AddProductsComponent implements OnInit {
           ).then((result) => {
             this.clearAll();
             this.shared.shareData = '';
-            this.router.navigateByUrl('/seller/my-store');
+            this.router.navigateByUrl('/seller/product-list');
           });
     });
   }
@@ -254,7 +254,7 @@ export class AddProductsComponent implements OnInit {
         tag: [this.productName]
       };
         console.log(productData);
-   this.store.dispatch(new fromActions.AddProduct(productData));
+      this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
 
