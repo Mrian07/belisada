@@ -16,13 +16,13 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class BillingAddressComponent implements OnInit {
   createComForm: FormGroup;
-   name: FormControl;
-    address: FormControl;
-    addressName: FormControl;
-    postalCode: FormControl;
-    villageId: FormControl;
-    phone: FormControl;
-    addressType: FormControl;
+  name: FormControl;
+  address: FormControl;
+  addressName: FormControl;
+  postalCode: FormControl;
+  villageId: FormControl;
+  phone: FormControl;
+  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   district: FormControl;
@@ -33,6 +33,7 @@ export class BillingAddressComponent implements OnInit {
   villages: Village[];
   adr: any = {};
   fm: any = {};
+  addressId: FormControl;
 
   // perusahaan: Observable<any>;
 
@@ -70,7 +71,7 @@ export class BillingAddressComponent implements OnInit {
     this.district = new FormControl('');
     this.villageId = new FormControl('');
     this.postalCode = new FormControl('');
-
+    this.addressId = new FormControl('');
   }
 
   createForm() {
@@ -85,12 +86,13 @@ export class BillingAddressComponent implements OnInit {
       district: this.district,
       villageId: this.villageId,
       postalCode: this.postalCode,
+      addressId: this.addressId,
     });
   }
   onSubmit() {
     const model = this.createComForm.value;
     const data = {
-      // asdsad
+      addressId: model.addressId,
       name: model.name,
       address: model.address,
       addressType: model.addressType,
@@ -105,23 +107,54 @@ export class BillingAddressComponent implements OnInit {
       villageId: model.villageId.mvillageId
       // asdasd2
     };
-    this.iniService.create(data).subscribe(response => {
-      if (response.status === '1') {
-        swal(
-          'success',
-          response.message,
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          response.message,
-          'error'
-        );
-      }
-      // this.getAllStore();
-    });
+
+    if (model.addressId) {
+
+      this.iniService.update(data).subscribe(response => {
+        if (response.status === '1') {
+          swal(
+            'success',
+            response.message,
+            'success'
+          );
+        }else {
+          swal(
+            'Opps!',
+            response.message,
+            'error'
+          );
+        }
+        // this.getAllStore();
+      });
+
+
+    } else {
+
+      this.iniService.create(data).subscribe(response => {
+        if (response.status === '1') {
+          swal(
+            'success',
+            response.message,
+            'success'
+          );
+        }else {
+          swal(
+            'Opps!',
+            response.message,
+            'error'
+          );
+        }
+        // this.getAllStore();
+      });
+
+    }
+
+
+
+
+
   }
+
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.iniService.getProfile(luser.token).subscribe(data => {
@@ -137,6 +170,7 @@ export class BillingAddressComponent implements OnInit {
             this.masterService.getVillage(data[0].districtId).subscribe(village => {
 
               this.villages = village;
+              this.addressId.setValue(data[0].addressId);
               this.addressName.setValue(data[0].addressName);
               this.name.setValue(data[0].name);
               this.address.setValue(data[0].address);

@@ -5,6 +5,7 @@
     </div>
     <div class="ten wide column">
         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+            <input name="addressId" type="hidden" formControlName="addressId" [(ngModel)]="fm.addressId"/>
             <div class="field">
 
                 <label>Nama</label>
