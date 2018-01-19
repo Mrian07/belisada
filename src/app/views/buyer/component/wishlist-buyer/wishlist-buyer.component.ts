@@ -1,3 +1,4 @@
+import { WishlistBuyerService } from './../../../../core/service/wishlist-buyer/wishlist-buyer.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class WishlistBuyerComponent implements OnInit {
   readonly: any;
   rating: any;
-  constructor() { }
+  dat: any[];
+  constructor(private iniserviceyah: WishlistBuyerService) { }
 
   ngOnInit() {
+    this.fils3();
+    console.log('kapret');
+  }
+  fils3() {
+    this.iniserviceyah.getAll().subscribe(data => {
+      this.dat = data;
+      console.log('ini apa sih ', data);
+    });
   }
 
 }

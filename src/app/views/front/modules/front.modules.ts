@@ -1,3 +1,4 @@
+import { WishlistBuyerService } from './../../../core/service/wishlist-buyer/wishlist-buyer.service';
 import { UpgradeService } from './../../../core/service/upgrade/upgrade.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -91,6 +92,7 @@ import { AsapComponent } from '../component/asap/asap.component';
     FreightRateService,
     CheckoutService,
     EmailSendService,
+    WishlistBuyerService,
     FreightRateService,
     UpgradeService
   ]
