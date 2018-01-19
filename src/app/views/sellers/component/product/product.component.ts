@@ -45,6 +45,9 @@ export class ProductComponent implements OnInit {
         });
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
+      this.store.select(fromProduct.getProductState).subscribe(datas => {
+        console.log(datas);
+      });
     });
   }
 

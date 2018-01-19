@@ -166,9 +166,9 @@
                                 Quantity
                             </div>
                             <div class="one wide field">
-                                <sui-select placeholder="jumlah" [(ngModel)]="selectedQuantity" class="selection">
-                                    <sui-select-option *ngFor="let option of quantity" value="{{option}}" [value]="option" (click)="getQuantity(option)" ></sui-select-option>
-                                </sui-select>
+                                <select [(ngModel)]="stok" (input)="onInput($event)" class="ui dropdown">
+                                    <option *ngFor="let country of quantity ; let i=index" value= "{{country.id}}" selected="{{country.selected}}">{{country.name}}</option>
+                                </select>
                             </div>
                         </div>
                     </div>

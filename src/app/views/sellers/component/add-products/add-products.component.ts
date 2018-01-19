@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, HostListener } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, HostListener, NgZone } from '@angular/core';
 import { StoreModule, Store, ActionsSubject } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -67,20 +67,32 @@ export class AddProductsComponent implements OnInit {
   asap: any;
   quantity: any;
   selectedQuantity: any;
-
+  stok: number;
+  id: any;
+  test: any = {};
+  selectedCountry: any;
+  countries = [
+    {id: 0, name: '0' , selected: false},
+    {id: 1, name: '1' , selected: false},
+    {id: 2, name: '2' , selected: false},
+    {id: 3, name: '3' , selected: false},
+    {id: 4, name: '4' , selected: false},
+    {id: 5, name: '5' , selected: false},
+  ];
     constructor(private searchService: SearchService, private categoryService: CategoryService,
       private route: ActivatedRoute, private router: Router, private storeService: StoreService,
       private addService: AddproductService,
       private actionsSubject: ActionsSubject,
       private store: Store<fromProduct.Products>,
       private title: Title,
-      private shared: ShareService
+      private shared: ShareService,
+      private ngzone: NgZone
     ) {
       this.route.params.subscribe( id => {
         this.editid = id;
       });
-      const quantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-      this.quantity = quantity;
+      this.quantity = this.countries;
+      console.log(this.quantity);
     }
 
 
@@ -95,6 +107,7 @@ export class AddProductsComponent implements OnInit {
     } else {
       this.editMode = true;
       this.editData = this.shared.shareData;
+      this.countries[this.editData.stock].selected = true;
       this.productSelected(this.shared.shareData);
     }
     this.redirectSub = this.actionsSubject
@@ -121,6 +134,12 @@ export class AddProductsComponent implements OnInit {
             this.router.navigateByUrl('/seller/my-store');
           });
     });
+  }
+
+  onInput($event) {
+    $event.preventDefault();
+    console.log('selected: ' + $event.target.value);
+    this.stok = +$event.target.value;
   }
 
   getCategory() {
@@ -193,6 +212,8 @@ export class AddProductsComponent implements OnInit {
     this.tinggi = hasil.dimensionsheight;
     this.panjang = hasil.dimensionslength;
     this.asap = hasil.isAsapShipping;
+    this.countries[hasil.stock].selected = true;
+    this.stok = hasil.stock;
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -215,7 +236,6 @@ export class AddProductsComponent implements OnInit {
 
 
   addProducts() {
-    console.log(this.selectedQuantity);
     if ( this.productId === undefined) {
       swal('Nama Product harus diisi');
     }else {
@@ -224,16 +244,17 @@ export class AddProductsComponent implements OnInit {
         description: '',
         productId: this.productId,
         mBpartnerStoreId: this.storeId,
-        weight: this.weight,
-        dimensionswidth: this.lebar,
-        dimensionslength: this.panjang,
-        dimensionsheight: this.tinggi,
+        weight: +this.weight,
+        dimensionswidth: +this.lebar,
+        dimensionslength: +this.panjang,
+        dimensionsheight: +this.tinggi,
         specialPrice: this.specialPrice,
         isAsapShipping: 'N',
-        stok: this.selectedQuantity,
+        stock: this.stok,
         tag: [this.productName]
       };
-    this.store.dispatch(new fromActions.AddProduct(productData));
+        console.log(productData);
+   this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
 
@@ -247,13 +268,13 @@ export class AddProductsComponent implements OnInit {
         description: '',
         productId: this.productId,
         mBpartnerStoreId: this.storeId,
-        weight: this.weight,
-        dimensionswidth: this.lebar,
-        dimensionslength: this.panjang,
-        dimensionsheight: this.tinggi,
+        weight: +this.weight,
+        dimensionswidth: +this.lebar,
+        dimensionslength: +this.panjang,
+        dimensionsheight: +this.tinggi,
         specialPrice: this.specialPrice,
-        isAsapShipping: 'Y',
-        stok: this.selectedQuantity,
+        isAsapShipping: 'N',
+        stock: this.stok,
         tag: [this.productName]
       };
       this.store.dispatch(new fromActions.AddProduct(productData));
@@ -275,11 +296,11 @@ export class AddProductsComponent implements OnInit {
         dimensionsheight: this.tinggi,
         specialPrice: this.specialPrice,
         isAsapShipping: this.asap ,
-        stok: this.selectedQuantity,
+        stock: this.stok,
         tag: [this.productName]
       };
       console.log(productData);
-      this.store.dispatch(new fromActions.EditProduct(productData));
+     this.store.dispatch(new fromActions.EditProduct(productData));
     }
   }
 
