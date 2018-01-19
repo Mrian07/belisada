@@ -1,0 +1,205 @@
+<div class='conten-checkout'>
+  <div class="ui two column grid">
+    <div class="column"><h2>Alamat Penagihan</h2></div>
+    <div class="column"><h2>Alamat Pengiriman</h2></div>
+  </div>
+
+  <div class="ui grid">
+    <div class="two column row">
+      <div class="column">
+          <div class="ui segment">
+            <strong>Lalang Gumirang - 0819999999</strong><br>
+            KOmplek Puri Indah apalah<br>
+            Cengkareng, Kota Administrasi Jakarta Barat, 11710<br>
+            DKI Jakarta - Indonesia
+          </div>
+      </div>
+      <div class="column">
+          <div class="ui segment">
+            <strong>Lalang Gumirang - 0819999999</strong><br>
+            KOmplek Puri Indah apalah<br>
+            Cengkareng, Kota Administrasi Jakarta Barat, 11710<br>
+            DKI Jakarta - Indonesia
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="ui one column grid">
+    <div class="column"><h2>Keranjang</h2></div>
+  </div>
+
+  <div class="row animated rollIn">
+      <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+          <thead class="cf">
+            <tr>
+              <th>Image</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+              <th>Sub Total</th>
+              <th>Hapus</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr *ngFor="let item of cartItems">
+            <td class="valTd" data-title="Image">
+              <img class="ui tiny image" [src]="item.product.imageurl" style="margin: 0 auto;">
+            </td>
+            <td class="valTd" data-title="Nama">
+              {{ item.product.name }}
+            </td>
+            <td class="valTd text-right" data-title="Harga">
+              {{ item.product.pricelist | currency:'Rp ' }}
+            </td>
+            <td class="valTd text-right" data-title="Jumlah">
+              <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/>
+            </td>
+            <td class="valTd text-right" data-title="Sub Total">{{ item.totalCost | currency:'Rp ' }}</td>
+            <td class="valTd" data-title="Hapus">
+                <button class="circular ui icon button" (click)="removeProductFromCart()">
+                  <i class="trash outline icon"></i>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>    
+
+  <div class="ui grid b-step">
+    <div class="eight wide left aligned column">
+      <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4>
+    </div>  
+  </div>
+
+  <div class="ui one column grid">
+    <div class="column"><h2>Pembayaran</h2></div>
+  </div>
+
+  <p>Silakan pilih metode pembayaran dan ongkos kirim yang ingin Anda gunakan. Dan apa bila Anda memiliki Kode Promo maka gunakan Kode Promo tersebut untuk mendapatkan potongan harga.</p>
+  <div class="ui grid">
+    <div class="two column row">
+        <div class="eight wide column">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="ui three column grid">
+                        <div class="row">
+                            <div class="column" *ngFor="let item of paymentMethodDtos">
+
+                                <div class="ui form">
+                                    <div class="grouped fields">
+                                        <label>{{ item.paymentMethod.name }}</label>
+                                        <div class="ui field segment" *ngFor="let detail of item.paymentMethodDetails">
+                                            <div class="ui radio checkbox" style="margin-left: 5px; margin-top: 5px;">
+                                                <input name="example2" checked="checked" type="radio"
+                                                    [(ngModel)]="paymentMethodId"
+                                                    [ngModelOptions]="{standalone: true}" value="{{ detail.mBankAccountId }}~{{ item.paymentMethod.code }}"/>
+                                                <label><img class="ui right spaced image" src='/assets/img/card/ico_bank_03.png'/></label>
+                                            </div>
+                                            <div class="padding-box">
+                                                <p>{{ detail.bankName }}<br>{{ detail.accountNo }}<br>{{ detail.accountName }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="three wide column">
+            <div class="ui segment">
+
+                <div class="ui form">
+                    <div class="grouped fields">
+                        <p><b>ONGKOS KIRIM</b></p>
+                        <div class="field">
+
+                            <form class="ui form">
+                                <div class="field">
+                                    <label>Kurir Pengiriman</label>
+                                    <select class="ui compact selection dropdown" [(ngModel)]="shippingMethod" [ngModelOptions]="{standalone: true}" (change)="selectShippingMethod(shippingMethod)">
+                                        <option value="">-Pilih-</option>
+                                        <option *ngFor="let item of freightRates" [value]="item.shipperId">{{ item.shipperName }}</option>
+                                        <!-- <option value="Ninja">Ninja</option> -->
+                                    </select>
+                                </div>
+                                <!-- <div class="field">
+                                    <label>Paket Pengiriman</label>
+                                    <select class="ui compact selection dropdown">
+                                        <option value="">-Pilih-</option>
+                                        <option selected="" value="Regular">Regular</option>
+                                    </select>
+                                </div> -->
+                                <div class="field">
+                                    Ongkos kirim: <b>Rp {{ deliveryTotal | number }}</b>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="four wide column">
+            <div class="ui segment">
+                <p><b>KODE PROMO</b></p>
+                <p>Jika anda memiliki kode promo masukan pada kolom dibawah ini untuk mendapatkan potongan harga.</p>
+                <strong>Punya Kode Promo?</strong>
+                <div class="ui action input">
+                    <input placeholder="Masukan kode promo..." type="text" width='100'>
+                    <button class="ui grey button">Gunakan Kode</button>
+                </div>
+            </div>
+        </div>
+
+      </div>
+  </div>
+
+  <div class="ui one column grid">
+    <div class="column"><h2>Rincian</h2></div>
+  </div>
+
+  <div class='bg-rinci'>
+      <div class="ui grid">
+          <div class="ten wide column">
+            
+      
+          <div class="ui grid">
+            <div class="four wide column">
+              <b>Matode Pembayaran</b><br><br>
+              Transfer Bank: BCA
+            </div>
+            <div class="four wide column">
+              <b>Ongkos Kirim</b><br><br>
+              Kurir Pengiriman: {{ freightRate.shipperName }}<br>
+              Ongkos Kirim: Rp {{ deliveryTotal | number }}
+            </div>
+            <div class="four wide column">
+              <b>Kode Promo</b><br><br>
+              Nilai Potongan Kode Promo: Rp.0
+            </div>
+          </div>  
+  
+      </div>
+      <div class="six wide column"><b>Rincian</b><br><br>
+        Total Belanja: Rp {{ itemsTotal | number }} (+)<br>
+        Ongkos Kirim: Rp {{ deliveryTotal | number }} (+)<br>
+        Potongan: Rp.0 (-)<br>
+        <div class='b-total'>
+          TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
+        </div>
+      
+      </div>
+  </div>
+
+
+</div>
