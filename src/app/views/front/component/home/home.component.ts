@@ -29,6 +29,8 @@ export class HomeComponent implements OnInit {
   level_4: Observable<Level4[]>;
   topHomeProductLvl1: Observable<TopProductCategory[]>;
   homeload: Subscription;
+  productId;
+  aliasName;
 
   constructor(
     private homeService: HomeService,
@@ -61,11 +63,15 @@ export class HomeComponent implements OnInit {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.ngZone.run(() => {
         this.topHomeProductLvl1 = Observable.of(data.home);
+        console.log('ini po', data.home);
         this.level_4 = Observable.of(data.brands);
         });
     });
   }
   detail(id: number, alias: string) {
     this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
+  cate(id: number, name: string) {
+    this.router.navigateByUrl('/category/' + id + '/' + name);
   }
 }

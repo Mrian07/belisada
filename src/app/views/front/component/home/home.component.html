@@ -2,7 +2,8 @@
 
 <div class="top-category" *ngFor="let item of topHomeProductLvl1 | async ">
     <hr/>
-    <h1>{{ item.name }}</h1>
+    <h1 (click)="cate(item.categoryId, item.name)" style="cursor:pointer">{{ item.name }}</h1>
+    <!-- <span>{{item.categoryId}}></span> -->
     <div class="promo-banner-container gap-between-elements">
         <div class="promo-grid">
             <!-- <div class="promo-grid-content">
@@ -19,13 +20,13 @@
 
             <div class="promo-grid-content">
                 <div class="promo-grid-cell banner1">
-                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl2 + ')'}"></span>
+                    <span class="promo-img-banner" (click)="cate(item.categoryId, item.name)" [ngStyle]="{'background-image': 'url(' + item.imageUrl2 + ')'}" style="cursor:pointer"></span>
                 </div>
                 <div class="promo-grid-cell banner2">
-                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl3 + ')'}"></span>
+                    <span class="promo-img-banner" (click)="cate(item.categoryId, item.name)" [ngStyle]="{'background-image': 'url(' + item.imageUrl3 + ')'}" style="cursor:pointer"></span>
                 </div>
                 <div class="promo-grid-cell banner3">
-                    <span class="promo-img-banner" [ngStyle]="{'background-image': 'url(' + item.imageUrl4 + ')'}"></span>
+                    <span class="promo-img-banner" (click)="cate(item.categoryId, item.name)"  [ngStyle]="{'background-image': 'url(' + item.imageUrl4 + ')'}" style="cursor:pointer"></span>
                 </div>
             </div>
         </div>
@@ -42,6 +43,7 @@
                         <!-- <a routerLink="/Product-detail/{{item.productId}}" class="item"> -->
 
                         <img src="{{ item.imageurl }}" alt="image not found"/>
+
                     </div>
                     <div class="item-product-info">
                         <h3 class="item-product-title">{{ item.name }}</h3>
