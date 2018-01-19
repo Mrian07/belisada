@@ -51,6 +51,7 @@ import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja
 import { CareerComponent } from './views/front/component/career/career.component';
 import { CopyrightPolicyComponent } from './views/front/component/copyright-policy/copyright-policy.component';
 import { AsapComponent } from './views/front/component/asap/asap.component';
+import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 
 const routes: Routes = [
   {
@@ -203,6 +204,7 @@ const routes: Routes = [
       }, {
         path: 'buyer',
         component: BuyerLayoutComponent,
+        canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
           {
             path: '',

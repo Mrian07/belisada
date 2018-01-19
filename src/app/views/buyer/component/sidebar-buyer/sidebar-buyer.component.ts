@@ -87,12 +87,13 @@ export class SidebarBuyerComponent implements OnInit {
 
       swal({
         title: 'Warning',
-        text: 'Silakan daftarkan diri Anda sebagai Seller',
+        text: 'Anda belum menjadi Seller. Apakah Anda ingin mendaftar sebagai Seller?',
         type: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
+        confirmButtonColor: '#1d7d0a',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Daftarkan'
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Daftar Sebagai Seller'
       }).then((result) => {
         if (result.value) {
           this.router.navigateByUrl('/register');
