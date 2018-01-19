@@ -1,3 +1,5 @@
+import { UpgradeService } from './../../../../core/service/upgrade/upgrade.service';
+import { Upgrade } from './../../../../core/model/upgrade';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../../../core/model/category';
 import { Category2 } from '../../../../core/model/category2';
@@ -28,7 +30,8 @@ export class SidebarBuyerComponent implements OnInit {
     private categoryService: CategoryService,
     private router: Router,
     private profileService: ProfileService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private upgradeService: UpgradeService,
   ) { }
 
   ngOnInit() {
@@ -96,12 +99,19 @@ export class SidebarBuyerComponent implements OnInit {
         confirmButtonText: 'Daftar Sebagai Seller'
       }).then((result) => {
         if (result.value) {
-          this.router.navigateByUrl('/register');
+          const data = {
+            userType: '1'
+          };
+          this.upgradeService.upToSeller(data).subscribe(response => {
+            this.router.navigateByUrl('/seller/dashboard');
+          });
+
+         // this.router.navigateByUrl('/register');
         } else {
             return false;
         }
-      }
-      );
+      });
+
     }
 
   }

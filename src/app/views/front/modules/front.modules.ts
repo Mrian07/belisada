@@ -1,3 +1,4 @@
+import { UpgradeService } from './../../../core/service/upgrade/upgrade.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxCarousel } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.interface';
@@ -90,7 +91,8 @@ import { AsapComponent } from '../component/asap/asap.component';
     FreightRateService,
     CheckoutService,
     EmailSendService,
-    FreightRateService
+    FreightRateService,
+    UpgradeService
   ]
 })
 export class FrontModules { }
