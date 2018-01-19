@@ -300,7 +300,7 @@ export class AddProductsComponent implements OnInit {
         tag: [this.productName]
       };
       console.log(productData);
-     // this.store.dispatch(new fromActions.EditProduct(productData));
+     this.store.dispatch(new fromActions.EditProduct(productData));
     }
   }
 
