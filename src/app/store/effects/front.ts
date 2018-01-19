@@ -91,11 +91,16 @@ export class HomeEffects {
   .map((action: frontActions.GetCategory) => action.params)
     .switchMap((params) =>
       this.categoryService.CategoryThree(params)
-      .map( (list) => {
-        return new frontActions.GetCategorySuccess(list);
-      })
-      .catch(err => Observable.of({type: frontActions.FAILURE, payload: err}))
-  );
+      .map( (list: any) => new frontActions.GetCategorySuccess(list))
+            .catch(err => {
+                return Observable.of(new frontActions.Failure({concern: 'GETCATEGORY', error: err}));
+              })
+          );
+      // .map( (list) => {
+      //   return [new frontActions.GetCategorySuccess(list)];
+      // })
+      // .catch(err => Observable.of({type: frontActions.GETCATEGORYSUCCESS, payload: [err]}))
+
 
   @Effect()
   getPaymentMethods$: Observable<any> = this.actions$.ofType(frontActions.GET_PAYMENT_METHOD)
