@@ -52,7 +52,7 @@ export class ProductComponent implements OnInit {
   }
 
   checks(i) {
-    console.log(i);
+    //console.log(i);
   }
 
   checkAll(z) {
@@ -63,7 +63,7 @@ export class ProductComponent implements OnInit {
       this.st = true;
       this.check = false;
     }
-    console.log(z);
+   // console.log(z);
   }
 
   getSellerStore() {

@@ -20,7 +20,7 @@
               <tbody>
                 <tr *ngFor="let list of productList">
                     <td (click)="view(list.imageurl)" style="cursor:pointer;"><img src="{{ list.imageurl }}" height="42"></td>
-                    <td>{{ list.name }}</td>
+                    <td><a (click)="detail(list.productId, list.aliasName)" style="cursor: pointer;">{{ list.name }}</a></td>
                     <td>{{ list.sku }}</td>
                     <td>{{ list.stock }}</td>
                     <td>Rp.{{ list.pricelist | number }}</td>
