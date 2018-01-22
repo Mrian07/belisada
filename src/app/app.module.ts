@@ -77,6 +77,7 @@ import { Transactions } from './core/service/transactions/transactions';
 import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 import { AsapComponent } from './views/front/component/asap/asap.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
+import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -151,6 +152,7 @@ export function getAuthServiceConfigs() {
     // ProductTerbaruComponent,
     TransactionsComponent,
     CustomerServiceComponent,
+    LacakPesananComponent,
     // WishlistComponent,
     // AsapComponent
   ],

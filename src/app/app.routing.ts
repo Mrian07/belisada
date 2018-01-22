@@ -1,3 +1,4 @@
+import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
 import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
@@ -339,6 +340,13 @@ const routes: Routes = [
       {
         path: 'Customer-Service',
         component: CustomerServiceComponent,
+        data: {
+          title: 'Customer-Service'
+        }
+      },
+      {
+        path: 'Lacak-Pesanan',
+        component: LacakPesananComponent,
         data: {
           title: 'Customer-Service'
         }
