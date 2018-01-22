@@ -57,6 +57,7 @@ import { AsapComponent } from './views/front/component/asap/asap.component';
 import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
 import { ProductTerbaruComponent } from './views/front/component/product-terbaru/product-terbaru.component';
+import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
 
 const routes: Routes = [
   {
@@ -347,6 +348,13 @@ const routes: Routes = [
       {
         path: 'Lacak-Pesanan',
         component: LacakPesananComponent,
+        data: {
+          title: 'Customer-Service'
+        }
+      },
+      {
+        path: 'Customer-Care',
+        component: CustomerCareComponent,
         data: {
           title: 'Customer-Service'
         }
