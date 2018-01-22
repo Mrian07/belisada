@@ -6,13 +6,31 @@ import { BillingAddress } from '../../../../core/model/billing-address';
 import { Title } from '@angular/platform-browser';
 import { ShareService } from '../../../../core/service/shared.service';
 
+import { LocalStorageService } from '../../../../core/service/storage.service';
+import { FreightRate } from '../../../../core/model/FreightRate';
+import { FreightRateService } from '../../../../core/service/freight-rate/freight-rate.service';
+import { Checkout } from '../../../../core/model/checkout';
+import { Product } from '../../../../core/model/product';
+import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
+
+interface ICartItemWithProduct extends CartItem {
+  product: Product;
+  totalCost: number;
+}
+
+const CHECKOUT_KEY  = 'checkout';
+
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
 
+
+
+export class CheckoutComponent implements OnInit {
+  private storage: Storage;
+  checkout: Checkout;
   shippingAddress: ShippingAddress;
   shippingAddressList: ShippingAddress[];
 
@@ -24,6 +42,9 @@ export class CheckoutComponent implements OnInit {
 
   billing: Boolean = false;
 
+  freightRate: FreightRate = new FreightRate();
+  freightRates: FreightRate[];
+
   // statusAddBilling: Boolean = false;
   // showDataBilling: Boolean = true;
   // statusAddShipping: Boolean = false;
@@ -34,12 +55,18 @@ export class CheckoutComponent implements OnInit {
     private ngZone: NgZone,
     private title: Title,
     private shareService: ShareService,
-    private bilingAddressService: BilingAddressService
-  ) { }
+    private bilingAddressService: BilingAddressService,
+    private freightRateService: FreightRateService,
+    private storageService: LocalStorageService,
+  ) {
+    this.storage = this.storageService.get();
+   }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
+    this.getRate();
+    this.checkout = this.getCheckout();
     this.bilingAddressService.getAll().subscribe(datas => {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
@@ -82,6 +109,15 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  getCheckout() {
+    const checkout = new Checkout();
+    const storedCheckout = this.storage.getItem(CHECKOUT_KEY);
+    if (storedCheckout) {
+      checkout.updateFrom(JSON.parse(storedCheckout));
+    }
+    return checkout;
+  }
+
   getShippingAddress(selShippingAddress) {
     this.shippingAddress = this.shippingAddressList.find(x => x.addressId === +selShippingAddress);
   }
@@ -89,5 +125,14 @@ export class CheckoutComponent implements OnInit {
   getBillingAddress(selBillingAddress) {
     this.billingAddress = this.billingAddressList.find(x => x.addressId === +selBillingAddress);
   }
-  
+
+  getRate() {
+    this.shippingAddressService.getAll().subscribe(datas => {
+      this.shippingAddress = datas.find((x) => x.addressId === this.checkout.shippingAddress);
+      this.freightRateService.getFreightRates(this.shippingAddress.villageId).subscribe(response => {
+        this.freightRate = response.find((x) => x.shipperId === this.checkout.courierId);
+        console.log('this.freightRate: ', this.freightRate);
+      });
+    });
+  }
 }
