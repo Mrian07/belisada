@@ -25,7 +25,7 @@
                 <li><a routerLink="/register" class="link-red2">Mulai Menjual</a></li>
                 <li><a href="#">Customer Service</a></li>
                 <li><a routerLink="/cara-berbelanja">Cara Belanja</a>
-                <li><a href="#">Produk Terbaru</a></li>
+                <li><a routerLink="/product-terbaru">Produk Terbaru</a></li>
                 <li><a href="#">Blog</a></li>
             </ul>
 
@@ -68,16 +68,25 @@
             </div>
             <div class="menu-header2">
 
-                <div class="icon-user">
+                <!-- <div class="icon-user">
                     <img class="ui image avatar" [src]="avatar" alt="avatar"/>
-                </div>
+                </div> -->
                 <div class="welcome" *ngIf="loginState === false">
+                        <div class="icon-user">
+                                <img class="ui image avatar" [src]="avatar" alt="avatar"/>
+                            </div>
                     Selamat Datang<br/><a (click)="login()" class='go-link'><strong>Login</strong></a> / <a (click)="register()" class='go-link'><strong>Daftar</strong></a>
                 </div>
                 <div class="welcome" *ngIf="loginState === true">
                     <div class='dropdown-profile'>
+                            <!-- <div class="icon-user"> -->
+                                    <!-- <img class="ui image avatar" [src]="avatar" alt="avatar"/> -->
+
+                                <!-- </div> -->
                         <!-- <span>{{userName}}<br/><a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a></span> -->
-                        <div style="cursor: pointer; padding-top:10px;">{{userName | words: 1 : ""}}</div>
+                        <div style="cursor: pointer; padding-top:10px;">
+                            <img class="ui image avatar" [src]="avatar" alt="avatar"/>
+                           Hi, {{userName | words: 1 : ""}}</div>
                         <div class="dropdown-profile-content">
 
                             <div class="ui grid">

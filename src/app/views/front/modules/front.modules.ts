@@ -43,6 +43,7 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
 import { CheckoutService } from '../../../core/service/checkout/checkout.service';
 import { EmailSendService } from '../../../core/service/email-send/email-send.service';
 import { AsapComponent } from '../component/asap/asap.component';
+import { ProductTerbaruComponent } from '../component/product-terbaru/product-terbaru.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { AsapComponent } from '../component/asap/asap.component';
     ProductSearchComponent,
     AsapComponent,
     CaraBerbelanjaComponent,
-    ChattingFrontComponent
+    ChattingFrontComponent,
+    ProductTerbaruComponent
   ],
   imports: [
     CommonModule,

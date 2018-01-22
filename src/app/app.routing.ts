@@ -1,3 +1,4 @@
+import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
 import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
@@ -53,6 +54,7 @@ import { CopyrightPolicyComponent } from './views/front/component/copyright-poli
 import { AsapComponent } from './views/front/component/asap/asap.component';
 import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
+import { ProductTerbaruComponent } from './views/front/component/product-terbaru/product-terbaru.component';
 
 const routes: Routes = [
   {
@@ -318,7 +320,21 @@ const routes: Routes = [
         data: {
           title: 'asap'
         }
-      }
+      },
+      {
+        path: 'product-terbaru',
+        component: ProductTerbaruComponent,
+        data: {
+          title: 'asap'
+        }
+      },
+      {
+        path: 'transactions',
+        component: TransactionsComponent,
+        data: {
+          title: 'transactions'
+        }
+      },
     ]
   },
   {
