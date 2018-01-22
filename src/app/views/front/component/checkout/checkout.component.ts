@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
 
+  statusAddBilling: Boolean = false;
   constructor() { }
 
   ngOnInit() {
+    // this.addBilling();
   }
 
+  addBilling(data) {
+
+    if (data === 'add') {
+      this.statusAddBilling = true;
+    } else {
+      this.statusAddBilling = false;
+    }
+  }
 }
