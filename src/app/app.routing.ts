@@ -1,3 +1,4 @@
+import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
 import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
@@ -301,7 +302,14 @@ const routes: Routes = [
             data: {
               title: 'Confirmation Buyer'
             }
-          }
+          },
+          {
+            path: 'seller-propose',
+            component: SellerProposeComponent,
+            data: {
+              title: 'Seller Propose'
+            }
+          },
         ]
       }
     ]
