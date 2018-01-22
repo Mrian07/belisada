@@ -17,7 +17,7 @@
             <span>Rp. {{item.pricelist | number}}</span>
         </div>
         <div>
-            <button class="ui circular facebook icon button gatsb">
+            <button class="ui circular facebook icon button gatsb" (click)="btnDelete(item.productId)">
                 <i class="trash icon"></i>
               </button>
               <div class="gap-between-elements8"></div>

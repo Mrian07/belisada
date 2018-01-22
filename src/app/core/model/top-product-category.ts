@@ -5,6 +5,7 @@ export class TopProductCategory {
   categoryId: number;
   category: string;
   imageUrl: string;
+  category2Id: number;
   imageUrl2: string;
   imageUrl3: string;
   imageUrl4: string;
