@@ -14,6 +14,13 @@ import { LoginService } from '../../../../core/service/login/login.service';
 import { SendEmailService } from '../../../../core/service/sendEmail/send-email.service';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { Title } from '@angular/platform-browser';
+import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import { LocalStorageService } from '../../../../core/service/storage.service';
+
+const CART_KEY = 'cart';
+const CART_POST_KEY = 'cartpost';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,6 +28,8 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./sign-in.component.scss']
 })
 export class SignInComponent implements OnInit {
+
+  private storage: Storage;
 
   email: string;
   password: string;
@@ -30,6 +39,7 @@ export class SignInComponent implements OnInit {
   isReady: Boolean = false;
 
   constructor(
+    private storageService: LocalStorageService,
     private http: HttpClient,
     private loginService: LoginService,
     private socialAuthService: AuthService,
@@ -38,8 +48,11 @@ export class SignInComponent implements OnInit {
     private sendEmailService: SendEmailService,
     private tokenService: TokenService,
     private title: Title,
-    private shared: ShareService
-  ) { }
+    private shared: ShareService,
+    private shoppingCartService: ShoppingCartService
+  ) {
+    this.storage = this.storageService.get();
+  }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Login');
@@ -88,9 +101,33 @@ export class SignInComponent implements OnInit {
       } else {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
+        this.setCartToLocalStorage();
         // this.router.navigate([this.returnUrl]);
         this.router.navigateByUrl('/');
       }
+    });
+  }
+
+  setCartToLocalStorage() {
+    console.log('setCartToLocalStorage');
+    const cart = new ShoppingCart();
+    this.shoppingCartService.getSingleResult().subscribe(response => {
+      cart.grossTotal = response.grossTotal;
+      cart.deliveryTotal = response.deliveryTotal;
+      cart.itemsTotal = response.itemsTotal;
+
+      response.items.forEach((item, index) => {
+        const cartItem = new CartItem();
+        cartItem.itemCartId = item.itemCartId;
+        cartItem.productId = item.productId;
+        cartItem.quantity = item.quantity;
+        cart.items.push(cartItem);
+        console.log('cart_loop', cart);
+      });
+      this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
+      this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
+      this.shoppingCartService.dispatch(cart);
+      console.log('jalan dulu gak ni?');
     });
   }
 

@@ -16,7 +16,15 @@ import { Subscription } from 'rxjs/Subscription';
 
 import swal from 'sweetalert2';
 import { Subject } from 'rxjs/Subject';
+import { CartItemRequest, CartItem } from '../../../../core/model/shoppingcart/cart-item';
+import { TokenService } from '../../../../core/service/token/token.service';
+import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { ProductService } from '../../../../core/service/product/product.service';
 
+interface ICartItemWithProduct extends CartItem {
+  product: Product;
+  totalCost: number;
+}
 
 @Component({
   selector: 'app-product-detail',
@@ -27,6 +35,12 @@ import { Subject } from 'rxjs/Subject';
 export class ProductDetailComponent implements OnInit {
   public carouselTileItems: Array<any>;
   public carouselTile: NgxCarousel;
+  public cart: Observable<ShoppingCart>;
+  public cartItems: ICartItemWithProduct[] = [];
+  public itemCount: number;
+
+  itemsTotal: number;
+
   tabs: any;
   act_key: any;
   productId: any;
@@ -61,6 +75,8 @@ export class ProductDetailComponent implements OnInit {
     private router: Router,
     private store: Store<fromProduct.Details>,
     private ngZone: NgZone,
+    private tokenService: TokenService,
+    private productService: ProductService
   ) { }
   private componetDestroyed: Subject<Boolean> = new Subject();
 
@@ -140,12 +156,24 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public addProductToCart(productId: number, quantity: number): void {
+    console.log('ProductList: ', this.ProductList);
     if (quantity === undefined) {
       swal(
         'Belisada.co.id',
         'Jumlah harus di pilih!'
       );
     }else {
+      const cartItemRequest: CartItemRequest = new CartItemRequest();
+      cartItemRequest.productId = this.ProductList.productId;
+      cartItemRequest.price = this.ProductList.pricelist;
+      cartItemRequest.weightPerItem = this.ProductList.weight;
+      cartItemRequest.quantity = quantity;
+
+      if (this.tokenService.getUser()) {
+        this.shoppingCartService.create(cartItemRequest).subscribe(response => {
+          console.log('message: ', response.message);
+        });
+      }
       this.shoppingCartService.addItem(productId, +quantity);
     }
   }

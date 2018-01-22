@@ -12,5 +12,8 @@ export class InfoComponent implements OnInit {
   ngOnInit() {
   }
 
+  daftar() {
+    location.replace('/register');
+  }
 }
 

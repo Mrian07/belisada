@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../../../../../core/service/store/store.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../../../../core/model/product';
+import { AddproductService } from '../../../../../core/service/addproduct/addproduct.service';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../../../core/service/token/token.service';
 
 @Component({
   selector: 'app-status-invoice',
@@ -9,17 +13,44 @@ import { Product } from '../../../../../core/model/product';
   styleUrls: ['./status-invoice.component.scss']
 })
 export class StatusInvoiceComponent implements OnInit {
-  productList: Observable<Product[]>;
+  productList: any;
 
   constructor(
-    private storeService: StoreService
+    private auth: TokenService,
+    private sellers: AddproductService,
+    private routes: Router
   ) { }
 
   ngOnInit() {
-    // this.storeService.getApproveProduct(4).subscribe(data => {
-    //   console.log('approve', data);
-    //   this.productList = Observable.of(data.productList);
-    // });
+    const user = this.auth.getUser();
+    if (user) {
+      const storeId = user.stores[0].mBpartnerStoreId;
+      this.sellers.GetReviewProduct(storeId).subscribe(data => {
+        this.productList = data.productList;
+      });
+    }
+  }
+
+  getQr(id: number) {
+    this.sellers.GetQr(id).subscribe(data => {
+      swal({
+        imageUrl: data.image_url,
+        imageHeight: 400,
+        imageAlt: 'QR Code'
+      });
+    });
+  }
+
+  view(url: string) {
+      swal({
+        imageUrl: url,
+        imageHeight: 400,
+        imageAlt: 'Image'
+      });
+  }
+
+  detail(id: number, alias: string) {
+    this.routes.navigateByUrl('Product-detail/' + id + '/' + alias);
   }
 
 }

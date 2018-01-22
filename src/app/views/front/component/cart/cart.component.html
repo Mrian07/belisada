@@ -1,46 +1,6 @@
 
 <!-- <h1 class='title-page'>Keranjang Belanja</h1> -->
 
-<div class="ui grid b-step">
-    <div class="sixteen wide center aligned column">
-
-      <div class="ui ordered steps">
-        <div class="completed step">
-            <div class="content">
-              <div class="title">Your Cart</div>
-              <div class="description">List belanja Anda</div>
-            </div>
-          </div>
-        <div class="active step">
-          <div class="content">
-            <div class="title">Shipping & Billing</div>
-            <div class="description">Info shipping & billing</div>
-          </div>
-        </div>
-        <div class="active step">
-            <div class="content">
-              <div class="title">Payment Method</div>
-              <div class="description">Pembayaran & ongkos kirim</div>
-            </div>
-          </div>
-        <div class="active step">
-          <div class="content">
-            <div class="title">Confirm Order</div>
-            <div class="description">Verify order details</div>
-          </div>
-        </div>
-        <div class="active step">
-          <div class="content">
-            <div class="title">Finish Order</div>
-            <div class="description">Finish order details</div>
-          </div>
-        </div>
-      </div>
-
-  </div>
-</div>
-
-
 <div class="row animated rollIn">
     <div id="no-more-tables">
         <table class="col-md-12 table-bordered table-striped table-condensed cf">
@@ -63,12 +23,12 @@
             {{ item.product.name }}
           </td>
           <td class="valTd text-right" data-title="Harga">
-            {{ item.product.pricelist | currency:'Rp ' }}
+            Rp {{ item.product.pricelist | number }}
           </td>
           <td class="valTd text-right" data-title="Jumlah">
             <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/>
           </td>
-          <td class="valTd text-right" data-title="Sub Total">{{ item.totalCost | currency:'Rp ' }}</td>
+          <td class="valTd text-right" data-title="Sub Total"> Rp {{ item.totalCost | number }}</td>
           <td class="valTd" data-title="Hapus">
               <button class="circular ui icon button" (click)="removeProductFromCart()">
                 <i class="trash outline icon"></i>
@@ -83,11 +43,11 @@
 
 <div class="ui grid b-step">
   <div class="eight wide left aligned column">
-    <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4>
+    <h4>Total: Rp {{itemsTotal | number}}</h4>
   </div>  
   <div class="eight wide right aligned column">  
-      <button class="ui right labeled icon button green" (click)="next()">
-        Next
+      <button class="ui right labeled icon button green" (click)="checkout()">
+        Checkout
         <i class="right chevron icon"></i>
       </button>
     <div class="ui buttons"></div>

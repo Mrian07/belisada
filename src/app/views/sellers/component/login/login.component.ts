@@ -18,6 +18,9 @@ import { Store, ActionsSubject } from '@ngrx/store/';
 import * as fromActions from '../../../../store/actions';
 import * as fromProduct from '../../../../store/reducers';
 import { Login } from '../../../../store/actions';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 
 @Component({
   selector: 'app-login',
@@ -44,7 +47,8 @@ export class LoginComponent implements OnInit {
     private store: Store<fromProduct.User>,
     private sendEmailService: SendEmailService,
     private tokenService: TokenService,
-    private title: Title
+    private title: Title,
+    private shoppingCartService: ShoppingCartService
   ) { }
 
   ngOnInit() {
@@ -61,7 +65,7 @@ export class LoginComponent implements OnInit {
       this.loading = false;
       console.log(action);
       localStorage.user = JSON.stringify(action);
-      //this.router.navigateByUrl('/seller/dashboard');
+      // this.router.navigateByUrl('/seller/dashboard');
         // swal(
         //     'Produk berhasil di Perbaharui!',
         //     'success'
@@ -111,15 +115,36 @@ export class LoginComponent implements OnInit {
       } else {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
+        this.setCartToLocalStorage();
         this.router.navigate([this.returnUrl]);
       }
     });
   }
+
+  setCartToLocalStorage() {
+    console.log('setCartToLocalStorage');
+    const cart = new ShoppingCart();
+    this.shoppingCartService.getSingleResult().subscribe(response => {
+      cart.grossTotal = response.grossTotal;
+      cart.deliveryTotal = response.deliveryTotal;
+      cart.itemsTotal = response.itemsTotal;
+
+      response.items.forEach((item, index) => {
+        const cartItem = new CartItem();
+        cartItem.productId = item.productId;
+        cartItem.quantity = item.quantity;
+        cart.items.push(cartItem);
+        console.log('cart_loop', cart);
+      });
+      console.log('jalan dulu gak ni?');
+    });
+  }
+
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     if (socialPlatform === 'facebook') {
       socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    }else if (socialPlatform === 'google') {
+    } else if (socialPlatform === 'google') {
       socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(

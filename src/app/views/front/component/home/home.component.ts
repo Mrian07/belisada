@@ -17,6 +17,7 @@ import * as frontActions from '../../../../store/actions/front';
 import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
+import { Product } from '../../../../core/model/product';
 
 
 @Component({
@@ -57,13 +58,16 @@ export class HomeComponent implements OnInit {
     .subscribe((action: frontActions.GetHomeSuccess) => {
       this.loadHome();
     });
+
+    // const a = [1076071, 1071472, 1071480, 1071485, 1058306];
+    // let z = 0;
   }
 
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.ngZone.run(() => {
         this.topHomeProductLvl1 = Observable.of(data.home);
-        //console.log('ini po', data.home);
+        // console.log('ini po', data.home);
         this.level_4 = Observable.of(data.brands);
         });
     });
