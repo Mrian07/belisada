@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.ngZone.run(() => {
         this.topHomeProductLvl1 = Observable.of(data.home);
-        //console.log('ini po', data.home);
+        // console.log('ini po', data.home);
         this.level_4 = Observable.of(data.brands);
         });
     });

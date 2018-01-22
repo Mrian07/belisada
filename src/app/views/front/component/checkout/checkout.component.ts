@@ -25,10 +25,23 @@ const CHECKOUT_KEY  = 'checkout';
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.scss']
 })
-
-
-
 export class CheckoutComponent implements OnInit {
+  cartItems;
+  cart;
+  paymentMethodDtos;
+  paymentMethodId;
+  shippingMethod;
+  freightRates;
+  deliveryTotal;
+  freightRate;
+  // deliveryTotal;
+  itemsTotal;
+  grossTotal;
+  // shippingMethod;
+  // freightRates;
+  selectShippingMethod;
+
+
   private storage: Storage;
   checkout: Checkout;
   shippingAddress: ShippingAddress;
@@ -42,8 +55,8 @@ export class CheckoutComponent implements OnInit {
 
   billing: Boolean = false;
 
-  freightRate: FreightRate = new FreightRate();
-  freightRates: FreightRate[];
+  // freightRate: FreightRate = new FreightRate();
+  // freightRates: FreightRate[];
 
   // statusAddBilling: Boolean = false;
   // showDataBilling: Boolean = true;
