@@ -71,6 +71,8 @@ import { WarrantyComponent } from './views/front/component/warranty/warranty.com
 import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
 import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
+// import { ProductTerbaruComponent } from './views/front/product-terbaru/product-terbaru.component';
+import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 // import { WishlistComponent } from './core/model/wishlist/wishlist.component';
 // import { AsapComponent } from './views/front/component/asap/asap.component';
 export function createTranslateLoader(http: HttpClient) {
@@ -143,6 +145,8 @@ export function getAuthServiceConfigs() {
     ContactUsComponent,
     AfterSalesServiceComponent,
     CheckoutComponent,
+    // ProductTerbaruComponent,
+    TransactionsComponent,
     // WishlistComponent,
     // AsapComponent
   ],
