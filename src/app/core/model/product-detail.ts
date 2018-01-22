@@ -20,5 +20,6 @@ export class ProductDetail {
   aliasName: string;
   image: string[];
   isAsapShipping: string;
+  weight: number;
   constructor() {}
 }

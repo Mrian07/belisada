@@ -8,6 +8,10 @@ export abstract class AbstractRestService<T> {
     constructor(protected _http: HttpClient, protected actionUrl: string) {
     }
 
+    getSingleResult(): Observable<T> {
+        return this._http.get(this.actionUrl)
+            .map(response => response as T);
+    }
     getAll(): Observable<T[]> {
         return this._http.get(this.actionUrl)
             .map(response => response as T[]);
