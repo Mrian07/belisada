@@ -115,7 +115,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.loginService.user = data;
         localStorage.user = JSON.stringify(data);
-        this.loginService.isLoggedin();
         this.setCartToLocalStorage();
         this.router.navigate([this.returnUrl]);
       }

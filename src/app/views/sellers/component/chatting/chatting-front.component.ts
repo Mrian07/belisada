@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { environment } from './../../../../../environments/environment';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {trigger, transition, style, animate, state} from '@angular/animations';
-import * as io from 'socket.io-client';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { ChatService } from '../../../../core/service/chat/chat.service';
 import swal from 'sweetalert2';
@@ -32,7 +31,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./chatting.component.scss']
 })
 export class ChattingFrontComponent implements OnInit {
-  show: Boolean;
+  hiden: Boolean = !localStorage.chat_hide || JSON.parse(localStorage.chat_hide);
+  onSignIn: boolean = this.router.url == '/sign-in';
   user: any = this.loginsrv.whoLogin();
   chats = [];
   info: string;
@@ -44,16 +44,17 @@ export class ChattingFrontComponent implements OnInit {
   constructor(private loginsrv: LoginService, private chat: ChatService, private router: Router, private shared: ShareService) { }
 
   ngOnInit() {
+    console.log('url:', this.router.url);
+    if(!this.hiden) {
+      this.connect().then(soc => this.soc = soc, err => this.hiden = true);
+    }
+  }
+  connect() {
     let that = this;
-    this.chat.connect({
+    return this.chat.connect({
       connect: function() {
         that.chats = [];
         that.connecting = false;
-        // console.log('chat connected', that.chat.socket);
-        const chat_hide = localStorage.chat_hide;
-        if (chat_hide) {
-          this.show = JSON.parse(localStorage.chat_hide);
-        }
       },
       reconnect_attempt: () => {
         console.log('reconnecting');
@@ -69,13 +70,7 @@ export class ChattingFrontComponent implements OnInit {
         that.info = 'typing';
         that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
       }
-    }).then(soc => {
-      this.soc = soc;
-      console.log('chat ok:', soc);
-    }, err => {
-      console.log('chat:', err);
-    })
-
+    });
   }
 
   send() {
@@ -86,18 +81,20 @@ export class ChattingFrontComponent implements OnInit {
   }
 
   hide() {
-    if(this.soc) {
-      this.show = !this.show;
-      localStorage.chat_hide = this.show;
-    }
-    else {
-      swal({
-        title: 'Warning',
-        text: 'Anda harus login untuk melanjutkan',
-        type: 'warning',
-      }).then(() => {
-        this.shared.shareData = '/';
-        this.router.navigate(['/login']);
+    console.log('chat_hide', this.hiden, this.user);
+    this.hiden = !this.hiden;
+    localStorage.chat_hide = this.hiden;
+    if(!this.soc) {
+      this.connect().then(soc => this.soc = soc, err => {
+        console.log('chat:', err);
+        swal({
+          title: 'Warning',
+          text: 'Anda harus login untuk melanjutkan',
+          type: 'warning',
+        }).then(() => {
+          this.shared.shareData = '/';
+          this.router.navigate(['/sign-in']);
+        })
       })
     }
   }

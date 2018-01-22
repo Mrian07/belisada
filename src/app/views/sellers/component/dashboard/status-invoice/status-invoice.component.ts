@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Product } from '../../../../../core/model/product';
 import { AddproductService } from '../../../../../core/service/addproduct/addproduct.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../../../core/service/token/token.service';
 
 @Component({
   selector: 'app-status-invoice',
@@ -14,14 +16,19 @@ export class StatusInvoiceComponent implements OnInit {
   productList: any;
 
   constructor(
-    private storeService: StoreService,
-    private sellers: AddproductService
+    private auth: TokenService,
+    private sellers: AddproductService,
+    private routes: Router
   ) { }
 
   ngOnInit() {
-    this.sellers.GetReviewProduct(4).subscribe(data => {
-      this.productList = data.productList;
-    });
+    const user = this.auth.getUser();
+    if (user) {
+      const storeId = user.stores[0].mBpartnerStoreId;
+      this.sellers.GetReviewProduct(storeId).subscribe(data => {
+        this.productList = data.productList;
+      });
+    }
   }
 
   getQr(id: number) {
@@ -40,6 +47,10 @@ export class StatusInvoiceComponent implements OnInit {
         imageHeight: 400,
         imageAlt: 'Image'
       });
+  }
+
+  detail(id: number, alias: string) {
+    this.routes.navigateByUrl('Product-detail/' + id + '/' + alias);
   }
 
 }
