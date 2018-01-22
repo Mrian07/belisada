@@ -8,22 +8,24 @@
           <table class="ui striped table">
               <thead>
                 <tr>
-                  <th>Product Name</th>
-                  <th>SKU</th>
-                  <th>Qty</th>
-                  <th>Pricelist</th>
-                  <th>Status</th>
-                  <th>QR Code</th>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>SKU</th>
+                    <th>Qty</th>
+                    <th>Pricelist</th>
+                    <th>Status</th>
+                    <th>QR Code</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let list of productList">
-                  <td>{{ list.name }}</td>
-                  <td>{{ list.sku }}</td>
-                  <td>{{ list.stock }}</td>
-                  <td>Rp.{{ list.pricelist | number }}</td>
-                  <td><div class="ui green horizontal label">Review</div></td>
-                  <td (click)="getQr(list.productId)" style="cursor:pointer;"><i class="qrcode icon" style="font-size: 18px;"></i></td>
+                    <td (click)="view(list.imageurl)" style="cursor:pointer;"><img src="{{ list.imageurl }}" height="42"></td>
+                    <td>{{ list.name }}</td>
+                    <td>{{ list.sku }}</td>
+                    <td>{{ list.stock }}</td>
+                    <td>Rp.{{ list.pricelist | number }}</td>
+                    <td><div class="ui green horizontal label">Review</div></td>
+                    <td (click)="getQr(list.productId)" style="cursor:pointer;"><i class="qrcode icon" style="font-size: 18px;"></i></td>
                 </tr>
               </tbody>
             </table>

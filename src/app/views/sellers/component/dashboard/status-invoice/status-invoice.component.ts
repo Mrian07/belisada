@@ -34,4 +34,12 @@ export class StatusInvoiceComponent implements OnInit {
     });
   }
 
+  view(url: string) {
+      swal({
+        imageUrl: url,
+        imageHeight: 400,
+        imageAlt: 'Image'
+      });
+  }
+
 }
