@@ -73,7 +73,7 @@ import { ContactUsComponent } from './views/front/component/contact-us/contact-u
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
 import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
 
-import { Transactions } from './core/service/transactions/transactions';
+import { TransactionsService } from './core/service/transactions/transactions';
 import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 import { AsapComponent } from './views/front/component/asap/asap.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
@@ -192,7 +192,7 @@ export function getAuthServiceConfigs() {
     ActivationService,
     SeoService,
     ForgotPasswordService,
-    Transactions,
+    TransactionsService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
