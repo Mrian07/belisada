@@ -6,6 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+  cartItems;
+  cart;
+  paymentMethodDtos;
+  paymentMethodId;
+  shippingMethod;
+  freightRates;
+  deliveryTotal;
+  freightRate;
+  // deliveryTotal;
+  itemsTotal;
+  grossTotal;
+  // shippingMethod;
+  // freightRates;
+  selectShippingMethod;
 
   constructor() { }
 
