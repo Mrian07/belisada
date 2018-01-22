@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { TokenService } from '../../../../core/service/token/token.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -32,12 +33,33 @@ export class CartComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private auth: TokenService,
   ) { }
 
   ngOnInit() {
     this.title.setTitle('Belisada - Your Cart');
     window.scrollTo(0, 0);
+
+    this.shoppingCart();
+    // this.cart = this.shoppingCartService.get();
+    // this.cartSubscription = this.cart.subscribe((cart) => {
+    //   this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
+    //   this.itemsTotal = cart.itemsTotal;
+    //   this.cartItems = [];
+    //   cart.items.forEach(item => {
+    //     this.productService.get(item.productId).subscribe((product) => {
+    //       // const product = prod;
+    //       this.cartItems.push({
+    //         ...item,
+    //         product,
+    //         totalCost: product.pricelist * item.quantity });
+    //     });
+    //   });
+    // });
+  }
+
+  shoppingCart() {
     this.cart = this.shoppingCartService.get();
     this.cartSubscription = this.cart.subscribe((cart) => {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
