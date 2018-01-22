@@ -38,6 +38,7 @@ export class ChattingComponent implements OnInit {
   soc: any;
   stat: number = 0;
   connecting: boolean = true;
+  onSignIn: boolean;
 
   constructor(private loginsrv: LoginService, private chat: ChatService) { }
 
