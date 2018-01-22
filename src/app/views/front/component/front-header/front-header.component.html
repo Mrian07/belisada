@@ -47,7 +47,9 @@
             <i class="search icon"></i>
             <input type="text" class="search-bar" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory"/>
             <div class="result-container" *ngIf="[results] != 0">
-                <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">{{ hasil.name }}</div>
+                <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
+                        <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
+                </div>
             </div>
         </div>
     </div>

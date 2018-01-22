@@ -97,6 +97,7 @@ export class FrontHeaderComponent implements OnInit {
     } else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
+        console.log(data);
       });
     }
   }
@@ -112,16 +113,13 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   getProfile() {
-    console.log(this.auth.getToken())
     this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
       this.userName = data.name;
-      console.log(data);
       if (data.imageAvatar === '') {
         this.avatar = 'assets/img/user.jpg';
       }else {
         this.avatar = 'data:image/png;base64,' + data.imageAvatar;
       }
-
     });
   }
 
@@ -173,7 +171,6 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
-    console.log(hasil);
     this.router.navigateByUrl('/Product-detail/' + hasil.productId + '/' + hasil.aliasName);
     this.results = [];
   }

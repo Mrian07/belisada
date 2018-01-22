@@ -102,7 +102,7 @@
                 <div class="ui form">
                     <div class="inline twelve fields">
                         <div class="two wide field">
-                            Harga
+                            Harga Rp.
                         </div>
                         <div class="two wide field">
                             <input type="number" placeholder="Harga" pattern="[0-9]{10}" [(ngModel)]="price" value="{{price}}"/>
@@ -122,13 +122,13 @@
                             <input type="text" placeholder="Berat" value="{{weight}}" [disabled]="false"/>
                         </div>
                         <div class="one wide field">
-                            <div class="ui dropdown three wide field" suiDropdown>
+                            <div class="ui three wide field">
                                 <div class="text">Kg</div>
-                                <i class="dropdown icon"></i>
+                                <!-- <i class="dropdown icon"></i>
                                 <div class="menu" suiDropdownMenu>
                                     <div class="item">Kg</div>
                                     <div class="item">Gram</div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -137,25 +137,25 @@
                 <div class="ui form">
                     <div class="inline eight fields">
                         <div class="two wide field">
-                            Dimensi
+                            Dimensi (cm)
                         </div>
                         <div class="one wide field">
                             <input type="text" placeholder="" [(ngModel)]="panjang" value="{{panjang}}"/>
                         </div>
                         <div class="one wide field small">
-                            Panjang
+                            Panjang (cm)
                         </div>
                         <div class="one wide field">
                             <input type="text" placeholder="" [(ngModel)]="lebar" value="{{lebar}}"/>
                         </div>
                         <div class="one wide field small">
-                            Lebar
+                            Lebar (cm)
                         </div>
                         <div class="one wide field">
                             <input type="text" placeholder="" [(ngModel)]="tinggi" value="{{tinggi}}"/>
                         </div>
                         <div class="one wide field small">
-                            Tinggi
+                            Tinggi (cm)
                         </div>
                     </div>
                 </div>
