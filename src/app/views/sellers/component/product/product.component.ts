@@ -87,4 +87,11 @@ export class ProductComponent implements OnInit {
   search(event) {
     const key = event.target.value;
   }
+  view(url: string) {
+    swal({
+      imageUrl: url,
+      imageHeight: 400,
+      imageAlt: 'Image'
+    });
+}
 }
