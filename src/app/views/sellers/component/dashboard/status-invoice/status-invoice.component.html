@@ -23,7 +23,7 @@
                   <td>{{ list.stock }}</td>
                   <td>Rp.{{ list.pricelist | number }}</td>
                   <td><div class="ui green horizontal label">Review</div></td>
-                  <td (click)="getQr(list.productId)"><i class="qrcode icon" style="font-size: 18px;"></i></td>
+                  <td (click)="getQr(list.productId)" style="cursor:pointer;"><i class="qrcode icon" style="font-size: 18px;"></i></td>
                 </tr>
               </tbody>
             </table>
