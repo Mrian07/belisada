@@ -1,3 +1,5 @@
+import { WishlistBuyerService } from './../../../core/service/wishlist-buyer/wishlist-buyer.service';
+import { UpgradeService } from './../../../core/service/upgrade/upgrade.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxCarousel } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.interface';
@@ -41,6 +43,7 @@ import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbe
 import { CheckoutService } from '../../../core/service/checkout/checkout.service';
 import { EmailSendService } from '../../../core/service/email-send/email-send.service';
 import { AsapComponent } from '../component/asap/asap.component';
+import { ProductTerbaruComponent } from '../component/product-terbaru/product-terbaru.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +62,8 @@ import { AsapComponent } from '../component/asap/asap.component';
     ProductSearchComponent,
     AsapComponent,
     CaraBerbelanjaComponent,
-    ChattingFrontComponent
+    ChattingFrontComponent,
+    ProductTerbaruComponent
   ],
   imports: [
     CommonModule,
@@ -90,7 +94,9 @@ import { AsapComponent } from '../component/asap/asap.component';
     FreightRateService,
     CheckoutService,
     EmailSendService,
-    FreightRateService
+    WishlistBuyerService,
+    FreightRateService,
+    UpgradeService
   ]
 })
 export class FrontModules { }

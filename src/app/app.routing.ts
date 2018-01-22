@@ -1,3 +1,6 @@
+import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
+import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
+import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 import { InboxBuyerComponent } from './views/buyer/component/inbox-buyer/inbox-buyer.component';
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
 import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
@@ -51,6 +54,10 @@ import { CaraBerbelanjaComponent } from './views/front/component/cara-berbelanja
 import { CareerComponent } from './views/front/component/career/career.component';
 import { CopyrightPolicyComponent } from './views/front/component/copyright-policy/copyright-policy.component';
 import { AsapComponent } from './views/front/component/asap/asap.component';
+import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
+import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
+import { ProductTerbaruComponent } from './views/front/component/product-terbaru/product-terbaru.component';
+import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
 
 const routes: Routes = [
   {
@@ -201,8 +208,15 @@ const routes: Routes = [
           title: 'After Sales Service'
         }
       }, {
+        path: 'checkout',
+        component: CheckoutComponent,
+        data: {
+          title: 'Checkout'
+        }
+      }, {
         path: 'buyer',
         component: BuyerLayoutComponent,
+        canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
           {
             path: '',
@@ -309,7 +323,42 @@ const routes: Routes = [
         data: {
           title: 'asap'
         }
-      }
+      },
+      {
+        path: 'product-terbaru',
+        component: ProductTerbaruComponent,
+        data: {
+          title: 'asap'
+        }
+      },
+      {
+        path: 'transactions',
+        component: TransactionsComponent,
+        data: {
+          title: 'transactions'
+        }
+      },
+      {
+        path: 'Customer-Service',
+        component: CustomerServiceComponent,
+        data: {
+          title: 'Customer-Service'
+        }
+      },
+      {
+        path: 'Lacak-Pesanan',
+        component: LacakPesananComponent,
+        data: {
+          title: 'Customer-Service'
+        }
+      },
+      {
+        path: 'Customer-Care',
+        component: CustomerCareComponent,
+        data: {
+          title: 'Customer-Service'
+        }
+      },
     ]
   },
   {

@@ -62,6 +62,7 @@ export class ProductDetailComponent implements OnInit {
   storeData: any;
   otherStore: number;
   storeList: Array<any>;
+  storeName: any;
   aliasName;
   theImage: string;
   asap: Boolean = true;
@@ -97,6 +98,7 @@ export class ProductDetailComponent implements OnInit {
       this.productId = params.id;
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
+    // this.ininih(this.productId);
     this.getDetailProd = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GETDETAILSSUCCESS)
@@ -118,6 +120,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
+        console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
           if ( this.ProductList.isAsapShipping === 'Y') {
@@ -132,6 +135,10 @@ export class ProductDetailComponent implements OnInit {
           this.diskon3 = this.ProductList.pricelist * this.diskon2;
           this.popx = Math.round(this.diskon2);
           this.ProductImage = this.ProductList.image;
+          this.storeName = this.ProductList.storeName;
+          if (this.storeName === '') {
+            this.storeName = 'Belisada.co.id';
+          }
           this.theImage = this.ProductImage[0];
           this.title.setTitle('Belisada - ' + this.ProductList.name);
         }
@@ -170,7 +177,27 @@ export class ProductDetailComponent implements OnInit {
       this.shoppingCartService.addItem(productId, +quantity);
     }
   }
-
+  ininih(productId) {
+    const data3 = {
+      productId: productId
+    };
+    this.detailService.create(data3).subscribe(response => {
+      if (response.status === '1') {
+        swal('Terimakasih, Item Anda Sudah Masuk Kedalam Wishlist');
+      } else {
+        swal(response.message);
+      }
+    });
+  }
+  // ininih(productId) {
+  //   const data3 = {
+  //     productId: productId
+  //   };
+  //   this.detailService.wishListCreate(data3).subscribe(response => {
+  //       console.log('berhasil cuy');
+  //   });
+  //   console.log('ini loh3333', this.productId);
+  // }
   home() {
     this.router.navigateByUrl('/');
   }

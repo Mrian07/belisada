@@ -19,7 +19,10 @@ export class ProductDetail {
   sku: string;
   aliasName: string;
   image: string[];
+  message?: string;
+  status?: string;
   isAsapShipping: string;
   weight: number;
+  storeName: string;
   constructor() {}
 }

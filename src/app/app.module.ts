@@ -1,15 +1,11 @@
-import { ShippingComponent } from './views/front/component/shipping/shipping.component';
-import { BillingAddress } from './core/model/billing-address';
-import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
-import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
-import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
-import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy } from '@angular/common';
+import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy, registerLocaleData  } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+// import localeID from '@angular/common/locales/id';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'angular5-social-login';
 import { environment } from '../environments/environment';
@@ -19,6 +15,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MaintenanceComponent } from './views/sellers/component/maintenance/maintenance.component';
+import { ShippingComponent } from './views/front/component/shipping/shipping.component';
+import { BillingAddress } from './core/model/billing-address';
+import { DashboardBuyerComponent } from './views/buyer/component/dashboard-buyer/dashboard-buyer.component';
+import { ForgotPasswordService } from './core/service/forgotpassword/forgot-password.service';
+import { SendForgotPasswordComponent } from './views/sellers/component/send-forgot-password/send-forgot-password.component';
 import { PlainLayoutComponent } from './core/layout/plain-layout/plain-layout.component';
 import { ActivationComponent } from './views/sellers/component/activation/activation.component';
 import { ActivationLayoutComponent } from './core/layout/activation-layout/activation-layout.component';
@@ -70,7 +71,15 @@ import { ReturnCancelComponent } from './views/front/component/return-cancel/ret
 import { WarrantyComponent } from './views/front/component/warranty/warranty.component';
 import { ContactUsComponent } from './views/front/component/contact-us/contact-us.component';
 import { AfterSalesServiceComponent } from './views/front/component/after-sales-service/after-sales-service.component';
-// import { AsapComponent } from './views/front/component/asap/asap.component';
+import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
+
+import { Transactions } from './core/service/transactions/transactions';
+import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
+import { AsapComponent } from './views/front/component/asap/asap.component';
+import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
+import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
+import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
+// registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -140,6 +149,13 @@ export function getAuthServiceConfigs() {
     WarrantyComponent,
     ContactUsComponent,
     AfterSalesServiceComponent,
+    CheckoutComponent,
+    // ProductTerbaruComponent,
+    TransactionsComponent,
+    CustomerServiceComponent,
+    LacakPesananComponent,
+    CustomerCareComponent,
+    // WishlistComponent,
     // AsapComponent
   ],
   imports: [
@@ -174,6 +190,7 @@ export function getAuthServiceConfigs() {
     ActivationService,
     SeoService,
     ForgotPasswordService,
+    Transactions,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
@@ -187,7 +204,7 @@ export function getAuthServiceConfigs() {
       useFactory: getAuthServiceConfigs
     },
     OnlyLoggedInUsersGuard,
-    {provide: APP_BASE_HREF, useValue: '/'}
+    {provide: APP_BASE_HREF, useValue: '/'},
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

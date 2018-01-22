@@ -56,7 +56,7 @@ export class ProductSearchComponent implements OnInit {
         if (params.page) {
           this.currentPage = params.page;
         }
-        console.log(params);
+       // console.log(params);
         this.catId = params.id;
         this.Params = params;
         this.store.dispatch(new frontActions.GetList(params));
@@ -94,8 +94,8 @@ export class ProductSearchComponent implements OnInit {
   }
 
   sortThis(ob) {
-    console.log(this.loading);
-    console.log(ob);
+    // console.log(this.loading);
+    // console.log(ob);
     this.Params =  {
       parent : 3,
       id : this.catId,
@@ -118,7 +118,7 @@ export class ProductSearchComponent implements OnInit {
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
         this.loading = false;
-        //console.log(response);
+       // console.log(response);
         this.productSearchResault = response;
         this.total = response.productCount;
         this.start = (this.currentPage - 1) * this.limit;

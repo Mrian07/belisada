@@ -58,6 +58,7 @@
                   <th>Produk</th>
                   <th>Harga</th>
                   <th>Status</th>
+                  <th>Quantity</th>
                   <!-- <th>Edit</th>
                   <th>Hapus</th> -->
               </tr>
@@ -71,7 +72,7 @@
                     <img class="ui image product-image" src="{{ product.imageurl }}" alt="image not found"/>
                 </td>
                 <td>
-                    {{ product.name | words: 7 }}<br/><small><i class="unhide icon"></i> 0 views</small>
+                    {{ product.name | words: 10 }}<br/><small><i class="unhide icon"></i> 0 views</small>
                 </td>
                 <td>
                     <!-- <div class="ui action input">
@@ -101,6 +102,7 @@
                             <a class="ui small green label" *ngIf="product.statusCode === '4'">{{product.status}}</a>
                     </small>
                 </td>
+                <td>{{product.stock}}</td>
                 <!-- <td><i class="edit icon"></i></td>
                 <td><i class="trash outline icon"></i></td> -->
             </tr>

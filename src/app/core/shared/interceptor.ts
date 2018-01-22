@@ -43,10 +43,10 @@ export class Interceptor implements HttpInterceptor {
             this.routes.navigateByUrl('/sign-in');
           });
         }else if (err.status === 404) {
-          swal('Oops!...something wrong...')
-          .then((result) => {
-            this.routes.navigateByUrl('/404');
-          });
+          // swal('Oops!...something wrong...')
+          // .then((result) => {
+          //   //this.routes.navigateByUrl('/404');
+          // });
         }else if (err.status === 500) {
           swal('Oops!...something wrong...')
           .then((result) => {

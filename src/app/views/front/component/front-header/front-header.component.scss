@@ -210,12 +210,12 @@
     color:#f8992e;
 }
 
-.welcome a:visited {
-    color:#f8992e;
-}
-
 .welcome a:hover {
     color:#fec380;
+}
+
+.welcome a:visited {
+    color:#f8992e;
 }
 
 .welcome a:active {
@@ -458,10 +458,21 @@
     cursor: pointer;
 }
 .result:hover {
-    background-color: #999999;
-    color: #fff;
+    background-color: #f1f1f1;
+    color: #000000;
 }
 
+.result img{
+    height: 32px;
+    margin-right: 10px;
+}
+
+.cates {
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+    color: darkblue;
+}
 .product-image {
     height: 300px;
 }
@@ -611,3 +622,22 @@
   .dropdown-menu-account a:hover {
     color:#dddddd;
   }
+
+
+.go-link  {
+    color:#f8992e;
+    cursor: pointer;
+}
+
+.go-link:hover {
+    color:#fec380;
+}
+
+.go-link:visited {
+    color:#f8992e;
+}
+
+.go-link:active {
+    color:#f8992e;
+}
+
