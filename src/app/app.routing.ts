@@ -1,3 +1,4 @@
+import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
 import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
@@ -58,6 +59,7 @@ import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
 import { ProductTerbaruComponent } from './views/front/component/product-terbaru/product-terbaru.component';
 import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
+import { DownloadAppComponent } from './views/front/component/download-app/download-app.component';
 
 const routes: Routes = [
   {
@@ -300,7 +302,14 @@ const routes: Routes = [
             data: {
               title: 'Confirmation Buyer'
             }
-          }
+          },
+          {
+            path: 'seller-propose',
+            component: SellerProposeComponent,
+            data: {
+              title: 'Seller Propose'
+            }
+          },
         ]
       }
     ]
@@ -357,6 +366,13 @@ const routes: Routes = [
         component: CustomerCareComponent,
         data: {
           title: 'Customer-Service'
+        }
+      },
+      {
+        path: 'Download-App',
+        component: DownloadAppComponent,
+        data: {
+          title: 'Download-App'
         }
       },
     ]

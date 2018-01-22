@@ -25,6 +25,9 @@ export class NotificationComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.message = this.sharedService.shareData;
+      if (this.message === undefined) {
+        this.message = 'Tidak ada pesan';
+      }
     }, 500);
   }
 
