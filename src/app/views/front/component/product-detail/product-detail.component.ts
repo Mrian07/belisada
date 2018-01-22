@@ -48,6 +48,7 @@ export class ProductDetailComponent implements OnInit {
   storeData: any;
   otherStore: number;
   storeList: Array<any>;
+  storeName: any;
   aliasName;
   theImage: string;
   asap: Boolean = true;
@@ -103,6 +104,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
+        console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
           if ( this.ProductList.isAsapShipping === 'Y') {
@@ -117,6 +119,10 @@ export class ProductDetailComponent implements OnInit {
           this.diskon3 = this.ProductList.pricelist * this.diskon2;
           this.popx = Math.round(this.diskon2);
           this.ProductImage = this.ProductList.image;
+          this.storeName = this.ProductList.storeName;
+          if (this.storeName === '') {
+            this.storeName = 'Belisada.co.id';
+          }
           this.theImage = this.ProductImage[0];
           this.title.setTitle('Belisada - ' + this.ProductList.name);
         }

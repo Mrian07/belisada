@@ -97,7 +97,7 @@ export class FrontHeaderComponent implements OnInit {
     } else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
-        console.log(data);
+        //console.log(data);
       });
     }
   }
