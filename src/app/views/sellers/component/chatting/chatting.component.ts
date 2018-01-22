@@ -29,40 +29,42 @@ import { ChatService } from '../../../../core/service/chat/chat.service';
   styleUrls: ['./chatting.component.scss']
 })
 export class ChattingComponent implements OnInit {
-  show: Boolean;
+  hiden: Boolean = !localStorage.chat_hide || JSON.parse(localStorage.chat_hide);
   user: any = this.loginsrv.whoLogin();
   chats = [];
   info: string;
   typingTimer: Object;
   msgInput: string;
   soc: any;
+  stat: number = 0;
+  connecting: boolean = true;
 
   constructor(private loginsrv: LoginService, private chat: ChatService) { }
 
   ngOnInit() {
-    console.log('chat url', environment.chatUrl);
-    const chat_hide = localStorage.chat_hide;
-    if (chat_hide) {
-      this.show = JSON.parse(localStorage.chat_hide);
+    if(!this.hiden) {
+      this.connect().then(soc => this.soc = soc, err => this.hiden = true);
     }
-    let that = this;
-    let socket = this.chat.connect({
-      connect: function() {
-        that.chats = [];
-        // console.log('chat connected', that.soc);
-      },
-      history: his => {
-        that.chats = his;
-      },
-      msg: msg => {
-        that.chats.push(msg);
-        that.info = '';
-      },
-      typing: () => {
-        that.info = 'typing';
-        that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
-      }
-    }).then(soc => this.soc = soc, err => console.log('chat err:', err));
+    // console.log('chat url', environment.chatUrl);
+    // let that = this;
+    // let socket = this.chat.connect({
+    //   connect: function() {
+    //     that.chats = [];
+    //     // console.log('chat connected', that.soc);
+    //   },
+    //   history: his => {
+    //     that.chats = his;
+    //     that.stat = 1;
+    //   },
+    //   msg: msg => {
+    //     that.chats.push(msg);
+    //     that.info = '';
+    //   },
+    //   typing: () => {
+    //     that.info = 'typing';
+    //     that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
+    //   }
+    // }).then(soc => this.soc = soc, err => console.log('chat err:', err));
     
 
     // this.chat.socket = io(environment.chatUrl + '/?dat=' + this.user.token);
@@ -86,6 +88,30 @@ export class ChattingComponent implements OnInit {
     // });
   }
 
+  connect() {
+    let that = this;
+    return this.chat.connect({
+      connect: function() {
+        that.chats = [];
+        that.connecting = false;
+      },
+      reconnect_attempt: () => {
+        console.log('reconnecting');
+      },
+      history: his => {
+        that.chats = his;
+      },
+      msg: msg => {
+        that.chats.push(msg);
+        that.info = '';
+      },
+      typing: () => {
+        that.info = 'typing';
+        that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
+      }
+    });
+  }
+
   send() {
     const msg = {from: this.user.username, txt: this.msgInput, time: new Date()};
     this.soc.emit('cln_msg', msg);
@@ -94,7 +120,7 @@ export class ChattingComponent implements OnInit {
   }
 
   hide() {
-    this.show = !this.show;
-    localStorage.chat_hide = this.show;
+    this.hiden = !this.hiden;
+    localStorage.chat_hide = this.hiden;
   }
 }
