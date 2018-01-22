@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from '../../../../../core/service/store/store.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../../../../core/model/product';
+import { AddproductService } from '../../../../../core/service/addproduct/addproduct.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-status-invoice',
@@ -9,17 +11,35 @@ import { Product } from '../../../../../core/model/product';
   styleUrls: ['./status-invoice.component.scss']
 })
 export class StatusInvoiceComponent implements OnInit {
-  productList: Observable<Product[]>;
+  productList: any;
 
   constructor(
-    private storeService: StoreService
+    private storeService: StoreService,
+    private sellers: AddproductService
   ) { }
 
   ngOnInit() {
-    // this.storeService.getApproveProduct(4).subscribe(data => {
-    //   console.log('approve', data);
-    //   this.productList = Observable.of(data.productList);
-    // });
+    this.sellers.GetReviewProduct(4).subscribe(data => {
+      this.productList = data.productList;
+    });
+  }
+
+  getQr(id: number) {
+    this.sellers.GetQr(id).subscribe(data => {
+      swal({
+        imageUrl: data.image_url,
+        imageHeight: 400,
+        imageAlt: 'QR Code'
+      });
+    });
+  }
+
+  view(url: string) {
+      swal({
+        imageUrl: url,
+        imageHeight: 400,
+        imageAlt: 'Image'
+      });
   }
 
 }

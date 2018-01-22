@@ -17,11 +17,23 @@ export class AddproductService extends AbstractRestService<Product.Product> {
     super(http, configuration.serverWithAccUrl + '/seller/product/submission');
    }
 
-     GetSellerProduct(id: number): Observable<SellerProduct[]> {
+   GetSellerProduct(id: number): Observable<SellerProduct[]> {
     const headers = new HttpHeaders()
     .set('Content-Type', 'application/json');
     return this.http.get(this.configuration.serverWithAccUrl + '/seller/product/submission/' + id, { headers } )
       .map(response => response as SellerProduct[]);
+  }
+
+  GetReviewProduct(id: number): Observable<any> {
+    const headers = new HttpHeaders()
+    .set('Content-Type', 'application/json');
+    return this.http.get(this.configuration.serverWithAccUrl + '/seller/product/legitimate/' + id, { headers } )
+      .map(response => response as any);
+  }
+
+  GetQr(id: number): Observable<any> {
+    return this.http.get(this.configuration.serverWithNetUrl + '/qrcode/' + id)
+      .map(response => response as any);
   }
 
 }
