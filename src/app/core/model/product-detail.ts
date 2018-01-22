@@ -22,6 +22,7 @@ export class ProductDetail {
   message?: string;
   status?: string;
   isAsapShipping: string;
+  weight: number;
   storeName: string;
   constructor() {}
 }

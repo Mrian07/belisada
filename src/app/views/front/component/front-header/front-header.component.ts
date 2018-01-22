@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener} from '@angular/core';
+import { Component, OnInit, HostListener, NgZone } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { Observable } from 'rxjs/Observable';
@@ -17,6 +17,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { TruncateModule } from 'ng2-truncate';
+
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -63,6 +64,7 @@ export class FrontHeaderComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private loginService: LoginService,
+    private ngZone: NgZone,
   ) {
   }
 
@@ -97,7 +99,7 @@ export class FrontHeaderComponent implements OnInit {
     } else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
-        //console.log(data);
+        // console.log(data);
       });
     }
   }
@@ -151,13 +153,13 @@ export class FrontHeaderComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ya, Hapus!'
     }).then((result) => {
-      this.shoppingCartService.addItem(productId, -quantity);
       if (result.value) {
         swal(
           'Dihapus!',
           'Belanjaan Anda berhasil dihapus',
           'success'
         );
+        this.shoppingCartService.addItem(productId, -quantity);
       }
     });
   }
@@ -242,6 +244,7 @@ export class FrontHeaderComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         localStorage.removeItem('user');
+        this.shoppingCartService.empty();
         setTimeout(() => {
           location.replace('/');
         }, 300);

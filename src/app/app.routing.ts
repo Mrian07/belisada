@@ -58,6 +58,7 @@ import { OnlyLoggedInUsersGuard } from './core/shared/authguard';
 import { CheckoutComponent } from './views/front/component/checkout/checkout.component';
 import { ProductTerbaruComponent } from './views/front/component/product-terbaru/product-terbaru.component';
 import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
+import { DownloadAppComponent } from './views/front/component/download-app/download-app.component';
 
 const routes: Routes = [
   {
@@ -357,6 +358,13 @@ const routes: Routes = [
         component: CustomerCareComponent,
         data: {
           title: 'Customer-Service'
+        }
+      },
+      {
+        path: 'Download-App',
+        component: DownloadAppComponent,
+        data: {
+          title: 'Download-App'
         }
       },
     ]

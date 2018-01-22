@@ -128,12 +128,11 @@ export class PaymentMethodComponent implements OnInit {
     } else {
       this.checkout.courierId = -1;
     }
-    this.shoppingCartService.setDeliveryOption(+shippingMethodId);
+    this.shoppingCartService.setDeliveryOption(courier);
   }
 
   shoppingCart() {
-    this.cart = this.shoppingCartService.get();
-    this.cartSubscription = this.cart.subscribe((cart) => {
+    this.shoppingCartService.retrievePostLogin((cart) => {
       this.deliveryTotal = cart.deliveryTotal;
     });
   }
