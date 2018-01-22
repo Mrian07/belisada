@@ -48,7 +48,7 @@
                         </div>
                         <div class="field">
                             <label>Provinsi</label>
-                            <sui-select name="province" class="selection" labelField="name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
+                            <sui-select name="province" [isSearchable]="true" class="selection" labelField="name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
                                 <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                             </sui-select>
                         </div>

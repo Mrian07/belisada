@@ -22,5 +22,6 @@ export class ProductDetail {
   message?: string;
   status?: string;
   isAsapShipping: string;
+  storeName: string;
   constructor() {}
 }

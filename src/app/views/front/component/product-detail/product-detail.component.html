@@ -28,7 +28,7 @@
     <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
     <span class="lcl">(64)</span><i class="write icon"></i>Tulis ulasan
     <div class="gap-between-elements"></div>
-    <span>dijual oleh</span> : <span>belisada.co.id</span>
+    <span>dijual oleh</span> : <span><b>{{storeName}}</b></span>
     <div class="gap-between-elements"></div>
     <!-- <table border = "1" *ngIf="ProductList.specialPrice !== 0; else login2">
         <tr>
@@ -197,33 +197,34 @@
         <strong>{{ otherStore }} Penawaran Lainnya </strong>
         <hr>
     </div>
-      <div class="wraper4" *ngFor="let list of storeList">
+        <div class="wraper4">
+            <!-- <div class="wraper4" *ngFor="let list of storeList"> -->
           <div>
              <strong>Harga Produk</strong>
               <div class="gap-between-elements"></div>
-                  <span class="gets">Rp. 123</span>
+                  <span class="gets"></span>
 
           </div>
           <div>
             <strong>Lokasi Penjual</strong>
               <div class="gap-between-elements"></div>
-              <span>Jakarta Pusat</span>
+              <span></span>
           </div>
           <div>
               <strong>Layanan Produk</strong>
               <div class="gap-between-elements"></div>
-              <span>Garansi 1 Tahun</span>
+              <span></span>
           </div>
           <div>
               <strong>Rating Penjual</strong>
               <div class="gap-between-elements"></div>
-              <sui-rating class="star" [ngModel]="5" [maximum]="5"></sui-rating>
+              <!-- <sui-rating class="star" [ngModel]="5" [maximum]="5"></sui-rating> -->
 
           </div>
           <div>
               <strong>Dijual Oleh</strong>
               <div class="gap-between-elements"></div>
-              <span class="xx">Pondok Kacang KPP</span>
+              <span class="xx"></span>
 
           </div>
           <div>
@@ -246,4 +247,3 @@
     <div class="ui bottom attached segment" suiTabContent="3">Belum ada Ulasan Untuk {{ProductList.name}}</div>
     <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
 </sui-tabset>
-

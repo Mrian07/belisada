@@ -458,10 +458,21 @@
     cursor: pointer;
 }
 .result:hover {
-    background-color: #999999;
-    color: #fff;
+    background-color: #f1f1f1;
+    color: #000000;
 }
 
+.result img{
+    height: 32px;
+    margin-right: 10px;
+}
+
+.cates {
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+    color: darkblue;
+}
 .product-image {
     height: 300px;
 }
