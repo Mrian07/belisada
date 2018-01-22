@@ -92,7 +92,7 @@ export class CartComponent implements OnInit {
     this.shoppingCartService.addItem(productId, -quantity);
   }
 
-  next() {
-    this.router.navigateByUrl('/shipping');
+  checkout() {
+    this.router.navigateByUrl('/checkout');
   }
 }

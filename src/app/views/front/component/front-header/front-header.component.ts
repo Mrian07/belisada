@@ -225,6 +225,9 @@ export class FrontHeaderComponent implements OnInit {
   viewCart() {
     this.router.navigateByUrl('/cart');
   }
+  checkout() {
+    this.router.navigateByUrl('/checkout');
+  }
 
 
   logout() {
