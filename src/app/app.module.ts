@@ -76,6 +76,7 @@ import { CheckoutComponent } from './views/front/component/checkout/checkout.com
 import { Transactions } from './core/service/transactions/transactions';
 import { TransactionsComponent } from './views/front/component/transactions/transactions.component';
 import { AsapComponent } from './views/front/component/asap/asap.component';
+import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -149,6 +150,7 @@ export function getAuthServiceConfigs() {
     CheckoutComponent,
     // ProductTerbaruComponent,
     TransactionsComponent,
+    CustomerServiceComponent,
     // WishlistComponent,
     // AsapComponent
   ],
