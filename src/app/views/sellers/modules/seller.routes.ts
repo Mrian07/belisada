@@ -1,3 +1,4 @@
+import { NewSellerComponent } from './../component/new-seller/new-seller.component';
 import { FaqSellerComponent } from './../component/faq-seller/faq-seller.component';
 import { ProductListComponent } from './../component/product-list/product-list.component';
 import { NgModule } from '@angular/core';
@@ -96,6 +97,10 @@ const sellerroutes: Routes = [
       {
         path: 'product-list',
         component: ProductListComponent
+      },
+      {
+        path: 'new-seller',
+        component: NewSellerComponent
       }
     ]
   }
