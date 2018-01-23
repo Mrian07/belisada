@@ -69,18 +69,23 @@ export class HomeComponent implements OnInit {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.ngZone.run(() => {
         const tempData: TopProductCategory[] = data.home;
-        tempData.forEach((x, i) => {
-          if (window.matchMedia('(min-width: 425px)').matches) {
-            // console.log('2',  tempData[i]);
-            tempData[i].imageUrl2 = x.imageUrl2;
-            // console.log('aaaaa2');
-            // console.log('1',  tempData[i]);
-          } else {
-            // console.log('aaa3');
-            tempData[i].imageUrl2 = x.imageUrl5;
-          }
-        });
-        this.topHomeProductLvl1 = Observable.of(tempData);
+        console.log('tempData', tempData);
+        if (tempData) {
+          tempData.forEach((x, i) => {
+            if (window.matchMedia('(min-width: 425px)').matches) {
+              // console.log('2',  tempData[i]);
+              tempData[i].imageUrl2 = x.imageUrl2;
+              // console.log('aaaaa2');
+              // console.log('1',  tempData[i]);
+            } else {
+              // console.log('aaa3');
+              tempData[i].imageUrl2 = x.imageUrl5;
+            }
+          });
+          this.topHomeProductLvl1 = Observable.of(tempData);
+        } else {
+          this.topHomeProductLvl1 = Observable.of(data.home);
+        }
         // console.log('ini po', this.topHomeProductLvl1);
         this.level_4 = Observable.of(data.brands);
         });
