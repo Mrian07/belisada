@@ -46,7 +46,7 @@ export class ProductComponent implements OnInit {
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
       this.store.select(fromProduct.getProductState).subscribe(datas => {
-        console.log(datas);
+        //console.log(datas);
       });
     });
   }
@@ -84,11 +84,14 @@ export class ProductComponent implements OnInit {
     this.shared.shareData = data;
     this.routes.navigateByUrl('/seller/add-products/edit');
   }
+
   search(event) {
     const key = event.target.value;
   }
-  view(url: string) {
+
+  view(url: string, name: string) {
     swal({
+      text: name,
       imageUrl: url,
       imageHeight: 400,
       imageAlt: 'Image'

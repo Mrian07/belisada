@@ -19,4 +19,9 @@ export class RegisterService {
       .map(response => response as Register);
     }
 
+    check(key) {
+      return this.httpClient.post(this.configuration.serverWithAccUrl + '/seller/profile/store/check', {name: key})
+      .map(response => response as Register);
+    }
+
 }
