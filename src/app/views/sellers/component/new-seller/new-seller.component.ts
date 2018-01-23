@@ -95,6 +95,7 @@ export class NewSellerComponent implements OnInit {
     this.getAllStore();
     this.getProvince();
     // this.fillForms();
+    this.fineStore();
     this.selectBank();
   }
 
@@ -130,33 +131,12 @@ export class NewSellerComponent implements OnInit {
     });
   }
 
-  // fillForms() {
-  //   this.storeService.getAll().subscribe(response => {
-  //     if (response.length !== 0) {
-  //       this.isUpdate = true;
-  //       this.mBpartnerStoreId = response[0].mBpartnerStoreId;
-  //       this.masterService.getCity(response[0].regionId).subscribe(city => {
-  //         this.cities = city;
-  //         this.masterService.getDistrict(response[0].cityId).subscribe(district => {
-  //           this.districts = district;
-  //           this.masterService.getVillage(response[0].districtId).subscribe(village => {
-  //             this.villages = village;
-  //             this.name.setValue(response[0].name);
-  //             this.address.setValue(response[0].address);
-  //             this.province.setValue(this.provinces.find(x => x.mregionId === response[0].regionId));
-  //             this.city.setValue(this.cities.find(x => x.mcityId === response[0].cityId));
-  //             this.district.setValue(this.districts.find(x => x.mdistrictId === response[0].districtId));
-  //             this.village.setValue(this.villages.find(x => x.mvillageId === response[0].villageId));
-  //             this.postalcode.setValue(response[0].postal);
-  //             this.description.setValue(response[0].description);
-  //           });
-  //         });
-  //       });
-  //     }
-  //   });
-
-
-  // }
+  fineStore() {
+    const user = JSON.parse(localStorage.user);
+    if (user.role === 3 || user.role === 2) {
+      this.routes.navigateByUrl('/seller/dashboard');
+    } 
+  }
 
   /**
    * Create new Store
