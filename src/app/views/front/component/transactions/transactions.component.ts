@@ -48,7 +48,6 @@ export class TransactionsComponent implements OnInit {
   }
 
   uploadBukti() {
-    //console.log(this.fm.imageID);
     const data = {
       orderNumber: this.orderId,
       imageEvidence: this.fm.imageID

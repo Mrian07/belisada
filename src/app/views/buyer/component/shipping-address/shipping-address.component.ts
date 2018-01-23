@@ -50,7 +50,8 @@ export class ShippingAddressComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();
-    const kamp3 = localStorage.setItem('whatever', 'something');
+    localStorage.setItem('whatever', 'something');
+    const kamp3 = localStorage.getItem('whatever');
     console.log('ini local', kamp3);
     this.getProvince();
     this.fillForms();
@@ -188,13 +189,32 @@ export class ShippingAddressComponent implements OnInit {
   }
 
   btnDelete(id) {
-    console.log(id);
-    const user = JSON.parse(localStorage.user);
-    this.shippingAddressService.delete(id).subscribe(data => {
-      this.shippingAddress = data;
-      this.fillForms();
+    swal({
+      title: 'Are you sure?',
+      text: 'You wont be able to revert this!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        this.shippingAddressService.delete(id).subscribe(data => {
+          this.shippingAddress = data;
+          this.fillForms();
+        });
+      }
     });
-  }
+}
+
+  // btnDelete(id) {
+  //   console.log(id);
+  //   const user = JSON.parse(localStorage.user);
+  //   this.shippingAddressService.delete(id).subscribe(data => {
+  //     this.shippingAddress = data;
+  //     this.fillForms();
+  //   });
+  // }
 
   getProvince() {
     this.masterService.getProvince('209').subscribe(data => {

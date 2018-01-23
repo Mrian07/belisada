@@ -69,7 +69,7 @@
                     <input type="checkbox" checked="{{check}}" (change)="checks(i)"/>
                 </td>
                 <td class="collapsing">
-                    <img class="ui image product-image" src="{{ product.imageurl }}" alt="image not found"/>
+                    <img (click)="view(product.imageurl)" style="cursor: pointer;" class="ui image product-image" src="{{ product.imageurl }}" alt="image not found"/>
                 </td>
                 <td>
                     {{ product.name | words: 10 }}<br/><small><i class="unhide icon"></i> 0 views</small>
@@ -100,6 +100,7 @@
                             <a class="ui small yellow label" *ngIf="product.statusCode === '2'">{{product.status}}</a>
                             <a class="ui small orange label" *ngIf="product.statusCode === '3'">{{product.status}}</a>
                             <a class="ui small green label" *ngIf="product.statusCode === '4'">{{product.status}}</a>
+                            <a class="ui small green label" *ngIf="product.statusCode === '5'">{{product.status}}</a>
                     </small>
                 </td>
                 <td>{{product.stock}}</td>
