@@ -64,15 +64,18 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
     return this.subscriptionObservable;
   }
 
-  public addItem(productId: number, quantity: number): void {
+  public addItem(productId: number, quantity: number, itemCartId?: number): void {
     const cart = this.retrieve();
     let item = cart.items.find((p) => p.productId === productId);
     if (item === undefined) {
       item = new CartItem();
       item.productId = productId;
+      if (itemCartId) {
+        item.itemCartId = itemCartId;
+      }
       cart.items.push(item);
     }
-
+    console.log(console.log('cart: ', cart));
     item.quantity += quantity;
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
     if (cart.items.length === 0) {
@@ -92,7 +95,9 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
 
   public empty(): void {
     const newCart = new ShoppingCart();
-    this.save(newCart);
+    this.storage.setItem(CART_KEY, JSON.stringify(newCart));
+    this.storage.setItem(CART_POST_KEY, JSON.stringify(newCart));
+    // this.save(newCart);
     this.dispatch(newCart);
   }
 
@@ -110,6 +115,7 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
 
   public updateQuantity(productId: number, quantity: number) {
     const cart = this.retrieve();
+    console.log(cart);
     let item = cart.items.find((p) => p.productId === productId);
     if (item === undefined) {
       item = new CartItem();
@@ -123,6 +129,7 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
       cart.freightRate = undefined;
     }
 
+    console.log();
     this.calculateCart(cart, (modifiedCart) => {
       this.save(modifiedCart);
       this.dispatch(modifiedCart);
@@ -131,6 +138,8 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
 
   private calculateCart(cart: ShoppingCart, calculateCartCb) {
     console.log('calculateCart: ', cart);
+    cart.itemsTotal = 0;
+    cart.deliveryTotal = 0;
     cart.items.forEach((item, index) => {
       this.productService.get(item.productId)
       .subscribe(product => {

@@ -1,3 +1,4 @@
+import swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
 import { ProductService } from '../../../../core/service/product/product.service';
@@ -10,6 +11,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { TokenService } from '../../../../core/service/token/token.service';
 
+
 interface ICartItemWithProduct extends CartItem {
   product: Product;
   totalCost: number;
@@ -21,6 +23,8 @@ interface ICartItemWithProduct extends CartItem {
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
+
+  quantities = [1, 2, 3, 4, 5];
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
@@ -85,11 +89,46 @@ export class CartComponent implements OnInit {
     } else {
       quantity = +(event.target.value - item.quantity);
     }
-    this.shoppingCartService.updateQuantity(item.product.productId, quantity);
+
+    const updateData = {
+      quantity: event.target.value,
+      itemCartId: item.itemCartId
+    };
+
+    this.shoppingCartService.update(updateData).subscribe(response => {
+      if (response.status === '1') {
+        this.shoppingCartService.updateQuantity(item.product.productId, quantity);
+      } else {
+        swal(response.message);
+      }
+    });
   }
 
-  public removeProductFromCart(productId: number, quantity: number): void {
-    this.shoppingCartService.addItem(productId, -quantity);
+  public removeProductFromCart(item: CartItem): void {
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Apakah Anda Yakin?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, Hapus!'
+    }).then((result) => {
+      if (result.value) {
+        this.shoppingCartService.delete(item.itemCartId).subscribe(response => {
+          if (response.status === '1') {
+            this.shoppingCartService.addItem(item.productId, -item.quantity);
+            swal(
+              'Dihapus!',
+              'Belanjaan Anda berhasil dihapus',
+              'success'
+            );
+          } else {
+            swal(response.message);
+          }
+        });
+      }
+    });
   }
 
   checkout() {

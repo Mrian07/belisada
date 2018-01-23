@@ -24,5 +24,6 @@ export class ProductDetail {
   isAsapShipping: string;
   weight: number;
   storeName: string;
+  stock: number;
   constructor() {}
 }

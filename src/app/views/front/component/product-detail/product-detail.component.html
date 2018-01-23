@@ -58,7 +58,7 @@
     <ng-template #login1>
     </ng-template>
     <div class="gap-between-elements"></div>
-    <span class="pls2"> Stok: </span> <span class="stok">Tersedia</span>
+    <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span>
     <!-- <div class="gap-between-elements"></div> -->
     <table border="0">
         <tr>
@@ -131,9 +131,9 @@
     </div>
 
     <div>
-            <button type="submit" style="border: 0; background: transparent" class="poi" (click)="addProductToCart(ProductList.productId, quantity)">
-                    <img src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
-                </button>
+            <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
+                <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
+            </button>
 
             <!-- <button class="ui youtube button gap-between-elements btnColor"  style="margin-left:40px; background:#F7982D">
                     <i class="shop icon"></i>
@@ -159,11 +159,8 @@
             <strong>Garansi : </strong><span>1 Tahun Garansi</span>
             <div class="gap-between-elements"></div>
             <strong>Jumlah : </strong>
-            <sui-select placeholder="Jumlah" [(ngModel)]="quantity">
-                <sui-select-option value="1"></sui-select-option>
-                <sui-select-option value="2"></sui-select-option>
-                <sui-select-option value="3"></sui-select-option>
-                <sui-select-option value="4"></sui-select-option>
+            <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
+                <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
             </sui-select>
             <div class="gap-between-elements"></div>
             <span class="pz">Jasa Pengiriman</span>
