@@ -15,3 +15,10 @@
   .wrapper > div:nth-child(odd){
     background:#ddd;
   }
+
+  .wrapper .satu {
+      grid-column: 1/2;
+  }
+  .wrapper .dua {
+      grid-column: 2/3
+  }

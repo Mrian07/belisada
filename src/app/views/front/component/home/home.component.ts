@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETHOMESUCCESS)
     .subscribe((action: frontActions.GetHomeSuccess) => {
-      this.ini();
+      // this.ini();
       this.loadHome();
     });
 
@@ -76,12 +76,12 @@ export class HomeComponent implements OnInit {
             // console.log('aaaaa2');
             // console.log('1',  tempData[i]);
           } else {
-            console.log('aaa3');
+            // console.log('aaa3');
             tempData[i].imageUrl2 = x.imageUrl5;
           }
         });
         this.topHomeProductLvl1 = Observable.of(tempData);
-        console.log('ini po', this.topHomeProductLvl1);
+        // console.log('ini po', this.topHomeProductLvl1);
         this.level_4 = Observable.of(data.brands);
         });
     });
@@ -93,19 +93,19 @@ export class HomeComponent implements OnInit {
     this.router.navigateByUrl('/category/' + id + '/' + name);
   }
 
-  ini() {
-    this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
-      this.ngZone.run(() => {
-        this.topHomeProductLvl1 = Observable.of(data.home);
-        console.log(' this.topHomeProductLvl1 ',  Observable.of(data.home[0].imageUrl5) );
-        this.level_4 = Observable.of(data.brands);
-        if (window.matchMedia('(min-width: 425px)').matches) {
-          this.imgUrl = data.home.imageUrl2;
-      } else {
-          this.imgUrl = data.home.imageUrl5;
-      }
-        });
-    });
-  }
+  // ini() {
+  //   this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
+  //     this.ngZone.run(() => {
+  //       this.topHomeProductLvl1 = Observable.of(data.home);
+  //       console.log(' this.topHomeProductLvl1 ',  Observable.of(data.home[0].imageUrl5) );
+  //       this.level_4 = Observable.of(data.brands);
+  //       if (window.matchMedia('(min-width: 425px)').matches) {
+  //         this.imgUrl = data.home.imageUrl2;
+  //     } else {
+  //         this.imgUrl = data.home.imageUrl5;
+  //     }
+  //       });
+  //   });
+  // }
 }
 
