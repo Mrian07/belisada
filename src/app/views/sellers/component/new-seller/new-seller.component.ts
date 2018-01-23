@@ -17,6 +17,9 @@ import * as fromProduct from '../../../../store/reducers';
 import swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
 import * as fromActions from '../../../../store/actions';
+import { RekeningSService } from '../../../../core/service/rekening/rekening-s.service';
+
+import { RegisterService } from '../../../../core/service/register/register.service';
 
 @Component({
   selector: 'app-new-seller',
@@ -73,6 +76,8 @@ export class NewSellerComponent implements OnInit {
   token: any;
 
   constructor(
+    private registerService: RegisterService,
+    private rekeningService: RekeningSService,
     private storeService: StoreService,
     private categoryService: CategoryService,
     private masterService: MasterService,
@@ -162,7 +167,7 @@ export class NewSellerComponent implements OnInit {
     if (!this.createStoreForm.valid) {
       return;
     } else {
-
+      console.log('onSubmit');
       const model = this.createStoreForm.value;
       const dataStore = {
         mBpartnerStoreId: this.mBpartnerStoreId,
@@ -174,30 +179,39 @@ export class NewSellerComponent implements OnInit {
       };
 
       const dataBank = {
-        accountNo : this.accountNo,
-        accountName : this.accountName,
-        mBankId : this.mbankId.value,
+        accountNo: model.accountNo,
+        accountName: model.accountName,
+        mBankId: model.mbankId.mbankId,
       };
 
-      const user = JSON.parse(localStorage.user);
-      this.token = user.token;
+      this.registerService.check(model.name).subscribe(hasil => {
+        if (hasil.status === '0') {
+          this.storeService.create(dataStore).subscribe(response => {});
+          this.rekeningService.create(dataBank).subscribe(data => {});
 
-      // this.storeService.create(dataStore).subscribe(response => {});
-      this.storeBank.dispatch(new fromActions.AddBank({data: dataBank, token: this.token}));
-
-      swal({
-        title: 'Pendaftaran Sukses!',
-        text: 'Selamat pendaftaran toko Anda berhasil, selanjutnya silakan menunggu konfirmasi aktifasi toko Anda.',
-        type: 'success',
-
-        confirmButtonColor: '#1d7d0a',
-        confirmButtonText: 'Tutup'
-      }).then((result) => {
-        if (result.value) {
-            this.routes.navigateByUrl('/seller/dashboard');
+          swal({
+            title: 'Pendaftaran Sukses!',
+            text: 'Selamat pendaftaran toko Anda berhasil, selanjutnya silakan menunggu konfirmasi aktifasi toko Anda.',
+            type: 'success',
+            confirmButtonColor: '#1d7d0a',
+            confirmButtonText: 'Tutup'
+          }).then((result) => {
+            if (result.value) {
+                this.routes.navigateByUrl('/seller/dashboard');
+            } else {
+                return false;
+            }
+          });
         } else {
-            return false;
+          swal(
+              'Info!',
+              'Nama toko sudah digunakan, silakan masukan nama yang lain',
+              'warning'
+          )
         }
+        // console.log('nama:', model.name);
+        // console.log('apa:', hasil);
+        //  console.log('apa ini status:', hasil.status);
       });
 
     }
