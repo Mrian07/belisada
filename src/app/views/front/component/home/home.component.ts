@@ -88,6 +88,7 @@ export class HomeComponent implements OnInit {
         }
         // console.log('ini po', this.topHomeProductLvl1);
         this.level_4 = Observable.of(data.brands);
+        console.log(this.level_4);
         });
     });
   }
@@ -112,5 +113,8 @@ export class HomeComponent implements OnInit {
   //       });
   //   });
   // }
+  brand(q: any) {
+    this.router.navigateByUrl('search?q=' + q);
+  }
 }
 
