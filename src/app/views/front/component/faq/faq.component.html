@@ -13,15 +13,18 @@
          penjual
         </div>
 
-        <div>
-                <ng-container *ngIf="second; else notFirst">
+        <div class="satu" *ngIf="second; else notFirst">
+                <!-- <ng-container *ngIf="second; else notFirst"> -->
                         Hello World!
-                    </ng-container>
+                    <!-- </ng-container> -->
                     <ng-template #notFirst>
 
                         </ng-template>
         </div>
-        <div>
+        <div class="dua" *ngIf="first; else not">
          isi nya penjual
+         <ng-template #notFirst>
+
+            </ng-template>
         </div>
       </div>
