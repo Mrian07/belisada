@@ -8,6 +8,7 @@ export class Product {
   aliasName: string;
   imageurl: string;
   name: string;
+  stock: number;
 
   public updateFrom(src: Product): void {
     this.mBpartnerStoreId = src.mBpartnerStoreId;
@@ -18,6 +19,7 @@ export class Product {
     this.aliasName = src.aliasName;
     this.imageurl = src.imageurl;
     this.name = src.name;
+    this.stock = src.stock;
   }
 }
 
