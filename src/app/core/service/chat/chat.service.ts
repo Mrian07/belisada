@@ -9,13 +9,14 @@ import { Promise, reject, resolve } from 'q';
 
 @Injectable()
 export class ChatService {
-  private socket;
-  private user: any = this.login.whoLogin();
+  private socket: any;
+  private user: any;
 
   constructor(private cnf: Configuration, private login: LoginService) { }
 
   connect(event: Object): Promise<any> {
     return Promise((resolve, reject) => {
+      this.user = this.login.whoLogin();
       if (!this.user) {
         reject('not login yet');
       }
@@ -31,6 +32,9 @@ export class ChatService {
   }
 
   disconnect() {
-    if(this.socket) this.socket.disconnect();
+    console.log('ini logout');
+    if(!this.socket) return;
+    this.socket.disconnect();
+    localStorage.chat_hide = 'true';
   }
 }

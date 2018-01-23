@@ -53,7 +53,7 @@
     // width: 16.67%;
     box-sizing: border-box;
     white-space: nowrap;
-    padding: 5px;
+    padding-bottom: 25px;
     display: grid;
     // float: left;
 }
@@ -387,6 +387,7 @@
         font-size: 0.85em;
         line-height: 1rem;
         padding: 1px 5px 0px;
+        padding-right: 34px;
     }
     .language > img {
         width: 30px;
@@ -453,7 +454,7 @@
     margin-left: 0px;
     min-height: 35px;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: .5px solid #f1f1f1;
     z-index: 3;
     cursor: pointer;
 }

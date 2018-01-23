@@ -97,7 +97,7 @@ export class ProductEffects {
           this.bankService.create(data.data)
             .switchMap( (newdata: any) =>
               this.bankService.getAll()
-              .switchMap( (bank: any) => {
+              .switchMap( (bank: any) => { console.log('masuk bank', newdata);
                 return [
                   new fromActions.AddBankSuccess(bank)
                 ];

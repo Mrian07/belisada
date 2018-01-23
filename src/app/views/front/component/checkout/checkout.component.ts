@@ -240,7 +240,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartService.empty();
       }
       swal(response.message);
-      this.router.navigateByUrl('/cart');
+      this.router.navigateByUrl('/buyer/dashboard');
     });
   }
 }

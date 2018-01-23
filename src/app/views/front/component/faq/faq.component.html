@@ -1,8 +1,27 @@
-<div class="object">
-        <div class="object-rope"></div>
-        <div class="object-shape">
-            Coming <span class="soon">Soon</span>
+<!-- <ng-container *ngIf="first; else notFirst">
+        Hello World!
+    </ng-container>
+    <ng-template #notFirst>
+        Or Not!
+    </ng-template> -->
+
+<div class="wrapper">
+        <div (click)="pembeli()">
+            Pembeli
+        </div>
+        <div (click)="penjual()">
+         penjual
         </div>
 
-    </div>
+        <div>
+                <ng-container *ngIf="second; else notFirst">
+                        Hello World!
+                    </ng-container>
+                    <ng-template #notFirst>
 
+                        </ng-template>
+        </div>
+        <div>
+         isi nya penjual
+        </div>
+      </div>

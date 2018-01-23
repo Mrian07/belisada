@@ -79,11 +79,10 @@ export class SidebarBuyerComponent implements OnInit {
     });
   }
 
+
   goSeller() {
 
     const user = JSON.parse(localStorage.user);
-    this.router.navigateByUrl('/buyer/dashboard');
-
     if (user.role === 3 || user.role === 2) {
       this.router.navigateByUrl('/seller/dashboard');
     } else {
@@ -99,14 +98,7 @@ export class SidebarBuyerComponent implements OnInit {
         confirmButtonText: 'Daftar Sebagai Seller'
       }).then((result) => {
         if (result.value) {
-          const data = {
-            userType: '1'
-          };
-          this.upgradeService.upToSeller(data).subscribe(response => {
-            this.router.navigateByUrl('/seller/dashboard');
-          });
-
-         // this.router.navigateByUrl('/register');
+            this.router.navigateByUrl('/buyer/seller-propose');
         } else {
             return false;
         }
@@ -115,5 +107,46 @@ export class SidebarBuyerComponent implements OnInit {
     }
 
   }
+
+
+
+
+
+  // goSeller() {
+
+  //   const user = JSON.parse(localStorage.user);
+  //   this.router.navigateByUrl('/buyer/dashboard');
+
+  //   if (user.role === 3 || user.role === 2) {
+  //     this.router.navigateByUrl('/seller/dashboard');
+  //   } else {
+
+  //     swal({
+  //       title: 'Warning',
+  //       text: 'Anda belum menjadi Seller. Apakah Anda ingin mendaftar sebagai Seller?',
+  //       type: 'warning',
+  //       showCancelButton: true,
+  //       confirmButtonColor: '#1d7d0a',
+  //       cancelButtonColor: '#d33',
+  //       cancelButtonText: 'Tidak',
+  //       confirmButtonText: 'Daftar Sebagai Seller'
+  //     }).then((result) => {
+  //       if (result.value) {
+  //         const data = {
+  //           userType: '1'
+  //         };
+  //         this.upgradeService.upToSeller(data).subscribe(response => {
+  //           this.router.navigateByUrl('/seller/dashboard');
+  //         });
+
+  //        // this.router.navigateByUrl('/register');
+  //       } else {
+  //           return false;
+  //       }
+  //     });
+
+  //   }
+
+  // }
 
 }

@@ -1,3 +1,4 @@
+import { NewSellerComponent } from './../component/new-seller/new-seller.component';
 import { FaqSellerComponent } from '../component/faq-seller/faq-seller.component';
 import { InfoPerusahaanService } from './../../../core/service/perusahaan/info-perusahaan.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -89,7 +90,8 @@ import { NgxEditorModule } from 'ngx-editor';
     ProductComponent,
     ProductListComponent,
     ChattingComponent,
-    FaqSellerComponent
+    FaqSellerComponent,
+    NewSellerComponent
   ],
   imports: [
     CommonModule,
