@@ -51,7 +51,7 @@
           </td>
           <td class="valTd text-right" data-title="Jumlah">
             <select class="quantity-text" #quantity (change)="updateQuantity($event, item)">
-              <option *ngFor="let q of quantities" [value]="q" [selected]="q === item.quantity">{{ q }}</option>
+              <option *ngFor="let q of item.arrStock" [value]="q" [selected]="q === item.quantity">{{ q }}</option>
             </select>
             <!-- <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/> -->
             

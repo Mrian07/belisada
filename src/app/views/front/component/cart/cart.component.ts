@@ -14,6 +14,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
+  arrStock: number[];
   totalCost: number;
 }
 
@@ -72,10 +73,14 @@ export class CartComponent implements OnInit {
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
+          console.log('product: ', product);
           this.cartItems.push({
             ...item,
             product,
+            arrStock: Array.from(new Array(product.stock), (val, index) => index + 1),
             totalCost: product.pricelist * item.quantity });
+
+          console.log('this.cartItems: ', this.cartItems);
         });
       });
     });
