@@ -18,6 +18,7 @@ import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart'
 import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
 import { LocalStorageService } from '../../../../core/service/storage.service';
+import { ProductService } from '../../../../core/service/product/product.service';
 
 const CART_KEY = 'cart';
 const CART_POST_KEY = 'cartpost';
@@ -49,7 +50,8 @@ export class SignInComponent implements OnInit {
     private tokenService: TokenService,
     private title: Title,
     private shared: ShareService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private productService: ProductService
   ) {
     this.storage = this.storageService.get();
   }
@@ -57,9 +59,8 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Belisada - Login');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.shared.shareData || 'buyer/test';
-    if (this.tokenService.getToken() === undefined) {
-    } else {
-      // this.router.navigateByUrl('/');
+    if (this.tokenService.getToken() !== undefined) {
+      this.router.navigateByUrl('/');
     }
   }
 
@@ -112,24 +113,76 @@ export class SignInComponent implements OnInit {
   setCartToLocalStorage() {
     console.log('setCartToLocalStorage');
     const cart = new ShoppingCart();
-    this.shoppingCartService.getSingleResult().subscribe(response => {
-      cart.grossTotal = response.grossTotal;
-      cart.deliveryTotal = response.deliveryTotal;
-      cart.itemsTotal = response.itemsTotal;
+    const preLoginCart = new ShoppingCart();
+    const storedCart = this.storage.getItem(CART_KEY);
+    console.log('storedCart', storedCart);
+    if (storedCart && JSON.parse(storedCart).items.length !== 0) {
+      // if () {
+        console.log('isStoredCart');
+        preLoginCart.updateFrom(JSON.parse(storedCart));
+        preLoginCart.items.forEach((item, index) => {
 
-      response.items.forEach((item, index) => {
-        const cartItem = new CartItem();
-        cartItem.itemCartId = item.itemCartId;
-        cartItem.productId = item.productId;
-        cartItem.quantity = item.quantity;
-        cart.items.push(cartItem);
-        console.log('cart_loop', cart);
+          this.productService.get(item.productId).subscribe(product => {
+            const data = {
+              productId: product.productId,
+              quantity: item.quantity,
+              price: product.pricelist,
+              weightPerItem: product.weight
+            };
+            this.shoppingCartService.create(data).subscribe(response => {
+              console.log('response: ', response);
+              if (index === preLoginCart.items.length - 1) {
+                return cb();
+              } else {
+                return;
+              }
+            });
+          });
+        });
+      // }
+    } else {
+      this.shoppingCartService.getSingleResult().subscribe(response => {
+        cart.grossTotal = response.grossTotal;
+        cart.deliveryTotal = response.deliveryTotal;
+        cart.itemsTotal = response.itemsTotal;
+
+        response.items.forEach((item, index) => {
+          const cartItem = new CartItem();
+          cartItem.itemCartId = item.itemCartId;
+          cartItem.productId = item.productId;
+          cartItem.quantity = item.quantity;
+          cart.items.push(cartItem);
+          console.log('cart_loop', cart);
+        });
+        this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
+        this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
+        this.shoppingCartService.dispatch(cart);
+        console.log('jalan dulu gak ni?');
       });
-      this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
-      this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
-      this.shoppingCartService.dispatch(cart);
-      console.log('jalan dulu gak ni?');
-    });
+    }
+
+    const that = this;
+    function cb() {
+      console.log('callback called');
+      that.shoppingCartService.getSingleResult().subscribe(response => {
+        cart.grossTotal = response.grossTotal;
+        cart.deliveryTotal = response.deliveryTotal;
+        cart.itemsTotal = response.itemsTotal;
+
+        response.items.forEach((item, index) => {
+          const cartItem = new CartItem();
+          cartItem.itemCartId = item.itemCartId;
+          cartItem.productId = item.productId;
+          cartItem.quantity = item.quantity;
+          cart.items.push(cartItem);
+          console.log('cart_loop', cart);
+        });
+        that.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
+        that.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
+        that.shoppingCartService.dispatch(cart);
+        console.log('jalan dulu gak ni?');
+      });
+    }
   }
 
   public socialSignIn(socialPlatform: string) {

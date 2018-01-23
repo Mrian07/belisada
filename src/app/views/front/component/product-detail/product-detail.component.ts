@@ -65,6 +65,7 @@ export class ProductDetailComponent implements OnInit {
   storeName: any;
   aliasName;
   theImage: string;
+  arrStock: number[];
   asap: Boolean = true;
 
   constructor(private route: ActivatedRoute,
@@ -136,6 +137,8 @@ export class ProductDetailComponent implements OnInit {
           this.popx = Math.round(this.diskon2);
           this.ProductImage = this.ProductList.image;
           this.storeName = this.ProductList.storeName;
+          this.arrStock = Array.from(new Array(this.ProductList.stock), (val, index) => index + 1);
+          console.log('arrStock: ', this.arrStock);
           if (this.storeName === '') {
             this.storeName = 'Belisada.co.id';
           }
@@ -162,7 +165,7 @@ export class ProductDetailComponent implements OnInit {
         'Belisada.co.id',
         'Jumlah harus di pilih!'
       );
-    }else {
+    } else {
       const cartItemRequest: CartItemRequest = new CartItemRequest();
       cartItemRequest.productId = this.ProductList.productId;
       cartItemRequest.price = this.ProductList.pricelist;
@@ -171,10 +174,12 @@ export class ProductDetailComponent implements OnInit {
 
       if (this.tokenService.getUser()) {
         this.shoppingCartService.create(cartItemRequest).subscribe(response => {
-          console.log('message: ', response.message);
+          console.log('response: ', response);
+          this.shoppingCartService.addItem(productId, +quantity, +response.id);
         });
+      } else {
+        this.shoppingCartService.addItem(productId, +quantity);
       }
-      this.shoppingCartService.addItem(productId, +quantity);
     }
   }
   ininih(productId) {

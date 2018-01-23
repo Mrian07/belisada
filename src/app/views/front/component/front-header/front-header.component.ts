@@ -143,7 +143,7 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
 
-  public removeProductFromCart(productId: number, quantity: number): void {
+  public removeProductFromCart(productId: number, quantity: number, itemCartId: number): void {
     swal({
       title: 'Belisada.co.id',
       text: 'Apakah Anda Yakin?',
@@ -154,12 +154,18 @@ export class FrontHeaderComponent implements OnInit {
       confirmButtonText: 'Ya, Hapus!'
     }).then((result) => {
       if (result.value) {
-        swal(
-          'Dihapus!',
-          'Belanjaan Anda berhasil dihapus',
-          'success'
-        );
-        this.shoppingCartService.addItem(productId, -quantity);
+        this.shoppingCartService.delete(itemCartId).subscribe(response => {
+          if (response.status === '1') {
+            this.shoppingCartService.addItem(productId, -quantity);
+            swal(
+              'Dihapus!',
+              'Belanjaan Anda berhasil dihapus',
+              'success'
+            );
+          } else {
+            swal(response.message);
+          }
+        });
       }
     });
   }
@@ -221,7 +227,9 @@ export class FrontHeaderComponent implements OnInit {
     // } );
   }
 
-
+  toProductDetail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
   viewCart() {
     this.router.navigateByUrl('/cart');
   }

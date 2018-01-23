@@ -113,7 +113,7 @@
                     </div>
 
                 </div>
-                <div class="cart" (click)="viewCart()" style="cursor: pointer;">
+                <div class="cart">
                     <div class="cart-icon">
                         <span class="cart-counter">{{ itemCount }}</span>
                         <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
@@ -124,18 +124,18 @@
 
                         <div class="cart-item" *ngFor="let item of cartItems">
                             <div class="item-img">
-                                <a routerLink="/Product-detail/{{item.product.productId}}">
+                                <a (click)="toProductDetail(item.product.productId, item.product.aliasName)">
                                     <img class="ui image" [src]="item.product.imageurl" alt=""/>
                                 </a>
                             </div>
                             <div class="item-detail">
                                 <div class="detail-wrapper">
-                                    <span class="product-name"><a routerLink="/Product-detail/{{item.product.productId}}">{{ item.product.name }}</a></span>
+                                    <span class="product-name"><a (click)="toProductDetail(item.product.productId, item.product.aliasName)">{{ item.product.name }}</a></span>
                                     <span class="product-price">{{ item.quantity }} x <strong>Rp {{ item.product.pricelist | number }}</strong></span>
                                 </div>
                             </div>
                             <div class="item-action">
-                                <a class="remove" title="Remove this item" (click)="removeProductFromCart(item.product.productId, item.quantity)">×</a>
+                                <a class="remove" title="Remove this item" (click)="removeProductFromCart(item.product.productId, item.quantity, item.itemCartId)">×</a>
                             </div>
                             <div class="ui divider grid-devider"></div>
                         </div>

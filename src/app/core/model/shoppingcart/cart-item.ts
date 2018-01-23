@@ -18,6 +18,7 @@ export class CartItemResponse {
     deliveryTotal: number = 0;
     itemsTotal: number = 0;
 
+    id: number;
     message: string;
     status: string;
 }

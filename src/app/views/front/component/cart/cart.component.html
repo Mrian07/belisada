@@ -26,11 +26,15 @@
             Rp {{ item.product.pricelist | number }}
           </td>
           <td class="valTd text-right" data-title="Jumlah">
-            <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/>
+            <select class="quantity-text" #quantity (change)="updateQuantity($event, item)">
+              <option *ngFor="let q of quantities" [value]="q" [selected]="q === item.quantity">{{ q }}</option>
+            </select>
+            <!-- <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/> -->
+            
           </td>
           <td class="valTd text-right" data-title="Sub Total"> Rp {{ item.totalCost | number }}</td>
           <td class="valTd" data-title="Hapus">
-              <button class="circular ui icon button" (click)="removeProductFromCart()">
+              <button class="circular ui icon button" (click)="removeProductFromCart(item)">
                 <i class="trash outline icon"></i>
               </button>
           </td>
