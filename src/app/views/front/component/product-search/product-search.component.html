@@ -39,8 +39,10 @@
             <!-- <div class="clear-fix"></div> -->
             <div class="highlight">
                 <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a>
-
-            <div [innerHTML]="item.highlight | sanitizeHtml | truncate : 20 : '.'"></div>
+                <p [innerHTML] = "item.highlight | truncate : [78] : '..' | sanitizeHtml ">
+                    <!-- {{item.highlight}} -->
+                </p>
+            <!-- <div [innerHTML]="item.highlight | sanitizeHtml | truncate : 20 : '.'"></div> -->
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
                 <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div>

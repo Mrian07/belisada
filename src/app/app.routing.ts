@@ -309,7 +309,7 @@ const routes: Routes = [
             data: {
               title: 'Seller Propose'
             }
-          },
+          }
         ]
       }
     ]
