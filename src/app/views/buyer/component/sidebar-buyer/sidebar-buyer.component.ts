@@ -83,8 +83,6 @@ export class SidebarBuyerComponent implements OnInit {
   goSeller() {
 
     const user = JSON.parse(localStorage.user);
-    this.router.navigateByUrl('/buyer/dashboard');
-
     if (user.role === 3 || user.role === 2) {
       this.router.navigateByUrl('/seller/dashboard');
     } else {
