@@ -1,6 +1,30 @@
+<div class="ui grid b-step">
+  <div class="sixteen wide center aligned column">
 
+    <div class="ui ordered steps">
+      <div class="completed step">
+        <div class="content">
+          <div class="title">Your Cart</div>
+          <div class="description">List keranjang belanja Anda</div>
+        </div>
+      </div>
+      <div class="active step">
+        <div class="content">
+          <div class="title">Checkout</div>
+          <div class="description">Informasi billing, shipping, pembayaran & ongkos kirim</div>
+        </div>
+      </div>
+      <div class="active step">
+        <div class="content">
+          <div class="title">Finish</div>
+          <div class="description">Finish order details</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 <!-- <h1 class='title-page'>Keranjang Belanja</h1> -->
-
 <div class="row animated rollIn">
     <div id="no-more-tables">
         <table class="col-md-12 table-bordered table-striped table-condensed cf">
@@ -26,11 +50,15 @@
             Rp {{ item.product.pricelist | number }}
           </td>
           <td class="valTd text-right" data-title="Jumlah">
-            <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/>
+            <select class="quantity-text" #quantity (change)="updateQuantity($event, item)">
+              <option *ngFor="let q of quantities" [value]="q" [selected]="q === item.quantity">{{ q }}</option>
+            </select>
+            <!-- <input class="quantity-text" type="text" [value]="item.quantity" (change)="updateQuantity($event, item)" #quantity/> -->
+            
           </td>
           <td class="valTd text-right" data-title="Sub Total"> Rp {{ item.totalCost | number }}</td>
           <td class="valTd" data-title="Hapus">
-              <button class="circular ui icon button" (click)="removeProductFromCart()">
+              <button class="circular ui icon button" (click)="removeProductFromCart(item)">
                 <i class="trash outline icon"></i>
               </button>
           </td>
