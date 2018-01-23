@@ -1,3 +1,29 @@
+<div class="ui grid b-step">
+    <div class="sixteen wide center aligned column">
+  
+      <div class="ui ordered steps">
+        <div class="completed step s-cart" (click)="prev()">
+          <div class="content">
+            <div class="title">Your Cart</div>
+            <div class="description">List keranjang belanja Anda</div>
+          </div>
+        </div>
+        <div class="completed step">
+          <div class="content">
+            <div class="title">Checkout</div>
+            <div class="description">Informasi billing, shipping, pembayaran & ongkos kirim</div>
+          </div>
+        </div>
+        <div class="active step">
+          <div class="content">
+            <div class="title">Finish</div>
+            <div class="description">Finish order details</div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+</div>
 <div class='conten-checkout'>
     <div class="ui two column grid">
         <div class="column"><h2>Alamat Penagihan</h2></div>
@@ -461,8 +487,24 @@
 
 </div>
 
-<div class="ui grid center aligned">
+<!-- <div class="ui grid center aligned">
   <div class="sixteen wide column">
     <button class="positive ui button" (click)="finishOrder()">Finish Order</button>
   </div>
+</div> -->
+
+
+<div class="ui grid">
+    <div class="left floated left aligned eight wide column">
+        <button class="ui left labeled icon button green" (click)="prev()">
+            <i class="chevron left icon"></i>
+            Previous
+        </button>
+    </div>
+    <div class="right floated right aligned eight wide column">
+        <button class="ui right labeled icon button facebook" (click)="finishOrder()">
+            Finish Order
+            <i class="right chevron icon"></i>
+        </button>
+    </div>
 </div>

@@ -243,4 +243,9 @@ export class CheckoutComponent implements OnInit {
       this.router.navigateByUrl('/buyer/dashboard');
     });
   }
+
+  prev() {
+    this.router.navigateByUrl('/cart');
+  }
+
 }
