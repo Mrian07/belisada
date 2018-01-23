@@ -54,4 +54,5 @@ export class SellerProduct {
   category1Name: string;
   productbrandId: number;
   brandname: string;
+  qtyOnSeller: any;
 }

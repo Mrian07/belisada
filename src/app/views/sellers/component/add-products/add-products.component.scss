@@ -63,3 +63,17 @@
 .product-image {
     height: 300px;
 }
+.pops {
+    position: absolute;
+    bottom: 10%;
+    left: 35%;
+    width: 270px;
+    height: 200px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #f1f1f1;
+    border-radius: 10px;
+    -webkit-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 3px 1px rgba(0,0,0,0.75);
+}
