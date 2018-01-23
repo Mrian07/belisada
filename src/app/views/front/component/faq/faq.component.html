@@ -1,28 +1,81 @@
-<!-- <ng-container *ngIf="first; else notFirst">
-        Hello World!
-    </ng-container>
-    <ng-template #notFirst>
-        Or Not!
-    </ng-template> -->
-
+<div class="gap-between-elements"></div>
+<span class="atasFaq">Who Are You ? ?</span>
+<hr>
 <div class="wrapper">
         <div (click)="pembeli()">
-            Pembeli
+        <img class="ui small centered image"  src="/assets/img/boy.png">
+            <p style="text-align:center; font-weight:bold; font-size:21px;">Pembeli</p>
         </div>
+
+        <!-- </div> -->
         <div (click)="penjual()">
-         penjual
+            <img class="ui small centered image"  src="/assets/img/man.png">
+            <p style="text-align:center; font-weight:bold; font-size:21px;">Penjual</p>
         </div>
 
         <div class="satu" *ngIf="second; else notFirst">
                 <!-- <ng-container *ngIf="second; else notFirst"> -->
-                        Hello World!
-                    <!-- </ng-container> -->
+                        <p class="isipembeli">Panduan Belanja Di belisada.co.id</p>
+                        <sui-accordion class="styled fluid">
+                            <sui-accordion-panel>
+                                <div title>
+                                    <i class="dropdown icon"></i>
+                                   Bagaimana Cara Melakukan Pesanan di belisada.co.id ?
+                                </div>
+                                <div content>
+                                   <p>Cara Melakukan pemesanan di belisada.co.id sebagai berikut</p>
+                                   <ul>
+                                       <li>Pilih produk yang ingin dibeli</li>
+                                       <li>Klik beli sekarang</li>
+                                       <li>Klik masukan alamat pengiriman dan pilih jasa pengiriman yang ingin digunakan</li>
+                                       <li>Klik bayar sekarang</li>
+                                       <li>Klik mulai checkout</li>
+                                   </ul>
+                                </div>
+                            </sui-accordion-panel>
+                            <!-- <sui-accordion-panel>
+                                <div title>
+                                    <i class="dropdown icon"></i>
+                                    Second Panel
+                                </div>
+                                <div content>
+                                    <p>Second panel content.</p>
+                                </div>
+                            </sui-accordion-panel> -->
+                        </sui-accordion>
+                        <!-- </ng-container> -->
                     <ng-template #notFirst>
 
                         </ng-template>
         </div>
         <div class="dua" *ngIf="first; else not">
-         isi nya penjual
+                <sui-accordion class="styled fluid">
+                        <sui-accordion-panel>
+                            <div title>
+                                <i class="dropdown icon"></i>
+                               Bagaimana Cara Melakukan Pesanan di belisada.co.id ?
+                            </div>
+                            <div content>
+                               <p>Cara Melakukan pemesanan di belisada.co.id sebagai berikut</p>
+                               <ul>
+                                   <li>Pilih produk yang ingin dibeli</li>
+                                   <li>Klik beli sekarang</li>
+                                   <li>Klik masukan alamat pengiriman dan pilih jasa pengiriman yang ingin digunakan</li>
+                                   <li>Klik bayar sekarang</li>
+                                   <li>Klik mulai checkout</li>
+                               </ul>
+                            </div>
+                        </sui-accordion-panel>
+                        <!-- <sui-accordion-panel>
+                            <div title>
+                                <i class="dropdown icon"></i>
+                                Second Panel
+                            </div>
+                            <div content>
+                                <p>Second panel content.</p>
+                            </div>
+                        </sui-accordion-panel> -->
+                    </sui-accordion>
          <ng-template #notFirst>
 
             </ng-template>
