@@ -209,9 +209,6 @@ export class NewSellerComponent implements OnInit {
               'warning'
           )
         }
-        // console.log('nama:', model.name);
-        // console.log('apa:', hasil);
-        //  console.log('apa ini status:', hasil.status);
       });
 
     }
