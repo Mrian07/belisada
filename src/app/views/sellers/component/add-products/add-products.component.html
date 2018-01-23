@@ -4,6 +4,8 @@
         <p>
             Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br/>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
         </p>
+        <p align="left" style="width: 100%;"><span style="color:black;"></span>*pelajari tentang
+            <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui tiny aligned image" style="cursor:pointer;"></p>
         <div class="ui segment">
             <p>Apa yang anda jual?</p>
             <div class="ui form">
@@ -13,13 +15,13 @@
                     </div>
                     <div class="ten wide field">
                         <div class="field">
-                            <sui-radio-button value="baru" [(ngModel)]="condition" [isDisabled]="false" (click)="selectCondition()">Baru</sui-radio-button>
+                            <sui-radio-button value="baru" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification('01')">Baru</sui-radio-button>
                         </div>
                         <div class="field">
-                            <sui-radio-button value="second" [(ngModel)]="condition" [isDisabled]="true" (click)="selectCondition()">Second</sui-radio-button>
+                            <sui-radio-button value="second" [(ngModel)]="condition" [isDisabled]="true" (click)="geClassification('02')">Second</sui-radio-button>
                         </div>
                         <div class="field">
-                            <sui-radio-button value="refurbish" [(ngModel)]="condition" [isDisabled]="true" (click)="selectCondition()">Refurbish</sui-radio-button>
+                            <sui-radio-button value="refurbish" [(ngModel)]="condition" [isDisabled]="true" (click)="geClassification('03')">Refurbish</sui-radio-button>
                         </div>
                     </div>
                 </div>
@@ -37,9 +39,27 @@
                         </div>
 
                     </div>
+
                 </div>
 
                 <div class="inline twelve fields">
+                        <div class="two wide field">
+                               Garansi
+                            </div>
+                        <div class="seven wide field">
+                            <div class="five wide field">
+                                <select class="ui dropdown" [(ngModel)]="garansiDays" (input)="garansi($event)">
+                                    <option value="0" selected="selected">Tidak Bergaransi</option>
+                                    <option value="30">1 Bulan</option>
+                                    <option value="90">3 Bulan</option>
+                                    <option value="182">6 Bulan</option>
+                                    <option value="365">1 Tahun</option>
+                                </select>
+                            </div>
+
+
+
+
                         <!-- <div class="two wide field">
                             Category Product
                         </div>
@@ -212,15 +232,35 @@
                     <!-- <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button> -->
                         <button class="ui red button"  (click)="addProducts()">Tambahkan Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
                         <div class="or"></div>
-                        <button class="ui button"  (click)="addProductsAsap()">Tambahkan Produk <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image"></button>
+                        <button class="ui button"  (click)="open()">Tambahkan Produk <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image"></button>
 
                     </div>
                     <br>
-                    <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
-                        <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned mini image" style="cursor:pointer;"></p>
+                    <!-- <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
+                        <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui small aligned image" style="cursor:pointer;"></p> -->
                     <button *ngIf="editMode == true" class="positive ui button" (click)="updateProducts()">Perbarui Produk</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="pops five wide field" align="center" *ngIf="show">
+    <h4>Barang yang akan dikirim ke Gudang Belisada</h4>
+        <select [(ngModel)]="qtyOnHand" (input)="gudang($event)" class="ui dropdown" placeholder="Jumlah">
+                <option value= "0" selected="true">pilih</option>
+                <option value= "1" >1</option>
+                <option value= "2" >2</option>
+                <option value= "3" >3</option>
+                <option value= "4" >4</option>
+                <option value= "5" >5</option>
+                <option value= "6" >6</option>
+                <option value= "7" >7</option>
+                <option value= "8" >8</option>
+                <option value= "9" >9</option>
+                <option value= "10" >10</option>
+        </select>
+        <br><br>
+        <button class="ui green button" (click)="close()">Okay</button>
+        <button class="ui red button" (click)="cancel()">Cancel</button>
+    </div>
+

@@ -71,6 +71,14 @@ export class AddProductsComponent implements OnInit {
   id: any;
   test: any = {};
   selectedCountry: any;
+  qtySeller: any;
+  qtyOnHand: any;
+  classification: any;
+  show: Boolean;
+  garansiDays: any;
+  isGuarantee: any;
+  guaranteeDays: any;
+
   countries = [
     {id: 0, name: '0' , selected: false},
     {id: 1, name: '1' , selected: false},
@@ -78,6 +86,11 @@ export class AddProductsComponent implements OnInit {
     {id: 3, name: '3' , selected: false},
     {id: 4, name: '4' , selected: false},
     {id: 5, name: '5' , selected: false},
+    {id: 6, name: '6' , selected: false},
+    {id: 7, name: '7' , selected: false},
+    {id: 8, name: '8' , selected: false},
+    {id: 9, name: '9' , selected: false},
+    {id: 10, name: '10' , selected: false},
   ];
     constructor(private searchService: SearchService, private categoryService: CategoryService,
       private route: ActivatedRoute, private router: Router, private storeService: StoreService,
@@ -92,7 +105,7 @@ export class AddProductsComponent implements OnInit {
         this.editid = id;
       });
       this.quantity = this.countries;
-      console.log(this.quantity);
+      //console.log(this.quantity);
     }
 
 
@@ -101,12 +114,17 @@ export class AddProductsComponent implements OnInit {
     this.getCategory();
     this.getBrands();
     this.getStore();
+    this.garansiDays = 0;
+    this.stok = 0;
+    this.qtyOnHand = 0;
+    this.classification = '01';
     this.condition = 'baru';
     if (this.editid.id === 'add' ) {
       this.editMode = false;
     } else {
       this.editMode = true;
       this.editData = this.shared.shareData;
+      //console.log(this.editData);
       this.countries[this.editData.stock].selected = true;
       this.productSelected(this.shared.shareData);
     }
@@ -138,8 +156,15 @@ export class AddProductsComponent implements OnInit {
 
   onInput($event) {
     $event.preventDefault();
-    console.log('selected: ' + $event.target.value);
     this.stok = +$event.target.value;
+  }
+  garansi($event) {
+    $event.preventDefault();
+    this.garansiDays = +$event.target.value;
+  }
+
+  geClassification(id: number) {
+    this.classification = id;
   }
 
   getCategory() {
@@ -192,8 +217,10 @@ export class AddProductsComponent implements OnInit {
     }
   }
 
+
+
   productSelected(hasil: any) {
-    console.log(hasil);
+    //console.log(hasil);
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.selectedSubCategory = hasil.category2Name;
@@ -214,6 +241,18 @@ export class AddProductsComponent implements OnInit {
     this.asap = hasil.isAsapShipping;
     this.countries[hasil.stock].selected = true;
     this.stok = hasil.stock;
+    this.qtyOnHand = hasil.qtyOnHand;
+    this.qtySeller = hasil.qtyOnSeller;
+    if ( hasil.isGuarantee === undefined) {
+      this.isGuarantee = 'N';
+    }else {
+      this.isGuarantee = hasil.isGuarantee;
+    }
+    if (hasil.guaranteeDays === undefined) {
+      this.garansiDays = 0;
+    }else {
+      this.garansiDays = hasil.guaranteeDays;
+    }
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -234,8 +273,26 @@ export class AddProductsComponent implements OnInit {
     });
   }
 
-
+  close() {
+    this.show = false;
+    if (this.editMode === true) {
+      this.updateData();
+    }else {
+      this.addProductsAsap();
+    }
+  }
+  cancel() {
+    this.show = false;
+  }
+  open() {
+    this.show = true;
+  }
   addProducts() {
+    if (this.garansiDays !== 0) {
+       this.isGuarantee = 'Y';
+    }else {
+      this.isGuarantee = 'N';
+    }
     if ( this.productId === undefined) {
       swal('Nama Product harus diisi');
     }else {
@@ -250,34 +307,71 @@ export class AddProductsComponent implements OnInit {
         dimensionsheight: +this.tinggi,
         specialPrice: this.specialPrice,
         isAsapShipping: 'N',
-        stock: this.stok,
-        tag: [this.productName]
+        tag: [this.productName],
+        qtyOnSeller: +this.stok,
+        qtyOnHand: 0,
+        classification: this.classification,
+        isGuarantee: this.isGuarantee,
+        guaranteeDays: this.garansiDays
       };
-        console.log(productData);
+      //console.log(productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
+    }
+  }
+  gudang($event) {
+    $event.preventDefault();
+    if ($event.target.value >= this.stok) {
+      swal(
+        'Quantity lebih kecil',
+        'Dari barang yang akan dikirim ke gudang',
+        'error'
+      );
+    }else {
+      this.qtyOnHand = +$event.target.value;
+    }
+  }
+
+  checkForm() {
+    console.log(this.price);
+    if (this.price === 0 || this.price === undefined && this.weight === 0 && this.tinggi === 0 && this.panjang === 0 && this.stok) {
+      console.log('no');
+    }else {
+      console.log('yes');
     }
   }
 
   addProductsAsap() {
-    console.log(this.description);
-    if ( this.productId === undefined) {
-      swal('Nama Product harus diisi');
+    this.qtySeller = this.stok - this.qtyOnHand;
+    if (this.garansiDays !== 0) {
+       this.isGuarantee = 'Y';
     }else {
-      const productData = {
-        pricelist: this.price,
-        description: '',
-        productId: this.productId,
-        mBpartnerStoreId: this.storeId,
-        weight: +this.weight,
-        dimensionswidth: +this.lebar,
-        dimensionslength: +this.panjang,
-        dimensionsheight: +this.tinggi,
-        specialPrice: this.specialPrice,
-        isAsapShipping: 'N',
-        stock: this.stok,
-        tag: [this.productName]
-      };
-      this.store.dispatch(new fromActions.AddProduct(productData));
+      this.isGuarantee = 'N';
+    }
+    if (this.show === false) {
+      if ( this.productId === undefined) {
+        swal('Nama Product harus diisi');
+      }else {
+        const productData = {
+          pricelist: this.price,
+          description: '',
+          productId: this.productId,
+          mBpartnerStoreId: this.storeId,
+          weight: +this.weight,
+          dimensionswidth: +this.lebar,
+          dimensionslength: +this.panjang,
+          dimensionsheight: +this.tinggi,
+          specialPrice: this.specialPrice,
+          isAsapShipping: 'Y',
+          tag: [this.productName],
+          qtyOnSeller: this.qtySeller,
+          qtyOnHand: +this.qtyOnHand,
+          classification: this.classification,
+          isGuarantee: this.isGuarantee,
+          guaranteeDays: this.garansiDays
+        };
+        //console.log(productData);
+        this.store.dispatch(new fromActions.AddProduct(productData));
+      }
     }
   }
 
@@ -285,23 +379,40 @@ export class AddProductsComponent implements OnInit {
     if ( this.productId === undefined) {
       swal('Nama Product harus diisi');
     }else {
-      const productData = {
-        pricelist: this.price,
-        description: this.description,
-        productId: this.productId,
-        mBpartnerStoreId: this.storeId,
-        weight: this.weight,
-        dimensionswidth: this.lebar,
-        dimensionslength: this.panjang,
-        dimensionsheight: this.tinggi,
-        specialPrice: this.specialPrice,
-        isAsapShipping: this.asap ,
-        stock: this.stok,
-        tag: [this.productName]
-      };
-      console.log(productData);
-     this.store.dispatch(new fromActions.EditProduct(productData));
+      if (this.asap === 'Y') {
+        this.open();
+      }else {
+        this.stok = this.stok;
+        this.updateData();
+      }
     }
+  }
+
+  updateData() {
+    if (this.asap === 'Y') {
+      this.qtySeller = this.stok - this.qtyOnHand;
+      this.stok = this.qtySeller;
+    }
+    const productData = {
+      pricelist: this.price,
+      description: this.description,
+      productId: this.productId,
+      mBpartnerStoreId: this.storeId,
+      weight: this.weight,
+      dimensionswidth: this.lebar,
+      dimensionslength: this.panjang,
+      dimensionsheight: this.tinggi,
+      specialPrice: this.specialPrice,
+      isAsapShipping: this.asap ,
+      tag: [this.productName],
+      qtyOnSeller: this.stok,
+      qtyOnHand: +this.qtyOnHand,
+      classification: this.classification,
+      isGuarantee: this.isGuarantee,
+      guaranteeDays: this.garansiDays
+    };
+    //console.log(productData);
+    this.store.dispatch(new fromActions.EditProduct(productData));
   }
 
   clearAll() {
@@ -324,6 +435,56 @@ export class AddProductsComponent implements OnInit {
   }
 
   asapPage() {
-    this.router.navigateByUrl('/asap');
+    swal({
+      title: 'ASAP',
+      type: 'info',
+      html:
+      '<div class="ui list" align="justify">' +
+      '<a class="item">' +
+         ' <i class="right triangle icon"></i>' +
+        '<div class="content">' +
+         '<div class="header">ASAP</div>' +
+         '<div class="description">(As Soon As Possible) merupakan layanan ' +
+         'pengiriman dari belisada yang memberikan benefit tambahan bagi customer' +
+              'Gratis Biaya Pengiriman</div>' +
+        '</div>' +
+      '</a>' +
+      '<a class="item">' +
+          '<i class="right triangle icon"></i>' +
+        '<div class="content">' +
+          '<div class="description">Anda bisa mendapatkan layanan ASAP dari belisada  ' +
+          'secara cuma-cuma sehingga anda bisa menghemat biaya pengiriman untuk pembelanjaan berikutnya' +
+              '2 Hari Sampai</div>' +
+        '</div>' +
+      '</a>' +
+      '<a class="item">' +
+          '<i class="right triangle icon"></i>' +
+        '<div class="content">' +
+          '<div class="description">ASAP menawarkan keamanan dalam pengiriman barang ' +
+          'pesanan anda. Dengan sistem packaging yang komprehensif, ASAP memberikan perlindungan' +
+          'terbaik bagi barang pesanan anda dalam situasi apapun.</div>' +
+        '</div>' +
+      '</a>' +
+      '<a class="item">' +
+          '<i class="right triangle icon"></i>' +
+        '<div class="content">' +
+          '<div class="header">Bagaimana cara mendapatkan layanan ASAP?</div>' +
+          '<div class="description">' +
+              'Saat ini, layanan ASAP mengjangkau customer di wilayah Jakarta. Anda bisa' +
+               'mendapatkan layanan ini dengan berbelanja di belisada dan memilih belisada ' +
+               'Courrier sebagai jasa pengiriman saat check out.' +
+          '</div>' +
+        '</div>' +
+      '</a>' ,
+      showCloseButton: true,
+      showCancelButton: false,
+      focusConfirm: false,
+      confirmButtonText:
+        '<i class="fa fa-thumbs-up"></i> OK!',
+      confirmButtonAriaLabel: 'OK!',
+      cancelButtonText:
+      '<i class="fa fa-thumbs-down"></i>',
+      cancelButtonAriaLabel: 'Thumbs down',
+    });
   }
 }
