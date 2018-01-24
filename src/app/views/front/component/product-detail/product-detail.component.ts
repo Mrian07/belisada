@@ -127,7 +127,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);

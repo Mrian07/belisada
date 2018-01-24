@@ -44,7 +44,7 @@
                 placeholder="Select Category">
                     <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
             </sui-select>
-            <i class="iconsearch search icon"></i>
+            <i class="iconsearch search icon" style="color: rgb(255, 167, 2);"></i>
             <input type="text" class="search-bar" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory"/>
             <div class="result-container" *ngIf="[results] != 0">
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
@@ -61,8 +61,8 @@
                 <div class='flagdropdown'>
                     <span><img class="ui image" src="/assets/img/id.jpg" alt="image not found"/></span>
                     <div class="flagdropdown-content">
-                    <a href="#">Indonesia</a><br>
-                    <a href="#">English</a>
+                    <a href="#"><i class="id flag"></i>Indonesia</a><br>
+                    <a href="#"><i class="gb flag"></i>English</a>
                     </div>
                 </div>
             </div>
