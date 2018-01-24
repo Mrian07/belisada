@@ -4,8 +4,6 @@
         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
             <h4 class="ui dividing header">Data Billing</h4>
             <input name="addressId" type="hidden" formControlName="addressId" [(ngModel)]="fm.addressId"/>
-
-
             <div class="fields">
                 <div class="eight wide field">
                     <label>Nama</label>
@@ -15,14 +13,11 @@
                     <label>Disimpan sebagai alamat (cth: alamat rumah, kantor, kosan)</label>
                     <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
                 </div>
-            </div>    
-
+            </div> 
             <div class="field">
                 <label>Alamat</label>
                 <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
             </div>
-
-
             <div class="fields">
                 <div class="eight wide field">
                     <label>Provinsi</label>
