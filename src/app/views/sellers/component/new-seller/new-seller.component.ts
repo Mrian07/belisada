@@ -132,10 +132,16 @@ export class NewSellerComponent implements OnInit {
   }
 
   fineStore() {
-    const user = JSON.parse(localStorage.user);
-    if (user.role === 3 || user.role === 2) {
-      this.routes.navigateByUrl('/seller/dashboard');
-    } 
+    this.storeService.getAll().subscribe(response => {
+      console.log('getAllStore response: ', response);
+      this.stores = response;
+
+      if (this.stores.length === 0) {
+        this.routes.navigateByUrl('/seller/dashboard');
+      }
+
+    });
+
   }
 
   /**
