@@ -55,13 +55,13 @@
                             </sui-select>
                         </div>
                         <div class="field">
-                            <label>Kelurahan / Kecamatan</label>
+                            <label>Kecamatan</label>
                             <sui-select class="selection" labelField="name" name="district" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
                                 <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
-                            <label>Desa</label>
+                            <label>Kelurahan</label>
                             <sui-select name="village" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
                                 <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setVilage(option)"></sui-select-option>
                             </sui-select>
