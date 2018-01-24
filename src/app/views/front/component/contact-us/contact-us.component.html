@@ -25,7 +25,7 @@
         <div class='title'>
           Hubungi Kami
         </div>
-        <form class="ui form" [formGroup]="createComForm" #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <form class="ui form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
         <div class="ui form">
           <div class="three fields">
             <div class="field">
@@ -56,7 +56,8 @@
             <textarea formControlName="message"></textarea>
             <div class="form-control-feedback" *ngIf="message.invalid && (message.dirty || f.submitted)">Pesan tidak boleh kosong</div>
           </div>
-          <button class="ui button" type="submit">Kirim</button>
+          <button class="ui button" (click)="poerna()"
+          [disabled]="!f.valid" type="submit">Kirim</button>
         </div>
       </form>
     </div>
