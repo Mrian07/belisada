@@ -43,8 +43,12 @@
     clear: both;
 }
 .list-row .prodimg {
+    text-align: center;
     width: 200px;
     float: left;
+}
+.list-row .prodimg img{
+    height: 180px;
 }
 
 .list-row .pricelist {

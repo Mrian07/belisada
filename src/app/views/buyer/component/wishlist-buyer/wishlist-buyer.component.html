@@ -2,11 +2,11 @@
 <div class="wrapper" *ngFor="let item of dat">
     <div>
     <div class="wrpaeer2">
-        <div>
-            <img class="ui Small image" src="{{item.imageurl}}" alt="profile picture"/>
+        <div class="wish-img" align="center">
+            <img class="ui image" src="{{item.imageurl}}" alt="profile picture"/>
         </div>
         <div>
-            <span class="gr">In stock</span>
+            <span class="gr">Stock : {{item.stock}}</span>
             <div class="gap-between-elements"></div>
             <span> {{item.name}}</span>
             <div class="gap-between-elements"></div>

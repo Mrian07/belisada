@@ -225,19 +225,19 @@ h1{
     color: black
 }
 .thumbnail-container{
-    width: 300px;
+    width: 270px;
     height: auto;
     position: absolute;
     margin-top: 350px;
     margin-left: 80px;
 }
 .thumbnail{
-
-
+    height: 50px;
+    width: auto;
 }
 .thumbnail img{
-    width: 70px;
-    height: auto;
+    height: 50px;
+    width: auto;
     border: 1px solid #f1f1f1;
     border-radius: 5px;
     margin-left: 5px;
