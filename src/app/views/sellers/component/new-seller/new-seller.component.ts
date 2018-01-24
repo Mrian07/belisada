@@ -133,15 +133,10 @@ export class NewSellerComponent implements OnInit {
 
   cekStore() {
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
-      this.stores = response;
-
-      if (this.stores.length === 0) {
+      if (response.length) {
         this.routes.navigateByUrl('/seller/dashboard');
       }
-
     });
-
   }
 
   /**
