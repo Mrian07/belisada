@@ -18,6 +18,7 @@ import { DatePipe } from "@angular/common";
 @Component({
   selector: 'app-profile-buyer',
   templateUrl: './profile-buyer.component.html',
+  styles: [`/deep/ .ngx-datepicker-container .ngx-datepicker-input{ width: 100% !important; }`],
   styleUrls: ['./profile-buyer.component.scss']
 })
 export class ProfileBuyerComponent implements OnInit {
