@@ -19,6 +19,7 @@ export class ProductSearchComponent implements OnInit {
   searchable;
   disabled;
   options;
+  isReadonly: boolean= false;
   m_product_category_id;
   selectedOption: any;
   productSearchResault: ProductSearchResault = new ProductSearchResault();

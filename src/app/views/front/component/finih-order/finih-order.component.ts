@@ -12,6 +12,7 @@ export class FinihOrderComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada - Finish Order');
+    window.scrollTo(0, 0);
   }
 
 }
