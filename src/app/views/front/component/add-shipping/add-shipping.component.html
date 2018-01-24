@@ -1,62 +1,69 @@
 <p>Silakan isi kolom dibawah ini dengan lengkap dan benar untuk menambah data shipping.</p>
 <div class="sexten wide column">
     <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
-        <div class="field">
-
-            <label>Nama</label>
-            <input name="name" placeholder="Masukan nama shipping" type="text" formControlName="name"/>
-            <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || f.submitted)">Nama tidak boleh kosong</div>
-        </div>
-        <div class="field">
-            <label>Disimpan sebagai alamat (cth: alamat rumah, kantor, kosan)</label>
-            <input name="addressName" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
-            <div class="form-control-feedback" *ngIf="addressName.invalid && (addressName.dirty || f.submitted)">Disimpan sebagai alamat tidak boleh kosong</div>
-        </div>
+        <div class="fields">
+            <div class="eight wide field">
+                <label>Nama</label>
+                <input name="name" placeholder="Masukan nama shipping" type="text" formControlName="name"/>
+                <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || f.submitted)">Nama tidak boleh kosong</div>
+            </div>
+            <div class="eight wide field">
+                <label>Disimpan sebagai alamat (cth: alamat rumah, kantor, kosan)</label>
+                <input name="addressName" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
+                <div class="form-control-feedback" *ngIf="addressName.invalid && (addressName.dirty || f.submitted)">Disimpan sebagai alamat tidak boleh kosong</div>
+            </div>
+        </div>    
         <div class="field">
             <label>Alamat</label>
             <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
             <div class="form-control-feedback" *ngIf="address.invalid && (address.dirty || f.submitted)">Alamat tidak boleh kosong</div>
         </div>
-        <div class="field">
-            <label>Provinsi</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
-                <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
-            </sui-select>
-            <div class="form-control-feedback" *ngIf="province.invalid && (province.dirty || f.submitted)">Provinsi tidak boleh kosong</div>
+        <div class="fields">
+            <div class="eight wide field">
+                <label>Provinsi</label>
+                <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                    <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+                </sui-select>
+                <div class="form-control-feedback" *ngIf="province.invalid && (province.dirty || f.submitted)">Provinsi tidak boleh kosong</div>
+            </div>
+            <div class="eight wide field">
+                <label>Kota</label>
+                <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                    <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                </sui-select>
+                <div class="form-control-feedback" *ngIf="city.invalid && (city.dirty || f.submitted)">Kota tidak boleh kosong</div>
+            </div>
+        </div>    
+        <div class="fields">
+            <div class="eight wide field">
+                <label>Kecamatan</label>
+                <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                    <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                </sui-select>
+                <div class="form-control-feedback" *ngIf="district.invalid && (district.dirty || f.submitted)">Kelurahan / Kecamatan tidak boleh kosong</div>
+            </div>
+            <div class="eight wide field">
+                <label>Kelurahan</label>
+                <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
+                    <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+                </sui-select>
+                <div class="form-control-feedback" *ngIf="vilaggeId.invalid && (vilaggeId.dirty || f.submitted)">Desa tidak boleh kosong</div>
+            </div>
         </div>
-        <div class="field">
-            <label>Kota</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
-                <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
-            </sui-select>
-            <div class="form-control-feedback" *ngIf="city.invalid && (city.dirty || f.submitted)">Kota tidak boleh kosong</div>
+        <div class="fields">
+            <div class="eight wide field">
+                <label>Kode POS</label>
+                <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
+                <div class="form-control-feedback" *ngIf="postalCode.invalid && (postalCode.dirty || f.submitted)">Kode POS tidak boleh kosong</div>
+            </div>
+            <div class="eight wide field">
+                <label>Telepon</label>
+                <input name="siup" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
+                <div class="form-control-feedback" *ngIf="phone.invalid && (phone.dirty || f.submitted)">Telepon tidak boleh kosong</div>
+            </div>
         </div>
-        <div class="field">
-            <label>Kelurahan / Kecamatan</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
-                <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
-            </sui-select>
-            <div class="form-control-feedback" *ngIf="district.invalid && (district.dirty || f.submitted)">Kelurahan / Kecamatan tidak boleh kosong</div>
-        </div>
-        <div class="field">
-            <label>Desa</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
-                <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
-            </sui-select>
-            <div class="form-control-feedback" *ngIf="vilaggeId.invalid && (vilaggeId.dirty || f.submitted)">Desa tidak boleh kosong</div>
-        </div>
-        <div class="field">
-            <label>Kode POS</label>
-            <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
-            <div class="form-control-feedback" *ngIf="postalCode.invalid && (postalCode.dirty || f.submitted)">Kode POS tidak boleh kosong</div>
-        </div>
-        <div class="field">
-            <label>Telepon</label>
-            <input name="siup" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
-            <div class="form-control-feedback" *ngIf="phone.invalid && (phone.dirty || f.submitted)">Telepon tidak boleh kosong</div>
-        </div>
-
-        <button class="ui primary button" type="submit">Simpan</button>
+        <div style='margin-top:10px;'><button class="ui primary button" type="submit">Simpan</button></div>
+        
     </form>
 </div>
 

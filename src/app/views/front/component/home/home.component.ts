@@ -57,28 +57,19 @@ export class HomeComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETHOMESUCCESS)
     .subscribe((action: frontActions.GetHomeSuccess) => {
-      // this.ini();
       this.loadHome();
     });
-
-    // const a = [1076071, 1071472, 1071480, 1071485, 1058306];
-    // let z = 0;
   }
 
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
       this.ngZone.run(() => {
         const tempData: TopProductCategory[] = data.home;
-        console.log('tempData', tempData);
         if (tempData) {
           tempData.forEach((x, i) => {
             if (window.matchMedia('(min-width: 425px)').matches) {
-              // console.log('2',  tempData[i]);
               tempData[i].imageUrl2 = x.imageUrl2;
-              // console.log('aaaaa2');
-              // console.log('1',  tempData[i]);
             } else {
-              // console.log('aaa3');
               tempData[i].imageUrl2 = x.imageUrl5;
             }
           });
@@ -86,10 +77,9 @@ export class HomeComponent implements OnInit {
         } else {
           this.topHomeProductLvl1 = Observable.of(data.home);
         }
-        // console.log('ini po', this.topHomeProductLvl1);
         this.level_4 = Observable.of(data.brands);
-        console.log(this.level_4);
         });
+        window.scrollTo(0, 0);
     });
   }
   detail(id: number, alias: string) {

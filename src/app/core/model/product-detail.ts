@@ -25,5 +25,10 @@ export class ProductDetail {
   weight: number;
   storeName: string;
   stock: number;
+  guaranteeDays: number;
+  isGuarantee: string;
+  qtyOnHand: number;
+  qtyOnSeller: number;
+  specification: any;
   constructor() {}
 }

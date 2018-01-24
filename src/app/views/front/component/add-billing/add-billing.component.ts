@@ -105,7 +105,6 @@ export class AddBillingComponent implements OnInit {
         villageId: model.vilaggeId.mvillageId
       };
       swal({
-        title: 'Are you sure?',
         text: 'Apakah Anda Ingin Menggunakan Sebagai Alamat Pengiriman ?',
         type: 'warning',
         showCancelButton: true,

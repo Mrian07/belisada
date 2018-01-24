@@ -1,8 +1,9 @@
-<div class="ui center aligned grid border-form">
-  <div class="six wide column">
-      <div class="ui segment">
+<div class="ui two column stackable grid center aligned border-form">
+    <div class="three column row">
+        <div class="column">
+            <div class="ui segment">
 
-        <div class='title'><i class="chevron circle right icon"></i> Buat Akun</div>
+                <div class='title'><i class="chevron circle right icon"></i> Buat Akun</div>
 
               <form name="" class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
                   <div class="field">
@@ -81,10 +82,10 @@
               </ng-template> -->
 
 
-
-          </div>
+            </div>
         </div>
-  </div>
+    </div>
+</div>
 
 
 <sui-modal [isClosable]="true" (dismissed)="alert($event)" #modal *ngIf="isReady">

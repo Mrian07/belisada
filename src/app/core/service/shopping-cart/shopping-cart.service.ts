@@ -103,13 +103,11 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
 
   public setDeliveryOption(freightRate: FreightRate): void {
     console.log('freightRate: ', freightRate);
-    // const cart = this.retrieve();
-    this.retrievePostLogin((cart) => {
-      cart.freightRate = freightRate;
-      this.calculateCart(cart, (modifiedCart) => {
-        this.save(modifiedCart);
-        this.dispatch(modifiedCart);
-      });
+    const cart = this.retrieve();
+    cart.freightRate = freightRate;
+    this.calculateCart(cart, (modifiedCart) => {
+      this.save(modifiedCart);
+      this.dispatch(modifiedCart);
     });
   }
 
@@ -129,7 +127,6 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
       cart.freightRate = undefined;
     }
 
-    console.log();
     this.calculateCart(cart, (modifiedCart) => {
       this.save(modifiedCart);
       this.dispatch(modifiedCart);

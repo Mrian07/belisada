@@ -1,21 +1,18 @@
 import { ProductDetailService } from './../../../../core/service/product-detail/product-detail.service';
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { NgxCarousel } from 'ngx-carousel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { ProductDetail } from '../../../../core/model/product-detail';
-import { Title } from '@angular/platform-browser';
-
-import { Product } from '../../../../core/model/product';
-import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
-
-import * as frontActions from '../../../../store/actions/front';
-import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
-
 import swal from 'sweetalert2';
 import { Subject } from 'rxjs/Subject';
+import { ProductDetail } from '../../../../core/model/product-detail';
+import { Product } from '../../../../core/model/product';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
 import { CartItemRequest, CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
@@ -67,6 +64,15 @@ export class ProductDetailComponent implements OnInit {
   theImage: string;
   arrStock: number[];
   asap: Boolean = true;
+  specs: any;
+  garansiDay = [
+    {day: 0 , val: 'Tidak Bergaransi'},
+    {day: 30 , val: '1 Bulan'},
+    {day: 90 , val: '3 Bulan'},
+    {day: 182 , val: '6 Bulan'},
+    {day: 365 , val: '1 Tahun'},
+  ];
+  garansi: any;
 
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
@@ -121,9 +127,12 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
+          const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
+          this.garansi = garansi.val;
+          this.specs = data.detail.specification.length;
           if ( this.ProductList.isAsapShipping === 'Y') {
             this.asap = true;
           }else {
@@ -138,7 +147,6 @@ export class ProductDetailComponent implements OnInit {
           this.ProductImage = this.ProductList.image;
           this.storeName = this.ProductList.storeName;
           this.arrStock = Array.from(new Array(this.ProductList.stock), (val, index) => index + 1);
-          console.log('arrStock: ', this.arrStock);
           if (this.storeName === '') {
             this.storeName = 'Belisada.co.id';
           }

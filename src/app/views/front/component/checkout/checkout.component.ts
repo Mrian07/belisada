@@ -29,6 +29,7 @@ import { Router } from '@angular/router';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
+  arrStock: number[];
   totalCost: number;
 }
 
@@ -167,9 +168,61 @@ export class CheckoutComponent implements OnInit {
           this.cartItems.push({
             ...item,
             product,
+            arrStock: Array.from(new Array(product.stock), (val, index) => index + 1),
             totalCost: product.pricelist * item.quantity });
         });
       });
+    });
+  }
+
+  public updateQuantity(event: any, item: any) {
+    let quantity = 0;
+
+    if (item.quantity > event.target.value) {
+      quantity = -(item.quantity - event.target.value);
+    } else {
+      quantity = +(event.target.value - item.quantity);
+    }
+
+    const updateData = {
+      quantity: event.target.value,
+      itemCartId: item.itemCartId
+    };
+
+    this.shoppingCartService.update(updateData).subscribe(response => {
+      if (response.status === '1') {
+        this.shoppingCartService.updateQuantity(item.product.productId, quantity);
+      } else {
+        swal(response.message);
+      }
+    });
+  }
+
+  public removeProductFromCart(item: CartItem): void {
+    console.log('item: ', item);
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Apakah Anda Yakin?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya, Hapus!'
+    }).then((result) => {
+      if (result.value) {
+        this.shoppingCartService.delete(item.itemCartId).subscribe(response => {
+          if (response.status === '1') {
+            this.shoppingCartService.addItem(item.productId, -item.quantity);
+            swal(
+              'Dihapus!',
+              'Belanjaan Anda berhasil dihapus',
+              'success'
+            );
+          } else {
+            swal(response.message);
+          }
+        });
+      }
     });
   }
 
@@ -192,10 +245,13 @@ export class CheckoutComponent implements OnInit {
       this.checkout.courierAmt = courier.amount;
       this.checkout.courierName = courier.shipperName;
       this.checkout.isoncePickup = 'Y';
+      this.freightRate = courier;
     } else {
       this.checkout.courierId = -1;
+      const fr = new FreightRate();
+      fr.shipperName = '';
+      this.freightRate = fr;
     }
-    this.freightRate = courier;
     this.shoppingCartService.setDeliveryOption(courier);
   }
 

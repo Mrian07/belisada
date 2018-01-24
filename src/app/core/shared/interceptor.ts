@@ -40,6 +40,7 @@ export class Interceptor implements HttpInterceptor {
         if (err.status === 401) {
           swal('Anda belum Login atau Session Anda Expired, Anda Harus Login ulang')
           .then((result) => {
+            localStorage.removeItem('user');
             this.routes.navigateByUrl('/sign-in');
           });
         }else if (err.status === 404) {
@@ -48,15 +49,15 @@ export class Interceptor implements HttpInterceptor {
           //   //this.routes.navigateByUrl('/404');
           // });
         }else if (err.status === 500) {
-          swal('Oops!...something wrong...')
-          .then((result) => {
+          // swal('Oops!...something wrong...')
+          // .then((result) => {
             this.routes.navigateByUrl('/maintenance');
-          });
+         // });
         }else {
-          swal('Oops!...something wrong...')
-          .then((result) => {
+          // swal('Oops!...something wrong...')
+          // .then((result) => {
             this.routes.navigateByUrl('/maintenance');
-          });
+         // });
         }
       }
     });

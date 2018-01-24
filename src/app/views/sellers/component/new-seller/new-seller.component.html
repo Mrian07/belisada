@@ -42,14 +42,14 @@
         </div>
         <div class="fields">
           <div class="five wide field">
-            <label>Kelurahan / Kecamatan</label>
+            <label>Kecamatan</label>
             <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
               <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
             </sui-select>
             <div class="form-control-feedback" *ngIf="district.invalid && (district.dirty || f.submitted)">Kelurahan / Kecamatan tidak boleh kosong</div>
           </div>
           <div class="six wide field">
-            <label>Desa</label>
+            <label>Kelurahan</label>
             <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
                 <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
             </sui-select>

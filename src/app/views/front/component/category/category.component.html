@@ -21,14 +21,15 @@
             </div>
             </div>
 
-  <div class="four wide center aligned column " *ngFor="let item3 of level_3 | async">
-      <div class='bg-cat'>
-          <div (click)="dapatkanList(item3.m_product_category_id)" class="item" style="cursor: pointer;">
-            <img class="ui centered image" style="height: 150px; width: auto;" [src]="item3.imageurl" alt="{{item3.name}}"onError="this.src='/assets/img/no-image.png'" /><br>
-            {{ item3.name }}
-            <!-- {{ item.m_product_category_id }} -->
-          </div>
-
-      </div>
+  <div class='ui stackable grid  container'>            
+    <div class="four wide column center aligned" *ngFor="let item3 of level_3 | async">
+        <div class='bg-cat'>
+            <div (click)="dapatkanList(item3.m_product_category_id)" class="item" style="cursor: pointer;">
+              <img class="ui centered image" style="height: 150px; width: auto;" [src]="item3.imageurl" alt="{{item3.name}}"onError="this.src='/assets/img/no-image.png'" /><br>
+              {{ item3.name }}
+              <!-- {{ item.m_product_category_id }} -->
+            </div>
+        </div>
+    </div>
   </div>
 </div>
