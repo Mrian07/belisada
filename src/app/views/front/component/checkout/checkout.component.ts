@@ -107,13 +107,12 @@ export class CheckoutComponent implements OnInit {
         console.log('kaka', this.billingAddressList);
         // console.log('asdasd', token);
         console.log('apaan si nih', this.billingAddress );
-          if (this.billingAddressList.length === 0) {
-          this.kampret = true;
-        } else {
-          this.kampre2t = true;
-        }
         if (this.billingAddressList.length === 0) {
+          this.kampret = true;
           this.billing = true;
+        } else {
+          this.billingAddress = this.billingAddressList[0];
+          this.kampre2t = true;
         }
         console.log('this.billingAddressList: ', this.billingAddressList);
       });
