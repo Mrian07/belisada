@@ -25,10 +25,7 @@
     </div>
 </div>
 <div class='conten-checkout'>
-    <div class="ui two column grid">
-        <div class="column"><h2>Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p></div>
-    </div>
-
+    <h2>Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p>
     <div class="ui grid">
         <div class="one column row">
             <div class="column">
@@ -85,10 +82,7 @@
 
 
     <div class='conten-checkout'>
-        <div class="ui two column grid">
-            <div class="column"><h2>Alamat Pengiriman</h2><p>Jika Alamat pengiriman belum ada, lakukan tambah alamat pengiriman.</p></div>
-        </div>
-    
+        <h2>Alamat Pengiriman</h2><p>Jika Alamat pengiriman belum ada, lakukan tambah alamat pengiriman.</p>    
         <div class="ui grid">
             <div class="one column row">
             
@@ -140,9 +134,7 @@
 
 
     <!-- app-cart -->
-    <div class="ui one column grid">
-        <div class="column"><h2>Keranjang</h2></div>
-    </div>
+    <h2>Keranjang</h2>
 
     <div class="row animated rollIn">
         <div id="no-more-tables">
@@ -201,17 +193,15 @@
 
 
     <!-- app-payment-method -->
-    <div class="ui one column grid">
-        <div class="column"><h2>Pembayaran</h2></div>
-    </div>
+    <h2>Pembayaran</h2>
 
     <p>Silakan pilih metode pembayaran dan ongkos kirim yang ingin Anda gunakan. Dan apa bila Anda memiliki Kode Promo maka gunakan Kode Promo tersebut untuk mendapatkan potongan harga.</p>
     <div class="ui grid">
-        <div class="two column row">
+        <div class="two column row stackable">
             <div class="eight wide column">
                 <div class="ui segment">
                     <div class="ui grid">
-                        <div class="ui three column grid">
+                        <div class="ui three column grid stackable">
                             <div class="row">
                                 <div class="column" *ngFor="let item of paymentMethodDtos">
 
@@ -299,16 +289,14 @@
     <!-- <app-payment-method></app-payment-method> -->
     <!--/ app-payment-method -->
 
-    <div class="ui one column grid">
-        <div class="column"><h2>Rincian</h2></div>
-    </div>
+    <h2>Rincian</h2>
 
   <div class='bg-rinci'>
-      <div class="ui grid">
+      <div class="ui grid stackable">
           <div class="ten wide column">
             
       
-          <div class="ui grid">
+          <div class="ui grid stackable">
             <div class="four wide column">
               <b>Matode Pembayaran</b><br><br>
               {{ paymentMethod.name }}: {{ paymentMethodDetail.bankName }}
