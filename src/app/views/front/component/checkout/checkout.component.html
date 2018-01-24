@@ -1,6 +1,6 @@
 <div class="ui grid b-step">
     <div class="sixteen wide center aligned column">
-  
+
       <div class="ui ordered steps">
         <div class="completed step s-cart" (click)="prev()">
           <div class="content">
@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-  
+
     </div>
 </div>
 <div class='conten-checkout'>
@@ -36,26 +36,43 @@
                 <sui-tabset>
                     <div class="ui top attached tabular menu">
                         <a class="item" suiTabHeader="1">Penagihan</a>
-                        <a class="item" suiTabHeader="2">Tambah Alamat Penagihan</a>
+                        <div *ngIf="kampret">
+                             <a class="item" suiTabHeader="2">Tambah Alamat Penagihan</a>
+                        </div>
+
                     </div>
                     <div class="ui bottom attached segment" suiTabContent="1">
-                    
+
                         <div class="sixten wide column right aligned">
                             <div class="ui labeled action input">
 
-                                <div class="ui label">
-                                    Pilih alamat penagihan:
+                                <div class="ui label" *ngIf="kampret">
+                                   Isi Alamat
                                 </div>
 
-                                <select class="ui compact selection dropdown" [(ngModel)]="selBillingAddress" (change)="getBillingAddress(selBillingAddress)">
+                                <!-- <select class="ui compact selection dropdown" [(ngModel)]="selBillingAddress" (change)="getBillingAddress(selBillingAddress)">
                                     <option value="">-Pilih-</option>
                                     <option *ngFor="let item of billingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
-                                </select>
-                            </div>  
+                                </select> -->
+                            </div>
                         </div>
 
+                        <div class="ui segment" *ngFor="let item3 of billingAddressList">
+                                <div class="ui grid">
+                                        <div class="ten wide column">
+                                            <p><strong>{{ item3.name }} - {{ item3.phone }}</strong><br>
+                                                {{ item3.address }}<br>
+                                                {{ item3.districtName }}, {{ item3.cityName }}, {{ item3.postal }}<br>
+                                                {{ item3.regionName }} - {{ item3.countryName }}<br>
+                                            </p>
+                                        </div>
+                                        <div class="six wide column right aligned">
+                                            <!-- [ <a (click)="addBilling('add')">Tambah Alamat Penagihan</a> ] -->
+                                        </div>
 
-                        <div class="ui segment" *ngIf="billingAddress">
+                                        </div>
+                        </div>
+                        <!-- <div class="ui segment" *ngIf="billingAddress">
                             <div class="ui grid">
                             <div class="ten wide column">
                                 <p><strong>{{ billingAddress.name }} - {{ billingAddress.phone }}</strong><br>
@@ -65,15 +82,15 @@
                                 </p>
                             </div>
                             <div class="six wide column right aligned">
-                                <!-- [ <a (click)="addBilling('add')">Tambah Alamat Penagihan</a> ] -->
+
                             </div>
-                            
+
                             </div>
-                        </div>
-                        
+                        </div> -->
+
                     </div>
-                    <div class="ui bottom attached segment" suiTabContent="2">
-                        <app-add-shipping></app-add-shipping>
+                    <div class="ui bottom attached segment" *ngIf="kampret" suiTabContent="2">
+                       <app-add-billing></app-add-billing>
                     </div>
                 </sui-tabset>
             </div>
@@ -84,39 +101,39 @@
                         <a class="item" suiTabHeader="1">Pengiriman</a>
                         <a class="item" suiTabHeader="2">Tambah Alamat Pengiriman</a>
                     </div>
-                    <div class="ui bottom attached segment" suiTabContent="1"> 
+                    <div class="ui bottom attached segment" suiTabContent="1">
                         <div class="sixten wide column right aligned">
                             <div class="ui labeled action input">
-        
+
                                 <div class="ui label">
                                     Pilih alamat pengiriman:
                                 </div>
-        
+
                                 <select class="ui compact selection dropdown" [(ngModel)]="selShippingAddress" (change)="getShippingAddress(selShippingAddress)">
                                     <option value="">-Pilih-</option>
                                     <option *ngFor="let item of shippingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
                                 </select>
                                 <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
-                            </div>  
+                            </div>
                             <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
                         </div>
 
                         <div class="ui segment" *ngIf="shippingAddress">
                             <div class="ui grid">
-                
+
                                 <div class="sexten wide column">
                                     <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
                                     {{ shippingAddress.address }}<br>
                                     {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
                                     {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
                                 </p>
-                                </div>  
-                                
-                            </div>  
+                                </div>
+
+                            </div>
                         </div>
 
                     </div>
-                    <div class="ui bottom attached segment" suiTabContent="2"> 
+                    <div class="ui bottom attached segment" suiTabContent="2">
                         <app-add-shipping></app-add-shipping>
                     </div>
                 </sui-tabset>
@@ -169,13 +186,13 @@
                 </tbody>
             </table>
         </div>
-    </div>    
-    
+    </div>
+
     <div class="ui grid b-step">
         <div class="eight wide left aligned column">
             <h4>Total: Rp {{itemsTotal | number}}</h4>
-        </div>  
-        <!-- <div class="eight wide right aligned column">  
+        </div>
+        <!-- <div class="eight wide right aligned column">
             <button class="ui right labeled icon button green" (click)="next()">
             Next
             <i class="right chevron icon"></i>
@@ -292,8 +309,8 @@
   <div class='bg-rinci'>
       <div class="ui grid">
           <div class="ten wide column">
-            
-      
+
+
           <div class="ui grid">
             <div class="four wide column">
               <b>Matode Pembayaran</b><br><br>
@@ -308,8 +325,8 @@
               <b>Kode Promo</b><br><br>
               Nilai Potongan Kode Promo: Rp.0
             </div>
-          </div>  
-  
+          </div>
+
       </div>
       <div class="six wide column"><b>Rincian</b><br><br>
         Total Belanja: Rp {{ itemsTotal | number }} (+)<br>
@@ -318,7 +335,7 @@
         <div class='b-total'>
           TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
         </div>
-      
+
       </div>
     </div>
   </div>
@@ -364,14 +381,14 @@
       </table>
 
     </div>
-  </div>    
+  </div>
 
   <div class="ui grid b-step">
     <div class="eight wide left aligned column">
       <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4>
-    </div>  
+    </div>
   </div> -->
-<!-- 
+<!--
   <div class="ui one column grid">
     <div class="column"><h2>Pembayaran</h2></div>
   </div>
@@ -459,8 +476,8 @@
   <div class='bg-rinci'>
       <div class="ui grid">
           <div class="ten wide column">
-            
-      
+
+
           <div class="ui grid">
             <div class="four wide column">
               <b>Matode Pembayaran</b><br><br>
@@ -475,8 +492,8 @@
               <b>Kode Promo</b><br><br>
               Nilai Potongan Kode Promo: Rp.0
             </div>
-          </div>  
-  
+          </div>
+
       </div>
       <div class="six wide column"><b>Rincian</b><br><br>
         Total Belanja: Rp {{ itemsTotal | number }} (+)<br>
@@ -485,7 +502,7 @@
         <div class='b-total'>
           TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
         </div>
-      
+
       </div>
   </div> -->
 
