@@ -1,6 +1,7 @@
 
 <div class="ui grid">
     <div class="sixteen wide column">
+        <p>Silakan isi data Billing dibawah ini dengan lengkap dan benar.</p>
         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
             <h4 class="ui dividing header">Data Billing</h4>
             <input name="addressId" type="hidden" formControlName="addressId" [(ngModel)]="fm.addressId"/>

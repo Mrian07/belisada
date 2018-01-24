@@ -164,8 +164,8 @@ export class ShippingAddressComponent implements OnInit {
     // this.selectedCategory = id.mBankId;
     // this.mBankAccountId = id.mBankAccountId;
     // this.show1 = false;
-    console.log('ini semuanya', id);
-    console.log('bismilah', id.addressId);
+    // console.log('ini semuanya', id);
+    // console.log('bismilah', id.addressId);
     // this.form.reset();
   }
   edit() {
