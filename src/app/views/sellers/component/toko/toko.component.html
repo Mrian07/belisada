@@ -3,7 +3,7 @@
     <div class="twelve wide stretched column">
         <div class="ui grid">
             <div class="sixteen wide column">
-
+                <p>Jika belum memiliki toko bisa mendaftarkan toko Anda pada form dibawah ini. Dan jika toko sudah didaftarkan lalu Anda ingin melakukan perubahan pada data toko, maka Anda bisa melakukan perubahan pada form dibawah ini.</p>
                     <form class="ui form" [formGroup]="createStoreForm" (ngSubmit)="onSubmit()" novalidate>
                             <h4 class="ui dividing header">Info Toko</h4>
                             <div class="field">
@@ -36,13 +36,13 @@
                             </div>    
                             <div class="fields">
                                 <div class="eight wide field">
-                                    <label>Kelurahan / Kecamatan</label>
+                                    <label>Kecamatan</label>
                                     <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
                                         <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                                     </sui-select>
                                 </div>
                                 <div class="eight wide field">
-                                    <label>Desa</label>
+                                    <label>Kelurahan</label>
                                     <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
                                         <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                                     </sui-select>

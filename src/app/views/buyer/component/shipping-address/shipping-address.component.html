@@ -1,3 +1,4 @@
+<p>Silakan isi data Shipping dibawah ini dengan lengkap dan benar. Anda juga bisa melihat list Shipping yang sudah pernah Anda daftarkan.</p>
 <sui-tabset>
     <div class="ui top attached tabular menu">
         <a class="item" suiTabHeader="1" [(isActive)]="firstActive">Tambah Shipping</a>
@@ -9,7 +10,6 @@
                     <div class="sixteen wide column">
                         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
                             <input name="addressId" placeholder="Masukan nama perusahaan" type="hidden" formControlName="addressId"/>
-
                             <div class="fields">
                                 <div class="eight wide field">
                                     <label>Nama</label>
@@ -40,13 +40,13 @@
                             </div>    
                             <div class="fields">
                                 <div class="eight wide field">
-                                    <label>Kelurahan / Kecamatan</label>
+                                    <label>Kecamatan</label>
                                     <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
                                         <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                                     </sui-select>
                                 </div>
                                 <div class="eight wide field">
-                                    <label>Desa</label>
+                                    <label>Kelurahan</label>
                                     <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
                                         <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                                     </sui-select>

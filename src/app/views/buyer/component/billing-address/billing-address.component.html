@@ -1,6 +1,7 @@
 
 <div class="ui grid">
     <div class="sixteen wide column">
+        <p>Silakan isi data Billing dibawah ini dengan lengkap dan benar.</p>
         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
             <h4 class="ui dividing header">Data Billing</h4>
             <input name="addressId" type="hidden" formControlName="addressId" [(ngModel)]="fm.addressId"/>
@@ -35,13 +36,13 @@
 
             <div class="fields">
                 <div class="eight wide field">
-                    <label>Kelurahan / Kecamatan</label>
+                    <label>Kecamatan</label>
                     <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
                         <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                     </sui-select>
                 </div>
                 <div class="eight wide field">
-                    <label>Desa</label>
+                    <label>Kelurahan</label>
                     <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="villageId">
                         <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                     </sui-select>

@@ -72,7 +72,8 @@ export class CheckoutComponent implements OnInit {
 
   selShippingAddress: any = '';
   selBillingAddress: any = '';
-
+  kampret;
+  kampre2t;
   billing: Boolean = false;
 
   constructor(
@@ -95,6 +96,7 @@ export class CheckoutComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.kampret = false;
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
     this.checkout = this.getCheckout();
@@ -102,6 +104,14 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
+        console.log('kaka', this.billingAddressList);
+        // console.log('asdasd', token);
+        console.log('apaan si nih', this.billingAddress );
+          if (this.billingAddressList.length === 0) {
+          this.kampret = true;
+        } else {
+          this.kampre2t = true;
+        }
         if (this.billingAddressList.length === 0) {
           this.billing = true;
         }

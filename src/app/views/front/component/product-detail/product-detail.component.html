@@ -15,7 +15,7 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [imageZoom]="theImage" [src]="theImage" [style.height.px]="250" [lensWidth]="600" [lensHeight]="600">
+        <img [imageZoom]="theImage" [src]="theImage" [style.height.px]="200" [lensWidth]="600" [lensHeight]="600">
     </div>
     <div class="thumbnail-container">
         <div class="thumbnail">
@@ -139,9 +139,9 @@
                     <i class="shop icon"></i>
                     <strong>Beli Sekarang</strong>
                   </button> -->
-          <div class="gap-between-elements"></div>
+          <!-- <div class="gap-between-elements"></div> -->
           <div class="content favorit gap-between-elements">
-                <button type="submit" style="border: 0; background: transparent" class="poi" (click)="ininih(productId)">
+                <button type="submit" style="border: 0; background: transparent" class="poi" (click)="ininih(productId)" style="cursor: pointer;">
                         <img src="/assets/img/zzzzz.jpg" width="200px" height="auto" alt="submit" />
                     </button>
            </div>
@@ -156,7 +156,7 @@
                 <img src="https://dev.myacico.co.id/images/general/ico_bank_02.png" width="35" class="ui middle aligned mini image">
                 <img src="https://dev.myacico.co.id/images/general/ico_bank_04.png" width="35" class="ui middle aligned mini image">
             <div class="gap-between-elements"></div>
-            <strong>Garansi : </strong><span>1 Tahun Garansi</span>
+            <strong>Garansi : </strong><span>{{garansi}}</span>
             <div class="gap-between-elements"></div>
             <strong>Jumlah : </strong>
             <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
@@ -240,7 +240,10 @@
     <div class="ui bottom attached segment" suiTabContent="1">
         <p [innerHTML]="ProductList.description | sanitizeHtml"></p>
     </div>
-    <div class="ui bottom attached segment" suiTabContent="2">Spesifikasi Masih Belum Tersedia</div>
+    <div class="ui bottom attached segment" suiTabContent="2">
+        <span *ngIf="specs === 0">Spesifikasi Masih Belum Tersedia</span>
+        <li *ngFor="let item of ProductList.specification">{{item.attribute}} : {{item.value}}</li>
+    </div>
     <div class="ui bottom attached segment" suiTabContent="3">Belum ada Ulasan Untuk {{ProductList.name}}</div>
     <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
 </sui-tabset>

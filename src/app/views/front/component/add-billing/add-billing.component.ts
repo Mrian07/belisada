@@ -1,3 +1,4 @@
+import { ShippingAddressService } from './../../../../core/service/shipping-address/shipping-address.service';
 import { BillingAddress } from './../../../../core/model/billing-address';
 import { BilingAddressService } from './../../../../core/service/billing-address/biling-address.service';
 import { MasterService } from './../../../../core/service/master/master.service';
@@ -47,6 +48,7 @@ export class AddBillingComponent implements OnInit {
   constructor(
     private masterService: MasterService,
     private ngZone: NgZone,
+    private shippingAddressService: ShippingAddressService,
     private shareService: ShareService,
     private billingAddressService: BilingAddressService
   ) { }
@@ -102,28 +104,68 @@ export class AddBillingComponent implements OnInit {
         postal: model.postalCode,
         villageId: model.vilaggeId.mvillageId
       };
-      this.billingAddressService.create(data).subscribe(response => {
+      swal({
+        text: 'Apakah Anda Ingin Menggunakan Sebagai Alamat Pengiriman ?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes !!',
+        cancelButtonText: 'No !! ',
+        confirmButtonClass: 'btn btn-success',
+        cancelButtonClass: 'btn btn-danger',
+        buttonsStyling: false,
+        reverseButtons: true
+      }).then((result) => {
+        if (result.value) {
+          this.shippingAddressService.create(data).subscribe(response => {
+            console.log('ini submit ', response);
+            this.triggerEvent.emit(true);
+            this.createComForm.reset();
+            this.fillForms();
+          });
+          this.billingAddressService.create(data).subscribe(response => {
+            console.log('ini submit ', response);
+            this.triggerEvent.emit(true);
+            this.createComForm.reset();
+            window.location.reload();
+            this.fillForms();
+          });
+        // result.dismiss can be 'cancel', 'overlay',
+        // 'close', and 'timer'
+        } else if (result.dismiss === 'cancel') {
+           this.billingAddressService.create(data).subscribe(response => {
         console.log('ini submit ', response);
         this.triggerEvent.emit(true);
         this.createComForm.reset();
-        if (response.status === '1') {
-          swal(
-            'Success',
-            'Data billing berhasil ditambahkan',
-          //  response.message,
-            'success'
-          ).then(result => {
-            location.reload();
-          });
-        }else {
-          swal(
-            'Opps!',
-            response.message,
-            'error'
-          );
-        }
+        window.location.reload();
         this.fillForms();
       });
+        }
+      });
+
+      // this.billingAddressService.create(data).subscribe(response => {
+      //   console.log('ini submit ', response);
+      //   this.triggerEvent.emit(true);
+      //   this.createComForm.reset();
+      //   if (response.status === '1') {
+      //     swal(
+      //       'Success',
+      //       'Data billing berhasil ditambahkan',
+      //     //  response.message,
+      //       'success'
+      //     ).then(result => {
+      //       location.reload();
+      //     });
+      //   }else {
+      //     swal(
+      //       'Opps!',
+      //       response.message,
+      //       'error'
+      //     );
+      //   }
+      //   this.fillForms();
+      // });
     }
   }
 
