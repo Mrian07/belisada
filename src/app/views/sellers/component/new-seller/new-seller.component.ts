@@ -95,7 +95,7 @@ export class NewSellerComponent implements OnInit {
     this.getAllStore();
     this.getProvince();
     // this.fillForms();
-    this.fineStore();
+    this.cekStore();
     this.selectBank();
   }
 
@@ -131,7 +131,7 @@ export class NewSellerComponent implements OnInit {
     });
   }
 
-  fineStore() {
+  cekStore() {
     this.storeService.getAll().subscribe(response => {
       console.log('getAllStore response: ', response);
       this.stores = response;
