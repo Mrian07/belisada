@@ -40,6 +40,7 @@ export class Interceptor implements HttpInterceptor {
         if (err.status === 401) {
           swal('Anda belum Login atau Session Anda Expired, Anda Harus Login ulang')
           .then((result) => {
+            localStorage.removeItem('user');
             this.routes.navigateByUrl('/sign-in');
           });
         }else if (err.status === 404) {

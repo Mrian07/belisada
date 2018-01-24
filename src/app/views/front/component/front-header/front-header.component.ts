@@ -115,7 +115,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   getProfile() {
-    this.profileService.getProfile(this.auth.getToken()).subscribe(data => {
+    this.profileService.getProfileBuyer(this.auth.getToken()).subscribe(data => {
       this.userName = data.name;
       if (data.imageAvatar === '') {
         this.avatar = 'assets/img/user.jpg';
