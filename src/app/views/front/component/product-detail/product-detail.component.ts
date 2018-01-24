@@ -64,6 +64,15 @@ export class ProductDetailComponent implements OnInit {
   theImage: string;
   arrStock: number[];
   asap: Boolean = true;
+  specs: any;
+  garansiDay = [
+    {day: 0 , val: 'Tidak Bergaransi'},
+    {day: 30 , val: '1 Bulan'},
+    {day: 90 , val: '3 Bulan'},
+    {day: 182 , val: '6 Bulan'},
+    {day: 365 , val: '1 Tahun'},
+  ];
+  garansi: any;
 
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
@@ -118,9 +127,12 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
-        //console.log(data);
+        console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
+          const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
+          this.garansi = garansi.val;
+          this.specs = data.detail.specification.length;
           if ( this.ProductList.isAsapShipping === 'Y') {
             this.asap = true;
           }else {
@@ -135,7 +147,6 @@ export class ProductDetailComponent implements OnInit {
           this.ProductImage = this.ProductList.image;
           this.storeName = this.ProductList.storeName;
           this.arrStock = Array.from(new Array(this.ProductList.stock), (val, index) => index + 1);
-          //console.log('arrStock: ', this.arrStock);
           if (this.storeName === '') {
             this.storeName = 'Belisada.co.id';
           }
