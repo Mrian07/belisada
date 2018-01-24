@@ -27,11 +27,10 @@
 <div class='conten-checkout'>
     <div class="ui two column grid">
         <div class="column"><h2>Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p></div>
-        <div class="column"><h2>Alamat Pengiriman</h2><p>Jika Alamat pengiriman belum ada, lakukan tambah alamat pengiriman.</p></div>
     </div>
 
     <div class="ui grid">
-        <div class="two column row">
+        <div class="one column row">
             <div class="column">
                 <sui-tabset>
                     <div class="ui top attached tabular menu">
@@ -78,53 +77,66 @@
                 </sui-tabset>
             </div>
 
-            <div class="column">
-                <sui-tabset>
-                    <div class="ui top attached tabular menu">
-                        <a class="item" suiTabHeader="1">Pengiriman</a>
-                        <a class="item" suiTabHeader="2">Tambah Alamat Pengiriman</a>
-                    </div>
-                    <div class="ui bottom attached segment" suiTabContent="1"> 
-                        <div class="sixten wide column right aligned">
-                            <div class="ui labeled action input">
-        
-                                <div class="ui label">
-                                    Pilih alamat pengiriman:
-                                </div>
-        
-                                <select class="ui compact selection dropdown" [(ngModel)]="selShippingAddress" (change)="getShippingAddress(selShippingAddress)">
-                                    <option value="">-Pilih-</option>
-                                    <option *ngFor="let item of shippingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
-                                </select>
-                                <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
-                            </div>  
-                            <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
-                        </div>
 
-                        <div class="ui segment" *ngIf="shippingAddress">
-                            <div class="ui grid">
-                
-                                <div class="sexten wide column">
-                                    <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
-                                    {{ shippingAddress.address }}<br>
-                                    {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
-                                    {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
-                                </p>
-                                </div>  
-                                
-                            </div>  
-                        </div>
-
-                    </div>
-                    <div class="ui bottom attached segment" suiTabContent="2"> 
-                        <app-add-shipping></app-add-shipping>
-                    </div>
-                </sui-tabset>
-            </div>
         </div>
     </div>
 
 
+
+
+    <div class='conten-checkout'>
+        <div class="ui two column grid">
+            <div class="column"><h2>Alamat Pengiriman</h2><p>Jika Alamat pengiriman belum ada, lakukan tambah alamat pengiriman.</p></div>
+        </div>
+    
+        <div class="ui grid">
+            <div class="one column row">
+            
+                <div class="column">
+                    <sui-tabset>
+                        <div class="ui top attached tabular menu">
+                            <a class="item" suiTabHeader="1">Pengiriman</a>
+                            <a class="item" suiTabHeader="2">Tambah Alamat Pengiriman</a>
+                        </div>
+                        <div class="ui bottom attached segment" suiTabContent="1"> 
+                            <div class="sixten wide column right aligned">
+                                <div class="ui labeled action input">
+            
+                                    <div class="ui label">
+                                        Pilih alamat pengiriman:
+                                    </div>
+            
+                                    <select class="ui compact selection dropdown" [(ngModel)]="selShippingAddress" (change)="getShippingAddress(selShippingAddress)">
+                                        <option value="">-Pilih-</option>
+                                        <option *ngFor="let item of shippingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
+                                    </select>
+                                    <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
+                                </div>  
+                                <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
+                            </div>
+    
+                            <div class="ui segment" *ngIf="shippingAddress">
+                                <div class="ui grid">
+                    
+                                    <div class="sexten wide column">
+                                        <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
+                                        {{ shippingAddress.address }}<br>
+                                        {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
+                                        {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
+                                    </p>
+                                    </div>  
+                                    
+                                </div>  
+                            </div>
+    
+                        </div>
+                        <div class="ui bottom attached segment" suiTabContent="2"> 
+                            <app-add-shipping></app-add-shipping>
+                        </div>
+                    </sui-tabset>
+                </div>
+            </div>
+        </div>
 
 
     <!-- app-cart -->
