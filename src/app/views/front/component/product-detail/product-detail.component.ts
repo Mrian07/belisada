@@ -121,7 +121,7 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
-        console.log(data);
+        //console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
           if ( this.ProductList.isAsapShipping === 'Y') {
@@ -138,7 +138,7 @@ export class ProductDetailComponent implements OnInit {
           this.ProductImage = this.ProductList.image;
           this.storeName = this.ProductList.storeName;
           this.arrStock = Array.from(new Array(this.ProductList.stock), (val, index) => index + 1);
-          console.log('arrStock: ', this.arrStock);
+          //console.log('arrStock: ', this.arrStock);
           if (this.storeName === '') {
             this.storeName = 'Belisada.co.id';
           }
