@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { SendEmail } from '../../model/sendemail';
 import 'rxjs/add/operator/map';
 import { Upgrade, UpgradeRespon, UpgradeRequet } from '../../model/upgrade';
+import { LoginData } from './../../model/login';
 
 @Injectable()
 export class UpgradeService {
@@ -16,5 +17,10 @@ export class UpgradeService {
   upToSeller(updateData: UpgradeRequet): Observable<UpgradeRespon[]> {
     return this.http.put(this.configuration.serverWithAccUrl + '/buyer/profile/upgrade', updateData)
         .map(resp => resp as UpgradeRespon[]);
+  }
+
+  changeToken() {
+    return this.http.get(this.configuration.serverWithAccUrl + '/account/refreshtoken')
+    .map(response => response as LoginData);
   }
 }

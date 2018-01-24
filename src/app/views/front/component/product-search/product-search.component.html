@@ -34,8 +34,9 @@
 
         <div class="search-results" *ngFor="let item of productSearchResault.productList">
 
-            <div class="prodimg">
-                 <img class="ui medium image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'"></div>
+            <div class="prodimg" align="center">
+                 <img class="ui image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'">
+            </div>
             <!-- <div class="clear-fix"></div> -->
             <div class="highlight">
                 <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a>
@@ -45,7 +46,8 @@
             <!-- <div [innerHTML]="item.highlight | sanitizeHtml | truncate : 20 : '.'"></div> -->
             </div>
             <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
-                <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div>
+                <div class="yu"><i class="info circle icon"></i>Stok : {{item.stock}}</div>
+                <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
                 <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
                 <sui-rating class="star" [ngModel]="3" [maximum]="5"></sui-rating>
             </div>

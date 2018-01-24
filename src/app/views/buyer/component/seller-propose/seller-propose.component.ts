@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { UpgradeService } from './../../../../core/service/upgrade/upgrade.service';
+import { LoginService } from '../../../../core/service/login/login.service';
 
 @Component({
   selector: 'app-seller-propose',
@@ -13,6 +14,7 @@ export class SellerProposeComponent implements OnInit {
   constructor(
     private router: Router,
     private upgradeService: UpgradeService,
+    private loginService: LoginService,
   ) { }
 
   ngOnInit() {
@@ -24,20 +26,24 @@ export class SellerProposeComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     this.router.navigateByUrl('/buyer/dashboard');
 
-    if (user.role === 3 || user.role === 2) {
-      this.router.navigateByUrl('/seller/dashboard');
-    } else {
+    // if (user.role === 3 || user.role === 2) {
+    //   this.router.navigateByUrl('/seller/dashboard');
+    // } else {
 
         const data = {
           userType: '1'
         };
         this.upgradeService.upToSeller(data).subscribe(response => {
-          this.router.navigateByUrl('/seller/dashboard');
+          this.upgradeService.changeToken().subscribe(dataToken => {
+
+            this.loginService.user = dataToken;
+            localStorage.user = JSON.stringify(dataToken);
+            this.router.navigateByUrl('/seller/new-seller');
+
+          });
         });
 
-    }
-
-
+   // }
 
   }
 }

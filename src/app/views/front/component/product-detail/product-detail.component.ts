@@ -1,21 +1,18 @@
 import { ProductDetailService } from './../../../../core/service/product-detail/product-detail.service';
 import { Component, OnInit, NgZone, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { NgxCarousel } from 'ngx-carousel';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
-import { ProductDetail } from '../../../../core/model/product-detail';
-import { Title } from '@angular/platform-browser';
-
-import { Product } from '../../../../core/model/product';
-import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
-
-import * as frontActions from '../../../../store/actions/front';
-import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
-
 import swal from 'sweetalert2';
 import { Subject } from 'rxjs/Subject';
+import { ProductDetail } from '../../../../core/model/product-detail';
+import { Product } from '../../../../core/model/product';
+import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import * as frontActions from '../../../../store/actions/front';
+import * as fromProduct from '../../../../store/reducers';
 import { CartItemRequest, CartItem } from '../../../../core/model/shoppingcart/cart-item';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';

@@ -60,7 +60,7 @@ export class SignInComponent implements OnInit {
     this.title.setTitle('Belisada - Login');
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.shared.shareData || 'buyer/test';
     if (this.tokenService.getToken() !== undefined) {
-      this.router.navigateByUrl('/');
+      //this.router.navigateByUrl('/');
     }
   }
 
