@@ -1,5 +1,5 @@
 import swal from 'sweetalert2';
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone, HostListener } from '@angular/core';
 import { ShippingAddressService } from '../../../../core/service/shipping-address/shipping-address.service';
 import { ShippingAddress } from '../../../../core/model/shipping-address';
 import { BilingAddressService } from '../../../../core/service/billing-address/biling-address.service';
@@ -107,13 +107,12 @@ export class CheckoutComponent implements OnInit {
         console.log('kaka', this.billingAddressList);
         // console.log('asdasd', token);
         console.log('apaan si nih', this.billingAddress );
-          if (this.billingAddressList.length === 0) {
-          this.kampret = true;
-        } else {
-          this.kampre2t = true;
-        }
         if (this.billingAddressList.length === 0) {
+          this.kampret = true;
           this.billing = true;
+        } else {
+          this.billingAddress = this.billingAddressList[0];
+          this.kampre2t = true;
         }
         console.log('this.billingAddressList: ', this.billingAddressList);
       });
@@ -306,7 +305,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartService.empty();
       }
       swal(response.message);
-      this.router.navigateByUrl('/buyer/dashboard');
+      this.router.navigateByUrl('/finish-order');
     });
   }
 
@@ -314,4 +313,73 @@ export class CheckoutComponent implements OnInit {
     this.router.navigateByUrl('/cart');
   }
 
+  scrollToQuestionNode(id) {
+    const element = document.getElementById(id);
+    element.scrollIntoView(true);
+  }
+
+  offset(el) {
+    const rect = el.getBoundingClientRect(),
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+}
+
+  @HostListener('window:scroll') onScroll() {
+    const csAddress = document.getElementById('cs-address');
+    const csCart = document.getElementById('cs-cart');
+    const csPayment = document.getElementById('cs-payment');
+    const csSummary = document.getElementById('cs-summary');
+    const limitScroll = document.getElementById('limit-scroll');
+
+    const csAddressBtn = document.getElementById('cs-address-btn');
+    const csCartBtn = document.getElementById('cs-cart-btn');
+    const csPaymentBtn = document.getElementById('cs-payment-btn');
+    const csSummaryBtn = document.getElementById('cs-summary-btn');
+
+    const csAddressOffset = this.offset(csAddress);
+    const csCartOffset = this.offset(csCart);
+    const csPaymentOffset = this.offset(csPayment);
+    const csSummaryOffset = this.offset(csSummary);
+    const limitScrollOffset = this.offset(limitScroll);
+
+    const csAddressY = Math.floor(csAddressOffset.top);
+    const csCartY = Math.floor(csCartOffset.top);
+    const csPaymentY = Math.floor(csPaymentOffset.top);
+    const csSummaryY = Math.floor(csSummaryOffset.top);
+    const limitScrollY = Math.floor(limitScrollOffset.top);
+
+    if (window.pageYOffset >= csAddressY && window.pageYOffset < csCartY) {
+      console.log('1');
+      csAddressBtn.classList.add('active');
+      csCartBtn.classList.remove('active');
+      csPaymentBtn.classList.remove('active');
+      csSummaryBtn.classList.remove('active');
+    } else if (window.pageYOffset >= csCartY && window.pageYOffset < csPaymentY) {
+      console.log('2');
+      csAddressBtn.classList.remove('active');
+      csCartBtn.classList.add('active');
+      csPaymentBtn.classList.remove('active');
+      csSummaryBtn.classList.remove('active');
+    } else if (window.pageYOffset >= csPaymentY && window.pageYOffset < csSummaryY) {
+      console.log('3');
+      csAddressBtn.classList.remove('active');
+      csCartBtn.classList.remove('active');
+      csPaymentBtn.classList.add('active');
+      csSummaryBtn.classList.remove('active');
+    } else if (window.pageYOffset >= csSummaryY && window.pageYOffset < limitScrollY) {
+      console.log('4');
+      csAddressBtn.classList.remove('active');
+      csCartBtn.classList.remove('active');
+      csPaymentBtn.classList.remove('active');
+      csSummaryBtn.classList.add('active');
+    } else {
+      console.log('5');
+      csAddressBtn.classList.remove('active');
+      csCartBtn.classList.remove('active');
+      csPaymentBtn.classList.remove('active');
+      csSummaryBtn.classList.remove('active');
+    }
+    console.log(window.pageYOffset);
+  }
 }

@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class='conten-checkout'>
-        <h2>Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p>
+        <h2 id="cs-address">Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p>
         <div class="ui grid">
             <div class="one column row">
                 <div class="column">
@@ -129,7 +129,7 @@
 
 
         <!-- app-cart -->
-        <h2>Keranjang</h2>
+        <h2 id="cs-cart">Keranjang</h2>
 
         <div class="row animated rollIn">
             <div id="no-more-tables">
@@ -188,7 +188,7 @@
 
 
         <!-- app-payment-method -->
-        <h2>Pembayaran</h2>
+        <h2 id="cs-payment">Pembayaran</h2>
 
         <p>Silakan pilih metode pembayaran dan ongkos kirim yang ingin Anda gunakan. Dan apa bila Anda memiliki Kode Promo maka gunakan Kode Promo tersebut untuk mendapatkan potongan harga.</p>
         <div class="ui grid">
@@ -284,7 +284,7 @@
         <!-- <app-payment-method></app-payment-method> -->
         <!--/ app-payment-method -->
 
-        <h2>Rincian</h2>
+        <h2 id="cs-summary">Rincian</h2>
 
       <div class='bg-rinci'>
           <div class="ui grid stackable">
@@ -510,3 +510,22 @@
             </button>
         </div>
     </div>
+</div>
+<div id="limit-scroll"></div>
+
+<div class="sticky-checkout-step">
+    <ul>
+        <li id="cs-address-btn" class="cs-address" (click)="scrollToQuestionNode('cs-address')"><i class="address book outline icon"></i>
+            <span>Alamat</span>
+        </li>
+        <li id="cs-cart-btn" class="cs-cart" (click)="scrollToQuestionNode('cs-cart')"><i class="in cart icon"></i>
+            <span>Keranjang Belanja</span>
+        </li>
+        <li id="cs-payment-btn" class="cs-payment" (click)="scrollToQuestionNode('cs-payment')"><i class="credit card alternative icon"></i>
+            <span>Pembayaran</span>
+        </li>
+        <li id="cs-summary-btn" class="cs-summary" (click)="scrollToQuestionNode('cs-summary')"><i class="unordered list icon"></i>
+            <span>Rincian</span>
+        </li>
+    </ul>
+</div>
