@@ -25,7 +25,7 @@
     </div>
 </div>
 <div class='conten-checkout'>
-    <div class="ui two column grid">
+    <div id="cs-address" class="ui two column grid">
         <div class="column"><h2>Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p></div>
         <div class="column"><h2>Alamat Pengiriman</h2><p>Jika Alamat pengiriman belum ada, lakukan tambah alamat pengiriman.</p></div>
     </div>
@@ -128,7 +128,7 @@
 
 
     <!-- app-cart -->
-    <div class="ui one column grid">
+    <div id="cs-cart" class="ui one column grid">
         <div class="column"><h2>Keranjang</h2></div>
     </div>
 
@@ -189,7 +189,7 @@
 
 
     <!-- app-payment-method -->
-    <div class="ui one column grid">
+    <div id="cs-payment" class="ui one column grid">
         <div class="column"><h2>Pembayaran</h2></div>
     </div>
 
@@ -287,7 +287,7 @@
     <!-- <app-payment-method></app-payment-method> -->
     <!--/ app-payment-method -->
 
-    <div class="ui one column grid">
+    <div id="cs-summary" class="ui one column grid">
         <div class="column"><h2>Rincian</h2></div>
     </div>
 
@@ -514,4 +514,22 @@
             <i class="right chevron icon"></i>
         </button>
     </div>
+</div>
+<div id="limit-scroll"></div>
+
+<div class="sticky-checkout-step">
+    <ul>
+        <li id="cs-address-btn" class="cs-address" (click)="scrollToQuestionNode('cs-address')"><i class="address book outline icon"></i>
+            <span>Alamat</span>
+        </li>
+        <li id="cs-cart-btn" class="cs-cart" (click)="scrollToQuestionNode('cs-cart')"><i class="in cart icon"></i>
+            <span>Keranjang Belanja</span>
+        </li>
+        <li id="cs-payment-btn" class="cs-payment" (click)="scrollToQuestionNode('cs-payment')"><i class="credit card alternative icon"></i>
+            <span>Pembayaran</span>
+        </li>
+        <li id="cs-summary-btn" class="cs-summary" (click)="scrollToQuestionNode('cs-summary')"><i class="unordered list icon"></i>
+            <span>Rincian</span>
+        </li>
+    </ul>
 </div>
