@@ -305,7 +305,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartService.empty();
       }
       swal(response.message);
-      this.router.navigateByUrl('/buyer/dashboard');
+      this.router.navigateByUrl('/finish-order');
     });
   }
 
