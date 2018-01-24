@@ -118,7 +118,6 @@ export class ProductSearchComponent implements OnInit {
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
         this.loading = false;
-        console.log(response);
         this.productSearchResault = response;
         this.total = response.productCount;
         this.start = (this.currentPage - 1) * this.limit;

@@ -49,15 +49,15 @@ export class Interceptor implements HttpInterceptor {
           //   //this.routes.navigateByUrl('/404');
           // });
         }else if (err.status === 500) {
-          swal('Oops!...something wrong...')
-          .then((result) => {
+          // swal('Oops!...something wrong...')
+          // .then((result) => {
             this.routes.navigateByUrl('/maintenance');
-          });
+         // });
         }else {
-          swal('Oops!...something wrong...')
-          .then((result) => {
+          // swal('Oops!...something wrong...')
+          // .then((result) => {
             this.routes.navigateByUrl('/maintenance');
-          });
+         // });
         }
       }
     });
