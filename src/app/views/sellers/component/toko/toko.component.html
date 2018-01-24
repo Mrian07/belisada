@@ -1,18 +1,11 @@
-<div class="column">
-    <div class="wide column">
-        <h1>Profile</h1>
-    </div>
-</div>
-<div class="ui segment">
+<div class="ui">
   <div class="ui grid">
     <div class="twelve wide stretched column">
         <div class="ui grid">
-            <div class="six wide column center aligend">
-                <img src="/assets/img/shop.jpg" alt="shop.jpg" class="ui image"/>
-            </div>
-            <div class="ten wide column">
+            <div class="sixteen wide column">
 
                     <form class="ui form" [formGroup]="createStoreForm" (ngSubmit)="onSubmit()" novalidate>
+                            <h4 class="ui dividing header">Info Toko</h4>
                             <div class="field">
                                 <label>Nama Toko</label>
                                 <input name="name" placeholder="Masukan nama toko" type="text" formControlName="name"/>

@@ -26,6 +26,7 @@
 
 
                   <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                        <h4 class="ui dividing header">Data Profile</h4>
                       <div class="field">
                           <label>Nama</label>
                           <input name="name" #name placeholder="Masukan nama" type="text" [(ngModel)]="fm.name" required/>
