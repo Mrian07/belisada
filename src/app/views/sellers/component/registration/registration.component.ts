@@ -53,7 +53,7 @@ export class RegistrationComponent implements OnInit {
     if (user) {
       const role = user.role;
      // if (role === 2) {
-        this.router.navigateByUrl('/seller/dashboard');
+        this.router.navigateByUrl('/seller/new-seller');
     //  }else {}
     }
   }
