@@ -65,10 +65,10 @@ export class CheckoutComponent implements OnInit {
   private storage: Storage;
   checkout: Checkout;
   shippingAddress: ShippingAddress;
-  shippingAddressList: ShippingAddress[];
+  shippingAddressList: ShippingAddress[] = new Array<ShippingAddress>();
 
   billingAddress: BillingAddress;
-  billingAddressList: BillingAddress[];
+  billingAddressList: BillingAddress[] = new Array<BillingAddress>();
 
   selShippingAddress: any = '';
   selBillingAddress: any = '';
@@ -104,6 +104,7 @@ export class CheckoutComponent implements OnInit {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
         console.log('kaka', this.billingAddressList);
+        console.log('aaa', this.shippingAddressList);
         // console.log('asdasd', token);
         console.log('apaan si nih', this.billingAddress );
         if (this.billingAddressList.length === 0) {
