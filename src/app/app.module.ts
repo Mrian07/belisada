@@ -81,6 +81,7 @@ import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lac
 import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
 import { DownloadAppComponent } from './views/front/component/download-app/download-app.component';
 import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
+import { SliderDepanComponent } from './views/front/component/slider-depan/slider-depan.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -159,6 +160,7 @@ export function getAuthServiceConfigs() {
     CustomerCareComponent,
     DownloadAppComponent,
     SellerProposeComponent,
+    SliderDepanComponent,
     // WishlistComponent,
     // AsapComponent
   ],

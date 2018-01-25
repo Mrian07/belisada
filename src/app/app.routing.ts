@@ -1,3 +1,4 @@
+import { SliderDepanComponent } from './views/front/component/slider-depan/slider-depan.component';
 import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
@@ -329,6 +330,13 @@ const routes: Routes = [
       {
         path: 'asap',
         component: AsapComponent,
+        data: {
+          title: 'asap'
+        }
+      },
+      {
+        path: 'Slider-Depan',
+        component: SliderDepanComponent,
         data: {
           title: 'asap'
         }
