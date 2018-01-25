@@ -357,25 +357,27 @@ export class CheckoutComponent implements OnInit {
     const csSummaryY = Math.floor(csSummaryOffset.top);
     const limitScrollY = Math.floor(limitScrollOffset.top);
 
-    if (window.pageYOffset >= csAddressY && window.pageYOffset < csCartY) {
+    const pageYOffset = Math.ceil(window.pageYOffset);
+
+    if (pageYOffset >= csAddressY && pageYOffset < csCartY) {
       console.log('1');
       csAddressBtn.classList.add('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
-    } else if (window.pageYOffset >= csCartY && window.pageYOffset < csPaymentY) {
+    } else if (pageYOffset >= csCartY && pageYOffset < csPaymentY) {
       console.log('2');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.add('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
-    } else if (window.pageYOffset >= csPaymentY && window.pageYOffset < csSummaryY) {
+    } else if (pageYOffset >= csPaymentY && pageYOffset < csSummaryY) {
       console.log('3');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.add('active');
       csSummaryBtn.classList.remove('active');
-    } else if (window.pageYOffset >= csSummaryY && window.pageYOffset < limitScrollY) {
+    } else if (pageYOffset >= csSummaryY && pageYOffset < limitScrollY) {
       console.log('4');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
@@ -388,6 +390,6 @@ export class CheckoutComponent implements OnInit {
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
     }
-    console.log(window.pageYOffset);
+    console.log(pageYOffset);
   }
 }
