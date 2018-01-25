@@ -17,7 +17,6 @@ export class ContactUsComponent implements OnInit {
   email: FormControl;
   issue: FormControl;
   message: FormControl;
-  isSend: boolean;
 
   constructor(
     private title: Title,
@@ -69,10 +68,8 @@ export class ContactUsComponent implements OnInit {
             'success'
           );
           this.createComForm.reset();
-          //this.isSend = true;
-          this.createFormControls();
-          this.createForm();
       });
     }
   }
+
 }

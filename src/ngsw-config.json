@@ -14,14 +14,5 @@
         "/*.chunk.js"
       ]
     }
-  // }, {
-  //   "name": "assets",
-  //   "installMode": "lazy",
-  //   "updateMode": "prefetch",
-  //   "resources": {
-  //     "files": [
-  //       "/assets/**"
-  //     ]
-  //   }
   }]
 }
