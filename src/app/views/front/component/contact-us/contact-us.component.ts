@@ -17,6 +17,7 @@ export class ContactUsComponent implements OnInit {
   email: FormControl;
   issue: FormControl;
   message: FormControl;
+  isSend: any;
 
   constructor(
     private title: Title,
