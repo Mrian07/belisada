@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
   fm: any = {};
   adr: any = {};
   dob: Date;
-
+  prov: any;
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
@@ -85,6 +85,8 @@ export class ProfileComponent implements OnInit {
         idcard: data.idcard,
         villageId: data.villageId,
       }
+      const proId = this.provinces.find(x => {return x.mregionId==data.regionId})
+      this.prov = proId.name;
       this.adr = {
         province: this.provinces.find(x => {return x.mregionId==data.regionId}),
       };
