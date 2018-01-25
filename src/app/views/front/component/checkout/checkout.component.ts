@@ -75,7 +75,6 @@ export class CheckoutComponent implements OnInit {
   kampret;
   kampre2t;
   billing: Boolean = false;
-
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
