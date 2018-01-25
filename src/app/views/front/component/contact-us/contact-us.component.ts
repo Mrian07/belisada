@@ -65,4 +65,6 @@ export class ContactUsComponent implements OnInit {
       this.createComForm.reset();
   });
 }
+poerna() {
+}
 }
