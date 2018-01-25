@@ -88,18 +88,12 @@
                             <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                            Hi, {{userName | words: 1 : ""}}</div>
                         <div class="dropdown-profile-content">
-
-                            <div class="ui grid">
-                                <div class="ten wide column"><strong>Selamat datang,<br> {{userName}}</strong></div>
-                                <div class="six wide column">
-                                        <button class="mini ui right labeled red icon button" (click)="logout()">
+                                
+                                <button class="mini ui right labeled red icon button" (click)="logout()">
                                         <i class="sign out icon"></i>
                                         Logout
-                                        </button>
-
-                                    <!-- <a (click)="logout()" style="cursor: pointer;"><strong>Logout</strong></a> -->
-                                </div>
-                            </div>
+                                        </button><br><br>
+                                        <strong>Selamat datang<br> {{userName}}</strong>
                             <div class='dropdown-menu-account'>
                                 <a routerLink="/buyer/dashboard">Dashboard</a><br>
                                 <a routerLink="/buyer/transaction-buyer">Transaksi & Konfirmasi</a><br>
