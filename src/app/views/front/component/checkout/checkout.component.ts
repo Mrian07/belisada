@@ -114,7 +114,7 @@ export class CheckoutComponent implements OnInit {
           this.billingAddress = this.billingAddressList[0];
           this.kampre2t = true;
         }
-        console.log('this.billingAddressList: ', this.billingAddressList);
+        // if (this.shippingAddressList.isDefault)
       });
     });
 
@@ -259,6 +259,14 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.shippingAddressList = this.shareService.shareData;
+
+        this.shippingAddressList.forEach(item => {
+          if (item.isDefault === 'Y') {
+            this.selShippingAddress = item.addressId;
+            this.getShippingAddress(item.addressId);
+          }
+          console.log('this.billingAddressList: ', item.isDefault);
+        });
       });
     });
   }

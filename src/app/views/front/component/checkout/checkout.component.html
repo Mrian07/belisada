@@ -96,14 +96,15 @@
                                         </div>
 
                                         <select class="ui compact selection dropdown" [(ngModel)]="selShippingAddress" (change)="getShippingAddress(selShippingAddress)">
-                                            <option value="">-Pilih-</option>
-                                            <option *ngFor="let item of shippingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
+                                            <!-- <option  value="">-Pilih-</option> -->
+                                            <option *ngFor="let item of shippingAddressList" [value]="item.addressId" [selected]="item.isDefault === 'Y'">
+                                                {{item.name}}
+                                            </option>
                                         </select>
                                         <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
                                     </div>
                                     <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
                                 </div>
-
                                 <div class="ui segment" *ngIf="shippingAddress">
                                     <div class="ui grid">
 
