@@ -9,49 +9,49 @@
                             <div class="field">
                                 <label>Nama Toko</label>
                                 <input name="name" placeholder="Masukan nama toko" type="text" formControlName="name"/>
-                                <div class="form-control-feedback alert" *ngIf="name.invalid && name.dirty"> 
+                                <div class="form-control-feedback alert" *ngIf="name.invalid && name.dirty">
                                     Nama tidak boleh kosong
                                 </div>
                             </div>
                             <div class="field">
                                 <label>Alamat</label>
                                 <textarea name="address" placeholder="Masukan alamat" formControlName="address"></textarea>
-                                <div class="form-control-feedback alert" *ngIf="address.invalid && address.dirty"> 
+                                <div class="form-control-feedback alert" *ngIf="address.invalid && address.dirty">
                                     Alamat tidak boleh kosong
                                 </div>
                             </div>
                             <div class="fields">
                                 <div class="eight wide field">
                                     <label>Provinsi</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
-                                        <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+                                    <sui-select class="selection" #provs [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                                        <sui-select-option *ngFor="let option of provs.filteredOptions" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                                     </sui-select>
                                 </div>
                                 <div class="eight wide field">
                                     <label>Kota</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
-                                        <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                                    <sui-select class="selection" #citys [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                                        <sui-select-option *ngFor="let option of citys.filteredOptions" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
                                     </sui-select>
                                 </div>
-                            </div>    
+                            </div>
                             <div class="fields">
                                 <div class="eight wide field">
                                     <label>Kecamatan</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
-                                        <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                                    <sui-select class="selection" #camats [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                                        <sui-select-option *ngFor="let option of camats.filteredOptions" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                                     </sui-select>
                                 </div>
                                 <div class="eight wide field">
                                     <label>Kelurahan</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
-                                        <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+                                    <sui-select class="selection" #lurah [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih Desa" formControlName="village">
+                                        <sui-select-option *ngFor="let option of lurah.filteredOptions" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                                     </sui-select>
                                 </div>
-                            </div>   
+                            </div>
                             <div class="field">
                                 <label>Kode POS</label>
                                 <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalcode"/>
-                                <div class="form-control-feedback alert" *ngIf="postalcode.invalid && postalcode.dirty"> 
+                                <div class="form-control-feedback alert" *ngIf="postalcode.invalid && postalcode.dirty">
                                     Kodepos tidak boleh kosong
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                                 <textarea name="description" placeholder="Deskripsi toko anda" formControlName="description"></textarea>
                             </div>
                             <button class="ui primary button" type="submit">Simpan</button>
-                        </form>     
+                        </form>
 
 
 

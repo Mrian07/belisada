@@ -62,7 +62,7 @@
                 <div class="form-control-feedback" *ngIf="phone.invalid && (phone.dirty || f.submitted)">Telepon tidak boleh kosong</div>
             </div>
         </div>
-        <div style='margin-top:10px;'><button class="ui primary button" type="submit">Simpan</button></div>
+        <div style='margin-top:10px;'><button class="ui primary button" type="submit" [disabled]="!f.valid">Simpan</button></div>
         
     </form>
 </div>
