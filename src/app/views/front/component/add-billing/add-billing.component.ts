@@ -104,19 +104,24 @@ export class AddBillingComponent implements OnInit {
         postal: model.postalCode,
         villageId: model.vilaggeId.mvillageId
       };
+
+
+
+
       swal({
-        text: 'Apakah Anda Ingin Menggunakan Sebagai Alamat Pengiriman ?',
+        text: 'Apakah Anda Ingin Menyimpan Alamat Penagihan Sebagai Alamat Pengiriman ?',
         type: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes !!',
-        cancelButtonText: 'No !! ',
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
         confirmButtonClass: 'btn btn-success',
         cancelButtonClass: 'btn btn-danger',
-        buttonsStyling: false,
+        buttonsStyling: true,
         reverseButtons: true
       }).then((result) => {
+
         if (result.value) {
           this.shippingAddressService.create(data).subscribe(response => {
             console.log('ini submit ', response);
@@ -135,13 +140,16 @@ export class AddBillingComponent implements OnInit {
         // 'close', and 'timer'
         } else if (result.dismiss === 'cancel') {
            this.billingAddressService.create(data).subscribe(response => {
-        console.log('ini submit ', response);
-        this.triggerEvent.emit(true);
-        this.createComForm.reset();
-        window.location.reload();
-        this.fillForms();
-      });
+            console.log('ini submit ', response);
+            this.triggerEvent.emit(true);
+            this.createComForm.reset();
+            window.location.reload();
+            this.fillForms();
+          });
         }
+
+
+
       });
 
       // this.billingAddressService.create(data).subscribe(response => {
