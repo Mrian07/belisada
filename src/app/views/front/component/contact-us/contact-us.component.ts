@@ -29,7 +29,6 @@ export class ContactUsComponent implements OnInit {
     this.title.setTitle('Belisada.co.id');
     this.createFormControls();
     this.createForm();
-    this.isSend = false;
   }
 
   createFormControls() {
