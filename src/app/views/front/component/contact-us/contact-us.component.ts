@@ -28,13 +28,14 @@ export class ContactUsComponent implements OnInit {
     this.title.setTitle('Belisada.co.id');
     this.createFormControls();
     this.createForm();
+    this.isSend = false;
   }
 
   createFormControls() {
     this.name = new FormControl('', Validators.required);
-    this.email = new FormControl('');
-    this.issue = new FormControl('');
-    this.message = new FormControl('');
+    this.email = new FormControl('', Validators.required);
+    this.issue = new FormControl('', Validators.required);
+    this.message = new FormControl('', Validators.required);
   }
 
   createForm() {
@@ -47,24 +48,28 @@ export class ContactUsComponent implements OnInit {
   }
 
   onSubmit() {
-    const model = this.createComForm.value;
-    const data = {
-      name: model.name,
-      email: model.email,
-      issue: model.issue,
-      message: model.message
-    };
 
-    this.emailSendService.emailContactUs(data).subscribe(data => {
-      swal(
-        'success',
-        'Pesan Anda berhasil dikirim, <br>Staff kami akan segera menindak lanjuti.<br>Terima kasih.',
-        'success'
-      );
+    if (!this.createComForm.valid) {
+      return;
+    } else {
 
-      this.createComForm.reset();
-  });
-}
-poerna() {
-}
+      const model = this.createComForm.value;
+      const data = {
+        name: model.name,
+        email: model.email,
+        issue: model.issue,
+        message: model.message
+      };
+
+      this.emailSendService.emailContactUs(data).subscribe(respone => {
+          swal(
+            'success',
+            'Pesan Anda berhasil dikirim, <br>Staff kami akan segera menindak lanjuti.<br>Terima kasih.',
+            'success'
+          );
+          this.createComForm.reset();
+      });
+    }
+  }
+
 }

@@ -21,22 +21,22 @@
         </p></h3>
     </div>
     <div class="ten wide column">
-        <p>Untuk menghubungi kami silakan gunakan form dibawah ini.</p>
+        <p>Untuk menghubungi kami silakan gunakan form dibawah ini. {{isSend}}</p>
         <div class='title'>
           Hubungi Kami
         </div>
-        <form class="ui form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+        <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
         <div class="ui form">
           <div class="three fields">
             <div class="field">
               <label>Nama</label>
-              <input type="text" formControlName="name">
-              <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || f.submitted)">Nama tidak boleh kosong</div>
+              <input type="text" formControlName="name" placeholder="Masukan nama Anda">
+              <!-- <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || f.submitted)">Nama tidak boleh kosong</div> -->
             </div>
             <div class="field">
               <label>Email</label>
-              <input type="text" formControlName="email">
-              <div class="form-control-feedback" *ngIf="email.invalid && (email.dirty || f.submitted)">Email tidak boleh kosong</div>
+              <input type="text" formControlName="email" placeholder="Masukan email">
+              <!-- <div class="form-control-feedback" *ngIf="email.invalid && (email.dirty || f.submitted)">Email tidak boleh kosong</div> -->
             </div>
             <div class="field">
               <label>Keperluan</label>
@@ -48,16 +48,15 @@
                 <option value="Returns and Exchange">Returns and Exchange</option>
                 <option value="Becoming a Partner">Becoming a Partner</option>
               </select>
-              <div class="form-control-feedback" *ngIf="issue.invalid && (issue.dirty || f.submitted)">Keperluan tidak boleh kosong</div>
+              <!-- <div class="form-control-feedback" *ngIf="issue.invalid && (issue.dirty || f.submitted)">Keperluan tidak boleh kosong</div> -->
             </div>
           </div>
           <div class="field">
             <label>Pesan</label>
             <textarea formControlName="message"></textarea>
-            <div class="form-control-feedback" *ngIf="message.invalid && (message.dirty || f.submitted)">Pesan tidak boleh kosong</div>
+            <!-- <div class="form-control-feedback" *ngIf="message.invalid && (message.dirty || f.submitted)">Pesan tidak boleh kosong</div> -->
           </div>
-          <button class="ui button" (click)="poerna()"
-          [disabled]="!f.valid" type="submit">Kirim</button>
+          <button class="ui button" [disabled]="!f.valid" type="submit">Kirim</button>
         </div>
       </form>
     </div>
