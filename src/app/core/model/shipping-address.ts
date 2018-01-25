@@ -7,6 +7,7 @@ export class ShippingAddress {
   // villageId: string;
   villageId: number;
   phone: string;
+  isDefault: 'Y';
   addressType: string;
   // ini akhir dari untuk post yah
 
