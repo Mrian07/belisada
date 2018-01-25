@@ -25,6 +25,13 @@
   </div>
 </div>
 <!-- <h1 class='title-page'>Keranjang Belanja</h1> -->
+
+<div *ngIf="itemsTotal<=0" class="kosong">
+  <p>Keranjang Anda masih kosong, silakan isi keranjang belanja Anda dengan produk-produk menarik yang Belisada sediakan.</p>
+</div>
+
+<div *ngIf="itemsTotal">
+
 <div class="row animated rollIn">
     <div id="no-more-tables">
         <table class="col-md-12 table-bordered table-striped table-condensed cf">
@@ -80,4 +87,6 @@
       </button>
     <div class="ui buttons"></div>
   </div>
+</div>
+
 </div>
