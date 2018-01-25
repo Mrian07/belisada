@@ -60,6 +60,7 @@ export class TokoComponent implements OnInit {
   selectedKelurahan: any;
   selectedDesa: any;
   regionId: number;
+  optionTemplate: any;
 
   constructor(
     private storeService: StoreService,

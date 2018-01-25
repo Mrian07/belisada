@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
   userImgAvatar: string;
   userImageKTP: string;
   userImageNPWP: string;
-
+  optionTemplate: any;
   user: Profile = new Profile();
   provinces: Province[];
   cities: City[];
@@ -68,10 +68,9 @@ export class ProfileComponent implements OnInit {
       if (!data) {
         return console.log('kosong');
       }
-      // console.log('ini data: ', data);
-      if(data.dateOfBirth && data.dateOfBirth != '') {
-        let tl = data.dateOfBirth.split('-');
-        if(tl.length == 3) {
+      if (data.dateOfBirth && data.dateOfBirth !== '') {
+        const tl = data.dateOfBirth.split('-');
+        if (tl.length === 3) {
           this.dob = new Date(+(tl[2]), (+(tl[1]) - 1), +(tl[0]));
         }
       }
@@ -84,13 +83,11 @@ export class ProfileComponent implements OnInit {
         phone : data.phone,
         idcard: data.idcard,
         villageId: data.villageId,
-      }
-      const proId = this.provinces.find(x => {return x.mregionId==data.regionId})
-      this.prov = proId.name;
+      };
       this.adr = {
         province: this.provinces.find(x => {return x.mregionId==data.regionId}),
       };
-      if(data.cityId) {
+      if (data.cityId) {
         this.masterService.getCity(data.regionId).subscribe(city => {
           this.cities = city;
           this.adr.city = this.cities.find(x => x.mcityId === data.cityId);
