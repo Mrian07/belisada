@@ -284,7 +284,7 @@ const routes: Routes = [
             }
           },
            {
-            path: 'order-detail-buyer',
+            path: 'order-detail-buyer/:id',
             component: OrderDetailBuyerComponent,
             data: {
               title: 'Order Detail Buyer'
