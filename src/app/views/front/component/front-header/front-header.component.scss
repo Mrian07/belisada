@@ -533,11 +533,18 @@
     position: relative;
     display: inline-block;
     right: 0; left: auto;
+    padding-left:10px;
+    padding-right:10px;
+    border-top:1px solid #002e43;
+    border-left:1px solid #002e43;
+    border-right:1px solid #002e43;
   }
 
-  .dropdown-profile:hover {
-    // border: 1px solid #eeeeee;
-  }
+.dropdown-profile:hover{
+    border-top:1px solid #024766;
+    border-left:1px solid #024766;
+    border-right:1px solid #024766;
+}
 
   .dropdown-profile-content {
     display: none;
