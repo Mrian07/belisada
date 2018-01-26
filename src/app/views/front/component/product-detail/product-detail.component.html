@@ -133,7 +133,7 @@
     <div>
             <div *ngIf="ProductList.stock == 0; else login">
                     <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
-                            <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/prodak_page belisada-04.png" width="300px" height="50" alt="submit" />
+                            <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/prodak_pagebelisada-04.png" width="300px" height="50" alt="submit" />
                         </button>
                 </div>
                 <ng-template #login>
