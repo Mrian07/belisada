@@ -192,13 +192,14 @@ export class ShippingAddressComponent implements OnInit {
 
   btnDelete(id) {
     swal({
-      title: 'Are you sure?',
-      text: 'You wont be able to revert this!',
+      title: 'Alert!',
+      text: 'Apakah data shipping ini akan dihapus',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      cancelButtonText: 'Tidak',
+      confirmButtonText: 'Hapus'
     }).then((result) => {
       if (result.value) {
         this.shippingAddressService.delete(id).subscribe(data => {

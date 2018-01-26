@@ -73,11 +73,11 @@
                         </div>
                         <div class="field">
                             <label>Nomor HP</label>
-                            <input name="phone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
+                            <input name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
                         </div>
                         <div class="field">
                             <label>Nomor KTP</label>
-                            <input name="ktp" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
+                            <input name="ktp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
                         </div>
                         <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
                         <div class="upload-btn-wrapper">
@@ -86,7 +86,7 @@
                         </div>
                         <div class="field">
                             <label>Nomor NPWP</label>
-                            <input name="npwp" placeholder="Masukan nomor NPWP" type="text"  [(ngModel)]="fm.npwp"/>
+                            <input name="npwp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor NPWP" type="text"  [(ngModel)]="fm.npwp"/>
                         </div>
 
                         <!-- <div class="ui divider"></div> -->

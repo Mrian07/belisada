@@ -25,7 +25,7 @@ import { PaymentMethod } from '../../../../core/model/PaymentMethod';
 import { PaymentMethodDetail } from '../../../../core/model/PaymentMethodDetail';
 import { CheckoutService } from '../../../../core/service/checkout/checkout.service';
 import { Router } from '@angular/router';
-
+import { TokenService } from '../../../../core/service/token/token.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -75,6 +75,7 @@ export class CheckoutComponent implements OnInit {
   kampret;
   kampre2t;
   billing: Boolean = false;
+
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
@@ -88,13 +89,15 @@ export class CheckoutComponent implements OnInit {
     private productService: ProductService,
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.PaymentMethods>,
-    private checkoutService: CheckoutService
+    private checkoutService: CheckoutService,
+    private auth: TokenService,
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
    }
 
   ngOnInit() {
+    this.cekLogin();
     this.kampret = false;
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
@@ -103,8 +106,8 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
-        console.log('kaka', this.billingAddressList);
-        console.log('aaa', this.shippingAddressList);
+        // console.log('kaka', this.billingAddressList);
+        // console.log('aaa', this.shippingAddressList);
         // console.log('asdasd', token);
         console.log('apaan si nih', this.billingAddress );
         if (this.billingAddressList.length === 0) {
@@ -126,6 +129,13 @@ export class CheckoutComponent implements OnInit {
           });
     this.shoppingCart();
   }
+
+  cekLogin() {
+    if (!this.auth.getUser()) {
+      this.router.navigateByUrl('/sign-in');
+    }
+  }
+
 
   getPaymentMethods() {
     this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(datas => {
@@ -172,6 +182,12 @@ export class CheckoutComponent implements OnInit {
         });
       });
     });
+
+
+    if (this.grossTotal === 0) {
+      this.router.navigateByUrl('/cart');
+    }
+
   }
 
   public updateQuantity(event: any, item: any) {
