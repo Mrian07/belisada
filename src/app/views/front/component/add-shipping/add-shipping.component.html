@@ -12,7 +12,7 @@
                 <input name="addressName" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
                 <div class="form-control-feedback" *ngIf="addressName.invalid && (addressName.dirty || f.submitted)">Disimpan sebagai alamat tidak boleh kosong</div>
             </div>
-        </div>    
+        </div>
         <div class="field">
             <label>Alamat</label>
             <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
@@ -33,7 +33,7 @@
                 </sui-select>
                 <div class="form-control-feedback" *ngIf="city.invalid && (city.dirty || f.submitted)">Kota tidak boleh kosong</div>
             </div>
-        </div>    
+        </div>
         <div class="fields">
             <div class="eight wide field">
                 <label>Kecamatan</label>
@@ -57,13 +57,13 @@
                 <div class="form-control-feedback" *ngIf="postalCode.invalid && (postalCode.dirty || f.submitted)">Kode POS tidak boleh kosong</div>
             </div>
             <div class="eight wide field">
-                <label>Telepon</label>
-                <input name="siup" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
+                <label>Telepons</label>
+                <input name="siup" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
                 <div class="form-control-feedback" *ngIf="phone.invalid && (phone.dirty || f.submitted)">Telepon tidak boleh kosong</div>
             </div>
         </div>
         <div style='margin-top:10px;'><button class="ui primary button" type="submit" [disabled]="!f.valid">Simpan</button></div>
-        
+
     </form>
 </div>
 

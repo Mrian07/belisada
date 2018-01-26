@@ -14,7 +14,7 @@
                     <label>Disimpan sebagai alamat (cth: alamat rumah, kantor, kosan)</label>
                     <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
                 </div>
-            </div> 
+            </div>
             <div class="field">
                 <label>Alamat</label>
                 <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
@@ -32,7 +32,7 @@
                         <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
                     </sui-select>
                 </div>
-            </div>    
+            </div>
 
             <div class="fields">
                 <div class="eight wide field">
@@ -47,7 +47,7 @@
                         <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                     </sui-select>
                 </div>
-            </div>    
+            </div>
             <div class="fields">
                 <div class="eight wide field">
                     <label>Kode POS</label>
@@ -55,11 +55,10 @@
                 </div>
                 <div class="eight wide field">
                     <label>Telepon</label>
-                    <input name="phone" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
+                    <input name="phone" type="number" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
                 </div>
-            </div>    
+            </div>
             <button class="ui primary button" type="submit">Simpan</button>
         </form>
     </div>
 </div>
-       
