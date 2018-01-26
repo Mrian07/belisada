@@ -90,6 +90,7 @@
 .cart-icon {
    position: absolute;
    right: 20px;
+   cursor: pointer;
 }
 
 .cart-counter {
@@ -263,6 +264,7 @@
     // width: 200px;
     right: 10px;
     color: #333;
+    margin-top: 40px;
 }
 .cart:hover > .shopping-cart {
     opacity: 1;

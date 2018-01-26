@@ -69,10 +69,6 @@
                 </div>
             </div>
             <div class="menu-header2">
-
-                <!-- <div class="icon-user">
-                    <img class="ui image avatar" [src]="avatar" alt="avatar"/>
-                </div> -->
                 <div class="welcome" *ngIf="loginState === false">
 
                     <div class='dropdown-profile'>
@@ -106,19 +102,6 @@
 
                         </div>
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- 
                         <div class="icon-user">
                                 <img class="ui image avatar" [src]="avatar" alt="avatar"/>
@@ -156,7 +139,7 @@
 
                 </div>
                 <div class="cart">
-                    <div class="cart-icon">
+                    <div class="cart-icon" (click)="viewCart()">
                         <span class="cart-counter">{{ itemCount }}</span>
                         <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
                     </div>
