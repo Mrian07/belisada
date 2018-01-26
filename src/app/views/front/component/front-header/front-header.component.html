@@ -45,9 +45,12 @@
                     <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
             </sui-select>
             <!-- <i class="iconsearch search icon" style="color: rgb(255, 167, 2);"></i> -->
+            <!-- <i class="search icon ui button orange"></i> -->
+            <!-- <button class="ui button orange"><i class="iconsearch search icon"></i></button> -->
             
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="search-bar" style="border-radius:0px;"/>
-            <button class="ui button orange" style="padding:0px; padding-left:15px; padding-right:5px; border-radius:0px 5px 5px 0px;"><i class="iconsearch search icon" style="font-size:20px;"></i></button>
+            <button class="ui button orange" style="padding:0px; padding-left:15px; padding-right:5px; border-radius:0px 5px 5px 0px; padding-top:0px;"><i class="iconsearch search icon" style="font-size:20px;"></i></button>
+            
             <div class="result-container" *ngIf="[results] != 0">
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
                         <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>

@@ -354,6 +354,11 @@
 }
 
 @media screen and (max-width: 425px) {
+    .search-by-category{
+        margin-top:10px;
+        padding:0px;
+    }
+
     .helper {
         display: none;
     }
@@ -652,4 +657,3 @@
 .go-link:active {
     color:#f8992e;
 }
-
