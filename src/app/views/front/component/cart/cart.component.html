@@ -1,3 +1,16 @@
+
+
+<div *ngIf="itemsTotal<=0" class="kosong">
+
+    <div class="ui info message">
+        <div class="header">
+          Keranjang Anda masih kosong, silakan isi keranjang belanja Anda dengan produk-produk menarik yang Belisada sediakan.
+        </div>
+      </div>
+</div>
+
+<div *ngIf="itemsTotal">
+
 <div class="ui grid b-step">
   <div class="sixteen wide center aligned column">
 
@@ -24,13 +37,7 @@
 
   </div>
 </div>
-<!-- <h1 class='title-page'>Keranjang Belanja</h1> -->
-
-<div *ngIf="itemsTotal<=0" class="kosong">
-  <p>Keranjang Anda masih kosong, silakan isi keranjang belanja Anda dengan produk-produk menarik yang Belisada sediakan.</p>
-</div>
-
-<div *ngIf="itemsTotal">
+<!-- <h1 class='title-page'>Keranjang Belanja</h1> -->  
 
 <div class="row animated rollIn">
     <div id="no-more-tables">
