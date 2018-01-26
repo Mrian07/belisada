@@ -131,9 +131,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   cekLogin() {
-    console.log('nih', this.auth.getUser());
     if (!this.auth.getUser()) {
-      this.router.navigateByUrl('/cart');
+      this.router.navigateByUrl('/sign-in');
     }
   }
 
