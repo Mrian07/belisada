@@ -45,9 +45,9 @@
                     <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
             </sui-select>
             <!-- <i class="iconsearch search icon" style="color: rgb(255, 167, 2);"></i> -->
-            
+
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="search-bar" style="border-radius:0px;"/>
-            <button class="ui button orange" style="padding:0px; padding-left:15px; padding-right:5px; border-radius:0px 5px 5px 0px;"><i class="iconsearch search icon" style="font-size:20px;"></i></button>
+            <div class="ui button orange" (click)="searchEnter(selectedSearchCategory, selectedCategory)" style="padding:0px; padding-left:15px; padding-right:5px; border-radius:0px 5px 5px 0px;"><i class="iconsearch search icon" style="font-size:20px;"></i></div>
             <div class="result-container" *ngIf="[results] != 0">
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
                         <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
@@ -83,12 +83,12 @@
                             <div class="or"></div>
                                 <button class="ui mini positive button" (click)="register()">Daftar</button>
                             </div>
-                                
+
                                 <!-- <button class="mini ui right labeled red icon button" (click)="logout()">
                                         <i class="sign out icon"></i>
                                         Daftar
                                         </button> -->
-                                        
+
                             <br><br>
                             <strong>Selamat datang<br> {{userName}}</strong>
                             <div class='dropdown-menu-account'>
@@ -102,7 +102,7 @@
 
                         </div>
                     </div>
-<!-- 
+<!--
                         <div class="icon-user">
                                 <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                             </div>
@@ -119,7 +119,7 @@
                             <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                            Hi, {{userName | words: 1 : ""}}</div>
                         <div class="dropdown-profile-content">
-                                
+
                                 <button class="mini ui right labeled red icon button" (click)="logout()">
                                         <i class="sign out icon"></i>
                                         Logout
