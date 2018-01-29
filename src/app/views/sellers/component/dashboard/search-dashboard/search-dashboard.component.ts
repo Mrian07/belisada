@@ -60,7 +60,7 @@ export class SearchDashboardComponent implements OnInit {
         'Belisada.co.id',
         'Toko Anda belum diverifikasi!'
       ).then((result) => {
-       // this.router.navigateByUrl('seller/toko');
+        //this.router.navigateByUrl('/sign-up');
       });
     }else {
       this.storeService.getAll().subscribe(response => {
