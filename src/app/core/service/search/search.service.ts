@@ -18,8 +18,12 @@ export class SearchService {
         .map(response => response as Search[]);
   }
 
-  getFilter(q: string): Observable<Filter[]> {
-    return this.http.get(this.configuration.serverWithAccUrl + '/product/filter?q=' + q)
+  getFilter(queryParams): Observable<Filter[]> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k){
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.serverWithAccUrl + '/product/filter', {params: params})
         .map(response => response as Filter[]);
   }
 
