@@ -11,4 +11,9 @@ export class TransactionsService {
     .map(resp => resp as any);
   }
 
+  finihOrder(id) {
+    return this.http.get(this.configuration.serverWithAccUrl + '/buyer/transaction?id=' + id)
+    .map(resp => resp as any);
+  }
+
 }

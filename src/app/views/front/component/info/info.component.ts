@@ -13,7 +13,8 @@ export class InfoComponent implements OnInit {
   }
 
   daftar() {
-    location.replace('/register');
+    // location.replace('/register');
+    location.replace('/sign-up');
   }
 }
 
