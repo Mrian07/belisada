@@ -53,6 +53,7 @@ export class FrontHeaderComponent implements OnInit {
   avatar: string;
   itemsTotal: number;
   popular = [];
+  role: string;
 
   constructor(
     private categoryService: CategoryService,
@@ -181,6 +182,50 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
 
+  mulaiMenjual() {
+    // role = null;
+    const luser = JSON.parse(localStorage.getItem('user'));
+
+    console.log(luser);
+    if (luser) {
+      if (luser.role === 1) {
+
+        this.router.navigateByUrl('/buyer');
+        const user = JSON.parse(localStorage.user);
+        if (user.role === 3 || user.role === 2) {
+          this.router.navigateByUrl('/seller/dashboard');
+        } else {
+
+          swal({
+            title: 'Warning',
+            text: 'Anda belum menjadi Seller. Apakah Anda ingin mendaftar sebagai Seller?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1d7d0a',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Daftar Sebagai Seller'
+          }).then((result) => {
+            if (result.value) {
+                this.router.navigateByUrl('/buyer/seller-propose');
+            } else {
+                return false;
+            }
+          });
+
+        }
+
+        
+      } else if (luser.role === 2 || luser.role === 3) {
+
+        this.router.navigateByUrl('/seller/dashboard');
+
+      }
+    }  else {
+      this.router.navigateByUrl('/sign-up');
+    }
+  }
+
   home() {
     this.router.navigateByUrl('/');
   }
@@ -274,4 +319,6 @@ export class FrontHeaderComponent implements OnInit {
       }
     });
   }
+
+ 
 }
