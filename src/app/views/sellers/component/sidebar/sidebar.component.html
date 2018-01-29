@@ -1,38 +1,57 @@
-<div class="ui left aligned segment">
+<div class="ui left aligned">
 
-  <div class="ui center aligned basic segment">
+  <div class='side-first'>
+    <div class="ui center aligned basic segment">
 
-    <!-- <h4 class="ui header" style='font-size:50px;margin-top:10px'><i class="address book icon"></i></h4> -->
-    <!-- <img class="ui medium circular image" src="/assets/img/kristy.png"> -->
-    <p>
-        <img (click)="editProfile()" class="ui medium rounded image img-profile" [src]="sellerimage" alt="profile picture"/>
-    </p>
-    <strong>{{sellerName}}</strong>
+      <!-- <h4 class="ui header" style='font-size:50px;margin-top:10px'><i class="address book icon"></i></h4> -->
+      <!-- <img class="ui medium circular image" src="/assets/img/kristy.png"> -->
+      <p>
+          <img (click)="editProfile()" class="ui medium rounded image img-profile" [src]="sellerimage" alt="profile picture"/>
+      </p>
+      <strong>{{sellerName}}</strong>
+    </div>
+
+
+    <div class="ui center aligned basic segment">
+      <button class="ui youtube button" (click)="editProfile()">
+        Edit Profile
+      </button>
+    </div>
   </div>
+  <!-- <div class='side-second'>
+    <div class='main-menu'>
+      <div class="ui link list">
+        <a routerLink="/seller/dashboard" [ngClass]="(activeLink=='dashboard')?'active item':'item'">Dashboard</a>
+        <a routerLink="/seller/kontak" [ngClass]="(activeLink=='kontak')?'active item':'item'">Kontak Pesan</a>
+        <a routerLink="/seller/payment-info" [ngClass]="(activeLink=='payment-info')?'active item':'item'">Payment Info</a> -->
+        <!-- <a routerLink="/seller/my-store" class="item">Daftar Toko & Product</a> -->
+        <!-- <a (click)="goToProduct()" [ngClass]="(activeLink=='product-list')?'active item':'item'">Product</a>
+        <a routerLink="/seller/salles-report" [ngClass]="(activeLink=='salles-report')?'active item':'item'">Sales Report</a>
+        <a class="item">Statistik</a>
+        <a class="item">Courier Service</a>
+        <a class="item">Payment Gateway</a>
+        <a routerLink="/seller/faq-seller" [ngClass]="(activeLink=='faq')?'active item':'item'">FAQ</a>
+        <a class="item">myADS</a>
+        <a class="item">Upgrade Account</a>
+      </div>
+    </div>
+  </div> -->
 
-
-  <div class="ui center aligned basic segment">
-    <button class="ui youtube button" (click)="editProfile()">
-      Edit Profile
-    </button>
-  </div>
-
-  <div class="ui link list">
-    <hr/>
-    <a routerLink="/seller/dashboard" [ngClass]="(activeLink=='dashboard')?'active item':'item'">Dashboard</a>
-    <a routerLink="/seller/kontak" [ngClass]="(activeLink=='kontak')?'active item':'item'">Kontak Pesan</a>
-    <a routerLink="/seller/payment-info" [ngClass]="(activeLink=='payment-info')?'active item':'item'">Payment Info</a>
-    <!-- <a routerLink="/seller/my-store" class="item">Daftar Toko & Product</a> -->
-    <a (click)="goToProduct()" [ngClass]="(activeLink=='product-list')?'active item':'item'">Product</a>
-    <a routerLink="/seller/salles-report" [ngClass]="(activeLink=='salles-report')?'active item':'item'">Sales Report</a>
-    <a class="item">Statistik</a>
-    <hr/>
-    <a class="item">Courier Service</a>
-    <a class="item">Payment Gateway</a>
-    <a routerLink="/seller/faq-seller" [ngClass]="(activeLink=='faq')?'active item':'item'">FAQ</a>
-    <a class="item">myADS</a>
-    <a class="item">Upgrade Account</a>
-  </div>
+  <div class='side-second'>
+      <div class='main-menu'>
+          <p><a routerLink="/seller/dashboard" class="item">Dashboard</a></p>
+          <p><a routerLink="/seller/kontak" class="item">Kontak Pesan</a></p>
+          <p><a routerLink="/seller/payment-info" class="item">Payment Info</a></p>
+          <p><a (click)="goToProduct()" class="item">Product</a></p>
+          <p><a routerLink="/seller/salles-report" class="item">Sales Report</a></p>
+          <p><a class="item">Statistik</a></p>
+          <p><a class="item">Courier Service</a></p>
+          <p><a class="item">Payment Gateway</a></p>
+          <p><a routerLink="/seller/faq-seller" class="item">FAQ</a></p>
+          <p><a class="item">myADS</a></p>
+          <p><a class="item">Upgrade Account</a></p>
+      </div>
+    </div>
 
 </div>
 
