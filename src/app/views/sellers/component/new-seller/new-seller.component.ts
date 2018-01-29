@@ -68,7 +68,7 @@ export class NewSellerComponent implements OnInit {
   selectedKelurahan: any;
   selectedDesa: any;
   regionId: number;
-
+  optionTemplate: any;
   searchrek: any;
   rekening: Observable<any>;
   selectedCategory: any;
