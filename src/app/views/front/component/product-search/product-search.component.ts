@@ -95,14 +95,23 @@ export class ProductSearchComponent implements OnInit {
   }
 
   sortThis(ob) {
-    // console.log(this.loading);
-    // console.log(ob);
-    this.Params =  {
-      parent : 3,
-      id : this.catId,
-      ob : ob
-    };
-    this.router.navigate(['/product-list'], { queryParams: this.Params });
+
+    if (this.Params.q) {
+      this.Params =  {
+        parent : 3,
+        id : this.catId,
+        ob : ob,
+        q: this.Params.q
+      };
+      this.router.navigate(['/search'], { queryParams: this.Params });
+    }else {
+      this.Params =  {
+        parent : 3,
+        id : this.catId,
+        ob : ob
+      };
+      this.router.navigate(['/product-list'], { queryParams: this.Params });
+    }
   }
 
   setPage(page: number) {
