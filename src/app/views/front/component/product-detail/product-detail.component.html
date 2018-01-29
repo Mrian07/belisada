@@ -15,7 +15,7 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [imageZoom]="theImage" [src]="theImage" [style.height.px]="200" [lensWidth]="600" [lensHeight]="600">
+        <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [lensWidth]="600" [lensHeight]="600">
     </div>
     <div class="thumbnail-container">
         <div class="thumbnail">
@@ -141,6 +141,7 @@
                                 <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
                             </button>
                 </ng-template>
+
             <!-- <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
                 <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
             </button> -->
@@ -157,7 +158,15 @@
                         <img src="/assets/img/zzzzz.jpg" width="200px" height="auto" alt="submit" />
                     </button>
            </div>
-           <div class="gap-between-elements4"></div>
+
+            <div class="gap-between-elements"></div>
+            <strong>Jumlah : </strong>
+            <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
+                <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
+            </sui-select>
+            <div class="gap-between-elements"></div>
+            <strong>Garansi : </strong><span>{{garansi}}</span>
+           <div class="gap-between-elements"></div>
            <span><strong>Kebijakan</strong></span>
            <div class="gap-between-elements"></div>
            <span><strong>Pengembalian : </strong></span> <span>jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari</span>
@@ -168,12 +177,12 @@
                 <img src="https://dev.myacico.co.id/images/general/ico_bank_02.png" width="35" class="ui middle aligned mini image">
                 <img src="https://dev.myacico.co.id/images/general/ico_bank_04.png" width="35" class="ui middle aligned mini image">
             <div class="gap-between-elements"></div>
-            <strong>Garansi : </strong><span>{{garansi}}</span>
+            <!-- <strong>Garansi : </strong><span>{{garansi}}</span>
             <div class="gap-between-elements"></div>
             <strong>Jumlah : </strong>
             <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
                 <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
-            </sui-select>
+            </sui-select> -->
             <div class="gap-between-elements"></div>
             <span class="pz">Jasa Pengiriman</span>
             <div class="gap-between-elements"></div>

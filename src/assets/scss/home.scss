@@ -27,6 +27,10 @@
 }
 
 @media screen and (min-width: 426px) {
+    .btn-src{
+        padding:0px; padding-left:15px; padding-bottom:15px; padding-right:5px; border-radius:0px 5px 5px 0px;
+    }
+
     .bs.container.home {
         display: grid;
         grid-template-columns: 1fr 10fr 1fr;
@@ -111,7 +115,7 @@
     .ui[class*="left action"].input>input {
         border: 1px solid rgba(34,36,38,.15)!important;
         border-radius: .28571429rem!important;
-        margin-top:32px;
+        margin-top:0px;
     }
     .result-container{
         margin-top: 74px !important;
