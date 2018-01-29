@@ -20,6 +20,8 @@ export class SearchDashboardComponent implements OnInit {
   btnColor: string;
   note: string;
   message: string;
+  buka: string;
+  tutup: string;
 
   constructor(
     private router: Router,
@@ -48,8 +50,20 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'red';
         }
       }
+      this.bukaToko();
     });
   }
+
+  bukaToko() {
+    this.buka = 'disabled';
+    this.tutup = '';
+  }
+
+  tutupToko() {
+    this.buka = '';
+    this.tutup = 'disabled';
+  }
+
   search(event) {
     const key = event.target.value;
   }
