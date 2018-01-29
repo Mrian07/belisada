@@ -133,7 +133,7 @@ const routes: Routes = [
           title: 'Confirm Order'
         }
       }, {
-        path: 'finish-order',
+        path: 'finish-order/:id',
         component: FinihOrderComponent,
         data: {
           title: 'Finish Order'
