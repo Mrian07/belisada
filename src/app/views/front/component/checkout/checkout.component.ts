@@ -280,7 +280,7 @@ export class CheckoutComponent implements OnInit {
             this.selShippingAddress = item.addressId;
             this.getShippingAddress(item.addressId);
           }
-          console.log('this.billingAddressList: ', item.isDefault);
+          // console.log('this.billingAddressList: ', item);
         });
       });
     });

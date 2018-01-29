@@ -166,18 +166,22 @@ export class FrontHeaderComponent implements OnInit {
       confirmButtonText: 'Ya, Hapus!'
     }).then((result) => {
       if (result.value) {
-        this.shoppingCartService.delete(itemCartId).subscribe(response => {
-          if (response.status === '1') {
-            this.shoppingCartService.addItem(productId, -quantity);
-            swal(
-              'Dihapus!',
-              'Belanjaan Anda berhasil dihapus',
-              'success'
-            );
-          } else {
-            swal(response.message);
-          }
-        });
+        if (this.auth.getUser()) {
+          this.shoppingCartService.delete(itemCartId).subscribe(response => {
+            if (response.status === '1') {
+              this.shoppingCartService.addItem(productId, -quantity);
+              swal(
+                'Dihapus!',
+                'Belanjaan Anda berhasil dihapus',
+                'success'
+              );
+            } else {
+              swal(response.message);
+            }
+          });
+        } else {
+          this.shoppingCartService.addItem(productId, -quantity);
+        }
       }
     });
   }

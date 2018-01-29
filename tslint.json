@@ -128,7 +128,7 @@
     "component-selector": [
       true,
       "element",
-      "app",
+      "",
       "kebab-case"
     ],
     "angular-whitespace": [true, "check-interpolation"],

@@ -32,7 +32,7 @@ import { HomeService } from '../../../core/service/home/home.service';
 import { ShoppingCartService } from '../../../core/service/shopping-cart/shopping-cart.service';
 import { ProductService } from '../../../core/service/product/product.service';
 import { BuyerDashboardComponent } from '../component/buyer-dashboard/buyer-dashboard.component';
-import { HomeReducer, DetailReducer, ListReducer, CategoryReducer, PaymentMethodReducer } from '../../../store/reducers';
+import { HomeReducer, DetailReducer, ListReducer, FilterReducer, CategoryReducer, PaymentMethodReducer } from '../../../store/reducers';
 import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
@@ -64,7 +64,7 @@ import { ProductTerbaruComponent } from '../component/product-terbaru/product-te
     AsapComponent,
     CaraBerbelanjaComponent,
     ChattingFrontComponent,
-    ProductTerbaruComponent
+    ProductTerbaruComponent,
   ],
   imports: [
     CommonModule,
@@ -76,6 +76,7 @@ import { ProductTerbaruComponent } from '../component/product-terbaru/product-te
     StoreModule.forFeature('home', HomeReducer),
     StoreModule.forFeature('detail', DetailReducer),
     StoreModule.forFeature('list', ListReducer),
+    StoreModule.forFeature('filter', FilterReducer),
     StoreModule.forFeature('category', CategoryReducer),
     StoreModule.forFeature('paymentMethod', PaymentMethodReducer),
     EffectsModule.forFeature([HomeEffects]),

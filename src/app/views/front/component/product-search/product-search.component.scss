@@ -96,6 +96,46 @@
 }
 .sidebar-search {
     grid-area: sidebar-search;
+
+    .accordion {
+        border: 0;
+        text-align: left;
+        width: 100%;
+        padding: .75em 1em;
+        background-color: #fff;
+        border-bottom: 1px solid #dddddd;
+
+        i {
+            float: right;
+        }
+    }
+    .accordion:hover {
+        cursor: pointer;
+    }
+
+    .panel {
+        padding: .75em 1em;
+        
+        label:hover {
+            cursor: pointer;
+        }
+    }
+
+    // ul {
+    //     list-style: none;
+    //     padding: 0;
+    //     margin: 0;
+
+    //     li {
+    //         padding: 1em 0;
+    //         border-bottom: 1px solid #333;
+
+    //         i {
+    //             color: #FF9540;
+    //             float: right
+    //         }
+    //     }
+    // }
 }
 .main-search {
     position: relative;

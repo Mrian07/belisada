@@ -9,11 +9,13 @@ import * as fromProduct from '../../../../store/reducers';
 import { Store, ActionsSubject} from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
 import { Title } from '@angular/platform-browser';
+import { Filter, FilterParams } from '../../../../core/model/filter';
 
 @Component({
   selector: 'app-product-search',
   templateUrl: './product-search.component.html',
-  styleUrls: ['./product-search.component.scss']
+  styleUrls: ['./product-search.component.scss'],
+  // directives: [MadrickAccordionComponent, MadrickAccordionGroupComponent]
 })
 export class ProductSearchComponent implements OnInit {
   searchable;
@@ -23,6 +25,7 @@ export class ProductSearchComponent implements OnInit {
   m_product_category_id;
   selectedOption: any;
   productSearchResault: ProductSearchResault = new ProductSearchResault();
+  sidebarFilters: Filter[] = new Array<Filter>();
   navigation;
   boundary;
   selectedPage;
@@ -30,6 +33,27 @@ export class ProductSearchComponent implements OnInit {
   sortOrder: any;
   Params: any;
   catId: number;
+  someRange: number[] = [0, 0];
+  filterParams: FilterParams = new FilterParams();
+
+  currentPage = 1;
+  lastPages: number;
+  start = 0;
+  end = 0;
+  total = 0;
+  limit = 10;
+  pages: any = [];
+  listStyleType = 'list-row';
+  pageParams: any;
+  getDetailData: Subscription;
+  getSidebarFilter: Subscription;
+  loading = true;
+  pageTitle: string;
+  cat;
+  brand;
+  parent;
+  // priceMin;
+  // priceMax;
 
   constructor(
     private router: Router,
@@ -37,9 +61,13 @@ export class ProductSearchComponent implements OnInit {
     private actionsSubject: ActionsSubject,
     private searchService: SearchService,
     private store: Store<fromProduct.Lists>,
+    private storeFilter: Store<fromProduct.Filters>,
     private ngZone: NgZone,
     private title: Title
   ) {
+
+    this.filterParams.cat = [];
+    this.filterParams.brand = [];
 
     const sortOrder = [
       {sort: 'Paling Sesuai', ob: 6 },
@@ -53,37 +81,40 @@ export class ProductSearchComponent implements OnInit {
 
     this.route.queryParams
       .subscribe(params => {
+        this.cat = params.cat === undefined ? [] : params.cat.substr(1).slice(0, -1).split(',');
+        this.brand = params.brand === undefined ? [] : params.brand.substr(1).slice(0, -1).split(',');
+        console.log('this.cat: ', this.cat);
+        console.log('this.brand: ', this.brand);
         this.keys = params.q;
         if (params.page) {
           this.currentPage = params.page;
         }
-       // console.log(params);
+
+        this.parent = params.parent;
         this.catId = params.id;
         this.Params = params;
         this.store.dispatch(new frontActions.GetList(params));
+        this.storeFilter.dispatch(new frontActions.GetSidebarFilter(this.keys));
+
         this.getDetailData = this.actionsSubject
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
+          console.log('this.getDetailData()');
           this.loading = false;
           this.getDetailDatas();
         });
+
+        this.getSidebarFilter = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === frontActions.GET_SIDEBAR_FILTER_SUCCESS)
+        .subscribe((action: frontActions.GetSidebarFilterSuccess) => {
+          console.log('this.getSidebarFilter()');
+          this.loading = false;
+          this.getSidebarFilters();
+        });
     });
-
   }
-
-  currentPage = 1;
-  lastPages: number;
-  start = 0;
-  end = 0;
-  total = 0;
-  limit = 10;
-  pages: any = [];
-  listStyleType = 'list-row';
-  pageParams: any;
-  getDetailData: Subscription;
-  loading = true;
-  pageTitle: string;
 
   ngOnInit() {
 
@@ -128,23 +159,138 @@ export class ProductSearchComponent implements OnInit {
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
         this.loading = false;
-        //console.log(response);
-        this.productSearchResault = response;
-        this.total = response.productCount;
-        this.start = (this.currentPage - 1) * this.limit;
-        this.end = this.start + this.limit;
-        this.pages = [];
-        if (this.end > this.total) {
-          this.end = this.total;
-        }
-        this.lastPages = response.pageCount;
-        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-          if (r > 0 && r <= this.lastPages) {
-            this.pages.push(r);
+        if (!isEmpty(response)) {
+          this.productSearchResault = response;
+          this.total = response.productCount;
+          this.start = (this.currentPage - 1) * this.limit;
+          this.end = this.start + this.limit;
+          this.pages = [];
+          if (this.end > this.total) {
+            this.end = this.total;
+          }
+          this.lastPages = response.pageCount;
+          for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+            if (r > 0 && r <= this.lastPages) {
+              this.pages.push(r);
+            }
           }
         }
       });
     });
+
+    function isEmpty(obj) {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+
+  updateFilter(filterAlias, data) {
+    console.log('filterAlias: ', filterAlias);
+    console.log('data: ', data);
+    // let filter = '';
+    switch (filterAlias) {
+      case 'Category':
+        const catI = this.filterParams.cat.indexOf(data.valueId);
+        if (catI > -1) {
+          this.filterParams.cat.splice(catI, 1);
+        } else {
+          this.filterParams.cat.push(data.valueId);
+        }
+        break;
+
+      case 'Brand':
+        const brandI = this.filterParams.brand.indexOf(data.valueId);
+        if (brandI > -1) {
+          this.filterParams.brand.splice(brandI, 1);
+        } else {
+          this.filterParams.brand.push(data.valueId);
+        }
+        break;
+
+      case 'Price':
+
+        break;
+      default:
+        break;
+    }
+
+    this.generateFilterParams();
+  }
+
+  generateFilterParams() {
+    let cat = '';
+    let brand = '';
+
+    this.filterParams.cat.forEach((x, index) => {
+      cat += (index === 0) ? '(' : '';
+      cat += x;
+      cat += (index === this.filterParams.cat.length - 1) ? ')' : ',';
+    });
+
+    this.filterParams.brand.forEach((x, index) => {
+      brand += (index === 0) ? '(' : '';
+      brand += x;
+      brand += (index === this.filterParams.brand.length - 1) ? ')' : ',';
+    });
+
+    this.Params = {
+      q: this.keys,
+      parent: this.parent,
+      id: this.catId,
+      from: (<HTMLInputElement>document.getElementById('priceMin')).value,
+      to: (<HTMLInputElement>document.getElementById('priceMax')).value,
+      cat: (this.filterParams.cat.length === 0) ? '()' : cat,
+      brand: (this.filterParams.brand.length === 0) ? '()' : brand
+    };
+    console.log(this.Params);
+    this.store.dispatch(new frontActions.GetList(JSON.parse(JSON.stringify(this.Params))));
+    // this.storeFilter.dispatch(new frontActions.GetSidebarFilter(this.keys));
+
+    this.getDetailData = this.actionsSubject
+    .asObservable()
+    .filter(action => action.type === frontActions.GETLISTSUCCESS)
+    .subscribe((action: frontActions.GetListSuccess) => {
+      console.log('this.getDetailData()');
+      this.loading = false;
+      this.getDetailDatas();
+    });
+    // this.router.navigate(['/product-list'], { queryParams: this.Params });
+  }
+
+  getSidebarFilters() {
+    this.loading = true;
+    this.ngZone.run(() => {
+      this.store.select<any>(fromProduct.getFilterState).subscribe(response => {
+        this.loading = false;
+        if (!isEmpty(response)) {
+          this.sidebarFilters = response;
+
+          console.log('this.sidebarFilters', this.sidebarFilters);
+          this.sidebarFilters.forEach(x => {
+            if (x.filterAlias === 'Price') {
+              x.data.forEach(item => {
+                this.someRange = [item.min, item.max];
+                // this.priceMin = item.min;
+                // this.priceMax = item.max;
+              });
+            }
+          });
+        }
+      });
+    });
+
+    function isEmpty(obj) {
+      for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 
   detail(id: number, alias: string) {

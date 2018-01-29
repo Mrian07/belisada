@@ -29,8 +29,9 @@ export class TransactionBuyerComponent implements OnInit {
     });
   }
 
-  orderConfirm() {
-    this.router.navigate(['/buyer/confirmation-buyer']);
+  orderConfirm(id) {
+    console.log('ini id3 yah', id.transactionId);
+    this.router.navigate(['/buyer/confirmation-buyer', id.transactionId]);
   }
 
 }

@@ -9,18 +9,18 @@ import { TrasnactionList } from '../../../../core/model/trasnaction-list';
 })
 export class OrderDetailBuyerComponent implements OnInit {
   cartItems: any;
-  cart: TrasnactionList = new TrasnactionList()
+  cart: TrasnactionList = new TrasnactionList();
   tsId: any;
   constructor( private router: Router, private route: ActivatedRoute, private tsBuyer: TransactionListService) { }
 
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.tsId = params.id;
-      console.log('pa', this.tsId);
+      // console.log('pa', this.tsId);
       this.tsBuyer.getAll().subscribe(data => {
-        console.log('data', data);
+        // console.log('data', data);
         this.cart = data.find(x => x.transactionId == params.id);
-        console.log('this.cart', this.cart);
+        // console.log('this.cart', this.cart);
       });
     });
   }
