@@ -30,7 +30,7 @@ interface AppState {
 export class AddProductsComponent implements OnInit {
 
   message$: Observable<Search>;
-
+  courier: any;
 
   editid: any;
   condition: string;
@@ -171,6 +171,9 @@ export class AddProductsComponent implements OnInit {
     this.categoryService.CategoryOne().subscribe(data => {
       this.category = data;
     });
+  }
+  couriers($event) {
+    console.log($event.target.value);
   }
 
   getQuantity(q) {
