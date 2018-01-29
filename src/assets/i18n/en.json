@@ -3,9 +3,9 @@
     {
     	"nav":
         {
-    		"tracking": "Tracking Order",
-    		"ccare": "Customer Care",
-    		"sellhere": "Sell in Belisada",
+    		"tracking": "TRACKING ORDER",
+    		"ccare": "CUSTOMER CARE",
+    		"sellhere": "SELL IN BELISADA",
     		"download": "Download app",
     		"blog": "Blog",
     		"nproduct" : "New Product",
