@@ -61,6 +61,7 @@ import { CheckoutComponent } from './views/front/component/checkout/checkout.com
 import { ProductTerbaruComponent } from './views/front/component/product-terbaru/product-terbaru.component';
 import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
 import { DownloadAppComponent } from './views/front/component/download-app/download-app.component';
+import { PsnLoginComponent } from './views/front/component/psn-login/psn-login.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,13 @@ const routes: Routes = [
       {
         path: 'info-jual-beli',
         component: InfoComponent,
+        data: {
+          title: 'info'
+        }
+      },
+      {
+        path: 'PesanLogin',
+        component: PsnLoginComponent,
         data: {
           title: 'info'
         }

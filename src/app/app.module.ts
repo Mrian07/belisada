@@ -82,6 +82,7 @@ import { CustomerCareComponent } from './views/front/component/customer-care/cus
 import { DownloadAppComponent } from './views/front/component/download-app/download-app.component';
 import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { SliderDepanComponent } from './views/front/component/slider-depan/slider-depan.component';
+import { PsnLoginComponent } from './views/front/component/psn-login/psn-login.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -161,6 +162,7 @@ export function getAuthServiceConfigs() {
     DownloadAppComponent,
     SellerProposeComponent,
     SliderDepanComponent,
+    PsnLoginComponent,
     // WishlistComponent,
     // AsapComponent
   ],
