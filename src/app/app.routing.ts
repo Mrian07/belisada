@@ -298,7 +298,7 @@ const routes: Routes = [
           }
         },
           {
-            path: 'confirmation-buyer',
+            path: 'confirmation-buyer/:id',
             component: ConfirmationBuyerComponent,
             data: {
               title: 'Confirmation Buyer'

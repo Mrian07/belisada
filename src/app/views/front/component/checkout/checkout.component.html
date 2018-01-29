@@ -32,22 +32,22 @@
                                 <div class="column">
                                     <sui-tabset>
                                         <div class="ui top attached tabular menu">
-                                            
+
                                             <a class="item" suiTabHeader="2">Tambah Alamat Penagihan</a>
-                           
+
                                         </div>
                                         <div class="ui bottom attached segment" suiTabContent="2">
                                             <app-add-billing></app-add-billing>
                                         </div>
                                     </sui-tabset>
                                 </div>
-                
-                
+
+
                             </div>
                         </div>
-                
-                
-                
+
+
+
                         <div class="ui grid" *ngIf="billingAddressList.length">
                             <div class="one column row">
                                 <div class="column">
@@ -56,7 +56,7 @@
                                             <a class="item" suiTabHeader="1">Penagihan</a>
                                         </div>
                                         <div class="ui bottom attached segment" suiTabContent="1">
-                                            
+
                                             <div class="sixten wide column right aligned">
                                                 <div class="ui segment" *ngFor="let item3 of billingAddressList">
                                                     <div class="ui grid">
@@ -70,18 +70,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                                         </div>
-                                        
+
                                     </sui-tabset>
                                 </div>
-                
-                
+
+
                             </div>
                         </div>
 
@@ -156,7 +156,7 @@
                                         <select class="ui compact selection dropdown" [(ngModel)]="selShippingAddress" (change)="getShippingAddress(selShippingAddress)">
                                             <!-- <option  value="">-Pilih-</option> -->
                                             <option *ngFor="let item of shippingAddressList" [value]="item.addressId" [selected]="item.isDefault === 'Y'">
-                                                {{item.name}}
+                                                {{item.addressName}}
                                             </option>
                                         </select>
                                         <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
