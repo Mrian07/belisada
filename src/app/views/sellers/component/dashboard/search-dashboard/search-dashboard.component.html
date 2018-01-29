@@ -1,15 +1,19 @@
 <div class="ui grid">
     <div class="five wide column">
-        <!-- <div class="ui action input">
-            <input placeholder="Masukan nomor order Anda..." type="text" (keydown)="search($event)"/>
-            <button class="ui green button" (click)="search($event)">Search</button>
-        </div> -->
         <div class="five wide column mymargin">
-                <a class="ui orange label">Status Toko : </a>
-                <a class="ui {{btnColor}} label">{{ storeStatus }}</a>
+            <a class="ui orange label">Status Toko : </a>
+            <a class="ui {{btnColor}} label">{{ storeStatus }}</a>
         </div>
-
+        <div class="five wide column mymargin">
+        <div class="ui green left attached button {{buka}}" (click)="bukaToko()">Buka</div>
+        <div class="right red attached ui button {{tutup}}" (click)="tutupToko()">Libur</div>
+        </div>
     </div>
+
+        <!-- <div class="five wide column">
+            <button class="ui left attached button">Left</button>
+            <button class="right attached ui button">Right</button>
+        </div> -->
     <div class="eleven wide column">
         <div class="ui segment column">
             <div class="sexteen wide column">

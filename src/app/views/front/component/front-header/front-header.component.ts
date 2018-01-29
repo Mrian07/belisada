@@ -17,6 +17,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { TruncateModule } from 'ng2-truncate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 interface ICartItemWithProduct extends CartItem {
@@ -67,6 +68,7 @@ export class FrontHeaderComponent implements OnInit {
     private productService: ProductService,
     private loginService: LoginService,
     private ngZone: NgZone,
+    public translate: TranslateService
   ) {
   }
 
@@ -166,27 +168,28 @@ export class FrontHeaderComponent implements OnInit {
       confirmButtonText: 'Ya, Hapus!'
     }).then((result) => {
       if (result.value) {
-        this.shoppingCartService.delete(itemCartId).subscribe(response => {
-          if (response.status === '1') {
-            this.shoppingCartService.addItem(productId, -quantity);
-            swal(
-              'Dihapus!',
-              'Belanjaan Anda berhasil dihapus',
-              'success'
-            );
-          } else {
-            swal(response.message);
-          }
-        });
+        if (this.auth.getUser()) {
+          this.shoppingCartService.delete(itemCartId).subscribe(response => {
+            if (response.status === '1') {
+              this.shoppingCartService.addItem(productId, -quantity);
+              swal(
+                'Dihapus!',
+                'Belanjaan Anda berhasil dihapus',
+                'success'
+              );
+            } else {
+              swal(response.message);
+            }
+          });
+        } else {
+          this.shoppingCartService.addItem(productId, -quantity);
+        }
       }
     });
   }
 
   mulaiMenjual() {
-    // role = null;
     const luser = JSON.parse(localStorage.getItem('user'));
-
-    console.log(luser);
     if (luser) {
       if (luser.role === 1) {
 
@@ -215,7 +218,6 @@ export class FrontHeaderComponent implements OnInit {
 
         }
 
-        
       } else if (luser.role === 2 || luser.role === 3) {
 
         this.router.navigateByUrl('/seller/dashboard');
@@ -320,5 +322,7 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
 
- 
+  changeLanguage(language) {
+    this.translate.use(language);
+  }
 }

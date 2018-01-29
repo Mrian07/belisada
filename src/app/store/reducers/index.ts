@@ -1,3 +1,4 @@
+import { Filter } from './../../core/model/filter';
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createFeatureSelector } from '@ngrx/store';
 import 'rxjs/add/observable/empty';
@@ -37,6 +38,10 @@ export interface List {
   productlist: any;
 }
 
+export interface Filter {
+  sidebarFilterList: any;
+}
+
 export interface Category {
   category: any;
 }
@@ -69,6 +74,9 @@ export interface Details extends EntityState<Detail> { }
 
 export const listAdapter = createEntityAdapter<List>();
 export interface Lists extends EntityState<List> { }
+
+export const sidebarFilterAdapter = createEntityAdapter<Filter>();
+export interface Filters extends EntityState<Filter> { }
 
 export const categoryAdapter = createEntityAdapter<Category>();
 export interface Categorys extends EntityState<Category> { }
@@ -108,6 +116,10 @@ const defaultList = {
   productlist: null,
 };
 
+const defaultFilter = {
+  sidebarFilterList: null,
+};
+
 const defaultCategory = {
   category: null,
 };
@@ -129,6 +141,7 @@ export const initialStateUser: Users = userAdapter.getInitialState(defaultUser);
 export const initialStateHome: Homes = homeAdapter.getInitialState(defaultHome);
 export const initialStateDetail: Details = brandAdapter.getInitialState(defaultDetail);
 export const initialStateList: Lists = listAdapter.getInitialState(defaultList);
+export const initialStateFilter: Filters = sidebarFilterAdapter.getInitialState(defaultFilter);
 export const initialStateCategory: Categorys = categoryAdapter.getInitialState(defaultCategory);
 export const initialStateNavs: Navs = navAdapter.getInitialState(defaultNav);
 export const initialStatePaymentMethods: PaymentMethods = paymentMethodAdapter.getInitialState(defaultPaymentMethod);
@@ -248,8 +261,19 @@ export function ListReducer(
   action: front.HomeAction) {
 
   switch (action.type) {
-
     case front.GETLISTSUCCESS : {
+      return action.list;
+    }
+    default: return {};
+  }
+}
+
+export function FilterReducer(
+  state: Filters = initialStateFilter,
+  action: front.HomeAction) {
+  switch (action.type) {
+
+    case front.GET_SIDEBAR_FILTER_SUCCESS : {
       return action.list;
     }
     default: return {};
@@ -302,6 +326,7 @@ export const getUserState = createFeatureSelector<Users>('user');
 export const getHomeState = createFeatureSelector<Homes>('home');
 export const getDetailState = createFeatureSelector<Details>('detail');
 export const getListState = createFeatureSelector<Lists>('list');
+export const getFilterState = createFeatureSelector<Filters>('filter');
 export const getCategoryState = createFeatureSelector<Categorys>('category');
 export const getNavState = createFeatureSelector<Navs>('navigation');
 export const getPaymentMethodState = createFeatureSelector<PaymentMethods>('paymentMethod');

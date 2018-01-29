@@ -78,6 +78,7 @@ export class AddProductsComponent implements OnInit {
   garansiDays: any;
   isGuarantee: any;
   guaranteeDays: any;
+  news: any;
   selectedColor = [];
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
@@ -230,9 +231,14 @@ export class AddProductsComponent implements OnInit {
     const key = event.target.value;
     if (key === '') {
       this.results = [];
+      this.news = '';
     }else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
+        if (data.length === 0) {
+          this.results = [];
+          this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
+        }
       });
     }
   }
@@ -340,7 +346,8 @@ export class AddProductsComponent implements OnInit {
   }
   gudang($event) {
     $event.preventDefault();
-    if ($event.target.value >= this.stok) {
+    console.log($event.target.value + '=' + this.stok );
+    if ($event.target.value < this.stok) {
       swal(
         'Quantity lebih kecil',
         'Dari barang yang akan dikirim ke gudang',

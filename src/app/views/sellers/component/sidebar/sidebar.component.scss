@@ -15,3 +15,33 @@ hr {
 .img-profile{
     cursor: pointer;
 }
+
+.side-first{
+    background-color: #fa6524;
+    padding:10px;
+}
+
+.side-second{
+    background-color: #232f3d;
+    padding:10px;
+    color:#e8eaeb;
+    padding-bottom:20px;
+    border-bottom:10px solid #2d3e52;
+}
+
+.main-menu{
+    background: #2d3e52;
+    border-radius: 10px;
+    padding: 9px;
+    font-size: 15px;
+    color:#ffffff;
+}
+
+.item{
+    color:#d1d4d7;
+    cursor: pointer;
+}
+
+.item:hover{
+    color:#ffffff;
+}

@@ -7,6 +7,8 @@ export const GETHOME = 'GETHOME';
 export const GETHOMESUCCESS = 'GETHOMESUCCESS';
 export const GETLIST = 'GETLIST';
 export const GETLISTSUCCESS = 'GETLISTSUCCESS';
+export const GET_SIDEBAR_FILTER = 'GET_SIDEBAR_FILTER';
+export const GET_SIDEBAR_FILTER_SUCCESS = 'GET_SIDEBAR_FILTER_SUCCESS';
 export const GETCATEGORY = 'GETCATEGORY';
 export const GETCATEGORYSUCCESS = 'GETCATEGORYSUCCESS';
 export const GETNAV = 'GETNAV';
@@ -43,6 +45,16 @@ export class GetList implements Action {
 
 export class GetListSuccess implements Action {
   readonly type = GETLISTSUCCESS;
+  constructor(public list: any) {}
+}
+
+export class GetSidebarFilter implements Action {
+  readonly type = GET_SIDEBAR_FILTER;
+  constructor(public params: any) { }
+}
+
+export class GetSidebarFilterSuccess implements Action {
+  readonly type = GET_SIDEBAR_FILTER_SUCCESS;
   constructor(public list: any) {}
 }
 
@@ -87,6 +99,8 @@ export type HomeAction =
  | GetHomeSuccess
  | GetList
  | GetListSuccess
+ | GetSidebarFilter
+ | GetSidebarFilterSuccess
  | GetCategory
  | GetCategorySuccess
  | GetNav

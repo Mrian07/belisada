@@ -1,6 +1,6 @@
 <div class="ui segment">
   <div class="ui grid">
-    <div class="sixteen wide stretched column">         
+    <div class="sixteen wide stretched column">
       <div class="ui positive message">
         <div class="header">
           Formulir Pendaftaran Toko
@@ -19,7 +19,7 @@
           <div class="eight wide field">
             <label>Alamat</label>
             <input name="address" placeholder="Masukan alamat toko" type="text" formControlName="address"/>
-            <div class="form-control-feedback alert" *ngIf="address.invalid && (address.dirty || f.submitted)"> 
+            <div class="form-control-feedback alert" *ngIf="address.invalid && (address.dirty || f.submitted)">
                 Alamat tidak boleh kosong
             </div>
           </div>
@@ -27,15 +27,15 @@
         <div class="fields">
           <div class="eight wide field">
             <label>Provinsi</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
-                <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+            <sui-select class="selection" #provsi [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                <sui-select-option *ngFor="let option of provsi.filteredOptions" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
             </sui-select>
             <div class="form-control-feedback" *ngIf="province.invalid && (province.dirty || f.submitted)">Provinsi tidak boleh kosong</div>
           </div>
           <div class="eight wide field">
             <label>Kota</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
-                <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+            <sui-select class="selection" #citie [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                <sui-select-option *ngFor="let option of citie.filteredOptions" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
             </sui-select>
             <div class="form-control-feedback" *ngIf="city.invalid && (city.dirty || f.submitted)">Kota tidak boleh kosong</div>
           </div>
@@ -43,22 +43,22 @@
         <div class="fields">
           <div class="five wide field">
             <label>Kecamatan</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
-              <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+            <sui-select class="selection" #district [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+              <sui-select-option *ngFor="let option of district.filteredOptions" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
             </sui-select>
             <div class="form-control-feedback" *ngIf="district.invalid && (district.dirty || f.submitted)">Kelurahan / Kecamatan tidak boleh kosong</div>
           </div>
           <div class="six wide field">
             <label>Kelurahan</label>
-            <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="village">
-                <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+            <sui-select class="selection" #village [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" labelField="name" placeholder="Pilih Desa" formControlName="village">
+                <sui-select-option *ngFor="let option of village.filteredOptions" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
             </sui-select>
             <div class="form-control-feedback" *ngIf="village.invalid && (village.dirty || f.submitted)">Desa tidak boleh kosong</div>
           </div>
           <div class="five wide field">
               <label>Kode POS</label>
               <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalcode"/>
-              <div class="form-control-feedback alert" *ngIf="postalcode.invalid && (postalcode.dirty || f.submitted)"> 
+              <div class="form-control-feedback alert" *ngIf="postalcode.invalid && (postalcode.dirty || f.submitted)">
                   Kodepos tidak boleh kosong
               </div>
             </div>
@@ -68,7 +68,7 @@
             <label>Deskripsi</label>
             <textarea name="description" placeholder="Deskripsi toko anda" formControlName="description"></textarea>
           </div>
-        </div> 
+        </div>
 
         <h4 class="ui dividing header">Data Rekening</h4>
         <div class="fields">

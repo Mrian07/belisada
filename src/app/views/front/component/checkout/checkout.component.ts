@@ -60,7 +60,6 @@ export class CheckoutComponent implements OnInit {
   deliveryTotal: number;
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
-  id: any;
 
   private storage: Storage;
   checkout: Checkout;
@@ -328,7 +327,12 @@ export class CheckoutComponent implements OnInit {
       if (response.status === '1') {
         this.shoppingCartService.empty();
       }
-      swal(response.message);
+      //swal(response.message);
+      swal(
+        'Finish!',
+        'Selamat transaksi Anda berhasil diproses.',
+        'success'
+      );
       this.router.navigateByUrl('/finish-order/' + response.id);
     });
   }

@@ -87,6 +87,18 @@ export class HomeEffects {
   );
 
   @Effect()
+  getSidebarFilter$: Observable<any> = this.actions$.ofType(frontActions.GET_SIDEBAR_FILTER)
+  .map((action: frontActions.GetSidebarFilter) => action.params)
+    .switchMap((params) =>
+      this.searchService.getFilter(params)
+      .delay(200)
+      .map( (list) => {
+        return new frontActions.GetSidebarFilterSuccess(list);
+      }
+    )
+  );
+
+  @Effect()
   getcategory$: Observable<any> = this.actions$.ofType(frontActions.GETCATEGORY)
   .map((action: frontActions.GetCategory) => action.params)
     .switchMap((params) =>

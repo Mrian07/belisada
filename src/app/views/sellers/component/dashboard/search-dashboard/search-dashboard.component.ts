@@ -20,6 +20,8 @@ export class SearchDashboardComponent implements OnInit {
   btnColor: string;
   note: string;
   message: string;
+  buka: string;
+  tutup: string;
 
   constructor(
     private router: Router,
@@ -48,8 +50,20 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'red';
         }
       }
+      this.bukaToko();
     });
   }
+
+  bukaToko() {
+    this.buka = 'disabled';
+    this.tutup = '';
+  }
+
+  tutupToko() {
+    this.buka = '';
+    this.tutup = 'disabled';
+  }
+
   search(event) {
     const key = event.target.value;
   }
@@ -60,7 +74,7 @@ export class SearchDashboardComponent implements OnInit {
         'Belisada.co.id',
         'Toko Anda belum diverifikasi!'
       ).then((result) => {
-       // this.router.navigateByUrl('seller/toko');
+        //this.router.navigateByUrl('/sign-up');
       });
     }else {
       this.storeService.getAll().subscribe(response => {
