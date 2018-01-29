@@ -1,5 +1,5 @@
 <p><a routerLink="/buyer/transaction-buyer" class="menu-top-side"><i class="angle double left icon"></i>Kembali</a></p>
-<table class="ui very basic collapsing celled table">
+<table class="ui very basic collapsing celled table" style="width:700px">
     <thead>
       <tr><th>Tanggal Order</th>
       <th>Total Pembayaran</th>
@@ -11,19 +11,19 @@
     <tbody>
       <tr>
         <td>
-            09 Januari 2018 13:29:12 WIB
+            {{cart.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}
           </td>
           <td>
-              Rp.229.500
+              Rp.{{cart.grandTotal | number}}
           </td>
           <td>
-              Bank Transfer
+             {{cart.paymentMethod}}
           </td>
           <td>
-              ORD/09012018/22
+              {{cart.orderNumber}}
           </td>
           <td>
-              SHIPPING
+              {{cart.transactionStatus}}
           </td>
 
       </tr>
@@ -39,16 +39,16 @@
   </div> -->
   <p>Kirimkan bukti transfer Anda dengan meng-klik tombol <b>Upload Bukti Transfer</b> dibawah.</p>
   <div class="fields">
-      
+
       <div class="upload-btn-wrapper">
           <img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvas($event, 'imageIDCard')" #imageTrans >
           <button class="ui green button"><i class="cloud icon"></i> Upload Bukti Transfer</button>
-          <input type="file" name="fileTrans" (change)="setUrl($event, imageTrans)" />
+          <input type="file" name="fileTrans"  (change)="setUrl($event, imageTrans)" />
       </div>
   </div>
 
 
-  <button class="ui primary button">
+  <button class="ui primary button" (click)="uploadBukti()">
     Kirim Konfirmasi
   </button>
 </form>

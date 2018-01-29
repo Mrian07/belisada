@@ -90,6 +90,7 @@
 .cart-icon {
    position: absolute;
    right: 20px;
+   cursor: pointer;
 }
 
 .cart-counter {
@@ -169,6 +170,7 @@
 
 .header-mid-menu li .link-red2 {
     color:#f51b0a;
+    cursor: pointer;
 }
 
 .header-mid-menu li .link-red2:hover {
@@ -263,6 +265,7 @@
     // width: 200px;
     right: 10px;
     color: #333;
+    margin-top: 40px;
 }
 .cart:hover > .shopping-cart {
     opacity: 1;
@@ -351,7 +354,26 @@
         background-color: #002E43;}
 }
 
+.btn-src{
+    padding:0px; padding-left:15px; padding-top:8px;  padding-right:8px; border-radius:0px 5px 5px 0px; background: #f2711c;
+    cursor: pointer;
+}
+
+.btn-src:hover{
+    background: #f59759;
+    color:#fefdcd;
+}
+
 @media screen and (max-width: 425px) {
+    .search-by-category{
+        margin-top:40px;
+    }
+
+    .btn-src{
+        padding:0px; padding-left:15px; padding-bottom:15px; padding-right:5px; border-radius:0px 5px 5px 0px; background: #f2711c;
+        cursor: pointer;
+    }
+
     .helper {
         display: none;
     }
@@ -462,6 +484,26 @@
     background-color: #f1f1f1;
     color: #000000;
 }
+.result-popular {
+
+}
+
+
+.popular-list {
+    min-height: 30px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .9);
+    color: #000000;
+    cursor: pointer;
+}
+
+.popular-list:hover {
+    min-height: 30px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #000000;
+    cursor: pointer;
+}
 
 .result img{
     height: 32px;
@@ -533,17 +575,24 @@
     position: relative;
     display: inline-block;
     right: 0; left: auto;
+    padding-left:10px;
+    padding-right:10px;
+    border-top:1px solid #002e43;
+    border-left:1px solid #002e43;
+    border-right:1px solid #002e43;
   }
 
-  .dropdown-profile:hover {
-    // border: 1px solid #eeeeee;
-  }
+.dropdown-profile:hover{
+    border-top:1px solid #024766;
+    border-left:1px solid #024766;
+    border-right:1px solid #024766;
+}
 
   .dropdown-profile-content {
     display: none;
     position: absolute;
     background-color: #ffffff;
-    min-width: 350px;
+    min-width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding:10px;
     z-index: 999999;
@@ -552,6 +601,7 @@
     color:#111111;
     border-radius:5px;
     margin-top:0px;
+    text-align: center;
   }
 
   .dropdown-profile-content:after, .arrow_box:before {
@@ -604,6 +654,7 @@
     margin-top:10px;
     border-top: 1px solid #dddddd;
     padding-top:10px;
+    text-align: left;
   }
 
   .dropdown-menu-account a:link {
@@ -641,4 +692,6 @@
 .go-link:active {
     color:#f8992e;
 }
+
+
 

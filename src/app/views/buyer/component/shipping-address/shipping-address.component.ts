@@ -28,12 +28,14 @@ export class ShippingAddressComponent implements OnInit {
   addressType: FormControl;
   province: FormControl;
   city: FormControl;
+  isDefault: 'Y';
   district: FormControl;
   id: number;
   addressId: FormControl;
   firstActive: any;
   secondActive: any;
   ship;
+  eCheck: boolean = true;
   provinces: Province[];
   cities: City[];
   districts: District[];
@@ -95,6 +97,7 @@ export class ShippingAddressComponent implements OnInit {
       addressName: model.addressName,
       phone: model.phone,
       city: model.city,
+      isDefault: this.isDefault,
       province: model.province,
       district: model.district,
       postal: model.postalCode,
@@ -126,47 +129,27 @@ export class ShippingAddressComponent implements OnInit {
     });
   }
   getAllStorex(id) {
-    this.show1 = false;
-
-    const model = this.createComForm.value;
-    //
-    this.masterService.getCity(id.regionId).subscribe(city => {
+      this.show1 = false;
+      const model = this.createComForm.value;
+      this.masterService.getCity(id.regionId).subscribe(city => {
       this.cities = city;
       this.masterService.getDistrict(id.cityId).subscribe(district => {
-        this.districts = district;
-        this.masterService.getVillage(id.districtId).subscribe(village => {
-
-          this.villages = village;
-          this.addressName.setValue(id.addressName);
-          this.addressId.setValue(id.addressId);
-          this.name.setValue(id.name);
-          this.address.setValue(id.address);
-          this.province.setValue(this.provinces.find(x => x.mregionId === id.regionId));
-          this.city.setValue(this.cities.find(x => x.mcityId === id.cityId));
-          // this.sectorTypeId.setValue(this.bidang.find(x => x.sectorTypeId === data.sectorTypeId));
-          // this.city.setValue(data.cityId);
-          this.district.setValue(this.districts.find(x => x.mdistrictId === id.districtId));
-          this.vilaggeId.setValue(this.villages.find(x => x.mvillageId === id.villageId));
-          this.postalCode.setValue(id.postal);
-          this.phone.setValue(id.phone);
-          // this.corporatePhone.setValue(data.corporatePhone);
-          // this.ktp.setValue(data.idcard);
-          // this.corporateNpwp.setValue(data.corporateNpwp);
-          // this.imgAvatar.setValue(data.imageAvatar);
-          // this.imageCorporateNpwp.setValue(data.imageCorporateNpwp);
-          // this.dateOfBirth = new FormControl(new Date());
-          // this.dateOfBirth.setValue(data.dateOfBirth);
+      this.districts = district;
+      this.masterService.getVillage(id.districtId).subscribe(village => {
+      this.villages = village;
+      this.addressName.setValue(id.addressName);
+      this.addressId.setValue(id.addressId);
+      this.name.setValue(id.name);
+      this.address.setValue(id.address);
+      this.province.setValue(this.provinces.find(x => x.mregionId === id.regionId));
+      this.city.setValue(this.cities.find(x => x.mcityId === id.cityId));
+      this.district.setValue(this.districts.find(x => x.mdistrictId === id.districtId));
+      this.vilaggeId.setValue(this.villages.find(x => x.mvillageId === id.villageId));
+      this.postalCode.setValue(id.postal);
+      this.phone.setValue(id.phone);
         });
       });
     });
-    // this.name = id.name;
-    // this.accountNo = id.accountNo;
-    // this.selectedCategory = id.mBankId;
-    // this.mBankAccountId = id.mBankAccountId;
-    // this.show1 = false;
-    // console.log('ini semuanya', id);
-    // console.log('bismilah', id.addressId);
-    // this.form.reset();
   }
   edit() {
     // console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
@@ -188,15 +171,35 @@ export class ShippingAddressComponent implements OnInit {
     });
   }
 
+  iniGua(address) {
+      const c = {
+        name:  address.name,
+        address: address.address,
+        addressName: address.addressName,
+        postal: address.postalCode,
+        villageId: address.villageId,
+        phone: address.phone,
+        addressId: address.addressId,
+        isDefault: 'Y'
+        //
+      };
+      this.shippingAddressService.update(c).subscribe(data => {
+        this.fillForms();
+      //  alert('a');
+      });
+
+  }
+
   btnDelete(id) {
     swal({
-      title: 'Are you sure?',
-      text: 'You wont be able to revert this!',
+      title: 'Alert!',
+      text: 'Apakah data shipping ini akan dihapus',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      cancelButtonText: 'Tidak',
+      confirmButtonText: 'Hapus'
     }).then((result) => {
       if (result.value) {
         this.shippingAddressService.delete(id).subscribe(data => {

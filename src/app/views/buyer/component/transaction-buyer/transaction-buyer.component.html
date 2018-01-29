@@ -10,26 +10,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>09/01/2018 13:29:12 WIB</td>
-        <td>Rp.229.500</td>
-        <td>ORD/09012018/22</td>
-        <td>PENDING</td>
+      <tr *ngFor="let item of aaa">
+        <td>{{item.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+        <td>Rp {{item.grandTotal | number}}</td>
+        <td>{{item.orderNumber}}</td>
+        <td>{{item.transactionStatus}}</td>
         <td>
-          <button class="ui basic button" (click)="orderDetail()">Detail</button>
+          <button class="ui basic button" (click)="orderDetail(item)">Detail</button>
         </td>
-        <td><button class="ui basic button" (click)="orderConfirm()">Konfirmasi</button></td>
+        <td><button class="ui basic button" (click)="orderConfirm(item)">Konfirmasi</button></td>
       </tr>
-      <tr>
-        <td>09/01/2018 13:29:12 WIB</td>
-        <td>Rp.229.500</td>
-        <td>ORD/09012018/22</td>
-        <td>SHIPPING</td>
-        <td>
-          <button class="ui basic button" (click)="orderDetail()">Detail</button>
-        </td>
-        <td><button class="ui basic button" (click)="orderConfirm()">Konfirmasi</button></td>
-      </tr>
-     
+
     </tbody>
   </table>

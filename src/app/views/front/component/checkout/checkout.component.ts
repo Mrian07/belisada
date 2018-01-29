@@ -25,7 +25,7 @@ import { PaymentMethod } from '../../../../core/model/PaymentMethod';
 import { PaymentMethodDetail } from '../../../../core/model/PaymentMethodDetail';
 import { CheckoutService } from '../../../../core/service/checkout/checkout.service';
 import { Router } from '@angular/router';
-
+import { TokenService } from '../../../../core/service/token/token.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -60,15 +60,15 @@ export class CheckoutComponent implements OnInit {
   deliveryTotal: number;
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
-
+  id: any;
 
   private storage: Storage;
   checkout: Checkout;
   shippingAddress: ShippingAddress;
-  shippingAddressList: ShippingAddress[];
+  shippingAddressList: ShippingAddress[] = new Array<ShippingAddress>();
 
   billingAddress: BillingAddress;
-  billingAddressList: BillingAddress[];
+  billingAddressList: BillingAddress[] = new Array<BillingAddress>();
 
   selShippingAddress: any = '';
   selBillingAddress: any = '';
@@ -89,13 +89,15 @@ export class CheckoutComponent implements OnInit {
     private productService: ProductService,
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.PaymentMethods>,
-    private checkoutService: CheckoutService
+    private checkoutService: CheckoutService,
+    private auth: TokenService,
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
    }
 
   ngOnInit() {
+    this.cekLogin();
     this.kampret = false;
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
@@ -104,7 +106,8 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
-        console.log('kaka', this.billingAddressList);
+        // console.log('kaka', this.billingAddressList);
+        // console.log('aaa', this.shippingAddressList);
         // console.log('asdasd', token);
         console.log('apaan si nih', this.billingAddress );
         if (this.billingAddressList.length === 0) {
@@ -114,7 +117,7 @@ export class CheckoutComponent implements OnInit {
           this.billingAddress = this.billingAddressList[0];
           this.kampre2t = true;
         }
-        console.log('this.billingAddressList: ', this.billingAddressList);
+        // if (this.shippingAddressList.isDefault)
       });
     });
 
@@ -126,6 +129,13 @@ export class CheckoutComponent implements OnInit {
           });
     this.shoppingCart();
   }
+
+  cekLogin() {
+    if (!this.auth.getUser()) {
+      this.router.navigateByUrl('/sign-in');
+    }
+  }
+
 
   getPaymentMethods() {
     this.store.select<any>(fromProduct.getPaymentMethodState).subscribe(datas => {
@@ -172,6 +182,12 @@ export class CheckoutComponent implements OnInit {
         });
       });
     });
+
+
+    if (this.grossTotal === 0) {
+      this.router.navigateByUrl('/cart');
+    }
+
   }
 
   public updateQuantity(event: any, item: any) {
@@ -259,6 +275,14 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.shippingAddressList = this.shareService.shareData;
+
+        this.shippingAddressList.forEach(item => {
+          if (item.isDefault === 'Y') {
+            this.selShippingAddress = item.addressId;
+            this.getShippingAddress(item.addressId);
+          }
+          // console.log('this.billingAddressList: ', item);
+        });
       });
     });
   }
@@ -305,7 +329,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartService.empty();
       }
       swal(response.message);
-      this.router.navigateByUrl('/finish-order');
+      this.router.navigateByUrl('/finish-order/' + response.id);
     });
   }
 
@@ -349,25 +373,27 @@ export class CheckoutComponent implements OnInit {
     const csSummaryY = Math.floor(csSummaryOffset.top);
     const limitScrollY = Math.floor(limitScrollOffset.top);
 
-    if (window.pageYOffset >= csAddressY && window.pageYOffset < csCartY) {
+    const pageYOffset = Math.ceil(window.pageYOffset);
+
+    if (pageYOffset >= csAddressY && pageYOffset < csCartY) {
       console.log('1');
       csAddressBtn.classList.add('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
-    } else if (window.pageYOffset >= csCartY && window.pageYOffset < csPaymentY) {
+    } else if (pageYOffset >= csCartY && pageYOffset < csPaymentY) {
       console.log('2');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.add('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
-    } else if (window.pageYOffset >= csPaymentY && window.pageYOffset < csSummaryY) {
+    } else if (pageYOffset >= csPaymentY && pageYOffset < csSummaryY) {
       console.log('3');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.add('active');
       csSummaryBtn.classList.remove('active');
-    } else if (window.pageYOffset >= csSummaryY && window.pageYOffset < limitScrollY) {
+    } else if (pageYOffset >= csSummaryY && pageYOffset < limitScrollY) {
       console.log('4');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
@@ -380,6 +406,6 @@ export class CheckoutComponent implements OnInit {
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
     }
-    console.log(window.pageYOffset);
+    console.log(pageYOffset);
   }
 }

@@ -115,8 +115,10 @@ export class AddShippingComponent implements OnInit {
             'Success',
             'Data shipping berhasil ditambahkan',
           //  response.message,
-            'success'
-          );
+            'success',
+          ).then(); {
+            location.reload();
+          }
         }else {
           swal(
             'Opps!',

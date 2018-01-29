@@ -79,7 +79,7 @@ export class HomeEffects {
   .map((action: frontActions.GetList) => action.params)
     .switchMap((params) =>
       this.searchService.productList(params)
-      .delay(200)
+      .delay(50)
       .map( (list) => {
         return new frontActions.GetListSuccess(list);
       }

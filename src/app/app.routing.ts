@@ -1,3 +1,4 @@
+import { SliderDepanComponent } from './views/front/component/slider-depan/slider-depan.component';
 import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
 import { CustomerServiceComponent } from './views/front/component/customer-service/customer-service.component';
@@ -132,7 +133,7 @@ const routes: Routes = [
           title: 'Confirm Order'
         }
       }, {
-        path: 'finish-order',
+        path: 'finish-order/:id',
         component: FinihOrderComponent,
         data: {
           title: 'Finish Order'
@@ -283,7 +284,7 @@ const routes: Routes = [
             }
           },
            {
-            path: 'order-detail-buyer',
+            path: 'order-detail-buyer/:id',
             component: OrderDetailBuyerComponent,
             data: {
               title: 'Order Detail Buyer'
@@ -297,7 +298,7 @@ const routes: Routes = [
           }
         },
           {
-            path: 'confirmation-buyer',
+            path: 'confirmation-buyer/:id',
             component: ConfirmationBuyerComponent,
             data: {
               title: 'Confirmation Buyer'
@@ -329,6 +330,13 @@ const routes: Routes = [
       {
         path: 'asap',
         component: AsapComponent,
+        data: {
+          title: 'asap'
+        }
+      },
+      {
+        path: 'Slider-Depan',
+        component: SliderDepanComponent,
         data: {
           title: 'asap'
         }

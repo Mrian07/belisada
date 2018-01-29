@@ -44,4 +44,24 @@ export class HeaderBuyerComponent implements OnInit {
     });
   }
 
+  profileBuyer() {
+    this.router.navigateByUrl('/buyer/profile-buyer');
+  }
+
+  changePassword() {
+    this.router.navigateByUrl('/buyer/change-password');
+  }
+
+  billingAddress() {
+    this.router.navigateByUrl('/buyer/billingAddress');
+  }
+
+  shippingAddress() {
+    this.router.navigateByUrl('/buyer/shippingAddress');
+  }
+
+  transactionBuyer() {
+    this.router.navigateByUrl('/buyer/transaction-buyer');
+  }
+
 }

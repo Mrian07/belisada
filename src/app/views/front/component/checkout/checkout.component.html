@@ -26,7 +26,66 @@
     </div>
     <div class='conten-checkout'>
         <h2 id="cs-address">Alamat Penagihan</h2><p>Jika Alamat penagihan belum ada, lakukan tambah alamat penagihan.</p>
-        <div class="ui grid">
+
+        <div class="ui grid" *ngIf="billingAddressList.length==0">
+                            <div class="one column row">
+                                <div class="column">
+                                    <sui-tabset>
+                                        <div class="ui top attached tabular menu">
+
+                                            <a class="item" suiTabHeader="2">Tambah Alamat Penagihan</a>
+
+                                        </div>
+                                        <div class="ui bottom attached segment" suiTabContent="2">
+                                            <app-add-billing></app-add-billing>
+                                        </div>
+                                    </sui-tabset>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="ui grid" *ngIf="billingAddressList.length">
+                            <div class="one column row">
+                                <div class="column">
+                                    <sui-tabset>
+                                        <div class="ui top attached tabular menu">
+                                            <a class="item" suiTabHeader="1">Penagihan</a>
+                                        </div>
+                                        <div class="ui bottom attached segment" suiTabContent="1">
+
+                                            <div class="sixten wide column right aligned">
+                                                <div class="ui segment" *ngFor="let item3 of billingAddressList">
+                                                    <div class="ui grid">
+                                                        <div class="sexten wide column">
+                                                            <p><strong>{{ item3.name }} - {{ item3.phone }}</strong><br>
+                                                                {{ item3.address }}<br>
+                                                                {{ item3.districtName }}, {{ item3.cityName }}, {{ item3.postal }}<br>
+                                                                {{ item3.regionName }} - {{ item3.countryName }}<br>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+                                        </div>
+
+                                    </sui-tabset>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+        <!-- <div class="ui grid">
             <div class="one column row">
                 <div class="column">
                     <sui-tabset>
@@ -55,7 +114,6 @@
                                                         </p>
                                                     </div>
                                                     <div class="six wide column right aligned">
-                                                        <!-- [ <a (click)="addBilling('add')">Tambah Alamat Penagihan</a> ] -->
                                                     </div>
 
                                                     </div>
@@ -71,7 +129,7 @@
 
 
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -96,14 +154,15 @@
                                         </div>
 
                                         <select class="ui compact selection dropdown" [(ngModel)]="selShippingAddress" (change)="getShippingAddress(selShippingAddress)">
-                                            <option value="">-Pilih-</option>
-                                            <option *ngFor="let item of shippingAddressList" [value]="item.addressId">{{ item.addressName }}</option>
+                                            <!-- <option  value="">-Pilih-</option> -->
+                                            <option *ngFor="let item of shippingAddressList" [value]="item.addressId" [selected]="item.isDefault === 'Y'">
+                                                {{item.addressName}}
+                                            </option>
                                         </select>
                                         <!-- <div type="submit" class="ui instagram button">Tambah Shipping</div> -->
                                     </div>
                                     <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
                                 </div>
-
                                 <div class="ui segment" *ngIf="shippingAddress">
                                     <div class="ui grid">
 

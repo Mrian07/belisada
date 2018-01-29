@@ -85,7 +85,7 @@
             <!-- <div class="clear-fix"></div> -->
             <div class="highlight">
                 <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a>
-                <p [innerHTML] = "item.highlight | words: 20 | sanitizeHtml ">
+                <p [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
                     <!-- {{item.highlight}} -->
                 </p>
             <!-- <div [innerHTML]="item.highlight | sanitizeHtml | truncate : 20 : '.'"></div> -->

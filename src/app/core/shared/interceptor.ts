@@ -39,12 +39,12 @@ export class Interceptor implements HttpInterceptor {
       if (err instanceof HttpErrorResponse) {
         if (err.status === 401) {
           if (token) {
-          swal('Anda belum Login atau Session Anda Expired, Anda Harus Login ulang')
-          .then((result) => {
-            localStorage.removeItem('user');
-            this.routes.navigateByUrl('/sign-in');
-          });
-        }
+            swal('Anda belum Login atau Session Anda Expired, Anda Harus Login ulang')
+            .then((result) => {
+              localStorage.removeItem('user');
+              this.routes.navigateByUrl('/sign-in');
+            });
+          }
         }else if (err.status === 404) {
           // swal('Oops!...something wrong...')
           // .then((result) => {

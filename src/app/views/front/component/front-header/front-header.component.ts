@@ -52,6 +52,8 @@ export class FrontHeaderComponent implements OnInit {
   userName: string;
   avatar: string;
   itemsTotal: number;
+  popular = [];
+  role: string;
 
   constructor(
     private categoryService: CategoryService,
@@ -90,6 +92,14 @@ export class FrontHeaderComponent implements OnInit {
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
+    this.popular = [];
+  }
+
+  popularSearch() {
+    this.searchService.searchPopular().subscribe(data => {
+      console.log(data);
+      this.popular = data;
+    });
   }
 
   searchK(event) {
@@ -99,12 +109,14 @@ export class FrontHeaderComponent implements OnInit {
     } else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
+        this.popularSearch();
         // console.log(data);
       });
     }
   }
 
   searchEnter(searchKey, searchCategory) {
+    console.log('test');
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;
@@ -172,6 +184,50 @@ export class FrontHeaderComponent implements OnInit {
         }
       }
     });
+  }
+
+  mulaiMenjual() {
+    // role = null;
+    const luser = JSON.parse(localStorage.getItem('user'));
+
+    console.log(luser);
+    if (luser) {
+      if (luser.role === 1) {
+
+        this.router.navigateByUrl('/buyer');
+        const user = JSON.parse(localStorage.user);
+        if (user.role === 3 || user.role === 2) {
+          this.router.navigateByUrl('/seller/dashboard');
+        } else {
+
+          swal({
+            title: 'Warning',
+            text: 'Anda belum menjadi Seller. Apakah Anda ingin mendaftar sebagai Seller?',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#1d7d0a',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Tidak',
+            confirmButtonText: 'Daftar Sebagai Seller'
+          }).then((result) => {
+            if (result.value) {
+                this.router.navigateByUrl('/buyer/seller-propose');
+            } else {
+                return false;
+            }
+          });
+
+        }
+
+        
+      } else if (luser.role === 2 || luser.role === 3) {
+
+        this.router.navigateByUrl('/seller/dashboard');
+
+      }
+    }  else {
+      this.router.navigateByUrl('/sign-up');
+    }
   }
 
   home() {
@@ -267,4 +323,6 @@ export class FrontHeaderComponent implements OnInit {
       }
     });
   }
+
+ 
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgxCarousel } from 'ngx-carousel';
 import { NgxCarouselStore } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.interface';
@@ -9,7 +10,9 @@ import { NgxCarouselStore } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.int
 })
 export class FrontSlideShowComponent implements OnInit {
 
-  constructor(public carouselBanner: NgxCarousel) { }
+  constructor(public carouselBanner: NgxCarousel
+  , private router: Router
+  ) { }
 
   ngOnInit() {
     this.carouselBanner = {
@@ -56,6 +59,9 @@ export class FrontSlideShowComponent implements OnInit {
   /* It will be triggered on every slide*/
   onmoveFn(data: NgxCarouselStore) {
     console.log(data);
+  }
+  slideShow() {
+    this.router.navigateByUrl('/Slider-Depan');
   }
 
 }

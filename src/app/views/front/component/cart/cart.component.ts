@@ -99,14 +99,17 @@ export class CartComponent implements OnInit {
       quantity: event.target.value,
       itemCartId: item.itemCartId
     };
-
-    this.shoppingCartService.update(updateData).subscribe(response => {
-      if (response.status === '1') {
-        this.shoppingCartService.updateQuantity(item.product.productId, quantity);
-      } else {
-        swal(response.message);
-      }
-    });
+    if (this.auth.getUser()) {
+      this.shoppingCartService.update(updateData).subscribe(response => {
+        if (response.status === '1') {
+          this.shoppingCartService.updateQuantity(item.product.productId, quantity);
+        } else {
+          swal(response.message);
+        }
+      });
+    } else {
+      this.shoppingCartService.updateQuantity(item.product.productId, quantity);
+    }
   }
 
   public removeProductFromCart(item: CartItem): void {
@@ -120,18 +123,27 @@ export class CartComponent implements OnInit {
       confirmButtonText: 'Ya, Hapus!'
     }).then((result) => {
       if (result.value) {
-        this.shoppingCartService.delete(item.itemCartId).subscribe(response => {
-          if (response.status === '1') {
-            this.shoppingCartService.addItem(item.productId, -item.quantity);
-            swal(
-              'Dihapus!',
-              'Belanjaan Anda berhasil dihapus',
-              'success'
-            );
-          } else {
-            swal(response.message);
-          }
-        });
+        if (this.auth.getUser()) {
+          this.shoppingCartService.delete(item.itemCartId).subscribe(response => {
+            if (response.status === '1') {
+              this.shoppingCartService.addItem(item.productId, -item.quantity);
+              swal(
+                'Dihapus!',
+                'Belanjaan Anda berhasil dihapus',
+                'success'
+              );
+            } else {
+              swal(response.message);
+            }
+          });
+        } else {
+          this.shoppingCartService.addItem(item.productId, -item.quantity);
+          swal(
+            'Dihapus!',
+            'Belanjaan Anda berhasil dihapus',
+            'success'
+          );
+        }
       }
     });
   }

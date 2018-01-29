@@ -44,29 +44,26 @@
                         </div>
                         <div class="field">
                             <label>Provinsi</label>
-                            <!-- <sui-select name="province" [isSearchable]="true" class="selection" labelField="name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
-                                <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
-                            </sui-select> -->
-                            <select [(ngModel)]="adr.province" [ngModelOptions]="{standalone: true}">
-                                <option  *ngFor="let option of provinces" value="option.mregionId">{{option.name}}</option>
-                            </select>
+                            <sui-select name="province" #provs [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
+                                <sui-select-option *ngFor="let option of provs.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
+                            </sui-select>
                         </div>
                         <div class="field">
                             <label>Kota</label>
-                            <sui-select class="selection" labelField="name" name="city" placeholder="Pilih Kota" [(ngModel)]="adr.city">
-                                <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                            <sui-select name="city" #city [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih kota" [(ngModel)]="adr.city">
+                                <sui-select-option *ngFor="let option of city.filteredOptions" [value]="option" (click)="getDistrict(option.mcityId)">{{option.name}}</sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Kecamatan</label>
-                            <sui-select class="selection" labelField="name" name="district" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
-                                <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                            <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
+                                <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
                             <label>Kelurahan</label>
-                            <sui-select name="village" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
-                                <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setVilage(option)"></sui-select-option>
+                            <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
+                                <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setVilage(option)">{{option.name}}</sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
@@ -76,11 +73,11 @@
                         </div>
                         <div class="field">
                             <label>Nomor HP</label>
-                            <input name="phone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
+                            <input name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
                         </div>
                         <div class="field">
                             <label>Nomor KTP</label>
-                            <input name="ktp" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
+                            <input name="ktp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
                         </div>
                         <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
                         <div class="upload-btn-wrapper">
@@ -89,7 +86,7 @@
                         </div>
                         <div class="field">
                             <label>Nomor NPWP</label>
-                            <input name="npwp" placeholder="Masukan nomor NPWP" type="text"  [(ngModel)]="fm.npwp"/>
+                            <input name="npwp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor NPWP" type="text"  [(ngModel)]="fm.npwp"/>
                         </div>
 
                         <!-- <div class="ui divider"></div> -->

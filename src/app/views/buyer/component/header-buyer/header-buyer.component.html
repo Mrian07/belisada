@@ -1,11 +1,11 @@
    <div class="head-buyer">
-      <div class="ui grid">
+      <div class="ui grid stackable ">
         <div class="nine wide column">
             <!-- <a routerLink="/buyer/dashboard"><img class="ui small image" src="/assets/img/logo_buyer_belisada.png"></a> -->
             <div class='simple-nav-buyer'>Selamat datang di akun private Anda.</div>
             
         </div>
-        <div class="three wide right aligned column ">
+        <!-- <div class="three wide right aligned column ">
             <div class='simple-nav-buyer'>
                 <div class="ui dropdown" suiDropdown>
                     <div class="text">My Transaction</div>
@@ -18,17 +18,22 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="two wide right aligned column ">
+        </div> -->
+        <div class="five wide right aligned column ">
           <div class='simple-nav-buyer'>
             <div class="ui dropdown" suiDropdown>
-              <div class="text">Account</div>
+              <div class="text">Akun & Transaksi</div>
               <i class="dropdown icon"></i>
               <div class="menu" suiDropdownMenu>
-                  <div class="item"><a routerLink="/buyer/profile-buyer">Profile</a></div>
-                  <div class="item"><a routerLink="/buyer/change-password">Change Password</a></div>
-                  <div class="item"><a routerLink="/buyer/billingAddress">Data Billing</a></div>
-                  <div class="item"><a routerLink="/buyer/shippingAddress">Data Shiping</a></div>
+                  <div class="item" (click)="profileBuyer()">Profile</div>
+                  <div class="item" (click)="changePassword()">Change Password</div>
+                  <div class="item" (click)="billingAddress()">Data Billing</div>
+                  <div class="item" (click)="shippingAddress()">Data Shiping</div>
+                  <div class="divider"></div>
+                  <div class="item" (click)="transactionBuyer()">All Transaksi & Konfirmasi</div>
+                  <div class="item">Status Pemesanan</div>
+                  <div class="item">Order History</div>
+                  <div class="item">Konfirmasi Penerimaan</div>
                   <!-- <div class="item">
                       <span class="description">ctrl + o</span>
                       Open...

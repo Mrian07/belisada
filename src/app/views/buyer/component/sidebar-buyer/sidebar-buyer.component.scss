@@ -84,3 +84,14 @@
 .item :hover{
     color:#ffffff;
 }
+
+@media screen and (max-width: 600px) {
+    .lay-sidebar{
+        display: none;
+    }
+
+    .lay-sidebar-mobile{
+        display: block;
+    }
+    
+}
