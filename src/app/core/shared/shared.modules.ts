@@ -15,6 +15,7 @@ import { ChatService } from '../service/chat/chat.service';
 import { DatePipe } from '@angular/common/';
 import { SanitizeHtmlPipe } from '../pipe/sanitizer';
 import { ProfileService } from '../service/profile/profile.service';
+import { NouisliderModule } from 'ng2-nouislider';
 
 
 @NgModule ({
@@ -29,7 +30,8 @@ import { ProfileService } from '../service/profile/profile.service';
     SuiModule,
     NgDatepickerModule,
     SearchFilterPipe,
-    SanitizeHtmlPipe
+    SanitizeHtmlPipe,
+    NouisliderModule
   ],
   providers: [
     Configuration,
