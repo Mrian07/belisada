@@ -227,19 +227,19 @@
                             </div>
                             <div class="nine wide field">
                                 <div>
-                                    <a class="ui red circular label"></a>
-                                    <a class="ui orange  circular label"></a>
-                                    <a class="ui yellow  circular label"></a>
-                                    <a class="ui olive  circular label"></a>
-                                    <a class="ui green  circular label"></a>
-                                    <a class="ui teal  circular label"></a>
-                                    <a class="ui blue  circular label"></a>
-                                    <a class="ui violet  circular label"></a>
-                                    <a class="ui purple  circular label"></a>
-                                    <a class="ui pink  circular label"></a>
-                                    <a class="ui brown  circular label"></a>
-                                    <a class="ui grey  circular label"></a>
-                                    <a class="ui black  circular label"></a>
+                                    <a *ngFor="let warna of warnanya" class="ui {{ warna }} circular label" (click)="addColor(warna)"></a>
+                                    <!-- <a class="ui orange circular label" (click)="addColor('orange')"></a>
+                                    <a class="ui yellow circular label" (click)="addColor('yellow')"></a>
+                                    <a class="ui olive circular label" (click)="addColor('olive')"></a>
+                                    <a class="ui green circular label" (click)="addColor('green')"></a>
+                                    <a class="ui teal circular label" (click)="addColor('teal')"></a>
+                                    <a class="ui blue circular label" (click)="addColor('blue')"></a>
+                                    <a class="ui violet circular label" (click)="addColor('violet')"></a>
+                                    <a class="ui purple circular label" (click)="addColor('pulple')"></a>
+                                    <a class="ui pink circular label" (click)="addColor('pink')"></a>
+                                    <a class="ui brown circular label" (click)="addColor('brown')"></a>
+                                    <a class="ui grey circular label" (click)="addColor('grey')"></a>
+                                    <a class="ui black circular label" (click)="addColor('black')"></a> -->
                                 </div>
                             </div>
                         </div>
@@ -248,7 +248,8 @@
 
                                 </div>
                                 <div class="nine wide field">
-                                    <div>
+                                    <div><a *ngFor="let warna of selectedColor" class="ui {{ warna }} circular label" (click)="remColor(warna)"></a></div>
+                                    <!-- <div>
                                         <a class="ui red circular label"></a>
                                         <a class="ui orange  circular label"></a>
                                         <a class="ui yellow  circular label"></a>
@@ -262,7 +263,7 @@
                                         <a class="ui brown  circular label"></a>
                                         <a class="ui grey  circular label"></a>
                                         <a class="ui black  circular label"></a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                 </div>
