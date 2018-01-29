@@ -346,7 +346,8 @@ export class AddProductsComponent implements OnInit {
   }
   gudang($event) {
     $event.preventDefault();
-    if ($event.target.value >= this.stok) {
+    console.log($event.target.value + '=' + this.stok );
+    if ($event.target.value < this.stok) {
       swal(
         'Quantity lebih kecil',
         'Dari barang yang akan dikirim ke gudang',
