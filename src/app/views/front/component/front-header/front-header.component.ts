@@ -189,10 +189,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   mulaiMenjual() {
-    // role = null;
     const luser = JSON.parse(localStorage.getItem('user'));
-
-    console.log(luser);
     if (luser) {
       if (luser.role === 1) {
 
@@ -221,7 +218,6 @@ export class FrontHeaderComponent implements OnInit {
 
         }
 
-        
       } else if (luser.role === 2 || luser.role === 3) {
 
         this.router.navigateByUrl('/seller/dashboard');
