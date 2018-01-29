@@ -60,7 +60,7 @@ export class CheckoutComponent implements OnInit {
   deliveryTotal: number;
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
-
+  id: any;
 
   private storage: Storage;
   checkout: Checkout;
