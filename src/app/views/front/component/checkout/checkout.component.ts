@@ -73,6 +73,7 @@ export class CheckoutComponent implements OnInit {
   selBillingAddress: any = '';
   kampret;
   kampre2t;
+  grandTotal;
   billing: Boolean = false;
 
   constructor(
