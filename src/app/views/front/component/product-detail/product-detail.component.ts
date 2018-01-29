@@ -17,6 +17,7 @@ import { CartItemRequest, CartItem } from '../../../../core/model/shoppingcart/c
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
 import { ProductService } from '../../../../core/service/product/product.service';
+import { SearchService } from '../../../../core/service/search/search.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -77,6 +78,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private detailService: ProductDetailService,
     private shoppingCartService: ShoppingCartService,
+    private searchService: SearchService,
     private actionsSubject: ActionsSubject,
     private title: Title,
     private router: Router,
@@ -127,9 +129,9 @@ export class ProductDetailComponent implements OnInit {
   getDetail() {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
-        //console.log(data);
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
+          this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
           this.garansi = garansi.val;
           this.specs = data.detail.specification.length;
@@ -160,6 +162,17 @@ export class ProductDetailComponent implements OnInit {
          // console.log(this.storeData);
         }
       });
+  }
+
+  saveSearch(id: number, name: string) {
+    const data = {
+        productId: id,
+        keyword: name
+    };
+    this.searchService.savePopular(data).subscribe( res => {
+      //console.log(res);
+    });
+    //console.log(data);
   }
 
   setimage(image) {

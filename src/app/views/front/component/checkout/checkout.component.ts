@@ -60,7 +60,7 @@ export class CheckoutComponent implements OnInit {
   deliveryTotal: number;
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
-
+  id: any;
 
   private storage: Storage;
   checkout: Checkout;
@@ -329,7 +329,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartService.empty();
       }
       swal(response.message);
-      this.router.navigateByUrl('/finish-order');
+      this.router.navigateByUrl('/finish-order/' + response.id);
     });
   }
 

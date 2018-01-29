@@ -25,4 +25,14 @@ export class SearchService {
     return this.http.get(this.configuration.serverWithAccUrl + '/product/search/', {params: params})
         .map(response => response as ProductSearchResault);
   }
+
+  searchPopular(): Observable<Search[]> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/topsearch/all')
+        .map(response => response as Search[]);
+  }
+
+  savePopular(data): Observable<any> {
+    return this.http.post(this.configuration.serverWithAccUrl + '/topsearch/create', data)
+        .map(response => response as any);
+  }
 }

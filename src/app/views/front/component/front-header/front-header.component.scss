@@ -170,6 +170,7 @@
 
 .header-mid-menu li .link-red2 {
     color:#f51b0a;
+    cursor: pointer;
 }
 
 .header-mid-menu li .link-red2:hover {
@@ -482,6 +483,26 @@
 .result:hover {
     background-color: #f1f1f1;
     color: #000000;
+}
+.result-popular {
+
+}
+
+
+.popular-list {
+    min-height: 30px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .9);
+    color: #000000;
+    cursor: pointer;
+}
+
+.popular-list:hover {
+    min-height: 30px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #000000;
+    cursor: pointer;
 }
 
 .result img{

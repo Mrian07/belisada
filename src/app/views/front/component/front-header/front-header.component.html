@@ -24,7 +24,8 @@
     <div class="mid-header-container">
         <div class="mid-header-top-container hide-on-mobile">
             <ul class="header-mid-menu pull-left">
-                <li><a routerLink="/register" class="link-red2">Mulai Menjual</a></li>
+                <!-- <li><a routerLink="/seller" class="link-red2">Mulai Menjual</a></li> -->
+                <li><a class="link-red2" (click)="mulaiMenjual()">Mulai Menjual</a></li>
                 <li><a routerLink="/Customer-Service">Customer Service</a></li>
                 <li><a routerLink="/cara-berbelanja">Cara Belanja</a>
                 <li><a routerLink="/product-terbaru">Produk Terbaru</a></li>
@@ -51,13 +52,18 @@
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="search-bar" style="border-radius:0px;"/>
             <div class="btn-src" (click)="searchEnter(selectedSearchCategory, selectedCategory)"><i class="iconsearch search icon" style="font-size:20px;"></i></div>
             <div class="result-container" *ngIf="[results] != 0">
+                <div class="result-popular">
+                    <div style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;">Popular Search</div>
+                    <div class="popular-list" *ngFor="let pops of popular" (click)="productSelected(pops)">
+                        <p>{{pops.keyword}}</p></div>
+                </div>
+                <div style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;">Search Result</div>
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
-                        <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
+                    <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div class="right-header-container">
         <div class="pull-bot-grid">

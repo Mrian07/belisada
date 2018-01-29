@@ -31,6 +31,7 @@ export class CheckoutResponse {
 
     message: string;
     status: string;
+    id: any;
 
     constructor() { }
 }
