@@ -4,9 +4,11 @@
 
 <div class="header2 header-top">
     <ul class="header-top-menu">
+        <li><a routerLink="/info-jual-beli" class="link-red">JUAL DI BELISADA</a></li>
         <li><a routerLink="/Lacak-Pesanan">LACAK PESANAN</a></li>
+        <li><a routerLink="/asap">Informasi ASAP</a></li>
         <li><a routerLink="/Customer-Care">CUSTOMER CARE</a></li>
-        <li><a routerLink="/info-jual-beli" class="link-red">Jual Di Belisada</a></li>
+        <li><a routerLink="">Hot Promo</a></li>
         <!-- <li class="hide-on-mobile"><a routerLink="/Download-App">DOWNLOAD APP</a></li> -->
     </ul>
 </div>
@@ -45,7 +47,7 @@
                     <sui-select-option *ngFor="let option of categorySearch" [value]="option" value="option.name"></sui-select-option>
             </sui-select>
             <!-- <i class="iconsearch search icon" style="color: rgb(255, 167, 2);"></i> -->
-            
+
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="search-bar" style="border-radius:0px;"/>
             <button class="ui button orange" style="padding:0px; padding-left:15px; padding-right:5px; border-radius:0px 5px 5px 0px;"><i class="iconsearch search icon" style="font-size:20px;"></i></button>
             <div class="result-container" *ngIf="[results] != 0">
@@ -83,12 +85,12 @@
                             <div class="or"></div>
                                 <button class="ui mini positive button" (click)="register()">Daftar</button>
                             </div>
-                                
+
                                 <!-- <button class="mini ui right labeled red icon button" (click)="logout()">
                                         <i class="sign out icon"></i>
                                         Daftar
                                         </button> -->
-                                        
+
                             <br><br>
                             <strong>Selamat datang<br> {{userName}}</strong>
                             <div class='dropdown-menu-account'>
@@ -102,7 +104,7 @@
 
                         </div>
                     </div>
-<!-- 
+<!--
                         <div class="icon-user">
                                 <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                             </div>
@@ -119,7 +121,7 @@
                             <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                            Hi, {{userName | words: 1 : ""}}</div>
                         <div class="dropdown-profile-content">
-                                
+
                                 <button class="mini ui right labeled red icon button" (click)="logout()">
                                         <i class="sign out icon"></i>
                                         Logout
