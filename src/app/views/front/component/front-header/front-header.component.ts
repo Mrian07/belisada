@@ -52,6 +52,7 @@ export class FrontHeaderComponent implements OnInit {
   userName: string;
   avatar: string;
   itemsTotal: number;
+  popular = [];
 
   constructor(
     private categoryService: CategoryService,
@@ -90,6 +91,14 @@ export class FrontHeaderComponent implements OnInit {
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
+    this.popular = [];
+  }
+
+  popularSearch() {
+    this.searchService.searchPopular().subscribe(data => {
+      console.log(data);
+      this.popular = data;
+    });
   }
 
   searchK(event) {
@@ -99,6 +108,7 @@ export class FrontHeaderComponent implements OnInit {
     } else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
+        this.popularSearch();
         // console.log(data);
       });
     }
