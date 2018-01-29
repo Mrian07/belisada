@@ -60,8 +60,7 @@
                   <th>Tipe</th>
                   <th>Status</th>
                   <th>Quantity</th>
-                  <!-- <th>Edit</th>
-                  <th>Hapus</th> -->
+                  <th>Hapus</th>
               </tr>
           </thead>
           <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString ; let i = index">
@@ -73,7 +72,7 @@
                     <img (click)="view(product.imageurl, product.name)" style="cursor: pointer;" class="ui image product-image" src="{{ product.imageurl }}" alt="image not found"/>
                 </td>
                 <td>
-                    {{ product.name | words: 10 }}<br/><small><i class="unhide icon"></i> 0 views</small>
+                    {{ product.name | words: 5 }}<br/><small><i class="unhide icon"></i> 0 views</small>
                 </td>
                 <td>
                     <!-- <div class="ui action input">
@@ -117,6 +116,7 @@
                 </td>
                 <!-- <td><i class="edit icon"></i></td>
                 <td><i class="trash outline icon"></i></td> -->
+                <td><i class="trash outline icon"></i></td>
             </tr>
         </tbody>
 
