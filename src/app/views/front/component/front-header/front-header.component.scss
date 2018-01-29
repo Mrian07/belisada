@@ -353,7 +353,26 @@
         background-color: #002E43;}
 }
 
+.btn-src{
+    padding:0px; padding-left:15px; padding-top:8px;  padding-right:8px; border-radius:0px 5px 5px 0px; background: #f2711c;
+    cursor: pointer;
+}
+
+.btn-src:hover{
+    background: #f59759;
+    color:#fefdcd;
+}
+
 @media screen and (max-width: 425px) {
+    .search-by-category{
+        margin-top:40px;
+    }
+
+    .btn-src{
+        padding:0px; padding-left:15px; padding-bottom:15px; padding-right:5px; border-radius:0px 5px 5px 0px; background: #f2711c;
+        cursor: pointer;
+    }
+
     .helper {
         display: none;
     }
@@ -652,4 +671,6 @@
 .go-link:active {
     color:#f8992e;
 }
+
+
 

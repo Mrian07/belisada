@@ -4,13 +4,9 @@
 
 <div class="header2 header-top">
     <ul class="header-top-menu">
-        <li><a routerLink="/info-jual-beli" class="link-red">JUAL DI BELISADA</a></li>
-        <li><a routerLink="/">HOT PROMO</a></li>
         <li><a routerLink="/Lacak-Pesanan">LACAK PESANAN</a></li>
         <li><a routerLink="/Customer-Care">CUSTOMER CARE</a></li>
-        <li><a routerLink="/asap">INFORMASI ASAP</a></li>
-
-        <!-- Informasi ASAP & Hot Promo -->
+        <li><a routerLink="/info-jual-beli" class="link-red">Jual Di Belisada</a></li>
         <!-- <li class="hide-on-mobile"><a routerLink="/Download-App">DOWNLOAD APP</a></li> -->
     </ul>
 </div>
@@ -51,7 +47,7 @@
             <!-- <i class="iconsearch search icon" style="color: rgb(255, 167, 2);"></i> -->
 
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="search-bar" style="border-radius:0px;"/>
-            <div class="ui button orange" (click)="searchEnter(selectedSearchCategory, selectedCategory)" style="padding:0px; padding-left:15px; padding-right:5px; border-radius:0px 5px 5px 0px;"><i class="iconsearch search icon" style="font-size:20px;"></i></div>
+            <div class="btn-src" (click)="searchEnter(selectedSearchCategory, selectedCategory)"><i class="iconsearch search icon" style="font-size:20px;"></i></div>
             <div class="result-container" *ngIf="[results] != 0">
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
                         <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
