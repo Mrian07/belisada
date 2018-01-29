@@ -26,9 +26,12 @@
 }
 .list-grid .search-results {
     width: 25%;
-
     display: inline-grid;
     padding: 10px;
+}
+
+.list-grid .prodimg img{
+    height: 180px;
 }
 
 .search-results:after {
@@ -115,7 +118,7 @@
 
     .panel {
         padding: .75em 1em;
-        
+
         label:hover {
             cursor: pointer;
         }
