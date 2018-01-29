@@ -94,7 +94,7 @@ export class ProductSearchComponent implements OnInit {
         this.catId = params.id;
         this.Params = params;
         this.store.dispatch(new frontActions.GetList(params));
-        this.storeFilter.dispatch(new frontActions.GetSidebarFilter(this.keys));
+        this.storeFilter.dispatch(new frontActions.GetSidebarFilter(params));
 
         this.getDetailData = this.actionsSubject
         .asObservable()
