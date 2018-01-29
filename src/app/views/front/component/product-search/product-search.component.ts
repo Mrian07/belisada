@@ -95,6 +95,7 @@ export class ProductSearchComponent implements OnInit {
   }
 
   sortThis(ob) {
+
     if (this.Params.q) {
       this.Params =  {
         parent : 3,
