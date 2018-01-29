@@ -105,6 +105,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   searchEnter(searchKey, searchCategory) {
+    console.log('test');
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;
