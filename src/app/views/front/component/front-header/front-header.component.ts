@@ -221,7 +221,6 @@ export class FrontHeaderComponent implements OnInit {
 
         }
 
-        
       } else if (luser.role === 2 || luser.role === 3) {
 
         this.router.navigateByUrl('/seller/dashboard');
