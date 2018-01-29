@@ -17,6 +17,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { TruncateModule } from 'ng2-truncate';
+import { TranslateService } from '@ngx-translate/core';
 
 
 interface ICartItemWithProduct extends CartItem {
@@ -67,6 +68,7 @@ export class FrontHeaderComponent implements OnInit {
     private productService: ProductService,
     private loginService: LoginService,
     private ngZone: NgZone,
+    public translate: TranslateService
   ) {
   }
 
@@ -324,5 +326,7 @@ export class FrontHeaderComponent implements OnInit {
     });
   }
 
- 
+  changeLanguage(language) {
+    this.translate.use(language);
+  }
 }

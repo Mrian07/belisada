@@ -16,6 +16,7 @@ import { DatePipe } from '@angular/common/';
 import { SanitizeHtmlPipe } from '../pipe/sanitizer';
 import { ProfileService } from '../service/profile/profile.service';
 import { NouisliderModule } from 'ng2-nouislider';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule ({
@@ -31,7 +32,8 @@ import { NouisliderModule } from 'ng2-nouislider';
     NgDatepickerModule,
     SearchFilterPipe,
     SanitizeHtmlPipe,
-    NouisliderModule
+    NouisliderModule,
+    TranslateModule
   ],
   providers: [
     Configuration,
