@@ -78,6 +78,8 @@ export class AddProductsComponent implements OnInit {
   garansiDays: any;
   isGuarantee: any;
   guaranteeDays: any;
+  selectedColor = [];
+  warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
     {id: 0, name: '0' , selected: false},
@@ -207,6 +209,21 @@ export class AddProductsComponent implements OnInit {
 
   selectSubCategories(id: number) {
     //console.log(id);
+  }
+
+  addColor(q) {
+    this.selectedColor.push(q);
+    const index = this.warnanya.indexOf(q);
+    if ( index !== -1) {
+      this.warnanya.splice(index, 1);
+    }
+  }
+  remColor(q) {
+    const index = this.selectedColor.indexOf(q);
+    if ( index !== -1) {
+      this.selectedColor.splice(index, 1);
+      this.warnanya.push(q);
+    }
   }
 
   search(event) {

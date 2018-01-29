@@ -4,10 +4,11 @@
 
 <div class="header2 header-top">
     <ul class="header-top-menu">
-        <li><a routerLink="/Lacak-Pesanan">LACAK PESANAN</a></li>
-        <li><a routerLink="/Customer-Care">CUSTOMER CARE</a></li>
         <li><a routerLink="/info-jual-beli" class="link-red">JUAL DI BELISADA</a></li>
-        <li><a routerLink="/asap">INFORMASI ASAP</a></li>
+        <li><a routerLink="/Lacak-Pesanan">LACAK PESANAN</a></li>
+        <li><a routerLink="/asap">Informasi ASAP</a></li>
+        <li><a routerLink="/Customer-Care">CUSTOMER CARE</a></li>
+        <li><a routerLink="">Hot Promo</a></li>
         <!-- <li class="hide-on-mobile"><a routerLink="/Download-App">DOWNLOAD APP</a></li> -->
     </ul>
 </div>
@@ -50,13 +51,17 @@
             <input type="text" name="city" #options list="productname" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="search-bar" style="border-radius:0px;"/>
             <div class="btn-src" (click)="searchEnter(selectedSearchCategory, selectedCategory)"><i class="iconsearch search icon" style="font-size:20px;"></i></div>
             <div class="result-container" *ngIf="[results] != 0">
+                <div class="result-popular">
+                    <div style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;">Popular Search</div>
+                    <div class="popular-list" *ngFor="let pops of popular" (click)="productSelected(pops)">
+                        <p>{{pops.keyword}}</p></div>
+                </div>
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
-                        <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
+                    <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div class="right-header-container">
         <div class="pull-bot-grid">

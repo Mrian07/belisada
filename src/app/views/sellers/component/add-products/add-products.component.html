@@ -223,46 +223,20 @@
                 <div class="ui form">
                     <div class="inline five fields">
                             <div class="two wide field">
-                                Warna
+                                Pilih Warna
                             </div>
                             <div class="nine wide field">
                                 <div>
-                                    <a class="ui red circular label"></a>
-                                    <a class="ui orange  circular label"></a>
-                                    <a class="ui yellow  circular label"></a>
-                                    <a class="ui olive  circular label"></a>
-                                    <a class="ui green  circular label"></a>
-                                    <a class="ui teal  circular label"></a>
-                                    <a class="ui blue  circular label"></a>
-                                    <a class="ui violet  circular label"></a>
-                                    <a class="ui purple  circular label"></a>
-                                    <a class="ui pink  circular label"></a>
-                                    <a class="ui brown  circular label"></a>
-                                    <a class="ui grey  circular label"></a>
-                                    <a class="ui black  circular label"></a>
+                                    <a *ngFor="let warna of warnanya" class="ui {{ warna }} circular label" (click)="addColor(warna)"></a>
                                 </div>
                             </div>
                         </div>
                         <div class="inline five fields">
                                 <div class="two wide field">
-
+                                    Warna yang tersedia
                                 </div>
                                 <div class="nine wide field">
-                                    <div>
-                                        <a class="ui red circular label"></a>
-                                        <a class="ui orange  circular label"></a>
-                                        <a class="ui yellow  circular label"></a>
-                                        <a class="ui olive  circular label"></a>
-                                        <a class="ui green  circular label"></a>
-                                        <a class="ui teal  circular label"></a>
-                                        <a class="ui blue  circular label"></a>
-                                        <a class="ui violet  circular label"></a>
-                                        <a class="ui purple  circular label"></a>
-                                        <a class="ui pink  circular label"></a>
-                                        <a class="ui brown  circular label"></a>
-                                        <a class="ui grey  circular label"></a>
-                                        <a class="ui black  circular label"></a>
-                                    </div>
+                                    <div><a *ngFor="let warna of selectedColor" class="ui {{ warna }} circular label" (click)="remColor(warna)"></a></div>
                                 </div>
                             </div>
                 </div>
