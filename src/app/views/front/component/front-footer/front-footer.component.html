@@ -37,30 +37,30 @@
 
 <div class="sitemap-footer">
     <div class="">
-        <h3>Informasi</h3>
+        <h3 translate>footer.footerone.information</h3>
         <div class="ui list">
-            <div class="item"><a routerLink="/about-us" class="link-footer">Tentang Kami</a></div>
+            <div class="item"><a routerLink="/about-us" class="link-footer" translate>footer.footerone.aboutus</a></div>
             <div class="item"><a href="http://blog.belisada.co.id/" class="link-footer">Blog Belisada.co.id</a></div>
-            <div class="item"><a routerLink="/terms-conditions" class="link-footer">Syarat & Ketentuan</a></div>
-            <div class="item"><a routerLink="/career" class="link-footer">Karir</a></div>
-            <div class="item"><a routerLink="/privacy-policy" class="link-footer">Kebijakan Privasi</a></div>
-            <div class="item"><a routerLink="/copyright-policy" class="link-footer">Kebijakan Hak Cipta</a></div>
+            <div class="item"><a routerLink="/terms-conditions" class="link-footer" translate>footer.footerone.termncons</a></div>
+            <div class="item"><a routerLink="/career" class="link-footer" translate>footer.footerone.career</a></div>
+            <div class="item"><a routerLink="/privacy-policy" class="link-footer" translate>footer.footerone.privacypol</a></div>
+            <div class="item"><a routerLink="/copyright-policy" class="link-footer" translate>footer.footerone.copyright</a></div>
         </div>
     </div>
     <div class="">
-        <h3>Bantuan</h3>
+        <h3 translate>footer.footerone.help</h3>
         <div class="ui list">
-            <div class="item"><a routerLink="/faq" class="link-footer">FAQ</a></div>
-            <div class="item"><a routerLink="/cara-berbelanja" class="link-footer">Cara Berbelanja</a></div>
-            <div class="item"><a routerLink="/return-cancel" class="link-footer">Pengembalian & Pembatalan</a></div>
-            <div class="item"><a routerLink="/warranty" class="link-footer">Garansi</a></div>
+            <div class="item"><a routerLink="/faq" class="link-footer" translate>footer.footerone.faq</a></div>
+            <div class="item"><a routerLink="/cara-berbelanja" class="link-footer" translate>footer.footerone.return</a></div>
+            <div class="item"><a routerLink="/return-cancel" class="link-footer" translate>footer.footerone.return</a></div>
+            <div class="item"><a routerLink="/warranty" class="link-footer" translate>footer.footerone.</a></div>
             <!-- <div class="item"><a routerLink="/" class="link-footer">Status Pesanan</a></div> -->
-            <div class="item"><a routerLink="/contact-us" class="link-footer">Kontak Kami</a></div>
-            <div class="item"><a routerLink="/after-sales-service" class="link-footer">Layanan Purna Jual</a></div>
+            <div class="item"><a routerLink="/contact-us" class="link-footer" translate>footer.footerone.contactus</a></div>
+            <div class="item"><a routerLink="/after-sales-service" class="link-footer" translate>footer.footerone.aftersale</a></div>
         </div>
     </div>
     <div class="">
-        <h3>Ikuti Kami</h3>
+        <h3 translate>footer.footerone.followus</h3>
         <div class='sos'>
             <ul>
                 <li><a href="https://www.youtube.com/channel/UCT6wkP8xyhEgDZzrbuWBQRg"><i class="youtube icon"></i></a></li>
@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="">
-        <h3>Email Newsletter</h3>
+        <h3 translate>footer.footerone.newsletter</h3>
         <p>Berlangganan untuk mendapatkan penawaran spesial dan berita dari belisada.co.id</p>
         <div class="ui action input">
             <input placeholder="Masukan alamat email..." type="text" [(ngModel)]="emailSubscription"/>
@@ -82,7 +82,7 @@
 
 <div class="features">
     <div class="six wide column">
-        <h3>Metode Pembayaran</h3>
+        <h3 translate>footer.footerone.paymentmethod</h3>
         <div class='pay'>
             <ul>
                 <li style='margin-right:5px;margin-bottom:5px'><img src='/assets/img/p-visa-small.jpg' border='0'></li>
@@ -97,7 +97,7 @@
         </div>
     </div>
     <div class="six wide column">
-            <h3>Jasa Pengiriman</h3>
+            <h3 translate>footer.footerone.courier</h3>
             <div class='ship'>
                 <ul>
                     <li style='margin-bottom:5px;margin-right:5px;'><img src='/assets/img/asap.png' border='0'></li>
@@ -114,9 +114,9 @@
 </div>
 
 <div class="see-all-footer text-center">
-    <button class="ui button" (click)="agree()">
-        LIHAT SEMUA <i class="angle double right icon"></i>
-    </button>
+    <div class="ui button" (click)="agree()" translate>footer.footerone.viewall
+        <i class="angle double right icon"></i>
+    </div>
 </div>
 
 <div class="agreement text-justify" id="agreement">
