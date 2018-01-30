@@ -169,9 +169,9 @@ export function getAuthServiceConfigs() {
   imports: [
     BrowserModule,
     SocialLoginModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', {
-      enabled: environment.production,
-    }),
+    // ServiceWorkerModule.register('/ngsw-worker.js', {
+    //   enabled: environment.production,
+    // }),
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
