@@ -167,7 +167,7 @@
                         <div class="two wide field">
                             Berat
                         </div>
-                        <div class="two wide field">
+                        <div class="three wide field">
                             <input type="text" placeholder="Berat" value="{{weight}}" [disabled]="false"/>
                         </div>
                         <div class="one wide field">
@@ -188,19 +188,19 @@
                         <div class="two wide field">
                             Dimensi (cm)
                         </div>
-                        <div class="one wide field">
+                        <div class="two wide field">
                             <input type="text" placeholder="" [(ngModel)]="panjang" value="{{panjang}}"/>
                         </div>
                         <div class="one wide field small">
                             Panjang (cm)
                         </div>
-                        <div class="one wide field">
+                        <div class="two wide field">
                             <input type="text" placeholder="" [(ngModel)]="lebar" value="{{lebar}}"/>
                         </div>
                         <div class="one wide field small">
                             Lebar (cm)
                         </div>
-                        <div class="one wide field">
+                        <div class="two wide field">
                             <input type="text" placeholder="" [(ngModel)]="tinggi" value="{{tinggi}}"/>
                         </div>
                         <div class="one wide field small">
@@ -263,9 +263,17 @@
                 <div class="ui form">
                     <div class="twelve wide fields">
                         <div class="left floated column">
-                            <div class="image-upload-select" *ngIf="imageurl == undefined">
-                                <img  class="ui image" src="assets/img/icon-upload.png" alt="icon-upload"/>
+                                <div class="upload-btn-wrapper"  *ngIf="imageurl == undefined">
+                                        <!-- <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button> -->
+                                        <input type="file" name="fileNpwp" (change)="setUrl($event, imgNpwp)" />
+
+                                <img class="ui middle aligned image" style="max-width: 500px; width:530px; height: auto; margin-bottom:10px;" src="{{userImageNPWP}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
                             </div>
+                                <!-- <div class="image-upload-select" *ngIf="imageurl == undefined">
+                                <img  class="ui image" src="assets/img/icon-upload.png" alt="icon-upload"/>
+                                <input type="file" name="fileNpwp" (change)="setUrl($event, imgNpwp)" />
+
+                            </div> -->
                             <img *ngIf="imageurl != undefined" class="ui image product-image" src="{{imageurl}}" alt="icon-upload"/>
                         </div>
                     </div>
