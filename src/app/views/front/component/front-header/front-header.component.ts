@@ -55,6 +55,7 @@ export class FrontHeaderComponent implements OnInit {
   itemsTotal: number;
   popular = [];
   role: string;
+  lang: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -90,6 +91,7 @@ export class FrontHeaderComponent implements OnInit {
       description: 'Belisada Home'
     });
     this.shoppingCart();
+    this.lang = 'in';
   }
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
@@ -323,6 +325,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   changeLanguage(language) {
+    this.lang = language;
     this.translate.use(language);
   }
 }

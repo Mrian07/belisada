@@ -1,6 +1,12 @@
-<div class="ui fluid vertical menu"><div class="header item">
-    <i>Notification </i>
-    <!-- <p class="pesan" (click)="toProfile()"> - {{ message }}</p> -->
-    <div class="ui grey message" (click)="toProfile()">{{ message }}</div>
+<div class="ui fluid vertical menu">
+        <div class="ui grey message" (click)="widthdraw()">
+            <span class="left">Rp.{{ dana | number }}</span>
+            <a class="ui orange label" style="float:right;">Tarik Dana</a>
+        </div>
 </div>
+<div class="ui fluid vertical menu">
+    <div class="header item">
+        <i>Notification </i>
+        <div class="ui grey message" (click)="toProfile()">{{ message }}</div>
+    </div>
 </div>

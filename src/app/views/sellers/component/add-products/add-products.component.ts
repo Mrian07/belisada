@@ -127,7 +127,6 @@ export class AddProductsComponent implements OnInit {
     } else {
       this.editMode = true;
       this.editData = this.shared.shareData;
-      //console.log(this.editData);
       this.countries[this.editData.stock].selected = true;
       this.productSelected(this.shared.shareData);
     }
@@ -246,7 +245,6 @@ export class AddProductsComponent implements OnInit {
 
 
   productSelected(hasil: any) {
-    //console.log(hasil);
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.selectedSubCategory = hasil.category2Name;
@@ -340,7 +338,6 @@ export class AddProductsComponent implements OnInit {
         isGuarantee: this.isGuarantee,
         guaranteeDays: this.garansiDays
       };
-      //console.log(productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
     }
   }
@@ -396,7 +393,6 @@ export class AddProductsComponent implements OnInit {
           isGuarantee: this.isGuarantee,
           guaranteeDays: this.garansiDays
         };
-        //console.log(productData);
         this.store.dispatch(new fromActions.AddProduct(productData));
       }
     }
@@ -438,7 +434,6 @@ export class AddProductsComponent implements OnInit {
       isGuarantee: this.isGuarantee,
       guaranteeDays: this.garansiDays
     };
-    //console.log(productData);
     this.store.dispatch(new fromActions.EditProduct(productData));
   }
 
