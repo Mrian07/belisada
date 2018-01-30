@@ -126,7 +126,7 @@ export class ProfileBuyerComponent implements OnInit {
   onSubmit() {
     // console.log('submit:', this.fm);
 
-    this.profileService.updateProfile(this.fm).subscribe(data => {
+    this.profileService.updatebuyerProfile(this.fm).subscribe(data => {
 
       if (data.status === '1') {
         swal(
