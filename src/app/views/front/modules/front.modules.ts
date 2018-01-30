@@ -1,3 +1,4 @@
+import { FrontNavMobileComponent } from './../component/front-nav-mobile/front-nav-mobile.component';
 import { TransactionListService } from './../../../core/service/transcations-list/transaction-list.service';
 import { WishlistBuyerService } from './../../../core/service/wishlist-buyer/wishlist-buyer.service';
 import { UpgradeService } from './../../../core/service/upgrade/upgrade.service';
@@ -65,6 +66,7 @@ import { ProductTerbaruComponent } from '../component/product-terbaru/product-te
     CaraBerbelanjaComponent,
     ChattingFrontComponent,
     ProductTerbaruComponent,
+    FrontNavMobileComponent,
   ],
   imports: [
     CommonModule,
