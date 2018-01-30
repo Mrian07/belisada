@@ -62,12 +62,13 @@ export class HomeEffects {
       .mergeMap((id) =>
         this.detailService.getProductDetail(id)
         .switchMap((detail) =>
-          this.detailService.getStore(detail.brandname)
+          this.detailService.getStore(detail.qid, detail.productId)
           .map((stores: any) => {
             const detailData = {
               detail: detail,
               stores: stores
             };
+            console.log(detailData);
             return  new frontActions.GetDetailSuccess(detailData) ;
         }
       )

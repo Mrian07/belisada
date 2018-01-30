@@ -36,5 +36,10 @@ export class AddproductService extends AbstractRestService<Product.Product> {
       .map(response => response as any);
   }
 
+  Inactive(data): Observable<any> {
+    return this.http.put(this.configuration.serverWithAccUrl + '/seller/product/legitimate/deactive', data)
+      .map(response => response as any);
+  }
+
 }
 

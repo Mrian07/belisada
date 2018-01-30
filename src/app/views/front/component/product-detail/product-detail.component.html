@@ -212,45 +212,68 @@
   <div class="gap-between-elements"></div>
   <div class="wrapper3">
     <div>
-        <strong>{{ otherStore }} Penawaran Lainnya </strong>
+            <strong *ngIf="ProductList.isOffers === 'Y'">{{ otherStore }} Penawaran Lainnya </strong>
+            <strong *ngIf="ProductList.isOffers === 'N'">Tidak ada Penawaran Lainnya </strong>
         <hr>
     </div>
-        <div class="wraper4">
-            <!-- <div class="wraper4" *ngFor="let list of storeList"> -->
-          <div>
-             <strong>Harga Produk</strong>
+        <div  *ngIf="ProductList.isOffers === 'Y'">
+                <table class="ui ten wide column  table">
+                        <thead>
+                            <tr>
+                                <th>Produk</th>
+                                <th>Harga</th>
+                                <th>Stok</th>
+                                <th>Toko</th>
+                            </tr>
+                        </thead>
+                    <tbody *ngFor="let product of storeList ; let i = index">
+                            <tr>
+
+                                <td>
+                                    <a (click)="detail(product.productId, product.aliasName)">{{ product.name }}</a>
+                                </td>
+                                <td>
+                                    Rp.{{product.pricelist | number}}
+                                </td>
+
+                                <td>
+                                    {{product.stock}}
+                                </td>
+                                <td>
+                                    {{product.storeName}}
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        </div>
+                        </div>
+          <!-- <div>
+             <strong>Nama</strong>
               <div class="gap-between-elements"></div>
-                  <span class="gets"></span>
+                  <span >{{ list.name }}</span>
 
           </div>
           <div>
-            <strong>Lokasi Penjual</strong>
+            <strong>Harga</strong>
               <div class="gap-between-elements"></div>
-              <span></span>
+              <span>Rp.{{ list.pricelist | number }}</span>
           </div>
           <div>
-              <strong>Layanan Produk</strong>
+              <strong>Stok</strong>
               <div class="gap-between-elements"></div>
-              <span></span>
+              <span>{{ list.stok }}</span>
           </div>
-          <div>
-              <strong>Rating Penjual</strong>
-              <div class="gap-between-elements"></div>
-              <!-- <sui-rating class="star" [ngModel]="5" [maximum]="5"></sui-rating> -->
 
-          </div>
           <div>
               <strong>Dijual Oleh</strong>
               <div class="gap-between-elements"></div>
-              <span class="xx"></span>
+              <span class="xx">{{ list.storeName }}</span>
 
           </div>
           <div>
 
-          </div>
+          </div> -->
 
-      </div>
-  </div>
   <sui-tabset>
     <div class="ui top attached tabular menu">
         <a class="item" suiTabHeader="1">Deskripsi</a>

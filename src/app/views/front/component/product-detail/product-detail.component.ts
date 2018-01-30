@@ -59,7 +59,7 @@ export class ProductDetailComponent implements OnInit {
   detailData: Subscription;
   storeData: any;
   otherStore: number;
-  storeList: Array<any>;
+  storeList: any;
   storeName: any;
   aliasName;
   theImage: string;
@@ -131,8 +131,8 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
-          //console.log(this.ProductList);
-          this.saveSearch(this.ProductList.productId, this.ProductList.name);
+          console.log(this.ProductList);
+          //this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
           this.garansi = garansi.val;
           this.specs = data.detail.specification.length;
@@ -160,8 +160,8 @@ export class ProductDetailComponent implements OnInit {
           this.storeData = data.stores;
           this.otherStore = data.stores.productCount;
           this.storeList = data.stores.productList;
-         // console.log(this.storeData);
-        }
+          console.log(this.storeList);
+       }
       });
   }
 
@@ -181,7 +181,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   public addProductToCart(productId: number, quantity: number): void {
-    console.log('ProductList: ', this.ProductList);
+   // console.log('ProductList: ', this.ProductList);
     if (quantity === undefined) {
       swal(
         'Belisada.co.id',
@@ -196,7 +196,7 @@ export class ProductDetailComponent implements OnInit {
 
       if (this.tokenService.getUser()) {
         this.shoppingCartService.create(cartItemRequest).subscribe(response => {
-          console.log('response: ', response);
+          //console.log('response: ', response);
           this.shoppingCartService.addItem(productId, +quantity, +response.id);
         });
       } else {
@@ -233,7 +233,11 @@ export class ProductDetailComponent implements OnInit {
     // console.log(this.router.navigateByUrl('/Asap'));
   }
 
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
+
   ngOnDestroy() {
-    this.detailData.unsubscribe();
+    //this.detailData.unsubscribe();
   }
 }
