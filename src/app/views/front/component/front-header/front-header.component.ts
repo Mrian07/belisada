@@ -110,7 +110,7 @@ export class FrontHeaderComponent implements OnInit {
 
   popularSearch() {
     this.searchService.searchPopular().subscribe(data => {
-      console.log(data);
+      //console.log(data);
       this.popular = data;
     });
   }
@@ -129,7 +129,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   searchEnter(searchKey, searchCategory) {
-    console.log('test');
+    //console.log('test');
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;

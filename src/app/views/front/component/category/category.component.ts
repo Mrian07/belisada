@@ -70,7 +70,7 @@ export class CategoryComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.FAILURE)
     .subscribe((action: frontActions.Failure) => {
-      console.log('err', action);
+      //console.log('err', action);
       this.pageError = true;
      // this.level_3 = Observable.of(er);
        //this.Category();
@@ -82,7 +82,7 @@ export class CategoryComponent implements OnInit {
     this.ngZone.run(() => {
       this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
       this.level_3.subscribe(data => {
-        console.log(data);
+        //console.log(data);
         this.total = data.length;
       });
       this.title.setTitle('Belisada - Category');

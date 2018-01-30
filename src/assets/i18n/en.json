@@ -1,248 +1,370 @@
 {
-    "header": 
-    {
-    	"nav":
-        {
-    		"tracking": "TRACKING ORDER",
-    		"ccare": "CUSTOMER CARE",
-    		"sellhere": "SELL IN BELISADA",
-    		"download": "Download app",
-    		"blog": "Blog",
-    		"nproduct" : "New Product",
-    		"htshop" : "How to Buy", 
-    		"cs" : "Customer Service", 
-    		"ssell": "Start Sell",
-    		"welcome": "Welcome to",
-    		"login" : "Login",
-    		"logout" : "Logout",
-    		"register" : "Sign up"
-    	},
-
-    	"search": 
-        {
-    		
-    		"placeholder" : "Type product name here",
-    		"result" : "Search Result",
-    		"noresult" : "Sorry, your search did not match any products"
-    	},
-
-    	"mcategory": 
-        {
-    		"one": "Computer",
-			"two": "Gadget",
-			"three": "Audio & Visual",
-			"four": "Mechanical & Electrical",
-			"five": "Hobby",
-			"six": "Home Appliance",
-			"seven": "Moms & Kids",
-			"eight": "Fashion & Life Style",
-			"nine": "Office Equipment",
-			"ten": "Groceries",
-			"ourpartner" : "Choose and Click Your Favorite Brand",
-			"viewall" : "View All"
-    	}
+  "header":
+{
+    "nav":
+  {
+      "tracking": "Tracking Order",
+      "ccare": "Customer Care",
+      "sellhere": "Sell in Belisada",
+      "download": "Download app",
+      "blog": "Blog",
+      "nproduct" : "New Product",
+      "htshop" : "How to Buy",
+      "cs" : "Customer Service",
+      "ssell": "Start Sell",
+    "promo" : "Hot Promo",
+      "welcome": "Welcome to",
+    "welcomelogin" : "Hi ",
+      "login" : "Login",
+      "logout" : "Logout",
+      "register" : "Sign up",
+    "searchcat" : "Select Category",
+    "uraccount" : "Your Account"
     },
 
-    "footer": 
-    {
-        "footerone":
-        {
-            "information": "Information",
-            "aboutus": "About Us",
-            "termncons" : "Terms and Conditions",
-            "career" : "Career",
-            "privacypol" : "Privacy Policy",
-            "copyright" : "Copyright",
-            "faq" : "Frequently Ask Questions",
-            "return" : "Return & Cancelation",
-            "orderstatus" : "Order Status",
-            "contactus" : "Contact Us",
-            "aftersale": "After Sales Service",
-            "help" : "Help",
-            "followus" : "Follow Us",
-            "newsletter": "Email Newsletter",
-            "paymentmethod" : "Payment Method",
-            "courier": "Courier",
-            "ourapps" : "Download Our Applications",       
-            "viewall" : "View All" 		
-    	}
-    },
-           
-    "user" : 
-    {
-        "account" : 
-        {
-            "title" : "Create an Account",
-            "titletwo" : "Log in",
-            "titlethree" : "Forgot Password",
-            "name" : "Full Name",
-            "phone" : "Phone Number",
-            "email" : "Email Address",
-            "pass" : "Password",
-            "repass" : "Re-enter Password",
-            "term" : "I have read and agreed belisada's Agreement",
-            "forget" : "Forget Your Password? Click here ",
-            "forgettitle" : "Please enter your email address. You will receive link to reset your password",
-            "forgetok" : "Please check your email account to reset your password!",
-            "npass" : "Enter New Password",
-            "aone" : "This email is already registered!",
-            "atwo" : "Invalid Email Address!",
-            "athree" : "Password must be at least 7 characters",
-            "afour" : "Wrong password!",
-            "afive" : "New password",
-            "renpass" : "Re-enter New Password",
-            "asix" : "You need to fill required field!"
-        },
-
-        "seller" : 
-        {
-            "title" : "Welcome, ",
-            "one" : "Dashboard",
-            "two" : "Inbox",
-            "three" : "Payment Info",
-            "four" : "Your Products",
-            "five" : "Sales Report",
-            "six" : "Statistic",
-            "seven" : "Courier Service",
-            "eight" : "Payment Gateway",
-            "nine" : "FAQ",
-            "ten" : "myADS",
-            "eleven" : "Upgrade Account"
-
-        },
-
-        "buyer" : 
-        {
-            "title" : "Welcome to your Account",
-            "one" : "Dashboard",
-            "two" : "Seller",
-            "three" : "Wishlist",
-            "four" : "Inbox",
-            "mone" : "My Transaction",
-            "mtwo" : "My Profile",
-            "alltrans" : "All Transaction & Confirmation",
-            "status" : "Order Status",
-            "history" : "Order History",
-            "confirm" : "Your Confirmation",
-            "eprof" : "Edit Profile",
-            "cpass" : "Change Password",
-            "bill" : "Data Billing",
-            "ship" : "Data Shipping",
-            "addship" : "Add Shipping",
-            "name" : "Name",
-            "dbirth" : "Birth Date",
-            "address" : "Address",
-            "prov" : "Province",
-            "city" : "City",
-            "district" : "District",
-            "village" : "Village",
-            "zipp" : "Postal Code",
-            "handphone" : "Handphone Number",
-            "downpic" : "Maximum file size is 5 Mb. Allowed file formats (.JPG, .JPEG, .PNG)",
-            "failupload" : "Your file is not valid!",
-            "failuploadt" : "Your file is exceeded the limit!",
-            "notcomplete" : "You must fill all the required fields",
-            "notvalid" : "Not Valid Data!",
-            "success" : "Your data was successfuly saved!",
-            "continue" : "Continue",
-            "next" : "Next Step",
-            "successedit" : "Data is updated!",
-            "oldpass" : "Old Password",
-            "npassw" : "New Password",
-            "renpassw" : "Re-enter New Password",
-            "alertout" : "Are you sure to log out?",
-            "alertouts" : "You already log out!"
-        },
-
-        "billdata" : 
-        {
-            "name" : "Name",
-            "saveadd" : "Save as address (ex: My Home, My Office)",
-            "address" : "Address",
-            "prov" : "Province",
-            "city" : "City",
-            "district" : "District",
-            "village" : "Village",
-            "zipp" : "Postal Code",
-            "phone" : "Phone Number"
-        },
-
-        "shipdata" : 
-        {
-            "name" : "Name",
-            "saveadd" : "Save as address (ex: My Home, My Office)",
-            "address" : "Address",
-            "prov" : "Province",
-            "city" : "City",
-            "district" : "District",
-            "village" : "Village",
-            "zipp" : "Postal Code",
-            "phone" : "Phone Number"
-        }
+    "search":
+  {
+      "placeholder" : "Type product name here",
+      "result" : "Search Result",
+      "noresult" : "Sorry, your search did not match any products"
     },
 
-
-    "detail" :{
-        "desc" : "Description",
-        "spec" : "Specification",
-        "rev" : "Review",
-        "ques" : "Question",
-        "adcart": "Add to Cart",
-        "wish" : "Add to Wishlist",
-        "sortby" : "Sort By",
-        "latest" : "Latest",
-        "expensive" : "The highest price",
-        "cheap" : "The lowest price"
-        },
-
-    "checkout" : {
-            "title" : "Checkout",
-            "billing" : "Billing Address",
-            "shipping" : "Shipping",
-            "courier" : "Courier",
-            "payment" : "Payment Method",
-            "selanjutnya" : "Next Step",
-            "lanjut" : "Continue",
-            "addpayment" : "Payment Method",
-            "pay" : "Continue to Payment",
-            "sureone" : "Are you sure to proceed?"
-            
-        },
-
-    "products" :{
-        "title" : "Add Products",
-        "desc" : "Before you add products, please aware about Terms and Conditions of Belisada.co.id. We will disable all products that against Terms and Conditions  ",
-        "substitle" : "What do you sell?",
-        "cons" : "Condition",
-        "one" : "New",
-        "two" : "Second",
-        "three" : "Refurbish",
-        "name" : "Product name",
-        "detail" : "Detail Products",
-        "price" : "Price",
-        "subsprice" : "Currency using IDR without comas. Example : 12000",
-        "weight" : "Weight",
-        "dimen" : "Dimension",
-        "length" : "Length",
-        "width" : "Width",
-        "height" : "Height",
-        "quant" : "Quantity",
-        "desc" : "Product Description",
-        "subsdesc" : "Description",
-        "pict" : "Product image",
-        "subpic" : "Upload product image (min. 1 picture). Use 5 top pictures of your products"
-
-    },
-
-    "message" : {
-        "title" : "Inbox",
-        "search" : "Search your message...",
-        "one" : "Sender",
-        "two" : "Message",
-        "three" : "Date",
-        "four" : "Delete",
-        "sender" : "Sent by",
-        "alert" : "Are you sure to delete the message?"
+    "mcategory":
+  {
+      "one": "Computer",
+    "two": "Gadget",
+    "three": "Audio & Visual",
+    "four": "Mechanical & Electrical",
+    "five": "Hobby",
+    "six": "Home Appliance",
+    "seven": "Mom, Baby & Kids",
+    "eight": "Fashion & Life Style",
+    "nine": "Office Equipment",
+    "ten": "Groceries",
+    "ourpartner" : "Choose and Click Your Favorite Brand",
+    "viewall" : "View All"
     }
+  },
 
+  "footer":
+{
+      "footerone":
+  {
+          "information": "Information",
+          "aboutus": "About Us",
+          "termncons" : "Terms and Conditions",
+          "career" : "Career",
+          "privacypol" : "Privacy Policy",
+          "copyright" : "Copyright",
+          "faq" : "Frequently Ask Questions",
+          "howto" : "How to Buy",
+    "return" : "Return & Refund",
+    "waranty" : "Guarantee & Warranty",
+      "contactus" : "Contact Us",
+      "aftersale": "After Sales",
+          "help" : "Help",
+          "followus" : "Follow Us",
+    "titlenewsletter" : "Subscribe to get special deals and news from belisada.co.id",
+          "newsletter": "Email Newsletter",
+          "paymentmethod" : "Payment Method",
+          "courier": "Courier",
+          "ourapps" : "Download Our Applications",
+    "alertone" : "Your message has been successfully sent, Your request will be immediately followed up. Thank You",
+    "alerttwo" : "Something is wrong! Please fill in the required fields"
+    },
+
+  "contus" :
+  {
+    "title" : "To Contact Us, please use the form below",
+    "titleone" : "Contact Us",
+    "name" : "Name",
+    "maail" : "Email",
+    "need" : "Necessities",
+    "message" : "Message"
+  },
+
+  "aftersales" :
+  {
+    "title" : "Contact After Sales",
+    "titleone" : "Contact Our After Sales. FREE"
+  },
+
+  "footerup" :
+  {
+    "bigtitle" : "Belisada.co.id guarantee the quality of our store through the following 5 points",
+    "titleone" : "Free Shipping",
+    "one" : "We will send your order for free for Jakarta area",
+    "titletwo" : "Secure Payment",
+    "two" : "We will ensure the confidentiality of your payment information",
+    "titlethree" : "Transaction Convenience",
+    "three" : "You can make transactions easily through various payment methods",
+    "titlefour" : "Trusted Products Warranty",
+    "four" : "The products you buy can be service at various trusted outlets",
+    "titlefive" : "Quick service",
+    "five" : "Our customer service will always be fast and responsive in providing information"
+  }
+  },
+
+"alert" :
+{
+  "login" :
+  {
+    "regok" : "This email is already registered!",
+          "mailwrong" : "Invalid Email Address!",
+          "passwarn" : "Password must be at least 7 characters",
+          "passwrong" : "Wrong password!",
+    "one" : "You need to fill required field!",
+    "mailno" : "Unregistered Email!",
+    "userok" : "User successfully added!",
+    "alertout" : "Are you sure to logout?",
+          "alertouts" : "Success! You've logout!",
+    "alertfail" : "Something's wrong! Failed to update!",
+    "contusoke" : "Your message was sent successfully, our Staff will follow up soon. Thank You.",
+    "wrong" : "Ops! Something's wrong!",
+    "changepwdok" : "Please check your email to change the password"
+
+  },
+
+  "sellerpage" :
+  {
+    "aone" : "Your STORE is not verified",
+    "atwo" : "Are you sure to save your current data?",
+    "athree" : "Hi, You will add product that doesnot exist in our database, please input data in detail"
+  },
+
+  "customer" :
+  {
+    "wishoke" : "Thank you! Your item has already entered into the Wishlist",
+    "delwish" : "You won't be able to revert this!",
+    "editok" : "Your changes is success updated!",
+    "editfail" : "Your changes is Fail!",
+    "noquantity" : "Please input the quantity!"
+
+  }
+},
+
+  "user" :
+{
+      "account" :
+  {
+          "title" : "Create an Account",
+          "titletwo" : "Log in",
+          "titlethree" : "Forgot Password",
+          "name" : "Full Name",
+          "phone" : "Phone Number",
+          "email" : "Email Address",
+          "pass" : "Password",
+          "repass" : "Re-enter Password",
+          "term" : "I have read and agreed Belisada's Agreement",
+          "forget" : "Forget Your Password? Click here ",
+          "forgettitle" : "Please enter your email address. You will receive link to reset your password",
+          "forgetok" : "Please check your email account to reset your password!",
+          "titlepass" : "Enter New Password",
+          "npass" : "New password",
+          "renpass" : "Re-enter New Password"
+      },
+
+      "seller" :
+  {
+          "title" : "Welcome, ",
+          "one" : "Dashboard",
+          "two" : "Inbox",
+          "three" : "Payment Info",
+          "four" : "Your Products",
+          "five" : "Sales Report",
+          "six" : "Statistic",
+          "seven" : "Courier Service",
+          "eight" : "Payment Gateway",
+          "nine" : "FAQ",
+          "ten" : "myADS",
+          "eleven" : "Upgrade Account",
+    "titleone" : "Profile Seller",
+    "titletwo" : "Store Information",
+    "titlethree" : "Bank Account",
+    "titlefour" : "Change Password",
+    "tiltefive" : "Personal Data",
+    "name" : "Store Name",
+    "adres" : "Address",
+    "prov" : "Province",
+          "city" : "City",
+          "district" : "District",
+          "village" : "Village",
+          "zipp" : "Postal code",
+    "storedesc" : "Store Description",
+    "bankno" : "Account Number",
+    "bankname" : "Bank Name",
+    "owner" : "Owner Account",
+    "opass": "Old Password",
+    "npass" : "New Password",
+    "renpass" : "Re-enter New Password",
+    "npwp" : "Tax Number",
+    "ktp" : "ID Number"
+
+      },
+
+      "buyer" :
+  {
+          "title" : "Welcome to your Account",
+          "one" : "Dashboard",
+          "two" : "Seller",
+          "three" : "Wishlist",
+          "four" : "Inbox",
+          "mone" : "My Transaction",
+          "mtwo" : "My Profile",
+          "alltrans" : "All Transaction & Confirmation",
+          "status" : "Order Status",
+          "history" : "Order History",
+          "confirm" : "Your Confirmation",
+          "eprof" : "Edit Profile",
+          "cpass" : "Change Password",
+          "bill" : "Data Billing",
+          "ship" : "Data Shipping",
+          "addship" : "Add Shipping",
+          "name" : "Name",
+          "dbirth" : "Birth Date",
+          "address" : "Address",
+          "prov" : "Province",
+          "city" : "City",
+          "district" : "District",
+          "village" : "Village",
+          "zipp" : "Postal Code",
+          "handphone" : "Handphone Number",
+          "downpic" : "Maximum file size is 5 Mb. Allowed file formats (.JPG, .JPEG, .PNG)",
+          "failupload" : "Your file is not valid!",
+          "failuploadt" : "Your file is exceeded the limit!",
+          "notcomplete" : "You must fill all the required fields",
+          "notvalid" : "Not Valid Data!",
+          "success" : "Your data was successfuly saved!",
+          "continue" : "Continue",
+          "next" : "Next Step",
+          "successedit" : "Data is updated!",
+          "oldpass" : "Old Password",
+          "npassw" : "New Password",
+          "renpassw" : "Re-enter New Password"
+
+      },
+
+      "billdata" :
+  {
+          "name" : "Name",
+          "saveadd" : "Save as address (ex: My Home, My Office)",
+          "address" : "Address",
+          "prov" : "Province",
+          "city" : "City",
+          "district" : "District",
+          "village" : "Village",
+          "zipp" : "Postal Code",
+          "phone" : "Phone Number"
+      },
+
+      "shipdata" :
+  {
+          "name" : "Name",
+          "saveadd" : "Save as address (ex: My Home, My Office)",
+          "address" : "Address",
+          "prov" : "Province",
+          "city" : "City",
+          "district" : "District",
+          "village" : "Village",
+          "zipp" : "Postal Code",
+          "phone" : "Phone Number"
+      },
+
+  "message" :
+  {
+          "title" : "Inbox",
+          "search" : "Search your message...",
+          "one" : "Sender",
+          "two" : "Message",
+          "three" : "Date",
+          "four" : "Delete",
+          "sender" : "Sent by",
+          "alert" : "Are you sure to delete the message?",
+    "unread" : "Unread Messages"
+      }
+  },
+
+"goods" :
+{
+      "detail" :
+  {
+      "sellby" : "Sold by",
+    "write" : "Write review",
+    "price" : "Price",
+    "stock" : "Stock",
+    "color" : "Color",
+    "size" : "Size",
+    "quantiti" : "Quantity",
+    "weight" : "Weight",
+    "dimension" : "Dimension",
+    "highlit" : "Highlight",
+    "nhelp" : "Need Help?",
+    "chat" : "Chat Langsung",
+    "contact" : "Contact us",
+    "callcenter" : "Call Center",
+    "offer" : "See other offers",
+    "desc" : "Description",
+      "spec" : "Specification",
+      "rev" : "Review",
+      "ques" : "Question",
+      "sortby" : "Sort By",
+          "latest" : "Latest",
+          "expensive" : "The highest price",
+          "cheap" : "The lowest price",
+    "accend" : "A-Z",
+    "descend" : "Z-A",
+    "cat" : "Category",
+    "brand" : "Merek",
+    "titlereturn" : "Return Policy",
+    "returndet" : "if the shipped item is damaged or not in accordance with the description, you can return the item to us within 7 days",
+    "paymeth" : "Payment Method",
+    "titlecourier" : "Courier",
+    "jnecur" : "guaranteed delivery within 2 days",
+    "ninjacur" : "guaranteed delivery within 3 days",
+    "titleone" : "Product Price",
+    "titletwo" : "Seller Location",
+    "titlethree" : "Service",
+    "titlefour" : "Rates",
+    "titlefive" : "Sold by"
+    },
+
+    "checkout" :
+  {
+              "title" : "Checkout",
+              "billing" : "Billing Address",
+              "shipping" : "Shipping",
+              "courier" : "Courier",
+              "payment" : "Payment Method",
+              "selanjutnya" : "Next Step",
+              "lanjut" : "Continue",
+              "addpayment" : "Payment Method",
+              "pay" : "Continue to Payment",
+              "sureone" : "Are you sure to proceed?"
+      },
+
+     "products" :
+   {
+          "title" : "Add Products",
+          "desc" : "Before you add products, please aware about Terms and Conditions of Belisada.co.id. We will disable all products that against Terms and Conditions  ",
+          "substitle" : "What do you sell?",
+          "cons" : "Condition",
+          "one" : "New",
+          "two" : "Second",
+          "three" : "Refurbish",
+          "name" : "Product name",
+          "detail" : "Detail Products",
+          "price" : "Price",
+          "subsprice" : "Currency using IDR without comas. Example : 12000",
+          "weight" : "Weight",
+          "dimen" : "Dimension",
+          "length" : "Length",
+          "width" : "Width",
+          "height" : "Height",
+          "quant" : "Quantity",
+          "desc" : "Product Description",
+          "subsdesc" : "Description",
+          "pict" : "Product image",
+          "subpic" : "Upload product image (min. 1 picture). Use 5 top pictures of your products"
+      }
+  }
 }
