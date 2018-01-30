@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "header":
   {
      "nav":
@@ -20,6 +21,51 @@
        "register" : "Daftar",
        "searchcat" : "Pilih Kategori",
      "uraccount" : "Akun Anda"
+=======
+    "header": 
+    {
+         "nav": 
+         {         
+             "tracking": "LACAK PESANAN",
+             "ccare": "LAYANAN PELANGGAN",
+             "sellhere": "JUAL DI BELISADA",
+             "download": "Unduh app",
+             "blog": "Blog",
+             "nproduct" : "Produk Terbaru",
+             "htshop" : "Cara Berbelanja", 
+             "cs" : "Customer Service", 
+             "ssell": "Mulai Menjual",
+             "welcome": "Selamat Datang",
+             "login" : "Masuk",
+             "logout" : "Keluar",
+             "register" : "Daftar"
+         },
+         
+ 
+         "search": 
+         {
+             
+             "placeholder" : "Ketik nama produk disini",
+             "result" : "Hasil Pencarian",
+             "noresult" : "Maaf, produk yang Anda cari tidak ditemukan"
+         },
+ 
+         "mcategory": 
+         {
+             "one": "Komputer",
+             "two": "Gadget",
+             "three": "Audio & Visual",
+             "four": "Mekanikal & Elektrikal",
+             "five": "Hobi",
+             "six": "Peralatan Rumah",
+             "seven": "Ibu & Anak",
+             "eight": "Mode & Gaya Hidup",
+             "nine": "Office Equipment",
+             "ten": "Bahan Makanan",
+             "ourpartner" : "PILIH DAN KLIK BRAND FAVORIT ANDA",
+             "viewall" : "Lihat Semua"
+         }
+>>>>>>> a27a196cca6904ee46bc0830c4abd23c47f3d6fc
      },
 
        "search":
