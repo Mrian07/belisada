@@ -10,6 +10,7 @@ import * as fromProduct from '../../../../store/reducers';
 import { Subscription } from 'rxjs/Subscription';
 import { Title } from '@angular/platform-browser';
 import { ShareService } from '../../../../core/service/shared.service';
+import { TranslateService } from '@ngx-translate/core';
 // import { Location } from '@angular/common';
 
 @Component({
@@ -28,6 +29,7 @@ export class CategoryComponent implements OnInit {
   loadError: Subscription;
   total: number;
   pageError: any;
+  lang: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -38,7 +40,8 @@ export class CategoryComponent implements OnInit {
     private actionsSubject: ActionsSubject,
     private store: Store<fromProduct.Categorys>,
     private ngZone: NgZone,
-    private title: Title
+    private title: Title,
+    private translate: TranslateService
 ) {
     this.route.params.subscribe( params => {
       this.m_product_category_id = params.id;
@@ -47,7 +50,15 @@ export class CategoryComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    const lang = localStorage.getItem('languange');
+    if (!lang) {
+      localStorage.setItem('languange', 'in');
+      this.lang = localStorage.getItem('languange');
+      this.translate.use(this.lang);
+    }else {
+      this.lang = localStorage.getItem('languange');
+      this.translate.use(this.lang);
+    }
     this.loadCategory = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GETCATEGORYSUCCESS)
@@ -59,10 +70,11 @@ export class CategoryComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.FAILURE)
     .subscribe((action: frontActions.Failure) => {
-      console.log('err', action);
+      //console.log('err', action);
       this.pageError = true;
      // this.level_3 = Observable.of(er);
        //this.Category();
+
     });
   }
 
@@ -70,9 +82,9 @@ export class CategoryComponent implements OnInit {
     this.ngZone.run(() => {
       this.level_3 = this.store.select<any>(fromProduct.getCategoryState);
       this.level_3.subscribe(data => {
+        //console.log(data);
         this.total = data.length;
       });
-      console.log('category');
       this.title.setTitle('Belisada - Category');
     } );
   }

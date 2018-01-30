@@ -79,7 +79,7 @@
                             <label>Nomor KTP</label>
                             <input name="ktp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
                         </div>
-                        <img class="ui middle aligned small image" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
+                        <img class="ui middle aligned image" style="max-width: 500px; width:530px; max-height: 300px; height: auto; margin-bottom:10px;" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
                         <div class="upload-btn-wrapper">
                             <button class="ui green button"><i class="cloud icon"></i> Upload file KTP</button>
                             <input type="file" name="fileNpwp" (change)="setUrl($event, imgKTP)" />
@@ -90,7 +90,7 @@
                         </div>
 
                         <!-- <div class="ui divider"></div> -->
-                        <img class="ui middle aligned small image" src="{{userImageNPWP}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
+                        <img class="ui middle aligned image" style="max-width: 500px; width:530px; max-height: 300px; height: auto; margin-bottom:10px;" src="{{userImageNPWP}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
                         <!-- <br>
                         <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
                         <br> -->

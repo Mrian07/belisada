@@ -94,7 +94,7 @@ export class FrontHeaderComponent implements OnInit {
     this.shoppingCart();
     const lang = localStorage.getItem('languange');
     if (!lang) {
-      localStorage.setItem('languange', 'in');
+      localStorage.setItem('languange', 'id');
       this.lang = localStorage.getItem('languange');
       this.translate.use(this.lang);
     }else {
@@ -129,7 +129,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   searchEnter(searchKey, searchCategory) {
-    console.log('test');
+    //console.log('test');
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;

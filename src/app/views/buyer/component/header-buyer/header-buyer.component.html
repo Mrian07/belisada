@@ -2,7 +2,7 @@
       <div class="ui grid stackable ">
         <div class="nine wide column">
             <!-- <a routerLink="/buyer/dashboard"><img class="ui small image" src="/assets/img/logo_buyer_belisada.png"></a> -->
-            <div class='simple-nav-buyer'>Selamat datang di akun private Anda.</div>
+            <div class='simple-nav-buyer' translate>user.buyer.title</div>
             
         </div>
         <!-- <div class="three wide right aligned column ">
@@ -22,18 +22,18 @@
         <div class="five wide right aligned column ">
           <div class='simple-nav-buyer'>
             <div class="ui dropdown" suiDropdown>
-              <div class="text">Akun & Transaksi</div>
+              <div class="text" translate>user.buyer.accntrx</div>
               <i class="dropdown icon"></i>
               <div class="menu" suiDropdownMenu>
-                  <div class="item" (click)="profileBuyer()">Profile</div>
-                  <div class="item" (click)="changePassword()">Change Password</div>
-                  <div class="item" (click)="billingAddress()">Data Billing</div>
-                  <div class="item" (click)="shippingAddress()">Data Shiping</div>
+                  <div class="item" (click)="profileBuyer()" translate>user.buyer.mtwo</div>
+                  <div class="item" (click)="changePassword()" translate>user.buyer.cpass</div>
+                  <div class="item" (click)="billingAddress()" translate>user.buyer.bill</div>
+                  <div class="item" (click)="shippingAddress()" translate>user.buyer.ship</div>
                   <div class="divider"></div>
-                  <div class="item" (click)="transactionBuyer()">All Transaksi & Konfirmasi</div>
-                  <div class="item">Status Pemesanan</div>
-                  <div class="item">Order History</div>
-                  <div class="item">Konfirmasi Penerimaan</div>
+                  <div class="item" (click)="transactionBuyer()"  translate>user.buyer.alltrans</div>
+                  <div class="item" translate>user.buyer.status</div>
+                  <div class="item" translate>user.buyer.history</div>
+                  <div class="item" translate>user.buyer.confirm</div>
                   <!-- <div class="item">
                       <span class="description">ctrl + o</span>
                       Open...
@@ -76,9 +76,9 @@
       </div>
       <div class="two wide right aligned column">
           <div class='btn-log'>
-            <button class="ui right labeled icon red button" (click)="logout()">
+            <button class="ui right labeled icon red button" (click)="logout()" translate>
                 <i class="sign out icon"></i>
-                Logout
+                header.nav.logout
             </button>
           </div>
       </div>

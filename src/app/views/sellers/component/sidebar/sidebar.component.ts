@@ -5,6 +5,7 @@ import { ActiveLink, ShareService } from '../../../../core/service/shared.servic
 import { TokenService } from '../../../../core/service/token/token.service';
 import { StoreService } from '../../../../core/service/store/store.service';
 import swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +18,8 @@ export class SidebarComponent implements OnInit {
   private active: ActiveLink,
   private sharedService: ShareService,
   private tokenService: TokenService,
-  private storeService: StoreService
+  private storeService: StoreService,
+  private translate: TranslateService
 ) {  }
   sellerName: string;
   sellerEmail: string;
@@ -28,6 +30,7 @@ export class SidebarComponent implements OnInit {
   status3: Boolean = false;
   status4: Boolean = false;
   status: any;
+  lang: any;
 
   pathArray: any;
   activeLink: any;
@@ -36,6 +39,8 @@ export class SidebarComponent implements OnInit {
     this.getProfile();
     this.getUri();
     this.getStoreStatus();
+    this.lang = localStorage.getItem('language');
+    this.translate.use(this.lang);
   }
 
   getStoreStatus() {

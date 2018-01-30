@@ -25,6 +25,8 @@ import { PaymentMethod } from '../../../../core/model/PaymentMethod';
 import { PaymentMethodDetail } from '../../../../core/model/PaymentMethodDetail';
 import { CheckoutService } from '../../../../core/service/checkout/checkout.service';
 import { Router } from '@angular/router';
+import { NG_VALIDATORS, Validator,
+  Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
 import { TokenService } from '../../../../core/service/token/token.service';
 
 interface ICartItemWithProduct extends CartItem {

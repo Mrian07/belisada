@@ -259,12 +259,12 @@
                                 <div class="row">
                                     <div class="column" *ngFor="let item of paymentMethodDtos">
 
-                                        <div class="ui form">
+                                        <form class="ui form" #f="ngForm" novalidate>
                                             <div class="grouped fields">
                                                 <label>{{ item.paymentMethod.name }}</label>
                                                 <div class="ui field segment" *ngFor="let detail of item.paymentMethodDetails">
                                                     <div class="ui radio checkbox" style="margin-left: 5px; margin-top: 5px;">
-                                                        <input name="example2" checked="checked" type="radio"
+                                                        <input name="example2" #_example2 checked="checked" type="radio"
                                                             [(ngModel)]="paymentMethodId"
                                                             [ngModelOptions]="{standalone: true}"
                                                             (change)="selectPaymentMethod(paymentMethodId)"
@@ -276,7 +276,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -563,7 +563,9 @@
             </button>
         </div>
         <div class="right floated right aligned eight wide column">
-            <button class="ui right labeled icon button facebook" (click)="finishOrder()">
+            <button class="ui right labeled icon button facebook" (click)="finishOrder()"
+            [disabled]="!ngForm.valid"
+            >
                 Finish Order
                 <i class="right chevron icon"></i>
             </button>

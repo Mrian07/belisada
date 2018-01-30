@@ -6,11 +6,11 @@
 
 <div class="header2 header-top">
     <ul class="header-top-menu">
-        <li><a routerLink="/info-jual-beli" class="link-red" translate>header.nav.sellhere</a></li>
+        <li><a routerLink="/seller-center/inbox" class="link-red" translate>header.nav.sellhere</a></li>
         <li><a routerLink="/Lacak-Pesanan" translate>header.nav.tracking</a></li>
-        <li><a routerLink="/asap">Informasi ASAP</a></li>
+        <li><a routerLink="/asap">INFORMASI ASAP</a></li>
         <li><a routerLink="/Customer-Care" translate>header.nav.ccare</a></li>
-        <li><a routerLink="">Hot Promo</a></li>
+        <li><a routerLink="">HOT PROMO</a></li>
         <!-- <li class="hide-on-mobile"><a routerLink="/Download-App">DOWNLOAD APP</a></li> -->
     </ul>
 </div>
@@ -29,10 +29,10 @@
             <ul class="header-mid-menu pull-left">
                 <!-- <li><a routerLink="/seller" class="link-red2">Mulai Menjual</a></li> -->
                 <li><a class="link-red2" (click)="mulaiMenjual()" translate>header.nav.ssell</a></li>
-                <li><a routerLink="/Customer-Service">Customer Service</a></li>
+                <li><a routerLink="/Customer-Service" translate>header.nav.cs</a></li>
                 <li><a routerLink="/cara-berbelanja" translate>header.nav.htshop</a>
                 <li><a routerLink="/product-terbaru" translate>header.nav.nproduct</a></li>
-                <li><a href="http://blog.belisada.co.id/">Blog</a></li>
+                <li><a href="http://blog.belisada.co.id/" translate>header.nav.blog</a></li>
             </ul>
 
             <div class="pull-right text-right">
@@ -60,9 +60,9 @@
                     <div class="popular-list" *ngFor="let pops of popular" (click)="productSelected(pops)">
                         <p>{{pops.keyword}}</p></div>
                 </div>
-                <div style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;">Search Result</div>
+                <div style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;" translate>header.search.result</div>
                 <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
-                    <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name}}</span>
+                    <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name }}</span>
                 </div>
             </div>
         </div>
@@ -86,14 +86,14 @@
                 <div class="welcome" *ngIf="loginState === false">
 
                     <div class='dropdown-profile'>
-                        <div style="cursor: pointer; padding-top:10px;" (click)="login()">
+                        <div style="cursor: pointer; padding-top:10px;" (click)="login()" translate>
                                 <img class="ui image avatar" [src]="avatar" alt="avatar"/>
-                                Akun Anda
+                                header.nav.uraccount
                         </div>
                         <div class="dropdown-profile-content">
 
                             <div class="ui buttons">
-                                <button class="ui mini red button" (click)="login()">Login</button>
+                                <button class="ui mini red button" (click)="login()" translate>header.nav.login</button>
                             <div class="or"></div>
                                 <button class="ui mini positive button" (click)="register()" translate>header.nav.register</button>
                             </div>
