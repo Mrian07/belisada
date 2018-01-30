@@ -83,6 +83,13 @@ import { DownloadAppComponent } from './views/front/component/download-app/downl
 import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { SliderDepanComponent } from './views/front/component/slider-depan/slider-depan.component';
 import { PsnLoginComponent } from './views/front/component/psn-login/psn-login.component';
+import { SellerCenterComponent } from './views/front/component/seller-center/seller-center.component';
+import { SidebarComponent } from './views/front/component/seller-center/sidebar/sidebar.component';
+import { InboxComponent } from './views/front/component/seller-center/inbox/inbox.component';
+import { KnpBelisadaComponent } from './views/front/component/seller-center/knp-belisada/knp-belisada.component';
+import { BerjualanBelisadaComponent } from './views/front/component/seller-center/berjualan-belisada/berjualan-belisada.component';
+import { CaraBerjualanComponent } from './views/front/component/seller-center/cara-berjualan/cara-berjualan.component';
+import { AsapbyBelisComponent } from './views/front/component/seller-center/asapby-belis/asapby-belis.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -163,6 +170,13 @@ export function getAuthServiceConfigs() {
     SellerProposeComponent,
     SliderDepanComponent,
     PsnLoginComponent,
+    SellerCenterComponent,
+    SidebarComponent,
+    InboxComponent,
+    KnpBelisadaComponent,
+    BerjualanBelisadaComponent,
+    CaraBerjualanComponent,
+    AsapbyBelisComponent,
     // WishlistComponent,
     // AsapComponent
   ],
