@@ -1,29 +1,26 @@
 {
-  "header":
-  {
-     "nav":
-   {
-       "tracking": "Lacak Pesanan",
-       "ccare": "Layanan Pelanggan",
-       "sellhere": "Jual di Belisada",
-       "download": "Unduh app",
-       "blog": "Blog",
-       "nproduct" : "Produk Terbaru",
-       "htshop" : "Cara Berbelanja",
-       "cs" : "Layanan Pelanggan",
-       "ssell": "Start Sell",
-     "promo" : "Hot Promo",
-       "welcome": "Selamat Datang",
-     "welcomelogin" : "Halo ",
-       "login" : "Masuk",
-       "logout" : "Keluar",
-       "register" : "Daftar",
-       "searchcat" : "Pilih Kategori",
-     "uraccount" : "Akun Anda"
-     },
+  "header": {
+    "nav": {
+      "tracking": "Lacak Pesanan",
+      "ccare": "Layanan Pelanggan",
+      "sellhere": "Jual di Belisada",
+      "download": "Unduh app",
+      "blog": "Blog",
+      "nproduct" : "Produk Terbaru",
+      "htshop" : "Cara Berbelanja",
+      "cs" : "Layanan Pelanggan",
+      "ssell": "Start Sell",
+      "promo" : "Hot Promo",
+      "welcome": "Selamat Datang",
+      "welcomelogin" : "Halo ",
+      "login" : "Masuk",
+      "logout" : "Keluar",
+      "register" : "Daftar",
+      "searchcat" : "Pilih Kategori",
+      "uraccount" : "Akun Anda"
+    },
 
-       "search":
-   {
+    "search": {
            "placeholder" : "Ketik nama produk disini",
            "result" : "Hasil Pencarian",
            "noresult" : "Maaf, produk yang Anda cari tidak ditemukan"
@@ -121,7 +118,7 @@
      "alertfail" : "Ada kesalahan! Gagal perbaharui!",
      "contusoke" : "Pesan Anda berhasil dikirim, Staff kami akan segera menindaklanjuti. Terima kasih.",
      "wrong" : "Ops! Ada Kesalahan!",
-     "changepwdok" : "Silahkan cek email Anda untuk mengubah password",
+     "changepwdok" : "Silahkan cek email Anda untuk mengubah password"
    },
 
    "sellerpage" :
