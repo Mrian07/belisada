@@ -1,6 +1,6 @@
 <div class="menu-wrapper" role="navigation">
     <ul class="nav" role="menubar">
-        <li role="menuitem" *ngFor="let item of navigationObjects"><a>{{ item.name }}</a>
+        <li role="menuitem" *ngFor="let item of navigationObjects"><a *ngIf="lang == 'id'">{{ item.name }}</a><a *ngIf="lang == 'en'">{{ item.nameEn }}</a>
             <div class="category2 mega-menu" aria-hidden="true" role="menu">
                 <div class="left-image">
                     <img class="ui image" src="/assets/img/demo/C1-1.jpg" alt="Image not found" onError="this.src='/assets/img/no-image.png'"/>
@@ -12,12 +12,12 @@
                         <div class="top-categories" *ngIf="ix <= 4">
                             <div align="center" (click)="toList(i.aliasname, i.m_product_category_id)" style="cursor: pointer;">
                                 <img class="ui image logo" [src]="i.imageurl" alt="Image not found" onError="this.src='/assets/img/no-image.png'"/>
-                                <h3>{{ i.name }}</h3>
+                                <h3 *ngIf="lang == 'id'">{{ i.name }}</h3><h3 *ngIf="lang == 'en'">{{ i.name_en }}</h3>
                             </div>
                         </div>
                         <div *ngIf="ix > 4">
                             <div (click)="toList(i.aliasname, i.m_product_category_id)" class="item" style="cursor: pointer;">
-                                <span>{{ i.name }}</span>
+                                <span *ngIf="lang == 'id'">{{ i.name }}</span><span *ngIf="lang == 'en'">{{ i.name_en }}</span>
                             </div>
                         </div>
                     </div>

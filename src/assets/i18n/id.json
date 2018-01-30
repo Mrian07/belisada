@@ -1,245 +1,360 @@
 {
-    "header": 
-    {
-         "nav": 
-         {
-             "tracking": "LACAK PESANAN",
-             "ccare": "LAYANAN PELANGGAN",
-             "sellhere": "JUAL DI BELISADA",
-             "download": "Unduh app",
-             "blog": "Blog",
-             "nproduct" : "Produk Terbaru",
-             "htshop" : "Cara Berbelanja", 
-             "cs" : "Customer Service", 
-             "ssell": "Mulai Menjual",
-             "welcome": "Selamat Datang",
-             "login" : "Masuk",
-             "logout" : "Keluar",
-             "register" : "Daftar"
-         },
-         
- 
-         "search": 
-         {
-             
-             "placeholder" : "Ketik nama produk disini",
-             "result" : "Hasil Pencarian",
-             "noresult" : "Maaf, produk yang Anda cari tidak ditemukan"
-         },
- 
-         "mcategory": 
-         {
-             "one": "Komputer",
-             "two": "Gadget",
-             "three": "Audio & Visual",
-             "four": "Mekanikal & Elektrikal",
-             "five": "Hobi",
-             "six": "Peralatan Rumah",
-             "seven": "Ibu & Anak",
-             "eight": "Mode & Gaya Hidup",
-             "nine": "Office Equipment",
-             "ten": "Bahan Makanan",
-             "ourpartner" : "PILIH DAN KLIK BRAND FAVORIT ANDA",
-             "viewall" : "Lihat Semua"
-         }
-     },
- 
-     "footer": 
-     {
-         
-         "footerone": 
-         {
-             "information": "INFORMASI",
-             "aboutus": "Tentang Kami",
-             "termncons" : "Syarat dan Ketentuan",
-             "career" : "Karir",
-             "privacypol" : "Kebijakan Privasi",
-             "copyright" : "Kebijakan Hak Cipta",
-             "faq" : "Frequently Ask Questions",
-             "return" : "Cara Berbelanja",
-             "orderstatus" : "Status Pemesanan",
-             "contactus" : "Hubungi Kami",
-             "aftersale": "Layanan Purna Jual",
-             "help" : "BANTUAN",
-             "followus" : "IKUTI KAMI",
-             "newsletter": "Email Newsletter",
-             "paymentmethod" : "METODE PEMBAYARAN",
-             "courier": "JASA PENGIRIMAN",
-             "ourapps" : "UNDUH APLIKASI KAMI",
-             "viewall" : "LIHAT SEMUA"
-         }
+  "header": {
+    "nav": {
+      "tracking": "Lacak Pesanan",
+      "ccare": "Layanan Pelanggan",
+      "sellhere": "Jual di Belisada",
+      "download": "Unduh app",
+      "blog": "Blog",
+      "nproduct": "Produk Terbaru",
+      "htshop": "Cara Berbelanja",
+      "cs": "Layanan Pelanggan",
+      "ssell": "Start Sell",
+      "promo": "Hot Promo",
+      "welcome": "Selamat Datang",
+      "welcomelogin": "Halo ",
+      "login": "Masuk",
+      "logout": "Keluar",
+      "register": "Daftar",
+      "searchcat": "Pilih Kategori",
+      "uraccount": "Akun Anda"
     },
- 
-    "user" : 
-    {
-        "account" : 
-        {
-            "title" : "Buat Akun",
-            "titletwo" : "Masuk",
-            "titlethree" : "Lupa Kata Kunci",
-            "name" : "Nama Lengkap",
-            "phone" : "Telepon",
-            "email" : "Alamat Email",
-            "pass" : "Password",
-            "repass" : "Ulangi Password",
-            "term" : "Saya sudah membaca dan menyetujui Perjanjian belisada.co.id",
-            "forget" : "Anda lupa password? Klik disini",
-            "forgettitle" : "Silahkan masukkan alamat email Anda. Anda akan mendapatkan link untuk mengganti password",
-            "forgetok" : "Silahkan cek email Anda untuk mengganti password!",
-            "npass" : "Masukkan password baru",
-            "aone" : "Email ini sudah terdaftar!",
-            "atwo" : "Email yang Anda masukkan salah!",
-            "athree" : "Minimal password harus 7 karakter",
-            "afour" : "Salah password!",
-            "afive" : "Password baru",
-            "renpass" : "Ulangi Password",
-            "asix" : "Anda harus mengisi kolom yang dibutuhkan!"
-        },
- 
-        "seller" : 
-        {
-            "title" : "Selamat datang, ",
-            "one" : "Dashboard",
-            "two" : "Kotak Masuk",
-            "three" : "Info Pembayaran",
-            "four" : "Produk Anda",
-            "five" : "Laporan Penjualan",
-            "six" : "Statistik",
-            "seven" : "Jasa Pengiriman",
-            "eight" : "Payment Gateway",
-            "nine" : "FAQ",
-            "ten" : "myADS",
-            "eleven" : "Perbaharui Akun"
 
-        },
-    
-        "buyer" : 
-        {
-            "title" : "Selamat datang di akun Anda",
-            "one" : "Dashboard",
-            "two" : "Penjual",
-            "three" : "Wishlist",
-            "four" : "Kotak Masuk",
-            "mone" : "Transaksi Saya",
-            "mtwo" : "Profil Saya",
-            "alltrans" : "Semua transaksi & konfirmasi",
-            "status" : "Status Pemesanan",
-            "history" : "Riwayat Pemesanan",
-            "confirm" : "Konfirmasi",
-            "eprof" : "Ubah Profil",
-            "cpass" : "Ubah Password",
-            "bill" : "Data Pembayaran",
-            "ship" : "Data Pengiriman",
-            "addship" : "Tambah Data Pengiriman",
-            "name" : "Nama",
-            "dbirth" : "Tanggal Lahir",
-            "address" : "Alamat",
-            "prov" : "Provinsi",
-            "city" : "Kota",
-            "district" : "Kecamatan",
-            "village" : "Kelurahan",
-            "zipp" : "Kode Pos",
-            "handphone" : "Nomor Handphone",
-            "downpic" : "Maksimum ukuran file adalah 5 Mb. Format file yang diperbolehkan (.JPG, .JPEG, .PNG)",
-            "failupload" : "Data Anda tidak benar!",
-            "failuploadt" : "File Anda melewati batas ukuran!",
-            "notcomplete" : "Anda harus mengisi kolom yang dibutuhkan !",
-            "notvalid" : "Data tidak valid",
-            "success" : "Data Anda berhasil disimpan!",
-            "continue" : "Lanjutkan",
-            "next" : "Selanjutnya",
-            "successedit" : "Data sudah diperbaharui!",
-            "oldpass" : "Password Lama",
-            "npassw" : "Password Baru",
-            "renpassw" : "Ulangi Password Baru",
-            "alertout" : "Anda yakin untuk keluar?",
-            "alertouts" : "Anda berhasil keluar!"
-        },
-    
-        "billdata" : {
-            "name" : "Nama",
-            "saveadd" : "Simpan Alamat sebagai (contoh: Rumah, Kantor)",
-            "address" : "Alamat",
-            "prov" : "Propinsi",
-            "city" : "Kota",
-            "district" : "Kecamatan",
-            "village" : "Kelurahan",
-            "zipp" : "Kode Pos",
-            "phone" : "Telepon"
-        },
-    
-        "shipdata" : {
-            "name" : "Nama",
-            "saveadd" : "Simpan Alamat sebagai (contoh: Rumah, Kantor)",
-            "address" : "Alamat",
-            "prov" : "Propinsi",
-            "city" : "Kota",
-            "district" : "Kecamatan",
-            "village" : "Kelurahan",
-            "zipp" : "Kode Pos",
-            "phone" : "Telepon"
-        }
+    "search": {
+      "placeholder": "Ketik nama produk disini",
+      "result": "Hasil Pencarian",
+      "noresult": "Maaf, produk yang Anda cari tidak ditemukan"
     },
- 
-    "detail" :{
-        "desc" : "Deskripsi",
-        "spec" : "Spesifikasi",
-        "rev" : "Ulasan",
-        "ques" : "Pertanyaan",
-        "adcart": "Add to Cart",
-        "wish" : "Add to Wishlist",
-        "sortby" : "Urut berdasarkan",
-        "latest" : "Terbaru",
-        "expensive" : "Termahal",
-        "cheap" : "Termurah"
-    },
- 
-    "checkout" : {
-            "title" : "Pembayaran",
-            "billing" : "Alamat Penagihan",
-            "shipping" : "Pengiriman",
-            "courier" : "Kurir",
-            "payment" : "Metode Pembayaran",
-            "selanjutnya" : "Selanjutnya",
-            "lanjut" : "Lanjut",
-            "addpayment" : "Pilih pembayaran melalui",
-            "pay" : "Lanjut ke Pembayaran"
 
-    },
- 
-    "products" :{
-        "title" : "Tambah Produk",
-        "desc" : "Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan syarat dan ketentuan Belisada.co.id. Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami. ",
-        "substitle" : "Apa yang Anda Jual?",
-        "cons" : "Kondisi",
-        "one" : "Baru",
-        "two" : "Bekas",
-        "three" : "Refurbish",
-        "name" : "Nama Produk",
-        "detail" : "Detail Produk",
-        "price" : "Harga",
-        "subsprice" : "Mata uang Rp tanpa menggunakan koma. Contoh : 12000",
-        "weight" : "Berat",
-        "dimen" : "Dimensi",
-        "length" : "Panjang",
-        "width" : "Lebar",
-        "height" : "Tinggi",
-        "quant" : "Jumlah",
-        "desc" : "Deskripsi Produk",
-        "subsdesc" : "Deskripsi",
-        "pict" : "Gambar Produk",
-        "subpic" : "Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk"
-    },
-         
-    "message" : {
-        "title" : "Kotak Pesan",
-        "search" : "Cari isi pesan...",
-        "one" : "Pengirim",
-        "two" : "Isi Pesan",
-        "three" : "Tanggal",
-        "four" : "Hapus",
-        "sender" : "Dikirim oleh",
-        "alert" : "Anda yakin akan menghapus pesan ini?"
+    "mcategory": {
+      "one": "Komputer",
+      "two": "Gadget",
+      "three": "Audio & Visual",
+      "four": "Mekanikal & Elektrikal",
+      "five": "Hobi",
+      "six": "Peralatan Rumah",
+      "seven": "Ibu, Bayi & Anak",
+      "eight": "Mode & Gaya Hidup",
+      "nine": "Perangkat Kantor",
+      "ten": "Bahan Makanan",
+      "ourpartner": "PILIH DAN KLIK BRAND FAVORIT ANDA",
+      "viewall": "Lihat Semua"
     }
- 
+  },
+
+  "footer": {
+    "footerone": {
+      "information": "INFORMASI",
+      "aboutus": "Tentang Kami",
+      "termncons": "Syarat dan Ketentuan",
+      "career": "Karir",
+      "privacypol": "Kebijakan Privasi",
+      "copyright": "Kebijakan Hak Cipta",
+      "faq": "FAQ",
+      "howto": "Cara Berbelanja",
+      "return": "Pengembalian & Pembatalan",
+      "waranty": "Garansi",
+      "contactus": "Hubungi Kami",
+      "aftersale": "Layanan Purna Jual",
+      "help": "BANTUAN",
+      "followus": "IKUTI KAMI",
+      "titlenewsletter": "Berlangganan untuk mendapatkan penawaran spesial dan berita dari belisada.co.id",
+      "newsletter": "Email Newsletter",
+      "paymentmethod": "METODE PEMBAYARAN",
+      "courier": "JASA PENGIRIMAN",
+      "ourapps": "UNDUH APLIKASI KAMI",
+      "alertone": "Pesan Anda berhasil dikirim, permintaan Anda akan segera kami tindaklanjuti. Terima kasih",
+      "alerttwo": "Ada kesalahan! Silahkan isi kolom yang dibutuhkan"
+    },
+
+    "contus": {
+      "title": "Untuk menghubungi kami silahkan gunakan form dibawah ini.",
+      "titleone": "Hubungi Kami",
+      "name": "Nama",
+      "maail": "Email",
+      "need": "Keperluan",
+      "message": "Pesan"
+    },
+
+    "aftersales": {
+      "title": "Hubungi Layanan Purna Jual",
+      "titleone": "Hubungi Layanan Purna Jual Kami. Gratis"
+    },
+
+    "footerup": {
+      "bigtitle": "Belisada.co.id menjamin kualitas toko kami melalui 5 poin berikut ini",
+      "titleone": "Gratis Pengiriman",
+      "one": "Kami akan mengirimkan pesanan anda secara cuma-cuma untuk area Jakarta.",
+      "titletwo": "Keamanan Pembayaran",
+      "two": "Kami akan memastikan kerahasiaan informasi pembayaran Anda.",
+      "titlethree": "Kemudahan Transaksi",
+      "three": "Anda bisa melakukan transaksi dengan mudah melalui berbagai metode pembayaran.",
+      "titlefour": "Garansi Produk Terpercaya",
+      "four": "Produk yang Anda beli dapat diservice di berbagai outlet terpercaya",
+      "titlefive": "Layanan Cepat",
+      "five": "Customer service kami akan selalu cepat dan tanggap dalam memberikan informasi"
+    }
+  },
+
+ "alert":
+ {
+   "login":
+   {
+     "regok": "Email ini sudah terdaftar!",
+           "mailwrong": "Email yang Anda masukkan salah!",
+           "passwarn": "Minimal kata kunci harus 7 karakter",
+           "passwrong": "Salah kata kunci!",
+     "one": "Anda harus mengisi kolom yang dibutuhkan!",
+     "mailno": "Email belum terdaftar!",
+     "userok": "User berhasil ditambah!",
+     "alertout": "Anda yakin untuk keluar?",
+           "alertouts": "Anda berhasil keluar!",
+     "alertfail": "Ada kesalahan! Gagal perbaharui!",
+     "contusoke": "Pesan Anda berhasil dikirim, Staff kami akan segera menindaklanjuti. Terima kasih.",
+     "wrong": "Ops! Ada Kesalahan!",
+     "changepwdok": "Silahkan cek email Anda untuk mengubah password"
+   },
+
+   "sellerpage":
+   {
+     "aone": "Toko Anda belum diverifikasi",
+     "atwo": "Anda yakin untuk menyimpan data saat ini??",
+     "athree": "Halo, Anda akan menambah barang yang belum ada di database kami, mohon pastikan data diisi secara rinci."
+   },
+
+   "customer":
+   {
+     "wishoke": "Terima kasih, item Anda sudah masuk ke dalam Wishlist",
+     "delwish": "Anda tidak akan bisa mengembalikan pilihan ini!",
+     "editok": "Perubahan Data Anda Berhasil!",
+     "editfail": "Perubahan Data Anda Gagal!",
+     "noquantity": "Jumlah belum dipilih!"
+
+   }
+ },
+
+   "user":
+ {
+       "account":
+   {
+           "title": "Buat Akun",
+           "titletwo": "Masuk",
+           "titlethree": "Lupa Kata Kunci",
+           "name": "Nama Lengkap",
+           "phone": "Telepon",
+           "email": "Alamat Email",
+           "pass": "Kata Kunci",
+           "repass": "Ulangi Kata Kunci",
+           "term": "Saya sudah membaca dan menyetujui Perjanjian belisada.co.id",
+           "forget": "Anda lupa kata kunci? Klik disini",
+           "forgettitle": "Silahkan masukkan alamat email Anda. Anda akan mendapatkan link untuk mengganti kata kunci",
+           "forgetok": "Silahkan cek email Anda untuk mengganti kata kunci!",
+           "titlepass": "Masukkan kata kunci baru",
+           "npass": "Kata kunci baru",
+           "renpass": "Ulangi Kata Kunci"
+       },
+
+       "seller":
+   {
+           "title": "Selamat datang, ",
+           "one": "Dashboard",
+           "two": "Kotak Masuk",
+           "three": "Info Pembayaran",
+           "four": "Produk Anda",
+           "five": "Laporan Penjualan",
+           "six": "Statistik",
+           "seven": "Jasa Pengiriman",
+           "eight": "Payment Gateway",
+           "nine": "FAQ",
+           "ten": "myADS",
+           "eleven": "Perbaharui Akun",
+     "titleone": "Profil Penjual",
+     "titletwo": "Info Toko",
+     "titlethree": "Rekening Bank",
+     "titlefour": "Ubah Kata Kunci",
+     "tiltefive": "Data Diri",
+     "name": "Nama Toko",
+     "adres": "Alamat",
+     "prov": "Propinsi",
+           "city": "Kota",
+           "district": "Kecamatan",
+           "village": "Kelurahan",
+           "zipp": "Kode Pos",
+     "storedesc": "Deskripsi Toko",
+     "bankno": "Nomor Rekening",
+     "bankname": "Nama Bank",
+     "owner": "Pemilik",
+     "opass": "Kata Kunci Lama",
+     "npass": "Kata Kunci Baru",
+     "renpass": "Ketik Ulang Kata Kunci Baru",
+     "npwp": "Nomor NPWP",
+     "ktp": "Nomor KTP"
+
+   },
+
+       "buyer":
+   {
+           "title": "Selamat datang di akun Anda",
+           "one": "Dashboard",
+           "two": "Penjual",
+           "three": "Wishlist",
+           "four": "Kotak Masuk",
+           "mone": "Transaksi Saya",
+           "mtwo": "Profil Saya",
+           "alltrans": "Semua transaksi & konfirmasi",
+           "status": "Status Pemesanan",
+           "history": "Riwayat Pemesanan",
+           "confirm": "Konfirmasi",
+           "eprof": "Ubah Profil",
+           "cpass": "Ubah Kata Kunci",
+           "bill": "Data Pembayaran",
+           "ship": "Data Pengiriman",
+           "addship": "Tambah Data Pengiriman",
+           "name": "Nama",
+           "dbirth": "Tanggal Lahir",
+           "address": "Alamat",
+           "prov": "Propinsi",
+           "city": "Kota",
+           "district": "Kecamatan",
+           "village": "Kelurahan",
+           "zipp": "Kode Pos",
+           "handphone": "Nomor Handphone",
+           "downpic": "Maksimum ukuran file adalah 5 Mb. Format file yang diperbolehkan (.JPG, .JPEG, .PNG)",
+           "failupload": "Data Anda tidak benar!",
+           "failuploadt": "File Anda melewati batas ukuran!",
+           "notcomplete": "Anda harus mengisi kolom yang dibutuhkan !",
+           "notvalid": "Data tidak valid",
+           "success": "Data Anda berhasil disimpan!",
+           "continue": "Lanjutkan",
+           "next": "Selanjutnya",
+           "successedit": "Data sudah diperbaharui!",
+           "oldpass": "Kata Kunci Lama",
+           "npassw": "Kata Kunci Baru",
+           "renpassw": "Ulangi Kata Kunci Baru"
+
+       },
+
+       "billdata":
+   {
+           "name": "Nama",
+           "saveadd": "Simpan alamat sebagai (contoh: Rumah, Kantor)",
+           "address": "Alamat",
+           "prov": "Propinsi",
+           "city": "Kota",
+           "district": "Kecamatan",
+           "village": "Kelurahan",
+           "zipp": "Kode Pos",
+           "phone": "Nomor Telepon"
+       },
+
+       "shipdata":
+   {
+           "name": "Nama",
+           "saveadd": "Simpan alamat sebagai (contoh: Rumah, Kantor)",
+           "address": "Alamat",
+           "prov": "Propinsi",
+           "city": "Kota",
+           "district": "Kecamatan",
+           "village": "Kelurahan",
+           "zipp": "Kode Pos",
+           "phone": "Nomor Telepon"
+       },
+
+   "message":
+   {
+           "title": "Kotak Pesan",
+           "search": "Cari isi pesan...",
+           "one": "Pengirim",
+           "two": "Isi Pesan",
+           "three": "Tanggal",
+           "four": "Hapus",
+           "sender": "Dikirim oleh",
+           "alert": "Anda yakin akan menghapus pesan ini?",
+     "unread": "Pesan yang belum dibaca"
+       }
+ },
+
+ "goods":
+ {
+       "detail":
+   {
+           "sellby": "Dijual oleh",
+     "write": "Tulis Ulasan",
+     "price": "Harga",
+     "stock": "Ketersediaan",
+     "color": "Warna",
+     "size": "Ukuran",
+     "quantiti": "Jumlah",
+     "weight": "Berat",
+     "dimension": "Dimensi",
+     "highlit": "Highlight",
+     "nhelp": "Butuh Bantuan?",
+     "chat": "Chat Langsung",
+     "contact": "Hubungi Kami",
+     "callcenter": "Layanan Pelanggan",
+     "offer": "Lihat Penawaran Lainnya",
+     "desc": "Deskripsi",
+           "spec": "Spesifikasi",
+           "rev": "Ulasan",
+           "ques": "Pertanyaan",
+           "sortby": "Urut berdasarkan",
+           "latest": "Terbaru",
+           "expensive": "Termahal",
+           "cheap": "Termurah",
+     "accend": "A-Z",
+     "descend": "Z-A",
+     "cat": "Category",
+     "brand": "Merek",
+     "titlereturn": "Kebijakan Pengembalian",
+     "returndet": "jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari",
+     "paymeth": "Pembayaran",
+     "titlecourier": "Jasa Pengiriman",
+     "jnecur": "Jaminan pengiriman dalam 2 hari",
+     "ninjacur": "Jaminan pengiriman dalam 3 hari",
+     "titleone": "Harga Produk",
+     "titletwo": "Lokasi Penjual",
+     "titlethree": "Layanan Produk",
+     "titlefour": "Rating Penjual",
+     "titlefive": "Dijual oleh"
+       },
+
+       "checkout":
+   {
+               "title": "Pembayaran",
+               "billing": "Alamat Penagihan",
+               "shipping": "Pengiriman",
+               "courier": "Kurir",
+               "payment": "Metode Pembayaran",
+               "selanjutnya": "Selanjutnya",
+               "lanjut": "Lanjut",
+               "addpayment": "Pilih pembayaran, melalui",
+               "pay": "Lanjut ke Pembayaran",
+              "sureone": "Anda yakin untuk melanjutkan?"
+       },
+
+       "products":
+   {
+           "title": "Tambah Produk",
+           "desc": "Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan syarat dan ketentuan Belisada.co.id. Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami",
+           "substitle": "Apa yang Anda Jual?",
+           "cons": "Kondisi",
+           "one": "Baru",
+           "two": "Bekas",
+           "three": "Refurbish",
+           "name": "Nama Produk",
+           "detail": "Detail Produk",
+           "price": "Harga",
+           "subsprice": "Mata uang Rp tanpa menggunakan koma. Contoh : 12000",
+           "weight": "Berat",
+           "dimen": "Dimensi",
+           "length": "Panjang",
+           "width": "Lebar",
+           "height": "Tinggi",
+           "quant": "Jumlah",
+           "desc": "Deskripsi Produk",
+           "subsdesc": "Deskripsi",
+           "pict": "Gambar Produk",
+           "subpic": "Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk"
+    }
+   }
 }

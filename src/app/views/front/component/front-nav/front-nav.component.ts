@@ -23,6 +23,7 @@ export class FrontNavComponent implements OnInit {
   imgTop: any;
   navigationObjects: any[] = [];
   alias: string;
+  lang: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -34,7 +35,7 @@ export class FrontNavComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.store.dispatch(new frontActions.GetNav());
+    this.lang = localStorage.getItem('languange');
     this.getNavigationCategory();
   }
 

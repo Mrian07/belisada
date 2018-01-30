@@ -14,7 +14,7 @@
                   </div>
                   <div class="field">
                       <label>No Telpon</label>
-                      <input type="number" name="phone" ng-pattern="/^\d{5}$/"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
+                      <input type="text" name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
                       <div *ngIf="f.submitted && !_phone.valid" class="ui pointing red basic label">Phone is required, minimum 8 character</div>
                   </div>
                   <div class="field">
