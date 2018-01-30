@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   productId;
   imgUrl;
   aliasName;
+  // isDimmed: boolean = false;
 
   constructor(
     private homeService: HomeService,

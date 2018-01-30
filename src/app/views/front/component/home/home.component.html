@@ -36,6 +36,22 @@
         <!-- <div class="grid-wrapper"> -->
 
             <div class="item-grid ui segment" *ngFor="let item of item.list">
+                <!-- <div class="group-button">
+                    <i class="in cart icon" suiPopup popupText="You can customise my placement!" popupInverted [popupPlacement]="'left center'"></i>
+                    <i class="empty heart icon" suiPopup popupText="You can customise my placement!" popupInverted [popupPlacement]="'left center'"></i>
+                    <i class="zoom icon" suiPopup popupText="You can customise my placement!" popupInverted [popupPlacement]="'left center'"></i>
+                </div> -->
+                <!-- <div class="dimmer">
+                    <div class="content">
+                        <div class="container-middle">
+                            <button class="ui inverted basic button">
+                                Quick view
+                            </button>
+                        </div>
+                    </div>
+
+                    
+                </div> -->
                 <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;">
                 <!-- <div class="ui segment"> -->
                     <div class="item-img">
