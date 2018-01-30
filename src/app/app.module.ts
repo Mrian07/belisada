@@ -90,6 +90,7 @@ import { KnpBelisadaComponent } from './views/front/component/seller-center/knp-
 import { BerjualanBelisadaComponent } from './views/front/component/seller-center/berjualan-belisada/berjualan-belisada.component';
 import { CaraBerjualanComponent } from './views/front/component/seller-center/cara-berjualan/cara-berjualan.component';
 import { AsapbyBelisComponent } from './views/front/component/seller-center/asapby-belis/asapby-belis.component';
+import { HeaderdisellerComponent } from './views/front/component/seller-center/headerdiseller/headerdiseller.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -177,6 +178,7 @@ export function getAuthServiceConfigs() {
     BerjualanBelisadaComponent,
     CaraBerjualanComponent,
     AsapbyBelisComponent,
+    HeaderdisellerComponent,
     // WishlistComponent,
     // AsapComponent
   ],
