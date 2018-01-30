@@ -1,16 +1,16 @@
 {
   "header": {
     "nav": {
-      "tracking": "Lacak Pesanan",
-      "ccare": "Layanan Pelanggan",
-      "sellhere": "Jual di Belisada",
+      "tracking": "LACAK PESANAN",
+      "ccare": "LAYANAN PELANGGAN",
+      "sellhere": "JUAL DI BELISADA",
       "download": "Unduh app",
       "blog": "Blog",
       "nproduct": "Produk Terbaru",
       "htshop": "Cara Berbelanja",
-      "cs": "Layanan Pelanggan",
+      "cs": "LAYANAN PELANGGAN",
       "ssell": "Start Sell",
-      "promo": "Hot Promo",
+      "promo": "HOT PROMO",
       "welcome": "Selamat Datang",
       "welcomelogin": "Halo ",
       "login": "Masuk",
@@ -195,6 +195,7 @@
        "buyer":
    {
            "title": "Selamat datang di akun Anda",
+           "accntrx": "Akun & Transaksi",
            "one": "Dashboard",
            "two": "Penjual",
            "three": "Wishlist",

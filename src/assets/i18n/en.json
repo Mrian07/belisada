@@ -3,23 +3,23 @@
 {
     "nav":
   {
-      "tracking": "Tracking Order",
-      "ccare": "Customer Care",
-      "sellhere": "Sell in Belisada",
+      "tracking": "TRACKING ORDER",
+      "ccare": "CUSTOMER CARE",
+      "sellhere": "SELL IN BELISADA",
       "download": "Download app",
       "blog": "Blog",
       "nproduct": "New Product",
       "htshop": "How to Buy",
-      "cs": "Customer Service",
+      "cs": "CUSTOMER SERVICE",
       "ssell": "Start Sell",
-    "promo": "Hot Promo",
+      "promo": "HOT PROMO",
       "welcome": "Welcome to",
-    "welcomelogin": "Hi ",
-      "login": "Login",
-      "logout": "Logout",
-      "register": "Sign up",
-    "searchcat": "Select Category",
-    "uraccount": "Your Account"
+      "welcomelogin" : "Hi ",
+      "login" : "Login",
+      "logout" : "Logout",
+      "register" : "Sign up",
+      "searchcat" : "Select Category",
+      "uraccount" : "Your Account"
     },
 
     "search":
@@ -32,17 +32,17 @@
     "mcategory":
   {
       "one": "Computer",
-    "two": "Gadget",
-    "three": "Audio & Visual",
-    "four": "Mechanical & Electrical",
-    "five": "Hobby",
-    "six": "Home Appliance",
-    "seven": "Mom, Baby & Kids",
-    "eight": "Fashion & Life Style",
-    "nine": "Office Equipment",
-    "ten": "Groceries",
-    "ourpartner": "Choose and Click Your Favorite Brand",
-    "viewall": "View All"
+      "two": "Gadget",
+      "three": "Audio & Visual",
+      "four": "Mechanical & Electrical",
+      "five": "Hobby",
+      "six": "Home Appliance",
+      "seven": "Mom, Baby & Kids",
+      "eight": "Fashion & Life Style",
+      "nine": "Office Equipment",
+      "ten": "Groceries",
+      "ourpartner" : "Choose and Click Your Favorite Brand",
+      "viewall" : "View All"
     }
   },
 
@@ -50,27 +50,27 @@
 {
       "footerone":
   {
-          "information": "Information",
-          "aboutus": "About Us",
-          "termncons": "Terms and Conditions",
-          "career": "Career",
-          "privacypol": "Privacy Policy",
-          "copyright": "Copyright",
-          "faq": "Frequently Ask Questions",
-          "howto": "How to Buy",
-    "return": "Return & Refund",
-    "waranty": "Guarantee & Warranty",
-      "contactus": "Contact Us",
+      "information": "Information",
+      "aboutus": "About Us",
+      "termncons" : "Terms and Conditions",
+      "career" : "Career",
+      "privacypol" : "Privacy Policy",
+      "copyright" : "Copyright",
+      "faq" : "Frequently Ask Questions",
+      "howto" : "How to Buy",
+      "return" : "Return & Refund",
+      "waranty" : "Guarantee & Warranty",
+      "contactus" : "Contact Us",
       "aftersale": "After Sales",
-          "help": "Help",
-          "followus": "Follow Us",
-    "titlenewsletter": "Subscribe to get special deals and news from belisada.co.id",
-          "newsletter": "Email Newsletter",
-          "paymentmethod": "Payment Method",
-          "courier": "Courier",
-          "ourapps": "Download Our Applications",
-    "alertone": "Your message has been successfully sent, Your request will be immediately followed up. Thank You",
-    "alerttwo": "Something is wrong! Please fill in the required fields"
+      "help" : "Help",
+      "followus" : "Follow Us",
+      "titlenewsletter" : "Subscribe to get special deals and news from belisada.co.id",
+      "newsletter": "Email Newsletter",
+      "paymentmethod" : "Payment Method",
+      "courier": "Courier",
+      "ourapps" : "Download Our Applications",
+      "alertone" : "Your message has been successfully sent, Your request will be immediately followed up. Thank You",
+      "alerttwo" : "Something is wrong! Please fill in the required fields"
     },
 
   "contus":
@@ -205,6 +205,7 @@
       "buyer":
   {
           "title": "Welcome to your Account",
+          "accntrx": "Akun & Transaksi",
           "one": "Dashboard",
           "two": "Seller",
           "three": "Wishlist",

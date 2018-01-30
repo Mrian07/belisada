@@ -110,7 +110,7 @@ export class FrontHeaderComponent implements OnInit {
 
   popularSearch() {
     this.searchService.searchPopular().subscribe(data => {
-      //console.log(data);
+      console.log(data);
       this.popular = data;
     });
   }
