@@ -1,9 +1,17 @@
 <div class="ui left aligned ">
     <div class='side-first lay-sidebar'>
         <div class="ui center aligned basic segment">
-        <p>
-            <img class="ui medium rounded image" [src]="buyerImage" alt="profile picture"/>
-        </p>
+                <div *ngIf="buyerImage === 'data:image/png;base64,'; else login">
+                    <img class="ui tiny spaced image" src="/assets/img/man.png" alt="profile picture1"/>
+
+
+                    </div>
+                    <ng-template #login>
+                            <img class="ui medium rounded image" [src]="buyerImage" alt="profile picture3"/>
+
+
+                    </ng-template>
+
         <strong>{{buyerName}}</strong>
         <br><br>
         <button class="ui blue button btn-shop" (click)="editProfileBuyer()">

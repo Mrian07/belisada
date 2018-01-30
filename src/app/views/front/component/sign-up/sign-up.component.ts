@@ -10,6 +10,7 @@ import {
   FacebookLoginProvider,
   GoogleLoginProvider
 } from 'angular5-social-login';
+import { ShareService } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -26,6 +27,7 @@ export class SignUpComponent implements OnInit {
   iscorporate = 'N';
   userType = '2';
   clickMessage = '';
+  loka: any;
   tc: string;
   loading: any;
   isReady: Boolean = false;
@@ -36,6 +38,7 @@ export class SignUpComponent implements OnInit {
     public modalService: SuiModalService,
     private router: Router,
     private title: Title,
+    private shared: ShareService,
     private socialAuthService: AuthService
   ) { }
 
@@ -74,9 +77,12 @@ export class SignUpComponent implements OnInit {
           'success',
           data.message,
           'success',
-        ).then(()=> {
-          location.reload();
-          this.router.navigateByUrl('/sign-in');
+        ).then(() => {
+         // this.loka = this.shared.shareData;
+         this.shared.shareData = registerData;
+          //console.log(this.loka);
+          //location.reload();
+          this.router.navigateByUrl('/PesanLogin');
         });
       }else {
         swal(

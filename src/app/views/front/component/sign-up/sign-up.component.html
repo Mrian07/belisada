@@ -7,19 +7,22 @@
 
               <form name="" class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
                   <div class="field">
-              
+
                       <label>Nama Lengkap</label>
                       <input type="text" name="name" placeholder="Nama Lengkap"  [(ngModel)]="name" #_name="ngModel" required minlength="3"/>
                       <div *ngIf="f.submitted && !_name.valid" class="ui pointing red basic label">Name is required and minimum 3 character</div>
                   </div>
                   <div class="field">
                       <label>No Telpon</label>
-                      <input type="number" name="phone" ng-pattern="/^\d{5}$/"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
+                      <input type="text" name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
                       <div *ngIf="f.submitted && !_phone.valid" class="ui pointing red basic label">Phone is required, minimum 8 character</div>
                   </div>
                   <div class="field">
                       <label>Alamat Email</label>
-                      <input type="email" name="email"  placeholder="Alamat Email" [(ngModel)]="email" #_email="ngModel" required/>
+                      <input type="email" name="email"  placeholder="Alamat Email" [(ngModel)]="email" #_email="ngModel"
+                      pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                       required
+                      />
                       <div *ngIf="f.submitted && !_email.valid" class="ui pointing red basic label">Email is required</div>
                   </div>
                   <div class="field">
@@ -38,9 +41,9 @@
                       <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
                     </div>
                   <div class="text-center gap-between-elements">
-                     <button 
+                     <button
                      [ngClass]="loading?'loading':'ui button auth-btn-submit'"
-                   
+
                      [disabled]="!f.valid"
                      >Daftar Akun</button>
                   </div>
@@ -50,7 +53,7 @@
               </form>
 
 
-<!-- 
+<!--
               <div class="text-center gap-between-elements">
                   <button class="ui facebook button socmed">
                       <i class="facebook icon"></i>
@@ -69,7 +72,7 @@
                       Syarat dan Ketentuan, serta Kebijakan Privasi myACICO
                   </p>
               </div>
-              
+
               <ng-template let-context let-modal="modal" #modalTemplate>
                   <div class="header">Example</div>
                   <div class="content">
@@ -105,9 +108,9 @@
       <!-- <button class="ui red button" (click)="modal.deny()">Cancel</button> -->
       <button class="ui green button" (click)="modal.approve('done')" autofocus>Ok</button>
   </div>
-</sui-modal> 
+</sui-modal>
 
-        
-        
+
+
 
 

@@ -76,6 +76,7 @@ export class SidebarBuyerComponent implements OnInit {
       this.buyerName = data.name;
       this.buyerEmail = data.email;
       this.buyerImage = 'data:image/png;base64,' + data.imageAvatar;
+      console.log('iii', this.buyerImage);
     });
   }
 

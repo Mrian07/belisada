@@ -55,6 +55,7 @@ export class FrontHeaderComponent implements OnInit {
   itemsTotal: number;
   popular = [];
   role: string;
+  lang: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -73,6 +74,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.user = this.auth.getUser();
     if (this.user) {
       this.loginState = true;
@@ -90,6 +92,15 @@ export class FrontHeaderComponent implements OnInit {
       description: 'Belisada Home'
     });
     this.shoppingCart();
+    const lang = localStorage.getItem('languange');
+    if (!lang) {
+      localStorage.setItem('languange', 'in');
+      this.lang = localStorage.getItem('languange');
+      this.translate.use(this.lang);
+    }else {
+      this.lang = localStorage.getItem('languange');
+      this.translate.use(this.lang);
+    }
   }
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
@@ -189,10 +200,7 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   mulaiMenjual() {
-    // role = null;
     const luser = JSON.parse(localStorage.getItem('user'));
-
-    console.log(luser);
     if (luser) {
       if (luser.role === 1) {
 
@@ -326,6 +334,25 @@ export class FrontHeaderComponent implements OnInit {
   }
 
   changeLanguage(language) {
-    this.translate.use(language);
+    this.lang = language;
+    localStorage.setItem('languange', this.lang);
+    location.reload();
   }
+
+
+
+
+
+  openNav() {
+    document.getElementById('mySidenav').style.width = '250px';
+    document.getElementById('main').style.marginLeft = '250px';
+    document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
+}
+
+ closeNav() {
+    document.getElementById('mySidenav').style.width = '0';
+    document.getElementById('main').style.marginLeft = '0';
+    document.body.style.backgroundColor = 'white';
+}
+
 }

@@ -15,6 +15,7 @@ export class NotificationComponent implements OnInit {
 
   address: Alamat[];
   message: string;
+  dana: number;
 
   constructor(
     private alamatserviceService: AlamatserviceService,
@@ -29,9 +30,13 @@ export class NotificationComponent implements OnInit {
         this.message = 'Tidak ada pesan';
       }
     }, 500);
+    this.dana = 0;
   }
 
   toProfile() {
     this.router.navigateByUrl('seller/profile');
+  }
+  widthdraw() {
+    console.log('click');
   }
 }

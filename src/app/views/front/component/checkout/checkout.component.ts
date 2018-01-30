@@ -73,6 +73,7 @@ export class CheckoutComponent implements OnInit {
   selBillingAddress: any = '';
   kampret;
   kampre2t;
+  grandTotal;
   billing: Boolean = false;
 
   constructor(
@@ -327,7 +328,12 @@ export class CheckoutComponent implements OnInit {
       if (response.status === '1') {
         this.shoppingCartService.empty();
       }
-      swal(response.message);
+      //swal(response.message);
+      swal(
+        'Finish!',
+        'Selamat transaksi Anda berhasil diproses.',
+        'success'
+      );
       this.router.navigateByUrl('/finish-order/' + response.id);
     });
   }
