@@ -132,12 +132,12 @@
 
     <div>
             <div *ngIf="ProductList.stock == 0; else login">
-                    <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
+                    <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
                             <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/prodak_pagebelisada-04.png" width="300px" height="50" alt="submit" />
                         </button>
                 </div>
                 <ng-template #login>
-                        <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
+                        <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
                                 <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
                             </button>
                 </ng-template>
@@ -154,8 +154,8 @@
                   </button> -->
           <!-- <div class="gap-between-elements"></div> -->
           <div class="content favorit gap-between-elements">
-                <button type="submit" style="border: 0; background: transparent" class="poi" (click)="ininih(productId)" style="cursor: pointer;">
-                        <img src="/assets/img/zzzzz.jpg" width="200px" height="auto" alt="submit" />
+                <button type="submit" style="border: 0; background: transparent;" class="poi" (click)="ininih(productId)" style="cursor: pointer;">
+                        <img src="/assets/img/zzzzz.jpg" style="margin-left: 17px; margin-bottom: -15px;" width="200px" height="auto" alt="submit" />
                     </button>
            </div>
 
@@ -186,7 +186,7 @@
             <div class="gap-between-elements"></div>
             <span class="pz">Jasa Pengiriman</span>
             <div class="gap-between-elements"></div>
-            <table border=0>
+            <table border=0 style="margin-top: -13px">
                 <!-- <tr>
                     <td><img src="https://dev.myacico.co.id/images/general/s-myacicocourier.jpg"></td>
                     <td>Gratis pengiriman* untuk wilayah jakarta dan jaminan pengiriman dalam 2 hari</td>

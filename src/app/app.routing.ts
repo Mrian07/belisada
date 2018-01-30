@@ -1,3 +1,7 @@
+import { AsapbyBelisComponent } from './views/front/component/seller-center/asapby-belis/asapby-belis.component';
+import { CaraBerjualanComponent } from './views/front/component/seller-center/cara-berjualan/cara-berjualan.component';
+import { KnpBelisadaComponent } from './views/front/component/seller-center/knp-belisada/knp-belisada.component';
+import { SellerCenterComponent } from './views/front/component/seller-center/seller-center.component';
 import { SliderDepanComponent } from './views/front/component/slider-depan/slider-depan.component';
 import { SellerProposeComponent } from './views/buyer/component/seller-propose/seller-propose.component';
 import { LacakPesananComponent } from './views/front/component/lacak-pesanan/lacak-pesanan.component';
@@ -62,6 +66,8 @@ import { ProductTerbaruComponent } from './views/front/component/product-terbaru
 import { CustomerCareComponent } from './views/front/component/customer-care/customer-care.component';
 import { DownloadAppComponent } from './views/front/component/download-app/download-app.component';
 import { PsnLoginComponent } from './views/front/component/psn-login/psn-login.component';
+import { InboxComponent } from './views/front/component/seller-center/inbox/inbox.component';
+import { BerjualanBelisadaComponent } from './views/front/component/seller-center/berjualan-belisada/berjualan-belisada.component';
 
 const routes: Routes = [
   {
@@ -81,6 +87,54 @@ const routes: Routes = [
         data: {
           title: 'info'
         }
+      },
+      {
+        path: 'inbox',
+        component: InboxComponent,
+        data: {
+          title: 'info'
+        }
+      },
+      {
+        path: 'seller-center',
+        component: SellerCenterComponent,
+        children: [
+          {
+            path: 'inbox',
+            component: InboxComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
+            path: 'Why-Choose-Us',
+            component: KnpBelisadaComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
+            path: 'berjualan-dibelisada',
+            component: BerjualanBelisadaComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
+            path: 'cara-Berjualan',
+            component: CaraBerjualanComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
+            path: 'ASAP-by-belisada',
+            component: AsapbyBelisComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+        ],
       },
       {
         path: 'PesanLogin',
@@ -224,7 +278,8 @@ const routes: Routes = [
         data: {
           title: 'Checkout'
         }
-      }, {
+      },
+      {
         path: 'buyer',
         component: BuyerLayoutComponent,
         canActivateChild: [OnlyLoggedInUsersGuard],

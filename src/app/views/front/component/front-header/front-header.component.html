@@ -13,11 +13,11 @@
 
 <div class="header2 header-top">
     <ul class="header-top-menu">
-        <li><a routerLink="/info-jual-beli" class="link-red" translate>header.nav.sellhere</a></li>
+        <li><a routerLink="/seller-center/inbox" class="link-red" translate>header.nav.sellhere</a></li>
         <li><a routerLink="/Lacak-Pesanan" translate>header.nav.tracking</a></li>
-        <li><a routerLink="/asap">Informasi ASAP</a></li>
+        <li><a routerLink="/asap">INFORMASI ASAP</a></li>
         <li><a routerLink="/Customer-Care" translate>header.nav.ccare</a></li>
-        <li><a routerLink="">Hot Promo</a></li>
+        <li><a routerLink="">HOT PROMO</a></li>
         <!-- <li class="hide-on-mobile"><a routerLink="/Download-App">DOWNLOAD APP</a></li> -->
     </ul>
 </div>
@@ -93,9 +93,9 @@
                 <div class="welcome" *ngIf="loginState === false">
 
                     <div class='dropdown-profile'>
-                        <div style="cursor: pointer; padding-top:10px;" (click)="login()">
+                        <div style="cursor: pointer; padding-top:10px;" (click)="login()" translate>
                                 <img class="ui image avatar" [src]="avatar" alt="avatar"/>
-                                Akun Anda
+                                header.nav.uraccount
                         </div>
                         <div class="dropdown-profile-content">
 
