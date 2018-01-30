@@ -3,16 +3,16 @@
 {
     "nav":
   {
-      "tracking": "Tracking Order",
-      "ccare": "Customer Care",
-      "sellhere": "Sell in Belisada",
+      "tracking": "TRACKING ORDER",
+      "ccare": "CUSTOMER CARE",
+      "sellhere": "SELL IN BELISADA",
       "download": "Download app",
       "blog": "Blog",
       "nproduct": "New Product",
       "htshop": "How to Buy",
-      "cs": "Customer Service",
+      "cs": "CUSTOMER SERVICE",
       "ssell": "Start Sell",
-    "promo": "Hot Promo",
+    "promo": "HOT PROMO",
       "welcome": "Welcome to",
     "welcomelogin": "Hi ",
       "login": "Login",
@@ -205,6 +205,7 @@
       "buyer":
   {
           "title": "Welcome to your Account",
+          "accntrx": "Akun & Transaksi",
           "one": "Dashboard",
           "two": "Seller",
           "three": "Wishlist",
