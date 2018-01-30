@@ -91,7 +91,15 @@ export class FrontHeaderComponent implements OnInit {
       description: 'Belisada Home'
     });
     this.shoppingCart();
-    this.lang = 'in';
+    const lang = localStorage.getItem('languange');
+    if (!lang) {
+      localStorage.setItem('languange', 'in');
+      this.lang = localStorage.getItem('languange');
+      this.translate.use(this.lang);
+    }else {
+      this.lang = localStorage.getItem('languange');
+      this.translate.use(this.lang);
+    }
   }
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
@@ -326,6 +334,7 @@ export class FrontHeaderComponent implements OnInit {
 
   changeLanguage(language) {
     this.lang = language;
-    this.translate.use(language);
+    localStorage.setItem('languange', this.lang);
+    location.reload();
   }
 }
