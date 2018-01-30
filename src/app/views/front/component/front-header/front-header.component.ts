@@ -336,6 +336,7 @@ export class FrontHeaderComponent implements OnInit {
   changeLanguage(language) {
     this.lang = language;
     localStorage.setItem('languange', this.lang);
+    this.translate.use(this.lang);
     location.reload();
   }
 
