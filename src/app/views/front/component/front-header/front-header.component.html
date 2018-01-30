@@ -1,3 +1,12 @@
+<div id="mySidenav" class="sidenav">
+<a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+<a href="#">About</a>
+<a href="#">Services</a>
+<a href="#">Clients</a>
+<a href="#">Contact</a>
+</div>
+
+
 <div class="header1 top-bg" (click)="imgTop" style="cursor: pointer;">
     <img src="/assets/img/bg-top-main2.jpg" border="0" />
 </div>
@@ -15,7 +24,8 @@
 
 <div class="header3 header-second">
     <div class="sidebar-icon show-on-mobile">
-        <i class="sidebar icon"></i>
+        <i class="sidebar icon" style="font-size:30px;cursor:pointer" (click)="openNav()"></i>
+        <!-- <span style="font-size:30px;cursor:pointer" (click)="openNav()">&#9776;</span> -->
     </div>
     <div class="logo-container" (click)="home()" style="cursor: pointer;">
         <img class="ui image" src="/assets/img/logo.png" alt="profile picture"/>
