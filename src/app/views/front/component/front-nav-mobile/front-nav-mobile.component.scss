@@ -50,16 +50,6 @@ body {
 }
 /*e: sidebar menu mobile*/
 
-
-
-
-
-
-
-.m-sidebar:hover{
-    background: #03496a;
-}
-
 * {
  margin: 0;
  padding: 0;
@@ -150,3 +140,30 @@ p {
  line-height: 1.5;
  color: rgba(255, 255, 255, 0.8);
 }
+
+.top-categories {
+    padding:5px;
+    background: #022231;
+    font-size:14px;
+    font-weight: bold;
+    color:#c6c7c7;
+    cursor: pointer;
+}
+
+.top-categories:hover {
+    background: #021924;
+    color:#f0eeee;
+}
+
+.item{
+    color:#c6c7c7;
+    padding:5px;
+    padding-left:10px;
+}
+.item:hover{
+    background: #03496a;
+    cursor: pointer;
+}
+
+
+ 

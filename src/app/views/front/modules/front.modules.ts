@@ -1,4 +1,3 @@
-import { FrontNavMobileComponent } from './../component/front-nav-mobile/front-nav-mobile.component';
 import { TransactionListService } from './../../../core/service/transcations-list/transaction-list.service';
 import { WishlistBuyerService } from './../../../core/service/wishlist-buyer/wishlist-buyer.service';
 import { UpgradeService } from './../../../core/service/upgrade/upgrade.service';
@@ -46,6 +45,7 @@ import { CheckoutService } from '../../../core/service/checkout/checkout.service
 import { EmailSendService } from '../../../core/service/email-send/email-send.service';
 import { AsapComponent } from '../component/asap/asap.component';
 import { ProductTerbaruComponent } from '../component/product-terbaru/product-terbaru.component';
+import { FrontNavMobileComponent } from './../component/front-nav-mobile/front-nav-mobile.component';
 
 @NgModule({
   declarations: [
