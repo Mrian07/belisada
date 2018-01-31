@@ -22,7 +22,8 @@
               <tbody>
                 <tr *ngFor="let list of productList">
                     <td (click)="view(list.imageurl)" style="cursor:pointer;"><img src="{{ list.imageurl }}" height="42"></td>
-                    <td><a (click)="detail(list.productId, list.aliasName)" style="cursor: pointer;">{{ list.name }}</a></td>
+                    <td><a *ngIf="list.isActive === 'Y'" (click)="detail(list.productId, list.aliasName)" style="cursor: pointer;">{{ list.name }}</a>
+                        <span *ngIf="list.isActive === 'N'">{{ list.name }}</span></td>
                     <td>{{ list.sku }}</td>
                     <td>{{ list.stock }}</td>
                     <td>Rp.{{ list.pricelist | number }}</td>
