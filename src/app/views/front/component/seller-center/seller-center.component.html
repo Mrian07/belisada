@@ -1,18 +1,24 @@
 <div class="gap-between-elements"></div>
-<body>
+<img class="ui image" src="/assets/img/baruart.jpg">
+<app-headerdiseller></app-headerdiseller>
+<hr>
+<div class="gap-between-elements"></div>
+<body class='bg-buyer-layout'>
     <div class="ui container">
         <div class="ui grid">
 
             <div class="three wide column">
-            <app-sidebar></app-sidebar>
+                    <app-sidebar></app-sidebar>
             </div>
             <div class="thirteen wide column">
                 <div class="ui grid">
-
+                        <div class="sixteen wide column">
+                                <router-outlet></router-outlet>
+                            </div>
                     <div class="sixteen wide column">
                         <div class="ui grid">
                             <div class="sixteen wide column">
-                                <router-outlet></router-outlet>
+
                             </div>
                             <!-- <div class="four wide column">
                                 <app-cart-buyer></app-cart-buyer>

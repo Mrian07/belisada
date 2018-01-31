@@ -30,5 +30,7 @@ export class ProductDetail {
   qtyOnHand: number;
   qtyOnSeller: number;
   specification: any;
+  qid: number;
+  isOffers: string;
   constructor() {}
 }

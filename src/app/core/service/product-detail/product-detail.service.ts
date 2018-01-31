@@ -15,9 +15,9 @@ export class ProductDetailService extends AbstractRestService<ProductDetail> {
         .map(response => response as ProductDetail);
   }
 
-  getStore(name: string): Observable<any> {
-    return this.http.get(this.configuration.serverWithAccUrl + '/product/offerlisting?name=' + name)
-    .map(response => response as any);
+  getStore(qid: number, id: number): Observable<ProductDetail> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/product/offerlisting?qid=' + qid + '&id=' + id)
+    .map(response => response as ProductDetail);
   }
   wishListCreate(token: string) {
     const headers = new HttpHeaders()

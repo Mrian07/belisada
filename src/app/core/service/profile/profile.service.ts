@@ -36,6 +36,14 @@ export class ProfileService {
     return this.http.put(this.configuration.serverWithAccUrl + '/seller/profile/personaldata/update/', updateData, { headers })
       .map(resp => resp as Profile);
   }
+  updatebuyerProfile(updateData) {
+    const user = JSON.parse(localStorage.user);
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('token', user.token);
+    return this.http.put(this.configuration.serverWithAccUrl + '/buyer/profile/personaldata/update/', updateData, { headers })
+      .map(resp => resp as Profile);
+  }
 
   getProfileBuyer(token: string) {
     const headers = new HttpHeaders()
