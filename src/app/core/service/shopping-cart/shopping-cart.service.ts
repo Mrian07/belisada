@@ -140,8 +140,11 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
     cart.items.forEach((item, index) => {
       this.productService.get(item.productId)
       .subscribe(product => {
+        product.weight = (product.weight === 0) ? 1 : product.weight;
+        console.log('product.weight: ', product.weight);
         cart.itemsTotal += item.quantity * product.pricelist;
-        cart.deliveryTotal += (cart.freightRate === undefined) ? 0 : cart.freightRate.amount * item.quantity * product.weight;
+        cart.deliveryTotal +=
+          (cart.freightRate === undefined) ? 0 : cart.freightRate.amount * item.quantity * product.weight;
         cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
         if (index === (cart.items.length - 1)) {
           return calculateCartCb(cart, product);
