@@ -62,7 +62,7 @@ export class CheckoutComponent implements OnInit {
   deliveryTotal: number;
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
-  ngForm:any;
+  ngForm: any;
 
   private storage: Storage;
   checkout: Checkout;
@@ -317,7 +317,7 @@ export class CheckoutComponent implements OnInit {
 
   finishOrder() {
     this.checkout = new Checkout();
-    this.checkout.billingAddress = this.billingAddress.addressId;
+    this.checkout.billingAddress = (this.billingAddress === undefined) ? null : this.billingAddress.addressId;
     this.checkout.courierAmt = this.freightRate.amount;
     this.checkout.courierId = this.freightRate.shipperId;
     this.checkout.courierName = this.freightRate.shipperName;
@@ -325,13 +325,22 @@ export class CheckoutComponent implements OnInit {
     this.checkout.isoncePickup = 'Y';
     this.checkout.mBankAccountId = this.paymentMethodDetail.mBankAccountId;
     this.checkout.paymentMethod = this.paymentMethod.code;
-    this.checkout.shippingAddress = this.shippingAddress.addressId;
+    this.checkout.shippingAddress = (this.shippingAddress === undefined) ? null : this.shippingAddress.addressId;
+    console.log('this.checkout: ', this.checkout);
+    if (this.checkout.courierId === undefined
+      || this.checkout.mBankAccountId === undefined
+      || this.checkout.paymentMethod === undefined
+      || this.checkout.billingAddress === null
+      || this.checkout.shippingAddress === null) {
+        swal('Tolong lengkapi semua data saat checkout!');
+        return;
+    }
     this.checkoutService.doCheckout(this.checkout).subscribe(response => {
       console.log('response: ', response);
       if (response.status === '1') {
         this.shoppingCartService.empty();
       }
-      //swal(response.message);
+      // swal(response.message);
       swal(
         'Finish!',
         'Selamat transaksi Anda berhasil diproses.',
