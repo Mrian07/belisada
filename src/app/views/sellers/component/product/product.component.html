@@ -60,7 +60,7 @@
                   <th>Tipe</th>
                   <th>Status</th>
                   <th>Quantity</th>
-                  <th>Hapus</th>
+                  <!-- <th>Hapus</th> -->
               </tr>
           </thead>
           <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString ; let i = index">
@@ -116,7 +116,7 @@
                 </td>
                 <!-- <td><i class="edit icon"></i></td>
                 <td><i class="trash outline icon"></i></td> -->
-                <td><i (click)="inactive(product.productId)" class="trash outline icon"></i></td>
+                <!-- <td><i (click)="inactive(product.productId)" class="trash outline icon"></i></td> -->
             </tr>
         </tbody>
 

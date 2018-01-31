@@ -83,18 +83,22 @@
                  <img class="ui image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'">
             </div>
             <!-- <div class="clear-fix"></div> -->
+            <div class="header-title"><a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a></div>
+            <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
+                <div class="yu">
+                    Stok: {{item.stock}}
+                    <img *ngIf="item.isAsapShipping === 'Y'" src="/assets/img/asap_big.png" alt="">
+                </div>
+                <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
+                <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
+                
+            </div>
             <div class="highlight">
-                <a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a>
+                <sui-rating [maximum]="5" [isReadonly]="true"></sui-rating>
                 <p [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
                     <!-- {{item.highlight}} -->
                 </p>
             <!-- <div [innerHTML]="item.highlight | sanitizeHtml | truncate : 20 : '.'"></div> -->
-            </div>
-            <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
-                <div class="yu"><i class="info circle icon"></i>Stok : {{item.stock}}</div>
-                <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
-                <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
-                <sui-rating [maximum]="5" [isReadonly]="true"></sui-rating>
             </div>
 
             <!-- <div class="clear-fix"></div> -->
