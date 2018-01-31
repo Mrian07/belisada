@@ -29,7 +29,7 @@
 }
 
 .header-top ul a.link-red {
-    color: #921f15;
+    color: #d20000;
 }
 
 .header-top ul a.link-red:hover {
@@ -696,3 +696,28 @@
 
 
 
+<<<<<<< HEAD
+=======
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+/*e: sidebar menu mobile*/
+>>>>>>> ba9ee710dec2840c4dafe29ef1141fe0f56a0c00

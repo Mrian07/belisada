@@ -154,7 +154,7 @@
                             Harga Rp.
                         </div>
                         <div class="five wide field">
-                            <input type="number" placeholder="Harga" pattern="[0-9]{10}" [(ngModel)]="price" value="{{price}}"/>
+                            <input type="text" placeholder="Harga" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="price" value="{{price}}"/>
                         </div>
                         <div class="seven wide field small">
                             Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : Rp. {{ price | number }} )</span>
@@ -167,8 +167,8 @@
                         <div class="two wide field">
                             Berat
                         </div>
-                        <div class="three wide field">
-                            <input type="text" placeholder="Berat" value="{{weight}}" [disabled]="false"/>
+                        <div class="two wide field">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Berat" value="{{weight}}" [disabled]="false"/>
                         </div>
                         <div class="one wide field">
                             <div class="ui three wide field">
@@ -189,19 +189,19 @@
                             Dimensi (cm)
                         </div>
                         <div class="two wide field">
-                            <input type="text" placeholder="" [(ngModel)]="panjang" value="{{panjang}}"/>
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="" [(ngModel)]="panjang" value="{{panjang}}"/>
                         </div>
                         <div class="one wide field small">
                             Panjang (cm)
                         </div>
                         <div class="two wide field">
-                            <input type="text" placeholder="" [(ngModel)]="lebar" value="{{lebar}}"/>
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="" [(ngModel)]="lebar" value="{{lebar}}"/>
                         </div>
                         <div class="one wide field small">
                             Lebar (cm)
                         </div>
                         <div class="two wide field">
-                            <input type="text" placeholder="" [(ngModel)]="tinggi" value="{{tinggi}}"/>
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="" [(ngModel)]="tinggi" value="{{tinggi}}"/>
                         </div>
                         <div class="one wide field small">
                             Tinggi (cm)
@@ -214,7 +214,7 @@
                         <div class="two wide field">
                             Quantity
                         </div>
-                        <div class="one wide field">
+                        <div class="two wide field">
                             <select [(ngModel)]="stok" (input)="onInput($event)" class="ui dropdown">
                                 <option *ngFor="let country of quantity ; let i=index" value= "{{country.id}}" selected="{{country.selected}}">{{country.name}}</option>
                             </select>
