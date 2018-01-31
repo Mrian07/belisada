@@ -318,7 +318,7 @@ export class CheckoutComponent implements OnInit {
   finishOrder() {
     this.checkout = new Checkout();
     this.checkout.billingAddress = (this.billingAddress === undefined) ? null : this.billingAddress.addressId;
-    this.checkout.courierAmt = this.freightRate.amount;
+    this.checkout.courierAmt = this.deliveryTotal;
     this.checkout.courierId = this.freightRate.shipperId;
     this.checkout.courierName = this.freightRate.shipperName;
     this.checkout.grandTotal = this.grossTotal;
