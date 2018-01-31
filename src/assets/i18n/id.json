@@ -53,7 +53,7 @@
       "faq": "FAQ",
       "howto": "Cara Berbelanja",
       "return": "Pengembalian & Pembatalan",
-      "waranty": "Garansi",
+      "waranty": "Garansi :",
       "contactus": "Hubungi Kami",
       "aftersale": "Layanan Purna Jual",
       "help": "BANTUAN",
@@ -260,7 +260,7 @@
       "unread": "Pesan yang belum dibaca"
     }
   },
-    
+
   "goods": {
     "detail": {
       "sellby": "Dijual oleh",
@@ -289,6 +289,8 @@
       "accend": "A-Z",
       "descend": "Z-A",
       "cat": "Category",
+      "return":"Kebijakan",
+      "title":"Pengembalian",
       "brand": "Merek",
       "titlereturn": "Kebijakan Pengembalian",
       "returndet": "jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari",
@@ -302,7 +304,7 @@
       "titlefour": "Rating Penjual",
       "titlefive": "Dijual oleh"
     },
-    
+
     "checkout": {
       "title": "Pembayaran",
       "billing": "Alamat Penagihan",

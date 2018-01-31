@@ -15,7 +15,7 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [style.width.px]="270" [style.height.px]="auto" [lensWidth]="600" [lensHeight]="600">
+        <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [style.width.px]="270" [style.height.px]="270" [lensWidth]="600" [lensHeight]="600">
     </div>
     <div class="thumbnail-container">
         <div class="thumbnail">
@@ -26,9 +26,9 @@
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
     <sui-rating [maximum]="5" [isReadonly]="true"></sui-rating>
-    <span class="lcl">(0)</span><i class="write icon"></i>Tulis ulasan
+    <span class="lcl">(0)</span><i class="write icon"></i><span translate>goods.detail.write</span>
     <div class="gap-between-elements"></div>
-    <span>dijual oleh</span> : <span><b>{{storeName}}</b></span>
+    <span translate>goods.detail.titlefive</span> : <span><b>{{storeName}}</b></span>
     <div class="gap-between-elements"></div>
     <!-- <table border = "1" *ngIf="ProductList.specialPrice !== 0; else login2">
         <tr>
@@ -43,11 +43,11 @@
            </table>
             </ng-template> -->
             <div *ngIf="ProductList.specialPrice !== 0; else login2">
-                <span class="pls">Harga:</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
+                <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
                 <span>Hemat: {{kamp | number:'3.2-5'}}</span>
             </div>
             <ng-template #login2>
-                <span class="pls">Harga:</span><span class="gets">Rp. {{ProductList.pricelist | number}}</span>
+                <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.pricelist | number}}</span>
             </ng-template>
     <!-- <span class="pls">Harga:</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
     <span>Hemat: {{kamp | number:'3.2-5'}}</span> -->
@@ -74,7 +74,7 @@
     <div class="gap-between-elements"></div>
     <table>
         <tr>
-            <td class="xo">Warna:</td>
+            <td class="xo" translate>goods.detail.color</td>
             <td>
                 <!-- <div class="warna"></div><div class="warna3"></div><div class="warna4"></div> -->
             </td>
@@ -106,11 +106,11 @@
           <table border=0>
               <tr>
                   <td class="xo"></td>
-                  <td class="cio">Butuh Bantuan?</td>
+                  <td class="cio" translate>goods.detail.nhelp</td>
               </tr>
               <tr>
                     <td class="xo"></td>
-                    <td><i class="mail icon"></i> Hubungi Kami
+                    <td translate><i class="mail icon"></i> goods.detail.contact
                     </td>
               </tr>
               <tr>
@@ -121,8 +121,8 @@
               </tr>
               <tr>
                   <td class="xo"></td>
-                  <td><i class="volume control phone icon mail"></i>
-                    Layanan Pelanggan
+                  <td translate><i class="volume control phone icon mail"></i>
+                    goods.detail.callcenter
                 </td>
               </tr>
           </table>
@@ -162,18 +162,18 @@
            </div>
 
             <div class="gap-between-elements"></div>
-            <strong>Jumlah : </strong>
+            <strong translate>goods.detail.quantiti </strong>
             <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
                 <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
             </sui-select>
             <div class="gap-between-elements"></div>
             <strong>Garansi : </strong><span>{{garansi}}</span>
            <div class="gap-between-elements"></div>
-           <span><strong>Kebijakan</strong></span>
+           <span><strong translate>goods.detail.return</strong></span>
            <div class="gap-between-elements"></div>
-           <span><strong>Pengembalian : </strong></span> <span>jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari</span>
+           <span><strong translate>goods.detail.title</strong></span> <span translate>goods.detail.returndet</span>
            <div class="gap-between-elements"></div>
-           <strong>Pembayaraan</strong>
+           <strong translate>goods.detail.paymeth</strong>
                 <img src="https://dev.myacico.co.id/images/general/ico_bank_03.png" width="35" class="ui middle aligned mini image">
                 <img src="https://dev.myacico.co.id/images/general/p-visa-small.jpg" width="35" class="ui middle aligned mini image">
                 <img src="https://dev.myacico.co.id/images/general/ico_bank_02.png" width="35" class="ui middle aligned mini image">
@@ -186,7 +186,7 @@
                 <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
             </sui-select> -->
             <div class="gap-between-elements"></div>
-            <span class="pz">Jasa Pengiriman</span>
+            <span class="pz" translate>goods.detail.titlecourier</span>
             <div class="gap-between-elements"></div>
             <table border=0 style="margin-top: -13px">
                 <!-- <tr>
@@ -197,13 +197,13 @@
                     <td>
                       <img src="https://dev.myacico.co.id/images/general/s-ninjaxpress.jpg">
                     </td>
-                    <td>Jaminan pengiriman dalam 3 hari</td>
+                    <td translate>goods.detail.jnecur</td>
                   </tr>
                   <tr>
                     <td>
                       <img src="https://dev.myacico.co.id/images/general/s-jne.jpg">
                     </td>
-                    <td>Jaminan pengiriman dalam 2-5 hari</td>
+                    <td translate>goods.detail.ninjacur</td>
                   </tr>
 
 

@@ -85,13 +85,59 @@
     color:#ffffff;
 }
 
+.lay-sidebar-mobile{
+    display: none;
+}
+
 @media screen and (max-width: 600px) {
     .lay-sidebar{
         display: none;
     }
 
-    .lay-sidebar-mobile{
-        display: block;
-    }
+    // .lay-sidebar-mobile{
+    //     display: block;
+    // }
+
+
+    // .dropbtnmenu {
+    //     background-color: #4CAF50;
+    //     color: white;
+    //     padding: 16px;
+    //     font-size: 16px;
+    //     border: none;
+    //     cursor: pointer;
+    //     width:100%;
+    // }
+    
+    // .dropdownmenu {
+    //     position: relative;
+    //     display: inline-block;
+    // }
+    
+    // .dropdownmenu-content {
+    //     display: none;
+    //     position: absolute;
+    //     background-color: #f9f9f9;
+    //     min-width: 160px;
+    //     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    //     z-index: 1;
+    // }
+    
+    // .dropdownmenu-content a {
+    //     color: black;
+    //     padding: 12px 16px;
+    //     text-decoration: none;
+    //     display: block;
+    // }
+    
+    // .dropdownmenu-content a:hover {background-color: #f1f1f1}
+    
+    // .dropdownmenu:hover .dropdownmenu-content {
+    //     display: block;
+    // }
+    
+    // .dropdownmenu:hover .dropbtn {
+    //     background-color: #3e8e41;
+    // }
     
 }

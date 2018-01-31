@@ -18,7 +18,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
 import { ProductService } from '../../../../core/service/product/product.service';
 import { SearchService } from '../../../../core/service/search/search.service';
-
+import { TranslateService } from '@ngx-translate/core';
 interface ICartItemWithProduct extends CartItem {
   product: Product;
   totalCost: number;
@@ -85,7 +85,7 @@ export class ProductDetailComponent implements OnInit {
     private store: Store<fromProduct.Details>,
     private ngZone: NgZone,
     private tokenService: TokenService,
-    private productService: ProductService
+    private productService: ProductService,  public translate: TranslateService
   ) { }
   private componetDestroyed: Subject<Boolean> = new Subject();
 

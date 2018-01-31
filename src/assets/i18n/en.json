@@ -273,6 +273,8 @@
       "weight": "Weight",
       "dimension": "Dimension",
       "highlit": "Highlight",
+      "return":"Return",
+      "title":"Policy",
       "nhelp": "Need Help?",
       "chat": "Chat Langsung",
       "contact": "Contact us",
