@@ -85,6 +85,7 @@ export class AddProductsComponent implements OnInit {
   userImageNPWP: string;
   imgNpwp: any;
   qid: any;
+  optionTemplate: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [

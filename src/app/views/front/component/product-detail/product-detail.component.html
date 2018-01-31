@@ -15,7 +15,7 @@
 </div>
 <div class="wrapper">
     <div align="right">
-        <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [lensWidth]="600" [lensHeight]="600">
+        <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [style.width.px]="270" [style.height.px]="auto" [lensWidth]="600" [lensHeight]="600">
     </div>
     <div class="thumbnail-container">
         <div class="thumbnail">
@@ -186,7 +186,7 @@
                 <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
             </sui-select> -->
             <div class="gap-between-elements"></div>
-            <span class="pz" translate>goods.detail.return</span>
+            <span class="pz" translate>goods.detail.titlecourier</span>
             <div class="gap-between-elements"></div>
             <table border=0 style="margin-top: -13px">
                 <!-- <tr>

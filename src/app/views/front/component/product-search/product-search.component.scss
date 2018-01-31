@@ -20,6 +20,9 @@
 .filter li.sort-filter {
     float: right;
 }
+.list-grid {
+    text-align: center
+}
 .list-grid i.list:hover, .list-row i.grid:hover {
     cursor: pointer;
     color: #469fe0;
@@ -29,9 +32,20 @@
     display: inline-grid;
     padding: 10px;
 }
-
+.list-grid .pricelist {
+    text-align: center;
+}
 .list-grid .prodimg img{
     height: 180px;
+}
+
+.list-grid .highlight {
+    // display: none;
+    padding: 0;
+    height: auto;
+    p {
+        display: none;
+    }
 }
 
 .search-results:after {

@@ -1,5 +1,5 @@
-<div class="ui left aligned ">
-    <div class='side-first lay-sidebar'>
+<div class="ui left aligned lay-sidebar">
+    <div class='side-first'>
         <div class="ui center aligned basic segment">
                 <div *ngIf="buyerImage === 'data:image/png;base64,'; else login">
                     <img class="ui tiny spaced image" src="/assets/img/man.png" alt="profile picture1"/>
@@ -19,13 +19,13 @@
         </button>
         </div>
     </div>
-    <div class='side-second lay-sidebar'>
+    <div class='side-second'>
         <div class='index-menu'>
-            <p><a routerLink="/buyer/dashboard" class="menu-top-side"><i class="home icon"></i> Dashboard</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="goDashboard()"><i class="home icon"></i> Dashboard</a></p>
             <p><a routerLink="#" class="menu-top-side" (click)="goSeller()"><i class="shop icon"></i> Seller</a></p>
             <!-- <p><a routerLink="/buyer/seller-propose" class="menu-top-side"><i class="shop icon"></i> Seller</a></p> -->
-            <p><a routerLink="/buyer/wishlist-buyer" class="menu-top-side"><i class="empty heart icon"></i> Wishlist</a></p>
-            <p><a routerLink="/buyer/inbox-buyer" class="menu-top-side"><i class="mail icon"></i> Inbox</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="goWishlist()"><i class="empty heart icon"></i> Wishlist</a></p>
+            <p><a routerLink="#" class="menu-top-side"><i class="mail icon"></i> Inbox</a></p>
             <p>Shop By Categories</p>
             <div class='main-menu'>
                 <div class="ui link list" *ngFor="let item of navigationObjects">
@@ -35,3 +35,41 @@
         </div>
     </div>
 </div>
+<div class="ui left aligned lay-sidebar-mobile">
+    <!-- <div class='side-first'>
+        <div *ngIf="buyerImage === 'data:image/png;base64,'; else login">
+            <img class="ui tiny spaced image" src="/assets/img/man.png" alt="profile picture1"/>
+        </div>
+        <ng-template #login>
+            <img class="ui medium rounded image" [src]="buyerImage" alt="profile picture3"/>
+        </ng-template>
+
+        <button class="ui blue button btn-shop fluid" (click)="editProfileBuyer()">
+            Edit Profile
+        </button>
+    </div> -->
+    <!-- <sui-select class="fluid selection" placeholder="Menu Buyer">
+        <sui-select-option value="Dashboard" (click)="goSeller()"></sui-select-option>
+        <sui-select-option value="Seller" (click)="goSeller()"></sui-select-option>
+        <sui-select-option value="Wishlist" (click)="goSeller()"></sui-select-option>
+        <sui-select-option value="Inbox" (click)="goSeller()"></sui-select-option>
+    </sui-select> -->
+
+
+
+    
+    <!-- <div class="dropdownmenu">
+            <button class="dropbtnmenu">Menu</button>
+            <div class="dropdownmenu-content">
+              <a href="#">Link 1</a>
+              <a href="#">Link 2</a>
+              <a href="#">Link 3</a>
+            </div>
+          </div> -->
+
+
+    
+</div>
+
+
+    
