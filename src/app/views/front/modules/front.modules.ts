@@ -45,6 +45,7 @@ import { CheckoutService } from '../../../core/service/checkout/checkout.service
 import { EmailSendService } from '../../../core/service/email-send/email-send.service';
 import { AsapComponent } from '../component/asap/asap.component';
 import { ProductTerbaruComponent } from '../component/product-terbaru/product-terbaru.component';
+import { FrontNavMobileComponent } from './../component/front-nav-mobile/front-nav-mobile.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { ProductTerbaruComponent } from '../component/product-terbaru/product-te
     CaraBerbelanjaComponent,
     ChattingFrontComponent,
     ProductTerbaruComponent,
+    FrontNavMobileComponent,
   ],
   imports: [
     CommonModule,
