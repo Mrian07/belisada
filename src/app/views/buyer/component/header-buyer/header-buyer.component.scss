@@ -23,3 +23,15 @@
 .btn-log{
     margin-top: 10px;
 }
+
+@media screen and (max-width: 600px) {
+    .head-buyer {
+        display: none;
+    }
+    
+    .b-menu-top{
+        border: 1px solid #eeeeee;
+        padding:3px;
+        border-radius:5px;
+    }
+}

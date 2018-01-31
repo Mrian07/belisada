@@ -64,4 +64,8 @@ export class HeaderBuyerComponent implements OnInit {
     this.router.navigateByUrl('/buyer/transaction-buyer');
   }
 
+  goDashboard() {
+    this.router.navigateByUrl('/buyer/dashboard');
+  }
+
 }

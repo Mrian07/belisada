@@ -109,7 +109,17 @@ export class SidebarBuyerComponent implements OnInit {
 
   }
 
+  goDashboard() {
+    this.router.navigateByUrl('/buyer/dashboard');
+  }
 
+  goWishlist() {
+    this.router.navigateByUrl('/buyer/wishlist-buyer');
+  }
+
+  goInbox() {
+    this.router.navigateByUrl('/buyer/inbox-buyer');
+  }
 
 
 
