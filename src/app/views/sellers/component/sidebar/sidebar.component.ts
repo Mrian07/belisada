@@ -40,7 +40,9 @@ export class SidebarComponent implements OnInit {
     this.getUri();
     this.getStoreStatus();
     this.lang = localStorage.getItem('language');
-    this.translate.use(this.lang);
+    if (this.lang) {
+      this.translate.use(this.lang);
+    }
   }
 
   getStoreStatus() {
