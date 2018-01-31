@@ -2,6 +2,7 @@
     position: fixed;
     bottom: 40px;
     right: 40px;
+    z-index: 605;
 }
 
 .chat-container {
@@ -9,13 +10,12 @@
     min-width: 370px;
     bottom: 0;
     right: 0;
-    z-index: 605;
 }
 
 
 .chat-container .chat-header {
     width: 100%;
-    padding: 10px 15px;
+    padding: 8px 15px 5px;
     white-space: nowrap;
     background-color: #002f44;
     border-top-left-radius: 5px;
@@ -31,16 +31,23 @@
 .chat-container .chat-header .cs-profile-picture {
     width: 45px;
     border-radius: 50%;
+    position: absolute;
+    top: -4px;
 }
 .chat-container .chat-header .cs-profile-name {
     font-size: 1.4em;
     font-weight: 500;
     position: relative;
-    left: 20px;
-    top: 10px;
+    top: -3px;
+    left: 50px;
     color: #ffffff;
 }
-
+.chat-container .chat-header .info {
+    color: #9f0;
+    position: relative;
+    top: 8px;
+    font-size: 11px;
+}
 
 .chat-container .chat-content {
     width: 100%;
@@ -54,18 +61,13 @@
     border-radius: 15px;
     padding: 15px 20px;
     margin-bottom: 15px;
-    display: inline-block;
     clear: both;
-}
-
-.chat-container .chat-content .chat-bubble.receiver {
     float: left;
-    text-align: left;
     color: #435698;
     background-color: #ffffff;
 }
 
-.chat-container .chat-content .chat-bubble.receiver .chat-bubble-time {
+.chat-container .chat-content .chat-bubble .chat-bubble-time {
     color: rgba($color: #435698, $alpha: 0.5);
 }
 
@@ -74,13 +76,21 @@
     text-align: right;
     color: #ffffff;
     background-color: #F9A94A;
+    font-weight: bold;
+}
+.chat-container .chat-content .chat-bubble.sys {
+    text-align: center;
+    color: #777;
+    font-family: lato;
+    float: none;
+    background: transparent;
 }
 
 .chat-container .chat-content .chat-bubble.sender .chat-bubble-time {
     color: rgba($color: #ffffff, $alpha: 0.5);
 }
 
-.chat-container .chat-content .chat-bubble .chat-bubble-time {
+.chat-container .chat-content .chat-bubble:not(.sys) .chat-bubble-time {
     float: right;
 }
 

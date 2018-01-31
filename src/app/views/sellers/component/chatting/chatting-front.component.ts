@@ -40,11 +40,11 @@ export class ChattingFrontComponent implements OnInit {
   msgInput: string;
   soc: any;
   connecting: boolean = true;
+  cs: any;
 
   constructor(private loginsrv: LoginService, private chat: ChatService, private router: Router, private shared: ShareService) { }
 
   ngOnInit() {
-    console.log('url:', this.router.url);
     if(!this.hiden) {
       this.connect().then(soc => this.soc = soc, err => this.hiden = true);
     }
@@ -66,9 +66,18 @@ export class ChattingFrontComponent implements OnInit {
         that.chats.push(msg);
         that.info = '';
       },
-      typing: () => {
+      typing: cs => {
+        if(!that.cs || that.cs.email != cs) {
+          that.soc.emit('get_cs_detail', cs);
+        }
         that.info = 'typing';
-        that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
+        that.typingTimer = setTimeout(() => that.info = '', 4000);
+      },
+      close_chat: msg => {
+        that.chats.push(msg);
+      },
+      cs_detail: cs => {
+        this.cs = cs;
       }
     });
   }
@@ -81,7 +90,7 @@ export class ChattingFrontComponent implements OnInit {
   }
 
   hide() {
-    console.log('chat_hide', this.hiden, this.user);
+    // console.log('chat_hide', this.hiden, this.user);
     this.hiden = !this.hiden;
     localStorage.chat_hide = this.hiden;
     if(!this.soc) {
@@ -106,6 +115,7 @@ export class ChattingFrontComponent implements OnInit {
     }).then(res => {
       if(res.value) {
         this.soc.emit('close_msg');
+        this.hide();
       }
     })
   }
