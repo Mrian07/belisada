@@ -1,0 +1,18 @@
+.wrapper{
+    display:grid;
+    grid-template-columns: 100%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+
+  .wrapper > div{
+    // background:#eee;
+    padding:1em;
+  }
+  .wrapper > div:nth-child(odd){
+    background: #fedec43d;
+    border: 3px dashed #f26c4f;
+  }
