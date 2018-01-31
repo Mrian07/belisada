@@ -84,6 +84,7 @@ export class AddProductsComponent implements OnInit {
   updateImg: any;
   userImageNPWP: string;
   imgNpwp: any;
+  qid: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -238,6 +239,7 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
+        console.log(data);
         if (data.length === 0) {
           this.results = [];
           this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
@@ -263,6 +265,7 @@ export class AddProductsComponent implements OnInit {
     this.weight = hasil.weight;
     this.toggle = false;
     this.productId = hasil.productId;
+    this.qid = hasil.qid;
     this.lebar = hasil.dimensionswidth;
     this.tinggi = hasil.dimensionsheight;
     this.panjang = hasil.dimensionslength;
@@ -327,7 +330,7 @@ export class AddProductsComponent implements OnInit {
       const productData = {
         pricelist: this.price,
         description: '',
-        productId: this.productId,
+        productId: this.qid,
         mBpartnerStoreId: this.storeId,
         weight: +this.weight,
         dimensionswidth: +this.lebar,
@@ -348,15 +351,15 @@ export class AddProductsComponent implements OnInit {
   gudang($event) {
     $event.preventDefault();
     console.log($event.target.value + '=' + this.stok );
-    if ($event.target.value < this.stok) {
-      swal(
-        'Quantity lebih kecil',
-        'Dari barang yang akan dikirim ke gudang',
-        'error'
-      );
-    }else {
+    // if ($event.target.value < this.stok) {
+    //   swal(
+    //     'Quantity lebih kecil',
+    //     'Dari barang yang akan dikirim ke gudang',
+    //     'error'
+    //   );
+    // }else {
       this.qtyOnHand = +$event.target.value;
-    }
+  //  }
   }
 
   checkForm() {
@@ -382,7 +385,7 @@ export class AddProductsComponent implements OnInit {
         const productData = {
           pricelist: this.price,
           description: '',
-          productId: this.productId,
+          productId: this.qid,
           mBpartnerStoreId: this.storeId,
           weight: +this.weight,
           dimensionswidth: +this.lebar,
