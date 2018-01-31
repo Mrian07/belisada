@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store, ActionsSubject } from '@ngrx/store';
 import { Subscription } from 'rxjs/Subscription';
@@ -35,6 +35,10 @@ export class FrontNavMobileComponent implements OnInit {
     this.getNavigationCategory();
     this.lang = localStorage.getItem('languange');
   }
+
+  // @HostListener('document:click', ['$event']) clickedOutside($event) {
+  //   this.closeNav();
+  // }
 
   getCategoryOne(cb) {
     this.categoryService.CategoryOne().subscribe(data => {

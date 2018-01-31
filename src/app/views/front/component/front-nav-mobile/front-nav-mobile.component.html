@@ -16,13 +16,13 @@
             *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix">
 
               <div class="top-categories" *ngIf="ix <= 4">
-                  <div (click)="toList(i.aliasname, i.m_product_category_id)">
+                  <div (click)="toList(i.aliasname, i.m_product_category_id)" (click)="closeNav()">
                       <span *ngIf="lang == 'id'">{{ i.name }}</span><span *ngIf="lang == 'en'">{{ i.name_en }}</span>
                   </div>
               </div>
               <div class="item" *ngIf="ix > 4">
 
-                  <div (click)="toList(i.aliasname, i.m_product_category_id)">
+                  <div (click)="toList(i.aliasname, i.m_product_category_id)" (click)="closeNav()">
                       <span *ngIf="lang == 'id'">{{ i.name }}</span><span *ngIf="lang == 'en'">{{ i.name_en }}</span>
                   </div>
 
