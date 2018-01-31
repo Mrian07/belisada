@@ -46,13 +46,41 @@ export class ProductComponent implements OnInit {
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
       this.store.select(fromProduct.getProductState).subscribe(datas => {
-        //console.log(datas);
+      console.log(datas);
       });
     });
   }
 
   checks(i) {
     //console.log(i);
+  }
+
+  inactive (id: number) {
+    console.log(id);
+    const data = {
+      isActive: 'N',
+      productId: 31097
+    };
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Anda yakin mau non aktifkan produk ini?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya'
+    }).then((result) => {
+      console.log(result);
+      if (result.value) {
+        this.productService.Inactive(data).subscribe(res => {
+          console.log(res);
+          swal(
+          'Non Aktifkan!',
+          'success'
+          );
+        });
+      }
+    });
   }
 
   checkAll(z) {

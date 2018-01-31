@@ -62,6 +62,7 @@ export class CheckoutComponent implements OnInit {
   deliveryTotal: number;
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
+  ngForm:any;
 
   private storage: Storage;
   checkout: Checkout;
