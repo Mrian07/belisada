@@ -22,6 +22,10 @@ export class StatusInvoiceComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getRev();
+  }
+
+  getRev() {
     const user = this.auth.getUser();
     if (user) {
       const storeId = user.stores[0].mBpartnerStoreId;
@@ -30,6 +34,66 @@ export class StatusInvoiceComponent implements OnInit {
         this.productList = data.productList;
       });
     }
+  }
+
+  inactive (id: number) {
+    console.log(id);
+    const data = {
+      isActive: 'N',
+      productId: id
+    };
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Anda yakin mau non aktifkan produk ini?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya'
+    }).then((result) => {
+      console.log(result);
+      this.productList = [];
+      if (result.value) {
+        this.sellers.Inactive(data).subscribe(res => {
+          console.log(res);
+          this.getRev();
+          swal(
+          'Non Aktifkan!',
+          'success'
+          );
+        });
+      }
+    });
+  }
+
+  active (id: number) {
+    console.log(id);
+    const data = {
+      isActive: 'Y',
+      productId: id
+    };
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Anda yakin mau aktifkan produk ini?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Ya'
+    }).then((result) => {
+      console.log(result);
+      this.productList = [];
+      if (result.value) {
+        this.sellers.Inactive(data).subscribe(res => {
+          console.log(res);
+          this.getRev();
+          swal(
+          'Aktifkan!',
+          'success'
+          );
+        });
+      }
+    });
   }
 
   getQr(id: number) {

@@ -2,7 +2,7 @@
     <div class="ui grid">
 
 
-      <div class="sexteen wide column">
+      <div class="twelve wide column">
 
         <p><b>Product List</b></p>
           <table class="ui striped table">
@@ -15,6 +15,8 @@
                     <th>Pricelist</th>
                     <th>Status</th>
                     <th>QR Code</th>
+                    <th>Action</th>
+                    <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -26,6 +28,9 @@
                     <td>Rp.{{ list.pricelist | number }}</td>
                     <td><div class="ui green horizontal label">Review</div></td>
                     <td (click)="getQr(list.productId)" style="cursor:pointer;"><i class="qrcode icon" style="font-size: 18px;"></i></td>
+                    <td><i *ngIf="list.isActive === 'Y'" (click)="inactive(list.productId)" class="trash outline icon"></i>
+                    <i *ngIf="list.isActive === 'N'" (click)="active(list.productId)" class="upload outline icon"></i></td>
+                    <td><span class="ui green label" *ngIf="list.isActive === 'Y'">Active</span><span class="ui grey label" *ngIf="list.isActive === 'N'">Inctive</span></td>
                 </tr>
               </tbody>
             </table>

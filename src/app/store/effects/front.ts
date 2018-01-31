@@ -68,7 +68,6 @@ export class HomeEffects {
               detail: detail,
               stores: stores
             };
-            console.log(detailData);
             return  new frontActions.GetDetailSuccess(detailData) ;
         }
       )
