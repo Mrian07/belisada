@@ -18,7 +18,7 @@ import { ShareService } from '../../../../core/service/shared.service';
 export class AddShippingComponent implements OnInit {
 
   shippingAddressList: ShippingAddress[];
-
+  optionTemplate: any;
   //user = JSON.parse(localStorage.user);
   createComForm: FormGroup;
   name: FormControl;
