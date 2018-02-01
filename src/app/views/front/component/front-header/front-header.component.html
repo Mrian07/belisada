@@ -81,6 +81,54 @@
                     <a (click)="changeLanguage('en')"><i class="gb flag"></i>English</a>
                     </div>
                 </div>
+
+                <div class="cart show-on-mobile">
+                    <div class="cart-icon" (click)="viewCart()">
+                        <span class="cart-counter">{{ itemCount }}</span>
+                        <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
+                    </div>
+                    <div class="shopping-cart ui segment">
+                        <h5>RECENTLY ADDED</h5>
+                        <div class="ui divider"></div>
+
+                        <div class="cart-item" *ngFor="let item of cartItems">
+                            <div class="item-img">
+                                <a (click)="toProductDetail(item.product.productId, item.product.aliasName)">
+                                    <img class="ui image" [src]="item.product.imageurl" alt=""/>
+                                </a>
+                            </div>
+                            <div class="item-detail">
+                                <div class="detail-wrapper">
+                                    <span class="product-name"><a (click)="toProductDetail(item.product.productId, item.product.aliasName)">{{ item.product.name }}</a></span>
+                                    <span class="product-price">{{ item.quantity }} x <strong>Rp {{ item.product.pricelist | number }}</strong></span>
+                                </div>
+                            </div>
+                            <div class="item-action">
+                                <a class="remove" title="Remove this item" (click)="removeProductFromCart(item.product.productId, item.quantity, item.itemCartId)">×</a>
+                            </div>
+                            <div class="ui divider grid-devider"></div>
+                        </div>
+
+                        <div class="subtotal">
+                            <div class="subtotal-text pull-left">
+                                <strong>Subtotal:</strong>
+                            </div>
+                            <div class="subtotal-price pull-right">
+                                <strong>Rp {{itemsTotal | number}}</strong>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="ui divider"></div>
+                        <div class="btn-cart-group">
+                            <div class="view-cart">
+                                <button (click)="viewCart()">View Cart</button>
+                            </div>
+                            <div class="checkout">
+                                <button (click)="checkout()">Checkout</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="menu-header2">
                 <div class="welcome" *ngIf="loginState === false">
@@ -152,7 +200,7 @@
                     </div>
 
                 </div>
-                <div class="cart">
+                <div class="cart hide-on-mobile">
                     <div class="cart-icon" (click)="viewCart()">
                         <span class="cart-counter">{{ itemCount }}</span>
                         <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
