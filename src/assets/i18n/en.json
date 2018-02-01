@@ -209,6 +209,7 @@
 
       "buyer" :
   {
+    "accntrx" : "Account & Transaction",
           "title" : "Welcome to your Account",
           "one" : "Dashboard",
           "two" : "Seller",

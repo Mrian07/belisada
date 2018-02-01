@@ -45,3 +45,13 @@ hr {
 .item:hover{
     color:#ffffff;
 }
+
+@media screen and (max-width: 600px) {
+    // .header{
+    //     width:100%;
+    // }
+    .lay-descktop{
+        display: hide;
+    }    
+
+}

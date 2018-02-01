@@ -208,7 +208,8 @@
    },
 
        "buyer" :
-   {
+   {      
+        "accntrx" : "Akun & Transaksi",
            "title" : "Selamat datang di akun Anda",
            "one" : "Dashboard",
            "two" : "Penjual",
