@@ -1,7 +1,7 @@
 import swal from 'sweetalert2';
 import { Component, OnInit } from '@angular/core';
 import { EmailNewsLetterService } from '../../../../core/service/email-news-letter/email-news-letter.service';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-front-footer',
   templateUrl: './front-footer.component.html',
@@ -9,7 +9,7 @@ import { EmailNewsLetterService } from '../../../../core/service/email-news-lett
 })
 export class FrontFooterComponent implements OnInit {
   emailSubscription: any;
-  constructor(private emailNewsLetterService: EmailNewsLetterService) { }
+  constructor(private emailNewsLetterService: EmailNewsLetterService, public translate: TranslateService) { }
 
   ngOnInit() {
 
