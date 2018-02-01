@@ -36,7 +36,7 @@ export class ProfileBuyerComponent implements OnInit {
   userImgAvatar: string;
   userImageKTP: string;
   userImageNPWP: string;
-
+  optionTemplate;
   user: Profile = new Profile();
   provinces: Province[];
   cities: City[];
