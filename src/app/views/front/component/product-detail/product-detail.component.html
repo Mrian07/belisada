@@ -165,8 +165,8 @@
 
             <div class="gap-between-elements"></div>
             <strong translate>goods.detail.quantiti </strong>
-            <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
-                <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
+            <sui-select class="selection" name="province" #jum [isSearchable]="true" [options]="arrStock" [optionTemplate]="optionTemplate" placeholder="Jumlah" [(ngModel)]="quantity">
+                <sui-select-option [value]="q" *ngFor="let q of jum.filteredOptions"></sui-select-option>
             </sui-select>
             <div class="gap-between-elements"></div>
             <strong>Garansi : </strong><span>{{garansi}}</span>

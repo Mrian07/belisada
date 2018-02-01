@@ -38,7 +38,7 @@ export class ProductDetailComponent implements OnInit {
   public itemCount: number;
 
   itemsTotal: number;
-
+  optionTemplate: any;
   tabs: any;
   act_key: any;
   productId: any;
