@@ -20,19 +20,67 @@
   </div>
   <div class='side-second'>
       <div class='main-menu'>
-          <p><a routerLink="/seller/dashboard" class="item" translate>user.seller.one</a></p>
-          <p><a routerLink="/seller/kontak" class="item" translate>user.seller.two</a></p>
-          <p><a routerLink="/seller/payment-info" class="item" translate>user.seller.three</a></p>
+          <p><a (click)="goDashboard()" class="item" translate>user.seller.one</a></p>
+          <p><a (click)="goKontak()" class="item" translate>user.seller.two</a></p>
+          <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
           <p><a (click)="goToProduct()" class="item" translate>user.seller.four</a></p>
-          <p><a routerLink="/seller/salles-report" class="item" translate>user.seller.five</a></p>
+          <p><a (click)="goSallesReport()" class="item" translate>user.seller.five</a></p>
           <!-- <p><a class="item">Statistik</a></p>
           <p><a class="item">Courier Service</a></p>
           <p><a class="item">Payment Gateway</a></p> -->
-          <p><a routerLink="/seller/faq-seller" class="item" translate>user.seller.nine</a></p>
+          <p><a (click)="goFaqSeller()" class="item" translate>user.seller.nine</a></p>
           <!-- <p><a class="item">myADS</a></p>
           <p><a class="item">Upgrade Account</a></p> -->
       </div>
     </div>
+
+</div>
+
+<div class="menu-seller-mobile">
+
+    <!-- <div class='simple-nav-buyer'>
+        <div class="ui dropdown" suiDropdown>
+            Menu
+            <i class="dropdown icon"></i>
+            <div class="menu" suiDropdownMenu>
+                <div class="item" (click)="profileBuyer()" translate>user.buyer.mtwo</div>
+                <div class="item" (click)="changePassword()" translate>user.buyer.cpass</div>
+                <div class="item" (click)="billingAddress()" translate>user.buyer.bill</div>
+                <div class="item" (click)="shippingAddress()" translate>user.buyer.ship</div>
+                <div class="divider"></div>
+                <div class="item" (click)="goSeller()">Seller</div>
+                <div class="item">Wishlist</div>
+                <div class="item">Inbox</div>
+                <div class="divider"></div>
+                <div class="item" (click)="transactionBuyer()"  translate>user.buyer.alltrans</div>
+                <div class="item" translate>user.buyer.status</div>
+                <div class="item" translate>user.buyer.history</div>
+                <div class="item" translate>user.buyer.confirm</div>
+                
+            </div>
+        </div>
+    </div>
+
+
+<div class="ui divider"></div> -->
+
+
+
+  <div class="ui pointing dropdown button fluid center aligned" suiDropdown>
+    <div class="text">Menu Seller</div>
+    <i class="dropdown icon"></i>
+    <div class="menu" suiDropdownMenu>
+        <div class="item" (click)="editProfile()" class="item">Profile</div>
+        <div class="item" (click)="goDashboard()" class="item" translate>user.seller.one</div>
+        <div class="item" (click)="goKontak()" class="item" translate>user.seller.two</div>
+
+        <div class="item" (click)="goPaymentInfo()" class="item" translate>user.seller.three</div>
+        <div class="item" (click)="goToProduct()" class="item" translate>user.seller.four</div>
+
+        <div class="item" (click)="goSallesReport()" class="item" translate>user.seller.five</div>
+        <div class="item" (click)="goFaqSeller()" class="item" translate>user.seller.nine</div>
+    </div>
+  </div>
 
 </div>
 
