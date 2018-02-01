@@ -14,6 +14,7 @@
 </div>
 </div>
 <div class="wrapper">
+
     <div align="right">
         <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [style.width.px]="270" [style.height.px]="270" [lensWidth]="600" [lensHeight]="600">
     </div>
@@ -22,6 +23,7 @@
         <img [src]="image" *ngFor="let image of ProductImage" (click)="setimage(image)">
         </div>
     </div>
+
     <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
@@ -284,7 +286,7 @@
         <a class="item" suiTabHeader="4">Pertanyaan</a>
     </div>
     <div class="ui bottom attached segment" suiTabContent="1">
-        <p [innerHTML]="ProductList.description | sanitizeHtml"></p>
+        <p style=" max-width: 1000px; overflow:hidden;" [innerHTML]="ProductList.description | sanitizeHtml"></p>
     </div>
     <div class="ui bottom attached segment" suiTabContent="2">
         <span *ngIf="specs === 0">Spesifikasi Masih Belum Tersedia</span>
@@ -293,3 +295,4 @@
     <div class="ui bottom attached segment" suiTabContent="3">Belum ada Ulasan Untuk {{ProductList.name}}</div>
     <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
 </sui-tabset>
+
