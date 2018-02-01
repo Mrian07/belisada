@@ -61,6 +61,26 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/seller/profile']);
   }
 
+  goDashboard() {
+    this.router.navigate(['/seller/dashboard']);
+  }
+
+  goKontak() {
+    this.router.navigate(['/seller/kontak']);
+  }
+
+  goPaymentInfo() {
+    this.router.navigate(['/seller/payment-info']);
+  }
+
+  goSallesReport() {
+    this.router.navigate(['/seller/salles-report']);
+  }
+
+  goFaqSeller() {
+    this.router.navigate(['/seller/faq-seller']);
+  }
+
   getProfile() {
     this.profileService.getProfile(this.tokenService.getToken()).subscribe(data => {
       this.sellerName = data.name;

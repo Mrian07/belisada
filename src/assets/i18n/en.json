@@ -17,7 +17,7 @@
       "welcome": "Welcome to",
     "welcomelogin" : "Hi ",
       "login" : "Log in",
-      "logout" : "Log out",
+      "logout" : "Logout",
       "register" : "Sign up",
     "searchcat" : "Select Category",
     "uraccount" : "Your Account"
@@ -209,6 +209,7 @@
 
       "buyer" :
   {
+    "accntrx" : "Account & Transaction",
           "title" : "Welcome to your Account",
           "one" : "Dashboard",
           "two" : "Seller",
@@ -346,7 +347,7 @@
     "titlecourier" : "Courier",
     "jnecur" : "guaranteed delivery within 2 days",
     "ninjacur" : "guaranteed delivery within 3 days",
-    "titleone" : "Product Price",
+    "titleone" : "Price",
     "titletwo" : "Seller Location",
     "titlethree" : "Service",
     "titlefour" : "Rates",

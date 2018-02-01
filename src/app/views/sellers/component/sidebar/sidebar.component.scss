@@ -45,3 +45,25 @@ hr {
 .item:hover{
     color:#ffffff;
 }
+
+
+.menu-seller-mobile{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    // .header{
+    //     width:100%;
+    // }
+    .lay-descktop{
+        display: none;
+    }    
+
+    .menu-seller-mobile{
+        display: block;
+        padding-left:15px;
+        margin-top:10px;
+        margin-bottom:10px;
+    }
+
+}

@@ -1,29 +1,45 @@
-<div class="ui segment header">
+<div class="header-seller"> 
+    <div class="ui container">
+    <div class="ui">
+        <div class="ui grid">
+          <div class="sixteen wide column ">
+
+          <a routerLink="/"><img class="ui image logo" src="/assets/img/logo-seller.png" alt="profile picture"/></a>
+
+        </div>
+      </div>
+    </div> 
+  </div>
+
+</div>  
+
+
+<!-- <div class="ui segment header">
   <div class="ui grid">
     <div class="sixteen wide column ">
       <a routerLink="/"><img class="ui image logo" src="/assets/img/logo-seller.png" alt="profile picture"/></a>
     </div>
   </div>
-</div>
-<div class='sub-head'>
-  <div class="ui">
-    <div class="ui grid">
-      <div class="ten wide column">
-        <h3>Selamat datang di Seller Area {{user ? user.name : 'guest'}}</h3>
-      </div>
-      <div *ngIf="user" class="six wide column right aligned">
+</div> -->
+<div class='header-seller-sub'>
+  <div class="ui container">
+    <div class="ui">
+      <div class="ui grid stackable">
+        <div class="ten wide column">
+          <h3>Selamat datang di Seller Area {{user ? user.name : 'guest'}}</h3>
+        </div>
+        <div *ngIf="user" class="six wide column right aligned">
 
-          <div class="ui buttons">
-            <button class="ui teal button" (click)="goBuyer()"><i class="shopping bag icon"></i> Dashboard Buyer</button>
-            <div class="or"></div>
-            <button class="ui button" (click)="logout()"><i class="icon user"></i> Logout</button>
-          </div>
-
-        <!-- <button class="ui basic button" (click)="logout()">
-          <i class="icon user"></i>
-          Logout
-        </button> -->
+            <div class="ui buttons">
+              <button class="ui teal button" (click)="goBuyer()"><i class="shopping bag icon"></i> Dashboard Buyer</button>
+              <div class="or"></div>
+              <button class="ui button" (click)="logout()"><i class="icon user"></i> Logout</button>
+            </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+

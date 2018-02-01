@@ -1,7 +1,7 @@
 
 <div class="ui grid container">
   <div class="six wide column">
-    <div class="ui breadcrumb">
+    <div class="ui breadcrumb kamb">
         <div class="gap-top">
     <a class="section" (click)="home()">Home</a>
     <div class="divider"> / </div>
@@ -15,12 +15,12 @@
 </div>
 <div class="wrapper">
 
-    <div align="right">
+    <div align="right" class="okeNih">
         <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [style.width.px]="270" [style.height.px]="270" [lensWidth]="600" [lensHeight]="600">
     </div>
     <div class="thumbnail-container">
         <div class="thumbnail">
-        <img [src]="image" *ngFor="let image of ProductImage" (click)="setimage(image)">
+        <img  class="iniNone" [src]="image"  *ngFor="let image of ProductImage" (click)="setimage(image)">
         </div>
     </div>
 

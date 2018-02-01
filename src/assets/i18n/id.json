@@ -208,7 +208,8 @@
    },
 
        "buyer" :
-   {
+   {      
+        "accntrx" : "Akun & Transaksi",
            "title" : "Selamat datang di akun Anda",
            "one" : "Dashboard",
            "two" : "Penjual",
@@ -346,7 +347,7 @@
      "titlecourier" : "Jasa Pengiriman",
      "jnecur" : "Jaminan pengiriman dalam 2 hari",
      "ninjacur" : "Jaminan pengiriman dalam 3 hari",
-     "titleone" : "Harga Produk",
+     "titleone" : "Harga",
      "titletwo" : "Lokasi Penjual",
      "titlethree" : "Layanan Produk",
      "titlefour" : "Rating Penjual",
