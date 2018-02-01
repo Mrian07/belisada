@@ -38,7 +38,7 @@ export class ProductDetailComponent implements OnInit {
   public itemCount: number;
 
   itemsTotal: number;
-
+  optionTemplate: any;
   tabs: any;
   act_key: any;
   productId: any;
@@ -66,6 +66,7 @@ export class ProductDetailComponent implements OnInit {
   arrStock: number[];
   asap: Boolean = true;
   specs: any;
+
   garansiDay = [
     {day: 0 , val: 'Tidak Bergaransi'},
     {day: 30 , val: '1 Bulan'},
@@ -132,6 +133,7 @@ export class ProductDetailComponent implements OnInit {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
           //console.log(this.ProductList);
+          //console.log(this.ProductList.mBpartnerStoreId);
           //this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
           this.garansi = garansi.val;
@@ -180,29 +182,40 @@ export class ProductDetailComponent implements OnInit {
     this.theImage = image;
   }
 
-  public addProductToCart(productId: number, quantity: number): void {
-   // console.log('ProductList: ', this.ProductList);
-    if (quantity === undefined) {
-      swal(
-        'Belisada.co.id',
-        'Jumlah harus di pilih!'
-      );
-    } else {
-      const cartItemRequest: CartItemRequest = new CartItemRequest();
-      cartItemRequest.productId = this.ProductList.productId;
-      cartItemRequest.price = this.ProductList.pricelist;
-      cartItemRequest.weightPerItem = this.ProductList.weight;
-      cartItemRequest.quantity = quantity;
+  public addProductToCart(productId: number, quantity: number, mstoreId: number): void {
+   const st = this.tokenService.getUser();
 
-      if (this.tokenService.getUser()) {
-        this.shoppingCartService.create(cartItemRequest).subscribe(response => {
-          //console.log('response: ', response);
-          this.shoppingCartService.addItem(productId, +quantity, +response.id);
-        });
+   if (st) {
+    const stID = st.stores[0].mBpartnerStoreId;
+    if (stID === mstoreId) {
+      swal(
+            'Belisada.co.id',
+            'Product ini berasaldari Toko Anda'
+          );
+    }else {
+       if (quantity === undefined) {
+        swal(
+          'Belisada.co.id',
+          'Jumlah harus di pilih!'
+        );
       } else {
-        this.shoppingCartService.addItem(productId, +quantity);
+        const cartItemRequest: CartItemRequest = new CartItemRequest();
+        cartItemRequest.productId = this.ProductList.productId;
+        cartItemRequest.price = this.ProductList.pricelist;
+        cartItemRequest.weightPerItem = this.ProductList.weight;
+        cartItemRequest.quantity = quantity;
+
+        if (this.tokenService.getUser()) {
+          this.shoppingCartService.create(cartItemRequest).subscribe(response => {
+            //console.log('response: ', response);
+            this.shoppingCartService.addItem(productId, +quantity, +response.id);
+          });
+        } else {
+          this.shoppingCartService.addItem(productId, +quantity);
+        }
       }
     }
+   }
   }
   ininih(productId) {
     const data3 = {
