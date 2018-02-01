@@ -261,3 +261,28 @@ h1{
     max-height: 270px;
     height: auto;
 }
+@media screen and (max-width: 425px) {
+    .price{
+        color: green;
+        font-size: 16px;
+    }
+    .kamb {
+        margin-top: 22px !important;
+    }
+    .wrapper{
+        display:grid;
+        grid-template-columns: 100%;
+        /*
+        grid-column-gap:1em;
+        grid-row-gap:1em;
+        */
+        grid-gap:1em;
+      }
+      .iniNone {
+          display:none;
+      }
+      .okeNih {
+          margin-right: 250px;
+      }
+
+}
