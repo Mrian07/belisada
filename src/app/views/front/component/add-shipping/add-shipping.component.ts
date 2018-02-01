@@ -54,6 +54,7 @@ export class AddShippingComponent implements OnInit {
     this.createFormControls();
     this.createForm();
     this.getProvince();
+    // this.getProvince(this.fillForms.bind(this));
     this.fillForms();
    // console.log('dn', luser);
   }
@@ -151,6 +152,12 @@ export class AddShippingComponent implements OnInit {
     this.masterService.getProvince('209').subscribe(data => {
       this.provinces = data;
     });
+
+    // this.masterService.getProvince('209').subscribe(data => {
+    //   this.provinces = data;
+    //   if(typeof cb=='function') cb();
+    // });
+
   }
 
   getCity(id) {
