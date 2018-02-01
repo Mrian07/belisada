@@ -1,5 +1,5 @@
 <div class="head-buyer">
-    <div class="ui grid stackable ">
+    <div class="ui grid stackable">
         <div class="nine wide column">
             <!-- <a routerLink="/buyer/dashboard"><img class="ui small image" src="/assets/img/logo_buyer_belisada.png"></a> -->
             <div class='simple-nav-buyer' translate>user.buyer.title</div>
@@ -97,13 +97,15 @@
                         <div class="item" (click)="billingAddress()" translate>user.buyer.bill</div>
                         <div class="item" (click)="shippingAddress()" translate>user.buyer.ship</div>
                         <div class="divider"></div>
+                        <div class="item" (click)="goSeller()">Seller</div>
+                        <div class="item">Wishlist</div>
+                        <div class="item">Inbox</div>
+                        <div class="divider"></div>
                         <div class="item" (click)="transactionBuyer()"  translate>user.buyer.alltrans</div>
                         <div class="item" translate>user.buyer.status</div>
                         <div class="item" translate>user.buyer.history</div>
                         <div class="item" translate>user.buyer.confirm</div>
-                        <div class="divider"></div>
-                        <div class="item">Wishlist</div>
-                        <div class="item">Inbox</div>
+                        
                     </div>
                 </div>
             </div>
