@@ -1,14 +1,17 @@
-<div class="ui grid b-cat" >
-    <p class="text-center" *ngIf="total === 0">Tidak ada Product</p>
+<div class="ui grid b-cat" align="center" >
+    <!-- <h3 class="text-center" *ngIf="pageError">Tidak ada Product</h3> -->
     <!-- <p>{{pageError}}</p> -->
     <div class="ui sixteen column doubling stackable grid container center aligned" *ngIf="pageError">
+            <!-- <h3 class="text-center" *ngIf="pageError">Tidak ada Product</h3> -->
             <div class="ui grid b-mainten">
               <div class="sixteen wide column">
                 <h2 class="ui icon header">
-                  <i class="window restore icon"></i>
+                  <!-- <i class="window restore icon"></i> -->
+                  <!-- <i class="Info Circle icon"></i> -->
+                  <i class="info circle icon" style="color: #002e43;"></i>
                   <div class="content">
-                    <h1>404</h1>
-                    <div class="sub header">Maaf halaman tidak ditemukan.</div>
+                    <!-- <h1>Tidak ada Product</h1> -->
+                    <div class="sub header"><b>Maaf halaman tidak ditemukan.</b></div>
 
                   </div>
                 </h2>

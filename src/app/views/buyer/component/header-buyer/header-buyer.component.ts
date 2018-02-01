@@ -68,4 +68,40 @@ export class HeaderBuyerComponent implements OnInit {
     this.router.navigateByUrl('/buyer/dashboard');
   }
 
+  goSeller() {
+    this.router.navigateByUrl('/buyer');
+    const user = JSON.parse(localStorage.user);
+    if (user.role === 3 || user.role === 2) {
+      this.router.navigateByUrl('/seller/dashboard');
+    } else {
+
+      swal({
+        title: 'Warning',
+        text: 'Anda belum menjadi Seller. Apakah Anda ingin mendaftar sebagai Seller?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1d7d0a',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Daftar Sebagai Seller'
+      }).then((result) => {
+        if (result.value) {
+            this.router.navigateByUrl('/buyer/seller-propose');
+        } else {
+            return false;
+        }
+      });
+
+   }
+
+  }
+
+  goWishlist() {
+    this.router.navigateByUrl('/buyer/wishlist-buyer');
+  }
+
+  goInbox() {
+    this.router.navigateByUrl('/buyer/inbox-buyer');
+  }
+
 }
