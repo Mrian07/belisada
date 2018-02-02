@@ -27,7 +27,8 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-    <sui-rating [ngModel]="ProductList.allRate" [maximum]="5" [isReadonly]="true"></sui-rating>
+     <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
+    <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->
     <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
     <div class="gap-between-elements"></div>
     <span translate>goods.detail.titlefive</span> : <span><b>{{storeName}}</b></span>
@@ -59,9 +60,9 @@
     </div>
     <ng-template #login1>
     </ng-template>
-    <!-- <div class="gap-between-elements"></div> -->
-    <!-- <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span> -->
-    <!-- <div class="gap-between-elements"></div> -->
+    <div class="gap-between-elements"></div>
+    <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span>
+    <!-- <!-- <div class="gap-between-elements"></div> -->
     <table border="0">
         <tr>
             <td class="xo"></td>
@@ -226,7 +227,7 @@
                             <tr>
                                 <th>Produk</th>
                                 <th>Harga</th>
-                                <th>Stok</th>
+                                <!-- <th>Stok</th> -->
                                 <th>Toko</th>
                             </tr>
                         </thead>
@@ -240,9 +241,9 @@
                                     Rp.{{product.pricelist | number}}
                                 </td>
 
-                                <td>
+                                <!-- <td>
                                     {{product.stock}}
-                                </td>
+                                </td> -->
                                 <td>
                                     {{product.storeName}}
                                 </td>

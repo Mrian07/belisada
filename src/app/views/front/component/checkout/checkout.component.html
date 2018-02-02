@@ -163,17 +163,22 @@
                                     </div>
                                     <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
                                 </div>
-                                <div class="ui segment" *ngIf="shippingAddress">
+                                <div class="ui sixten wide segment" *ngIf="shippingAddress">
                                     <div class="ui grid">
-
-                                        <div class="sexten wide column">
-                                            <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
-                                            {{ shippingAddress.address }}<br>
-                                            {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
-                                            {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
-                                        </p>
-                                        </div>
-
+                                   
+                                            <div class="sexteen wide column" *ngIf="!editShipping">
+                                                <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
+                                                {{ shippingAddress.address }}<br>
+                                                {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
+                                                {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
+                                            </p>
+                                            <p>[ <a (click)="goEditShipping(shippingAddress)">Edit Penerima</a> ]</p>
+                                            </div>
+                                            
+                                            <div class="sexteen wide column" *ngIf="editShipping">
+                                                <p><a (click)="cancelEditShipping()"><i class="caret left icon"></i> Kembali</a></p>
+                                                <app-edit-shipping></app-edit-shipping>   
+                                            </div>
                                     </div>
                                 </div>
 
