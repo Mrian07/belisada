@@ -68,6 +68,7 @@ export class ProductDetailComponent implements OnInit {
   arrStock: number[];
   asap: Boolean = true;
   specs: any;
+  usedStock: number;
 
   garansiDay = [
     {day: 0 , val: 'Tidak Bergaransi'},
@@ -78,7 +79,8 @@ export class ProductDetailComponent implements OnInit {
   ];
   garansi: any;
 
-  constructor(private route: ActivatedRoute,
+  constructor(
+    private route: ActivatedRoute,
     private detailService: ProductDetailService,
     private shoppingCartService: ShoppingCartService,
     private searchService: SearchService,
@@ -88,7 +90,8 @@ export class ProductDetailComponent implements OnInit {
     private store: Store<fromProduct.Details>,
     private ngZone: NgZone,
     private tokenService: TokenService,
-    private productService: ProductService,  public translate: TranslateService
+    private productService: ProductService,
+    public translate: TranslateService
   ) { }
   private componetDestroyed: Subject<Boolean> = new Subject();
 
@@ -134,13 +137,13 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
-          //console.log('brow', this.ProductList);
-          //console.log(this.ProductList.mBpartnerStoreId);
-          //this.saveSearch(this.ProductList.productId, this.ProductList.name);
+          // console.log('brow', this.ProductList);
+          // console.log(this.ProductList.mBpartnerStoreId);
+          // this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
           this.garansi = garansi.val;
           this.specs = data.detail.specification.length;
-          if ( this.ProductList.isAsapShipping === 'Y') {
+          if (this.ProductList.isAsapShipping === 'Y') {
             this.asap = true;
           }else {
             this.asap = false;
@@ -153,7 +156,8 @@ export class ProductDetailComponent implements OnInit {
           this.popx = Math.round(this.diskon2);
           this.ProductImage = this.ProductList.image;
           this.storeName = this.ProductList.storeName;
-          this.arrStock = Array.from(new Array(this.ProductList.stock), (val, index) => index + 1);
+          this.usedStock = (this.asap && this.ProductList.qtyOnHand > 0) ? this.ProductList.qtyOnHand : this.ProductList.stock;
+          this.arrStock = Array.from(new Array(this.usedStock), (val, index) => index + 1);
           if (this.storeName === '') {
             this.storeName = 'Belisada.co.id';
           }
@@ -175,9 +179,9 @@ export class ProductDetailComponent implements OnInit {
         keyword: name
     };
     this.searchService.savePopular(data).subscribe( res => {
-      //console.log(res);
+      // console.log(res);
     });
-    //console.log(data);
+    // console.log(data);
   }
 
   setimage(image) {
@@ -209,7 +213,7 @@ export class ProductDetailComponent implements OnInit {
 
         if (this.tokenService.getUser()) {
           this.shoppingCartService.create(cartItemRequest).subscribe(response => {
-            //console.log('response: ', response);
+            // console.log('response: ', response);
             this.shoppingCartService.addItem(productId, +quantity, +response.id);
           });
         } else {
@@ -253,6 +257,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    //this.detailData.unsubscribe();
+    // this.detailData.unsubscribe();
   }
 }
