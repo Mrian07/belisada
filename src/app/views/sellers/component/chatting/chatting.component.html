@@ -2,8 +2,8 @@
     <div class="chat-container" *ngIf="!hiden" [@myAnimation]>
         <div class="chat-header">
             <div class="pull-right">
-                <i (click)="hide()" title="hide" class="minus icon link"></i>
-                <i *ngIf="soc && soc.connected && chats.length > 0" (click)="disconnect()" class="unlinkify icon link" title="disconnect"></i>
+                <i (click)="hide()" class="minus icon link" suiPopup popupText="Hide chat"></i>
+                <i *ngIf="soc && soc.connected && chats.length > 0" (click)="close()" class="unlinkify icon link" suiPopup popupText="disconnect"></i>
             </div>
             <div *ngIf="cs">
                 <img class="cs-profile-picture" src="{{cs.avatar}}" alt="cs-ava"/>
@@ -11,14 +11,23 @@
             </div>
             <div class="clearfix"></div>
         </div>
-      <div class="chat-content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+        <div class="chat-content" #scrollMe [scrollTop]="scrollMe.scrollHeight">
             <div class="chat-bubble" *ngFor="let c of chats" [ngClass]="{sender:c.from==user.username, sys:c.from=='sys'}">
                 <p class="chat-bubble-text">{{c.txt}}</p>
                 <span class="chat-bubble-time">{{c.time | date:"h:mma"}}</span>
             </div>
-            <div class="ui indeterminate text loader" [ngClass]="{active:connecting}">Connecting ...</div>
+            <sui-dimmer [isDimmed]="chatStage > 1" [isClickable]="false">
+                <div class="field" *ngIf="chatStage==3">
+                    <h3>Please rate us</h3>
+                    <sui-rating class="star" [(ngModel)]="rating" [maximum]="5" (valueChange)="disconnect()"></sui-rating>
+                    <div class="chat-act">
+                        <button class="ui negative basic button" (click)="disconnect()">End Chat</button>
+                    </div>
+                </div>
+                <div class="ui indeterminate text loader" *ngIf="chatStage==2">Connecting ...</div>
+            </sui-dimmer>
         </div>
-        <div class="chat-footer">
+        <div class="chat-footer" *ngIf="chatStage==1">
             <div class="ui action input stretch fit-to-content">
                 <input type="text" [(ngModel)]="msgInput" (keydown.enter)="send()" class="txt-chat" placeholder="Write your message" [disabled]="!soc || soc.disconnected"/>
                 <!-- <button class="btn-chat attach" [disabled]="!soc || soc.disconnected"><i class="attach icon"></i></button> -->

@@ -93,7 +93,19 @@
 .chat-container .chat-content .chat-bubble:not(.sys) .chat-bubble-time {
     float: right;
 }
-
+.chat-container .chat-content .dimmer {
+    background-color: rgba(198, 199, 198, 0.78);
+}
+.chat-container .chat-content .dimmer h3 {
+    color: #04821c;
+    padding-top: 3px;
+}
+.chat-container .chat-content .rating {
+    font-size: 35px;
+}
+.chat-container .chat-content .chat-act {
+    margin-top: 15px;
+}
 .chat-container .chat-footer {
     width: 100%;
     height: 50px;
