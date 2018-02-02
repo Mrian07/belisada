@@ -27,7 +27,8 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-    <sui-rating [ngModel]="ProductList.allRate" [maximum]="5" [isReadonly]="true"></sui-rating>
+     <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
+    <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->
     <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
     <div class="gap-between-elements"></div>
     <span translate>goods.detail.titlefive</span> : <span><b>{{storeName}}</b></span>
