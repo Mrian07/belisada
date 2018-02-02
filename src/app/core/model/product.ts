@@ -9,6 +9,9 @@ export class Product {
   imageurl: string;
   name: string;
   stock: number;
+  isAsapShipping: string;
+  qtyOnHand: number;
+  qtyOnSeller: number;
 
   public updateFrom(src: Product): void {
     this.mBpartnerStoreId = src.mBpartnerStoreId;
@@ -20,6 +23,9 @@ export class Product {
     this.imageurl = src.imageurl;
     this.name = src.name;
     this.stock = src.stock;
+    this.isAsapShipping = src.isAsapShipping;
+    this.qtyOnHand = src.qtyOnHand;
+    this.qtyOnSeller = src.qtyOnSeller;
   }
 }
 

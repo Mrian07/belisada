@@ -78,6 +78,8 @@ export class CheckoutComponent implements OnInit {
   kampre2t;
   grandTotal;
   billing: Boolean = false;
+  editShipping: Boolean = false;
+  editBilling: Boolean = false;
 
   constructor(
     private shippingAddressService: ShippingAddressService,
@@ -101,6 +103,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.cekLogin();
+    this.editShipping = false;
     this.kampret = false;
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
@@ -109,10 +112,6 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
-        // console.log('kaka', this.billingAddressList);
-        // console.log('aaa', this.shippingAddressList);
-        // console.log('asdasd', token);
-        console.log('apaan si nih', this.billingAddress );
         if (this.billingAddressList.length === 0) {
           this.kampret = true;
           this.billing = true;
@@ -131,6 +130,24 @@ export class CheckoutComponent implements OnInit {
             this.getPaymentMethods();
           });
     this.shoppingCart();
+  }
+
+  goEditShipping(id) {
+    this.editShipping = true;
+    this.shareService.shareData = id;
+  }
+
+  cancelEditShipping() {
+    this.editShipping = false;
+  }
+
+  goEditBilling(id) {
+    this.editBilling = true;
+    this.shareService.shareData = id;
+  }
+
+  cancelEditBilling() {
+    this.editBilling = false;
   }
 
   cekLogin() {
@@ -177,10 +194,11 @@ export class CheckoutComponent implements OnInit {
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
+          const usedStock = (product.isAsapShipping === 'Y' && product.qtyOnHand > 0) ? product.qtyOnHand : product.stock;
           this.cartItems.push({
             ...item,
             product,
-            arrStock: Array.from(new Array(product.stock), (val, index) => index + 1),
+            arrStock: Array.from(new Array(usedStock), (val, index) => index + 1),
             totalCost: product.pricelist * item.quantity });
         });
       });
@@ -425,4 +443,6 @@ export class CheckoutComponent implements OnInit {
     }
     console.log(pageYOffset);
   }
+
+
 }

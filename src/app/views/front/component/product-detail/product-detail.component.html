@@ -60,13 +60,13 @@
     </div>
     <ng-template #login1>
     </ng-template>
-    <!-- <div class="gap-between-elements"></div> -->
-    <!-- <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span> -->
+    <div class="gap-between-elements"></div>
+    <span class="pls2">Stok: </span> <span class="stok">{{ usedStock }}</span>
     <!-- <div class="gap-between-elements"></div> -->
     <table border="0">
         <tr>
             <td class="xo"></td>
-            <td *ngIf="asap">Belanja online murah, gratis pengiriman area Jakarta*
+            <td *ngIf="asap && (ProductList.qtyOnHand > 0)">Belanja online murah, gratis pengiriman area Jakarta*
                 Pilih barang dengan layanan Untuk pengiriman Pasti 2 hari
                 <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image" (click)="asap3()">
 
@@ -227,7 +227,7 @@
                             <tr>
                                 <th>Produk</th>
                                 <th>Harga</th>
-                                <th>Stok</th>
+                                <!-- <th>Stok</th> -->
                                 <th>Toko</th>
                             </tr>
                         </thead>
@@ -241,9 +241,9 @@
                                     Rp.{{product.pricelist | number}}
                                 </td>
 
-                                <td>
+                                <!-- <td>
                                     {{product.stock}}
-                                </td>
+                                </td> -->
                                 <td>
                                     {{product.storeName}}
                                 </td>

@@ -28,6 +28,9 @@ export class StatusInvoiceComponent implements OnInit {
   getRev() {
     const user = this.auth.getUser();
     if (user) {
+      if (user.stores.length === 0) {
+        return;
+      }
       const storeId = user.stores[0].mBpartnerStoreId;
       this.sellers.GetReviewProduct(storeId).subscribe(data => {
         console.log(data);

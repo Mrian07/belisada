@@ -42,7 +42,7 @@ export class ProductSearchComponent implements OnInit {
   start = 0;
   end = 0;
   total = 0;
-  limit = 10;
+  limit = 12;
   pages: any = [];
   listStyleType = 'list-row';
   pageParams: any;
@@ -94,8 +94,16 @@ export class ProductSearchComponent implements OnInit {
         this.parent = params.parent;
         this.catId = params.id;
         this.Params = params;
-        this.store.dispatch(new frontActions.GetList(params));
-        this.storeFilter.dispatch(new frontActions.GetSidebarFilter(params));
+
+        const paramFix = {
+          q: params.q,
+          parent: params.id,
+          id: params.id,
+          page: params.page,
+          itemperpage: this.limit
+        };
+        this.store.dispatch(new frontActions.GetList(JSON.parse(JSON.stringify(paramFix))));
+        this.storeFilter.dispatch(new frontActions.GetSidebarFilter(JSON.parse(JSON.stringify(paramFix))));
 
         this.getDetailData = this.actionsSubject
         .asObservable()
@@ -146,7 +154,8 @@ export class ProductSearchComponent implements OnInit {
     }
   }
 
-  setPage(page: number) {
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
     if (page < 1 || page > this.lastPages) { return false; }
     this.router.navigate(['/search'], { queryParams: { page: page}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
@@ -159,6 +168,7 @@ export class ProductSearchComponent implements OnInit {
     this.loading = true;
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
+        console.log(response);
         this.loading = false;
         if (!isEmpty(response)) {
           this.productSearchResault = response;

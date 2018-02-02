@@ -56,31 +56,27 @@
                                             <a class="item" suiTabHeader="1">Penagihan</a>
                                         </div>
                                         <div class="ui bottom attached segment" suiTabContent="1">
-
                                             <div class="sixten wide column right aligned">
                                                 <div class="ui segment" *ngFor="let item3 of billingAddressList">
                                                     <div class="ui grid">
-                                                        <div class="sexten wide column">
+                                                        <div class="sexteen wide column" *ngIf="!editBilling">
                                                             <p><strong>{{ item3.name }} - {{ item3.phone }}</strong><br>
                                                                 {{ item3.address }}<br>
                                                                 {{ item3.districtName }}, {{ item3.cityName }}, {{ item3.postal }}<br>
                                                                 {{ item3.regionName }} - {{ item3.countryName }}<br>
                                                             </p>
+                                                            <p>[ <a (click)="goEditBilling(item3)">Edit Penagihan</a> ]</p>
+                                                        </div>
+                                                        <div class="sexteen wide column" *ngIf="editBilling">
+                                                            <p><a (click)="cancelEditBilling()"><i class="caret left icon"></i> Kembali</a></p>
+                                                            <app-edit-billing></app-edit-billing>   
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
-
-
                                         </div>
-
                                     </sui-tabset>
                                 </div>
-
 
                             </div>
                         </div>
@@ -163,17 +159,22 @@
                                     </div>
                                     <!-- <div style="margin-top:10px;">[ <a (click)="addShipping('add')">Tambah Alamat Pengiriman</a> ]</div> -->
                                 </div>
-                                <div class="ui segment" *ngIf="shippingAddress">
+                                <div class="ui sixten wide segment" *ngIf="shippingAddress">
                                     <div class="ui grid">
-
-                                        <div class="sexten wide column">
-                                            <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
-                                            {{ shippingAddress.address }}<br>
-                                            {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
-                                            {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
-                                        </p>
-                                        </div>
-
+                                   
+                                            <div class="sexteen wide column" *ngIf="!editShipping">
+                                                <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
+                                                {{ shippingAddress.address }}<br>
+                                                {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
+                                                {{ shippingAddress.regionName }} - {{ shippingAddress.countryName }}<br>
+                                            </p>
+                                            <p>[ <a (click)="goEditShipping(shippingAddress)">Edit Penerima</a> ]</p>
+                                            </div>
+                                            
+                                            <div class="sexteen wide column" *ngIf="editShipping">
+                                                <p><a (click)="cancelEditShipping()"><i class="caret left icon"></i> Kembali</a></p>
+                                                <app-edit-shipping></app-edit-shipping>   
+                                            </div>
                                     </div>
                                 </div>
 

@@ -18,7 +18,11 @@ export class ChatService {
     return Promise((resolve, reject) => {
       this.user = this.login.whoLogin();
       if (!this.user) {
-        reject('not login yet');
+        reject(401);
+      }
+      if(this.socket && !this.socket.connected && !this.socket.connecting) {
+        this.socket.connect();
+        reject(100);
       }
       this.socket = io(environment.chatUrl + '/?dat=' + this.user.token);
       this.socket.on('disconnect', () => {
@@ -32,7 +36,7 @@ export class ChatService {
   }
 
   disconnect() {
-    console.log('ini logout');
+    // console.log('ini logout');
     if(!this.socket) return;
     this.socket.disconnect();
     localStorage.chat_hide = 'true';

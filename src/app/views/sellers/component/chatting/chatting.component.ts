@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {trigger, transition, style, animate, state} from '@angular/animations';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { ChatService } from '../../../../core/service/chat/chat.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-chatting',
@@ -35,10 +36,10 @@ export class ChattingComponent implements OnInit {
   typingTimer: Object;
   msgInput: string;
   soc: any;
-  stat: number = 0;
-  connecting: boolean = true;
   onSignIn: boolean;
+  chatStage: number;
   cs: any;
+  rating: number;
 
   constructor(private loginsrv: LoginService, private chat: ChatService) { }
 
@@ -52,31 +53,34 @@ export class ChattingComponent implements OnInit {
   }
 
   connect() {
-    let that = this;
+    this.chatStage = 2;
     return this.chat.connect({
-      connect: function() {
-        that.chats = [];
-        that.connecting = false;
+      connect: () => {
+        console.log('soc:', this.soc);
+        this.chats = [];
+        this.chatStage = 1;
       },
       reconnect_attempt: () => {
+        this.chatStage = 2;
         console.log('reconnecting');
       },
       history: his => {
-        that.chats = his;
+        this.chats = his;
       },
       msg: msg => {
-        that.chats.push(msg);
-        that.info = '';
+        this.chats.push(msg);
+        this.info = '';
       },
       typing: cs => {
-        if(!that.cs || that.cs.email != cs) {
-          that.soc.emit('get_cs_detail', cs);
+        if(!this.cs || this.cs.email != cs) {
+          this.soc.emit('get_cs_detail', cs);
         }
-        that.info = 'typing';
-        that.typingTimer = setTimeout(() => {that.info = ''}, 4000);
+        this.info = 'typing';
+        this.typingTimer = setTimeout(() => this.info = '', 4000);
       },
       close_chat: msg => {
-        that.chats.push(msg);
+        this.chats.push(msg);
+        this.chatStage = 3;
       },
       cs_detail: cs => {
         this.cs = cs;
@@ -94,5 +98,31 @@ export class ChattingComponent implements OnInit {
   hide() {
     this.hiden = !this.hiden;
     localStorage.chat_hide = this.hiden;
+    if(!this.soc || !this.soc.connected) {
+      this.connect().then(soc => this.soc = soc, err => {
+        console.log('chat:', err);
+        if(err == 100) {
+          return false;
+        }
+      })
+    }
+  }
+
+  disconnect() {
+    this.soc.emit('close_msg', this.rating);
+    this.chat.disconnect();
+    this.hiden = true;
+    delete this.cs;
+  }
+  close() {
+    swal({
+      showCancelButton: true,
+      text: 'Akhiri percakapan?',
+      type: 'warning',
+    }).then(res => {
+      if(res.value) {
+        this.chatStage = 3;
+      }
+    })
   }
 }
