@@ -7,82 +7,82 @@
     <div class="ui bottom attached segment" suiTabContent="1">
 
          <div class="ui grid">
-                    <div class="sixteen wide column">
-                        <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
-                            <input name="addressId" placeholder="Masukan nama perusahaan" type="hidden" formControlName="addressId"/>
-                            <div class="fields">
-                                <div class="eight wide field">
-                                    <label>Nama</label>
-                                    <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
-                                </div>
-                                <div class="eight wide field">
-                                    <label>Disimpan sebagai alamat (cth: alamat rumah, kantor, kosan)</label>
-                                    <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
-                                </div>
+                <div class="sixteen wide column">
+                    <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+                        <input name="addressId" placeholder="Masukan nama perusahaan" type="hidden" formControlName="addressId"/>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>Nama</label>
+                                <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
                             </div>
-                            <div class="field">
-                                <label>Alamat</label>
-                                <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
+                            <div class="eight wide field">
+                                <label>Disimpan sebagai alamat (cth: alamat rumah, kantor, kosan)</label>
+                                <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
                             </div>
-                            <div class="fields">
-                                <div class="eight wide field">
-                                    <label>Provinsi</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
-                                        <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
-                                    </sui-select>
-                                </div>
-                                <div class="eight wide field">
-                                    <label>Kota</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
-                                        <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
-                                    </sui-select>
-                                </div>
+                        </div>
+                        <div class="field">
+                            <label>Alamat</label>
+                            <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
+                        </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>Provinsi</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
+                                    <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+                                </sui-select>
                             </div>
-                            <div class="fields">
-                                <div class="eight wide field">
-                                    <label>Kecamatan</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
-                                        <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
-                                    </sui-select>
-                                </div>
-                                <div class="eight wide field">
-                                    <label>Kelurahan</label>
-                                    <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
-                                        <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
-                                    </sui-select>
-                                </div>
+                            <div class="eight wide field">
+                                <label>Kota</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih Kota" formControlName="city">
+                                    <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                                </sui-select>
                             </div>
-                            <div class="fields">
-                                <div class="eight wide field">
-                                    <label>Kode POS</label>
-                                    <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
-                                </div>
-                                <div class="eight wide field">
-                                    <label>Telepon</label>
-                                    <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="phone"/>
-                                </div>
+                        </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>Kecamatan</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                                    <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                                </sui-select>
                             </div>
+                            <div class="eight wide field">
+                                <label>Kelurahan</label>
+                                <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
+                                    <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                        </div>
+                        <div class="fields">
+                            <div class="eight wide field">
+                                <label>Kode POS</label>
+                                <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
+                            </div>
+                            <div class="eight wide field">
+                                <label>Telepon</label>
+                                <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="phone"/>
+                            </div>
+                        </div>
 
-                        </form>
-                            <div *ngIf="show">
-                                    <button
-                                         class="ui primary button"
-                                        (click)="edit()"
-                                        name = "buton13"
-                                        >Edit
-                                    </button>
-                                </div>
-                                <div *ngIf="show1">
-                                        <button
-                                        class="ui primary button"
-                                        (click)="onSubmit()"
-                                        >Kirim</button>
-                                        </div>
-                            <!-- <button class="ui primary button" type="submit"  (click)="onSubmit()">Simpan</button> -->
+                    </form>
+                        <div *ngIf="show">
+                            <button
+                                    class="ui primary button"
+                                (click)="edit()"
+                                name = "buton13"
+                                >Edit
+                            </button>
+                        </div>
+                        <div *ngIf="show1">
+                                <button
+                                class="ui primary button"
+                                (click)="onSubmit()"
+                                >Kirim</button>
+                        </div>
+                        <!-- <button class="ui primary button" type="submit"  (click)="onSubmit()">Simpan</button> -->
 
-                    </div>
                 </div>
             </div>
+        </div>
 
     <!-- </div> -->
     <div class="ui bottom attached segment" suiTabContent="2">

@@ -79,6 +79,7 @@ export class CheckoutComponent implements OnInit {
   grandTotal;
   billing: Boolean = false;
   editShipping: Boolean = false;
+  editBilling: Boolean = false;
 
   constructor(
     private shippingAddressService: ShippingAddressService,
@@ -140,6 +141,14 @@ export class CheckoutComponent implements OnInit {
     this.editShipping = false;
   }
 
+  goEditBilling(id) {
+    this.editBilling = true;
+    this.shareService.shareData = id;
+  }
+
+  cancelEditBilling() {
+    this.editBilling = false;
+  }
 
   cekLogin() {
     if (!this.auth.getUser()) {

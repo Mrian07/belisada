@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ShareService } from '../../../../core/service/shared.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { ShippingAddressService } from './../../../../core/service/shipping-address/shipping-address.service';
+// import { ShippingAddressService } from './../../../../core/service/shipping-address/shipping-address.service';
+import { BilingAddressService } from './../../../../core/service/billing-address/biling-address.service';
 import { ShippingAddress } from './../../../../core/model/shipping-address';
 import { MasterService } from './../../../../core/service/master/master.service';
 import { Province } from '../../../../core/model/province';
@@ -11,11 +12,11 @@ import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
 
 @Component({
-  selector: 'app-edit-shipping',
-  templateUrl: './edit-shipping.component.html',
-  styleUrls: ['./edit-shipping.component.scss']
+  selector: 'app-edit-billing',
+  templateUrl: './edit-billing.component.html',
+  styleUrls: ['./edit-billing.component.scss']
 })
-export class EditShippingComponent implements OnInit {
+export class EditBillingComponent implements OnInit {
 
   shipList: any;
 
@@ -44,11 +45,10 @@ export class EditShippingComponent implements OnInit {
   categories = [];
   selectedProvince: string;
 
-
   constructor(
     private sharedService: ShareService,
     private masterService: MasterService,
-    private shippingAddressService: ShippingAddressService
+    private bilingAddressService: BilingAddressService
   ) { }
 
   ngOnInit() {
@@ -70,24 +70,8 @@ export class EditShippingComponent implements OnInit {
       addressId: model.addressId
     };
     const user = JSON.parse(localStorage.user);
-    this.shippingAddressService.update(b).subscribe(data => {
-
+    this.bilingAddressService.update(b).subscribe(data => {
       location.reload();
-
-      // if (data.status === '1') {
-      //       swal(
-      //         'success',
-      //         'Data Berhasil diubah',
-      //         'success'
-      //       );
-      //     }else {
-      //       swal(
-      //         'Opps!',
-      //         data.message,
-      //         'error'
-      //       );
-      //     }
-
     });
 
   }
@@ -128,32 +112,32 @@ export class EditShippingComponent implements OnInit {
     });
   }
 
-  getAllStorex(id) {
 
-  const model = this.createComForm.value;
-  this.masterService.getProvince('209').subscribe(data => {
-    this.provinces = data;
-      this.masterService.getCity(id.regionId).subscribe(city => {
-      this.cities = city;
-      this.masterService.getDistrict(id.cityId).subscribe(district => {
-      this.districts = district;
-      this.masterService.getVillage(id.districtId).subscribe(village => {
-      this.villages = village;
-      this.addressName.setValue(id.addressName);
-      this.addressId.setValue(id.addressId);
-      this.name.setValue(id.name);
-      this.address.setValue(id.address);
-      this.province.setValue(this.provinces.find(x => x.mregionId === id.regionId));
-      this.city.setValue(this.cities.find(x => x.mcityId === id.cityId));
-      this.district.setValue(this.districts.find(x => x.mdistrictId === id.districtId));
-      this.vilaggeId.setValue(this.villages.find(x => x.mvillageId === id.villageId));
-      this.postalCode.setValue(id.postal);
-      this.phone.setValue(id.phone);
+  getAllStorex(id) {
+    const model = this.createComForm.value;
+    this.masterService.getProvince('209').subscribe(data => {
+      this.provinces = data;
+        this.masterService.getCity(id.regionId).subscribe(city => {
+        this.cities = city;
+        this.masterService.getDistrict(id.cityId).subscribe(district => {
+        this.districts = district;
+        this.masterService.getVillage(id.districtId).subscribe(village => {
+        this.villages = village;
+        this.addressName.setValue(id.addressName);
+        this.addressId.setValue(id.addressId);
+        this.name.setValue(id.name);
+        this.address.setValue(id.address);
+        this.province.setValue(this.provinces.find(x => x.mregionId === id.regionId));
+        this.city.setValue(this.cities.find(x => x.mcityId === id.cityId));
+        this.district.setValue(this.districts.find(x => x.mdistrictId === id.districtId));
+        this.vilaggeId.setValue(this.villages.find(x => x.mvillageId === id.villageId));
+        this.postalCode.setValue(id.postal);
+        this.phone.setValue(id.phone);
+          });
         });
       });
     });
-  });
-}
+  }
 
   getProvince() {
     this.masterService.getProvince('209').subscribe(data => {
