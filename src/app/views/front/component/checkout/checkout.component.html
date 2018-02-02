@@ -166,7 +166,7 @@
                                 <div class="ui sixten wide segment" *ngIf="shippingAddress">
                                     <div class="ui grid">
                                    
-                                            <div class="sexten wide column" *ngIf="!editShipping">
+                                            <div class="sexteen wide column" *ngIf="!editShipping">
                                                 <p><strong>{{ shippingAddress.name }} - {{ shippingAddress.phone }}</strong><br>
                                                 {{ shippingAddress.address }}<br>
                                                 {{ shippingAddress.districtName }}, {{ shippingAddress.cityName }}, {{ shippingAddress.postal }}<br>
@@ -175,7 +175,8 @@
                                             <p>[ <a (click)="goEditShipping(shippingAddress)">Edit Penerima</a> ]</p>
                                             </div>
                                             
-                                            <div class="sexten wide column" *ngIf="editShipping">
+                                            <div class="sexteen wide column" *ngIf="editShipping">
+                                                <p><a (click)="cancelEditShipping()"><i class="caret left icon"></i> Kembali</a></p>
                                                 <app-edit-shipping></app-edit-shipping>   
                                             </div>
                                     </div>

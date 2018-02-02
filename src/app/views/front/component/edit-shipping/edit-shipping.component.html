@@ -1,4 +1,4 @@
-<div class="sexten wide column">
+
     <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
         <div class="fields">
             <div class="eight wide field">
@@ -23,8 +23,8 @@
                 <!-- <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
                     <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                 </sui-select> -->
-                <sui-select name="provinc" #provsi [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi">
-                    <sui-select-option *ngFor="let option of provsi.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
+                <sui-select name="province" #province [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" formControlName="province">
+                    <sui-select-option *ngFor="let option of province.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
                 </sui-select>
 
                 <div class="form-control-feedback" *ngIf="province.invalid && (province.dirty || f.submitted)">Provinsi tidak boleh kosong</div>
@@ -78,5 +78,5 @@
         <div style='margin-top:10px;'><button class="ui primary button" type="submit" [disabled]="!f.valid">Simpan</button></div>
 
     </form>
-</div>
+
 
