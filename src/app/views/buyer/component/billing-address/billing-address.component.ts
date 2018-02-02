@@ -34,7 +34,6 @@ export class BillingAddressComponent implements OnInit {
   adr: any = {};
   fm: any = {};
   addressId: FormControl;
-
   // perusahaan: Observable<any>;
 
   kelurahan = [];
@@ -42,6 +41,7 @@ export class BillingAddressComponent implements OnInit {
   categories = [];
   selectedProvince: string;
   optionTemplate: any;
+
   constructor(
     private masterService: MasterService,
     private iniService: BilingAddressService,
