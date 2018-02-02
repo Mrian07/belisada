@@ -1,3 +1,4 @@
+import { MenuProfileComponent } from './../component/menu-profile/menu-profile.component';
 import { NewSellerComponent } from './../component/new-seller/new-seller.component';
 import { FaqSellerComponent } from '../component/faq-seller/faq-seller.component';
 import { InfoPerusahaanService } from './../../../core/service/perusahaan/info-perusahaan.service';
@@ -94,6 +95,7 @@ import { CourierComponent } from '../component/courier/courier.component';
     FaqSellerComponent,
     NewSellerComponent,
     CourierComponent,
+    MenuProfileComponent
   ],
   imports: [
     CommonModule,
