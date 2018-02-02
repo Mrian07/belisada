@@ -159,6 +159,7 @@ export class ProductSearchComponent implements OnInit {
     this.loading = true;
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
+        console.log(response)
         this.loading = false;
         if (!isEmpty(response)) {
           this.productSearchResault = response;

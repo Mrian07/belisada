@@ -47,7 +47,52 @@
                     <div class="new-product" *ngIf="[results] == 0">{{news}}</div>
 
                 </div>
-
+                <div class="inline twelve fields" *ngIf="[results] == 0">
+                        <div class="two wide field">
+                                Category Product
+                            </div>
+                        <div class="six wide field">
+                            <div class="field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="ctr.cat"
+                                    labelField="name"
+                                    isSearchable="true"
+                                    placeholder="Select Category"
+                                    [options]="category"
+                                    [optionTemplate]="optionTemplate"
+                                    #cats
+                                    >
+                                        <sui-select-option *ngFor="let option of cats.filteredOptions" [value]="option" value="option.name" (click)="selectCategory(option.mProductCategoryId)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="selectedSubCategory"
+                                    labelField="name"
+                                    isSearchable="true"
+                                    placeholder="Select SubCategory"
+                                    [options]="subcategory"
+                                    [optionTemplate]="optionTemplate"
+                                    #subs
+                                    >
+                                        <sui-select-option *ngFor="let option of subs.filteredOptions" [value]="option" value="option.name" (click)="selectSubCategory(option.m_product_category_id)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="selectedSubCategories"
+                                    labelField="name"
+                                    isSearchable="true"
+                                    placeholder="Select Section"
+                                    [options]="subcategories"
+                                    [optionTemplate]="optionTemplate"
+                                    #subsi
+                                    >
+                                        <sui-select-option *ngFor="let option of subsi.filteredOptions" [value]="option" value="option.name" (click)="selectSubCategories(option.m_product_category_id)"></sui-select-option>
+                                </sui-select>
+                            </div>
+                        </div>
+                    </div>
                 <div class="inline twelve fields">
                         <div class="two wide field">
                                 Garansi
@@ -66,87 +111,20 @@
                          </div>
                          </div>
                          <div class="inline twelve fields">
-                         <div class="two wide field">
-                                Courier
-                             </div>
-                         <div class="five wide field">
-                             <div class="seven wide field">
-                                 <select class="ui dropdown" [(ngModel)]="courier" (input)="couriers($event)">
-                                     <option value="0" selected="selected">JNE</option>
-                                     <option value="30">Ninja Express</option>
-                                 </select>
-                             </div>
-
-                         </div>
-                         </div>
-                        <!-- <div class="two wide field">
-                               Courier Service
-                            </div>
-                        <div class="seven wide field">
+                            <div class="two wide field">
+                                    Courier
+                                </div>
                             <div class="five wide field">
-                                <select class="ui dropdown" [(ngModel)]="courier" (input)="couriers($event)">
-                                    <option value="0" selected="selected">JNE</option>
-                                    <option value="30">Ninja Express</option>
-                                </select>
-                            </div> -->
+                                <div class="seven wide field">
+                                    <select class="ui dropdown" [(ngModel)]="courier" (input)="couriers($event)">
+                                        <option value="0" selected="selected">JNE</option>
+                                        <option value="30">Ninja Express</option>
+                                    </select>
+                                </div>
 
-
-
-
-                        <!-- <div class="two wide field">
-                            Category Product
+                            </div>
                         </div>
-                        <div class="eleven wide field">
-                            <div class="ui five wide field">
-                                <input type="text" name="category" value="{{selectedCategory}}" disabled> -->
-                                <!-- <sui-select class="selection"
-                                    [(ngModel)]="selectedCategory"
-                                    labelField="name"
-                                    isSearchable="true"
-                                    placeholder="Select Category">
-                                        <sui-select-option *ngFor="let option of category" [value]="option" value="option.name" (click)="selectCategory(option.mProductCategoryId)"></sui-select-option>
-                                </sui-select> -->
 
-
-
-                            <!-- </div> -->
-
-                            <!-- <div class="ui five wide field">
-                                    <input type="text" name="subcategory" value="{{selectedSubCategory}}" disabled> -->
-                                <!-- <sui-select class="selection"
-                                    [(ngModel)]="selectedSubCategory"
-                                    labelField="name"
-                                    placeholder="Select SubCategory">
-                                        <sui-select-option *ngFor="let option of subcategory" [value]="option" value="option.name" (click)="selectSubCategory(option.m_product_category_id)"></sui-select-option>
-                                </sui-select> -->
-                            <!-- </div>
-
-                            <div class="ui five wide field">
-                                <input type="text" name="subcategory" value="{{selectedSubCategories}}" disabled> -->
-                                <!-- <sui-select class="selection"
-                                    [(ngModel)]="selectedSubCategories"
-                                    labelField="name"
-                                    placeholder="Select Section">
-                                        <sui-select-option *ngFor="let option of subcategories" [value]="option" value="option.name" (click)="selectSubCategories(option.m_product_category_id)"></sui-select-option>
-                                </sui-select> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-
-
-                    <!-- <div class="inline twelve fields"> -->
-                            <!-- <div class="two wide field">
-                                Product Name
-                            </div> -->
-                            <!-- <div class="ten wide field">
-                                <div class="ui five wide field">
-                                        <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}" disabled> -->
-                                    <!-- <input type="text" [(ngModel)]="selectedBrands" (click)="toggleBrands()" placeholder="Select Brands" value="{{selectedBrands}}">
-                                    <div class="result-container" *ngIf="toggle == true">
-                                        <div class="result" *ngFor="let hasil of brands | searchFilter : selectedBrands" (click)="productSelected(hasil)">{{ hasil.name }}</div>
-                                    </div> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
 
 
             <div class="ui segment">

@@ -48,7 +48,8 @@ export class SidebarComponent implements OnInit {
   getStoreStatus() {
     this.storeService.getStatus().subscribe(data => {
       console.log(data);
-        this.status = data[0].statusCode;
+      if (data.length === 0) { return; }
+      this.status = data[0].statusCode;
     });
   }
 

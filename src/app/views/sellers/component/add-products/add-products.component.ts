@@ -81,6 +81,7 @@ export class AddProductsComponent implements OnInit {
   news: any;
   selectedColor = [];
   fm: any = {};
+  ctr: any = {};
   updateImg: any;
   userImageNPWP: string;
   imgNpwp: any;
@@ -272,8 +273,10 @@ export class AddProductsComponent implements OnInit {
 
 
   productSelected(hasil: any) {
+    console.log(hasil);
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
+    this.ctr.cat = hasil.category1Id;
     this.selectedSubCategory = hasil.category2Name;
     this.selectedSubCategories = hasil.category3Name;
     this.selectedBrands = hasil.brandname;
@@ -306,6 +309,7 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.garansiDays = hasil.guaranteeDays;
     }
+    console.log(this.ctr);
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {

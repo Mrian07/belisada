@@ -60,9 +60,9 @@
     </div>
     <ng-template #login1>
     </ng-template>
-    <!-- <div class="gap-between-elements"></div> -->
-    <!-- <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span> -->
-    <!-- <div class="gap-between-elements"></div> -->
+    <div class="gap-between-elements"></div>
+    <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span>
+    <!-- <!-- <div class="gap-between-elements"></div> -->
     <table border="0">
         <tr>
             <td class="xo"></td>
@@ -227,7 +227,7 @@
                             <tr>
                                 <th>Produk</th>
                                 <th>Harga</th>
-                                <th>Stok</th>
+                                <!-- <th>Stok</th> -->
                                 <th>Toko</th>
                             </tr>
                         </thead>
@@ -241,9 +241,9 @@
                                     Rp.{{product.pricelist | number}}
                                 </td>
 
-                                <td>
+                                <!-- <td>
                                     {{product.stock}}
-                                </td>
+                                </td> -->
                                 <td>
                                     {{product.storeName}}
                                 </td>

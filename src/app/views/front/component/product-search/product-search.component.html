@@ -94,7 +94,11 @@
 
             </div>
             <div class="highlight">
+<<<<<<< HEAD
+                <sui-rating [maximum]="5" [isReadonly]="true" [(ngModel)]="item.rate"></sui-rating>
+=======
                 <sui-rating class="star gedein" [ngModel]="item.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
+>>>>>>> f2525b7f4cf2a873165115b223fa3b6e2b4f4d64
                 <p [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
                     <!-- {{item.highlight}} -->
                 </p>

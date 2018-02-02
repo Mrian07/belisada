@@ -36,7 +36,7 @@ export class SearchDashboardComponent implements OnInit {
     this.title.setTitle('Belisada Seller - Dashboard');
     this.getStoreData();
     this.storeService.getStatus().subscribe(data => {
-      if (data) {
+      if (data.length !== 0) {
         if (this.sharedService.shareData) {
           this.sharedService.shareData = data[0].note;
         }
@@ -74,7 +74,7 @@ export class SearchDashboardComponent implements OnInit {
         'Belisada.co.id',
         'Toko Anda belum diverifikasi!'
       ).then((result) => {
-        //this.router.navigateByUrl('/sign-up');
+        // this.router.navigateByUrl('/sign-up');
       });
     }else {
       this.storeService.getAll().subscribe(response => {
@@ -94,7 +94,7 @@ export class SearchDashboardComponent implements OnInit {
 
   getStoreData() {
     this.storeService.getAll().subscribe(response => {
-      if (response) {
+      if (response.length !== 0) {
         this.storeId = response[0].mBpartnerStoreId;
       }
     });
