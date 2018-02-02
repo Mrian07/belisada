@@ -44,7 +44,8 @@ export class EditBillingComponent implements OnInit {
   kelurahan = [];
   categories = [];
   selectedProvince: string;
-
+  optionTemplate: any;
+  
   constructor(
     private sharedService: ShareService,
     private masterService: MasterService,
