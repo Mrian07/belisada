@@ -56,12 +56,11 @@ export class SidebarBuyerComponent implements OnInit {
   getNavigationCategory() {
     this.getCategoryOne(() => {
       this.c1.forEach((item, index) => {
-        // console.log('item: ', item);
         this.navigationObjects.push(item);
         this.getCategoryTwo(item.mProductCategoryId, () => {
           this.navigationObjects[index]['c2'] = this.c2;
         });
-        // console.log('this.navigationObject: ', this.navigationObject);
+
       });
     });
   }
@@ -72,11 +71,9 @@ export class SidebarBuyerComponent implements OnInit {
 
   getProfileBuyer() {
     this.profileService.getProfileBuyer(this.tokenService.getToken()).subscribe(data => {
-      console.log('iniloh', data);
       this.buyerName = data.name;
       this.buyerEmail = data.email;
       this.buyerImage = 'data:image/png;base64,' + data.imageAvatar;
-      // console.log('iii', this.buyerImage);
     });
   }
 

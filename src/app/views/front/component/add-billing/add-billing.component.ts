@@ -42,6 +42,7 @@ export class AddBillingComponent implements OnInit {
   categories = [];
   selectedProvince: string;
   totalbilling: number;
+  optionTemplate: any;
 
   @Output() triggerEvent = new EventEmitter<Boolean>();
 
