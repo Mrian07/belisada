@@ -7,6 +7,7 @@ export class ProductDetail {
   description: string;
   descriptionEn: string;
   pricelist: number;
+  rate: number;
   specialPrice: number;
   category3Id: number;
   category3Name: string;

@@ -78,6 +78,7 @@ export class CheckoutComponent implements OnInit {
   kampre2t;
   grandTotal;
   billing: Boolean = false;
+  editShipping: Boolean = false;
 
   constructor(
     private shippingAddressService: ShippingAddressService,
@@ -101,6 +102,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.cekLogin();
+    this.editShipping = false;
     this.kampret = false;
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
@@ -109,10 +111,6 @@ export class CheckoutComponent implements OnInit {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
         this.billingAddressList = this.shareService.shareData;
-        // console.log('kaka', this.billingAddressList);
-        // console.log('aaa', this.shippingAddressList);
-        // console.log('asdasd', token);
-        console.log('apaan si nih', this.billingAddress );
         if (this.billingAddressList.length === 0) {
           this.kampret = true;
           this.billing = true;
@@ -132,6 +130,16 @@ export class CheckoutComponent implements OnInit {
           });
     this.shoppingCart();
   }
+
+  goEditShipping(id) {
+    this.editShipping = true;
+    this.shareService.shareData = id;
+  }
+
+  cancelEditShipping() {
+    this.editShipping = false;
+  }
+
 
   cekLogin() {
     if (!this.auth.getUser()) {
@@ -425,4 +433,6 @@ export class CheckoutComponent implements OnInit {
     }
     console.log(pageYOffset);
   }
+
+
 }

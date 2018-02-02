@@ -50,6 +50,7 @@ export class ProductDetailComponent implements OnInit {
   diskon2: any;
   popx: any;
   diskon3: any;
+  rate: number;
   allRate: number;
   // percent: any;
   ProductList: ProductDetail = new ProductDetail();

@@ -35,7 +35,8 @@ export class ProductSearchComponent implements OnInit {
   catId: number;
   someRange: number[] = [0, 0];
   filterParams: FilterParams = new FilterParams();
-
+  rate: number;
+  allRate: number;
   currentPage = 1;
   lastPages: number;
   start = 0;
