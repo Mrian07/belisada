@@ -42,7 +42,10 @@ export class BillingAddressComponent implements OnInit {
   categories = [];
   selectedProvince: string;
 
-  constructor(private masterService: MasterService, private iniService: BilingAddressService ) { }
+  constructor(
+    private masterService: MasterService,
+    private iniService: BilingAddressService,
+    private billingAddressService: BilingAddressService, ) { }
 
   ngOnInit() {
     const luser = JSON.parse(localStorage.getItem('user'));
@@ -50,7 +53,6 @@ export class BillingAddressComponent implements OnInit {
     this.createForm();
     this.getProvince();
     this.fillForms();
-    // console.log('kampret1', luser);
   }
 
   getToken() {
@@ -111,9 +113,10 @@ export class BillingAddressComponent implements OnInit {
     if (model.addressId) {
 
       this.iniService.update(data).subscribe(response => {
+
         if (response.status === '1') {
           swal(
-            'success',
+            'Success',
             response.message,
             'success'
           );
@@ -133,7 +136,7 @@ export class BillingAddressComponent implements OnInit {
       this.iniService.create(data).subscribe(response => {
         if (response.status === '1') {
           swal(
-            'success',
+            'Success',
             response.message,
             'success'
           );
@@ -156,8 +159,10 @@ export class BillingAddressComponent implements OnInit {
   }
 
   fillForms() {
-    const luser = JSON.parse(localStorage.getItem('user'));
-    this.iniService.getProfile(luser.token).subscribe(data => {
+
+    this.billingAddressService.getAll().subscribe(data => {
+
+
       if (!data) {
         console.log('kosong');
       }else {
@@ -176,19 +181,10 @@ export class BillingAddressComponent implements OnInit {
               this.address.setValue(data[0].address);
               this.province.setValue(this.provinces.find(x => x.mregionId === data[0].regionId));
               this.city.setValue(this.cities.find(x => x.mcityId === data[0].cityId));
-              // this.sectorTypeId.setValue(this.bidang.find(x => x.sectorTypeId === data.sectorTypeId));
-              // this.city.setValue(data.cityId);
               this.district.setValue(this.districts.find(x => x.mdistrictId === data[0].districtId));
               this.villageId.setValue(this.villages.find(x => x.mvillageId === data[0].villageId));
               this.postalCode.setValue(data[0].postal);
               this.phone.setValue(data[0].phone);
-              // this.corporatePhone.setValue(data.corporatePhone);
-              // this.ktp.setValue(data.idcard);
-              // this.corporateNpwp.setValue(data.corporateNpwp);
-              // this.imgAvatar.setValue(data.imageAvatar);
-              // this.imageCorporateNpwp.setValue(data.imageCorporateNpwp);
-              // this.dateOfBirth = new FormControl(new Date());
-              // this.dateOfBirth.setValue(data.dateOfBirth);
             });
           });
         });
