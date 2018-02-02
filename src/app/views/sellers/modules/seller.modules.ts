@@ -55,6 +55,7 @@ import { ProductListComponent } from '../component/product-list/product-list.com
 import { ChattingComponent } from '../component/chatting/chatting.component';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { NgxEditorModule } from 'ngx-editor';
+import { CourierComponent } from '../component/courier/courier.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { NgxEditorModule } from 'ngx-editor';
     ProductListComponent,
     ChattingComponent,
     FaqSellerComponent,
-    NewSellerComponent
+    NewSellerComponent,
+    CourierComponent,
   ],
   imports: [
     CommonModule,

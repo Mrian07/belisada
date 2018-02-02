@@ -18,6 +18,7 @@ export class ProductDetail {
   brandname: string;
   sku: string;
   aliasName: string;
+  allRate: number;
   image: string[];
   message?: string;
   status?: string;
@@ -32,5 +33,6 @@ export class ProductDetail {
   specification: any;
   qid: number;
   isOffers: string;
+  mBpartnerStoreId: number;
   constructor() {}
 }

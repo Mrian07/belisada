@@ -69,6 +69,10 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/seller/kontak']);
   }
 
+  goCourier() {
+    this.router.navigate(['/seller/courier']);
+  }
+
   goPaymentInfo() {
     this.router.navigate(['/seller/payment-info']);
   }

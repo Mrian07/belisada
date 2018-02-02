@@ -1,3 +1,4 @@
+import { CourierComponent } from './../component/courier/courier.component';
 import { NewSellerComponent } from './../component/new-seller/new-seller.component';
 import { FaqSellerComponent } from './../component/faq-seller/faq-seller.component';
 import { ProductListComponent } from './../component/product-list/product-list.component';
@@ -101,6 +102,10 @@ const sellerroutes: Routes = [
       {
         path: 'new-seller',
         component: NewSellerComponent
+      },
+      {
+        path: 'courier',
+        component: CourierComponent
       }
     ]
   }

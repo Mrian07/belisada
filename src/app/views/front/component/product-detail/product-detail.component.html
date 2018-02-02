@@ -27,8 +27,8 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-    <sui-rating [maximum]="5" [isReadonly]="true"></sui-rating>
-    <span class="lcl">(0)</span><i class="write icon"></i><span translate>goods.detail.write</span>
+    <sui-rating [ngModel]="ProductList.allRate" [maximum]="5" [isReadonly]="true"></sui-rating>
+    <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
     <div class="gap-between-elements"></div>
     <span translate>goods.detail.titlefive</span> : <span><b>{{storeName}}</b></span>
     <div class="gap-between-elements"></div>
@@ -59,8 +59,8 @@
     </div>
     <ng-template #login1>
     </ng-template>
-    <div class="gap-between-elements"></div>
-    <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span>
+    <!-- <div class="gap-between-elements"></div> -->
+    <!-- <span class="pls2"> Stok: </span> <span class="stok">{{ ProductList.stock }}</span> -->
     <!-- <div class="gap-between-elements"></div> -->
     <table border="0">
         <tr>
@@ -136,12 +136,12 @@
 
     <div>
             <div *ngIf="ProductList.stock == 0; else login">
-                    <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
+                    <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity, ProductList.mBpartnerStoreId)" [disabled]="ProductList.stock <= 0">
                             <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/prodak_pagebelisada-04.png" width="300px" height="50" alt="submit" />
                         </button>
                 </div>
                 <ng-template #login>
-                        <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
+                        <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity, ProductList.mBpartnerStoreId)" [disabled]="ProductList.stock <= 0">
                                 <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
                             </button>
                 </ng-template>
@@ -165,8 +165,8 @@
 
             <div class="gap-between-elements"></div>
             <strong translate>goods.detail.quantiti </strong>
-            <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
-                <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
+            <sui-select class="selection" name="province" #jum [isSearchable]="true" [options]="arrStock" [optionTemplate]="optionTemplate" placeholder="Jumlah" [(ngModel)]="quantity">
+                <sui-select-option [value]="q" *ngFor="let q of jum.filteredOptions"></sui-select-option>
             </sui-select>
             <div class="gap-between-elements"></div>
             <strong>Garansi : </strong><span>{{garansi}}</span>
