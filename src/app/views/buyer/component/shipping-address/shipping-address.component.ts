@@ -166,7 +166,20 @@ export class ShippingAddressComponent implements OnInit {
     };
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.update(b).subscribe(data => {
-      // location.reload();
+      if (data.status === '1') {
+        swal(
+          'success',
+          data.message,
+          'success'
+        );
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
+      location.reload();
       this.show = false;
     });
   }
