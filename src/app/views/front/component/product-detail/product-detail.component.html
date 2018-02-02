@@ -27,8 +27,8 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-    <sui-rating [maximum]="5" [isReadonly]="true"></sui-rating>
-    <span class="lcl">(0)</span><i class="write icon"></i><span translate>goods.detail.write</span>
+    <sui-rating [ngModel]="ProductList.allRate" [maximum]="5" [isReadonly]="true"></sui-rating>
+    <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
     <div class="gap-between-elements"></div>
     <span translate>goods.detail.titlefive</span> : <span><b>{{storeName}}</b></span>
     <div class="gap-between-elements"></div>
@@ -165,8 +165,8 @@
 
             <div class="gap-between-elements"></div>
             <strong translate>goods.detail.quantiti </strong>
-            <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
-                <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
+            <sui-select class="selection" name="province" #jum [isSearchable]="true" [options]="arrStock" [optionTemplate]="optionTemplate" placeholder="Jumlah" [(ngModel)]="quantity">
+                <sui-select-option [value]="q" *ngFor="let q of jum.filteredOptions"></sui-select-option>
             </sui-select>
             <div class="gap-between-elements"></div>
             <strong>Garansi : </strong><span>{{garansi}}</span>

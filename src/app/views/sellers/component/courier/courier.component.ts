@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./courier.component.scss']
 })
 export class CourierComponent implements OnInit {
-
+  eCheckDisabled;
+  eCheckReadonly;
   constructor() { }
 
   ngOnInit() {
