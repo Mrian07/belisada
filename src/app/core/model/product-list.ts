@@ -11,6 +11,8 @@ export class PorductList {
   imageurl3: string;
   imageurl4: string;
   imageurl5: string;
+   rate: number;
+  allRate: number;
   pricelist: number;
   specialPrice: number;
   category3Id: number;

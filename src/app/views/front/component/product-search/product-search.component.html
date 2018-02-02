@@ -20,7 +20,7 @@
                 </div>
                 <div *ngIf="item.filterAlias === 'Price'">
                     <nouislider *ngFor="let price of item.data" [connect]="true" [min]="price.min" [max]="price.max" [step]="1" [(ngModel)]="someRange" ></nouislider>
-                    
+
                     <div class="ui grid">
                         <div class="seven wide column mini ui input">
                             <input type="text" id="priceMin" [value]="someRange[0]">
@@ -44,7 +44,7 @@
 
             </div>
         </div>
-        
+
         <!-- <ul>
             <li *ngFor="let item of sidebarFilters">{{ item.filter }}
                 <i class="plus icon"></i>
@@ -91,10 +91,10 @@
                 </div>
                 <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
                 <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
-                
+
             </div>
             <div class="highlight">
-                <sui-rating [maximum]="5" [isReadonly]="true"></sui-rating>
+                <sui-rating class="star gedein" [ngModel]="item.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
                 <p [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
                     <!-- {{item.highlight}} -->
                 </p>
