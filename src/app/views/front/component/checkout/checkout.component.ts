@@ -78,6 +78,7 @@ export class CheckoutComponent implements OnInit {
   kampre2t;
   grandTotal;
   billing: Boolean = false;
+  editShipping: Boolean = false;
 
   constructor(
     private shippingAddressService: ShippingAddressService,
@@ -101,6 +102,7 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit() {
     this.cekLogin();
+    this.editShipping = false;
     this.kampret = false;
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
@@ -131,6 +133,10 @@ export class CheckoutComponent implements OnInit {
             this.getPaymentMethods();
           });
     this.shoppingCart();
+  }
+
+  goEditShipping(id) {
+    this.editShipping = true;
   }
 
   cekLogin() {
@@ -425,4 +431,6 @@ export class CheckoutComponent implements OnInit {
     }
     console.log(pageYOffset);
   }
+
+
 }
