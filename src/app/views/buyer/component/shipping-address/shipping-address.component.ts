@@ -45,6 +45,7 @@ export class ShippingAddressComponent implements OnInit {
   show = false;
   show1 = true;
   selectedProvince: string;
+  optionTemplate: any;
 
   constructor(private masterService: MasterService, private shippingAddressService: ShippingAddressService) { }
 

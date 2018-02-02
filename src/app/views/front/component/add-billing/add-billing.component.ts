@@ -43,7 +43,7 @@ export class AddBillingComponent implements OnInit {
   selectedProvince: string;
   totalbilling: number;
   optionTemplate: any;
-  
+
   @Output() triggerEvent = new EventEmitter<Boolean>();
 
   constructor(
