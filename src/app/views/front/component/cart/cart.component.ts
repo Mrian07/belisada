@@ -74,10 +74,11 @@ export class CartComponent implements OnInit {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
           console.log('product: ', product);
+          const usedStock = (product.isAsapShipping === 'Y' && product.qtyOnHand > 0) ? product.qtyOnHand : product.stock;
           this.cartItems.push({
             ...item,
             product,
-            arrStock: Array.from(new Array(product.stock), (val, index) => index + 1),
+            arrStock: Array.from(new Array(usedStock), (val, index) => index + 1),
             totalCost: product.pricelist * item.quantity });
 
           console.log('this.cartItems: ', this.cartItems);

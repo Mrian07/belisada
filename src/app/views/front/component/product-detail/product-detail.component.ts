@@ -190,9 +190,12 @@ export class ProductDetailComponent implements OnInit {
 
   public addProductToCart(productId: number, quantity: number, mstoreId: number): void {
    const st = this.tokenService.getUser();
+   let stID = 0;
 
    if (st) {
-    const stID = st.stores[0].mBpartnerStoreId;
+    if (st.stores.length !== 0) {
+      stID = st.stores[0].mBpartnerStoreId;
+    }
     if (stID === mstoreId) {
       swal(
             'Belisada.co.id',
