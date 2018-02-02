@@ -41,7 +41,7 @@ export class BillingAddressComponent implements OnInit {
   // bidang: Bidang[];
   categories = [];
   selectedProvince: string;
-
+  optionTemplate: any;
   constructor(
     private masterService: MasterService,
     private iniService: BilingAddressService,
@@ -164,10 +164,8 @@ export class BillingAddressComponent implements OnInit {
 
 
       if (!data) {
-        console.log('kosong');
+
       }else {
-        console.log('ini data: ', data);
-        // console.log('kampret luh', data[0].regionId);
         this.masterService.getCity(data[0].regionId).subscribe(city => {
           this.cities = city;
           this.masterService.getDistrict(data[0].cityId).subscribe(district => {
@@ -200,7 +198,6 @@ export class BillingAddressComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });

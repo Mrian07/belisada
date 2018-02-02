@@ -54,10 +54,8 @@ export class ShippingAddressComponent implements OnInit {
     this.createForm();
     localStorage.setItem('whatever', 'something');
     const kamp3 = localStorage.getItem('whatever');
-    console.log('ini local', kamp3);
     this.getProvince();
     this.fillForms();
-    console.log('dn', luser);
   }
   createFormControls() {
     this.name = new FormControl('');
@@ -104,7 +102,6 @@ export class ShippingAddressComponent implements OnInit {
       villageId: model.vilaggeId.mvillageId
     };
     this.shippingAddressService.create(data).subscribe(response => {
-      console.log('ini submit ', response);
       this.createComForm.reset();
       if (response.status === '1') {
         swal(
@@ -125,7 +122,6 @@ export class ShippingAddressComponent implements OnInit {
   fillForms() {
     this.shippingAddressService.getAll().subscribe(data => {
       this.ship = data;
-      console.log('ah elah', data);
     });
   }
   getAllStorex(id) {
@@ -152,7 +148,6 @@ export class ShippingAddressComponent implements OnInit {
     });
   }
   edit() {
-    // console.log('this.selectedCategory: ', this.selectedCategory.mbankId);
     const model = this.createComForm.value;
     const b = {
       name: model.name,
@@ -211,7 +206,6 @@ export class ShippingAddressComponent implements OnInit {
 }
 
   // btnDelete(id) {
-  //   console.log(id);
   //   const user = JSON.parse(localStorage.user);
   //   this.shippingAddressService.delete(id).subscribe(data => {
   //     this.shippingAddress = data;
@@ -226,7 +220,6 @@ export class ShippingAddressComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });
