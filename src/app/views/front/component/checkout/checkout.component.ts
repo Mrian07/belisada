@@ -194,10 +194,11 @@ export class CheckoutComponent implements OnInit {
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
           // const product = prod;
+          const usedStock = (product.isAsapShipping === 'Y' && product.qtyOnHand > 0) ? product.qtyOnHand : product.stock;
           this.cartItems.push({
             ...item,
             product,
-            arrStock: Array.from(new Array(product.stock), (val, index) => index + 1),
+            arrStock: Array.from(new Array(usedStock), (val, index) => index + 1),
             totalCost: product.pricelist * item.quantity });
         });
       });
