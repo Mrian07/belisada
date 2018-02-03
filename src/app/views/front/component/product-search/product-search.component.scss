@@ -20,9 +20,9 @@
 .filter li.sort-filter {
     float: right;
 }
-.list-grid {
-    text-align: center
-}
+// .list-grid {
+    // text-align: center
+// }
 .list-grid i.list:hover, .list-row i.grid:hover {
     cursor: pointer;
     color: #469fe0;
@@ -43,9 +43,15 @@
     // display: none;
     padding: 0;
     height: auto;
+    text-align: center;
     p {
         display: none;
     }
+}
+.list-grid .header-title {
+    height: 40px;
+    overflow: hidden;
+    text-align: center;
 }
 
 .search-results:after {
