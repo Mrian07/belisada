@@ -2,6 +2,9 @@
     <div class="six wide column">
         <div class="ui grid">
             <div class="nine wide column">
+                <span *ngIf="!storeName">
+                    Anda belum memiliki toko, segera daftarkan toko Anda agar bisa berjualan.
+                </span>
 
                 <h3 *ngIf="storeName">{{storeName}} 
                     <!-- <br><span class="ui pointing basic label">Saat Ini Toko {{toko}}</span> -->
@@ -9,7 +12,7 @@
                 </h3>
 
                 
-                <div class="ui tiny labeled button" tabindex="0">
+                <div class="ui tiny labeled button" tabindex="0" *ngIf="storeName">
                     <div class="ui basic {{btnColor}} button">
                         Status Toko :
                     </div>
@@ -21,7 +24,7 @@
             </div>
             <div class="seven wide column">
                     <div class="seven wide column">
-                        <a class="ui teal tag label">Saat Ini Toko {{toko}}</a>
+                        <span class="ui teal tag label">Saat Ini Toko {{toko}}</span>
                         <!-- <span class="ui pointing basic label">Saat Ini Toko {{toko}}</span> -->
 
                         <div class="five wide column mymargin">
@@ -55,8 +58,8 @@
         </div> -->
     
     <div class="ten wide column">
-        <div class="ui segment column">
-            <div class="sexteen wide column">
+        <!-- <div class="ui segment column">
+            <div class="sexteen wide column"> -->
                 <div class="column">
                     <div class="ui grid">
                         <div class="two wide column">
@@ -68,6 +71,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
 </div>
