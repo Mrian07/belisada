@@ -60,7 +60,6 @@ export class FrontSlideShowComponent implements OnInit {
   random() {
     const r = Math.random();
     this.randoms = r;
-    console.log(this.randoms);
   }
   /* It will be triggered on every slide*/
   onmoveFn(data: NgxCarouselStore) {
