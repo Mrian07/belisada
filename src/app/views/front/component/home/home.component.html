@@ -1,5 +1,5 @@
 <app-front-slide-show></app-front-slide-show>
-
+<div class="ui active centered inline loader" style="margin-top: 50px;" *ngIf="loading === true"></div>
 <div class="top-category" *ngFor="let item of topHomeProductLvl1 | async ">
     <hr/>
     <h1 (click)="cate(item.categoryId, item.name)" style="cursor:pointer">{{ item.name }}</h1>
@@ -77,9 +77,9 @@
     </div>
 </div>
 
-<hr/>
+<hr *ngIf="loading === false;"/>
 <!-- <h1>PILIH DAN KLIK BRAND FAVORIT ANDA</h1> -->
-<h3 translate>header.mcategory.ourpartner</h3>
+<h3 *ngIf="loading === false;" translate>header.mcategory.ourpartner</h3>
 <div class="brand-favorit">
     <div *ngFor="let item of level_4 | async; let i = index;">
             <div class="ui segment" (click)="brand(item.name)" style="cursor: pointer;">
@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<div class="ui grid center aligned lihat-semua">
+<div *ngIf="loading === false;" class="ui grid center aligned lihat-semua">
     <button class="ui button" translate>
         header.mcategory.viewall <i class="angle double right icon"></i>
     </button>
