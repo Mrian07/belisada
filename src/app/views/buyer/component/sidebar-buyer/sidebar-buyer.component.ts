@@ -126,6 +126,10 @@ export class SidebarBuyerComponent implements OnInit {
     this.router.navigateByUrl('/buyer/shippingAddress');
   }
 
+  goTransaction() {
+    this.router.navigateByUrl('/buyer/transaction-buyer');
+  }
+
   goChangePassword() {
     this.router.navigateByUrl('/buyer/change-password');
   }
