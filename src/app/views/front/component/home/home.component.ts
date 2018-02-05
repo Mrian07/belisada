@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
   productId;
   imgUrl;
   aliasName;
+  randoms: number;
   // isDimmed: boolean = false;
 
   constructor(
@@ -60,6 +61,13 @@ export class HomeComponent implements OnInit {
     .subscribe((action: frontActions.GetHomeSuccess) => {
       this.loadHome();
     });
+    this.random();
+  }
+
+  random() {
+    const r = Math.random();
+    this.randoms = r;
+    console.log(this.randoms);
   }
 
   loadHome() {
