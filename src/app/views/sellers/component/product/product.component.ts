@@ -46,7 +46,7 @@ export class ProductComponent implements OnInit {
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
       this.store.select(fromProduct.getProductState).subscribe(datas => {
-      //console.log(datas);
+        console.log(datas);
       });
     });
   }
@@ -73,7 +73,6 @@ export class ProductComponent implements OnInit {
       console.log(result);
       if (result.value) {
         this.productService.Inactive(data).subscribe(res => {
-          console.log(res);
           swal(
           'Non Aktifkan!',
           'success'

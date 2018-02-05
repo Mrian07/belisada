@@ -52,21 +52,20 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'red';
         }
       }
-      this.buka = true;
-      this.toko = 'Buka';
+      this.bukaToko();
     });
   }
 
   bukaToko() {
     this.buka = false;
     this.tutup = true;
-    this.toko = 'Tutup';
+    this.toko = 'Buka';
   }
 
   tutupToko() {
     this.buka = true;
     this.tutup = false;
-    this.toko = 'Buka'
+    this.toko = 'Tutup';
   }
 
   search(event) {
