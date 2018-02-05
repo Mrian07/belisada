@@ -1,10 +1,24 @@
 <div class="ui grid">
     <div class="five wide column">
-        <h3>{{storeName}} <span style="font-size: 12px;">({{toko}})</span></h3>
-        <div class="five wide column mymargin">
+        <h3 *ngIf="storeName">{{storeName}} <br><span class="ui pointing basic label">Saat Ini Toko {{toko}}</span>
+            <!-- <span style="font-size: 12px;">({{toko}})</span> -->
+        </h3>
+
+            
+
+        <div class="ui labeled button" tabindex="0">
+            <div class="ui basic {{btnColor}} button">
+                Status Toko :
+            </div>
+            <a class="ui {{btnColor}} orange left pointing label">
+                {{ storeStatus }}
+            </a>
+        </div>
+
+        <!-- <div class="five wide column mymargin">
             <a class="ui orange label">Status Toko : </a>
             <a class="ui {{btnColor}} label">{{ storeStatus }}</a>
-        </div>
+        </div> -->
         <div class="five wide column mymargin">
         <div class="ui green left button" *ngIf="buka" (click)="bukaToko()">Buka Toko Anda</div>
         <div class="right red ui button" *ngIf="tutup" (click)="tutupToko()">Tutup Toko Anda</div>
