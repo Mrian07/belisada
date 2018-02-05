@@ -20,9 +20,10 @@ export class SearchDashboardComponent implements OnInit {
   btnColor: string;
   note: string;
   message: string;
-  buka: string;
-  tutup: string;
-
+  buka: Boolean;
+  tutup: Boolean;
+  toko: string;
+  storeName: string;
   constructor(
     private router: Router,
     private title: Title,
@@ -37,6 +38,7 @@ export class SearchDashboardComponent implements OnInit {
     this.getStoreData();
     this.storeService.getStatus().subscribe(data => {
       if (data.length !== 0) {
+        this.storeName = data[0].name;
         if (this.sharedService.shareData) {
           this.sharedService.shareData = data[0].note;
         }
@@ -50,18 +52,21 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'red';
         }
       }
-      this.bukaToko();
+      this.buka = true;
+      this.toko = 'Buka';
     });
   }
 
   bukaToko() {
-    this.buka = 'disabled';
-    this.tutup = '';
+    this.buka = false;
+    this.tutup = true;
+    this.toko = 'Tutup';
   }
 
   tutupToko() {
-    this.buka = '';
-    this.tutup = 'disabled';
+    this.buka = true;
+    this.tutup = false;
+    this.toko = 'Buka'
   }
 
   search(event) {

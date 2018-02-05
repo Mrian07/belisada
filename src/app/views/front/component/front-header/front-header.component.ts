@@ -56,6 +56,7 @@ export class FrontHeaderComponent implements OnInit {
   popular = [];
   role: string;
   lang: any;
+  randoms: number;
 
   constructor(
     private categoryService: CategoryService,
@@ -101,6 +102,7 @@ export class FrontHeaderComponent implements OnInit {
       this.lang = localStorage.getItem('languange');
       this.translate.use(this.lang);
     }
+    this.random();
   }
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
@@ -112,6 +114,11 @@ export class FrontHeaderComponent implements OnInit {
     this.searchService.searchPopular().subscribe(data => {
       this.popular = data;
     });
+  }
+
+  random() {
+    const r = Math.random();
+    this.randoms = r;
   }
 
   searchK(event) {

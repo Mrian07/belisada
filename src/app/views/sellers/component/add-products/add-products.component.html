@@ -117,8 +117,9 @@
                             <div class="five wide field">
                                 <div class="seven wide field">
                                     <select class="ui dropdown" [(ngModel)]="courier" (input)="couriers($event)">
-                                        <option value="0" selected="selected">JNE</option>
-                                        <option value="30">Ninja Express</option>
+                                        <option value="0" selected="selected">Pilih Courier</option>
+                                        <option value="1000002">JNE</option>
+                                        <option value="1000003">Ninja Express</option>
                                     </select>
                                 </div>
 
@@ -204,7 +205,7 @@
                     </div>
                 </div>
 
-                <div class="ui form">
+                <!-- <div class="ui form">
                     <div class="inline five fields">
                             <div class="two wide field">
                                 Pilih Warna
@@ -223,7 +224,7 @@
                                     <div><a *ngFor="let warna of selectedColor" class="ui {{ warna }} circular label" (click)="remColor(warna)"></a></div>
                                 </div>
                             </div>
-                </div>
+                </div> -->
 
                 <h3>Deskripsi Produk</h3>
                 <div class="garis"></div>

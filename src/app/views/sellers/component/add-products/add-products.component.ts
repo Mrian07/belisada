@@ -141,6 +141,7 @@ export class AddProductsComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Add Product');
+    this.courier = 0;
     this.getCategory();
     this.getBrands();
     this.getStore();

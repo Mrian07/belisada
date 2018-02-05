@@ -1,12 +1,13 @@
 <div class="ui grid">
     <div class="five wide column">
+        <h3>{{storeName}} <span style="font-size: 12px;">({{toko}})</span></h3>
         <div class="five wide column mymargin">
             <a class="ui orange label">Status Toko : </a>
             <a class="ui {{btnColor}} label">{{ storeStatus }}</a>
         </div>
         <div class="five wide column mymargin">
-        <div class="ui green left attached button {{buka}}" (click)="bukaToko()">Buka</div>
-        <div class="right red attached ui button {{tutup}}" (click)="tutupToko()">Libur</div>
+        <div class="ui green left button" *ngIf="buka" (click)="bukaToko()">Buka</div>
+        <div class="right red ui button" *ngIf="tutup" (click)="tutupToko()">Libur</div>
         </div>
     </div>
 

@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       title: 'Home',
       description: 'Belisada Home'
     });
-    this.title.setTitle('Belisada - Home');
+    this.title.setTitle('Belisada - Beli apa aja ada');
 
     this.homeload = this.actionsSubject
     .asObservable()
