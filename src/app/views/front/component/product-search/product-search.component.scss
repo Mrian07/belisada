@@ -78,13 +78,16 @@
     width: 350px;
     float: left;
 }
-.pricelist {
+.pricelist, .pricelist a {
     font-weight: bold;
     font-family: 'Open Sans', sans-serif !important;
     font-size: 1.6em;
     color: #8a0202;
     text-align: left;
     padding: 15px 0;
+}
+.pricelist a {
+    font-size: 1em;
 }
 .prodimg {
     // grid-area: prodimg;
@@ -94,6 +97,10 @@
     padding: 10px 0px;
     height: 200px;
     font-size: 0.8em!important;
+    
+    p {
+        cursor: pointer;
+    }
     // grid-area: highlight;
 }
 .price {
@@ -117,6 +124,19 @@
     color: #4ba240;
     margin-top: 1em;
 
+    span {
+        cursor: pointer;
+    }
+    
+    .selledby {
+        color: #000;
+        font-size: 0.90em;
+        span {
+            cursor: pointer;
+            color: #55B9C6;
+        }
+    }
+
     img {
         width: 65px;
         position: relative;
@@ -130,6 +150,10 @@ a.item {
 .header-search {
     grid-area: header-search;
 }
+.rating, .read-only .icon {
+    cursor: pointer;
+}
+
 .sidebar-search {
     grid-area: sidebar-search;
 
