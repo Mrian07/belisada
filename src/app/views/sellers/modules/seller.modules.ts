@@ -1,3 +1,4 @@
+import { TarikDanaComponent } from './../component/tarik-dana/tarik-dana.component';
 import { MenuProfileComponent } from './../component/menu-profile/menu-profile.component';
 import { NewSellerComponent } from './../component/new-seller/new-seller.component';
 import { FaqSellerComponent } from '../component/faq-seller/faq-seller.component';
@@ -57,6 +58,8 @@ import { ChattingComponent } from '../component/chatting/chatting.component';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { NgxEditorModule } from 'ngx-editor';
 import { CourierComponent } from '../component/courier/courier.component';
+import { LacakBarangAndaComponent } from '../component/lacak-barang-anda/lacak-barang-anda.component';
+import { InfoPengirimanComponent } from '../component/info-pengiriman/info-pengiriman.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +98,10 @@ import { CourierComponent } from '../component/courier/courier.component';
     FaqSellerComponent,
     NewSellerComponent,
     CourierComponent,
-    MenuProfileComponent
+    MenuProfileComponent,
+    TarikDanaComponent,
+    LacakBarangAndaComponent,
+    InfoPengirimanComponent
   ],
   imports: [
     CommonModule,

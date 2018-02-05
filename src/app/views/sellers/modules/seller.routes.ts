@@ -1,3 +1,4 @@
+import { TarikDanaComponent } from './../component/tarik-dana/tarik-dana.component';
 import { CourierComponent } from './../component/courier/courier.component';
 import { NewSellerComponent } from './../component/new-seller/new-seller.component';
 import { FaqSellerComponent } from './../component/faq-seller/faq-seller.component';
@@ -22,6 +23,8 @@ import { PaymentInfoComponent } from '../component/payment-info/payment-info.com
 import { StatisticsComponent } from '../component/statistics/statistics.component';
 import { StoreComponent } from '../component/store/store.component';
 import { DashboardComponent } from '../component/dashboard/dashboard.component';
+import { LacakBarangAndaComponent } from '../component/lacak-barang-anda/lacak-barang-anda.component';
+import { InfoPengirimanComponent } from '../component/info-pengiriman/info-pengiriman.component';
 
 const sellerroutes: Routes = [
   {
@@ -106,6 +109,18 @@ const sellerroutes: Routes = [
       {
         path: 'courier',
         component: CourierComponent
+      },
+      {
+        path: 'tarik-dana',
+        component: TarikDanaComponent
+      },
+      {
+        path: 'lacak-barang-anda',
+        component: LacakBarangAndaComponent
+      },
+      {
+        path: 'info-pengiriman',
+        component: InfoPengirimanComponent
       }
     ]
   }
