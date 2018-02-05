@@ -93,6 +93,7 @@ import { AsapbyBelisComponent } from './views/front/component/seller-center/asap
 import { HeaderdisellerComponent } from './views/front/component/seller-center/headerdiseller/headerdiseller.component';
 import { EditShippingComponent } from './views/front/component/edit-shipping/edit-shipping.component';
 import { EditBillingComponent } from './views/front/component/edit-billing/edit-billing.component';
+import { FaqSellerCenterComponent } from './views/front/component/seller-center/faq-seller-center/faq-seller-center.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -182,7 +183,8 @@ export function getAuthServiceConfigs() {
     AsapbyBelisComponent,
     HeaderdisellerComponent,
     EditShippingComponent,
-    EditBillingComponent
+    EditBillingComponent,
+    FaqSellerCenterComponent
 
 
     // WishlistComponent,
