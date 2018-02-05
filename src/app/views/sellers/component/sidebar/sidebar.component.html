@@ -12,15 +12,32 @@
     </div>
 
 
-    <div class="ui center aligned basic segment">
+    <!-- <div class="ui center aligned basic segment">
       <button class="ui youtube button" (click)="editProfile()">
         Edit Profile
       </button>
+    </div> -->
+    <div class="ui center aligned basic segment">
+        <div class="ui center aligned youtube pointing dropdown button" suiDropdown>
+            <div class="text">Profile</div>
+            <i class="dropdown icon"></i>
+            <div class="menu" suiDropdownMenu>
+                <div class="item" (click)="editProfile()">Edit Profile</div>
+                <div class="item" (click)="goChangePassword()">Ubah Password</div>
+                <div class="item" (click)="goRekening()">Rekening</div>
+                <div class="item" (click)="goInfoToko()">Info Toko</div>
+            </div>
+        </div>
     </div>
   </div>
   <div class='side-second'>
       <div class='main-menu'>
           <p><a (click)="goDashboard()" class="item" translate>user.seller.one</a></p>
+
+          <p><a (click)="goInfoToko()" class="item" translate>user.seller.shop</a></p>
+          <p><a (click)="goRekening()" class="item" translate>user.seller.rek</a></p>
+          <p><a (click)="goKontak()" class="item" translate>user.seller.two</a></p>
+          <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
           <p><a (click)="goToProduct()" class="item" translate>user.seller.four</a></p>
           <p><a (click)="gotoDana()" class="item">Ballance saya /  tarik dana</a></p>
           <p><a (click)="gotoLacak()" class="item">Lacak Barang Andang</a></p>

@@ -62,6 +62,18 @@ export class SidebarComponent implements OnInit {
     this.router.navigate(['/seller/profile']);
   }
 
+  goChangePassword() {
+    this.router.navigate(['/seller/change-password']);
+  }
+
+  goRekening() {
+    this.router.navigateByUrl('/seller/rekening');
+  }
+
+  goInfoToko() {
+    this.router.navigateByUrl('/seller/toko');
+  }
+
   goDashboard() {
     this.router.navigate(['/seller/dashboard']);
   }

@@ -45,7 +45,12 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  goBuyer(){
+  goBuyer() {
     this.router.navigateByUrl('/buyer');
   }
+
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
+
 }

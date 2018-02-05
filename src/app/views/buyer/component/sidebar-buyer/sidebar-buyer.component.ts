@@ -118,8 +118,17 @@ export class SidebarBuyerComponent implements OnInit {
     this.router.navigateByUrl('/buyer/inbox-buyer');
   }
 
+  goBilling() {
+    this.router.navigateByUrl('/buyer/billingAddress');
+  }
 
+  goShipping() {
+    this.router.navigateByUrl('/buyer/shippingAddress');
+  }
 
+  goChangePassword() {
+    this.router.navigateByUrl('/buyer/change-password');
+  }
   // goSeller() {
 
   //   const user = JSON.parse(localStorage.user);
