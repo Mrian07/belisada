@@ -33,14 +33,12 @@ export class StatusInvoiceComponent implements OnInit {
       }
       const storeId = user.stores[0].mBpartnerStoreId;
       this.sellers.GetReviewProduct(storeId).subscribe(data => {
-        console.log(data);
         this.productList = data.productList;
       });
     }
   }
 
   inactive (id: number) {
-    console.log(id);
     const data = {
       isActive: 'N',
       productId: id
@@ -54,7 +52,6 @@ export class StatusInvoiceComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ya'
     }).then((result) => {
-      console.log(result);
       this.productList = [];
       if (result.value) {
         this.sellers.Inactive(data).subscribe(res => {
