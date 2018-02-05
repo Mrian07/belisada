@@ -67,7 +67,6 @@ export class HomeComponent implements OnInit {
   random() {
     const r = Math.random();
     this.randoms = r;
-    console.log(this.randoms);
   }
 
   loadHome() {
