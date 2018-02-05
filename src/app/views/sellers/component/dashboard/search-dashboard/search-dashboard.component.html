@@ -2,6 +2,9 @@
     <div class="six wide column">
         <div class="ui grid">
             <div class="nine wide column">
+                <span *ngIf="!storeName">
+                    Anda belum memiliki toko, segera daftarkan toko Anda agar bisa berjualan.
+                </span>
 
                 <h3 *ngIf="storeName">{{storeName}} 
                     <!-- <br><span class="ui pointing basic label">Saat Ini Toko {{toko}}</span> -->
@@ -9,7 +12,7 @@
                 </h3>
 
                 
-                <div class="ui tiny labeled button" tabindex="0">
+                <div class="ui tiny labeled button" tabindex="0" *ngIf="storeName">
                     <div class="ui basic {{btnColor}} button">
                         Status Toko :
                     </div>
