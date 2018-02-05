@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
   imgUrl;
   aliasName;
   randoms: number;
+  loading: Boolean;
   // isDimmed: boolean = false;
 
   constructor(
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loading = true;
     this.seo.generateTags({
       title: 'Home',
       description: 'Belisada Home'
@@ -85,6 +87,7 @@ export class HomeComponent implements OnInit {
         } else {
           this.topHomeProductLvl1 = Observable.of(data.home);
         }
+        this.loading = false;
         this.level_4 = Observable.of(data.brands);
         });
         //window.scrollTo(0, 0);
