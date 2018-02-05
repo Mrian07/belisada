@@ -9,12 +9,13 @@ import { NgxCarouselStore } from 'ngx-carousel/src/ngx-carousel/ngx-carousel.int
   styleUrls: ['./front-slide-show.component.scss']
 })
 export class FrontSlideShowComponent implements OnInit {
-
+  randoms: number;
   constructor(public carouselBanner: NgxCarousel
   , private router: Router
   ) { }
 
   ngOnInit() {
+    this.random();
     this.carouselBanner = {
       grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
       slide: 1,
@@ -56,6 +57,11 @@ export class FrontSlideShowComponent implements OnInit {
     };
   }
 
+  random() {
+    const r = Math.random();
+    this.randoms = r;
+    console.log(this.randoms);
+  }
   /* It will be triggered on every slide*/
   onmoveFn(data: NgxCarouselStore) {
     console.log(data);
