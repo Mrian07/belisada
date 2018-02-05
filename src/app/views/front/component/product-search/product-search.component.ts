@@ -97,7 +97,7 @@ export class ProductSearchComponent implements OnInit {
 
         const paramFix = {
           q: params.q,
-          parent: params.id,
+          parent: params.parent,
           id: params.id,
           page: params.page,
           itemperpage: this.limit
