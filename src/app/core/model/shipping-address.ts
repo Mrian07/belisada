@@ -4,6 +4,8 @@ export class ShippingAddress {
   address: string;
   addressName: string;
   postal: string;
+  response: string;
+  // message: string;
   // villageId: string;
   villageId: number;
   phone: string;

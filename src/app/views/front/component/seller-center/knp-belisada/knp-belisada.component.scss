@@ -7,9 +7,9 @@
     */
     grid-gap:1em;
   }
-  .wrepper2{
+  .wrapper2{
     display:grid;
-    grid-template-columns: 19% 19% 19% 19% 19%;
+    grid-template-columns: 20% 70%;
     /*
     grid-column-gap:1em;
     grid-row-gap:1em;
@@ -20,4 +20,25 @@
     text-align: center;
     font-weight: bold;
     font-size: 16px;
+  }
+  .wrapper2 > div{
+    // background:#ddd;
+    padding:1em;
+  }
+  .wrapper2 > div:nth-child(odd){
+    // background:#eee;
+    /* border: 1px solid; */
+  }
+  .wrepper2 > div{
+    background:#eee;
+    padding:1em;
+  }
+  .wrepper2 > div:nth-child(odd){
+    background:#ddd;
+  }
+  .kamp {
+    margin-top: 58px;
+    /* padding-top: 100px; */
+    display: block;
+    text-align: left !important;
   }
