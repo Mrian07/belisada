@@ -98,6 +98,7 @@ export class StatusInvoiceComponent implements OnInit {
 
   getQr(id: number) {
     this.sellers.GetQr(id).subscribe(data => {
+      console.log(data);
       swal({
         imageUrl: data.image_url,
         imageHeight: 400,
