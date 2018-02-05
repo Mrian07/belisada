@@ -27,7 +27,7 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2 class="kekiridikit">{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-     <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
+    <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
     <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->
     <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
     <div class="gap-between-elements"></div>
@@ -45,25 +45,80 @@
 
            </table>
             </ng-template> -->
-            <div *ngIf="ProductList.specialPrice !== 0; else login2">
-                <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
-                <span>Hemat: {{kamp | number:'3.2-5'}}</span>
-            </div>
-            <ng-template #login2>
-                <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.pricelist | number}}</span>
-            </ng-template>
+    
+    <table width="100%;">
+        <tr *ngIf="ProductList.specialPrice !== 0" class="gap-between-elements">
+            <td class="coll-1" translate>goods.detail.titleone</td>
+            <!-- <td>:</td> -->
+            <td>
+                <span class="gets">Rp. {{ ProductList.specialPrice | number }}</span>
+                <span class="borderni">{{ popx | number:percent }}% Off</span>
+                <span>Hemat: {{ kamp | number:'3.2-5' }}</span>
+            </td>
+        </tr>
+        <tr *ngIf="ProductList.specialPrice === 0" class="gap-between-elements">
+            <td class="coll-1" translate>goods.detail.titleone</td>
+            <!-- <td>:</td> -->
+            <td>
+                <span class="gets">Rp. {{ ProductList.pricelist | number }}</span>
+            </td>
+        </tr>
+        <tr *ngIf="ProductList.specialPrice !== 0" class="gap-between-elements">
+            <td class="coll-1">Harga Awal</td>
+            <!-- <td>:</td> -->
+            <td><s>Rp {{ ProductList.pricelist | number }}</s></td>
+        </tr>
+        <tr class="gap-between-elements">
+            <td class="coll-1">Stok</td>
+            <!-- <td>:</td> -->
+            <td><span class="stok">{{ usedStock }}</span></td>
+        </tr>
+        <tr class="gap-between-elements">
+            <td class="xo coll-1"></td>
+            <!-- <td></td> -->
+            <td *ngIf="asap && (ProductList.qtyOnHand > 0)">Belanja online murah, gratis pengiriman area Jakarta*
+                Pilih barang dengan layanan Untuk pengiriman Pasti 2 hari
+                <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image" (click)="asap3()">
+
+            </td>
+        </tr>
+        <tr class="gap-between-elements">
+            <td class="coll-1">Kondisi Barang</td>
+            <!-- <td>:</td> -->
+            <td><span class="stok">{{ ProductList.condition }}</span></td>
+        </tr>
+        <tr class="gap-between-elements">
+            <td class="coll-1" translate>goods.detail.color</td>
+            <!-- <td>:</td> -->
+            <td></td>
+        </tr>
+        <tr class="gap-between-elements">
+            <td class="coll-1" translate>Highlight</td>
+            <!-- <td>:</td> -->
+            <td><p [innerHTML]="ProductList.highlight | sanitizeHtml"></p></td>
+        </tr>
+    </table>
+
+
+    <!-- <div *ngIf="ProductList.specialPrice !== 0; else login2">
+        <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
+        <span>Hemat: {{kamp | number:'3.2-5'}}</span>
+    </div>
+    <ng-template #login2>
+        <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.pricelist | number}}</span>
+    </ng-template> -->
     <!-- <span class="pls">Harga:</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
     <span>Hemat: {{kamp | number:'3.2-5'}}</span> -->
-    <div class="gap-between-elements"></div>
-   <div *ngIf="ProductList.specialPrice !== 0; else login1">
-    <span class="pls1">Harga Awal :</span><s><span>Rp</span>{{ProductList.pricelist | number}}</s>
+    <!-- <div class="gap-between-elements"></div>
+    <div *ngIf="ProductList.specialPrice !== 0; else login1">
+        <span class="pls1">Harga Awal :</span><s><span>Rp</span>{{ProductList.pricelist | number}}</s>
     </div>
     <ng-template #login1>
     </ng-template>
     <div class="gap-between-elements"></div>
-    <span class="pls2">Stok: </span> <span class="stok">{{ usedStock }}</span>
+    <span class="pls2">Stok: </span> <span class="stok">{{ usedStock }}</span> -->
     <!-- <div class="gap-between-elements"></div> -->
-    <table border="0">
+    <!-- <table border="0">
         <tr>
             <td class="xo"></td>
             <td *ngIf="asap && (ProductList.qtyOnHand > 0)">Belanja online murah, gratis pengiriman area Jakarta*
@@ -71,15 +126,15 @@
                 <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image" (click)="asap3()">
 
             </td>
-            <!-- <td></td> -->
         </tr>
-    </table>
+    </table> -->
+    <!-- <div class="gap-between-elements"></div>
+    <span class="pls2">Kondisi barang: </span> <span class="stok">{{ ProductList.condition }}</span>
     <div class="gap-between-elements"></div>
     <table>
         <tr>
             <td class="xo" translate>goods.detail.color</td>
             <td>
-                <!-- <div class="warna"></div><div class="warna3"></div><div class="warna4"></div> -->
             </td>
         </tr>
     </table>
@@ -94,17 +149,17 @@
             </ng-template>
     </table>
 
-    <div class="gap-between-elements"></div>
+    <div class="gap-between-elements"></div> -->
 
         <!-- <tr>
             <td>Highlit</td>
             <td [innerHTML]="ProductList.highlight"></td>
         </tr> -->
 
-    <div class="ui grid">
+    <!-- <div class="ui grid">
             <div class="three wide column">Highlight</div>
             <div class="nine wide column"><p [innerHTML]="ProductList.highlight | sanitizeHtml"></p></div>
-          </div>
+          </div> -->
           <div class="gap-between-elements3"></div>
           <table border=0>
               <tr>
