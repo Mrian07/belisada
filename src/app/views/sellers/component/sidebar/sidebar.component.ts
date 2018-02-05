@@ -121,5 +121,17 @@ export class SidebarComponent implements OnInit {
       this.router.navigateByUrl('seller/product-list');
     }
   }
+  gotoDana() {
+    this.router.navigateByUrl('seller/tarik-dana');
+  }
+  gotoLacak() {
+    this.router.navigateByUrl('seller/lacak-barang-anda');
+  }
+  gotoInfoPengiriman() {
+    this.router.navigateByUrl('seller/info-pengiriman');
+  }
+  gotoContact() {
+    this.router.navigateByUrl('contact-us');
+  }
 
 }
