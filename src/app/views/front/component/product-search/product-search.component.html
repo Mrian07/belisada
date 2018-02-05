@@ -84,9 +84,10 @@
             </div>
             <!-- <div class="clear-fix"></div> -->
             <div class="header-title"><a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a></div>
-            <div class="price pricelist">Rp {{item.pricelist | number}}<br/>
+            <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
                 <div class="yu">
-                    Stok: {{item.stock}}
+                    <div class="selledby">dijual oleh: <span >{{ item.storeName }}</span></div>
+                    <span (click)="detail(item.productId, item.aliasName)">Stok: {{item.stock}}</span>
                     <img *ngIf="item.isAsapShipping === 'Y'" src="/assets/img/asap_big.png" alt="">
                 </div>
                 <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
@@ -94,8 +95,8 @@
 
             </div>
             <div class="highlight">
-                <sui-rating class="star gedein" [maximum]="5" [isReadonly]="true" [(ngModel)]="item.rate"></sui-rating>
-                <p [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
+                <sui-rating class="star rating" [maximum]="5" [isReadonly]="true" [(ngModel)]="item.rate"></sui-rating>
+                <p (click)="detail(item.productId, item.aliasName)" [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
                     <!-- {{item.highlight}} -->
                 </p>
             <!-- <div [innerHTML]="item.highlight | sanitizeHtml | truncate : 20 : '.'"></div> -->
