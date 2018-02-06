@@ -83,7 +83,7 @@
                  <img class="ui image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'">
             </div>
             <!-- <div class="clear-fix"></div> -->
-            <div class="header-title"><a (click)="detail(item.productId, item.aliasName)" class="item" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a></div>
+            <div class="header-title"><a (click)="detail(item.productId, item.aliasName)" class="item" title="{{item.name | truncate : 35 }}" style="cursor: pointer;"> <strong>{{item.name | truncate : 35 }}</strong></a></div>
             <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
                 <div class="yu">
                     <div class="selledby">dijual oleh: <span >{{ item.storeName }}</span></div>
