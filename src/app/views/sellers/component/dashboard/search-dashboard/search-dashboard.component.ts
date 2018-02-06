@@ -37,12 +37,13 @@ export class SearchDashboardComponent implements OnInit {
     this.title.setTitle('Belisada Seller - Dashboard');
     this.getStoreData();
     this.storeService.getStatus().subscribe(data => {
+      console.log('data[0].statusCode: ', data[0].statusCode);
       if (data.length !== 0) {
         this.storeName = data[0].name;
         if (this.sharedService.shareData) {
           this.sharedService.shareData = data[0].note;
         }
-        if ( data[0].statusCode === '4') {
+        if ( data[0].statusCode === 'AP') {
           this.storeStatus = data[0].status;
           this.status = true;
           this.btnColor = 'green';

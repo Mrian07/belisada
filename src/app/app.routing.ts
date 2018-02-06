@@ -68,6 +68,7 @@ import { DownloadAppComponent } from './views/front/component/download-app/downl
 import { PsnLoginComponent } from './views/front/component/psn-login/psn-login.component';
 import { InboxComponent } from './views/front/component/seller-center/inbox/inbox.component';
 import { BerjualanBelisadaComponent } from './views/front/component/seller-center/berjualan-belisada/berjualan-belisada.component';
+import { FaqSellerCenterComponent } from './views/front/component/seller-center/faq-seller-center/faq-seller-center.component';
 
 const routes: Routes = [
   {
@@ -109,6 +110,13 @@ const routes: Routes = [
           {
             path: 'Why-Choose-Us',
             component: KnpBelisadaComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
+            path: 'Faq-on-SellerCenter',
+            component: FaqSellerCenterComponent,
             data: {
               title: 'dashboard'
             }

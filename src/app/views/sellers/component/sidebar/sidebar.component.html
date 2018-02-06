@@ -30,33 +30,45 @@
         </div>
     </div>
   </div>
-  <div class='side-second'>
-      <div class='main-menu'>
+    <div class='side-second'>
+        <div class='main-menu'>
           <p><a (click)="goDashboard()" class="item" translate>user.seller.one</a></p>
-
           <p><a (click)="goInfoToko()" class="item" translate>user.seller.shop</a></p>
           <p><a (click)="goRekening()" class="item" translate>user.seller.rek</a></p>
           <p><a (click)="goKontak()" class="item" translate>user.seller.two</a></p>
           <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
           <p><a (click)="goToProduct()" class="item" translate>user.seller.four</a></p>
-          <p><a (click)="gotoDana()" class="item">Ballance saya /  tarik dana</a></p>
+          <p><a (click)="gotoDana()" class="item">Saldo Anda</a></p>
           <p><a (click)="gotoLacak()" class="item">Lacak Barang Andang</a></p>
           <p><a (click)="goKontak()" class="item" translate>Kotak Masuk / Notifikasi barang terjual</a></p>
           <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
-          <p><a (click)="goCourier()" class="item">Info Pengiriman</a></p>
+          <!-- <p><a (click)="goCourier()" class="item">Info Pengiriman</a></p> -->
            <p><a (click)="goSallesReport()" class="item" translate>user.seller.five</a></p>
-          <!-- <p><a (click)="goCourier()" class="item">Kurir</a></p> -->
-          <!-- <p><a class="item">Statistik</a></p>
-          <p><a class="item">Courier Service</a></p>
-          <p><a class="item">Payment Gateway</a></p> -->
           <p><a (click)="goFaqSeller()" class="item" translate>user.seller.nine</a></p>
           <p><a (click)="gotoContact()" class="item">Contact Kami</a></p>
-          <!-- <p><a class="item">myADS</a></p>
-          <p><a class="item">Upgrade Account</a></p> -->
-      </div>
+        </div>
+
+    </div>
+    <div class='side-third'>
+        <div class="ui form">
+            <div class="grouped fields">
+                <label>Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.</label>
+                <div class="field">
+                    <sui-checkbox [(ngModel)]="eCheckDisabled">JNE Reguler</sui-checkbox>
+                </div>
+                <div class="field">
+                    <sui-checkbox [(ngModel)]="eCheckReadonly">Ninja Express</sui-checkbox>
+                </div>
+            </div>
+        </div>
+        <button class="ui primary button">
+            Simpan
+        </button>
     </div>
 
 </div>
+
+
 
 <div class="menu-seller-mobile">
 
