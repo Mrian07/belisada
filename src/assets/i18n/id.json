@@ -44,7 +44,16 @@
      "ten": "Bahan Makanan",
      "ourpartner" : "PILIH DAN KLIK BRAND FAVORIT ANDA",
      "viewall" : "Lihat Semua"
-   }
+   },
+    "dropmuser":
+    {
+      "m1": "Orderan Anda",
+      "m2": "Recommendasi Anda",
+      "m3": "Ubah Password",
+      "m4": "Data Billing",
+      "m5": "Data Shipping",
+      "m6": "Kontak Kita"
+    }
  },
 
    "footer":
@@ -152,6 +161,21 @@
 
    "user" :
  {
+
+  "profile" :
+   {
+      "title" : "Data Profile",
+      "nama" : "Nama",
+      "tgllahir" : "Tanggal Lahir",
+      "alamat" : "Alamat",
+      "provinsi" : "Provinsi",
+      "kota" : "Kota",
+      "kecamatan" : "Kecamatan",
+      "kelurahan" : "Kelurahan",
+      "kodepos" : "Kode POS",
+      "hp" : "Nomor Telepon"
+   },
+
        "account" :
    {
            "title" : "Buat Akun",
@@ -251,8 +275,15 @@
            "successedit" : "Data sudah diperbaharui!",
            "oldpass" : "Kata Kunci Lama",
            "npassw" : "Kata Kunci Baru",
-           "renpassw" : "Ulangi Kata Kunci Baru"
+           "renpassw" : "Ulangi Kata Kunci Baru",
+
+           "text" :
+           {
+              "profile" : "Silakan lengkapi data diri Anda pada form dibawah ini."
+           }
        },
+
+       
 
        "billdata" :
    {
@@ -314,87 +345,87 @@
  "goods" :
  {
        "detail" :
-   {
+    {
            "sellby" : "Dijual oleh",
-     "write" : "Tulis Ulasan",
-     "price" : "Harga",
-     "return":"Kebijakan",
-      "title":"Pengembalian",
-     "stock" : "Ketersediaan",
-     "color" : "Warna",
-     "size" : "Ukuran",
-     "quantiti" : "Jumlah",
-     "weight" : "Berat",
-     "dimension" : "Dimensi",
-     "highlit" : "Highlight",
-     "nhelp" : "Butuh Bantuan?",
-     "chat" : "Chat Langsung",
-     "contact" : "Hubungi Kami",
-     "callcenter" : "Layanan Pelanggan",
-     "offer" : "Lihat Penawaran Lainnya",
-     "desc" : "Deskripsi",
-           "spec" : "Spesifikasi",
-           "rev" : "Ulasan",
-           "ques" : "Pertanyaan",
-           "sortby" : "Urut berdasarkan",
-           "latest" : "Terbaru",
-           "expensive" : "Termahal",
-           "cheap" : "Termurah",
-     "accend" : "A-Z",
-     "descend" : "Z-A",
-     "cat" : "Category",
-     "brand" : "Merek",
-     "titlereturn" : "Kebijakan Pengembalian",
-     "returndet" : "jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari",
-     "paymeth" : "Pembayaran",
-     "titlecourier" : "Jasa Pengiriman",
-     "jnecur" : "Jaminan pengiriman dalam 2 hari",
-     "ninjacur" : "Jaminan pengiriman dalam 3 hari",
-     "titleone" : "Harga",
-     "titletwo" : "Lokasi Penjual",
-     "titlethree" : "Layanan Produk",
-     "titlefour" : "Rating Penjual",
-     "titlefive" : "Dijual oleh"
+      "write" : "Tulis Ulasan",
+      "price" : "Harga",
+      "return":"Kebijakan",
+        "title":"Pengembalian",
+      "stock" : "Ketersediaan",
+      "color" : "Warna",
+      "size" : "Ukuran",
+      "quantiti" : "Jumlah",
+      "weight" : "Berat",
+      "dimension" : "Dimensi",
+      "highlit" : "Highlight",
+      "nhelp" : "Butuh Bantuan?",
+      "chat" : "Chat Langsung",
+      "contact" : "Hubungi Kami",
+      "callcenter" : "Layanan Pelanggan",
+      "offer" : "Lihat Penawaran Lainnya",
+      "desc" : "Deskripsi",
+      "spec" : "Spesifikasi",
+      "rev" : "Ulasan",
+      "ques" : "Pertanyaan",
+      "sortby" : "Urut berdasarkan",
+      "latest" : "Terbaru",
+      "expensive" : "Termahal",
+      "cheap" : "Termurah",
+      "accend" : "A-Z",
+      "descend" : "Z-A",
+      "cat" : "Category",
+      "brand" : "Merek",
+      "titlereturn" : "Kebijakan Pengembalian",
+      "returndet" : "jika barang yang dikirim mengalami kerusakan atau tidak sesuai deskripsi, Anda dapat mengembalikan barang tersebut kepada kami dalam jangka waktu 7 hari",
+      "paymeth" : "Pembayaran",
+      "titlecourier" : "Jasa Pengiriman",
+      "jnecur" : "Jaminan pengiriman dalam 2 hari",
+      "ninjacur" : "Jaminan pengiriman dalam 3 hari",
+      "titleone" : "Harga",
+      "titletwo" : "Lokasi Penjual",
+      "titlethree" : "Layanan Produk",
+      "titlefour" : "Rating Penjual",
+      "titlefive" : "Dijual oleh"
        },
 
        "checkout" :
-   {
-               "title" : "Pembayaran",
-               "billing" : "Alamat Penagihan",
-               "shipping" : "Pengiriman",
-               "courier" : "Kurir",
-               "payment" : "Metode Pembayaran",
-               "selanjutnya" : "Selanjutnya",
-               "lanjut" : "Lanjut",
-               "addpayment" : "Pilih pembayaran, melalui",
-               "pay" : "Lanjut ke Pembayaran",
-       "sureone" : "Anda yakin untuk melanjutkan?"
+      {
+        "title" : "Pembayaran",
+        "billing" : "Alamat Penagihan",
+        "shipping" : "Pengiriman",
+        "courier" : "Kurir",
+        "payment" : "Metode Pembayaran",
+        "selanjutnya" : "Selanjutnya",
+        "lanjut" : "Lanjut",
+        "addpayment" : "Pilih pembayaran, melalui",
+        "pay" : "Lanjut ke Pembayaran",
+        "sureone" : "Anda yakin untuk melanjutkan?"
        },
 
        "products" :
-   {
-           "title" : "Tambah Produk",
-           "titdesc" : "Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan syarat dan ketentuan Belisada.co.id. Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami",
-           "substitle" : "Apa yang Anda Jual?",
-           "cons" : "Kondisi",
-           "one" : "Baru",
-           "two" : "Bekas",
-           "three" : "Refurbish",
-           "name" : "Nama Produk",
-           "detail" : "Detail Produk",
-           "price" : "Harga",
-           "subsprice" : "Mata uang Rp tanpa menggunakan koma. Contoh : 12000",
-           "weight" : "Berat",
-           "dimen" : "Dimensi",
-           "length" : "Panjang",
-           "width" : "Lebar",
-           "height" : "Tinggi",
-           "quant" : "Jumlah",
-           "desc" : "Deskripsi Produk",
-           "subsdesc" : "Deskripsi",
-           "pict" : "Gambar Produk",
-           "subpic" : "Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk"
-   }
+    {
+      "title" : "Tambah Produk",
+      "titdesc" : "Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan syarat dan ketentuan Belisada.co.id. Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami",
+      "substitle" : "Apa yang Anda Jual?",
+      "cons" : "Kondisi",
+      "one" : "Baru",
+      "two" : "Bekas",
+      "three" : "Refurbish",
+      "name" : "Nama Produk",
+      "detail" : "Detail Produk",
+      "price" : "Harga",
+      "subsprice" : "Mata uang Rp tanpa menggunakan koma. Contoh : 12000",
+      "weight" : "Berat",
+      "dimen" : "Dimensi",
+      "length" : "Panjang",
+      "width" : "Lebar",
+      "height" : "Tinggi",
+      "quant" : "Jumlah",
+      "desc" : "Deskripsi Produk",
+      "subsdesc" : "Deskripsi",
+      "pict" : "Gambar Produk",
+      "subpic" : "Masukan gambar produk minimal satu foto. Gunakan 5 foto terbaik untuk gambar produk"
+    }
    },
 
  "paymentprocess":
@@ -425,14 +456,14 @@
      "title" : "Alamat Penagihan",
      "subtit" : "Jika alamat penagihan belu ada, lakukan tambah alamat penagihan.",
      "name" : "Nama",
-           "saveadd" : "Simpan alamat sebagai (contoh: Rumah, Kantor)",
-           "address" : "Alamat",
-           "prov" : "Propinsi",
-           "city" : "Kota",
-           "district" : "Kecamatan",
-           "village" : "Kelurahan",
-           "zipp" : "Kode Pos",
-           "phone" : "Nomor Telepon",
+      "saveadd" : "Simpan alamat sebagai (contoh: Rumah, Kantor)",
+      "address" : "Alamat",
+      "prov" : "Propinsi",
+      "city" : "Kota",
+      "district" : "Kecamatan",
+      "village" : "Kelurahan",
+      "zipp" : "Kode Pos",
+      "phone" : "Nomor Telepon",
      "titletwo" : "Alamat Pengiriman",
      "subtwo" : "Jika alamat pengiriman belum ada, lakukan tambah alamat pengiriman",
      "shipaddr" : "Pengiriman",

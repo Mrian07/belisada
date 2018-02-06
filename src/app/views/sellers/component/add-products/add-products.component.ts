@@ -87,6 +87,7 @@ export class AddProductsComponent implements OnInit {
   imgNpwp: any;
   qid: any;
   optionTemplate: any;
+  highlight: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -286,6 +287,7 @@ export class AddProductsComponent implements OnInit {
     this.price = hasil.pricelist;
     this.specialPrice = hasil.specialPrice;
     this.description = hasil.description;
+    this.highlight = hasil.highlight;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
     this.toggle = false;
@@ -380,7 +382,9 @@ export class AddProductsComponent implements OnInit {
           isGuarantee: this.isGuarantee,
           guaranteeDays: this.garansiDays
         };
+        //console.log('add');
         this.store.dispatch(new fromActions.AddProduct(productData));
+        this.clearAll();
     }
   }
   gudang($event) {
@@ -441,6 +445,7 @@ export class AddProductsComponent implements OnInit {
             guaranteeDays: this.garansiDays
           };
           this.store.dispatch(new fromActions.AddProduct(productData));
+          this.clearAll();
         }
       }
   }
@@ -491,16 +496,17 @@ export class AddProductsComponent implements OnInit {
     this.selectedBrands = '';
     this.results = [];
     this.selectCats = '';
-    this.price = 0 ;
+    this.price = undefined ;
     this.description = '';
     this.imageurl = undefined;
-    this.weight = 0;
-    this.panjang = 0;
-    this.lebar = 0;
-    this.tinggi = 0;
+    this.weight = undefined;
+    this.panjang = undefined;
+    this.lebar = undefined;
+    this.tinggi = undefined;
     this.toggle = false;
-    this.productId = 0;
+    this.productId = undefined;
     this.selectedBrands = '';
+    this.productName = undefined;
   }
 
   asapPage() {

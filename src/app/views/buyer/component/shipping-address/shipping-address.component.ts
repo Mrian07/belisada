@@ -46,10 +46,12 @@ export class ShippingAddressComponent implements OnInit {
   show1 = true;
   selectedProvince: string;
   optionTemplate: any;
+  lang: any;
 
   constructor(private masterService: MasterService, private shippingAddressService: ShippingAddressService) { }
 
   ngOnInit() {
+    localStorage.setItem('languange', this.lang);
     const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();

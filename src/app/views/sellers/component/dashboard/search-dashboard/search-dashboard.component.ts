@@ -24,6 +24,9 @@ export class SearchDashboardComponent implements OnInit {
   tutup: Boolean;
   toko: string;
   storeName: string;
+
+  modal: boolean;
+
   constructor(
     private router: Router,
     private title: Title,
@@ -32,6 +35,12 @@ export class SearchDashboardComponent implements OnInit {
     private tokenService: TokenService,
     private sharedService: ShareService
   ) { }
+
+  // 'DR','SEDANG DI REVIEW',1
+  // 'PE','MOHON DIPERBAIKI',2
+  // 'RV','REVIEW',5
+  // 'RJ','REJECTED',3
+  // 'AP','SUDAH TAYANG',4
 
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Dashboard');
@@ -105,6 +114,13 @@ export class SearchDashboardComponent implements OnInit {
     });
   }
 
+  openModalShop() {
+    this.modal = true;
+  }
+
+  closeModalShop() {
+    this.modal = false;
+  }
 
 
 }

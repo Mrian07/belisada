@@ -22,8 +22,8 @@
             <div class="text">Profile</div>
             <i class="dropdown icon"></i>
             <div class="menu" suiDropdownMenu>
-                <div class="item" (click)="editProfileBuyer()">Edit Profile</div>
-                <div class="item" (click)="goChangePassword()">Change Password</div>
+                <div class="item" (click)="editProfileBuyer()" translate>user.buyer.eprof</div>
+                <div class="item" (click)="goChangePassword()" translate>user.buyer.cpass</div>
             </div>
         </div>
 
@@ -33,9 +33,9 @@
     <div class='side-second'>
         <div class='index-menu'>
             <p><a routerLink="#" class="menu-top-side" (click)="goDashboard()"><i class="home icon"></i> Dashboard</a></p>
-            <p><a routerLink="#" class="menu-top-side" (click)="goBilling()"><i class="calculator icon"></i> Billing</a></p>
-            <p><a routerLink="#" class="menu-top-side" (click)="goShipping()"><i class="shipping icon"></i> Shipping</a></p>
-            <p><a routerLink="#" class="menu-top-side" (click)="goTransaction()"><i class="law icon"></i> Transaksi & Konfirmasi</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="goBilling()" translate><i class="calculator icon"></i> user.buyer.bill</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="goShipping()" translate><i class="shipping icon"></i> user.buyer.ship</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="goTransaction()" translate><i class="law icon"></i> user.buyer.alltrans</a></p>
             <p><a routerLink="#" class="menu-top-side" (click)="goSeller()"><i class="shop icon"></i> Seller</a></p>
             <p><a routerLink="#" class="menu-top-side" (click)="goWishlist()"><i class="empty heart icon"></i> Wishlist</a></p>
             <p><a routerLink="#" class="menu-top-side"><i class="mail icon"></i> Inbox</a></p>

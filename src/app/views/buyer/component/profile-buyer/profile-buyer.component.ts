@@ -45,7 +45,7 @@ export class ProfileBuyerComponent implements OnInit {
   fm: any = {};
   adr: any = {};
   dob: Date;
-
+  lang: any;
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
@@ -55,6 +55,7 @@ export class ProfileBuyerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.setItem('languange', this.lang);
     this.title.setTitle('Belisada Seller -Profile');
     const user = JSON.parse(localStorage.user);
     // this.token = user.token;

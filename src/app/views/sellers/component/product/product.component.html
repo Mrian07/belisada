@@ -89,9 +89,12 @@
 
                     <div class="ui right labeled input">
                         <label for="amount" class="ui label">Rp.</label>
-                        <input placeholder="Amount" id="amount" value="{{ product.pricelist | number}}" type="text" disabled/>
-                        <a class="ui tag label" (click)="editProducts(product)">
-                            <i class="edit icon"></i>
+                        <input placeholder="Amount" id="amount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [value]="product.pricelist | number" type="text" [disabled]="!editmode"/>
+                        <a class="ui tag label" *ngIf="!editmode" (click)="editProducts(product)">
+                                <i *ngIf="!editmode" class="edit icon"></i>
+                        </a>
+                        <a class="ui tag label" *ngIf="editmode"  (click)="editPrice(product)">
+                                <i class="save icon"></i>
                         </a>
                     </div>
                 </td>

@@ -11,7 +11,7 @@
                         <span class="date">{{ user.email }}</span>
                     </div>
                     <div class="description">
-                        Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)
+                        Max file 5 MB. Format (.JPG, .JPEG, .PNG)
                     </div>
                 </div>
                 <div class="extra content center aligned">
@@ -24,43 +24,43 @@
         </div>
         <div class="ten wide stretched column">
 
-                <p>Silakan lengkapi data diri Anda pada form dibawah ini.</p>
+                <p translate>user.buyer.text.profile</p>
                   <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
-                        <h4 class="ui dividing header">Data Profile</h4>
+                        <h4 class="ui dividing header" translate>user.profile.title</h4>
                       <div class="field">
-                          <label>Nama</label>
+                          <label translate>user.profile.nama</label>
                           <input name="name" #name placeholder="Masukan nama" type="text" [(ngModel)]="fm.name" required/>
                           <div *ngIf="f.submitted && name.invalid" class="ui pointing red basic label">Nama tidak boleh kosong</div>
                       </div>
                       <div class="field">
-                          <label>Tanggal Lahir</label>
+                          <label translate>user.profile.tgllahir</label>
                           <ng-datepicker name="dateOfBirth" [options]="options" [(ngModel)]="dob" (ngModelChange)="setDOB($event)"></ng-datepicker>
                       </div>
                       <div class="field">
-                          <label>Alamat</label>
+                          <label translate>user.profile.alamat</label>
                           <input name="address" #address placeholder="Masukan alamat" type="text" [(ngModel)]="fm.address" required/>
                           <div *ngIf="f.submitted && address.invalid" class="ui pointing red basic label">Alamat tidak boleh kosong</div>
                       </div>
                       <div class="field">
-                            <label>Provinsi</label>
+                            <label translate>user.profile.provinsi</label>
                             <sui-select name="province" #provs [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
                                 <sui-select-option *ngFor="let option of provs.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
-                            <label>Kota</label>
+                            <label translate>user.profile.kota</label>
                             <sui-select name="city" #city [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih kota" [(ngModel)]="adr.city">
                                 <sui-select-option *ngFor="let option of city.filteredOptions" [value]="option" (click)="getDistrict(option.mcityId)">{{option.name}}</sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
-                            <label>Kecamatan</label>
+                            <label translate>user.profile.kecamatan</label>
                             <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
                                 <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
                             </sui-select>
                         </div>
                         <div class="field">
-                            <label>Kelurahan</label>
+                            <label translate>user.profile.kelurahan</label>
                             <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
                                 <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setVilage(option)">{{option.name}}</sui-select-option>
                             </sui-select>
@@ -90,12 +90,12 @@
                           </sui-select>
                       </div> -->
                       <div class="field">
-                          <label>Kode POS</label>
+                          <label translate>user.profile.kodepos</label>
                           <input name="postal" #postal placeholder="Masukan kode POS" type="text" [(ngModel)]="fm.postal" required/>
                           <div *ngIf="f.submitted && postal.invalid" class="ui pointing red basic label">Kodepos tidak boleh kosong</div>
                       </div>
                       <div class="field">
-                          <label>Nomor HP</label>
+                          <label translate>user.profile.hp</label>
                           <input name="phone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
                       </div>
 
