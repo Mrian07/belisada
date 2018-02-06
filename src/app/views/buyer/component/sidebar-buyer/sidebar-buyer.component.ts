@@ -25,6 +25,7 @@ export class SidebarBuyerComponent implements OnInit {
   buyerName: string;
   buyerEmail: string;
   buyerImage: string;
+  lang: any;
 
   constructor(
     private categoryService: CategoryService,
@@ -35,6 +36,7 @@ export class SidebarBuyerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.lang = localStorage.getItem('languange');
     this.getProfileBuyer();
     this.getNavigationCategory();
   }
