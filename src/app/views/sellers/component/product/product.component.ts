@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.getSellerStore();
     this.storeService.getStatus().subscribe(data => {
-      if ( data[0].statusCode === '4') {
+      if ( data[0].statusCode === 'AP') {
         this.status = true;
       } else {
         this.status = false;
