@@ -33,6 +33,12 @@ export class SearchDashboardComponent implements OnInit {
     private sharedService: ShareService
   ) { }
 
+  // 'DR','SEDANG DI REVIEW',1
+  // 'PE','MOHON DIPERBAIKI',2
+  // 'RV','REVIEW',5
+  // 'RJ','REJECTED',3
+  // 'AP','SUDAH TAYANG',4
+
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Dashboard');
     this.getStoreData();
