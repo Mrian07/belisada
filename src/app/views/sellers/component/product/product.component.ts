@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { Store, ActionsSubject } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
+import {EmptyObservable} from 'rxjs/observable/EmptyObservable';
 import { StoreService } from '../../../../core/service/store/store.service';
 import { AddproductService } from '../../../../core/service/addproduct/addproduct.service';
 import { SellerProduct, Product } from '../../../../core/model/product';
@@ -10,6 +11,9 @@ import * as fromProduct from '../../../../store/reducers';
 import { TruncateModule } from 'ng2-truncate';
 import swal from 'sweetalert2';
 import { ShareService } from '../../../../core/service/shared.service';
+import { Subscription } from 'rxjs/Subscription';
+
+
 
 @Component({
   selector: 'app-product',
@@ -18,8 +22,14 @@ import { ShareService } from '../../../../core/service/shared.service';
 })
 export class ProductComponent implements OnInit {
 
-  constructor(private storeService: StoreService, private productService: AddproductService,
-  private routes: Router, private store: Store<fromProduct.Products>, private shared: ShareService
+  constructor(
+    private storeService: StoreService,
+    private productService: AddproductService,
+    private routes: Router,
+    private store: Store<fromProduct.Products>,
+    private shared: ShareService,
+    private ngZone: NgZone,
+    private actionsSubject: ActionsSubject,
 ) { }
 
   storeId: number;
@@ -29,9 +39,28 @@ export class ProductComponent implements OnInit {
   totalItem: Observable<any>;
   queryString: any = '';
   status: any;
+  editmode: Boolean;
+  editedPrice: number;
+  editProduct: Subscription;
 
   ngOnInit() {
+    this.editmode = false;
     this.getSellerStore();
+    this.getList();
+    this.editProduct = this.actionsSubject
+        .asObservable()
+        .filter(action => action.type === fromActions.EDITPRODUCTSUCCESS)
+        .subscribe((action: fromActions.EditProductSuccess) => {
+          this.ngZone.run(() => { this.sellerProduct = Observable.of(action.success); console.log('edit Done!'); });
+           swal(
+                'Product berhasil di Perbarui!',
+                'success'
+              ).then((result) => {
+              });
+        });
+  }
+
+  getList() {
     this.storeService.getStatus().subscribe(data => {
       if ( data[0].statusCode === 'AP') {
         this.status = true;
@@ -45,9 +74,10 @@ export class ProductComponent implements OnInit {
         });
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
-      this.store.select(fromProduct.getProductState).subscribe(datas => {
-        console.log(datas);
-      });
+      // this.store.select(fromProduct.getProductState).subscribe(datas => {
+      //   console.log(datas);
+      //   this.sellerProduct = datas;
+      // });
     });
   }
 
@@ -108,8 +138,36 @@ export class ProductComponent implements OnInit {
   }
 
   editProducts(data) {
+    this.editmode = true;
     this.shared.shareData = data;
     this.routes.navigateByUrl('/seller/add-products/edit');
+  }
+
+  editPrice(data) {
+    console.log(data);
+    this.editmode = false;
+   // this.sellerProduct = new EmptyObservable();
+    this.getList();
+    const productData = {
+      pricelist: data,
+      // description: this.description,
+      // productId: this.productId,
+      // mBpartnerStoreId: this.storeId,
+      // weight: this.weight,
+      // dimensionswidth: this.lebar,
+      // dimensionslength: this.panjang,
+      // dimensionsheight: this.tinggi,
+      // specialPrice: this.specialPrice,
+      // isAsapShipping: this.asap ,
+      // tag: [this.productName],
+      // qtyOnSeller: this.stok,
+      // qtyOnHand: +this.qtyOnHand,
+      // classification: this.classification,
+      // isGuarantee: this.isGuarantee,
+      // guaranteeDays: this.garansiDays
+    };
+    console.log(productData);
+    //this.store.dispatch(new fromActions.EditProduct(productData));
   }
 
   search(event) {

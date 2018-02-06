@@ -63,7 +63,7 @@
                   <!-- <th>Hapus</th> -->
               </tr>
           </thead>
-          <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString ; let i = index">
+          <tbody *ngFor="let product of sellerProduct | async ; let i = index">
             <tr>
                 <td class="collapsing">
                     <input type="checkbox" checked="{{check}}" (change)="checks(i)"/>
@@ -89,9 +89,12 @@
 
                     <div class="ui right labeled input">
                         <label for="amount" class="ui label">Rp.</label>
-                        <input placeholder="Amount" id="amount" value="{{ product.pricelist | number}}" type="text" disabled/>
-                        <a class="ui tag label" (click)="editProducts(product)">
-                            <i class="edit icon"></i>
+                        <input #box placeholder="Amount" id="amount"  oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [value]="product.pricelist | number" type="text" [disabled]="!editmode"/>
+                        <a class="ui tag label" *ngIf="!editmode" (click)="editProducts(data)">
+                                <i *ngIf="!editmode" class="edit icon"></i>
+                        </a>
+                        <a class="ui tag label" *ngIf="editmode"  (click)="editPrice(box.value)">
+                                <i class="save icon"></i>
                         </a>
                     </div>
                 </td>
@@ -101,11 +104,11 @@
                 </td>
                 <td>
                     <small>
-                            <a class="ui small label" *ngIf="product.statusCode === '1'">{{product.status}}</a>
-                            <a class="ui small yellow label" *ngIf="product.statusCode === '2'">{{product.status}}</a>
-                            <a class="ui small orange label" *ngIf="product.statusCode === '3'">{{product.status}}</a>
-                            <a class="ui small green label" *ngIf="product.statusCode === '4'">{{product.status}}</a>
-                            <a class="ui small green label" *ngIf="product.statusCode === '5'">{{product.status}}</a>
+                            <a class="ui small label" *ngIf="product.statusCode === 'DR'">{{product.status}}</a>
+                            <a class="ui small yellow label" *ngIf="product.statusCode === 'PE'">{{product.status}}</a>
+                            <a class="ui small orange label" *ngIf="product.statusCode === 'RJ'">{{product.status}}</a>
+                            <a class="ui small green label" *ngIf="product.statusCode === 'AP'">{{product.status}}</a>
+                            <a class="ui small green label" *ngIf="product.statusCode === 'RV'">{{product.status}}</a>
                     </small>
                 </td>
                 <td *ngIf="product.isAsapShipping === 'N'">
