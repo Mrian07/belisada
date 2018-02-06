@@ -34,6 +34,8 @@ export class SidebarComponent implements OnInit {
 
   pathArray: any;
   activeLink: any;
+  eCheckDisabled: any;
+  eCheckReadonly: any;
 
   ngOnInit() {
     this.getProfile();

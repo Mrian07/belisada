@@ -192,7 +192,7 @@ export class ProductDetailComponent implements OnInit {
    const st = this.tokenService.getUser();
    let stID = 0;
 
-   if (st) {
+  if (st) {
     if (st.stores.length !== 0) {
       stID = st.stores[0].mBpartnerStoreId;
     }
@@ -224,6 +224,8 @@ export class ProductDetailComponent implements OnInit {
         }
       }
     }
+   } else {
+    this.shoppingCartService.addItem(productId, +quantity);
    }
   }
   ininih(productId) {
