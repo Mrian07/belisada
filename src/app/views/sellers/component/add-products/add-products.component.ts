@@ -87,6 +87,7 @@ export class AddProductsComponent implements OnInit {
   imgNpwp: any;
   qid: any;
   optionTemplate: any;
+  highlight: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -286,6 +287,7 @@ export class AddProductsComponent implements OnInit {
     this.price = hasil.pricelist;
     this.specialPrice = hasil.specialPrice;
     this.description = hasil.description;
+    this.highlight = hasil.highlight;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
     this.toggle = false;
