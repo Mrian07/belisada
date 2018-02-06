@@ -161,6 +161,19 @@
 
   "user" :
 {
+  "profile" :
+   {
+      "title" : "Profile Data",
+      "nama" : "Name",
+      "tgllahir" : "Birth Date",
+      "alamat" : "Address",
+      "provinsi" : "Province",
+      "kota" : "City",
+      "kecamatan" : "District",
+      "kelurahan" : "Village",
+      "kodepos" : "Postal code",
+      "hp" : "Phone Number"
+   },
       "account" :
   {
           "title" : "Create an Account",
@@ -228,10 +241,10 @@
           "two" : "Seller",
           "three" : "Wishlist",
           "four" : "Inbox",
-    "five" : "Shop by Categories",
+        "five" : "Shop by Categories",
           "mone" : "My Transaction",
           "mtwo" : "My Profile",
-    "mthree" : "Account & Transaction",
+        "mthree" : "Account & Transaction",
           "alltrans" : "All Transaction & Confirmation",
           "status" : "Order Status",
           "history" : "Order History",
@@ -261,7 +274,12 @@
           "successedit" : "Data is updated!",
           "oldpass" : "Old Password",
           "npassw" : "New Password",
-          "renpassw" : "Re-enter New Password"
+          "renpassw" : "Re-enter New Password",
+
+          "text" :
+          {
+              "profile" : "Please fill out your profile bellow."
+           }
       },
 
       "billdata" :

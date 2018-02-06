@@ -41,13 +41,14 @@ export class BillingAddressComponent implements OnInit {
   categories = [];
   selectedProvince: string;
   optionTemplate: any;
-
+  lang: any;
   constructor(
     private masterService: MasterService,
     private iniService: BilingAddressService,
     private billingAddressService: BilingAddressService, ) { }
 
   ngOnInit() {
+    localStorage.setItem('languange', this.lang);
     const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();
