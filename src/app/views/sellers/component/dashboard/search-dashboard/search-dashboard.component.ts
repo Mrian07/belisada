@@ -24,6 +24,9 @@ export class SearchDashboardComponent implements OnInit {
   tutup: Boolean;
   toko: string;
   storeName: string;
+
+  modal: boolean;
+
   constructor(
     private router: Router,
     private title: Title,
@@ -111,6 +114,13 @@ export class SearchDashboardComponent implements OnInit {
     });
   }
 
+  openModalShop() {
+    this.modal = true;
+  }
+
+  closeModalShop() {
+    this.modal = false;
+  }
 
 
 }
