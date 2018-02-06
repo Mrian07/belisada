@@ -50,8 +50,8 @@ export class DalemReviewComponent implements OnInit {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
         this.kambing = data.detail;
-        this.kampretLuh = data.detail.image[0];
-        console.log(data.detail.image[0]);
+        // this.kampretLuh = data.detail.image[0];
+        // console.log(this.kampretLuh);
       });
   }
   asd() {

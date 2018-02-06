@@ -26,7 +26,7 @@ export class ReviewBuyerComponent implements OnInit {
   }
   repiew(id) {
     console.log('id', id);
-    this.router.navigate(['/buyer/ulasan', id]);
+    this.router.navigate(['/buyer/ulasan/', id]);
   }
 
 }
