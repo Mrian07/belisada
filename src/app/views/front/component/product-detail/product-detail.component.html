@@ -199,15 +199,15 @@
 
     <div>
             <div *ngIf="ProductList.stock == 0; else login">
+                <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity, ProductList.mBpartnerStoreId)" [disabled]="ProductList.stock <= 0">
+                    <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/prodak_pagebelisada-04.png" width="300px" height="50" alt="submit" />
+                </button>
+            </div>
+            <ng-template #login>
                     <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity, ProductList.mBpartnerStoreId)" [disabled]="ProductList.stock <= 0">
-                            <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/prodak_pagebelisada-04.png" width="300px" height="50" alt="submit" />
+                            <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
                         </button>
-                </div>
-                <ng-template #login>
-                        <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(ProductList.productId, quantity, ProductList.mBpartnerStoreId)" [disabled]="ProductList.stock <= 0">
-                                <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
-                            </button>
-                </ng-template>
+            </ng-template>
 
             <!-- <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
                 <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
@@ -290,7 +290,7 @@
                                 <th>Produk</th>
                                 <th>Harga + Pengiriman</th>
                                 <th>Condition</th>
-                                <th>Delivery</th>
+                                <!-- <th>Delivery</th> -->
                                 <th>Informasi Penjual</th>
                                 <th>Opsi Pembelian</th>
                             </tr>
@@ -302,15 +302,23 @@
                                 </td>
                                 <td>
                                     <span class="price">Rp. {{product.pricelist | number}}</span>
-                                    <img class="" src="assets/img/asap_big.png" alt=""><br>
-                                    <span>& GRATIS Pengiriman</span>
+                                    <img *ngIf="product.isAsapShipping === 'Y'" class="asap-logo" src="assets/img/asap_big.png" alt=""><br>
+                                    <span *ngIf="product.isAsapShipping === 'Y'">& GRATIS Pengiriman</span>
                                 </td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ product.condition }}</td>
+                                <!-- <td></td> -->
                                 <td>
                                     {{product.storeName}}
                                 </td>
-                                <td></td>
+                                <td>
+                                    <button *ngIf="product.stock <= 0" type="submit" class="poi" [ngStyle]="{ cursor: product.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(product.productId, 1, product.mBpartnerStoreId)" [disabled]="product.stock <= 0">
+                                        <img [ngClass]="{'greyscale' : product.stock <= 0}" src="/assets/img/prodak_pagebelisada-04.png" width="300px" height="50" alt="submit" />
+                                    </button>
+
+                                    <button *ngIf="product.stock >= 0" type="submit" class="poi" [ngStyle]="{ cursor: product.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(product.productId, 1, product.mBpartnerStoreId)" [disabled]="product.stock <= 0">
+                                        <img [ngClass]="{'greyscale' : product.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
+                                    </button>
+                                </td>
                                 <!-- <td>
                                     {{product.stock}}
                                 </td> -->
