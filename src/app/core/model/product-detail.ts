@@ -35,5 +35,6 @@ export class ProductDetail {
   qid: number;
   isOffers: string;
   mBpartnerStoreId: number;
+  condition: string;
   constructor() {}
 }
