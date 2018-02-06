@@ -44,7 +44,16 @@
      "ten": "Bahan Makanan",
      "ourpartner" : "PILIH DAN KLIK BRAND FAVORIT ANDA",
      "viewall" : "Lihat Semua"
-   }
+   },
+    "dropmuser":
+    {
+      "m1": "Orderan Anda",
+      "m2": "Recommendasi Anda",
+      "m3": "Ubah Password",
+      "m4": "Data Billing",
+      "m5": "Data Shipping",
+      "m6": "Kontak Kita"
+    }
  },
 
    "footer":

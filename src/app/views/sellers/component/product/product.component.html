@@ -104,11 +104,11 @@
                 </td>
                 <td>
                     <small>
-                            <a class="ui small label" *ngIf="product.statusCode === '1'">{{product.status}}</a>
-                            <a class="ui small yellow label" *ngIf="product.statusCode === '2'">{{product.status}}</a>
-                            <a class="ui small orange label" *ngIf="product.statusCode === '3'">{{product.status}}</a>
-                            <a class="ui small green label" *ngIf="product.statusCode === '4'">{{product.status}}</a>
-                            <a class="ui small green label" *ngIf="product.statusCode === '5'">{{product.status}}</a>
+                            <a class="ui small label" *ngIf="product.statusCode === 'DR'">{{product.status}}</a>
+                            <a class="ui small yellow label" *ngIf="product.statusCode === 'PE'">{{product.status}}</a>
+                            <a class="ui small orange label" *ngIf="product.statusCode === 'RJ'">{{product.status}}</a>
+                            <a class="ui small green label" *ngIf="product.statusCode === 'AP'">{{product.status}}</a>
+                            <a class="ui small green label" *ngIf="product.statusCode === 'RV'">{{product.status}}</a>
                     </small>
                 </td>
                 <td *ngIf="product.isAsapShipping === 'N'">

@@ -14,7 +14,7 @@
       "cs" : "Customer Service",
       "ssell": "Start Sell",
     "promo" : "Hot Promo",
-      "welcome": "Welcome to",
+      "welcome": "Welcome",
     "welcomelogin" : "Hi ",
       "login" : "Log in",
       "logout" : "Logout",
@@ -32,7 +32,7 @@
 
     "mcategory":
   {
-      "one": "Computer",
+    "one": "Computer",
     "two": "Gadget",
     "three": "Audio & Visual",
     "four": "Mechanical & Electrical",
@@ -44,6 +44,15 @@
     "ten": "Groceries",
     "ourpartner" : "Choose and Click Your Favorite Brand",
     "viewall" : "View All"
+    },
+    "dropmuser":
+    {
+      "m1": "Your Order",
+      "m2": "Recommendation",
+      "m3": "Change Password",
+      "m4": "Billing",
+      "m5": "Shipping",
+      "m6": "Contact Us"
     }
   },
 
