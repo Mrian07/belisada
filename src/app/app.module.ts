@@ -188,8 +188,8 @@ export function getAuthServiceConfigs() {
     AsapbyBelisComponent,
     HeaderdisellerComponent,
     EditShippingComponent,
-    EditBillingComponent,    FaqSellerCenterComponent
-
+    EditBillingComponent,
+    FaqSellerCenterComponent,
     ChattingComponent,
     FaqSellerCenterComponent,
     ReviewBuyerComponent,

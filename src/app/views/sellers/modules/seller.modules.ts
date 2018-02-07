@@ -94,7 +94,6 @@ import { OpenCloseShopComponent } from '../component/dashboard/open-close-shop/o
     PlainSellerLayoutComponent,
     ProductComponent,
     ProductListComponent,
-    ChattingComponent,
     FaqSellerComponent,
     NewSellerComponent,
     CourierComponent,
