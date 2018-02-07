@@ -9,6 +9,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import swal from 'sweetalert2';
 import { ShareService } from '../../../../core/service/shared.service';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-sidebar-buyer',
@@ -28,6 +29,8 @@ export class SidebarBuyerComponent implements OnInit {
   buyerImage: string;
   lang: any;
 
+  message: string;
+
   constructor(
     private categoryService: CategoryService,
     private router: Router,
@@ -35,14 +38,24 @@ export class SidebarBuyerComponent implements OnInit {
     private tokenService: TokenService,
     private upgradeService: UpgradeService,
     private shareService: ShareService,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
     this.lang = localStorage.getItem('languange');
     this.getProfileBuyer();
     this.getNavigationCategory();
+    this.uploadPhoto();
   }
 
+  uploadPhoto() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.message = respon;
+      if (this.message === 'upload-photo') {
+        this.getProfileBuyer();
+      }
+    });
+  }
 
   getCategoryOne(cb) {
     this.categoryService.CategoryOne().subscribe(data => {

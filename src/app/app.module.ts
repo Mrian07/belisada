@@ -1,3 +1,4 @@
+import { FlagService } from './core/service/flag.service';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy, registerLocaleData  } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -227,6 +228,7 @@ export function getAuthServiceConfigs() {
     ActivationService,
     SeoService,
     ForgotPasswordService,
+    FlagService,
     TransactionsService,
     {
       provide: LocationStrategy,
