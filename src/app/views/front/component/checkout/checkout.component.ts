@@ -235,7 +235,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   public removeProductFromCart(item: CartItem): void {
-    console.log('item: ', item);
+    // console.log('item: ', item);
     swal({
       title: 'Belisada.co.id',
       text: 'Apakah Anda Yakin?',
@@ -263,11 +263,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   selectPaymentMethod(paymentMethodId) {
-    console.log('paymentMethodId: ', paymentMethodId);
+    // console.log('paymentMethodId: ', paymentMethodId);
     const arr = paymentMethodId.split('~');
     const mBankAccountId = arr[0];
     const paymentMethod = arr[1];
-    console.log(mBankAccountId + ' - ' + paymentMethod);
+    // console.log(mBankAccountId + ' - ' + paymentMethod);
     this.paymentMethodDto = this.paymentMethodDtos.find(x => x.paymentMethod.code === paymentMethod);
     this.paymentMethod = this.paymentMethodDto.paymentMethod;
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);
@@ -275,7 +275,7 @@ export class CheckoutComponent implements OnInit {
 
   selectShippingMethod(shippingMethodId) {
     const courier = this.freightRates.find((x) => x.shipperId === +shippingMethodId);
-    console.log('courier: ', courier);
+    // console.log('courier: ', courier);
     if (courier) {
       this.checkout.courierId = courier.shipperId;
       this.checkout.courierAmt = courier.amount;
@@ -329,7 +329,7 @@ export class CheckoutComponent implements OnInit {
   getRate(villageId) {
     this.freightRateService.getFreightRates(villageId).subscribe(response => {
       this.freightRates = response;
-      console.log('this.freightRate: ', this.freightRates);
+      // console.log('this.freightRate: ', this.freightRates);
     });
   }
 
@@ -344,7 +344,7 @@ export class CheckoutComponent implements OnInit {
     this.checkout.mBankAccountId = this.paymentMethodDetail.mBankAccountId;
     this.checkout.paymentMethod = this.paymentMethod.code;
     this.checkout.shippingAddress = (this.shippingAddress === undefined) ? null : this.shippingAddress.addressId;
-    console.log('this.checkout: ', this.checkout);
+    // console.log('this.checkout: ', this.checkout);
     if (this.checkout.courierId === undefined
       || this.checkout.mBankAccountId === undefined
       || this.checkout.paymentMethod === undefined
@@ -354,7 +354,7 @@ export class CheckoutComponent implements OnInit {
         return;
     }
     this.checkoutService.doCheckout(this.checkout).subscribe(response => {
-      console.log('response: ', response);
+      // console.log('response: ', response);
       if (response.status === '1') {
         this.shoppingCartService.empty();
       }
@@ -411,37 +411,37 @@ export class CheckoutComponent implements OnInit {
     const pageYOffset = Math.ceil(window.pageYOffset);
 
     if (pageYOffset >= csAddressY && pageYOffset < csCartY) {
-      console.log('1');
+      // console.log('1');
       csAddressBtn.classList.add('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
     } else if (pageYOffset >= csCartY && pageYOffset < csPaymentY) {
-      console.log('2');
+      // console.log('2');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.add('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
     } else if (pageYOffset >= csPaymentY && pageYOffset < csSummaryY) {
-      console.log('3');
+      // console.log('3');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.add('active');
       csSummaryBtn.classList.remove('active');
     } else if (pageYOffset >= csSummaryY && pageYOffset < limitScrollY) {
-      console.log('4');
+      // console.log('4');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.add('active');
     } else {
-      console.log('5');
+      // console.log('5');
       csAddressBtn.classList.remove('active');
       csCartBtn.classList.remove('active');
       csPaymentBtn.classList.remove('active');
       csSummaryBtn.classList.remove('active');
     }
-    console.log(pageYOffset);
+    // console.log(pageYOffset);
   }
 
 

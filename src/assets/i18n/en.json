@@ -172,7 +172,9 @@
       "kecamatan" : "District",
       "kelurahan" : "Village",
       "kodepos" : "Postal code",
-      "hp" : "Phone Number"
+      "hp" : "Phone Number",
+      "ktp" : "KTP Number",
+      "npwp" : "NPWP Number"
    },
       "account" :
   {
@@ -209,7 +211,10 @@
           "eleven" : "Upgrade Account",
           "shop" : "Shop",
           "rek" : "Payment Account",
-
+          "saldo" : "Your balance",
+          "lacak" : "Search Your Product",
+          "notifikasi" : "Notification",
+          "contact" : "Contact Us",
     "titleone" : "Profile Seller",
     "titletwo" : "Store Information",
     "titlethree" : "Bank Account",

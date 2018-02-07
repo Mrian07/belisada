@@ -140,7 +140,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
-          //console.log('brow', this.ProductList);
+          console.log('brow', this.ProductList);
           //console.log(this.ProductList.mBpartnerStoreId);
           this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
@@ -162,7 +162,7 @@ export class ProductDetailComponent implements OnInit {
           this.usedStock = (this.asap && this.ProductList.qtyOnHand > 0) ? this.ProductList.qtyOnHand : this.ProductList.stock;
           this.arrStock = Array.from(new Array(this.usedStock), (val, index) => index + 1);
           if (this.storeName === '') {
-            this.storeName = 'Belisada.co.id';
+            this.storeName = 'Belisada';
           }
           this.theImage = this.ProductImage[0];
           this.title.setTitle('Belisada - ' + this.ProductList.name);

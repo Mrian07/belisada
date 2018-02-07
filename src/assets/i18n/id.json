@@ -173,7 +173,9 @@
       "kecamatan" : "Kecamatan",
       "kelurahan" : "Kelurahan",
       "kodepos" : "Kode POS",
-      "hp" : "Nomor Telepon"
+      "hp" : "Nomor Telepon",
+      "ktp" : "Nomor KTP",
+      "npwp" : "Nomor NPWP"
    },
 
        "account" :
@@ -211,6 +213,10 @@
            "eleven" : "Perbaharui Akun",
            "shop" : "Toko",
            "rek" : "Rekening",
+           "saldo" : "Saldo Anda",
+           "lacak" : "Lacak Barang Anda",
+           "notifikasi" : "Kotak Masuk / Notifikasi barang terjual",
+           "contact" : "Kontak Kami",
      "titleone" : "Profil Penjual",
      "titletwo" : "Info Toko",
      "titlethree" : "Rekening Bank",

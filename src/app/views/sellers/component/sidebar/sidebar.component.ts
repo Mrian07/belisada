@@ -6,6 +6,7 @@ import { TokenService } from '../../../../core/service/token/token.service';
 import { StoreService } from '../../../../core/service/store/store.service';
 import swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -30,13 +31,17 @@ export class SidebarComponent implements OnInit {
   activeLink: any;
   eCheckDisabled: any;
   eCheckReadonly: any;
+
+  message: string;
+
   constructor(private router: Router,
   private profileService: ProfileService,
   private active: ActiveLink,
   private sharedService: ShareService,
   private tokenService: TokenService,
   private storeService: StoreService,
-  private translate: TranslateService
+  private translate: TranslateService,
+  private flagService: FlagService
 ) {  }
 
 
@@ -48,6 +53,17 @@ export class SidebarComponent implements OnInit {
     if (this.lang) {
       this.translate.use(this.lang);
     }
+
+   this.uploadPhoto();
+  }
+
+  uploadPhoto() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.message = respon;
+      if (this.message === 'upload-photo') {
+        this.getProfile();
+      }
+    });
   }
 
   getStoreStatus() {
@@ -113,6 +129,7 @@ export class SidebarComponent implements OnInit {
       }else {
         this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
       }
+     // console.log(this.sellerimage);
     });
   }
   goToProduct() {

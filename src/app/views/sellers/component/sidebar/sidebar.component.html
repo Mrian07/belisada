@@ -6,7 +6,7 @@
       <!-- <h4 class="ui header" style='font-size:50px;margin-top:10px'><i class="address book icon"></i></h4> -->
       <!-- <img class="ui medium circular image" src="/assets/img/kristy.png"> -->
       <p>
-          <img (click)="editProfile()" class="ui medium rounded image img-profile" [src]="sellerimage" alt="profile picture"/>
+          <img (click)="editProfile()" class="ui medium rounded image img-profile" src="{{sellerimage}}" alt="profile picture"/>
       </p>
       <strong>{{sellerName}}</strong><br>
       <strong>{{storeName}}</strong><br>
@@ -40,14 +40,14 @@
           <p><a (click)="goKontak()" class="item" translate>user.seller.two</a></p>
           <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
           <p><a (click)="goToProduct()" class="item" translate>user.seller.four</a></p>
-          <p><a (click)="gotoDana()" class="item">Saldo Anda</a></p>
-          <p><a (click)="gotoLacak()" class="item">Lacak Barang Andang</a></p>
-          <p><a (click)="goKontak()" class="item" translate>Kotak Masuk / Notifikasi barang terjual</a></p>
+          <p><a (click)="gotoDana()" class="item" translate>user.seller.saldo</a></p>
+          <p><a (click)="gotoLacak()" class="item" translate>user.seller.lacak</a></p>
+          <p><a (click)="goKontak()" class="item" translate>user.seller.notifikasi</a></p>
           <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
           <!-- <p><a (click)="goCourier()" class="item">Info Pengiriman</a></p> -->
            <p><a (click)="goSallesReport()" class="item" translate>user.seller.five</a></p>
           <p><a (click)="goFaqSeller()" class="item" translate>user.seller.nine</a></p>
-          <p><a (click)="gotoContact()" class="item">Contact Kami</a></p>
+          <p><a (click)="gotoContact()" class="item" translate>user.seller.contact</a></p>
         </div>
 
     </div>

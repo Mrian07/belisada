@@ -2,9 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/app",
-    "baseUrl": "./",
+    "baseUrl": "src",
     "module": "es2015",
-    "types": []
+    "types": [],
+    "paths": {
+      "@services/*": ["app/core/service/*"]
+    }
   },
   "exclude": [
     "server.ts",

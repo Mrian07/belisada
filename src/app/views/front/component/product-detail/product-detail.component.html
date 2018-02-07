@@ -307,7 +307,10 @@
                                 </td>
                                 <td>{{ product.condition }}</td>
                                 <!-- <td></td> -->
-                                <td>
+                                <td *ngIf="product.storeName === ''">
+                                    Belisada
+                                </td>
+                                <td *ngIf="product.storeName !== ''">
                                     {{product.storeName}}
                                 </td>
                                 <td>
