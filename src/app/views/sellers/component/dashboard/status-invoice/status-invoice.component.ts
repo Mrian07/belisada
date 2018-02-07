@@ -33,6 +33,7 @@ export class StatusInvoiceComponent implements OnInit {
       }
       const storeId = user.stores[0].mBpartnerStoreId;
       this.sellers.GetReviewProduct(storeId).subscribe(data => {
+        console.log(data);
         this.productList = data.productList;
       });
     }
