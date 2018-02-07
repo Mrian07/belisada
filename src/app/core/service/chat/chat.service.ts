@@ -1,5 +1,4 @@
-import { Observable } from 'rxjs/Observable';
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { Configuration } from '../../config/configuration';
 import * as io from "socket.io-client";
 import { LoginService } from '../login/login.service';
@@ -11,6 +10,9 @@ import { Promise, reject, resolve } from 'q';
 export class ChatService {
   private socket: any;
   private user: any;
+  private hiden: boolean;
+
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private cnf: Configuration, private login: LoginService) { }
 
@@ -40,5 +42,10 @@ export class ChatService {
     if(!this.socket) return;
     this.socket.disconnect();
     localStorage.chat_hide = 'true';
+  }
+
+  toggle() {
+    this.hiden = !this.hiden;
+    this.change.emit(this.hiden);
   }
 }

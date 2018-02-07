@@ -54,7 +54,6 @@ import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reducers';
 import { ProductEffects } from '../../../store/effects/index';
 import { ProductListComponent } from '../component/product-list/product-list.component';
-import { ChattingComponent } from '../component/chatting/chatting.component';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { NgxEditorModule } from 'ngx-editor';
 import { CourierComponent } from '../component/courier/courier.component';
