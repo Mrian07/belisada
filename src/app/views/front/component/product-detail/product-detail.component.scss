@@ -274,6 +274,22 @@ h1{
     position: relative;
     top: 8px;
 }
+.jamu {
+    border: 1px solid gray;
+    border-left: 3px solid blue;
+}
+.lpp {
+    cursor: default;
+}
+.wrapperyu{
+    display:grid;
+    grid-template-columns: 100%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
 @media screen and (max-width: 425px) {
     .price{
         color: green;

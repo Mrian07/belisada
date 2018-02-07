@@ -74,10 +74,10 @@ export class ProductComponent implements OnInit {
         });
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
-      // this.store.select(fromProduct.getProductState).subscribe(datas => {
-      //   console.log(datas);
-      //   this.sellerProduct = datas;
-      // });
+      this.store.select(fromProduct.getProductState).subscribe(datas => {
+        console.log(datas);
+        //this.sellerProduct = datas;
+      });
     });
   }
 
@@ -100,7 +100,7 @@ export class ProductComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ya'
     }).then((result) => {
-      console.log(result);
+      //console.log(result);
       if (result.value) {
         this.productService.Inactive(data).subscribe(res => {
           swal(
@@ -144,7 +144,7 @@ export class ProductComponent implements OnInit {
   }
 
   editPrice(data) {
-    console.log(data);
+    //console.log(data);
     this.editmode = false;
    // this.sellerProduct = new EmptyObservable();
     this.getList();

@@ -173,7 +173,9 @@
       "kecamatan" : "Kecamatan",
       "kelurahan" : "Kelurahan",
       "kodepos" : "Kode POS",
-      "hp" : "Nomor Telepon"
+      "hp" : "Nomor Telepon",
+      "ktp" : "Nomor KTP",
+      "npwp" : "Nomor NPWP"
    },
 
        "account" :

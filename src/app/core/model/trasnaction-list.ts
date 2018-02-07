@@ -17,6 +17,7 @@ export class TrasnactionList {
   items: Items[];
   title: string;
   review: string;
+  message?: string;
   star: number;
 }
 

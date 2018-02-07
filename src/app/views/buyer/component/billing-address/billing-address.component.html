@@ -2,17 +2,17 @@
 <div class="ui grid">
     <div class="sixteen wide column">
         <p>Silakan isi data Billing dibawah ini dengan lengkap dan benar.</p>
-        <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+        <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>
             <h4 class="ui dividing header">Data Billing</h4>
-            <input name="addressId" type="hidden" formControlName="addressId" [(ngModel)]="fm.addressId"/>
+            <input name="addressId" type="hidden" formControlName="addressId"/>
             <div class="fields">
                 <div class="eight wide field">
                     <label translate>user.billdata.name</label>
-                    <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name" [(ngModel)]="fm.name" required/>
+                    <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
                 </div>
                 <div class="eight wide field">
                     <label translate>user.billdata.saveadd</label>
-                    <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
+                    <input name="addressName" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
                 </div>
             </div>
             <div class="field">
@@ -59,7 +59,7 @@
                     <input name="phone" type="number" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
                 </div>
             </div>
-            <button class="ui primary button" type="submit">Simpan</button>
+            <button class="ui primary button" type="submit" [disabled]="!f.valid">Simpan</button>
         </form>
     </div>
 </div>

@@ -45,7 +45,7 @@
 
            </table>
             </ng-template> -->
-    
+
     <table width="100%;">
         <tr *ngIf="ProductList.specialPrice !== 0" class="gap-between-elements">
             <td class="coll-1" translate>goods.detail.titleone</td>
@@ -307,7 +307,10 @@
                                 </td>
                                 <td>{{ product.condition }}</td>
                                 <!-- <td></td> -->
-                                <td>
+                                <td *ngIf="product.storeName === ''">
+                                    Belisada
+                                </td>
+                                <td *ngIf="product.storeName !== ''">
                                     {{product.storeName}}
                                 </td>
                                 <td>
@@ -368,7 +371,26 @@
         <span *ngIf="specs === 0">Spesifikasi Masih Belum Tersedia</span>
         <li *ngFor="let item of ProductList.specification">{{item.attribute}} : {{item.value}}</li>
     </div>
-    <div class="ui bottom attached segment" suiTabContent="3">Belum ada Ulasan Untuk {{ProductList.name}}</div>
+    <div class="ui bottom attached segment" suiTabContent="3">
+            <div class="wrapperyu">
+                    <div class="jamu" *ngFor="let asu of uli">
+
+                            <div class="ui labeled button lpp" tabindex="0">
+                                    <div class="ui red button lpp">
+                                      <i class="heart icon"></i>
+                                      {{asu.name}}
+                                    </div>
+                                    <div class="ui basic red left pointing label">
+                                     Pembeli
+                                    </div>
+                                  </div><br/>
+                                  <p>Tanggal Pembelian : {{asu.created}}</p>
+                                  <sui-rating class="star" [ngModel]="asu.star" [maximum]="5" [isReadonly]="true"></sui-rating>
+                            <!-- {{asu.name}}
+                            <sui-rating class="star" [ngModel]="asu.star" [maximum]="5" [isReadonly]="true"></sui-rating> -->
+                    </div>
+                  </div>
+    </div>
     <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
 </sui-tabset>
 

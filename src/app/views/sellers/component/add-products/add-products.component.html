@@ -284,9 +284,9 @@
                     <div class="right floated column">
                         <div class="ui buttons" *ngIf="editMode == false">
                     <!-- <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button> -->
-                        <button class="ui red button" (click)="addProducts()">Save Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
-                        <div class="or"></div>
-                        <button class="ui orange button"  (click)="open()">Save Produk <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image"></button>
+                        <!-- <button class="ui red button" (click)="addProducts()">Save Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
+                        <div class="or"></div> -->
+                        <button class="ui orange button"  (click)="addProducts()">Save Produk</button>
                     </div>
                     <br>
                     <!-- <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
@@ -314,7 +314,7 @@
                 <option value= "10" >10</option>
         </select>
         <br><br>
-        <button class="ui green button" (click)="close()">Okay</button>
+        <button class="ui green button" (click)="subs()">Okay</button>
         <button class="ui red button" (click)="cancel()">Cancel</button>
     </div>
 
