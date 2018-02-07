@@ -19,6 +19,8 @@ import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart'
 import { ProductService } from '../../../../core/service/product/product.service';
 import { SearchService } from '../../../../core/service/search/search.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ChatService } from '../../../../core/service/chat/chat.service';
+
 interface ICartItemWithProduct extends CartItem {
   product: Product;
   totalCost: number;
@@ -91,6 +93,7 @@ export class ProductDetailComponent implements OnInit {
     private ngZone: NgZone,
     private tokenService: TokenService,
     private productService: ProductService,
+    private chat: ChatService,
     public translate: TranslateService
   ) { }
   private componetDestroyed: Subject<Boolean> = new Subject();
@@ -130,6 +133,9 @@ export class ProductDetailComponent implements OnInit {
         this.carouselTileItems.push(i);
       }
     }
+  }
+  open_chat() {
+    this.chat.toggle();
   }
 
   getDetail() {

@@ -64,7 +64,6 @@ import { FrontNavMobileComponent } from './../component/front-nav-mobile/front-n
     ProductSearchComponent,
     AsapComponent,
     CaraBerbelanjaComponent,
-    ChattingFrontComponent,
     ProductTerbaruComponent,
     FrontNavMobileComponent,
   ],
