@@ -1,5 +1,10 @@
 <div class="gap-between-elements"></div>
-<img class="ui image" (click)="daftar()" style="cursor:pointer;" src="/assets/img/baruart.jpg">
+<div class="header-seller-center">
+    <div class="caption">
+        <em>Hai, </em>Ingin menghasilkan omset jutaan rupiah?
+    </div>
+</div>
+<!-- <img class="ui image" (click)="daftar()" style="cursor:pointer;" src="/assets/img/baruart.jpg"> -->
 <app-headerdiseller></app-headerdiseller>
 <hr>
 <div class="gap-between-elements"></div>
@@ -8,13 +13,13 @@
         <div class="ui grid">
 
             <div class="three wide column">
-                    <app-sidebar></app-sidebar>
+                <app-sidebar></app-sidebar>
             </div>
             <div class="thirteen wide column">
                 <div class="ui grid">
-                        <div class="sixteen wide column">
-                                <router-outlet></router-outlet>
-                            </div>
+                    <div class="sixteen wide column">
+                        <router-outlet></router-outlet>
+                    </div>
                     <div class="sixteen wide column">
                         <div class="ui grid">
                             <div class="sixteen wide column">
@@ -26,9 +31,8 @@
                         </div>
                     </div>
                 </div>
-                </div>
-              </div>
             </div>
-
+        </div>
+    </div>
 </body>
 

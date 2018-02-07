@@ -1,3 +1,4 @@
+import { RepiewServiceService } from './../../../core/service/repiew/repiew-service.service';
 import { TransactionListService } from './../../../core/service/transcations-list/transaction-list.service';
 import { WishlistBuyerService } from './../../../core/service/wishlist-buyer/wishlist-buyer.service';
 import { UpgradeService } from './../../../core/service/upgrade/upgrade.service';
@@ -100,7 +101,8 @@ import { FrontNavMobileComponent } from './../component/front-nav-mobile/front-n
     WishlistBuyerService,
     TransactionListService,
     FreightRateService,
-    UpgradeService
+    UpgradeService,
+    RepiewServiceService
   ]
 })
 export class FrontModules { }

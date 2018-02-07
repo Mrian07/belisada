@@ -33,5 +33,9 @@ export class TransactionBuyerComponent implements OnInit {
     console.log('ini id3 yah', id.transactionId);
     this.router.navigate(['/buyer/confirmation-buyer', id.transactionId]);
   }
+  reviewBoss(id) {
+    console.log('reviewBoss', id.transactionId);
+    this.router.navigate(['/buyer/review-buyer', id.transactionId]);
+  }
 
 }

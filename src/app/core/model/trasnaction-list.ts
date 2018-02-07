@@ -11,9 +11,14 @@ export class TrasnactionList {
   billingName: string;
   billingAddress: string;
   shippingAddress: string;
+  productId: string;
   courierAmt: string;
   name: string;
   items: Items[];
+  title: string;
+  review: string;
+  message?: string;
+  star: number;
 }
 
 export class Items {

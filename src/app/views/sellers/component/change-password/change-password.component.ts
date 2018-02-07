@@ -52,6 +52,7 @@ export class ChangePasswordComponent implements OnInit {
       );
       return false;
     }
+    
     this.changePasswordService.ChangePassword(changePasswordData).subscribe(data => {
     });
 

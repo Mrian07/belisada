@@ -1,3 +1,4 @@
+import { FlagService } from './core/service/flag.service';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy, registerLocaleData  } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
@@ -95,6 +96,9 @@ import { EditShippingComponent } from './views/front/component/edit-shipping/edi
 import { EditBillingComponent } from './views/front/component/edit-billing/edit-billing.component';
 import { FaqSellerCenterComponent } from './views/front/component/seller-center/faq-seller-center/faq-seller-center.component';
 import { ChattingComponent } from './core/component/chatting/chatting.component';
+import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/review-buyer.component';
+import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
+// import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -184,9 +188,12 @@ export function getAuthServiceConfigs() {
     AsapbyBelisComponent,
     HeaderdisellerComponent,
     EditShippingComponent,
-    EditBillingComponent,
+    EditBillingComponent,    FaqSellerCenterComponent
+
     ChattingComponent,
-    FaqSellerCenterComponent
+    FaqSellerCenterComponent,
+    ReviewBuyerComponent,
+    DalemReviewComponent
 
 
     // WishlistComponent,
@@ -224,6 +231,7 @@ export function getAuthServiceConfigs() {
     ActivationService,
     SeoService,
     ForgotPasswordService,
+    FlagService,
     TransactionsService,
     {
       provide: LocationStrategy,

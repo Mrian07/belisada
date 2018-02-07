@@ -40,6 +40,7 @@ export class AddShippingComponent implements OnInit {
   kelurahan = [];
   categories = [];
   selectedProvince: string;
+  lang: any;
 
   @Output() triggerEvent = new EventEmitter<Boolean>();
 
@@ -50,6 +51,7 @@ export class AddShippingComponent implements OnInit {
     private shippingAddressService: ShippingAddressService) { }
 
   ngOnInit() {
+    localStorage.setItem('languange', this.lang);
    // const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();

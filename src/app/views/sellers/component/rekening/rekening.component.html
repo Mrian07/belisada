@@ -12,7 +12,8 @@
                             <label>No. Rekening</label>
 
                             <input name="accountNo" placeholder="Masukan nomor rekening" type="number" [(ngModel)]="accountNo"  required  #_accountNo="ngModel" min="0" max="16"/>
-                            <div *ngIf="!_accountNo.valid" class="ui pointing red basic label">No Rek Is Required</div>
+                            <div *ngIf="_accountNo.invalid && (_accountNo.dirty || _accountNo.touched)" class="ui pointing red basic label">No Rek Is Required</div>
+                            <!-- <div *ngIf="!_accountNo.dirty && !_accountNo.pristine" class="ui pointing red basic label">No Rek Is Required</div> -->
                         </div>
 
                         <div class="field">
@@ -25,7 +26,7 @@
                         <div class="field">
                             <label>Pemilik</label>
                             <input name="pemilik" placeholder="Masukan nama pemilik" #_accountName="ngModel" [(ngModel)]="accountName" required type="text"/>
-                            <div *ngIf="!_accountName.valid" class="ui pointing red basic label">Masukan Account Name Anda</div>
+                            <div *ngIf="_accountNo.invalid && (_accountNo.dirty || _accountNo.touched)" class="ui pointing red basic label">Nama Pemilik</div>
                         </div>
                         <div *ngIf="show">
                             <button

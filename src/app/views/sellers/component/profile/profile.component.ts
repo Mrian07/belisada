@@ -15,6 +15,7 @@ import { Title } from '@angular/platform-browser';
 import { ShareService } from '../../../../core/service/shared.service';
 import { DatePipe } from "@angular/common";
 // import * as idLocale from 'date-fns/locale/id';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-profile',
@@ -51,7 +52,8 @@ export class ProfileComponent implements OnInit {
     private masterService: MasterService,
     private title: Title,
     private sharedService: ShareService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
@@ -154,6 +156,26 @@ export class ProfileComponent implements OnInit {
     cnv.getContext('2d').drawImage(el, 0, 0, w, h);
 
     this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
+
+    this.profileService.updatebuyerProfile(this.fm).subscribe(data => {
+
+      if (data.status === '1') {
+        swal(
+          'Success',
+          'Upload Photo berhasil',
+          'success'
+        );
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
+
+    });
+
+    this.flagService.changeMessage('upload-photo');
   }
 
   setUrl(event, img) {

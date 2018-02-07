@@ -54,12 +54,12 @@ import { DashboardComponent } from '../component/dashboard/dashboard.component';
 import { ProductReducer, StoreReducer, BankReducer } from '../../../store/reducers';
 import { ProductEffects } from '../../../store/effects/index';
 import { ProductListComponent } from '../component/product-list/product-list.component';
-import { ChattingComponent } from '../component/chatting/chatting.component';
 import { TruncateModule } from 'ng2-truncate/dist/truncate.module';
 import { NgxEditorModule } from 'ngx-editor';
 import { CourierComponent } from '../component/courier/courier.component';
 import { LacakBarangAndaComponent } from '../component/lacak-barang-anda/lacak-barang-anda.component';
 import { InfoPengirimanComponent } from '../component/info-pengiriman/info-pengiriman.component';
+import { OpenCloseShopComponent } from '../component/dashboard/open-close-shop/open-close-shop.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +101,8 @@ import { InfoPengirimanComponent } from '../component/info-pengiriman/info-pengi
     MenuProfileComponent,
     TarikDanaComponent,
     LacakBarangAndaComponent,
-    InfoPengirimanComponent
+    InfoPengirimanComponent,
+    OpenCloseShopComponent
   ],
   imports: [
     CommonModule,

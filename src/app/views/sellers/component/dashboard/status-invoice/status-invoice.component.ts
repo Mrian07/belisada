@@ -14,6 +14,8 @@ import { TokenService } from '../../../../../core/service/token/token.service';
 })
 export class StatusInvoiceComponent implements OnInit {
   productList: any;
+  color: string;
+  status: string;
 
   constructor(
     private auth: TokenService,
@@ -24,6 +26,11 @@ export class StatusInvoiceComponent implements OnInit {
   ngOnInit() {
     this.getRev();
   }
+    // 'DR','SEDANG DI REVIEW',1
+  // 'PE','MOHON DIPERBAIKI',2
+  // 'RV','REVIEW',5
+  // 'RJ','REJECTED',3
+  // 'AP','SUDAH TAYANG',4
 
   getRev() {
     const user = this.auth.getUser();
@@ -32,7 +39,9 @@ export class StatusInvoiceComponent implements OnInit {
         return;
       }
       const storeId = user.stores[0].mBpartnerStoreId;
+      console.log(storeId);
       this.sellers.GetReviewProduct(storeId).subscribe(data => {
+        console.log(data);
         this.productList = data.productList;
       });
     }

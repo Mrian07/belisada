@@ -28,7 +28,6 @@ export class EditBillingComponent implements OnInit {
   vilaggeId: FormControl;
   phone: FormControl;
   shippingAddress: ShippingAddress;
-  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   isDefault: 'Y';
@@ -45,6 +44,7 @@ export class EditBillingComponent implements OnInit {
   categories = [];
   selectedProvince: string;
   optionTemplate: any;
+  lang: any;
   
   constructor(
     private sharedService: ShareService,
@@ -59,7 +59,7 @@ export class EditBillingComponent implements OnInit {
   }
 
   onSubmit() {
-
+    localStorage.setItem('languange', this.lang);
     const model = this.createComForm.value;
     const b = {
       name: model.name,
@@ -84,17 +84,16 @@ export class EditBillingComponent implements OnInit {
   }
 
   createFormControls() {
-    this.name = new FormControl('');
-    this.address = new FormControl('');
-    this.addressType = new FormControl('');
-    this.addressName = new FormControl('');
-    this.phone = new FormControl('');
-    this.city = new FormControl('');
-    this.addressId = new FormControl('');
-    this.province = new FormControl('');
-    this.district = new FormControl('');
-    this.vilaggeId = new FormControl('');
-    this.postalCode = new FormControl('');
+    this.name = new FormControl('', Validators.required);
+    this.address = new FormControl('', Validators.required);
+    this.addressName = new FormControl('', Validators.required);
+    this.phone = new FormControl('', Validators.required);
+    this.city = new FormControl('', Validators.required);
+    this.addressId = new FormControl('', Validators.required);
+    this.province = new FormControl('', Validators.required);
+    this.district = new FormControl('', Validators.required);
+    this.vilaggeId = new FormControl('', Validators.required);
+    this.postalCode = new FormControl('', Validators.required);
   }
 
   createForm() {
@@ -102,7 +101,6 @@ export class EditBillingComponent implements OnInit {
       addressId: this.addressId,
       name: this.name,
       address: this.address,
-      addressType: this.addressType,
       addressName: this.addressName,
       phone: this.phone,
       city: this.city,
