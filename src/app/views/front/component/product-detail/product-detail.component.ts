@@ -68,6 +68,7 @@ export class ProductDetailComponent implements OnInit {
   arrStock: number[];
   asap: Boolean = true;
   specs: any;
+  uli: any;
   usedStock: number;
 
   garansiDay = [
@@ -96,6 +97,7 @@ export class ProductDetailComponent implements OnInit {
   private componetDestroyed: Subject<Boolean> = new Subject();
 
   ngOnInit() {
+
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
@@ -111,6 +113,7 @@ export class ProductDetailComponent implements OnInit {
     };
     this.route.params.subscribe( params => {
       this.productId = params.id;
+      this.ulasan(this.productId);
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
     // this.ininih(this.productId);
@@ -238,6 +241,13 @@ export class ProductDetailComponent implements OnInit {
       } else {
         swal(response.message);
       }
+    });
+  }
+  ulasan(productId) {
+    console.log('pro', productId);
+    this.detailService.getUlasan(productId).subscribe(response => {
+      this.uli = response;
+     console.log('kampret', response);
     });
   }
   // ininih(productId) {
