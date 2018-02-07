@@ -137,7 +137,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
-          //console.log('brow', this.ProductList);
+          console.log('brow', this.ProductList);
           //console.log(this.ProductList.mBpartnerStoreId);
           this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);

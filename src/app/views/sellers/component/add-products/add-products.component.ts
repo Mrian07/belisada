@@ -348,7 +348,13 @@ export class AddProductsComponent implements OnInit {
     this.show = false;
   }
   open() {
-    this.show = true;
+    if (this.price === undefined && this.productName === undefined &&
+      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
+       && this.tinggi === undefined) {
+        this.addProductsAsap();
+       }else {
+        this.show = true;
+       }
   }
   addProducts() {
     // console.log(this.productId + '-' + this.productName + '-' + this.price + '-' + this.weight +
