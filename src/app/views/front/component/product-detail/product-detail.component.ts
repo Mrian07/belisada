@@ -19,6 +19,8 @@ import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart'
 import { ProductService } from '../../../../core/service/product/product.service';
 import { SearchService } from '../../../../core/service/search/search.service';
 import { TranslateService } from '@ngx-translate/core';
+import { ChatService } from '../../../../core/service/chat/chat.service';
+
 interface ICartItemWithProduct extends CartItem {
   product: Product;
   totalCost: number;
@@ -68,6 +70,7 @@ export class ProductDetailComponent implements OnInit {
   arrStock: number[];
   asap: Boolean = true;
   specs: any;
+  uli: any;
   usedStock: number;
 
   garansiDay = [
@@ -91,11 +94,13 @@ export class ProductDetailComponent implements OnInit {
     private ngZone: NgZone,
     private tokenService: TokenService,
     private productService: ProductService,
+    private chat: ChatService,
     public translate: TranslateService
   ) { }
   private componetDestroyed: Subject<Boolean> = new Subject();
 
   ngOnInit() {
+
     this.carouselTileItems = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
     this.carouselTile = {
       grid: {xs: 2, sm: 3, md: 3, lg: 5, all: 0},
@@ -111,6 +116,7 @@ export class ProductDetailComponent implements OnInit {
     };
     this.route.params.subscribe( params => {
       this.productId = params.id;
+      this.ulasan(this.productId);
       this.store.dispatch(new frontActions.GetDetail(this.productId));
     });
     // this.ininih(this.productId);
@@ -130,6 +136,9 @@ export class ProductDetailComponent implements OnInit {
         this.carouselTileItems.push(i);
       }
     }
+  }
+  open_chat() {
+    this.chat.toggle();
   }
 
   getDetail() {
@@ -238,6 +247,13 @@ export class ProductDetailComponent implements OnInit {
       } else {
         swal(response.message);
       }
+    });
+  }
+  ulasan(productId) {
+    console.log('pro', productId);
+    this.detailService.getUlasan(productId).subscribe(response => {
+      this.uli = response;
+     console.log('kampret', response);
     });
   }
   // ininih(productId) {

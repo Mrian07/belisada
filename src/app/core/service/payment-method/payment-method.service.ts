@@ -22,4 +22,9 @@ export class PaymentMethodService {
         .map(response => response as PaymentMethodDetail[]);
   }
 
+  getUniqueCodeTransfer(paymentMethod): Observable<any> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/buyer/transaction/transfer/' + paymentMethod)
+        .map(response => response as any);
+  }
+
 }

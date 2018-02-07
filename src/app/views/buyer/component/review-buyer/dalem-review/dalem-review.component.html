@@ -1,14 +1,55 @@
-<p (click)="asd()">
+<h1>Ulasan untuk barang {{kambing.aliasName}}</h1>
+<div class="wrapper">
+    <div>
+        <table class="ui celled table">
+            <thead>
+              <tr>
+                <th>Nama Barang</th>
+              <th>Rating Kamu</th>
+              <th>Review</th>
+              <th>Judul</th>
+              <th>Button</th>
+            </tr></thead>
+            <tbody>
+              <tr>
+                <td>
+                {{kambing.name}}
+                </td>
+                <td>
+                        <sui-rating class="star" [(ngModel)]="star" [maximum]="5"></sui-rating>
+                </td>
+                <td>
+                    <textarea placeholder="Review.." [(ngModel)]="review"></textarea>
+                        <!-- <input type="text" placeholder="Review..." [(ngModel)]="review"> -->
+                </td>
+                <td>
+                        <textarea placeholder="Titile.." [(ngModel)]="title"></textarea>
+                      <!-- <input type="text" placeholder="Titile..." [(ngModel)]="title"></td> -->
+                <td>
+                        <button class="ui facebook button" (click)="asd()">
+                                <i class="empty heart icon"></i>
+                                Like Me
+                              </button>
+                </td>
+            </tr>
+            </tbody>
+          </table>
+
+    </div>
+  </div>
+
+
+<!-- <p (click)="asd()">
   dalem-review works!
 </p>
 
-{{kambing.aliasName}}
+{{kambing.aliasName}} -->
 <!-- <img class="ui small image" src="/images/wireframe/image.png"> -->
 <!-- <img  class="ui small image" [src]="kampretLuh"> -->
 <!-- {{kambing.image}}
 <div *ngFor="let asd of kambing.image">
     <img  class="iniNone" [src]="asd">
 </div> -->
-<input type="text" placeholder="Search..." [(ngModel)]="title">
+<!-- <input type="text" placeholder="Search..." [(ngModel)]="title">
 <sui-rating class="star" [(ngModel)]="star" [maximum]="5"></sui-rating>
-<input type="text" placeholder="Search..." [(ngModel)]="review">
+<input type="text" placeholder="Search..." [(ngModel)]="review"> -->

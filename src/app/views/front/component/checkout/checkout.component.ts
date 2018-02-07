@@ -28,6 +28,7 @@ import { Router } from '@angular/router';
 import { NG_VALIDATORS, Validator,
   Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
 import { TokenService } from '../../../../core/service/token/token.service';
+import { PaymentMethodService } from '../../../../core/service/payment-method/payment-method.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -63,6 +64,7 @@ export class CheckoutComponent implements OnInit {
   grossTotal: number;
   freightRate: FreightRate = new FreightRate();
   ngForm: any;
+  uniqueCode: number = 0;
 
   private storage: Storage;
   checkout: Checkout;
@@ -96,6 +98,7 @@ export class CheckoutComponent implements OnInit {
     private store: Store<fromProduct.PaymentMethods>,
     private checkoutService: CheckoutService,
     private auth: TokenService,
+    private paymentMethodService: PaymentMethodService
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
@@ -189,7 +192,7 @@ export class CheckoutComponent implements OnInit {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.itemsTotal = cart.itemsTotal;
       this.deliveryTotal = cart.deliveryTotal;
-      this.grossTotal = cart.grossTotal;
+      this.grossTotal = cart.grossTotal + this.uniqueCode;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -267,10 +270,17 @@ export class CheckoutComponent implements OnInit {
     const arr = paymentMethodId.split('~');
     const mBankAccountId = arr[0];
     const paymentMethod = arr[1];
-    // console.log(mBankAccountId + ' - ' + paymentMethod);
+    console.log(mBankAccountId + ' - ' + paymentMethod);
     this.paymentMethodDto = this.paymentMethodDtos.find(x => x.paymentMethod.code === paymentMethod);
     this.paymentMethod = this.paymentMethodDto.paymentMethod;
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);
+    if (paymentMethod === 'R') {
+      this.paymentMethodService.getUniqueCodeTransfer(paymentMethod).subscribe(response => {
+        // console.log('response: ', response);
+        this.uniqueCode = response;
+        this.shoppingCart();
+      });
+    }
   }
 
   selectShippingMethod(shippingMethodId) {

@@ -25,6 +25,7 @@ export class FinihOrderComponent implements OnInit {
   courierAmt: number;
   grandTotal: number;
   itemsTotal: number = 0;
+  uniqueCode: number = 0;
 
   items: any[];
 
@@ -58,11 +59,14 @@ export class FinihOrderComponent implements OnInit {
         this.courierAmt = respon.courierAmt;
 
         this.grandTotal = respon.grandTotal;
+
         this.items = respon.items;
         console.log('ini produk',  this.items);
         respon.items.forEach(x => {
           this.itemsTotal += x.subtotal;
         });
+
+        this.uniqueCode = respon.grandTotal - (this.itemsTotal + respon.courierAmt);
 
       });
 

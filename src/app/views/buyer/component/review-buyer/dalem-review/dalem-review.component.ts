@@ -7,6 +7,7 @@ import { Store, ActionsSubject } from '@ngrx/store';
 import * as fromProduct from '../../../../../store/reducers';
 import * as frontActions from '../../../../../store/actions/front';
 import { Subscription } from 'rxjs/Subscription';
+import swal from 'sweetalert2';
 import { ProductDetail } from '../../../../../core/model/product-detail';
 @Component({
   selector: 'app-dalem-review',
@@ -50,8 +51,9 @@ export class DalemReviewComponent implements OnInit {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
         this.kambing = data.detail;
+        // this.kampretLuh = this.kambing.image[0];
         // this.kampretLuh = data.detail.image[0];
-        // console.log(this.kampretLuh);
+        console.log(this.kambing);
       });
   }
   asd() {
@@ -63,8 +65,22 @@ export class DalemReviewComponent implements OnInit {
     };
     console.log('kampretLuh', data3);
     this.kampReviw.createTapiPut(data3).subscribe(data => {
-      console.log('berhasil cuy');
+      if (data.message === 'gagal Tambah') {
+        swal(
+          'Oops',
+          data.message,
+          'error'
+        );
+      }else {
+        swal(
+          'success!',
+          data.message,
+          'success',
+        );
+      }location.reload();
+
     });
+    // });
     // console.log('asd', data3);
   }
 

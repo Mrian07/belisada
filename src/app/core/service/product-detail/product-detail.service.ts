@@ -26,4 +26,8 @@ export class ProductDetailService extends AbstractRestService<ProductDetail> {
     return this.http.post(this.configuration.serverWithAccUrl + '/product/wishlist/create', { headers })
         .map(resp => resp as ProductDetail);
   }
+  getUlasan(id) {
+    return this.http.get(this.configuration.serverWithAccUrl + '/review/all/'  + id);
+        // .map(resp => resp as ProductDetail);
+  }
 }
