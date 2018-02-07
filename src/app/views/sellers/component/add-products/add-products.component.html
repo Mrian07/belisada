@@ -226,6 +226,18 @@
                             </div>
                 </div> -->
 
+                <h3>Highlight Produk</h3>
+                <div class="garis"></div>
+                <div class="ui form">
+                    <div class="twelve fields">
+                        <div class="two wide field">
+                            Highlight
+                        </div>
+                        <div>
+                            <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="highlight"></app-ngx-editor>
+                        </div>
+                    </div>
+                </div>
                 <h3>Deskripsi Produk</h3>
                 <div class="garis"></div>
                 <div class="ui form">
@@ -261,7 +273,7 @@
                         </div>
                     </div>
                     <div class="twelve wide fields">
-                        <div class="right floated column" *ngIf="imageurl == undefined">
+                        <div class="right floated column" *ngIf="news !== ''">
                             <button class="ui positive basic button">Upload Foto</button>
                         </div>
                     </div>
@@ -269,17 +281,18 @@
             </div>
             <div class="ui centered">
                 <div class="twelve wide fields">
+                    <div class="right floated column">
                         <div class="ui buttons" *ngIf="editMode == false">
                     <!-- <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button> -->
-                        <button class="ui red button"  (click)="addProducts()">Tambahkan Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
+                        <button class="ui red button" (click)="addProducts()">Save Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
                         <div class="or"></div>
-                        <button class="ui button"  (click)="open()">Tambahkan Produk <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image"></button>
-
+                        <button class="ui orange button"  (click)="open()">Save Produk <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image"></button>
                     </div>
                     <br>
                     <!-- <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
                         <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui small aligned image" style="cursor:pointer;"></p> -->
                     <button *ngIf="editMode == true" class="positive ui button" (click)="updateProducts()">Perbarui Produk</button>
+                    </div>
                 </div>
             </div>
         </div>

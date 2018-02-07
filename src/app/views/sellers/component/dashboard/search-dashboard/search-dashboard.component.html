@@ -1,7 +1,9 @@
 <div class="ui grid">
-    <div class="six wide column">
+    <div class="seven wide column">
+
+
         <div class="ui grid">
-            <div class="nine wide column">
+            <div class="ten wide column">
                 <span *ngIf="!storeName">
                     Anda belum memiliki toko, segera daftarkan toko Anda agar bisa berjualan.
                 </span>
@@ -22,14 +24,14 @@
                 </div>    
 
             </div>
-            <div class="seven wide column">
+            <div class="six wide column">
                     <div class="seven wide column">
                         <span class="ui teal tag label">Saat Ini Toko {{toko}}</span>
                         <!-- <span class="ui pointing basic label">Saat Ini Toko {{toko}}</span> -->
 
                         <div class="five wide column mymargin">
-                        <div class="ui green left button" *ngIf="buka" (click)="bukaToko()">Buka Toko Anda</div>
-                        <div class="right red ui button" *ngIf="tutup" (click)="tutupToko()">Tutup Toko Anda</div>
+                        <div class="ui green left button" *ngIf="buka" (click)="bukaToko()" (click)="openModalShop()">Buka Toko Anda</div>
+                        <div class="right red ui button" *ngIf="tutup" (click)="tutupToko()" (click)="openModalShop()">Tutup Toko Anda</div>
                         </div>
                 
                     </div>    
@@ -37,7 +39,6 @@
         </div>        
             
 
-        
 
         <!-- <div class="five wide column mymargin">
             <a class="ui orange label">Status Toko : </a>
@@ -57,7 +58,7 @@
             <button class="right attached ui button">Right</button>
         </div> -->
     
-    <div class="ten wide column">
+    <div class="nine wide column">
 
         <!-- <div class="ui segment column">
             <div class="sexteen wide column"> -->
@@ -82,3 +83,13 @@
     </div>
 
 </div>
+
+
+<div id="myModal" class="modal" *ngIf="modal">
+  <div class="modal-content">
+        <span class="close" (click)="closeModalShop()">&times;</span>
+        <app-open-close-shop></app-open-close-shop>
+    </div>
+</div>
+
+

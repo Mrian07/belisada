@@ -60,6 +60,7 @@ import { NgxEditorModule } from 'ngx-editor';
 import { CourierComponent } from '../component/courier/courier.component';
 import { LacakBarangAndaComponent } from '../component/lacak-barang-anda/lacak-barang-anda.component';
 import { InfoPengirimanComponent } from '../component/info-pengiriman/info-pengiriman.component';
+import { OpenCloseShopComponent } from '../component/dashboard/open-close-shop/open-close-shop.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +102,8 @@ import { InfoPengirimanComponent } from '../component/info-pengiriman/info-pengi
     MenuProfileComponent,
     TarikDanaComponent,
     LacakBarangAndaComponent,
-    InfoPengirimanComponent
+    InfoPengirimanComponent,
+    OpenCloseShopComponent
   ],
   imports: [
     CommonModule,

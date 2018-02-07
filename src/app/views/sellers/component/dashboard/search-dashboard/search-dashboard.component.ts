@@ -24,6 +24,9 @@ export class SearchDashboardComponent implements OnInit {
   tutup: Boolean;
   toko: string;
   storeName: string;
+
+  modal: boolean;
+
   constructor(
     private router: Router,
     private title: Title,
@@ -53,6 +56,10 @@ export class SearchDashboardComponent implements OnInit {
           this.storeStatus = data[0].status;
           this.status = true;
           this.btnColor = 'green';
+        }else if ( data[0].statusCode === 'DR') {
+            this.storeStatus = 'Toko anda akan di approve dalam 24 jam';
+            this.status = true;
+            this.btnColor = 'orange';
         } else {
           this.storeStatus = data[0].status;
           this.status = false;
@@ -111,6 +118,12 @@ export class SearchDashboardComponent implements OnInit {
     });
   }
 
+  openModalShop() {
+    this.modal = true;
+  }
 
+  closeModalShop() {
+    this.modal = false;
+  }
 
 }

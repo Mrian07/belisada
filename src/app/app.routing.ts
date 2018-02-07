@@ -69,6 +69,8 @@ import { PsnLoginComponent } from './views/front/component/psn-login/psn-login.c
 import { InboxComponent } from './views/front/component/seller-center/inbox/inbox.component';
 import { BerjualanBelisadaComponent } from './views/front/component/seller-center/berjualan-belisada/berjualan-belisada.component';
 import { FaqSellerCenterComponent } from './views/front/component/seller-center/faq-seller-center/faq-seller-center.component';
+import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/review-buyer.component';
+import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
 
 const routes: Routes = [
   {
@@ -316,6 +318,20 @@ const routes: Routes = [
           {
             path: 'billingAddress',
             component: BillingAddressComponent,
+            data: {
+              title: 'Change Password'
+            }
+          },
+          {
+            path: 'review-buyer/:id',
+            component: ReviewBuyerComponent,
+            data: {
+              title: 'Change Password'
+            }
+          },
+          {
+            path: 'ulasan/:id',
+            component: DalemReviewComponent,
             data: {
               title: 'Change Password'
             }

@@ -87,6 +87,7 @@ export class AddProductsComponent implements OnInit {
   imgNpwp: any;
   qid: any;
   optionTemplate: any;
+  highlight: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -142,6 +143,7 @@ export class AddProductsComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Add Product');
     this.courier = 0;
+    this.news = '';
     this.getCategory();
     this.getBrands();
     this.getStore();
@@ -258,6 +260,7 @@ export class AddProductsComponent implements OnInit {
     const key = event.target.value;
     if (key === '') {
       this.results = [];
+      this.clearAll();
       this.news = '';
     }else {
       this.searchService.search(key).subscribe(data => {
@@ -265,6 +268,7 @@ export class AddProductsComponent implements OnInit {
         //console.log(data);
         if (data.length === 0) {
           this.results = [];
+          this.clearAll();
           this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
         }
       });
@@ -286,6 +290,7 @@ export class AddProductsComponent implements OnInit {
     this.price = hasil.pricelist;
     this.specialPrice = hasil.specialPrice;
     this.description = hasil.description;
+    this.highlight = hasil.highlight;
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
     this.toggle = false;
@@ -343,7 +348,13 @@ export class AddProductsComponent implements OnInit {
     this.show = false;
   }
   open() {
-    this.show = true;
+    if (this.price === undefined && this.productName === undefined &&
+      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
+       && this.tinggi === undefined) {
+        this.addProductsAsap();
+       }else {
+        this.show = true;
+       }
   }
   addProducts() {
     // console.log(this.productId + '-' + this.productName + '-' + this.price + '-' + this.weight +

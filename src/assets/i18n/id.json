@@ -48,7 +48,7 @@
     "dropmuser":
     {
       "m1": "Orderan Anda",
-      "m2": "Recommendasi Anda",
+      "m2": "Rekomendasi Anda",
       "m3": "Ubah Password",
       "m4": "Data Billing",
       "m5": "Data Shipping",
@@ -211,6 +211,10 @@
            "eleven" : "Perbaharui Akun",
            "shop" : "Toko",
            "rek" : "Rekening",
+           "saldo" : "Saldo Anda",
+           "lacak" : "Lacak Barang Anda",
+           "notifikasi" : "Kotak Masuk / Notifikasi barang terjual",
+           "contact" : "Kontak Kami",
      "titleone" : "Profil Penjual",
      "titletwo" : "Info Toko",
      "titlethree" : "Rekening Bank",

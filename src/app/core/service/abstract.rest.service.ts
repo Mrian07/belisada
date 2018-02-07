@@ -24,6 +24,10 @@ export abstract class AbstractRestService<T> {
         return this._http.post(`${this.actionUrl}/create`, data)
             .map(response => response as T);
     }
+    createTapiPut(data: Object): Observable<T> {
+      return this._http.put(`${this.actionUrl}/create`, data)
+          .map(response => response as T);
+  }
     update(data: Object): Observable<T> {
         return this._http.put(`${this.actionUrl}/update`, data)
             .map(response => response as T);
