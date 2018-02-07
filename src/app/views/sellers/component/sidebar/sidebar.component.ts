@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import { ActiveLink, ShareService } from '../../../../core/service/shared.service';
@@ -11,8 +11,7 @@ import { FlagService } from '../../../../core/service/flag.service';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
   sellerName: string;
@@ -55,7 +54,7 @@ export class SidebarComponent implements OnInit {
       this.translate.use(this.lang);
     }
 
-    this.uploadPhoto();
+   this.uploadPhoto();
   }
 
   uploadPhoto() {
@@ -130,6 +129,7 @@ export class SidebarComponent implements OnInit {
       }else {
         this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
       }
+     // console.log(this.sellerimage);
     });
   }
   goToProduct() {
