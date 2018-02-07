@@ -12,7 +12,9 @@ import { Profile } from '../../../../core/model/profile';
 import { DatepickerOptions } from 'ng2-datepicker';
 import { Title } from '@angular/platform-browser';
 import { ShareService } from '../../../../core/service/shared.service';
-import { DatePipe } from "@angular/common";
+import { DatePipe } from '@angular/common';
+import { FlagService } from '../../../../core/service/flag.service';
+
 
 @Component({
   selector: 'app-profile-buyer',
@@ -46,12 +48,16 @@ export class ProfileBuyerComponent implements OnInit {
   adr: any = {};
   dob: Date;
   lang: any;
+
+  message: string;
+
   constructor(
     private profileService: ProfileService,
     private masterService: MasterService,
     private title: Title,
     private sharedService: ShareService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
@@ -67,7 +73,7 @@ export class ProfileBuyerComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.profileService.getProfileBuyer(luser.token).subscribe(data => {
 
-      //console.log('batan', data);
+      // console.log('batan', data);
 
       if (!data) {
         return console.log('kosong');
@@ -160,7 +166,7 @@ export class ProfileBuyerComponent implements OnInit {
     cnv.getContext('2d').drawImage(el, 0, 0, w, h);
 
     this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
-    
+
     this.profileService.updatebuyerProfile(this.fm).subscribe(data => {
 
       if (data.status === '1') {
@@ -169,7 +175,6 @@ export class ProfileBuyerComponent implements OnInit {
           'Upload Photo berhasil',
           'success'
         );
-
       }else {
         swal(
           'Opps!',
@@ -179,6 +184,8 @@ export class ProfileBuyerComponent implements OnInit {
       }
 
     });
+
+    this.flagService.changeMessage('upload-photo');
   }
 
   setUrl(event, img) {
@@ -192,7 +199,6 @@ export class ProfileBuyerComponent implements OnInit {
       img.src = fr.result;
     };
     fr.readAsDataURL(f);
-    
   }
 
   getProvince(cb) {
