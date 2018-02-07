@@ -22,7 +22,6 @@ export class BillingAddressComponent implements OnInit {
   postalCode: FormControl;
   villageId: FormControl;
   phone: FormControl;
-  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   district: FormControl;
@@ -64,24 +63,22 @@ export class BillingAddressComponent implements OnInit {
     }
   }
   createFormControls() {
-    this.name = new FormControl('');
-    this.address = new FormControl('');
-    this.addressType = new FormControl('');
-    this.addressName = new FormControl('');
-    this.phone = new FormControl('');
-    this.city = new FormControl('');
-    this.province = new FormControl('');
-    this.district = new FormControl('');
-    this.villageId = new FormControl('');
-    this.postalCode = new FormControl('');
-    this.addressId = new FormControl('');
+    this.name = new FormControl('', Validators.required);
+    this.address = new FormControl('', Validators.required);
+    this.addressName = new FormControl('', Validators.required);
+    this.phone = new FormControl('', Validators.required);
+    this.city = new FormControl('', Validators.required);
+    this.province = new FormControl('', Validators.required);
+    this.district = new FormControl('', Validators.required);
+    this.villageId = new FormControl('', Validators.required);
+    this.postalCode = new FormControl('', Validators.required);
+    this.addressId = new FormControl('', Validators.required);
   }
 
   createForm() {
     this.createComForm = new FormGroup({
       name: this.name,
       address: this.address,
-      addressType: this.addressType,
       addressName: this.addressName,
       phone: this.phone,
       city: this.city,
@@ -98,7 +95,6 @@ export class BillingAddressComponent implements OnInit {
       addressId: model.addressId,
       name: model.name,
       address: model.address,
-      addressType: model.addressType,
       addressName: model.addressName,
       phone: model.phone,
       city: model.city,
