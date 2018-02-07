@@ -24,7 +24,7 @@
                     <td>{{ list.sku }}</td>
                     <td>{{ list.stock }}</td>
                     <td>Rp.{{ list.pricelist | number }}</td>
-                    <td><div class="ui green horizontal label">Review</div></td>
+                    <td><div class="ui {{color}} horizontal label">{{status}}</div></td>
                     <td (click)="getQr(list.productId)" style="cursor:pointer;"><i class="qrcode icon" style="font-size: 18px;"></i></td>
                     <td><i suiPopup popupHeader="Belisada" popupText="Inactive this product" *ngIf="list.isActive === 'Y'" (click)="inactive(list.productId)" class="trash outline icon"></i>
                     <i suiPopup popupHeader="Belisada" popupText="Activate this product" *ngIf="list.isActive === 'N'" (click)="active(list.productId)" class="upload outline icon"></i></td>

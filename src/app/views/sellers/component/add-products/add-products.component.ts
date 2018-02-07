@@ -168,6 +168,7 @@ export class AddProductsComponent implements OnInit {
                 'Produk berhasil di tambahkan!',
                 'success'
               ).then((result) => {
+                this.router.navigateByUrl('/seller/product-list');
                 this.clearAll();
               });
         });
@@ -351,14 +352,31 @@ export class AddProductsComponent implements OnInit {
     if (this.price === undefined && this.productName === undefined &&
       this.weight === undefined && this.panjang === undefined && this.lebar === undefined
        && this.tinggi === undefined) {
-        this.addProductsAsap();
+        swal(
+          'Belisada.co.id',
+          'Semua Field harus di isi'
+        );
        }else {
         this.show = true;
        }
   }
+  subs() {
+    console.log(this.qtyOnHand + '/' + this.stok);
+        if (this.qtyOnHand > 0 && this.stok == 0) {
+          console.log('asap');
+          this.addProductsAsap();
+        }else if (this.qtyOnHand > 0 && this.stok > 0) {
+          console.log('asap & regular');
+          this.addProductsAsap();
+          this.addProducts();
+        }else  if (this.qtyOnHand == 0 && this.stok > 0) {
+          console.log('regular');
+          this.addProducts();
+        }
+  }
   addProducts() {
-    // console.log(this.productId + '-' + this.productName + '-' + this.price + '-' + this.weight +
-    // '-' + this.panjang + '-' + this.lebar + '-' + this.tinggi);
+    console.log(this.productId + '-' + this.productName + '-' + this.price + '-' + this.weight +
+    '-' + this.panjang + '-' + this.lebar + '-' + this.tinggi);
     if (this.price === undefined && this.productName === undefined &&
      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
       && this.tinggi === undefined) {
@@ -391,9 +409,9 @@ export class AddProductsComponent implements OnInit {
           isGuarantee: this.isGuarantee,
           guaranteeDays: this.garansiDays
         };
-        //console.log('add');
-        this.store.dispatch(new fromActions.AddProduct(productData));
-        this.clearAll();
+      console.log('reg', productData);
+      this.store.dispatch(new fromActions.AddProduct(productData));
+      this.clearAll();
     }
   }
   gudang($event) {
@@ -420,21 +438,21 @@ export class AddProductsComponent implements OnInit {
   }
 
   addProductsAsap() {
-    if (this.price === undefined && this.productName === undefined &&
-      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
-       && this.tinggi === undefined) {
-         swal(
-           'Belisada.co.id',
-           'Semua Field harus di isi'
-         );
-     }else {
+    // if (this.price === undefined && this.productName === undefined &&
+    //   this.weight === undefined && this.panjang === undefined && this.lebar === undefined
+    //    && this.tinggi === undefined) {
+    //      swal(
+    //        'Belisada.co.id',
+    //        'Semua Field harus di isi'
+    //      );
+    //  }else {
         this.qtySeller = this.stok - this.qtyOnHand;
         if (this.garansiDays !== 0) {
           this.isGuarantee = 'Y';
         }else {
           this.isGuarantee = 'N';
         }
-        if (this.show === false) {
+        // if (this.show === false) {
           const productData = {
             pricelist: this.price,
             description: '',
@@ -453,10 +471,11 @@ export class AddProductsComponent implements OnInit {
             isGuarantee: this.isGuarantee,
             guaranteeDays: this.garansiDays
           };
-          this.store.dispatch(new fromActions.AddProduct(productData));
-          this.clearAll();
-        }
-      }
+          console.log('asap', productData);
+         // this.store.dispatch(new fromActions.AddProduct(productData));
+         // this.clearAll();
+       // }
+      //}
   }
 
   updateProducts() {

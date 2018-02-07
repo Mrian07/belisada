@@ -54,7 +54,7 @@ export class SidebarComponent implements OnInit {
       this.translate.use(this.lang);
     }
 
-    this.uploadPhoto();
+   this.uploadPhoto();
   }
 
   uploadPhoto() {
@@ -129,6 +129,7 @@ export class SidebarComponent implements OnInit {
       }else {
         this.sellerimage = 'data:image/png;base64,' + data.imageAvatar;
       }
+     // console.log(this.sellerimage);
     });
   }
   goToProduct() {
