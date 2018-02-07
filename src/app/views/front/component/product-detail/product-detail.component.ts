@@ -159,7 +159,7 @@ export class ProductDetailComponent implements OnInit {
           this.usedStock = (this.asap && this.ProductList.qtyOnHand > 0) ? this.ProductList.qtyOnHand : this.ProductList.stock;
           this.arrStock = Array.from(new Array(this.usedStock), (val, index) => index + 1);
           if (this.storeName === '') {
-            this.storeName = 'Belisada.co.id';
+            this.storeName = 'Belisada';
           }
           this.theImage = this.ProductImage[0];
           this.title.setTitle('Belisada - ' + this.ProductList.name);
