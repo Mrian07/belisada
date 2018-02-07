@@ -43,6 +43,7 @@ export class AddBillingComponent implements OnInit {
   selectedProvince: string;
   totalbilling: number;
   optionTemplate: any;
+  lang: any;
 
   @Output() triggerEvent = new EventEmitter<Boolean>();
 
@@ -55,6 +56,7 @@ export class AddBillingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.setItem('languange', this.lang);
    // const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();

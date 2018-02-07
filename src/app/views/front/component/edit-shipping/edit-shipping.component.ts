@@ -43,6 +43,7 @@ export class EditShippingComponent implements OnInit {
   categories = [];
   selectedProvince: string;
   optionTemplate: any;
+  lang: any;
 
   constructor(
     private sharedService: ShareService,
@@ -51,6 +52,7 @@ export class EditShippingComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    localStorage.setItem('languange', this.lang);
     this.createFormControls();
     this.createForm();
     this.fillForms();
