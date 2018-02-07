@@ -67,7 +67,7 @@
                         <div *ngIf="show">
                             <button
                                     class="ui primary button"
-                                (click)="edit()"
+                                (click)="edit()" (click)="secondActive = true"
                                 name = "buton13"
                                 >Update
                             </button>
@@ -109,12 +109,15 @@
                        <tr>
                            <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
                            <td>
-                             <form (ngSubmit)="getAllStorex(item)">
-                                <button class="btnlooklikelink" (click)="show = !show; firstActive = true">
-                                    <!-- <i class="edit icon"></i> -->
-                                    <!-- (click)="firstActive = true" -->
+                             <form (ngSubmit)="getAllStorex(item)" (click)="firstActive = true">
+                                <!-- <button class="btnlooklikelink" (click)="show = !show; firstActive = true">
+                                    update
+                              </button> -->
+
+                              <button class="btnlooklikelink">
                                     update
                               </button>
+
                               </form>
                             </td>
                        </tr>
