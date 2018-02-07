@@ -13,18 +13,12 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  constructor(private router: Router,
-  private profileService: ProfileService,
-  private active: ActiveLink,
-  private sharedService: ShareService,
-  private tokenService: TokenService,
-  private storeService: StoreService,
-  private translate: TranslateService
-) {  }
   sellerName: string;
   sellerEmail: string;
   sellerPhone: string;
   sellerimage: string;
+  storeName: string;
+  storeDesc: string;
   status1: Boolean = true;
   status2: Boolean = false;
   status3: Boolean = false;
@@ -36,6 +30,15 @@ export class SidebarComponent implements OnInit {
   activeLink: any;
   eCheckDisabled: any;
   eCheckReadonly: any;
+  constructor(private router: Router,
+  private profileService: ProfileService,
+  private active: ActiveLink,
+  private sharedService: ShareService,
+  private tokenService: TokenService,
+  private storeService: StoreService,
+  private translate: TranslateService
+) {  }
+
 
   ngOnInit() {
     this.getProfile();
@@ -49,9 +52,10 @@ export class SidebarComponent implements OnInit {
 
   getStoreStatus() {
     this.storeService.getStatus().subscribe(data => {
-      console.log(data);
       if (data.length === 0) { return; }
       this.status = data[0].statusCode;
+      this.storeName = data[0].name;
+      this.storeDesc = data[0].description;
     });
   }
 

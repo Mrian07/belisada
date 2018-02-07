@@ -143,6 +143,7 @@ export class AddProductsComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Belisada Seller - Add Product');
     this.courier = 0;
+    this.news = '';
     this.getCategory();
     this.getBrands();
     this.getStore();
@@ -259,6 +260,7 @@ export class AddProductsComponent implements OnInit {
     const key = event.target.value;
     if (key === '') {
       this.results = [];
+      this.clearAll();
       this.news = '';
     }else {
       this.searchService.search(key).subscribe(data => {
@@ -266,6 +268,7 @@ export class AddProductsComponent implements OnInit {
         //console.log(data);
         if (data.length === 0) {
           this.results = [];
+          this.clearAll();
           this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
         }
       });
