@@ -172,7 +172,9 @@
       "kecamatan" : "District",
       "kelurahan" : "Village",
       "kodepos" : "Postal code",
-      "hp" : "Phone Number"
+      "hp" : "Phone Number",
+      "ktp" : "KTP Number",
+      "npwp" : "NPWP Number"
    },
       "account" :
   {

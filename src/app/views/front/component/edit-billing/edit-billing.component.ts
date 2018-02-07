@@ -44,6 +44,7 @@ export class EditBillingComponent implements OnInit {
   categories = [];
   selectedProvince: string;
   optionTemplate: any;
+  lang: any;
   
   constructor(
     private sharedService: ShareService,
@@ -58,7 +59,7 @@ export class EditBillingComponent implements OnInit {
   }
 
   onSubmit() {
-
+    localStorage.setItem('languange', this.lang);
     const model = this.createComForm.value;
     const b = {
       name: model.name,
