@@ -14,6 +14,8 @@ import { TokenService } from '../../../../../core/service/token/token.service';
 })
 export class StatusInvoiceComponent implements OnInit {
   productList: any;
+  color: string;
+  status: string;
 
   constructor(
     private auth: TokenService,

@@ -45,7 +45,7 @@
 
            </table>
             </ng-template> -->
-    
+
     <table width="100%;">
         <tr *ngIf="ProductList.specialPrice !== 0" class="gap-between-elements">
             <td class="coll-1" translate>goods.detail.titleone</td>
@@ -307,7 +307,10 @@
                                 </td>
                                 <td>{{ product.condition }}</td>
                                 <!-- <td></td> -->
-                                <td>
+                                <td *ngIf="product.storeName === ''">
+                                    Belisada
+                                </td>
+                                <td *ngIf="product.storeName !== ''">
                                     {{product.storeName}}
                                 </td>
                                 <td>
