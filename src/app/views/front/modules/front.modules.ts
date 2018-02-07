@@ -38,7 +38,6 @@ import { HomeEffects } from '../../../store/effects/front';
 import { ShipingAddressComponent } from '../component/buyer-dashboard/shiping-address/shiping-address.component';
 import { BillingAddress } from '../../../core/model/billing-address';
 import { InfoComponent } from '../component/info/info.component';
-import { ChattingFrontComponent } from '../../sellers/component/chatting/chatting-front.component';
 import { PaymentMethodService } from '../../../core/service/payment-method/payment-method.service';
 import { FreightRateService } from '../../../core/service/freight-rate/freight-rate.service';
 import { CaraBerbelanjaComponent } from '../component/cara-berbelanja/cara-berbelanja.component';
