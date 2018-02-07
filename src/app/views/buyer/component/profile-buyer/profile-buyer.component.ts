@@ -9,7 +9,6 @@ import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MasterService } from '../../../../core/service/master/master.service';
 import { Profile } from '../../../../core/model/profile';
-
 import { DatepickerOptions } from 'ng2-datepicker';
 import { Title } from '@angular/platform-browser';
 import { ShareService } from '../../../../core/service/shared.service';
@@ -19,7 +18,8 @@ import { DatePipe } from "@angular/common";
   selector: 'app-profile-buyer',
   templateUrl: './profile-buyer.component.html',
   styles: [`/deep/ .ngx-datepicker-container .ngx-datepicker-input{ width: 100% !important; }`],
-  styleUrls: ['./profile-buyer.component.scss']
+  styleUrls: ['./profile-buyer.component.scss'],
+
 })
 export class ProfileBuyerComponent implements OnInit {
 
@@ -67,15 +67,15 @@ export class ProfileBuyerComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.profileService.getProfileBuyer(luser.token).subscribe(data => {
 
-      console.log('batan', data);
+      //console.log('batan', data);
 
       if (!data) {
         return console.log('kosong');
       }
       // console.log('ini data: ', data);
-      if(data.dateOfBirth && data.dateOfBirth != '') {
+      if (data.dateOfBirth && data.dateOfBirth != '') {
         let tl = data.dateOfBirth.split('-');
-        if(tl.length == 3) {
+        if (tl.length == 3) {
           this.dob = new Date(+(tl[2]), (+(tl[1]) - 1), +(tl[0]));
         }
       }
@@ -125,7 +125,7 @@ export class ProfileBuyerComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log('submit:', this.fm);
+   // console.log('submit data:', this.fm);
 
     this.profileService.updatebuyerProfile(this.fm).subscribe(data => {
 
@@ -135,6 +135,7 @@ export class ProfileBuyerComponent implements OnInit {
           data.message,
           'success'
         );
+
       }else {
         swal(
           'Opps!',
@@ -159,6 +160,25 @@ export class ProfileBuyerComponent implements OnInit {
     cnv.getContext('2d').drawImage(el, 0, 0, w, h);
 
     this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
+    
+    this.profileService.updatebuyerProfile(this.fm).subscribe(data => {
+
+      if (data.status === '1') {
+        swal(
+          'Success',
+          'Upload Photo berhasil',
+          'success'
+        );
+
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
+
+    });
   }
 
   setUrl(event, img) {
@@ -172,6 +192,7 @@ export class ProfileBuyerComponent implements OnInit {
       img.src = fr.result;
     };
     fr.readAsDataURL(f);
+    
   }
 
   getProvince(cb) {

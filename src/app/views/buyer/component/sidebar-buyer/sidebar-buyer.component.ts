@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { ProfileService } from '../../../../core/service/profile/profile.service';
 import swal from 'sweetalert2';
+import { ShareService } from '../../../../core/service/shared.service';
 
 @Component({
   selector: 'app-sidebar-buyer',
   templateUrl: './sidebar-buyer.component.html',
-  styleUrls: ['./sidebar-buyer.component.scss']
+  styleUrls: ['./sidebar-buyer.component.scss'],
 })
 export class SidebarBuyerComponent implements OnInit {
 
@@ -33,6 +34,7 @@ export class SidebarBuyerComponent implements OnInit {
     private profileService: ProfileService,
     private tokenService: TokenService,
     private upgradeService: UpgradeService,
+    private shareService: ShareService,
   ) { }
 
   ngOnInit() {
@@ -40,6 +42,7 @@ export class SidebarBuyerComponent implements OnInit {
     this.getProfileBuyer();
     this.getNavigationCategory();
   }
+
 
   getCategoryOne(cb) {
     this.categoryService.CategoryOne().subscribe(data => {
