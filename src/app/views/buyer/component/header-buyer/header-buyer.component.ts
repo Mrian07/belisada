@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { LoginService } from '../../../../core/service/login/login.service';
 import { ChatService } from '../../../../core/service/chat/chat.service';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-header-buyer',
@@ -11,7 +12,7 @@ import { ChatService } from '../../../../core/service/chat/chat.service';
 })
 export class HeaderBuyerComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router, private chat: ChatService) { }
+  constructor(private loginService: LoginService, private router: Router, private chat: ChatService, private flagService: FlagService) { }
   user: any;
   ngOnInit() {
     this.user = this.loginService.whoLogin();
@@ -38,6 +39,7 @@ export class HeaderBuyerComponent implements OnInit {
           'Anda sudah keluar dari Account Area.',
           'success'
         ).then(()=> {
+          this.flagService.changeMessage('logout');
           this.router.navigateByUrl('/');
         });
       }

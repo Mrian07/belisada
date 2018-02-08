@@ -18,7 +18,7 @@ import { ProfileService } from '../../../../core/service/profile/profile.service
 import { LoginService } from '../../../../core/service/login/login.service';
 import { TruncateModule } from 'ng2-truncate';
 import { TranslateService } from '@ngx-translate/core';
-
+import { FlagService } from '../../../../core/service/flag.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -57,6 +57,7 @@ export class FrontHeaderComponent implements OnInit {
   role: string;
   lang: any;
   randoms: number;
+  flag: string;
 
   constructor(
     private categoryService: CategoryService,
@@ -70,21 +71,15 @@ export class FrontHeaderComponent implements OnInit {
     private productService: ProductService,
     private loginService: LoginService,
     private ngZone: NgZone,
-    public translate: TranslateService
+    public translate: TranslateService,
+    private flagService: FlagService
   ) {
   }
 
   ngOnInit() {
 
-    this.user = this.auth.getUser();
-    if (this.user) {
-      this.loginState = true;
-      this.getProfile();
-    }else {
-      this.loginState = false;
-      this.avatar = 'assets/img/user.jpg';
-      this.itemCount = 0;
-    }
+    this.cekLogin();
+    this.flagLogout();
     this.categoryService.CategoryOne().subscribe(data => {
       this.categorySearch = data;
     });
@@ -106,6 +101,27 @@ export class FrontHeaderComponent implements OnInit {
       this.translate.use(this.lang);
     }
     this.random();
+  }
+
+  flagLogout() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'logout') {
+        this.cekLogin();
+      }
+    });
+  }
+
+  cekLogin() {
+    this.user = this.auth.getUser();
+    if (this.user) {
+      this.loginState = true;
+      this.getProfile();
+    }else {
+      this.loginState = false;
+      this.avatar = 'assets/img/user.jpg';
+      this.itemCount = 0;
+    }
   }
 
   @HostListener('document:click', ['$event']) clickedOutside($event) {
@@ -335,7 +351,7 @@ export class FrontHeaderComponent implements OnInit {
         localStorage.removeItem('user');
         this.shoppingCartService.empty();
         setTimeout(() => {
-          location.replace('/');
+          this.flagService.changeMessage('logout');
         }, 300);
       } else if (result.dismiss === 'cancel') {
       }

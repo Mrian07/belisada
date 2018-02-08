@@ -41,8 +41,8 @@ export class ShippingAddressComponent implements OnInit {
   villages: Village[];
   kelurahan = [];
   categories = [];
-  show = false;
-  show1 = true;
+  show: boolean = false;
+  show1: boolean = true;
   selectedProvince: string;
   optionTemplate: any;
   lang: any;

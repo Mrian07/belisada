@@ -69,7 +69,9 @@ export class RekeningComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.DELETEBANKSUCCESS)
         .subscribe((action: fromActions.DeleteBankSuccess) => {
-          this.ngZone.run(() => { this.rekening = Observable.of(action.success); console.log('delete Done!'); });
+          this.ngZone.run(() => { this.rekening = Observable.of(action.success); 
+            //console.log('delete Done!');
+          });
            swal(
                 'Produk berhasil di hapus!',
                 'success'
@@ -81,7 +83,9 @@ export class RekeningComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.EDITBANKSUCCESS)
         .subscribe((action: fromActions.EditBankSuccess) => {
-          this.ngZone.run(() => { this.rekening = Observable.of(action.success); console.log('edit Done!'); });
+          this.ngZone.run(() => { this.rekening = Observable.of(action.success); 
+            //console.log('edit Done!');
+          });
            swal(
                 'Rekening berhasil di Perbarui!',
                 'success'
@@ -90,12 +94,12 @@ export class RekeningComponent implements OnInit {
         });
 
    this.rekening = this.store.select<any>(fromProduct.getBankState);
-   console.log(this.rekening);
+  //  console.log(this.rekening);
   }
   selectCity() {
     this.masterService.getBankList().subscribe(data => {
       this.searchrek = data;
-      console.log('askdksaldksad', data);
+      // console.log('askdksaldksad', data);
     });
 
   }
@@ -104,16 +108,16 @@ export class RekeningComponent implements OnInit {
     // this.div.nativeElement.innerHTML ='';
 
     if (this.role === 6) {
-       console.log('kampret3', this.role);
+      //  console.log('kampret3', this.role);
     }else {
-       console.log('kampret');
+      //  console.log('kampret');
     }
 
 
   }
   getBankList() {
     this.rekening = this.store.select<any>(fromProduct.getBankState);
-    console.log(this.rekening);
+    // console.log(this.rekening);
   }
 
   saveRek() {
