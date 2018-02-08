@@ -68,6 +68,8 @@ export class SignUpComponent implements OnInit {
     }
   }
 
+  
+
   // mouseoverPass() {
   //   this.obj = document.getElementById('password');
   //   this.obj.type = 'text';
