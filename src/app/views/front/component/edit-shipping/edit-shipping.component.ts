@@ -79,7 +79,7 @@ export class EditShippingComponent implements OnInit {
         'Sukses',
         'Ubah data pengiriman berhasil.',
         'success'
-      );  
+      );
     this.flagService.changeMessage('edit-shipping');
     });
 
