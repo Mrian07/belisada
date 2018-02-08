@@ -38,6 +38,7 @@ export class SignInComponent implements OnInit {
   loading = false;
   token: string;
   isReady: Boolean = false;
+  viewPass: Boolean = false;
 
   constructor(
     private storageService: LocalStorageService,
@@ -61,6 +62,16 @@ export class SignInComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || this.shared.shareData || 'buyer/test';
     if (this.tokenService.getToken() !== undefined) {
       //this.router.navigateByUrl('/');
+    }
+  }
+
+  togglePass() {
+    this.viewPass = !this.viewPass;
+    const el = (<HTMLInputElement>document.getElementById('password'));
+    if (this.viewPass) {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
     }
   }
 

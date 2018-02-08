@@ -87,7 +87,7 @@ export class AddShippingComponent implements OnInit {
   }
 
   onSubmit() {
-
+    // console.log('this.createComForm: ', this.createComForm);
     if (!this.createComForm.valid) {
       return;
     } else {
