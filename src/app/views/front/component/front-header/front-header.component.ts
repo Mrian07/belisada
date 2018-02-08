@@ -51,7 +51,7 @@ export class FrontHeaderComponent implements OnInit {
   type: string;
   loginState: Boolean;
   userName: string;
-  avatar: string;
+  avatar: string = 'assets/img/user.jpg';
   itemsTotal: number;
   popular = [];
   role: string;
