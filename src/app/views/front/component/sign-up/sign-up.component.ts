@@ -31,6 +31,8 @@ export class SignUpComponent implements OnInit {
   tc: string;
   loading: any;
   isReady: Boolean = false;
+  viewPass: Boolean = false;
+  viewPass2: Boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -45,6 +47,40 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     this.title.setTitle('Belisada Buyer - Registration');
   }
+
+  togglePass() {
+    this.viewPass = !this.viewPass;
+    const el = (<HTMLInputElement>document.getElementById('password'));
+    if (this.viewPass) {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
+
+  togglePass2() {
+    this.viewPass2 = !this.viewPass2;
+    const el2 = (<HTMLInputElement>document.getElementById('password2'));
+    if (this.viewPass2) {
+      el2.type = 'text';
+    } else {
+      el2.type = 'password';
+    }
+  }
+
+  // mouseoverPass() {
+  //   this.obj = document.getElementById('password');
+  //   this.obj.type = 'text';
+  //   this.viewPass = true;
+  //   this.hidePass = false;
+  // }
+
+  // mouseoutPass() {
+  //   this.obj = document.getElementById('myPassword');
+  //   this.obj.type = 'password';
+  //   this.hidePass = true;
+  //   this.viewPass = hide;
+  // }
 
   popUp() {
     this.isReady = true;
