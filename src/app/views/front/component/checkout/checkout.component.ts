@@ -83,6 +83,7 @@ export class CheckoutComponent implements OnInit {
   editShipping: Boolean = false;
   editBilling: Boolean = false;
   flag: string;
+  tapOneShip: Boolean = true;
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
@@ -124,6 +125,7 @@ export class CheckoutComponent implements OnInit {
 
     this.flagEditBilling();
     this.flagEditShipping();
+    this.flagAddShipping();
   }
 
   loadDataBilling() {
@@ -140,6 +142,16 @@ export class CheckoutComponent implements OnInit {
         }
         // if (this.shippingAddressList.isDefault)
       });
+    });
+  }
+
+  flagAddShipping() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'add-shipping') {
+        this.getAllShippingAddress();
+        this.tapOneShip = true;
+      }
     });
   }
 
