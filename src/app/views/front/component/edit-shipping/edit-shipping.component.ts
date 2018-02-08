@@ -9,6 +9,7 @@ import { City } from '../../../../core/model/city';
 import swal from 'sweetalert2';
 import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-edit-shipping',
@@ -48,7 +49,8 @@ export class EditShippingComponent implements OnInit {
   constructor(
     private sharedService: ShareService,
     private masterService: MasterService,
-    private shippingAddressService: ShippingAddressService
+    private shippingAddressService: ShippingAddressService,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
@@ -73,7 +75,7 @@ export class EditShippingComponent implements OnInit {
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.update(b).subscribe(data => {
 
-      location.reload();
+    this.flagService.changeMessage('edit-shipping');
 
       // if (data.status === '1') {
       //       swal(

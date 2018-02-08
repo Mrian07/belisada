@@ -25,10 +25,10 @@ import { PaymentMethod } from '../../../../core/model/PaymentMethod';
 import { PaymentMethodDetail } from '../../../../core/model/PaymentMethodDetail';
 import { CheckoutService } from '../../../../core/service/checkout/checkout.service';
 import { Router } from '@angular/router';
-import { NG_VALIDATORS, Validator,
-  Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
+import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
 import { TokenService } from '../../../../core/service/token/token.service';
 import { PaymentMethodService } from '../../../../core/service/payment-method/payment-method.service';
+import { FlagService } from '../../../../core/service/flag.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -82,7 +82,7 @@ export class CheckoutComponent implements OnInit {
   billing: Boolean = false;
   editShipping: Boolean = false;
   editBilling: Boolean = false;
-
+  flag: string;
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
@@ -98,7 +98,8 @@ export class CheckoutComponent implements OnInit {
     private store: Store<fromProduct.PaymentMethods>,
     private checkoutService: CheckoutService,
     private auth: TokenService,
-    private paymentMethodService: PaymentMethodService
+    private paymentMethodService: PaymentMethodService,
+    private flagService: FlagService
   ) {
     this.storage = this.storageService.get();
     this.store.dispatch(new frontActions.GetPaymentMethod());
@@ -111,6 +112,21 @@ export class CheckoutComponent implements OnInit {
     this.title.setTitle('Belisada - Checkout');
     this.getAllShippingAddress();
     this.checkout = this.getCheckout();
+    this.loadDataBilling();
+
+    this.subscription = this.actionsSubject
+      .asObservable()
+        .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
+          .subscribe((action: frontActions.GetPaymentMethodSuccess) => {
+            this.getPaymentMethods();
+          });
+    this.shoppingCart();
+
+    this.flagEditBilling();
+    this.flagEditShipping();
+  }
+
+  loadDataBilling() {
     this.bilingAddressService.getAll().subscribe(datas => {
       this.ngZone.run(() => {
         this.shareService.shareData = datas;
@@ -125,14 +141,26 @@ export class CheckoutComponent implements OnInit {
         // if (this.shippingAddressList.isDefault)
       });
     });
+  }
 
-    this.subscription = this.actionsSubject
-      .asObservable()
-        .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
-          .subscribe((action: frontActions.GetPaymentMethodSuccess) => {
-            this.getPaymentMethods();
-          });
-    this.shoppingCart();
+  flagEditBilling() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'edit-billing') {
+        this.loadDataBilling();
+        this.cancelEditBilling();
+      }
+    });
+  }
+
+  flagEditShipping() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'edit-shipping') {
+        this.getAllShippingAddress();
+        this.cancelEditShipping();
+      }
+    });
   }
 
   goEditShipping(id) {
