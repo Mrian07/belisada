@@ -45,7 +45,7 @@
                       </div>
                       <div *ngIf="f.submitted && !_password2.valid" class="ui pointing red basic label">Password mismatch</div>
                   </div>
-                  
+
                 </div>
                 <div class="ten wide column left aligned">
                     <div class="agreement">
@@ -101,7 +101,7 @@
     
             <div class="ui checkbox gap-between-elements">
                     <input type="checkbox" name="tc" [(ngModel)]="tc" required #_tc="ngModel">
-                    <label>saya telah membaca dan menyetujui 
+                    <label>Saya telah membaca dan menyetujui kebijakan Belisada.co.id
                         <!-- <a class="pointer" (click)= "popUp()">Kebijakan belisada</a> -->
                     </label>
                     <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
