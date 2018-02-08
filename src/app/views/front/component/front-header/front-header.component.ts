@@ -341,7 +341,7 @@ export class FrontHeaderComponent implements OnInit {
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
       confirmButtonText: 'Iya',
-      cancelButtonText: 'Tidak!',
+      cancelButtonText: 'Tidak',
       confirmButtonClass: 'btn btn-success',
       cancelButtonClass: 'btn btn-danger',
       buttonsStyling: true,
