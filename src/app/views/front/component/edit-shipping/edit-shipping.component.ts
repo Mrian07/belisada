@@ -75,6 +75,11 @@ export class EditShippingComponent implements OnInit {
     };
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.update(b).subscribe(data => {
+      swal(
+        'Sukses',
+        'Ubah data pengiriman berhasil.',
+        'success'
+      );  
     this.flagService.changeMessage('edit-shipping');
     });
 

@@ -74,7 +74,11 @@ export class EditBillingComponent implements OnInit {
     };
     const user = JSON.parse(localStorage.user);
     this.bilingAddressService.update(b).subscribe(data => {
-     // location.reload();
+    swal(
+          'Sukses',
+          'Ubah data penagihan berhasil.',
+          'success'
+        );
      this.flagService.changeMessage('edit-billing');
     });
 
