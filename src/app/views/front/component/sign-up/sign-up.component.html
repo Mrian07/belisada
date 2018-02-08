@@ -27,12 +27,18 @@
                   </div>
                   <div class="field">
                       <label>Password</label>
-                      <input type="password" name="password" placeholder="Minimal 7 karakter" [(ngModel)]="password" #_password="ngModel" required minlength="7"/>
+                      <div class="ui icon input">
+                      <input type="password" name="password" id="password" placeholder="Minimal 7 karakter" [(ngModel)]="password" #_password="ngModel" required minlength="7"/>
+                      <i class="circular unhide link icon" (click)="togglePass()"></i>
+                      </div>
                       <div *ngIf="f.submitted && !_password.valid" class="ui pointing red basic label">Password is required, minimum 7 character</div>
                   </div>
                   <div class="field">
                       <label>Ulangi Password</label>
-                      <input type="password" name="password2" placeholder="Minimal 7 karakter" [(ngModel)]="password2" #_password2="ngModel" required validateEqual="password"/>
+                      <div class="ui icon input">
+                      <input type="password" name="password2" id="password2" placeholder="Minimal 7 karakter" [(ngModel)]="password2" #_password2="ngModel" required validateEqual="password"/>
+                      <i class="circular unhide link icon" (click)="togglePass2()"></i>
+                      </div>
                       <div *ngIf="f.submitted && !_password2.valid" class="ui pointing red basic label">Password mismatch</div>
                   </div>
                   <div class="ui checkbox gap-between-elements">
