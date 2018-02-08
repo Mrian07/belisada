@@ -12,7 +12,10 @@
             </div>
             <div class="field">
               <label>Kata Sandi</label>
-              <input name="last-name" placeholder="Password" type="password" [(ngModel)]="password" #passwd="ngModel" required minlength="5"/>
+              <div class="ui icon input">
+              <input name="last-name" placeholder="Password" id="password" type="password" [(ngModel)]="password" #passwd="ngModel" required minlength="5"/>
+              <i class="circular unhide link icon" (click)="togglePass()"></i>
+              </div>
               <div *ngIf="f.submitted && !passwd.valid" class="ui pointing red basic label">Password is required</div>
             </div>
             <div class="text-center gap-between-elements">
