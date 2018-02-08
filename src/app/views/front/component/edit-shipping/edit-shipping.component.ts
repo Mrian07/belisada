@@ -70,27 +70,12 @@ export class EditShippingComponent implements OnInit {
       postal: model.postalCode,
       villageId: model.vilaggeId.mvillageId,
       phone: model.phone,
-      addressId: model.addressId
+      addressId: model.addressId,
+      isDefault: 'Y'
     };
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.update(b).subscribe(data => {
-
     this.flagService.changeMessage('edit-shipping');
-
-      // if (data.status === '1') {
-      //       swal(
-      //         'success',
-      //         'Data Berhasil diubah',
-      //         'success'
-      //       );
-      //     }else {
-      //       swal(
-      //         'Opps!',
-      //         data.message,
-      //         'error'
-      //       );
-      //     }
-
     });
 
   }
