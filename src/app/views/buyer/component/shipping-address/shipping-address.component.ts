@@ -25,7 +25,6 @@ export class ShippingAddressComponent implements OnInit {
   vilaggeId: FormControl;
   phone: FormControl;
   shippingAddress: ShippingAddress;
-  addressType: FormControl;
   province: FormControl;
   city: FormControl;
   isDefault: 'Y';
@@ -42,8 +41,8 @@ export class ShippingAddressComponent implements OnInit {
   villages: Village[];
   kelurahan = [];
   categories = [];
-  show = false;
-  show1 = true;
+  show: boolean = false;
+  show1: boolean = true;
   selectedProvince: string;
   optionTemplate: any;
   lang: any;
@@ -63,7 +62,6 @@ export class ShippingAddressComponent implements OnInit {
   createFormControls() {
     this.name = new FormControl('');
     this.address = new FormControl('');
-    this.addressType = new FormControl('');
     this.addressName = new FormControl('');
     this.phone = new FormControl('');
     this.city = new FormControl('');
@@ -78,7 +76,6 @@ export class ShippingAddressComponent implements OnInit {
       addressId: this.addressId,
       name: this.name,
       address: this.address,
-      addressType: this.addressType,
       addressName: this.addressName,
       phone: this.phone,
       city: this.city,
@@ -94,7 +91,6 @@ export class ShippingAddressComponent implements OnInit {
     const data = {
       name: model.name,
       address: model.address,
-      addressType: model.addressType,
       addressName: model.addressName,
       phone: model.phone,
       city: model.city,
@@ -129,6 +125,7 @@ export class ShippingAddressComponent implements OnInit {
   }
   getAllStorex(id) {
       this.show1 = false;
+      this.show = true;
       const model = this.createComForm.value;
       this.masterService.getCity(id.regionId).subscribe(city => {
       this.cities = city;
@@ -177,8 +174,11 @@ export class ShippingAddressComponent implements OnInit {
           'error'
         );
       }
-      location.reload();
+     // location.reload();
+      this.show1 = true;
       this.show = false;
+      this.fillForms();
+      this.createComForm.reset();
     });
   }
 

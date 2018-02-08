@@ -138,7 +138,7 @@
                     <div class="column">
                         <sui-tabset>
                             <div class="ui top attached tabular menu">
-                                <a class="item" suiTabHeader="1">Pengiriman</a>
+                                <a class="item" suiTabHeader="1" [(isActive)]="tapOneShip">Pengiriman</a>
                                 <a class="item" suiTabHeader="2">Tambah Alamat Pengiriman</a>
                             </div>
                             <div class="ui bottom attached segment" suiTabContent="1">
@@ -346,39 +346,40 @@
 
         <h2 id="cs-summary">Rincian</h2>
 
-      <div class='bg-rinci'>
-          <div class="ui grid stackable">
-              <div class="ten wide column">
+        <div class='bg-rinci'>
+            <div class="ui grid stackable">
+                <div class="ten wide column">
 
 
-              <div class="ui grid stackable">
-                <div class="four wide column">
-                  <b>Matode Pembayaran</b><br><br>
-                  {{ paymentMethod.name }}: {{ paymentMethodDetail.bankName }}
+                <div class="ui grid stackable">
+                    <div class="four wide column">
+                    <b>Matode Pembayaran</b><br><br>
+                    {{ paymentMethod.name }}: {{ paymentMethodDetail.bankName }}
+                    </div>
+                    <div class="four wide column">
+                    <b>Ongkos Kirim</b><br><br>
+                    Kurir Pengiriman: {{ freightRate.shipperName }}<br>
+                    Ongkos Kirim: Rp {{ deliveryTotal | number }}
+                    </div>
+                    <div class="four wide column">
+                    <b>Kode Promo</b><br><br>
+                    Nilai Potongan Kode Promo: Rp.0
+                    </div>
                 </div>
-                <div class="four wide column">
-                  <b>Ongkos Kirim</b><br><br>
-                  Kurir Pengiriman: {{ freightRate.shipperName }}<br>
-                  Ongkos Kirim: Rp {{ deliveryTotal | number }}
-                </div>
-                <div class="four wide column">
-                  <b>Kode Promo</b><br><br>
-                  Nilai Potongan Kode Promo: Rp.0
-                </div>
-              </div>
 
-          </div>
-          <div class="six wide column"><b>Rincian</b><br><br>
-            Total Belanja: Rp {{ itemsTotal | number }} (+)<br>
-            Ongkos Kirim: Rp {{ deliveryTotal | number }} (+)<br>
-            Potongan: Rp.0 (-)<br>
-            <div class='b-total'>
-              TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
             </div>
+            <div class="six wide column"><b>Rincian</b><br><br>
+                Total Belanja: Rp {{ itemsTotal | number }} (+)<br>
+                Ongkos Kirim: Rp {{ deliveryTotal | number }} (+)<br>
+                Kode unik: Rp {{ uniqueCode | number }} (+)<br>
+                Potongan: Rp.0 (-)<br>
+                <div class='b-total'>
+                TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
+                </div>
 
-          </div>
+            </div>
+            </div>
         </div>
-      </div>
 
 
 

@@ -24,7 +24,7 @@
                 <!-- <sui-select class="selection" labelField="name" placeholder="Pilih provinsi" formControlName="province">
                     <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
                 </sui-select> -->
-                <sui-select name="provinc" #provsi [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi">
+                <sui-select name="provinc" #provsi [isSearchable]="true" [options]="provinces" formControlName="province" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi">
                     <sui-select-option *ngFor="let option of provsi.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
                 </sui-select>
 
@@ -48,7 +48,7 @@
                 <!-- <sui-select class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
                     <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
                 </sui-select> -->
-                <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                <sui-select name="district" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
                     <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
                 </sui-select>
                 <div class="form-control-feedback" *ngIf="district.invalid && (district.dirty || f.submitted)">Kelurahan / Kecamatan tidak boleh kosong</div>
@@ -58,8 +58,8 @@
                 <!-- <sui-select class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
                     <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setPostalCode(option.kodepos)"></sui-select-option>
                 </sui-select> -->
-                <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
-                    <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setVilage(option)">{{option.name}}</sui-select-option>
+                <sui-select name="vilaggeId" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
+                    <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setPostalCode(option.kodepos)">{{option.name}}</sui-select-option>
                 </sui-select>
                 <div class="form-control-feedback" *ngIf="vilaggeId.invalid && (vilaggeId.dirty || f.submitted)">Desa tidak boleh kosong</div>
             </div>
@@ -72,12 +72,11 @@
             </div>
             <div class="eight wide field">
                 <label translate>user.shipdata.phone</label>
-                <input name="siup" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
+                <input name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor Telepon" type="text" formControlName="phone"/>
                 <div class="form-control-feedback" *ngIf="phone.invalid && (phone.dirty || f.submitted)">Telepon tidak boleh kosong</div>
             </div>
         </div>
         <div style='margin-top:10px;'><button class="ui primary button" type="submit" [disabled]="!f.valid">Simpan</button></div>
-
     </form>
 </div>
 

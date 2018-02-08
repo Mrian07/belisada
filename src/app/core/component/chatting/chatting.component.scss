@@ -1,0 +1,165 @@
+.floating-chat-container {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 605;
+}
+
+.chat-container {
+    position: absolute;
+    min-width: 370px;
+    bottom: 0;
+    right: 0;
+}
+
+
+.chat-container .chat-header {
+    width: 100%;
+    padding: 8px 15px 5px;
+    white-space: nowrap;
+    background-color: #002f44;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 0.15em solid #f7982d;
+}
+.chat-container .chat-header > * {
+    vertical-align: middle;
+}
+.chat-container .chat-header i.link {
+    color: #eee;
+}
+.chat-container .chat-header .cs-profile-picture {
+    width: 45px;
+    border-radius: 50%;
+    position: absolute;
+    top: -4px;
+}
+.chat-container .chat-header .cs-profile-name {
+    font-size: 1.4em;
+    font-weight: 500;
+    position: relative;
+    top: -3px;
+    left: 50px;
+    color: #ffffff;
+}
+.chat-container .chat-header .info {
+    color: #9f0;
+    position: relative;
+    top: 8px;
+    font-size: 11px;
+}
+
+.chat-container .chat-content {
+    width: 100%;
+    background-color: #F0F4F7;
+    height: 300px;
+    overflow-y: scroll;
+    padding: 15px;
+}
+
+.chat-container .chat-content .chat-bubble {
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    clear: both;
+    float: left;
+    color: #435698;
+    background-color: #ffffff;
+}
+
+.chat-container .chat-content .chat-bubble .chat-bubble-time {
+    color: rgba($color: #435698, $alpha: 0.5);
+}
+
+.chat-container .chat-content .chat-bubble.sender {
+    float: right;
+    text-align: right;
+    color: #ffffff;
+    background-color: #F9A94A;
+    font-weight: bold;
+}
+.chat-container .chat-content .chat-bubble.sys {
+    text-align: center;
+    color: #777;
+    font-family: lato;
+    float: none;
+    background: transparent;
+}
+
+.chat-container .chat-content .chat-bubble.sender .chat-bubble-time {
+    color: rgba($color: #ffffff, $alpha: 0.5);
+}
+
+.chat-container .chat-content .chat-bubble:not(.sys) .chat-bubble-time {
+    float: right;
+}
+.chat-container .chat-content .dimmer {
+    background-color: rgba(198, 199, 198, 0.78);
+}
+.chat-container .chat-content .dimmer h3 {
+    color: #04821c;
+    padding-top: 3px;
+}
+.chat-container .chat-content .rating {
+    font-size: 35px;
+}
+.chat-container .chat-content .chat-act {
+    margin-top: 15px;
+}
+.chat-container .chat-footer {
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-container .chat-footer .fit-to-content {
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.chat-container .chat-footer .txt-chat {
+    height: 100%;
+    border: 0;
+    padding: 5px 15px;
+}
+
+.chat-container .chat-footer .btn-chat {
+    height: 100%;
+    border: 0;
+    padding: 0px 15px;
+    cursor: pointer;
+}
+
+.chat-container .chat-footer .btn-chat.send {
+    color: #ffffff;
+    background-color: #192636;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-container .chat-footer .btn-chat.attach {
+    // color: #333333;
+    // background-color: #192636;
+}
+
+.float {
+    cursor: pointer;
+	position: absolute;
+	width: 60px;
+	height: 60px;
+	bottom: 0;
+    right: 0;
+    padding: 20px 15px;
+	background-color: #0C9;
+	color: #FFF;
+	border-radius: 50px;
+	text-align: center;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+    // margin-top:22px;
+    font-size: 2em;
+}

@@ -10,6 +10,7 @@ import { City } from '../../../../core/model/city';
 import swal from 'sweetalert2';
 import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-edit-billing',
@@ -45,11 +46,12 @@ export class EditBillingComponent implements OnInit {
   selectedProvince: string;
   optionTemplate: any;
   lang: any;
-  
+
   constructor(
     private sharedService: ShareService,
     private masterService: MasterService,
-    private bilingAddressService: BilingAddressService
+    private bilingAddressService: BilingAddressService,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
@@ -72,14 +74,18 @@ export class EditBillingComponent implements OnInit {
     };
     const user = JSON.parse(localStorage.user);
     this.bilingAddressService.update(b).subscribe(data => {
-      location.reload();
+    swal(
+          'Sukses',
+          'Ubah data penagihan berhasil.',
+          'success'
+        );
+     this.flagService.changeMessage('edit-billing');
     });
 
   }
 
   fillForms() {
     this.shipList = this.sharedService.shareData;
-    console.log('inilaoh', this.shipList);
     this.getAllStorex(this.shipList);
   }
 

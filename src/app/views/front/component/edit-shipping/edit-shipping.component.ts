@@ -9,6 +9,7 @@ import { City } from '../../../../core/model/city';
 import swal from 'sweetalert2';
 import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-edit-shipping',
@@ -48,7 +49,8 @@ export class EditShippingComponent implements OnInit {
   constructor(
     private sharedService: ShareService,
     private masterService: MasterService,
-    private shippingAddressService: ShippingAddressService
+    private shippingAddressService: ShippingAddressService,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
@@ -68,27 +70,17 @@ export class EditShippingComponent implements OnInit {
       postal: model.postalCode,
       villageId: model.vilaggeId.mvillageId,
       phone: model.phone,
-      addressId: model.addressId
+      addressId: model.addressId,
+      isDefault: 'Y'
     };
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.update(b).subscribe(data => {
-
-      location.reload();
-
-      // if (data.status === '1') {
-      //       swal(
-      //         'success',
-      //         'Data Berhasil diubah',
-      //         'success'
-      //       );
-      //     }else {
-      //       swal(
-      //         'Opps!',
-      //         data.message,
-      //         'error'
-      //       );
-      //     }
-
+      swal(
+        'Sukses',
+        'Ubah data pengiriman berhasil.',
+        'success'
+      );
+    this.flagService.changeMessage('edit-shipping');
     });
 
   }

@@ -95,6 +95,7 @@ import { HeaderdisellerComponent } from './views/front/component/seller-center/h
 import { EditShippingComponent } from './views/front/component/edit-shipping/edit-shipping.component';
 import { EditBillingComponent } from './views/front/component/edit-billing/edit-billing.component';
 import { FaqSellerCenterComponent } from './views/front/component/seller-center/faq-seller-center/faq-seller-center.component';
+import { ChattingComponent } from './core/component/chatting/chatting.component';
 import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/review-buyer.component';
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
@@ -188,6 +189,8 @@ export function getAuthServiceConfigs() {
     HeaderdisellerComponent,
     EditShippingComponent,
     EditBillingComponent,
+    FaqSellerCenterComponent,
+    ChattingComponent,
     FaqSellerCenterComponent,
     ReviewBuyerComponent,
     DalemReviewComponent

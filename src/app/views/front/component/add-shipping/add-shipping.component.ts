@@ -9,6 +9,7 @@ import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ShareService } from '../../../../core/service/shared.service';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-add-shipping',
@@ -48,7 +49,9 @@ export class AddShippingComponent implements OnInit {
     private masterService: MasterService,
     private ngZone: NgZone,
     private shareService: ShareService,
-    private shippingAddressService: ShippingAddressService) { }
+    private shippingAddressService: ShippingAddressService,
+    private flagService: FlagService
+  ) { }
 
   ngOnInit() {
     localStorage.setItem('languange', this.lang);
@@ -58,7 +61,6 @@ export class AddShippingComponent implements OnInit {
     this.getProvince();
     // this.getProvince(this.fillForms.bind(this));
     this.fillForms();
-   // console.log('dn', luser);
   }
 
   createFormControls() {
@@ -87,7 +89,6 @@ export class AddShippingComponent implements OnInit {
   }
 
   onSubmit() {
-
     if (!this.createComForm.valid) {
       return;
     } else {
@@ -102,25 +103,23 @@ export class AddShippingComponent implements OnInit {
         province: model.province,
         district: model.district,
         postal: model.postalCode,
-        villageId: model.vilaggeId.mvillageId
+        villageId: model.vilaggeId.mvillageId,
+        isDefault: 'Y'
       };
       this.shippingAddressService.create(data).subscribe(response => {
-        console.log('ini submit ', response);
         this.triggerEvent.emit(true);
-        // this.ngZone.run(() => {
-        //   this.shareService.shareData = response;
-        //   this.shippingAddressList = this.shareService.shareData;
-        //   console.log('this.shippingAddressList: ', this.shippingAddressList);
-        // });
+
         this.createComForm.reset();
         if (response.status === '1') {
           swal(
             'Success',
-            'Data shipping berhasil ditambahkan',
+            'Data pengiriman berhasil ditambahkan',
           //  response.message,
             'success',
           ).then(); {
-            location.reload();
+            this.flagService.changeMessage('add-shipping');
+
+            //location.reload();
           }
         }else {
           swal(
@@ -142,7 +141,6 @@ export class AddShippingComponent implements OnInit {
   }
 
   btnDelete(id) {
-    console.log(id);
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.delete(id).subscribe(data => {
       this.shippingAddress = data;
@@ -163,7 +161,6 @@ export class AddShippingComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });

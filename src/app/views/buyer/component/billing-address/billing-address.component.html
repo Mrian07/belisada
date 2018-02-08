@@ -45,7 +45,7 @@
                 <div class="eight wide field">
                     <label translate>user.billdata.village</label>
                     <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" formControlName="villageId">
-                        <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setVilage(option)">{{option.name}}</sui-select-option>
+                        <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setPostalCode(option.kodepos)">{{option.name}}</sui-select-option>
                     </sui-select>
                 </div>
             </div>
