@@ -310,7 +310,7 @@ export class CheckoutComponent implements OnInit {
     const arr = paymentMethodId.split('~');
     const mBankAccountId = arr[0];
     const paymentMethod = arr[1];
-    console.log(mBankAccountId + ' - ' + paymentMethod);
+    // console.log(mBankAccountId + ' - ' + paymentMethod);
     this.paymentMethodDto = this.paymentMethodDtos.find(x => x.paymentMethod.code === paymentMethod);
     this.paymentMethod = this.paymentMethodDto.paymentMethod;
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);

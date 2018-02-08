@@ -61,7 +61,6 @@ export class AddShippingComponent implements OnInit {
     this.getProvince();
     // this.getProvince(this.fillForms.bind(this));
     this.fillForms();
-   // console.log('dn', luser);
   }
 
   createFormControls() {
@@ -90,7 +89,6 @@ export class AddShippingComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log('this.createComForm: ', this.createComForm);
     if (!this.createComForm.valid) {
       return;
     } else {
@@ -143,7 +141,6 @@ export class AddShippingComponent implements OnInit {
   }
 
   btnDelete(id) {
-    console.log(id);
     const user = JSON.parse(localStorage.user);
     this.shippingAddressService.delete(id).subscribe(data => {
       this.shippingAddress = data;
@@ -164,7 +161,6 @@ export class AddShippingComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });
