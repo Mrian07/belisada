@@ -1,7 +1,7 @@
 <div class="menu-wrapper" role="navigation">
     <ul class="nav" role="menubar">
         <li role="menuitem" *ngFor="let item of navigationObjects"><a *ngIf="lang == 'id'">{{ item.name }}</a><a *ngIf="lang == 'en'">{{ item.nameEn }}</a>
-            <div class="category2 mega-menu" aria-hidden="true" role="menu">
+            <div class="category2 mega-menu" aria-hidden="true" role="menu"  id="menu-header">
                 <div class="left-image">
                     <img class="ui image" src="/assets/img/demo/C1-1.jpg" alt="Image not found" onError="this.src='/assets/img/no-image.png'"/>
                 </div>
