@@ -112,8 +112,8 @@ export class SignUpComponent implements OnInit {
       // console.log('ini data', data);
       if (data.status === '1') {
         swal(
-          'success',
-          data.message,
+          'Selamat',
+          'Pendaftaran Anda Berhasil',
           'success',
         ).then(() => {
          // this.loka = this.shared.shareData;

@@ -278,8 +278,21 @@ h1{
     border: 1px solid gray;
     border-left: 3px solid blue;
 }
+    .kkalo {
+        display:grid;
+        grid-template-columns: 20% 1% 26%;
+        /*
+        grid-column-gap:1em;
+        grid-row-gap:1em;
+        */
+        grid-gap:1em;
+
+    }
 .lpp {
     cursor: default;
+}
+.poli {
+
 }
 .wrapperyu{
     display:grid;

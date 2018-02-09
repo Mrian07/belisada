@@ -1,11 +1,15 @@
-<div class="ui two column stackable grid center aligned border-form">
-    <div class="three column row">
-        <div class="column">
-            <div class="ui segment">
+<div class="ui grid center aligned border-form">
+    <div class="ten wide column">
 
-                <div class='title'><i class="chevron circle right icon"></i> Buat Akun</div>
+        <form name="" class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+        <div class="ui segment">
+            <div class='title'><i class="chevron circle right icon"></i> Buat Akun</div>
 
-              <form name="" class="ui form" (ngSubmit)="f.form.valid && register()" #f="ngForm" novalidate>
+            <div class="ui grid">
+                <div class="six wide column">
+
+
+              
                   <div class="field">
 
                       <label>Nama Lengkap</label>
@@ -41,24 +45,24 @@
                       </div>
                       <div *ngIf="f.submitted && !_password2.valid" class="ui pointing red basic label">Password mismatch</div>
                   </div>
-                  <div class="ui checkbox gap-between-elements">
-                      <input type="checkbox" name="tc" [(ngModel)]="tc" required #_tc="ngModel">
-                      <label>saya telah membaca dan menyetujui <a class="pointer" (click)= "popUp()">Kebijakan belisada</a></label>
-                      <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
-                    </div>
-                  <div class="text-center gap-between-elements">
-                     <button
-                     [ngClass]="loading?'loading':'ui button auth-btn-submit'"
 
-                     [disabled]="!f.valid"
-                     >Daftar Akun</button>
-                  </div>
-                  <div class="text-center gap-between-elements">
-                      <a routerLink="/sign-in" routerLinkActive="active">Sudah punya akun? Klik di sini</a>
-                  </div>
-              </form>
+                </div>
+                <div class="ten wide column left aligned">
+                    <div class="agreement">
+                        <h3>Kebijakan Belisada</h3>
+                        <p>Selamat datang user di Area Store,</p>
+                        <p>Diarea ini Anda bisa melakukan penjualan produk, namun ada tahapan yang wajib Anda penuhi diantaranya:</p>
+                        <p>1.Melengkapi data profile Anda pada halaman <b>Edit Profile</b>.<br>
+                        2.Melengkapi data rekening bank Anda pada halaman <b>Edit Profile</b>.<br>
+                        3.Mengisi informasi toko pada halaman <b>Daftar Toko & Product</b>.<br>
+                        4.Melakukan penambahan produk pada halaman <b>Dashboard</b>.<br></p>
+                
+                        <p>Note: Anda tidak akan bisa menambah produk jika Anda belum mendaftarkan toko Anda di website belisada.co.id.</p>
+                
+                    </div>        
+                </div>
 
-
+            </div>
 <!--
               <div class="text-center gap-between-elements">
                   <button class="ui facebook button socmed">
@@ -91,13 +95,36 @@
               </ng-template> -->
 
 
-            </div>
+            <!-- </div> -->
+
+            <h4 class="ui horizontal divider header"><i class="handshake icon"></i></h4>
+    
+            <div class="ui checkbox gap-between-elements">
+                    <input type="checkbox" name="tc" [(ngModel)]="tc" required #_tc="ngModel">
+                    <label>Saya telah membaca dan menyetujui kebijakan Belisada.co.id
+                        <!-- <a class="pointer" (click)= "popUp()">Kebijakan belisada</a> -->
+                    </label>
+                    <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
+                  </div>
+                <div class="text-center gap-between-elements">
+                   <button
+                   [ngClass]="loading?'loading':'ui button auth-btn-submit'"
+
+                   [disabled]="!f.valid"
+                   >Daftar Akun</button>
+                </div>
+                <div class="text-center gap-between-elements">
+                    <a routerLink="/sign-in" routerLinkActive="active">Sudah punya akun? Klik di sini</a>
+                </div>
         </div>
+
+    </form>
+       
     </div>
 </div>
 
 
-<sui-modal [isClosable]="true" (dismissed)="alert($event)" #modal *ngIf="isReady">
+<!-- <sui-modal [isClosable]="true" (dismissed)="alert($event)" #modal *ngIf="isReady">
   <div class="header">Kebijakan Belisada</div>
   <div class="content">
       <p>Selamat datang user di Area Store,</p>
@@ -111,10 +138,9 @@
 
   </div>
   <div class="actions">
-      <!-- <button class="ui red button" (click)="modal.deny()">Cancel</button> -->
-      <button class="ui green button" (click)="modal.approve('done')" autofocus>Ok</button>
+      <button class="ui green button" (click)="modal.approve('done')" (click)="closePopUp()" autofocus>Ok</button>
   </div>
-</sui-modal>
+</sui-modal> -->
 
 
 
