@@ -196,12 +196,13 @@ export class FrontHeaderComponent implements OnInit {
   public removeProductFromCart(productId: number, quantity: number, itemCartId: number): void {
     swal({
       title: 'Belisada.co.id',
-      text: 'Apakah Anda Yakin?',
+      text: 'Apakah item tersebut akan dihapus?',
       type: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Ya, Hapus!'
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Tidak'
     }).then((result) => {
       if (result.value) {
         if (this.auth.getUser()) {
@@ -209,8 +210,8 @@ export class FrontHeaderComponent implements OnInit {
             if (response.status === '1') {
               this.shoppingCartService.addItem(productId, -quantity);
               swal(
-                'Dihapus!',
-                'Belanjaan Anda berhasil dihapus',
+                'Sukses',
+                'Item yang Anda pilih berhasil dihapus',
                 'success'
               );
             } else {
