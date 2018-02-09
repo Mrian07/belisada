@@ -1,11 +1,62 @@
 .ui.grid {
     margin-bottom: 0rem !important;
 }
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500,700');
+.ik {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
 hr {
     border : 0;
     height: 1px;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
+.wrapper{
+    display:grid;
+    grid-template-columns: 100%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+  .buku {
+    font-size: 37px;
+    color: white
+  }
+  .kamiSia {
+      font-size: 17px;
+      color: white;
+  }
+  .wrapper3{
+    display:grid;
+    grid-template-columns: 15% 79%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+  .wrapper2{
+    display:grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+
+  .wrapper > div{
+    // background:#eee;
+    padding:1em;
+  }
+  .wrapper > div:nth-child(odd){
+    background:#FF9441;
+  }
 .header-seller-center {
     display: table;
     width: 100%;
