@@ -38,12 +38,12 @@
       width: 300px;
   }
   .sskn {
-      color: #757272;
+      color: #111111;
   }
   .wrapper2{
     display:grid;
     grid-template-columns: 30% 70%;
-    border: 1px solid #cccccc;
+    // border: 1px solid #cccccc;
     /*
     grid-column-gap:1em;
     grid-row-gap:1em;
@@ -59,13 +59,14 @@
     grid-row-gap:1em;
     */
     grid-gap:1em;
+    margin-bottom:10px;
   }
   .wreaper47 > div{
-    background:aqua;
+    background: #8af6f6;
     padding:1em;
   }
   .wreaper47 > div:nth-child(odd){
-    background: #fa9a23;
+    background: #fabc6f;
   }
   .wrapper2 > div{
     // background:aqua;

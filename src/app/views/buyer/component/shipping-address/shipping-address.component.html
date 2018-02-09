@@ -7,72 +7,33 @@
     <div class="ui bottom attached segment" suiTabContent="1">
 
         <div class="wrapper" *ngFor="let item of ship">
-            <div class="wrapper2">
-                <div class="kk">
-                    <table border=0>
-                        <tr>
-                            <td class="xxp"> <i class="checkmark icon bilu"></i><span class="ac">{{item.addressName}}</span></td>
-                        </tr>
-                        <tr>
-                            <td>Nama Penerima :</td>
-                        </tr>
-                        <tr>
-                            <td>{{item.name}}</td>
-                        </tr>
-                        <tr>
-                            <td>Phone : </td>
-                        </tr>
-                        <tr>
-                            <td>{{item.phone}}</td>
-                        </tr>
-                        <tr>
-                            <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
-                            <td>
-                                <form (ngSubmit)="getAllStorex(item)" (click)="secondActive = true">
-                                <!-- <button class="btnlooklikelink" (click)="show = !show; firstActive = true">
-                                    update
-                                </button> -->
-
-                                <button class="btnlooklikelink">
-                                    update
-                                </button>
-
-                                </form>
-                            </td>
-                        </tr>
-                        <tr>
-                            <!-- <form class="ui form" [formGroup]="createComForm" novalidate> -->
-                                    <div *ngIf="item.isDefault === 'Y'; else login">
-                                            <span>Ini adalah alamat default kamu</span>
-                                        </div>
-                                        <ng-template #login>
-                                                <sui-checkbox (click)="iniGua(item)"> Tetapkan Sebagai Alamat Default</sui-checkbox>
-                                        </ng-template>
-                            <!-- <button class="massive ui button" (click)="iniGua(item)">
-                                Tetapkan Sebagai Alamat Default
-                                </button> -->
-                                <!-- </form> -->
-
-                        </tr>
-
-                    </table>
-                    <div class="gap-betweens-elements"></div>
-
-                </div>
 
                 <div>
                     <div class="ui raised segment sskn">
-                        <a class="ui red ribbon label">Alamat Pengiriman</a>
+                        <a class="ui red ribbon label">Alamat Pengiriman: {{item.addressName}}</a>
+
+                        <div *ngIf="item.isDefault === 'Y'; else login">
+                                <span>Ini adalah alamat default kamu</span>
+                            </div>
+                            <ng-template #login>
+                                    <sui-checkbox (click)="iniGua(item)"> Tetapkan Sebagai Alamat Default</sui-checkbox>
+                            </ng-template>
+
                         <div class="gap-betweens-elements"></div>
-                        <span>{{item.address}}</span>
+
+                        <span>Nama: {{item.name}}</span>
                         <div class="gap-betweens-elements"></div>
-                        <span>{{item.cityName}}</span>
+                        <span>Phone: {{item.phone}}</span>
+                        <div class="gap-betweens-elements"></div>
+                        <span>Alamat: {{item.address}}</span>
+                        <div class="gap-betweens-elements"></div>
+                        <span>Kota: {{item.cityName}}</span>
                         <div class="gap-betweens-elements"></div>
                         <span>Kecamatan : {{item.districtName}}</span>
                         <div class="gap-betweens-elements"></div>
                         <span>Kelurahan : {{item.villageName}} , {{item.postal}}</span>
                         {{item.isDefault}}
-                        <hr>
+                        <hr size='1'>
                         <div class="wreaper47">
                             <div>
                                 <strong>Provinsi : </strong>
@@ -85,9 +46,15 @@
                                 {{item.cityName}}
                             </div>
                         </div>
+                        <div class="ui buttons">
+                        <button class="ui green button" (click)="getAllStorex(item)" (click)="secondActive = true">Ubah</button>
+                        <div class="or"></div>
+                        <button class="ui button" (click)="btnDelete(item.addressId)">Hapus</button>
+                        </div>
+
                     </div>
                 </div>
-            </div>
+     
         </div>
 
     </div>
