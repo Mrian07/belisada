@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../../../../core/service/product/product.service';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-product-terbaru',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductTerbaruComponent implements OnInit {
 
-  constructor() { }
+  productList: any[];
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+  ) { }
 
   ngOnInit() {
+    this.allProduct();
+  }
+
+  allProduct() {
+    this.productService.AllNewProduct().subscribe(response => {
+
+      this.productList = response;
+      console.log('ini', this.productList);
+    });
+  }
+
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
   }
 
 }

@@ -75,5 +75,5 @@ export class FrontNavComponent implements OnInit {
   //   this.shared.shareData = id;
   //   this.router.navigateByUrl('/category/' + id);
   }
-
+  
 }
