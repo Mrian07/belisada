@@ -462,6 +462,21 @@ export class AddProductsComponent implements OnInit {
         };
       //console.log('reg', productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
+      swal({
+        title: 'Belisada.co.id',
+        text: 'Uploading',
+        timer: 2000,
+        onOpen: () => {
+          swal.showLoading();
+        }
+      }).then((result) => {
+        // if (
+        //   // Read more about handling dismissals
+        //   result.dismiss === swal.DismissReason.timer
+        // ) {
+        //   console.log('I was closed by the timer')
+        // }
+      });
       this.clearAll();
     }
   }
