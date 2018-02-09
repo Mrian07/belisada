@@ -404,13 +404,7 @@ export class AddProductsComponent implements OnInit {
   }
   addProducts() {
     //console.log(this.selectCats);
-    if (this.cat3Id === undefined) {
-      this.cat3Id = this.ctr.cat3;
-    }
-    this.userImage = this.fm.imageNPWP;
-    if (this.productName === undefined) {
-      this.productName = this.selectCats;
-    }
+
     if (this.price === undefined && this.productName === undefined &&
      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
       && this.tinggi === undefined) {
@@ -419,65 +413,66 @@ export class AddProductsComponent implements OnInit {
           'Semua Field harus di isi'
         );
     }else {
-      if (this.garansiDays !== 0) {
-        this.isGuarantee = 'Y';
+      this.userImage = this.fm.imageNPWP;
+      if (this.cat3Id === undefined) {
+        this.cat3Id = this.ctr.cat3;
       }else {
-        this.isGuarantee = 'N';
-      }
-      if ( this.userImage === undefined && this.imageurl !== undefined) {
-        this.gambarnya = [];
-      }else if ( this.userImage !== undefined && this.imageurl === undefined) {
-        this.gambarnya = [this.userImage];
-      }else if ( this.userImage === undefined && this.imageurl === undefined) {
-        swal(
-          'Belisada.co.id',
-          'Gambar harus ada'
-        );
-      }
-      if (this.productId === undefined) {
-        this.productId = null;
-      }
-        const productData = {
-          productId: this.productId,
-          name: this.productName,
-          highlight: this.highlight,
-          description: this.description,
-          classification: this.classification,
-          image: this.gambarnya,
-          pricelist: this.price,
-          specialPrice: this.specialPrice,
-          mBpartnerStoreId: this.storeId,
-          category3Id: this.cat3Id,
-          productbrandId: this.productBrandId,
-          tag: [this.productName],
-          weight: +this.weight,
-          dimensionswidth: +this.lebar,
-          dimensionslength: +this.panjang,
-          dimensionsheight: +this.tinggi,
-          isAsapShipping: 'N',
-          qtyOnHand: 0,
-          qtyOnSeller: +this.stok,
-          isGuarantee: this.isGuarantee,
-          guaranteeDays: +this.garansiDays
-        };
-      //console.log('reg', productData);
-      this.store.dispatch(new fromActions.AddProduct(productData));
-      swal({
-        title: 'Belisada.co.id',
-        text: 'Uploading',
-        timer: 2000,
-        onOpen: () => {
-          swal.showLoading();
+        if (this.productName === undefined) {
+          this.productName = this.selectCats;
+        }else{
+          if (this.garansiDays !== 0) {
+            this.isGuarantee = 'Y';
+          }else {
+            this.isGuarantee = 'N';
+          }
+          if ( this.userImage === undefined && this.imageurl !== undefined) {
+            this.gambarnya = [];
+          }else if ( this.userImage !== undefined && this.imageurl === undefined) {
+            this.gambarnya = [this.userImage];
+          }else if ( this.userImage === undefined && this.imageurl === undefined) {
+            swal(
+              'Belisada.co.id',
+              'Gambar harus ada'
+            );
+          }
+          if (this.productId === undefined) {
+            this.productId = null;
+          }else {}
+            const productData = {
+              productId: this.productId,
+              name: this.productName,
+              highlight: this.highlight,
+              description: this.description,
+              classification: this.classification,
+              image: this.gambarnya,
+              pricelist: this.price,
+              specialPrice: this.specialPrice,
+              mBpartnerStoreId: this.storeId,
+              category3Id: this.cat3Id,
+              productbrandId: this.productBrandId,
+              tag: [this.productName],
+              weight: +this.weight,
+              dimensionswidth: +this.lebar,
+              dimensionslength: +this.panjang,
+              dimensionsheight: +this.tinggi,
+              isAsapShipping: 'N',
+              qtyOnHand: 0,
+              qtyOnSeller: +this.stok,
+              isGuarantee: this.isGuarantee,
+              guaranteeDays: +this.garansiDays
+            };
+            this.store.dispatch(new fromActions.AddProduct(productData));
+            swal({
+              title: 'Belisada.co.id',
+              text: 'Uploading',
+              timer: 2000,
+              onOpen: () => {
+                swal.showLoading();
+              }
+            });
+            this.clearAll();
         }
-      }).then((result) => {
-        // if (
-        //   // Read more about handling dismissals
-        //   result.dismiss === swal.DismissReason.timer
-        // ) {
-        //   console.log('I was closed by the timer')
-        // }
-      });
-      this.clearAll();
+      }
     }
   }
   gudang($event) {
