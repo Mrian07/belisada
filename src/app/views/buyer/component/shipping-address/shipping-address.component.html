@@ -1,127 +1,46 @@
 <p>Silakan isi data Shipping dibawah ini dengan lengkap dan benar. Anda juga bisa melihat list Shipping yang sudah pernah Anda daftarkan.</p>
 <sui-tabset>
     <div class="ui top attached tabular menu">
-        <a class="item" suiTabHeader="1" [(isActive)]="firstActive">Tambah Shipping</a>
-        <a class="item" suiTabHeader="2" [(isActive)]="secondActive">Data Shipping</a>
+        <a class="item" suiTabHeader="1" [(isActive)]="firstActive">Data Shipping</a>
+        <a class="item" suiTabHeader="2" [(isActive)]="secondActive">Tambah Shipping</a>
     </div>
     <div class="ui bottom attached segment" suiTabContent="1">
-
-         <div class="ui grid">
-                <div class="sixteen wide column">
-                    <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
-                        <input name="addressId" placeholder="Masukan nama perusahaan" type="hidden" formControlName="addressId"/>
-                        <div class="fields">
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.name</label>
-                                <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
-                            </div>
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.saveadd</label>
-                                <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label translate>user.shipdata.address</label>
-                            <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
-                        </div>
-                        <div class="fields">
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.prov</label>
-                                <sui-select name="provinc" #provsi [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" formControlName="province">
-                                    <sui-select-option *ngFor="let option of provsi.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
-                                </sui-select>
-                            </div>
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.city</label>
-                                <sui-select name="city" #city [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih kota" formControlName="city">
-                                    <sui-select-option *ngFor="let option of city.filteredOptions" [value]="option" (click)="getDistrict(option.mcityId)">{{option.name}}</sui-select-option>
-                                </sui-select>
-                            </div>
-                        </div>
-                        <div class="fields">
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.district</label>
-                                <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
-                                    <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
-                                </sui-select>
-                            </div>
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.village</label>
-                                <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
-                                    <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setPostalCode(option.kodepos)">{{option.name}}</sui-select-option>
-                                </sui-select>
-                            </div>
-                        </div>
-                        <div class="fields">
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.zipp</label>
-                                <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
-                            </div>
-                            <div class="eight wide field">
-                                <label translate>user.shipdata.phone</label>
-                                <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="phone"/>
-                            </div>
-                        </div>
-
-                    </form>
-                        <div *ngIf="show">
-                            <button
-                                    class="ui primary button"
-                                (click)="edit()" (click)="secondActive = true"
-                                name = "buton13"
-                                >Update
-                            </button>
-                        </div>
-                        <div *ngIf="show1">
-                                <button
-                                class="ui primary button"
-                                (click)="onSubmit()"
-                                >Simpan</button>
-                        </div>
-                        <!-- <button class="ui primary button" type="submit"  (click)="onSubmit()">Simpan</button> -->
-
-                </div>
-            </div>
-        </div>
-
-    <!-- </div> -->
-    <div class="ui bottom attached segment" suiTabContent="2">
 
         <div class="wrapper" *ngFor="let item of ship">
             <div class="wrapper2">
                 <div class="kk">
-                   <table border=0>
-                       <tr>
-                          <td class="xxp"> <i class="checkmark icon bilu"></i><span class="ac">{{item.addressName}}</span></td>
-                       </tr>
-                       <tr>
-                           <td>Nama Penerima :</td>
-                       </tr>
-                       <tr>
-                           <td>{{item.name}}</td>
-                       </tr>
-                       <tr>
-                           <td>Phone : </td>
-                       </tr>
-                       <tr>
-                           <td>{{item.phone}}</td>
-                       </tr>
-                       <tr>
-                           <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
-                           <td>
-                             <form (ngSubmit)="getAllStorex(item)" (click)="firstActive = true">
+                    <table border=0>
+                        <tr>
+                            <td class="xxp"> <i class="checkmark icon bilu"></i><span class="ac">{{item.addressName}}</span></td>
+                        </tr>
+                        <tr>
+                            <td>Nama Penerima :</td>
+                        </tr>
+                        <tr>
+                            <td>{{item.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Phone : </td>
+                        </tr>
+                        <tr>
+                            <td>{{item.phone}}</td>
+                        </tr>
+                        <tr>
+                            <td><button class="btnlooklikelink" (click)="btnDelete(item.addressId)">Delete</button></td>
+                            <td>
+                                <form (ngSubmit)="getAllStorex(item)" (click)="secondActive = true">
                                 <!-- <button class="btnlooklikelink" (click)="show = !show; firstActive = true">
                                     update
-                              </button> -->
+                                </button> -->
 
-                              <button class="btnlooklikelink">
+                                <button class="btnlooklikelink">
                                     update
-                              </button>
+                                </button>
 
-                              </form>
+                                </form>
                             </td>
-                       </tr>
-                       <tr>
+                        </tr>
+                        <tr>
                             <!-- <form class="ui form" [formGroup]="createComForm" novalidate> -->
                                     <div *ngIf="item.isDefault === 'Y'; else login">
                                             <span>Ini adalah alamat default kamu</span>
@@ -131,18 +50,18 @@
                                         </ng-template>
                             <!-- <button class="massive ui button" (click)="iniGua(item)">
                                 Tetapkan Sebagai Alamat Default
-                              </button> -->
-                              <!-- </form> -->
+                                </button> -->
+                                <!-- </form> -->
 
-                       </tr>
+                        </tr>
 
-                   </table>
-                   <div class="gap-betweens-elements"></div>
+                    </table>
+                    <div class="gap-betweens-elements"></div>
 
                 </div>
 
                 <div>
-                <div class="ui raised segment sskn">
+                    <div class="ui raised segment sskn">
                         <a class="ui red ribbon label">Alamat Pengiriman</a>
                         <div class="gap-betweens-elements"></div>
                         <span>{{item.address}}</span>
@@ -171,5 +90,85 @@
             </div>
         </div>
 
+    </div>
+
+    <div class="ui bottom attached segment" suiTabContent="2">
+        <div class="ui grid">
+            <div class="sixteen wide column">
+                <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+                    <input name="addressId" placeholder="Masukan nama perusahaan" type="hidden" formControlName="addressId"/>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.name</label>
+                            <input name="name" placeholder="Masukan nama perusahaan" type="text" formControlName="name"/>
+                        </div>
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.saveadd</label>
+                            <input name="address" placeholder="Disimpan sebagai alamat apa" type="text" formControlName="addressName"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label translate>user.shipdata.address</label>
+                        <textarea name="address" placeholder="Masukan alamat" formControlName="address" ></textarea>
+                    </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.prov</label>
+                            <sui-select name="provinc" #provsi [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" formControlName="province">
+                                <sui-select-option *ngFor="let option of provsi.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.city</label>
+                            <sui-select name="city" #city [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih kota" formControlName="city">
+                                <sui-select-option *ngFor="let option of city.filteredOptions" [value]="option" (click)="getDistrict(option.mcityId)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.district</label>
+                            <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" formControlName="district">
+                                <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.village</label>
+                            <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" formControlName="vilaggeId">
+                                <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setPostalCode(option.kodepos)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                    </div>
+                    <div class="fields">
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.zipp</label>
+                            <input name="postalcode" placeholder="Masukan kode POS" type="text" formControlName="postalCode"/>
+                        </div>
+                        <div class="eight wide field">
+                            <label translate>user.shipdata.phone</label>
+                            <input name="siup" placeholder="Masukan nomor SIUP" type="text" formControlName="phone"/>
+                        </div>
+                    </div>
+
+                </form>
+                    <div *ngIf="show">
+                        <button
+                                class="ui primary button"
+                            (click)="edit()" (click)="firstActive = true"
+                            name = "buton13"
+                            >Update
+                        </button>
+                    </div>
+                    <div *ngIf="show1">
+                            <button
+                            class="ui primary button"
+                            (click)="onSubmit()"
+                            (click)="firstActive = true">Simpan</button>
+                    </div>
+
+            </div>
+        </div>
+    
+        
     </div>
 </sui-tabset>
