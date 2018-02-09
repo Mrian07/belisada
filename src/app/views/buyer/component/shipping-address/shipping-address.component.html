@@ -12,26 +12,21 @@
                     <div class="ui raised segment sskn">
                         <a class="ui red ribbon label">Alamat Pengiriman: {{item.addressName}}</a>
 
-                        <div *ngIf="item.isDefault === 'Y'; else login">
-                                <span>Ini adalah alamat default kamu</span>
-                            </div>
-                            <ng-template #login>
-                                    <sui-checkbox (click)="iniGua(item)"> Tetapkan Sebagai Alamat Default</sui-checkbox>
-                            </ng-template>
+                        
 
                         <div class="gap-betweens-elements"></div>
 
-                        <span>Nama: {{item.name}}</span>
+                        <span><strong>Nama:</strong> {{item.name}}</span>
                         <div class="gap-betweens-elements"></div>
-                        <span>Phone: {{item.phone}}</span>
+                        <span><strong>Phone:</strong> {{item.phone}}</span>
                         <div class="gap-betweens-elements"></div>
-                        <span>Alamat: {{item.address}}</span>
+                        <span><strong>Alamat:</strong> {{item.address}}</span>
                         <div class="gap-betweens-elements"></div>
-                        <span>Kota: {{item.cityName}}</span>
+                        <span><strong>Kota:</strong> {{item.cityName}}</span>
                         <div class="gap-betweens-elements"></div>
-                        <span>Kecamatan : {{item.districtName}}</span>
+                        <span><strong>Kecamatan :</strong> {{item.districtName}}</span>
                         <div class="gap-betweens-elements"></div>
-                        <span>Kelurahan : {{item.villageName}} , {{item.postal}}</span>
+                        <span><strong>Kelurahan:</strong> {{item.villageName}} , {{item.postal}}</span>
                         {{item.isDefault}}
                         <hr size='1'>
                         <div class="wreaper47">
@@ -45,6 +40,16 @@
                                 <div class="gap-betweens-elements"></div>
                                 {{item.cityName}}
                             </div>
+                        </div>
+
+                        <div class="default">
+                        <div *ngIf="item.isDefault === 'Y'; else login">
+                                <span><i>Ini adalah alamat default kamu</i></span>
+                            </div>
+                            <ng-template #login>
+                                    <sui-checkbox (click)="iniGua(item)"> <i>Tetapkan Sebagai Alamat Default</i></sui-checkbox>
+                            </ng-template>
+
                         </div>
                         <div class="ui buttons">
                         <button class="ui green button" (click)="getAllStorex(item)" (click)="secondActive = true">Ubah</button>
