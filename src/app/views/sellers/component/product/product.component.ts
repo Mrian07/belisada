@@ -14,7 +14,6 @@ import { ShareService } from '../../../../core/service/shared.service';
 import { Subscription } from 'rxjs/Subscription';
 
 
-
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -75,8 +74,7 @@ export class ProductComponent implements OnInit {
       }
       this.sellerProduct = this.store.select(fromProduct.getProductState);
       this.store.select(fromProduct.getProductState).subscribe(datas => {
-        console.log(datas);
-        //this.sellerProduct = datas;
+
       });
     });
   }
@@ -100,7 +98,6 @@ export class ProductComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ya'
     }).then((result) => {
-      //console.log(result);
       if (result.value) {
         this.productService.Inactive(data).subscribe(res => {
           swal(
@@ -143,32 +140,33 @@ export class ProductComponent implements OnInit {
     this.routes.navigateByUrl('/seller/add-products/edit');
   }
 
-  editPrice(data) {
-    //console.log(data);
-    this.editmode = false;
-   // this.sellerProduct = new EmptyObservable();
-    this.getList();
-    const productData = {
-      pricelist: data,
-      // description: this.description,
-      // productId: this.productId,
-      // mBpartnerStoreId: this.storeId,
-      // weight: this.weight,
-      // dimensionswidth: this.lebar,
-      // dimensionslength: this.panjang,
-      // dimensionsheight: this.tinggi,
-      // specialPrice: this.specialPrice,
-      // isAsapShipping: this.asap ,
-      // tag: [this.productName],
-      // qtyOnSeller: this.stok,
-      // qtyOnHand: +this.qtyOnHand,
-      // classification: this.classification,
-      // isGuarantee: this.isGuarantee,
-      // guaranteeDays: this.garansiDays
-    };
-    console.log(productData);
-    //this.store.dispatch(new fromActions.EditProduct(productData));
-  }
+  // editPrice(data) {
+  //   this.editmode = false;
+  //  // this.sellerProduct = new EmptyObservable();
+  //   this.getList();
+  //   const productData = {
+  //     pricelist: data,
+  //     // description: this.description,
+  //     // productId: this.productId,
+  //     // mBpartnerStoreId: this.storeId,
+  //     // weight: this.weight,
+  //     // dimensionswidth: this.lebar,
+  //     // dimensionslength: this.panjang,
+  //     // dimensionsheight: this.tinggi,
+  //     // specialPrice: this.specialPrice,
+  //     // isAsapShipping: this.asap ,
+  //     // tag: [this.productName],
+  //     // qtyOnSeller: this.stok,
+  //     // qtyOnHand: +this.qtyOnHand,
+  //     // classification: this.classification,
+  //     // isGuarantee: this.isGuarantee,
+  //     // guaranteeDays: this.garansiDays
+  //   };
+  //   console.log(productData);
+
+  //   //this.store.dispatch(new fromActions.EditProduct(productData));
+
+  // }
 
   search(event) {
     const key = event.target.value;

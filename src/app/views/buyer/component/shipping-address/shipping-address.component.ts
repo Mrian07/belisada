@@ -104,8 +104,8 @@ export class ShippingAddressComponent implements OnInit {
       this.createComForm.reset();
       if (response.status === '1') {
         swal(
-          'success',
-          response.message,
+          'Sukses',
+          'Data berhasil ditambahkan',
           'success'
         );
       }else {
@@ -163,8 +163,8 @@ export class ShippingAddressComponent implements OnInit {
     this.shippingAddressService.update(b).subscribe(data => {
       if (data.status === '1') {
         swal(
-          'success',
-          data.message,
+          'Sukses',
+          'Data berhasil diubah',
           'success'
         );
       }else {

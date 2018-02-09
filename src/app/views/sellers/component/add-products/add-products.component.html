@@ -18,10 +18,10 @@
                             <sui-radio-button value="baru" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification(01)">Baru</sui-radio-button>
                         </div>
                         <div class="field">
-                            <sui-radio-button value="second" [(ngModel)]="condition" [isDisabled]="true" (click)="geClassification(02)">Second</sui-radio-button>
+                            <sui-radio-button value="second" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification(02)">Second</sui-radio-button>
                         </div>
                         <div class="field">
-                            <sui-radio-button value="refurbish" [(ngModel)]="condition" [isDisabled]="true" (click)="geClassification(03)">Refurbish</sui-radio-button>
+                            <sui-radio-button value="refurbish" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification(03)">Refurbish</sui-radio-button>
                         </div>
                     </div>
                 </div>
@@ -44,8 +44,28 @@
                     </div>
                     </div>
                     <div class="inline twelve fields">
-                    <div class="new-product" *ngIf="[results] == 0">{{news}}</div>
+                    <div class="new-product">{{news}}</div>
 
+                </div>
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                            Brands
+                    </div>
+                    <div class="six wide field">
+                        <div class="field">
+                            <sui-select class="selection"
+                                [(ngModel)]="ctr.brand"
+                                labelField="name"
+                                isSearchable="true"
+                                placeholder="{{ctr.brandname}}"
+                                [options]="brands"
+                                [optionTemplate]="optionTemplate"
+                                #brnds
+                                >
+                                    <sui-select-option *ngFor="let option of brnds.filteredOptions" [value]="option" (click)="selectBrands(option.m_productbrand_id)"></sui-select-option>
+                            </sui-select>
+                        </div>
+                    </div>
                 </div>
                 <div class="inline twelve fields" *ngIf="[results] == 0">
                         <div class="two wide field">
@@ -54,41 +74,41 @@
                         <div class="six wide field">
                             <div class="field">
                                 <sui-select class="selection"
-                                    [(ngModel)]="ctr.cat"
-                                    labelField="name"
+                                    [(ngModel)]="ctr.cat1"
+                                    labelField="option.name"
                                     isSearchable="true"
-                                    placeholder="Select Category"
+                                    placeholder="{{ctr.cat1name}}"
                                     [options]="category"
                                     [optionTemplate]="optionTemplate"
                                     #cats
                                     >
-                                        <sui-select-option *ngFor="let option of cats.filteredOptions" [value]="option" value="option.name" (click)="selectCategory(option.mProductCategoryId)"></sui-select-option>
+                                        <sui-select-option *ngFor="let option of cats.filteredOptions" [value]="option"  (click)="selectCategory(option.mProductCategoryId)">{{option.name}}</sui-select-option>
                                 </sui-select>
                             </div>
                             <div class="field">
                                 <sui-select class="selection"
-                                    [(ngModel)]="selectedSubCategory"
-                                    labelField="name"
+                                    [(ngModel)]="ctr.cat2"
+                                    labelField="option.name"
                                     isSearchable="true"
-                                    placeholder="Select SubCategory"
+                                    placeholder="{{ctr.cat2name}}"
                                     [options]="subcategory"
                                     [optionTemplate]="optionTemplate"
                                     #subs
                                     >
-                                        <sui-select-option *ngFor="let option of subs.filteredOptions" [value]="option" value="option.name" (click)="selectSubCategory(option.m_product_category_id)"></sui-select-option>
+                                        <sui-select-option *ngFor="let option of subs.filteredOptions" [value]="option" (click)="selectSubCategory(option.m_product_category_id)">{{option.name}}</sui-select-option>
                                 </sui-select>
                             </div>
                             <div class="field">
                                 <sui-select class="selection"
-                                    [(ngModel)]="selectedSubCategories"
-                                    labelField="name"
+                                    [(ngModel)]="ctr.cat3"
+                                    labelField="option.name"
                                     isSearchable="true"
-                                    placeholder="Select Section"
+                                    placeholder="{{ctr.cat3name}}"
                                     [options]="subcategories"
                                     [optionTemplate]="optionTemplate"
                                     #subsi
                                     >
-                                        <sui-select-option *ngFor="let option of subsi.filteredOptions" [value]="option" value="option.name" (click)="selectSubCategories(option.m_product_category_id)"></sui-select-option>
+                                        <sui-select-option *ngFor="let option of subsi.filteredOptions" [value]="option" (click)="selectSubCategories(option.m_product_category_id)">{{option.name}}</sui-select-option>
                                 </sui-select>
                             </div>
                         </div>
@@ -262,7 +282,7 @@
                                         <!-- <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button> -->
                                         <input type="file" name="fileNpwp" (change)="setUrl($event, imgNpwp)" />
 
-                                <img class="ui middle aligned image" style="max-width: 500px; width:530px; height: auto; margin-bottom:10px;" src="{{userImageNPWP}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
+                                <img class="ui middle aligned image" style="max-width: 500px; width:530px; height: auto; margin-bottom:10px;" src="{{userImage}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
                             </div>
                                 <!-- <div class="image-upload-select" *ngIf="imageurl == undefined">
                                 <img  class="ui image" src="assets/img/icon-upload.png" alt="icon-upload"/>
@@ -272,11 +292,11 @@
                             <img *ngIf="imageurl != undefined" class="ui image product-image" src="{{imageurl}}" alt="icon-upload"/>
                         </div>
                     </div>
-                    <div class="twelve wide fields">
+                    <!-- <div class="twelve wide fields">
                         <div class="right floated column" *ngIf="news !== ''">
                             <button class="ui positive basic button">Upload Foto</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="ui centered">

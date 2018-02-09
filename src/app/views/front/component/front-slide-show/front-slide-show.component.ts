@@ -68,7 +68,18 @@ export class FrontSlideShowComponent implements OnInit {
   slideShow() {
     this.router.navigateByUrl('/Slider-Depan');
   }
-
+  slideGadget() {
+    this.router.navigateByUrl('/category/1000503/Aksesoris-Gadget');
+  }
+  beliDiSini() {
+    this.router.navigateByUrl('/seller-center/Why-Choose-Us');
+  }
+  beliIphone() {
+    this.router.navigateByUrl('/search?q=iphone');
+  }
+  beliLcd() {
+    this.router.navigateByUrl('/product-list?parent=3&id=1000732&ob=6');
+  }
 }
 
 

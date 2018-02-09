@@ -92,6 +92,7 @@ export class HomeComponent implements OnInit {
         this.level_4 = Observable.of(data.brands);
         });
         //window.scrollTo(0, 0);
+        //console.log(this.topHomeProductLvl1);
     });
   }
   detail(id: number, alias: string) {

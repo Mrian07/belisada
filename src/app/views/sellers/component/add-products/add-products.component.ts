@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Title } from '@angular/platform-browser';
 import { Products } from '../../../../store/reducers';
 import { ShareService } from '../../../../core/service/shared.service';
+import { BrandsService } from '../../../../core/service/brands/brands.service';
 
 interface AppState {
   message: any;
@@ -31,7 +32,6 @@ export class AddProductsComponent implements OnInit {
 
   message$: Observable<Search>;
   courier: any;
-
   editid: any;
   condition: string;
   selectProd: object;
@@ -83,11 +83,15 @@ export class AddProductsComponent implements OnInit {
   fm: any = {};
   ctr: any = {};
   updateImg: any;
-  userImageNPWP: string;
+  userImage: string;
   imgNpwp: any;
   qid: any;
   optionTemplate: any;
   highlight: any;
+  category3: any;
+  productBrandId: number;
+  gambarnya: any;
+  cat3Id: number;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -127,6 +131,7 @@ export class AddProductsComponent implements OnInit {
       private route: ActivatedRoute, private router: Router, private storeService: StoreService,
       private addService: AddproductService,
       private actionsSubject: ActionsSubject,
+      private brand: BrandsService,
       private store: Store<fromProduct.Products>,
       private title: Title,
       private shared: ShareService,
@@ -144,6 +149,7 @@ export class AddProductsComponent implements OnInit {
     this.title.setTitle('Belisada Seller - Add Product');
     this.courier = 0;
     this.news = '';
+    this.results = [];
     this.getCategory();
     this.getBrands();
     this.getStore();
@@ -239,7 +245,8 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectSubCategories(id: number) {
-    //console.log(id);
+    console.log(id);
+    this.cat3Id = id;
   }
 
   addColor(q) {
@@ -269,7 +276,7 @@ export class AddProductsComponent implements OnInit {
         //console.log(data);
         if (data.length === 0) {
           this.results = [];
-          this.clearAll();
+         // this.clearAll();
           this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
         }
       });
@@ -280,12 +287,31 @@ export class AddProductsComponent implements OnInit {
 
   productSelected(hasil: any) {
     console.log(hasil);
+    this.categoryService.CategoryTwo(hasil.category1Id).subscribe(cat2 => {
+      this.subcategory = cat2;
+      //console.log(cat2);
+      //this.ctr.cat2  = this.subcategory.find(x => x.m_product_category_id === hasil.category1Id);
+      this.categoryService.CategoryThree(hasil.category2Id).subscribe(cat3 => {
+        this.subcategories = cat3;
+       // console.log(cat3);
+        //this.ctr.cat3  = this.subcategories.find(x => x.m_product_category_id === hasil.hasil.category2Id);
+      });
+    });
+    this.news = '';
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
-    this.ctr.cat = hasil.category1Id;
+    this.ctr.cat1 = hasil.category1Id;
+    this.ctr.cat1name = hasil.category1Name;
+    this.ctr.cat2 = hasil.category2Id;
+    this.ctr.cat2name = hasil.category2Name;
+    this.ctr.cat3 = hasil.category3Id;
+    this.ctr.cat3name = hasil.category3Name;
+    this.ctr.brand = hasil.productbrandId;
+    this.ctr.brandname = hasil.brandname;
     this.selectedSubCategory = hasil.category2Name;
     this.selectedSubCategories = hasil.category3Name;
     this.selectedBrands = hasil.brandname;
+    this.productBrandId = hasil.productbrandId;
     this.results = [];
     this.selectCats = hasil.name;
     this.price = hasil.pricelist;
@@ -295,14 +321,13 @@ export class AddProductsComponent implements OnInit {
     this.imageurl = hasil.imageurl;
     this.weight = hasil.weight;
     this.toggle = false;
-    this.productId = hasil.productId;
+    this.productId = hasil.qid;
     this.qid = hasil.qid;
     this.lebar = hasil.dimensionswidth;
     this.tinggi = hasil.dimensionsheight;
     this.panjang = hasil.dimensionslength;
     this.asap = hasil.isAsapShipping;
     this.stok = hasil.stock;
-    //console.log(this.stok);
     this.countries[hasil.stock].selected = true;
     this.qtyOnHand = hasil.qtyOnHand;
     this.qtySeller = hasil.qtyOnSeller;
@@ -323,6 +348,9 @@ export class AddProductsComponent implements OnInit {
       this.brands = data;
       this.toggle = false;
     });
+  }
+  selectBrands(id: number) {
+    this.productBrandId = id;
   }
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
@@ -375,8 +403,14 @@ export class AddProductsComponent implements OnInit {
         }
   }
   addProducts() {
-    console.log(this.productId + '-' + this.productName + '-' + this.price + '-' + this.weight +
-    '-' + this.panjang + '-' + this.lebar + '-' + this.tinggi);
+    //console.log(this.selectCats);
+    if (this.cat3Id === undefined) {
+      this.cat3Id = this.ctr.cat3;
+    }
+    this.userImage = this.fm.imageNPWP;
+    if (this.productName === undefined) {
+      this.productName = this.selectCats;
+    }
     if (this.price === undefined && this.productName === undefined &&
      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
       && this.tinggi === undefined) {
@@ -390,27 +424,59 @@ export class AddProductsComponent implements OnInit {
       }else {
         this.isGuarantee = 'N';
       }
-
+      if ( this.userImage === undefined && this.imageurl !== undefined) {
+        this.gambarnya = [];
+      }else if ( this.userImage !== undefined && this.imageurl === undefined) {
+        this.gambarnya = [this.userImage];
+      }else if ( this.userImage === undefined && this.imageurl === undefined) {
+        swal(
+          'Belisada.co.id',
+          'Gambar harus ada'
+        );
+      }
+      if (this.productId === undefined) {
+        this.productId = null;
+      }
         const productData = {
+          productId: this.productId,
+          name: this.productName,
+          highlight: this.highlight,
+          description: this.description,
+          classification: this.classification,
+          image: this.gambarnya,
           pricelist: this.price,
-          description: '',
-          productId: this.qid,
+          specialPrice: this.specialPrice,
           mBpartnerStoreId: this.storeId,
+          category3Id: this.cat3Id,
+          productbrandId: this.productBrandId,
+          tag: [this.productName],
           weight: +this.weight,
           dimensionswidth: +this.lebar,
           dimensionslength: +this.panjang,
           dimensionsheight: +this.tinggi,
-          specialPrice: this.specialPrice,
           isAsapShipping: 'N',
-          tag: [this.productName],
-          qtyOnSeller: +this.stok,
           qtyOnHand: 0,
-          classification: this.classification,
+          qtyOnSeller: +this.stok,
           isGuarantee: this.isGuarantee,
-          guaranteeDays: this.garansiDays
+          guaranteeDays: +this.garansiDays
         };
-      console.log('reg', productData);
+      //console.log('reg', productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
+      swal({
+        title: 'Belisada.co.id',
+        text: 'Uploading',
+        timer: 2000,
+        onOpen: () => {
+          swal.showLoading();
+        }
+      }).then((result) => {
+        // if (
+        //   // Read more about handling dismissals
+        //   result.dismiss === swal.DismissReason.timer
+        // ) {
+        //   console.log('I was closed by the timer')
+        // }
+      });
       this.clearAll();
     }
   }
@@ -542,37 +608,37 @@ export class AddProductsComponent implements OnInit {
       title: 'ASAP',
       type: 'info',
       html:
-      '<div class="ui list" align="justify">' +
-      '<a class="item">' +
-         ' <i class="right triangle icon"></i>' +
-        '<div class="content">' +
-         '<div class="header">ASAP</div>' +
-         '<div class="description">(As Soon As Possible) merupakan layanan ' +
+      '<div class=ui list align=justify>' +
+      '<a class=item>' +
+         ' <i class=right triangle icon></i>' +
+        '<div class=content>' +
+         '<div class=header>ASAP</div>' +
+         '<div class=description>(As Soon As Possible) merupakan layanan ' +
          'pengiriman dari belisada yang memberikan benefit tambahan bagi customer' +
               'Gratis Biaya Pengiriman</div>' +
         '</div>' +
       '</a>' +
-      '<a class="item">' +
-          '<i class="right triangle icon"></i>' +
-        '<div class="content">' +
-          '<div class="description">Anda bisa mendapatkan layanan ASAP dari belisada  ' +
+      '<a class=item>' +
+          '<i class=right triangle icon></i>' +
+        '<div class=content>' +
+          '<div class=description>Anda bisa mendapatkan layanan ASAP dari belisada  ' +
           'secara cuma-cuma sehingga anda bisa menghemat biaya pengiriman untuk pembelanjaan berikutnya' +
               '2 Hari Sampai</div>' +
         '</div>' +
       '</a>' +
-      '<a class="item">' +
-          '<i class="right triangle icon"></i>' +
-        '<div class="content">' +
-          '<div class="description">ASAP menawarkan keamanan dalam pengiriman barang ' +
+      '<a class=item>' +
+          '<i class=right triangle icon></i>' +
+        '<div class=content>' +
+          '<div class=description>ASAP menawarkan keamanan dalam pengiriman barang ' +
           'pesanan anda. Dengan sistem packaging yang komprehensif, ASAP memberikan perlindungan' +
           'terbaik bagi barang pesanan anda dalam situasi apapun.</div>' +
         '</div>' +
       '</a>' +
-      '<a class="item">' +
-          '<i class="right triangle icon"></i>' +
-        '<div class="content">' +
-          '<div class="header">Bagaimana cara mendapatkan layanan ASAP?</div>' +
-          '<div class="description">' +
+      '<a class=item>' +
+          '<i class=right triangle icon></i>' +
+        '<div class=content>' +
+          '<div class=header>Bagaimana cara mendapatkan layanan ASAP?</div>' +
+          '<div class=description>' +
               'Saat ini, layanan ASAP mengjangkau customer di wilayah Jakarta. Anda bisa' +
                'mendapatkan layanan ini dengan berbelanja di belisada dan memilih belisada ' +
                'Courrier sebagai jasa pengiriman saat check out.' +
@@ -583,10 +649,10 @@ export class AddProductsComponent implements OnInit {
       showCancelButton: false,
       focusConfirm: false,
       confirmButtonText:
-        '<i class="fa fa-thumbs-up"></i> OK!',
+        '<i class=fa fa-thumbs-up></i> OK!',
       confirmButtonAriaLabel: 'OK!',
       cancelButtonText:
-      '<i class="fa fa-thumbs-down"></i>',
+      '<i class=fa fa-thumbs-down></i>',
       cancelButtonAriaLabel: 'Thumbs down',
     });
   }
