@@ -1,8 +1,32 @@
-<div class="object">
+<!-- <div class="object">
         <div class="object-rope"></div>
         <div class="object-shape">
             Coming <span class="soon">Soon</span>
         </div>
 
+    </div> -->
+
+    <div class="top"></div>
+    <div class="ui grid">
+        <div class="four wide column" *ngFor="let item of productList">
+            <div class="b-product">
+                <p style="cursor: pointer"><img class="ui centered small image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'" (click)="detail(item.productId, item.aliasName)"></p>
+                <div class="title-product" (click)="detail(item.productId, item.aliasName)">{{item.aliasName}}</div>
+
+
+                <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
+                    <div class="yu">
+                        <div class="selledby">dijual oleh: <span >{{ item.storeName }}</span></div>
+                        <span (click)="detail(item.productId, item.aliasName)">Stok: {{item.stock}}</span>
+                        
+                    </div>
+                    <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
+                    <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
+    
+                </div>
+ 
+                
+            </div>
+        </div>
     </div>
 
