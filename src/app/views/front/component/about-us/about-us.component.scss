@@ -154,6 +154,38 @@ html,body{
 	width:100%;
 	height:100%;
 }
+.wrapperpok{
+    display:grid;
+    grid-template-columns: 100%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+  .lev {
+      display: grid;
+  }
+  .pulpen {
+    border: 18px solid #f7982D;
+    /* width: 322px !important; */
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 22px;
+    color: white;
+    background: #f7982D;
+
+  }
+  .tengah {
+    align-self: center;
+  }
+  .wrapperpok > div{
+    // background:#eee;
+    padding:1em;
+  }
+  .wrapperpok > div:nth-child(odd){
+    // background:#ddd;
+  }
 
 /**************************************************************
 					General classes
