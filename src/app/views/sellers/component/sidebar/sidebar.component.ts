@@ -7,6 +7,7 @@ import { StoreService } from '../../../../core/service/store/store.service';
 import swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
 import { FlagService } from '../../../../core/service/flag.service';
+import { CourierService } from './../../../../core/service/courier/courier.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -33,6 +34,7 @@ export class SidebarComponent implements OnInit {
   eCheckReadonly: any;
 
   message: string;
+  courierList: any;
 
   constructor(private router: Router,
   private profileService: ProfileService,
@@ -41,12 +43,12 @@ export class SidebarComponent implements OnInit {
   private tokenService: TokenService,
   private storeService: StoreService,
   private translate: TranslateService,
-  private flagService: FlagService
+  private flagService: FlagService,
+  private courierService: CourierService
 ) {  }
 
 
   ngOnInit() {
-    this.getProfile();
     this.getUri();
     this.getStoreStatus();
     this.lang = localStorage.getItem('language');
@@ -55,7 +57,28 @@ export class SidebarComponent implements OnInit {
     }
 
    this.uploadPhoto();
+   this.getProfile();
+   this.courier();
   }
+
+  courier() {
+    this.courierService.all().subscribe(response => {
+      this.courierList = response;
+
+      // console.log(this.checkboxGroup);
+    });
+  }
+
+  onSubmit() {
+    // console.log(kurir);
+
+  }
+
+  // fillForms() {
+  //   this.fm = {
+  //     kurir : data.name,
+  //   };
+  // }
 
   uploadPhoto() {
     this.flagService.currentMessage.subscribe(respon => {
@@ -156,5 +179,7 @@ export class SidebarComponent implements OnInit {
   gotoContact() {
     this.router.navigateByUrl('contact-us');
   }
+
+  
 
 }

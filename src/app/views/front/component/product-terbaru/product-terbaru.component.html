@@ -7,7 +7,8 @@
     </div> -->
 
     <div class="top"></div>
-    <div class="ui grid">
+
+    <div class="ui grid stackable">
         <div class="four wide column" *ngFor="let item of productList">
             <div class="b-product">
                 <p style="cursor: pointer"><img class="ui centered small image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'" (click)="detail(item.productId, item.aliasName)"></p>
@@ -16,7 +17,8 @@
 
                 <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
                     <div class="yu">
-                        <div class="selledby">dijual oleh: <span >{{ item.storeName }}</span></div>
+                        <div class="selledby" *ngIf="item.storeName !== ''">dijual oleh: <span>{{ item.storeName }}</span></div>
+                        <div class="selledby" *ngIf="item.storeName === ''">dijual oleh: <span>Belisada</span></div>
                         <span (click)="detail(item.productId, item.aliasName)">Stok: {{item.stock}}</span>
                         
                     </div>
