@@ -11,6 +11,7 @@ import swal from 'sweetalert2';
 import { ShareService } from '../../../../core/service/shared.service';
 import { FlagService } from '../../../../core/service/flag.service';
 
+
 @Component({
   selector: 'app-sidebar-buyer',
   templateUrl: './sidebar-buyer.component.html',
@@ -39,6 +40,7 @@ export class SidebarBuyerComponent implements OnInit {
     private upgradeService: UpgradeService,
     private shareService: ShareService,
     private flagService: FlagService
+    
   ) { }
 
   ngOnInit() {
@@ -46,7 +48,9 @@ export class SidebarBuyerComponent implements OnInit {
     this.getProfileBuyer();
     this.getNavigationCategory();
     this.uploadPhoto();
+   
   }
+
 
   uploadPhoto() {
     this.flagService.currentMessage.subscribe(respon => {

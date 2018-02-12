@@ -1,3 +1,4 @@
+import { CourierService } from '../../../core/service/courier/courier.service';
 import { TarikDanaComponent } from './../component/tarik-dana/tarik-dana.component';
 import { MenuProfileComponent } from './../component/menu-profile/menu-profile.component';
 import { NewSellerComponent } from './../component/new-seller/new-seller.component';
@@ -130,6 +131,7 @@ import { OpenCloseShopComponent } from '../component/dashboard/open-close-shop/o
     RekeningSService,
     AddproductService,
     InfoPerusahaanService,
+    CourierService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
