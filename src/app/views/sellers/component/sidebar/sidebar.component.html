@@ -52,20 +52,20 @@
 
     </div>
     <div class='side-third'>
+        <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="ui form">
             <div class="grouped fields">
                 <label>Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.</label>
-                <div class="field">
-                    <sui-checkbox [(ngModel)]="eCheckDisabled">JNE Reguler</sui-checkbox>
-                </div>
-                <div class="field">
-                    <sui-checkbox [(ngModel)]="eCheckReadonly">Ninja Express</sui-checkbox>
+                <div class="field" *ngFor="let c of courierList">
+                    <sui-checkbox name="kurir" value="{{c.shipperId}}">{{c.name}}</sui-checkbox>
                 </div>
             </div>
         </div>
-        <button class="ui primary button">
+        <!-- <button class="ui primary button" (click)="updateCourier()">
             Simpan
-        </button>
+        </button> -->
+        <button class="ui primary button" type="submit">Simpan</button>
+        </form>
     </div>
 
 </div>
