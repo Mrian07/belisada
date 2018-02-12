@@ -1,13 +1,15 @@
 <p>Anda bisa menutup toko sementara sesuai dengan batas waktu yang diinginkan. Selama toko ditutup produk-produk Anda tidak akan ditampilkan pada halaman website belisada.</p>
-	<div class="ui tiny form">
+<!-- <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate> -->
+<div class="ui tiny form">
+		
 		<div class="two fields">
 			<div class="field">
 				<label>Tanggal Mulai (format: tanggal/bulan/tahun)</label>
-				<input placeholder="First Name" type="date">
+				<input placeholder="First Name" type="date" >
 			</div>
 			<div class="field">
 				<label>Tanggal Berakhir (format: tanggal/bulan/tahun)</label>
-				<input placeholder="Last Name" type="date">
+				<input placeholder="Last Name" type="date" >
 			</div>
 		</div>
 
@@ -16,7 +18,8 @@
 			<textarea></textarea>
 		</div>
 
-    <div class="ui submit button">Proses Tutup</div>
+    <div class="ui submit button" (click)="closeModalShop()">Proses Tutup</div>
     
-  </div>
+	</div>
+<!-- </form> -->
 

@@ -5,7 +5,7 @@ import { ActiveLink, ShareService } from '../../../../../core/service/shared.ser
 import { StoreService } from '../../../../../core/service/store/store.service';
 import swal from 'sweetalert2';
 import { TokenService } from '../../../../../core/service/token/token.service';
-
+import { FlagService } from '../../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-search-dashboard',
@@ -33,7 +33,8 @@ export class SearchDashboardComponent implements OnInit {
     private active: ActiveLink,
     private storeService: StoreService,
     private tokenService: TokenService,
-    private sharedService: ShareService
+    private sharedService: ShareService,
+    private flagService: FlagService
   ) { }
 
   // 'DR','SEDANG DI REVIEW',1
@@ -67,6 +68,17 @@ export class SearchDashboardComponent implements OnInit {
         }
       }
       this.bukaToko();
+    });
+
+    this.popUp();
+  }
+
+  popUp() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.message = respon;
+      if (this.message === 'close-popup') {
+        this.closeModalShop();
+      }
     });
   }
 

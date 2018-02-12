@@ -22,7 +22,7 @@ export class StoreService extends AbstractRestService<MyStore> {
         .map(response => response as any[]);
   }
 
-  OpenClose(updateData) {
+  openClose(updateData) {
     return this.http.put(this.configuration.serverWithAccUrl + '/seller/profile/store/holiday', updateData)
       .map(resp => resp as OpenClose);
   }
