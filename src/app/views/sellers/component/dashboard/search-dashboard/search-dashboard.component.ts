@@ -59,7 +59,7 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'green';
         }else if ( data[0].statusCode === 'DR') {
             this.storeStatus = 'Toko anda akan di approve dalam 24 jam';
-            this.status = true;
+            this.status = false;
             this.btnColor = 'orange';
         } else {
           this.storeStatus = data[0].status;
@@ -99,6 +99,7 @@ export class SearchDashboardComponent implements OnInit {
   }
 
   addProducts() {
+    console.log(this.status);
     if (this.status === false) {
       swal(
         'Belisada.co.id',
@@ -119,7 +120,7 @@ export class SearchDashboardComponent implements OnInit {
           this.router.navigate(['seller/add-products/add']);
         }
       });
-    }
+   }
   }
 
   getStoreData() {

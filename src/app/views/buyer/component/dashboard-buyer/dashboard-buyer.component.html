@@ -1,69 +1,76 @@
-
-<div class="ui grid" style="display:none;">
-<!-- <div class="ui grid">
-  <div class="four wide column">
-    <div class="border-item">
-      <img class="ui tiny spaced image" src="/assets/img/Asset_344.png" alt="profile picture"/>
+<header class="header" [ngStyle]="{'background-image': 'linear-gradient(to right bottom, rgba(35, 47, 61, 0.45), rgba(35, 47, 61, 0.65)), url(assets/img/thought-catalog-214785-min.jpg)'}" >
+    <div class="text-box">
+        <h1 class="heading-primary">
+            <span class="heading-primary-main">Belisada</span>
+            <!-- <span class="heading-primary-sub">is where life happens</span> -->
+        </h1>
+        <!-- <a href="#" class="btn btn-white btn-animated">Discover Our Tools</a> -->
     </div>
-    <div class="border-item-second">
 
-        <div class="ui grid">
-          <div class="twelve wide column">
-              <small>Iphone 7s Plus</small><br>
-              Rp.14.000.000
-          </div>
-          <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
-        </div>
+</header>
+<div class="gap-between-elements"></div>
+<sui-tabset>
+    <div class="ui top attached tabular menu">
+        <a class="item" suiTabHeader="1"> <i class="shopping bag icon"></i>Product Terbaru</a>
+        <a class="item" suiTabHeader="2"><i class="empty heart icon"></i>Wishlist</a>
+        <!-- <a class="item" suiTabHeader="3">Third</a> -->
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="1">
+            <div class="ui grid">
+                    <div class="four wide column" *ngFor="let item of productList">
+                        <div class="b-product">
+                            <p style="cursor: pointer"><img class="ui centered small image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'" (click)="detail(item.productId, item.aliasName)"></p>
+                            <div class="title-product" (click)="detail(item.productId, item.aliasName)">{{item.aliasName}}</div>
+
+
+                            <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
+                                <div class="yu">
+                                    <div class="selledby">dijual oleh: <span >{{ item.storeName }}</span></div>
+                                    <span (click)="detail(item.productId, item.aliasName)">Stok: {{item.stock}}</span>
+
+                                </div>
+                                <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
+                                <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+        <!-- <app-product-terbaru></app-product-terbaru> -->
+    </div>
+    <div class="ui bottom attached segment" suiTabContent="2">
+            <h1>My Wishlist</h1>
+            <div class="wrapper" *ngFor="let item of dat">
+                <div>
+                <div class="wrpaeer2">
+                    <div class="wish-img" align="center">
+                        <img class="ui image" src="{{item.imageurl}}" alt="profile picture"/>
+                    </div>
+                    <div>
+                        <span class="gr">Stock : {{item.stock}}</span>
+                        <div class="gap-between-elements"></div>
+                        <span> {{item.name}}</span>
+                        <div class="gap-between-elements"></div>
+                        <span>4.5</span>
+                        <sui-rating [(ngModel)]="rating" [maximum]="1" [isReadonly]="readonly"></sui-rating>
+                        <span>(29)</span>
+                        <div class="gap-between-elements"></div>
+                        <span>Rp. {{item.pricelist | number}}</span>
+                    </div>
+                    <div>
+                        <button class="ui circular facebook icon button gatsb" (click)="btnDelete(item.productId)">
+                            <i class="trash icon"></i>
+                          </button>
+                          <div class="gap-between-elements8"></div>
+                    </div>
+                </div>
+                </div>
+              </div>
+
 
     </div>
-  </div>
-  <div class="four wide column">
-    <div class="border-item">
-      <img class="ui tiny spaced image" src="/assets/img/Asset_344.png" alt="profile picture"/>
-    </div>
-    <div class="border-item-second">
-
-        <div class="ui grid">
-          <div class="twelve wide column">
-              <small>Iphone 7s Plus</small><br>
-              Rp.14.000.000
-          </div>
-          <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
-        </div>
-
-    </div>
-  </div>
-  <div class="four wide column">
-    <div class="border-item">
-      <img class="ui tiny spaced image" src="/assets/img/Asset_344.png" alt="profile picture"/>
-    </div>
-    <div class="border-item-second">
-
-        <div class="ui grid">
-          <div class="twelve wide column">
-              <small>Iphone 7s Plus</small><br>
-              Rp.14.000.000
-          </div>
-          <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
-        </div>
-
-    </div>
-  </div>
-  <div class="four wide column">
-    <div class="border-item">
-      <img class="ui tiny spaced image" src="/assets/img/Asset_344.png" alt="profile picture"/>
-    </div>
-    <div class="border-item-second">
-
-        <div class="ui grid">
-          <div class="twelve wide column">
-              <small>Iphone 7s Plus</small><br>
-              Rp.14.000.000
-          </div>
-          <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
-        </div>
-
-    </div>
-  </div>
-
-</div> -->
+    <!-- <div class="ui bottom attached segment" suiTabContent="3">Third tab!</div> -->
+</sui-tabset>
