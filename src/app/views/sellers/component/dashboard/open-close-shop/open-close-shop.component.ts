@@ -77,22 +77,34 @@ export class OpenCloseShopComponent implements OnInit {
       mBpartnerStoreId: model.mBpartnerStoreId,
       dayOffNote: model.dayOffNote,
     };
-    this.storeService.openClose(data).subscribe(response => {
-      if (response.status === '1') {
-        swal(
-          'Sukses',
-          'Toko berhasil ditutup',
-          'success'
-        );
-      }else {
-        swal(
-          'Opps!',
-          response.message,
-          'error'
-        );
-      }
+
+    if (model.dateStart === '' || model.dateEnd === '') {
+      swal(
+        'Gagal',
+        'Anda belum mengisi tanggal tutup',
+        'error'
+      );
       this.flagService.changeMessage('close-popup');
-    });
+    } else {
+
+      this.storeService.openClose(data).subscribe(response => {
+        if (response.status === '1') {
+          swal(
+            'Sukses',
+            'Toko berhasil ditutup',
+            'success'
+          );
+        }else {
+          swal(
+            'Opps!',
+            response.message,
+            'error'
+          );
+        }
+        this.flagService.changeMessage('close-popup');
+      });
+
+    }
 
   }
 
