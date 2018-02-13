@@ -98,6 +98,11 @@ import { FaqSellerCenterComponent } from './views/front/component/seller-center/
 import { ChattingComponent } from './core/component/chatting/chatting.component';
 import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/review-buyer.component';
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
+
+import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
+import { MFrontHeaderComponent } from './views/mobile/front/component/m-front-header/m-front-header.component';
+import { MFrontHomeComponent } from './views/mobile/front/component/m-front-home/m-front-home.component';
+
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
 export function createTranslateLoader(http: HttpClient) {
@@ -193,7 +198,11 @@ export function getAuthServiceConfigs() {
     ChattingComponent,
     FaqSellerCenterComponent,
     ReviewBuyerComponent,
-    DalemReviewComponent
+    DalemReviewComponent,
+
+    MFrontLayoutComponent,
+    MFrontHeaderComponent,
+    MFrontHomeComponent
 
 
     // WishlistComponent,

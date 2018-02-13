@@ -19,3 +19,11 @@ export class MyStore {
 
     constructor() { }
 }
+
+export class OpenClose {
+    dateStart: any;
+    dateEnd: any;
+    isOffDay: string;
+    mBpartnerStoreId: number;
+    dayOffNote: string;
+}

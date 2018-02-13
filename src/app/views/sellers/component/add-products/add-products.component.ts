@@ -92,6 +92,7 @@ export class AddProductsComponent implements OnInit {
   productBrandId: number;
   gambarnya: any;
   cat3Id: number;
+  partNumber: string;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -331,6 +332,7 @@ export class AddProductsComponent implements OnInit {
     this.countries[hasil.stock].selected = true;
     this.qtyOnHand = hasil.qtyOnHand;
     this.qtySeller = hasil.qtyOnSeller;
+    this.partNumber = hasil.partNumber;
     if ( hasil.isGuarantee === undefined) {
       this.isGuarantee = 'N';
     }else {
@@ -404,16 +406,15 @@ export class AddProductsComponent implements OnInit {
   }
   addProducts() {
     //console.log(this.selectCats);
-
+    this.userImage = this.fm.imageNPWP;
     if (this.price === undefined && this.productName === undefined &&
      this.weight === undefined && this.panjang === undefined && this.lebar === undefined
-      && this.tinggi === undefined) {
+      && this.tinggi === undefined && this.stok === 0) {
         swal(
           'Belisada.co.id',
           'Semua Field harus di isi'
         );
     }else {
-      this.userImage = this.fm.imageNPWP;
       if (this.cat3Id === undefined) {
         this.cat3Id = this.ctr.cat3;
       }else {
@@ -438,41 +439,45 @@ export class AddProductsComponent implements OnInit {
           if (this.productId === undefined) {
             this.productId = null;
           }else {}
-            const productData = {
-              productId: this.productId,
-              name: this.productName,
-              highlight: this.highlight,
-              description: this.description,
-              classification: this.classification,
-              image: this.gambarnya,
-              pricelist: this.price,
-              specialPrice: this.specialPrice,
-              mBpartnerStoreId: this.storeId,
-              category3Id: this.cat3Id,
-              productbrandId: this.productBrandId,
-              tag: [this.productName],
-              weight: +this.weight,
-              dimensionswidth: +this.lebar,
-              dimensionslength: +this.panjang,
-              dimensionsheight: +this.tinggi,
-              isAsapShipping: 'N',
-              qtyOnHand: 0,
-              qtyOnSeller: +this.stok,
-              isGuarantee: this.isGuarantee,
-              guaranteeDays: +this.garansiDays
-            };
-            this.store.dispatch(new fromActions.AddProduct(productData));
-            swal({
-              title: 'Belisada.co.id',
-              text: 'Uploading',
-              timer: 2000,
-              onOpen: () => {
-                swal.showLoading();
-              }
-            });
-            this.clearAll();
         }
       }
+      const productData = {
+        productId: this.productId,
+        name: this.productName,
+        highlight: this.highlight,
+        description: this.description,
+        classification: this.classification,
+        image: this.gambarnya,
+        pricelist: this.price,
+        specialPrice: this.specialPrice,
+        mBpartnerStoreId: this.storeId,
+        category3Id: this.cat3Id,
+        productbrandId: this.productBrandId,
+        tag: [this.productName],
+        weight: +this.weight,
+        dimensionswidth: +this.lebar,
+        dimensionslength: +this.panjang,
+        dimensionsheight: +this.tinggi,
+        isAsapShipping: 'N',
+        qtyOnHand: 0,
+        partNumber: this.partNumber,
+        qtyOnSeller: +this.stok,
+        isGuarantee: this.isGuarantee,
+        guaranteeDays: +this.garansiDays
+      };
+      console.log(productData);
+      this.store.dispatch(new fromActions.AddProduct(productData));
+      swal({
+        title: 'Belisada.co.id',
+        text: 'Uploading',
+        timer: 2000,
+        onOpen: () => {
+          swal.showLoading();
+        }
+      }).then(res => {
+        this.router.navigateByUrl('/seller/product-list');
+      });
+      this.clearAll();
     }
   }
   gudang($event) {
