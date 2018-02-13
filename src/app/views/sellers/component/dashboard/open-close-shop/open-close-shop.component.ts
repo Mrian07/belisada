@@ -21,6 +21,8 @@ export class OpenCloseShopComponent implements OnInit {
   isOff: string;
   stores: any[] = [];
 
+  isClose: any;
+
   constructor(
     private storeService: StoreService,
     private flagService: FlagService
@@ -43,6 +45,13 @@ export class OpenCloseShopComponent implements OnInit {
 
       this.storeId = response[0].mBpartnerStoreId;
       // console.log('apa ini lah', response[0].mBpartnerStoreId);
+
+
+      this.storeService.cekOpenClose(this.storeId).subscribe(respon => {
+        this.isClose = respon.status;
+        console.log('this.isClose: ', this.isClose);
+      });
+
     });
   }
 
@@ -90,6 +99,50 @@ export class OpenCloseShopComponent implements OnInit {
       this.flagService.changeMessage('close-popup');
     });
 
+  }
+
+  openShop() {
+    this.flagService.changeMessage('close-popup');
+    swal({
+      title: 'Toko Dibuka',
+      text: 'Anda yakin toko akan dibuka.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Tidak',
+      confirmButtonText: 'Iya'
+    }).then((result) => {
+      if (result.value) {
+
+        this.storeService.getAll().subscribe(response => {
+
+          const data = {
+            dateStart: '',
+            dateEnd: '',
+            isOffDay: 'N',
+            mBpartnerStoreId: response[0].mBpartnerStoreId,
+            dayOffNote: '',
+          };
+
+          this.storeService.openClose(data).subscribe(respon => {
+            if (respon.status === '1') {
+              swal(
+                'Sukses',
+                'Toko berhasil dibuka',
+                'success'
+              );
+            }else {
+              swal(
+                'Opps!',
+                respon.message,
+                'error'
+              );
+            }
+          });
+        });
+      }
+    });
   }
 
   formateDate(date: string) {
