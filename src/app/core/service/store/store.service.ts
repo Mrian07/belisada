@@ -26,4 +26,9 @@ export class StoreService extends AbstractRestService<MyStore> {
     return this.http.put(this.configuration.serverWithAccUrl + '/seller/profile/store/holiday', updateData)
       .map(resp => resp as OpenClose);
   }
+
+  cekOpenClose(id) {
+    return this.http.get(this.configuration.serverWithAccUrl + '/seller/profile/store/holiday/' + id)
+      .map(resp => resp as OpenClose);
+  }
 }

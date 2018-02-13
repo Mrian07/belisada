@@ -1,3 +1,4 @@
+<div *ngIf="isClose=='0'">
 <div class="b-info">Anda bisa menutup toko sementara sesuai dengan batas waktu yang diinginkan. Selama toko ditutup produk-produk Anda tidak akan ditampilkan pada halaman website belisada.</div>
 <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
 <input type="hidden" formControlName="isOffDay">	
@@ -19,9 +20,31 @@
 			<label>Keterangan</label>
 			<textarea formControlName="dayOffNote"></textarea>
 		</div>
-		<!-- <button class="ui twitter submit button" type="submit" (click)="closeModalShop()">Proses Tutup</button> -->
-		<button class="ui twitter submit button" type="submit">Proses Tutup</button>
+		<button class="ui twitter submit button" type="submit">Tutup Toko</button>
     
 	</div>
 </form>
+</div>
+<div *ngIf="isClose=='1'">
+<div class="b-info">Saat ini status toko Anda tutup</div>
+<div class="ui tiny form">
+		
+	<div class="two fields">
+		<div class="field">
+			<label>Tanggal Mulai (format: tanggal/bulan/tahun)</label>
+			2018-07-19
+		</div>
+		<div class="field">
+			<label>Tanggal Berakhir (format: tanggal/bulan/tahun)</label>
+			2018-07-19
+		</div>
+	</div>
 
+	<div class="field">
+		<label>Keterangan</label>
+		apalaj keterangan
+	</div>
+	<button class="ui twitter submit button" (click)="openShop()">Buka Toko</button>
+
+</div>
+</div>

@@ -2,9 +2,7 @@ import { StoreService } from './../../../../../core/service/store/store.service'
 import { Component, OnInit } from '@angular/core';
 import { FlagService } from '../../../../../core/service/flag.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-// import { constants } from 'fs';
-// import { constants } from 'fs';
-// constants
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-open-close-shop',
@@ -22,6 +20,9 @@ export class OpenCloseShopComponent implements OnInit {
   storeId: number;
   isOff: string;
   stores: any[] = [];
+
+  isClose: any;
+
   constructor(
     private storeService: StoreService,
     private flagService: FlagService
@@ -35,7 +36,6 @@ export class OpenCloseShopComponent implements OnInit {
 
   getAllStore() {
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
       this.stores = response;
       this.isOff = 'Y';
 
@@ -43,7 +43,10 @@ export class OpenCloseShopComponent implements OnInit {
       this.mBpartnerStoreId.setValue(response[0].mBpartnerStoreId);
 
       this.storeId = response[0].mBpartnerStoreId;
-      // console.log('apa ini lah', response[0].mBpartnerStoreId);
+      this.storeService.cekOpenClose(this.storeId).subscribe(respon => {
+        this.isClose = respon.status;
+      });
+
     });
   }
 
@@ -65,38 +68,100 @@ export class OpenCloseShopComponent implements OnInit {
     });
   }
 
-  // closeModalShop() {
-  //   this.flagService.changeMessage('close-popup');
-  // }
-
   onSubmit() {
     const model = this.createComForm.value;
     const data = {
-      dateStart: model.dateStart,
-      dateEnd: model.dateEnd,
+      dateStart: this.formateDate(model.dateStart),
+      dateEnd: this.formateDate(model.dateEnd),
       isOffDay: model.isOffDay,
       mBpartnerStoreId: model.mBpartnerStoreId,
       dayOffNote: model.dayOffNote,
     };
-    console.log(data);
-    this.flagService.changeMessage('close-popup');
-    this.storeService.openClose(data).subscribe(response => {
 
-      // if (response.status === '1') {
-      //   swal(
-      //     'Sukses',
-      //     'Data berhasil ditambahkan',
-      //     'success'
-      //   );
-      // }else {
-      //   swal(
-      //     'Opps!',
-      //     response.message,
-      //     'error'
-      //   );
-      // }
-      // this.fillForms();
-    });
+    if (model.dateStart === '' || model.dateEnd === '') {
+      swal(
+        'Gagal',
+        'Anda belum mengisi tanggal tutup',
+        'error'
+      );
+      this.flagService.changeMessage('close-popup');
+    } else {
+
+      this.storeService.openClose(data).subscribe(response => {
+        if (response.status === '1') {
+          swal(
+            'Sukses',
+            'Toko berhasil ditutup',
+            'success'
+          );
+        }else {
+          swal(
+            'Opps!',
+            response.message,
+            'error'
+          );
+        }
+        this.flagService.changeMessage('close-popup');
+      });
+
+    }
 
   }
+
+  openShop() {
+    this.flagService.changeMessage('close-popup');
+    swal({
+      title: 'Toko Dibuka',
+      text: 'Anda yakin toko akan dibuka.',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'Tidak',
+      confirmButtonText: 'Iya'
+    }).then((result) => {
+      if (result.value) {
+
+        this.storeService.getAll().subscribe(response => {
+
+          const data = {
+            dateStart: '',
+            dateEnd: '',
+            isOffDay: 'N',
+            mBpartnerStoreId: response[0].mBpartnerStoreId,
+            dayOffNote: '',
+          };
+
+          this.storeService.openClose(data).subscribe(respon => {
+            if (respon.status === '1') {
+              swal(
+                'Sukses',
+                'Toko berhasil dibuka',
+                'success'
+              );
+
+              this.flagService.changeMessage('close-popup');
+
+            }else {
+              swal(
+                'Opps!',
+                respon.message,
+                'error'
+              );
+            }
+          });
+        });
+      }
+    });
+  }
+
+  formateDate(date: string) {
+    const tempArrDate = date.split('-');
+    console.log('tempArrDate: ', tempArrDate);
+
+    return tempArrDate[2] + '-' + tempArrDate[1] + '-' + tempArrDate[0];
+  }
 }
+
+
+

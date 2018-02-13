@@ -26,6 +26,7 @@ export class SearchDashboardComponent implements OnInit {
   storeName: string;
 
   modal: boolean;
+  isClose: any;
 
   constructor(
     private router: Router,
@@ -67,10 +68,11 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'red';
         }
       }
-      this.bukaToko();
+      // this.bukaToko();
     });
 
     this.popUp();
+    this.cekStatusToko();
   }
 
   popUp() {
@@ -78,21 +80,39 @@ export class SearchDashboardComponent implements OnInit {
       this.message = respon;
       if (this.message === 'close-popup') {
         this.closeModalShop();
+        this.cekStatusToko();
       }
     });
   }
 
-  bukaToko() {
-    this.buka = false;
-    this.tutup = true;
-    this.toko = 'Buka';
+  cekStatusToko() {
+    this.storeService.getAll().subscribe(response => {
+      this.storeService.cekOpenClose(response[0].mBpartnerStoreId).subscribe(respon => {
+        this.isClose = respon.status;
+          if (respon.status === '1') {
+            this.buka = true;
+            this.tutup = false;
+            this.toko = 'Tutup';
+          } else {
+            this.buka = false;
+            this.tutup = true;
+            this.toko = 'Buka';
+          }
+      });
+    });
   }
 
-  tutupToko() {
-    this.buka = true;
-    this.tutup = false;
-    this.toko = 'Tutup';
-  }
+  // bukaToko() {
+  //   this.buka = false;
+  //   this.tutup = true;
+  //   this.toko = 'Buka';
+  // }
+
+  // tutupToko() {
+  //   this.buka = true;
+  //   this.tutup = false;
+  //   this.toko = 'Tutup';
+  // }
 
   search(event) {
     const key = event.target.value;
