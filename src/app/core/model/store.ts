@@ -26,4 +26,6 @@ export class OpenClose {
     isOffDay: string;
     mBpartnerStoreId: number;
     dayOffNote: string;
+    status: string;
+    message: string;
 }
