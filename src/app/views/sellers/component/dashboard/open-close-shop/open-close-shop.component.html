@@ -1,26 +1,27 @@
-<div class="b-info">Anda bisa menutup toko sementara sesuai dengan batas waktu yang diinginkan. 
-	Selama toko ditutup produk-produk Anda tidak akan ditampilkan pada halaman website belisada.</div>
-<!-- <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate> -->
+<div class="b-info">Anda bisa menutup toko sementara sesuai dengan batas waktu yang diinginkan. Selama toko ditutup produk-produk Anda tidak akan ditampilkan pada halaman website belisada.</div>
+<form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+<input type="hidden" formControlName="isOffDay">	
+<input type="hidden" formControlName="mBpartnerStoreId">
 <div class="ui tiny form">
 		
 		<div class="two fields">
 			<div class="field">
 				<label>Tanggal Mulai (format: tanggal/bulan/tahun)</label>
-				<input placeholder="First Name" type="date" >
+				<input placeholder="First Name" type="date" formControlName="dateStart">
 			</div>
 			<div class="field">
 				<label>Tanggal Berakhir (format: tanggal/bulan/tahun)</label>
-				<input placeholder="Last Name" type="date" >
+				<input placeholder="Last Name" type="date" formControlName="dateEnd">
 			</div>
 		</div>
 
 		<div class="field">
 			<label>Keterangan</label>
-			<textarea></textarea>
+			<textarea formControlName="dayOffNote"></textarea>
 		</div>
-
-    <div class="ui twitter submit button" (click)="closeModalShop()">Proses Tutup</div>
+		<!-- <button class="ui twitter submit button" type="submit" (click)="closeModalShop()">Proses Tutup</button> -->
+		<button class="ui twitter submit button" type="submit">Proses Tutup</button>
     
 	</div>
-<!-- </form> -->
+</form>
 
