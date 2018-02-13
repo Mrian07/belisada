@@ -171,13 +171,13 @@ export class AddProductsComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.ADDPRODUCTSUCCESS)
         .subscribe((action: fromActions.AddProductSuccess) => {
-           swal(
-                'Produk berhasil di tambahkan!',
-                'success'
-              ).then((result) => {
-                this.router.navigateByUrl('/seller/product-list');
-                this.clearAll();
-              });
+            swal(
+              'Produk berhasil di tambahkan!',
+              'success'
+            ).then((result) => {
+              this.router.navigateByUrl('/seller/product-list');
+              this.clearAll();
+            });
         });
     this.editSub = this.actionsSubject
     .asObservable()
@@ -464,19 +464,16 @@ export class AddProductsComponent implements OnInit {
         isGuarantee: this.isGuarantee,
         guaranteeDays: +this.garansiDays
       };
-      console.log(productData);
+      //console.log(productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
       swal({
         title: 'Belisada.co.id',
         text: 'Uploading',
-        timer: 2000,
+        timer: 3000,
         onOpen: () => {
           swal.showLoading();
         }
-      }).then(res => {
-        // this.router.navigateByUrl('/seller/product-list');
       });
-      this.clearAll();
     }
   }
   gudang($event) {
