@@ -2,12 +2,6 @@ import { StoreService } from './../../../../../core/service/store/store.service'
 import { Component, OnInit } from '@angular/core';
 import { FlagService } from '../../../../../core/service/flag.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-<<<<<<< HEAD
-=======
-// import { constants } from 'fs';
-// import { constants } from 'fs';
-// constants
->>>>>>> a288db72aafb436df8d6b39645b66f498f493666
 
 @Component({
   selector: 'app-open-close-shop',
