@@ -12,12 +12,12 @@
 
         <div class="fields">
           <div class="eight wide field">
-            <label>Nama</label>
+            <label>Nama Toko</label>
             <input name="name" placeholder="Masukan nama toko" type="text" formControlName="name"/>
             <div class="form-control-feedback" *ngIf="name.invalid && (name.dirty || f.submitted)">Nama tidak boleh kosong</div>
           </div>
           <div class="eight wide field">
-            <label>Alamat</label>
+            <label>Alamat Toko</label>
             <input name="address" placeholder="Masukan alamat toko" type="text" formControlName="address"/>
             <div class="form-control-feedback alert" *ngIf="address.invalid && (address.dirty || f.submitted)">
                 Alamat tidak boleh kosong
@@ -65,7 +65,7 @@
         </div>
         <div class="fields">
           <div class="sixteen wide field">
-            <label>Deskripsi</label>
+            <label>Deskripsi Toko</label>
             <textarea name="description" placeholder="Deskripsi toko anda" formControlName="description"></textarea>
           </div>
         </div>

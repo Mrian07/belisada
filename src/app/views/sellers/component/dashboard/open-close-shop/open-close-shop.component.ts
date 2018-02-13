@@ -41,7 +41,6 @@ export class OpenCloseShopComponent implements OnInit {
   }
 
   closeModalShop() {
-    console.log('testing');
     this.flagService.changeMessage('close-popup');
   }
 
