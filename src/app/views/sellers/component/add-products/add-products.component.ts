@@ -465,6 +465,7 @@ export class AddProductsComponent implements OnInit {
         isGuarantee: this.isGuarantee,
         guaranteeDays: +this.garansiDays
       };
+      console.log(productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
       swal({
         title: 'Belisada.co.id',
