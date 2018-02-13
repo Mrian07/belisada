@@ -171,7 +171,7 @@
                             Berat
                         </div>
                         <div class="two wide field">
-                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Berat" value="{{weight}}" [disabled]="false"/>
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Berat" [(ngModel)]="weight" value="{{weight}}" [disabled]="false"/>
                         </div>
                         <div class="one wide field">
                             <div class="ui three wide field">
