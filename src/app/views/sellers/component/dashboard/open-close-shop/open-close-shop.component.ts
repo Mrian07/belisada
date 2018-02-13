@@ -36,7 +36,6 @@ export class OpenCloseShopComponent implements OnInit {
 
   getAllStore() {
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
       this.stores = response;
       this.isOff = 'Y';
 
@@ -44,12 +43,8 @@ export class OpenCloseShopComponent implements OnInit {
       this.mBpartnerStoreId.setValue(response[0].mBpartnerStoreId);
 
       this.storeId = response[0].mBpartnerStoreId;
-      // console.log('apa ini lah', response[0].mBpartnerStoreId);
-
-
       this.storeService.cekOpenClose(this.storeId).subscribe(respon => {
         this.isClose = respon.status;
-        console.log('this.isClose: ', this.isClose);
       });
 
     });
@@ -132,6 +127,9 @@ export class OpenCloseShopComponent implements OnInit {
                 'Toko berhasil dibuka',
                 'success'
               );
+
+              this.flagService.changeMessage('close-popup');
+
             }else {
               swal(
                 'Opps!',
