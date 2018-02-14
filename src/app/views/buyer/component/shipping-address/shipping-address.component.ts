@@ -54,8 +54,6 @@ export class ShippingAddressComponent implements OnInit {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.createFormControls();
     this.createForm();
-    localStorage.setItem('whatever', 'something');
-    const kamp3 = localStorage.getItem('whatever');
     this.getProvince();
     this.fillForms();
   }

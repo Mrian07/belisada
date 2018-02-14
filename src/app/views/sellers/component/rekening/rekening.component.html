@@ -29,6 +29,21 @@
                             <div *ngIf="_accountNo.invalid && (_accountNo.dirty || _accountNo.touched)" class="ui pointing red basic label">Nama Pemilik</div>
                         </div>
                         <div *ngIf="show">
+                                <button
+                                        class="ui primary button"
+                                        (click)="editRek()" (click)="firstActive = true"
+                                    name = "buton13"
+                                    >Update
+                                </button>
+                                <button
+                                [ngClass]="loading?'loading':'ui primary button'"
+                                (click)="cancelBtn()"
+                                name = "buton13"
+                                [disabled]="!f.valid"
+                                >Cancel
+                            </button>
+                            </div>
+                        <!-- <div *ngIf="show">
                             <button
                                 [ngClass]="loading?'loading':'ui primary button'"
                                 (click)="editRek()"
@@ -44,7 +59,7 @@
                                 [disabled]="!f.valid"
                                 >Cancel
                             </button>
-                        </div>
+                        </div> -->
 
                         <div *ngIf="show1">
                         <button
@@ -76,11 +91,18 @@
                             <!-- <td><input name="accountNo" placeholder="Masukan nomor rekening" type="text" [(ngModel)]="mBankAccountId"  value="{{option.mBankAccountId}}" #_mBankAccountId="ngModel" [ngModelOptions]="{standalone: true}"/>{{option.mBankAccountId}}"</td> -->
 
                             <td>
-                                <form (ngSubmit)="getAllStorex(option3)">
-                                    <button class="ui circular facebook icon button" (click)="show = !show">
-                                        <i class="edit icon"></i>
-                                  </button>
-                                  </form>
+                                <!-- <form (ngSubmit)="getAllStorex(option3)"> -->
+                                        <!-- <div *ngIf="show;else hilangKan">
+                                                kdal
+                                        </div> -->
+
+                                        <!-- <ng-template #hilangKan> -->
+                                                <button class="ui circular facebook icon button" #aaa (click)="getAllStorex(option3)">
+                                                        <i class="edit icon"></i>
+                                                  </button>
+                                        <!-- </ng-template> -->
+
+                                  <!-- </form> -->
 
 
                             </td>
