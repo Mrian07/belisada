@@ -81,7 +81,7 @@ export class OpenCloseShopComponent implements OnInit {
     if (model.dateStart === '' || model.dateEnd === '') {
       swal(
         'Gagal',
-        'Anda belum mengisi tanggal tutup',
+        'Anda belum mengisi tanggal tutup dengan lengkap',
         'error'
       );
       this.flagService.changeMessage('close-popup');
