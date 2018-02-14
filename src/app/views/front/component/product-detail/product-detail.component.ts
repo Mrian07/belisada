@@ -146,7 +146,7 @@ export class ProductDetailComponent implements OnInit {
       .subscribe(data => {
         if (data.detail !== undefined) {
           this.ProductList = data.detail;
-          console.log('brow', this.ProductList);
+          // console.log('brow', this.ProductList);
           //console.log(this.ProductList.mBpartnerStoreId);
           this.saveSearch(this.ProductList.productId, this.ProductList.name);
           const garansi = this.garansiDay.find(x => x.day === this.ProductList.guaranteeDays);
@@ -177,7 +177,7 @@ export class ProductDetailComponent implements OnInit {
           this.storeData = data.stores;
           this.otherStore = data.stores.productCount;
           this.storeList = data.stores.productList;
-          console.log(this.storeList);
+          // console.log(this.storeList);
        }
       });
   }
@@ -250,7 +250,7 @@ export class ProductDetailComponent implements OnInit {
     });
   }
   ulasan(productId) {
-    console.log('pro', productId);
+    // console.log('pro', productId);
     this.detailService.getUlasan(productId).subscribe(response => {
       this.uli = response;
     });

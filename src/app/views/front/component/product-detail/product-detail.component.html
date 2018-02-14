@@ -376,12 +376,12 @@
     </div>
     <div class="ui bottom attached segment" suiTabContent="3">
             <div class="wrapperyu">
-                    <div class="jamu" *ngFor="let asu of uli">
+                    <div class="jamu" *ngFor="let itex of uli">
                         <div class="kkalo">
                             <div class="ui labeled button lpp" tabindex="0">
                                 <div class="ui red button lpp">
                                   <i class="heart icon"></i>
-                                  {{asu.name}}
+                                  {{itex.name}}
                                 </div>
                                 <div class="ui basic red left pointing label">
                                  Pembeli
@@ -389,9 +389,9 @@
 
                               </div><br/>
                               <div>
-                                  {{asu.title}}
+                                  {{itex.title}}
                               </div>
-                              <p>Tanggal Pembelian : {{asu.created}}</p>
+                              <p>Tanggal Pembelian : {{itex.created}}</p>
                               <sui-rating class="star" [ngModel]="asu.star" [maximum]="5" [isReadonly]="true"></sui-rating>
                         </div>
 
