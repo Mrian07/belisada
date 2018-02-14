@@ -78,8 +78,8 @@
           <p><a (click)="goToProduct()" class="item" translate>user.seller.four</a></p>
           <p><a (click)="gotoDana()" class="item" translate>user.seller.saldo</a></p>
           <p><a (click)="gotoLacak()" class="item" translate>user.seller.lacak</a></p>
-          <p><a (click)="goKontak()" class="item" translate>user.seller.notifikasi</a></p>
-          <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
+          <!-- <p><a (click)="goKontak()" class="item" translate>user.seller.notifikasi</a></p> -->
+          <!-- <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p> -->
           <!-- <p><a (click)="goCourier()" class="item">Info Pengiriman</a></p> -->
            <p><a (click)="goSallesReport()" class="item" translate>user.seller.five</a></p>
           <p><a (click)="goFaqSeller()" class="item" translate>user.seller.nine</a></p>
@@ -87,13 +87,17 @@
         </div>
 
     </div>
-    <div class='side-third'>
+    <div class='side-third' *ngIf="stores.length > 0">
         <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="ui form">
             <div class="grouped fields">
-                <label>Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.</label>
-                <div class="field" *ngFor="let c of courierList">
-                    <sui-checkbox name="kurir" value="{{c.shipperId}}">{{c.name}}</sui-checkbox>
+                <label>
+                    Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.
+                </label>
+                <div class="field" *ngFor="let option of options">
+                    <label for="{{option.value}}" style="cursor: pointer">
+                        <input type="checkbox" id="{{option.value}}" name="couriers" value="{{option.value}}" [checked]="option.checked">{{option.name}}
+                    </label>
                 </div>
             </div>
         </div>

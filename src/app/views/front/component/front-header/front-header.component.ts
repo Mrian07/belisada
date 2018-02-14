@@ -349,6 +349,7 @@ export class FrontHeaderComponent implements OnInit {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
+        location.reload();
         localStorage.removeItem('user');
         this.shoppingCartService.empty();
         setTimeout(() => {
