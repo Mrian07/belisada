@@ -1,6 +1,6 @@
 import { Configuration } from './../../config/configuration';
 import { HttpClient } from '@angular/common/http';
-import { MyStore } from './../../model/store';
+import { MyStore, OpenClose } from './../../model/store';
 import { Injectable } from '@angular/core';
 import { AbstractRestService } from '../abstract.rest.service';
 import { Observable } from 'rxjs/Observable';
@@ -20,5 +20,15 @@ export class StoreService extends AbstractRestService<MyStore> {
   getApproveProduct(id: number): Observable<any> {
     return this.http.get(this.configuration.serverWithAccUrl + '/seller/product/legitimate/' + id )
         .map(response => response as any[]);
+  }
+
+  openClose(updateData) {
+    return this.http.put(this.configuration.serverWithAccUrl + '/seller/profile/store/holiday', updateData)
+      .map(resp => resp as OpenClose);
+  }
+
+  cekOpenClose(id) {
+    return this.http.get(this.configuration.serverWithAccUrl + '/seller/profile/store/holiday/' + id)
+      .map(resp => resp as OpenClose);
   }
 }

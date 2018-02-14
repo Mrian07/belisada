@@ -5,7 +5,7 @@ import { ActiveLink, ShareService } from '../../../../../core/service/shared.ser
 import { StoreService } from '../../../../../core/service/store/store.service';
 import swal from 'sweetalert2';
 import { TokenService } from '../../../../../core/service/token/token.service';
-
+import { FlagService } from '../../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-search-dashboard',
@@ -26,6 +26,7 @@ export class SearchDashboardComponent implements OnInit {
   storeName: string;
 
   modal: boolean;
+  isClose: any;
 
   constructor(
     private router: Router,
@@ -33,7 +34,8 @@ export class SearchDashboardComponent implements OnInit {
     private active: ActiveLink,
     private storeService: StoreService,
     private tokenService: TokenService,
-    private sharedService: ShareService
+    private sharedService: ShareService,
+    private flagService: FlagService
   ) { }
 
   // 'DR','SEDANG DI REVIEW',1
@@ -58,7 +60,7 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'green';
         }else if ( data[0].statusCode === 'DR') {
             this.storeStatus = 'Toko anda akan di approve dalam 24 jam';
-            this.status = true;
+            this.status = false;
             this.btnColor = 'orange';
         } else {
           this.storeStatus = data[0].status;
@@ -66,27 +68,58 @@ export class SearchDashboardComponent implements OnInit {
           this.btnColor = 'red';
         }
       }
-      this.bukaToko();
+      // this.bukaToko();
+    });
+
+    this.popUp();
+    this.cekStatusToko();
+  }
+
+  popUp() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.message = respon;
+      if (this.message === 'close-popup') {
+        this.closeModalShop();
+        this.cekStatusToko();
+      }
     });
   }
 
-  bukaToko() {
-    this.buka = false;
-    this.tutup = true;
-    this.toko = 'Buka';
+  cekStatusToko() {
+    this.storeService.getAll().subscribe(response => {
+      this.storeService.cekOpenClose(response[0].mBpartnerStoreId).subscribe(respon => {
+        this.isClose = respon.status;
+          if (respon.status === '1') {
+            this.buka = true;
+            this.tutup = false;
+            this.toko = 'Tutup';
+          } else {
+            this.buka = false;
+            this.tutup = true;
+            this.toko = 'Buka';
+          }
+      });
+    });
   }
 
-  tutupToko() {
-    this.buka = true;
-    this.tutup = false;
-    this.toko = 'Tutup';
-  }
+  // bukaToko() {
+  //   this.buka = false;
+  //   this.tutup = true;
+  //   this.toko = 'Buka';
+  // }
+
+  // tutupToko() {
+  //   this.buka = true;
+  //   this.tutup = false;
+  //   this.toko = 'Tutup';
+  // }
 
   search(event) {
     const key = event.target.value;
   }
 
   addProducts() {
+    console.log(this.status);
     if (this.status === false) {
       swal(
         'Belisada.co.id',
@@ -107,7 +140,7 @@ export class SearchDashboardComponent implements OnInit {
           this.router.navigate(['seller/add-products/add']);
         }
       });
-    }
+   }
   }
 
   getStoreData() {
@@ -119,7 +152,20 @@ export class SearchDashboardComponent implements OnInit {
   }
 
   openModalShop() {
-    this.modal = true;
+
+    this.storeService.getStatus().subscribe(data => {
+      console.log('data[0].statusCode: ', data[0].statusCode);
+      if (data[0].statusCode === 'AP') {
+        this.modal = true;
+      } else {
+        swal(
+          'Opps!',
+          'Toko Anda belum diverifikasi!',
+          'error'
+        );
+      }
+    });
+
   }
 
   closeModalShop() {

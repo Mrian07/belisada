@@ -30,25 +30,13 @@
                         <!-- <span class="ui pointing basic label">Saat Ini Toko {{toko}}</span> -->
 
                         <div class="five wide column mymargin">
-                        <div class="ui green left button" *ngIf="buka" (click)="bukaToko()" (click)="openModalShop()">Buka Toko Anda</div>
-                        <div class="right red ui button" *ngIf="tutup" (click)="tutupToko()" (click)="openModalShop()">Tutup Toko Anda</div>
+                        <div class="ui green left button" *ngIf="buka" (click)="openModalShop()">Buka Toko Anda</div>
+                        <div class="right red ui button" *ngIf="tutup" (click)="openModalShop()">Tutup Toko Anda</div>
                         </div>
                 
                     </div>    
             </div>
         </div>        
-            
-
-
-        <!-- <div class="five wide column mymargin">
-            <a class="ui orange label">Status Toko : </a>
-            <a class="ui {{btnColor}} label">{{ storeStatus }}</a>
-        </div> -->
-        
-
-
-
-     
 
 
     </div>

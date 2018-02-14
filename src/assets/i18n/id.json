@@ -3,10 +3,10 @@
   {
      "nav":
    {
-       "tracking": "Lacak Pesanan",
-       "ccare": "Layanan Pelanggan",
-     "asap" : "Informasi ASAP",
-       "sellhere": "Jual di Belisada",
+       "tracking": "LACAK PESANAN",
+       "ccare": "LAYANAN PELANGGAN",
+     "asap" : "INFORMASI ASAP",
+       "sellhere": "JUAL DI BELISADA",
        "download": "Unduh app",
        "blog": "Blog",
        "nproduct" : "Produk Terbaru",
@@ -211,7 +211,7 @@
            "nine" : "FAQ",
            "ten" : "myADS",
            "eleven" : "Perbaharui Akun",
-           "shop" : "Toko",
+           "shop" : "Profile Toko",
            "rek" : "Rekening",
            "saldo" : "Saldo Anda",
            "lacak" : "Lacak Barang Anda",
@@ -289,7 +289,7 @@
            }
        },
 
-       
+
 
        "billdata" :
    {

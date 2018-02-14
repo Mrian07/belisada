@@ -1,3 +1,4 @@
+import { MFrontHomeComponent } from './views/mobile/front/component/m-front-home/m-front-home.component';
 import { AsapbyBelisComponent } from './views/front/component/seller-center/asapby-belis/asapby-belis.component';
 import { CaraBerjualanComponent } from './views/front/component/seller-center/cara-berjualan/cara-berjualan.component';
 import { KnpBelisadaComponent } from './views/front/component/seller-center/knp-belisada/knp-belisada.component';
@@ -71,6 +72,7 @@ import { BerjualanBelisadaComponent } from './views/front/component/seller-cente
 import { FaqSellerCenterComponent } from './views/front/component/seller-center/faq-seller-center/faq-seller-center.component';
 import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/review-buyer.component';
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
+import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
 
 const routes: Routes = [
   {
@@ -403,6 +405,47 @@ const routes: Routes = [
     ]
   },
 
+
+
+
+  {
+    path: 'mobile',
+    component: MFrontLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: MFrontHomeComponent,
+        data: {
+          title: 'home'
+        }
+      },
+      {
+        path: 'info-jual-beli',
+        component: InfoComponent,
+        data: {
+          title: 'info'
+        }
+      },
+      {
+        path: 'inbox',
+        component: InboxComponent,
+        data: {
+          title: 'info'
+        }
+      }
+
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
   {
     path: '',
     component: FrontLayoutComponent,
@@ -585,6 +628,10 @@ const routes: Routes = [
     path: 'seller',
     loadChildren: './views/sellers/modules/seller.modules#SellerModules'
   },
+  // {
+  //   path: 'mobile',
+  //   loadChildren: './views/mobile/front/modules/m.front.modules#MFrontModules'
+  // },
   {
     path: '**',
     redirectTo: '/404'
