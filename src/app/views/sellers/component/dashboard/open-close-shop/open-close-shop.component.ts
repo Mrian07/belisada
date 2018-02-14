@@ -22,6 +22,10 @@ export class OpenCloseShopComponent implements OnInit {
   stores: any[] = [];
 
   isClose: any;
+  statusStore: string;
+  dateS: any;
+  dateE: any;
+  OffNote: string;
 
   constructor(
     private storeService: StoreService,
@@ -36,15 +40,21 @@ export class OpenCloseShopComponent implements OnInit {
 
   getAllStore() {
     this.storeService.getAll().subscribe(response => {
+
       this.stores = response;
       this.isOff = 'Y';
 
       this.isOffDay.setValue('Y');
       this.mBpartnerStoreId.setValue(response[0].mBpartnerStoreId);
+      // this.dateS = response[0].dateStart;
 
       this.storeId = response[0].mBpartnerStoreId;
       this.storeService.cekOpenClose(this.storeId).subscribe(respon => {
+        console.log('respon ', respon);
         this.isClose = respon.status;
+        this.dateS = respon.dateStart;
+        this.dateE = respon.dateEnd;
+        this.OffNote = respon.dayOffNote;
       });
 
     });
