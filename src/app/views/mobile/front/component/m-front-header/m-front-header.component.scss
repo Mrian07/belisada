@@ -182,6 +182,90 @@
 }
 
 
+// ini nih
+.custom-item {
+    height: 50px;
+    padding: 15px;
+}
+.small {
+    font-size: 10px;
+    color: #999999;
+}
+
+.image-upload-select img {
+    width: 100px;
+    margin-top: 10px;
+    margin-left: 7px;
+}
+.result-container {
+    position: absolute;
+    margin-left: 196px;
+    margin-top: 38px;
+    width: 80%;
+    height: 520px;
+    overflow: auto;
+    z-index: 1000;
+}
+.result-container1 {
+    position: absolute;
+    margin-top: 178px;
+    width: 215px;
+    height: 320px;
+    overflow: auto;
+    z-index: 2;
+}
+.result {
+    color: #000000;
+    background-color: rgba(255, 255, 255, .9);
+    margin-left: 0px;
+    min-height: 30px;
+    padding: 10px;
+    border: 0px solid #f1f1f1;
+    z-index: 3;
+    cursor: pointer;
+}
+.result:hover {
+    background-color: #f1f1f1;
+    color: #000000;
+}
+.result-popular {
+
+}
+
+
+.popular-list {
+    min-height: 30px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, .9);
+    color: #000000;
+    cursor: pointer;
+}
+
+.popular-list:hover {
+    min-height: 30px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    color: #000000;
+    cursor: pointer;
+}
+
+.result img{
+    height: 32px;
+    margin-right: 10px;
+}
+
+.cates {
+    font-size: 12px;
+    font-weight: bold;
+    float: right;
+    color: darkblue;
+}
+.product-image {
+    height: 300px;
+}
+ // akhir
+
+
 /*Drop profile*/
 
 .dropdown-profile {
@@ -315,6 +399,77 @@
     margin-left:10px;
 }
 
-.bg-akun{
-    background:#012434;
+.welcome {
+    border: 1px solid #023a54;
+    padding-bottom:5px;
+    background: #012332;
+}
+
+
+
+.header-mid-menu {
+    margin-top: -15px;
+}
+.header-mid-menu a {
+    color:#ffffff;
+}
+
+.header-mid-menu a:hover {
+   // color:#dddddd;
+   color: orange;
+}
+
+.header-mid-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top:0px;
+    margin-top:100px;
+}
+
+.header-mid-menu li {
+    float: right;
+    margin-right: 30px;
+    font-size:12px;
+    display: block;
+    font-weight: bold;
+    // width:20%;
+    text-decoration: none;
+}
+
+.header-mid-menu li .link-red2 {
+    color:#f51b0a;
+    cursor: pointer;
+}
+
+.header-mid-menu li .link-red2:hover {
+    color:#ff594b;
+}
+
+.header-mid-menu li .link-yellow {
+    color:#fea414;
+    cursor: pointer;
+}
+
+.header-mid-menu li .link-yellow:hover {
+    color:#f8b446;
+}
+
+.header-top2{
+    background: #333;
+}
+
+.btn-src{
+    padding:0px; padding-left:15px; padding-bottom:10px;  padding-right:8px; border-radius:0px 5px 5px 0px; background: #f2711c;
+    cursor: pointer;
+}
+
+.btn-src:hover{
+    background: #f59759;
+    color:#fefdcd;
+}
+
+.search-by-category{
+    padding:10px;
 }

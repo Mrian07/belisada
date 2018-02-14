@@ -1,0 +1,95 @@
+.front-footer{
+    margin-top:50px;
+    padding-top:20px;
+    border-top:5px solid #b2b2b2;
+    background:#ffffff;
+}
+
+.component-centered {
+    margin: 0 auto;
+}
+.bolds {
+    font-size: 17px;
+    font-weight: bold;
+}
+
+/*footer sosmet*/
+.sos ul {
+    list-style-type: none;
+    display: table;
+    padding: 0;
+}
+
+.sos li {
+    float: left;
+    font-size: 18px;
+    background: #ff0000;
+    margin-right: 5px;
+    // margin-bottom: 5px;
+}
+
+.sos li a {
+    display: block;
+    color: #ffffff;
+    text-align: center;
+    padding: 6px 10px;
+    text-decoration: none;
+}
+
+.sos li a:hover {
+    background-color: #c32c2c;
+}
+
+/*footer payment*/
+.pay ul {
+    list-style-type: none;
+    display: table;
+    padding: 0;
+}
+
+.pay li {
+    float: left;
+    font-size:12px;
+    display: block;
+    text-decoration: none;
+}
+
+/*footer payment*/
+.ship ul {
+    list-style-type: none;
+    display: table;
+    padding: 0;
+}
+
+.ship li {
+    float: left;
+    font-size:12px;
+    display: block;
+    text-decoration: none;
+}
+
+.agreement{
+    margin-top:20px; text-align:justify; border-radius:5px; padding:20px; color:#111111; display: none;
+}
+
+.copyright{
+    margin-top: 10px;
+    text-align: center;
+    color:#111111;
+    font-family: arial;
+    font-size: 14px;
+    padding:10px;
+  font-weight: bold;
+}
+
+.btn-top{
+    margin-top:-50px;
+}
+
+a.link-footer{
+    color:#000000;
+}
+
+a:hover.link-footer{
+    color:#dddddd;
+}

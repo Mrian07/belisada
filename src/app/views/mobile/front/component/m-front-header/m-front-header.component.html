@@ -11,6 +11,19 @@
         <!-- <li class="hide-on-mobile"><a routerLink="/Download-App">DOWNLOAD APP</a></li> -->
     </ul>
 </div>
+<div class="header-top2">
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            <ul class="header-mid-menu">
+                <li><a class="link-red2" (click)="mulaiMenjual()" translate>header.nav.ssell</a></li>
+                <li><a routerLink="/Customer-Service" translate>header.nav.cs</a></li>
+                <li><a routerLink="/cara-berbelanja" translate>header.nav.htshop</a>
+                <li><a class="link-yellow" routerLink="/product-terbaru" translate>header.nav.nproduct</a></li>
+                <li><a href="http://blog.belisada.co.id/" translate>header.nav.blog</a></li>
+            </ul>     
+        </div>
+    </div>
+</div>
 <div class="header-second">
     <div class="ui grid">
       <div class="one wide column"><i class="sidebar icon" style="font-size:30px;cursor:pointer" (click)="openNav()"></i></div>
@@ -24,7 +37,7 @@
                         <i class="world icon" style="font-size: 20px;"></i><span style="text-transform: uppercase;">{{lang}}</span>
                     </span>
                     <!-- <span><img class="ui image" src="/assets/img/id.jpg" alt="image not found"/></span> -->
-                    <div class="flagdropdown-content left aligned">
+                    <div class="flagdropdown-content" style="text-align: left">
                     <a (click)="changeLanguage('id')"><i class="id flag"></i>Indonesia</a><br>
                     <a (click)="changeLanguage('en')"><i class="gb flag"></i>English</a>
                     </div>
@@ -33,7 +46,7 @@
             <div class="six wide right aligned column"> 
 
                 <div class="cart show-on-mobile">
-                    <div class="cart-icon" (click)="viewCart()">
+                    <div class="cart-icon">
                         <span class="cart-counter">{{ itemCount }}</span>
                         <img class="ui image" src="/assets/img/cart.jpg" alt="image not found"/>
                     </div>
@@ -92,22 +105,22 @@
             <strong>OFFICIAL BRAND</strong>
             </div>
         </div>
-        <div class="eight wide column bg-akun">
+        <div class="eight wide column">
 
 
             <div class="welcome" *ngIf="loginState === false">
 
                 <div class='dropdown-profile'>
-                    <div style="cursor: pointer; padding-top:10px;" (click)="login()" translate>
+                    <div style="cursor: pointer; padding-top:10px;" translate>
                             <img class="ui image avatar" [src]="avatar" alt="avatar"/>
                             header.nav.uraccount
                     </div>
                     <div class="dropdown-profile-content">
 
                         <div class="ui buttons">
-                            <button class="ui mini red button" (click)="login()" translate>header.nav.login</button>
+                            <button class="ui mini red button" translate>header.nav.login</button>
                         <div class="or"></div>
-                            <button class="ui mini positive button" (click)="register()" translate>header.nav.register</button>
+                            <button class="ui mini positive button" translate>header.nav.register</button>
                         </div>
 
                             <!-- <button class="mini ui right labeled red icon button" (click)="logout()">
@@ -168,13 +181,23 @@
 
         </div>
       </div>
-</div>
-<!-- <div class="header3 header-second">
-  <div class="sidebar-icon">
-      <i class="sidebar icon" style="font-size:30px;cursor:pointer" (click)="openNav()"></i>
-  </div>
-  <div class="logo-container" (click)="home()" style="cursor: pointer;">
-      <img class="ui image" src="/assets/img/logo.png?r={{randoms}}" alt="profile picture"/>
-  </div>
-</div> -->
 
+</div>
+
+
+<div class="ui left action right icon input full-width search-by-category">
+
+    <input type="text" name="search" #options list="productname" (keyup)="searchK($event)" (focus)="popularSearch()" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" style="border-radius:0px;"/>
+    <div class="btn-src" (click)="searchEnter(selectedSearchCategory, selectedCategory)"><i class="iconsearch search icon" style="font-size:20px;"></i></div>
+    <div class="result-container" *ngIf="[popular] != 0">
+        <div *ngIf="[popular] != 0" class="result-popular">
+            <div style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;">Popular Search</div>
+            <div class="popular-list" *ngFor="let pops of popular" (click)="productSelected(pops)">
+                <p>{{pops.product_name}}</p></div>
+        </div>
+        <div *ngIf="[results] != 0" style="background-color: #f1f1f1; height: 30px; padding:5px; font-weight: bold;" translate>header.search.result</div>
+        <div class="result" *ngFor="let hasil of results" (click)="productSelected(hasil)">
+            <img class="ui middle aligned image" [src]="hasil.imageurl"><span>{{ hasil.name }}</span><span class="cates">{{ hasil.category3Name }}</span>
+        </div>
+    </div>
+</div>
