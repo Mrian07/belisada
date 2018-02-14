@@ -1,17 +1,41 @@
 <div class="ui left aligned lay-descktop">
 
   <div class='side-first'>
+
+    
+        <div class="ui card">
+            <div class="image">
+                <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+            </div>
+            <div class="content">
+                <a class="header">{{sellerName}}</a>
+                <div class="meta">
+                    <span class="date">{{storeName}}</span>
+                </div>
+                <div class="description">
+                    Max file 5 MB. Format (.JPG, .JPEG, .PNG)
+                </div>
+            </div>
+            <div class="extra content center aligned" style="cursor: pointer;">
+                <div class="upload-btn-wrapper">
+                    <button class="ui youtube button">Pilih Photo</button>
+                    <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
+                </div>
+            </div>
+        </div>
+  
+
+
+<!-- 
+
     <div class="ui center aligned basic segment">
 
-      <!-- <h4 class="ui header" style='font-size:50px;margin-top:10px'><i class="address book icon"></i></h4> -->
-      <!-- <img class="ui medium circular image" src="/assets/img/kristy.png"> -->
       <p>
           <img (click)="editProfile()" class="ui medium rounded image img-profile" src="{{sellerimage}}" alt="profile picture"/>
       </p>
       <strong>{{sellerName}}</strong><br>
       <strong>{{storeName}}</strong><br>
-      <!-- <strong>{{storeDesc}}</strong> -->
-    </div>
+    </div> -->
 
 
     <!-- <div class="ui center aligned basic segment">
@@ -19,7 +43,7 @@
         Edit Profile
       </button>
     </div> -->
-    <div class="ui center aligned basic segment">
+    <!-- <div class="ui center aligned basic segment">
         <div class="ui center aligned youtube pointing dropdown button" suiDropdown>
             <div class="text">Profile</div>
             <i class="dropdown icon"></i>
@@ -30,20 +54,32 @@
                 <div class="item" (click)="goInfoToko()">Info Toko</div>
             </div>
         </div>
-    </div>
+    </div> -->
+  </div>
+  <div class='side-fourth'>
+    <div class='menu-fourth'>
+        <p><a (click)="editProfile()" class="item" translate><i class="user icon"></i> Edit Profile</a></p>
+        <p><a (click)="goChangePassword()" class="item" translate><i class="privacy icon"></i> Ubah Password</a></p>
+        <p><a (click)="goRekening()" class="item" translate><i class="payment icon"></i> user.seller.rek</a></p>
+        <p><a (click)="goInfoToko()" class="item" translate><i class="law icon"></i> user.seller.shop</a></p>
+    </div>    
   </div>
     <div class='side-second'>
+        <!-- <div class='main-menu'>
+            <p><a (click)="editProfile()" class="item" translate>Edit Profile</a></p>
+            <p><a (click)="goChangePassword()" class="item" translate>Ubah Password</a></p>
+            <p><a (click)="goRekening()" class="item" translate>Rekening</a></p>
+            <p><a (click)="goInfoToko()" class="item" translate>Info Toko</a></p>
+        </div> -->
         <div class='main-menu'>
           <p><a (click)="goDashboard()" class="item" translate>user.seller.one</a></p>
-          <p><a (click)="goInfoToko()" class="item" translate>user.seller.shop</a></p>
-          <p><a (click)="goRekening()" class="item" translate>user.seller.rek</a></p>
           <p><a (click)="goKontak()" class="item" translate>user.seller.two</a></p>
           <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
           <p><a (click)="goToProduct()" class="item" translate>user.seller.four</a></p>
           <p><a (click)="gotoDana()" class="item" translate>user.seller.saldo</a></p>
           <p><a (click)="gotoLacak()" class="item" translate>user.seller.lacak</a></p>
-          <p><a (click)="goKontak()" class="item" translate>user.seller.notifikasi</a></p>
-          <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p>
+          <!-- <p><a (click)="goKontak()" class="item" translate>user.seller.notifikasi</a></p> -->
+          <!-- <p><a (click)="goPaymentInfo()" class="item" translate>user.seller.three</a></p> -->
           <!-- <p><a (click)="goCourier()" class="item">Info Pengiriman</a></p> -->
            <p><a (click)="goSallesReport()" class="item" translate>user.seller.five</a></p>
           <p><a (click)="goFaqSeller()" class="item" translate>user.seller.nine</a></p>
@@ -51,13 +87,17 @@
         </div>
 
     </div>
-    <div class='side-third'>
+    <div class='side-third' *ngIf="stores.length > 0">
         <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="ui form">
             <div class="grouped fields">
-                <label>Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.</label>
-                <div class="field" *ngFor="let c of courierList">
-                    <sui-checkbox name="kurir" value="{{c.shipperId}}">{{c.name}}</sui-checkbox>
+                <label>
+                    Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.
+                </label>
+                <div class="field" *ngFor="let option of options">
+                    <label for="{{option.value}}" style="cursor: pointer">
+                        <input type="checkbox" id="{{option.value}}" name="couriers" value="{{option.value}}" [checked]="option.checked">{{option.name}}
+                    </label>
                 </div>
             </div>
         </div>

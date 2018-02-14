@@ -1,28 +1,6 @@
 
   <div class="ui grid stackable">
-        <div class="six wide column">
-            <div class="ui card">
-                <div class="image">
-                    <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event,'imageAvatar')" #avaImg />
-                </div>
-                <div class="content">
-                    <a class="header">{{ user.name }}</a>
-                    <div class="meta">
-                        <span class="date">{{ user.email }}</span>
-                    </div>
-                    <div class="description">
-                        Max file 5 MB. Format (.JPG, .JPEG, .PNG)
-                    </div>
-                </div>
-                <div class="extra content center aligned">
-                    <div class="upload-btn-wrapper">
-                        <button class="ui orange button">Pilih Photo</button>
-                        <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ten wide stretched column">
+        <div class="sixteen wide stretched column">
 
                 <p translate>user.buyer.text.profile</p>
                   <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>

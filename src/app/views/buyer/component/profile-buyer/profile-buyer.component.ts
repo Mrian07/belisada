@@ -174,7 +174,8 @@ export class ProfileBuyerComponent implements OnInit {
           'Success',
           'Upload Photo berhasil',
           'success'
-        );
+        ).then((result)=> { location.reload(); } )
+        // location.reload();
       }else {
         swal(
           'Opps!',
