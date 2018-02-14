@@ -1,38 +1,81 @@
 <div class="ui left aligned lay-sidebar">
     <div class='side-first'>
-        <div class="ui center aligned basic segment">
+
+            <div class="six wide column">
+                <div class="ui card">
+                    <div class="image">
+                        <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+                    </div>
+                    <div class="content">
+                        <a class="header">{{buyerName}}</a>
+                        <div class="meta">
+                            <span class="date">{{buyerEmail}}</span>
+                        </div>
+                        <div class="description">
+                            Max file 5 MB. Format (.JPG, .JPEG, .PNG)
+                        </div>
+                    </div>
+                    <div class="extra content center aligned">
+
+                            
+
+                        <div class="upload-btn-wrapper" style="cursor: pointer;">
+                            <button class="ui orange button">Pilih Photo</button>
+                            <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
+                        </div>
+
+                        <!-- <div class="ui primary pointing dropdown button" suiDropdown>
+                            <div class="text">Profile</div>
+                            <i class="dropdown icon"></i>
+                            <div class="menu" suiDropdownMenu>
+                                <div class="item" (click)="editProfileBuyer()" translate>user.buyer.eprof</div>
+                                <div class="item" (click)="goChangePassword()" translate>user.buyer.cpass</div>
+                            </div>
+                        </div>  -->
+
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- <strong>{{buyerName}}</strong> -->
+
+
+        <!-- <div class="ui center aligned basic segment">
                 <div *ngIf="buyerImage === 'data:image/png;base64,'; else login">
                     <img class="ui tiny spaced image" src="/assets/img/man.png" alt="profile picture1"/>
 
 
                     </div>
                     <ng-template #login>
+  
                             <img class="ui medium rounded image" [src]="buyerImage" alt="profile picture3"/>
 
 
                     </ng-template>
 
-        <strong>{{buyerName}}</strong>
-        <br><br>
+        <strong>{{buyerName}}</strong> -->
+        <!-- <br><br> -->
         <!-- <button class="ui blue button btn-shop" (click)="editProfileBuyer()">
             Edit Profile
         </button> -->
 
-        <div class="ui primary pointing dropdown button" suiDropdown>
+        <!-- <div class="ui primary pointing dropdown button" suiDropdown>
             <div class="text">Profile</div>
             <i class="dropdown icon"></i>
             <div class="menu" suiDropdownMenu>
                 <div class="item" (click)="editProfileBuyer()" translate>user.buyer.eprof</div>
                 <div class="item" (click)="goChangePassword()" translate>user.buyer.cpass</div>
             </div>
-        </div>
+        </div> 
 
 
-        </div>
+        </div> -->
     </div>
     <div class='side-second'>
         <div class='index-menu'>
             <p><a routerLink="#" class="menu-top-side" (click)="goDashboard()"><i class="home icon"></i> Dashboard</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="editProfileBuyer()" translate><i class="user icon"></i> user.buyer.eprof</a></p>
+            <p><a routerLink="#" class="menu-top-side" (click)="goChangePassword()" translate><i class="privacy icon"></i> user.buyer.cpass</a></p>
             <p><a routerLink="#" class="menu-top-side" (click)="goBilling()" translate><i class="calculator icon"></i> user.buyer.bill</a></p>
             <p><a routerLink="#" class="menu-top-side" (click)="goShipping()" translate><i class="shipping icon"></i> user.buyer.ship</a></p>
             <p><a routerLink="#" class="menu-top-side" (click)="goTransaction()" translate><i class="law icon"></i> user.buyer.alltrans</a></p>

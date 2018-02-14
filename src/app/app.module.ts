@@ -102,6 +102,7 @@ import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem
 import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
 import { MFrontHeaderComponent } from './views/mobile/front/component/m-front-header/m-front-header.component';
 import { MFrontHomeComponent } from './views/mobile/front/component/m-front-home/m-front-home.component';
+import { MFrontFooterComponent } from './views/mobile/front/component/m-front-footer/m-front-footer.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -202,7 +203,8 @@ export function getAuthServiceConfigs() {
 
     MFrontLayoutComponent,
     MFrontHeaderComponent,
-    MFrontHomeComponent
+    MFrontHomeComponent,
+    MFrontFooterComponent
 
 
     // WishlistComponent,
