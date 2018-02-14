@@ -16,11 +16,15 @@
 <div class="wrapper">
 
     <div align="right" class="okeNih">
-        <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [style.width.px]="270" [style.height.px]="270" [lensWidth]="600" [lensHeight]="600">
-    </div>
-    <div class="thumbnail-container">
-        <div class="thumbnail">
-        <img  class="iniNone" [src]="image"  *ngFor="let image of ProductImage" (click)="setimage(image)">
+        <div class="image-container">
+            <!-- <img [imageZoom]="theImage" [src]="theImage" class="ui image detail-img" [style.width.px]="270" [style.height.px]="270" [lensWidth]="600" [lensHeight]="600"> -->
+            <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [lensWidth]="600" [lensHeight]="600">
+        </div>
+
+        <div class="thumbnail-container">
+            <div class="thumbnail">
+                <img  class="iniNone" [src]="image"  *ngFor="let image of ProductImage" (click)="setimage(image)">
+            </div>
         </div>
     </div>
 
@@ -99,67 +103,6 @@
         </tr>
     </table>
 
-
-    <!-- <div *ngIf="ProductList.specialPrice !== 0; else login2">
-        <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
-        <span>Hemat: {{kamp | number:'3.2-5'}}</span>
-    </div>
-    <ng-template #login2>
-        <span class="pls" translate>goods.detail.titleone</span><span class="gets">Rp. {{ProductList.pricelist | number}}</span>
-    </ng-template> -->
-    <!-- <span class="pls">Harga:</span><span class="gets">Rp. {{ProductList.specialPrice | number}}</span>  <span class="borderni">{{popx | number:percent}}% Off</span>
-    <span>Hemat: {{kamp | number:'3.2-5'}}</span> -->
-    <!-- <div class="gap-between-elements"></div>
-    <div *ngIf="ProductList.specialPrice !== 0; else login1">
-        <span class="pls1">Harga Awal :</span><s><span>Rp</span>{{ProductList.pricelist | number}}</s>
-    </div>
-    <ng-template #login1>
-    </ng-template>
-    <div class="gap-between-elements"></div>
-    <span class="pls2">Stok: </span> <span class="stok">{{ usedStock }}</span> -->
-    <!-- <div class="gap-between-elements"></div> -->
-    <!-- <table border="0">
-        <tr>
-            <td class="xo"></td>
-            <td *ngIf="asap && (ProductList.qtyOnHand > 0)">Belanja online murah, gratis pengiriman area Jakarta*
-                Pilih barang dengan layanan Untuk pengiriman Pasti 2 hari
-                <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image" (click)="asap3()">
-
-            </td>
-        </tr>
-    </table> -->
-    <!-- <div class="gap-between-elements"></div>
-    <span class="pls2">Kondisi barang: </span> <span class="stok">{{ ProductList.condition }}</span>
-    <div class="gap-between-elements"></div>
-    <table>
-        <tr>
-            <td class="xo" translate>goods.detail.color</td>
-            <td>
-            </td>
-        </tr>
-    </table>
-    <div class="gap-between-elements"></div>
-    <table *ngIf="ProductList.productId === 1059972; else login4">
-        <tr>
-            <td class="xo">Kapasitas :</td>
-            <td class="borderni2">128GB</td>
-            <td class="borderni2">256GB</td>
-        </tr>
-        <ng-template #login4>
-            </ng-template>
-    </table>
-
-    <div class="gap-between-elements"></div> -->
-
-        <!-- <tr>
-            <td>Highlit</td>
-            <td [innerHTML]="ProductList.highlight"></td>
-        </tr> -->
-
-    <!-- <div class="ui grid">
-            <div class="three wide column">Highlight</div>
-            <div class="nine wide column"><p [innerHTML]="ProductList.highlight | sanitizeHtml"></p></div>
-          </div> -->
           <div class="gap-between-elements3"></div>
           <table border=0>
               <tr>
@@ -209,17 +152,6 @@
                         </button>
             </ng-template>
 
-            <!-- <button type="submit" class="poi" [ngStyle]="{ cursor: ProductList.stock <= 0 ? 'no-drop' : 'pointer' }" (click)="addProductToCart(ProductList.productId, quantity)" [disabled]="ProductList.stock <= 0">
-                <img [ngClass]="{'greyscale' : ProductList.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
-            </button> -->
-            <!-- punya pak bud -->
-
-
-            <!-- <button class="ui youtube button gap-between-elements btnColor"  style="margin-left:40px; background:#F7982D">
-                    <i class="shop icon"></i>
-                    <strong>Beli Sekarang</strong>
-                  </button> -->
-          <!-- <div class="gap-between-elements"></div> -->
           <div class="content favorit gap-between-elements">
                 <button type="submit" style="border: 0; background: transparent;" class="poi" (click)="ininih(productId)" style="cursor: pointer;">
                         <img src="/assets/img/zzzzz.jpg" style="margin-left: 17px; margin-bottom: -15px;" width="200px" height="auto" alt="submit" />
@@ -298,9 +230,6 @@
                         </thead>
                     <tbody *ngFor="let product of storeList ; let i = index">
                             <tr>
-                                <!-- <td>
-                                    <a (click)="detail(product.productId, product.aliasName)">{{ product.name }}</a>
-                                </td> -->
                                 <td *ngIf="product.storeName === ''">
                                         Belisada
                                     </td>
@@ -325,40 +254,11 @@
                                         <img [ngClass]="{'greyscale' : product.stock <= 0}" src="/assets/img/test3.jpg" width="300px" height="50" alt="submit" />
                                     </button>
                                 </td>
-                                <!-- <td>
-                                    {{product.stock}}
-                                </td> -->
                             </tr>
                         </tbody>
                         </table>
                         </div>
                         </div>
-          <!-- <div>
-             <strong>Nama</strong>
-              <div class="gap-between-elements"></div>
-                  <span >{{ list.name }}</span>
-
-          </div>
-          <div>
-            <strong>Harga</strong>
-              <div class="gap-between-elements"></div>
-              <span>Rp.{{ list.pricelist | number }}</span>
-          </div>
-          <div>
-              <strong>Stok</strong>
-              <div class="gap-between-elements"></div>
-              <span>{{ list.stok }}</span>
-          </div>
-
-          <div>
-              <strong>Dijual Oleh</strong>
-              <div class="gap-between-elements"></div>
-              <span class="xx">{{ list.storeName }}</span>
-
-          </div>
-          <div>
-
-          </div> -->
 
   <sui-tabset>
     <div class="ui top attached tabular menu">
@@ -394,9 +294,6 @@
                               <p>Tanggal Pembelian : {{asu.created}}</p>
                               <sui-rating class="star" [ngModel]="asu.star" [maximum]="5" [isReadonly]="true"></sui-rating>
                         </div>
-
-                            <!-- {{asu.name}}
-                            <sui-rating class="star" [ngModel]="asu.star" [maximum]="5" [isReadonly]="true"></sui-rating> -->
                     </div>
                   </div>
     </div>
