@@ -15,6 +15,7 @@ import { CourierService } from './../../../../core/service/courier/courier.servi
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
+  updateImg: Boolean = false;
   sellerName: string;
   sellerEmail: string;
   sellerPhone: string;
@@ -35,6 +36,9 @@ export class SidebarComponent implements OnInit {
 
   message: string;
   courierList: any;
+
+  fm: any = {};
+  userImgAvatar: string;
 
   constructor(private router: Router,
   private profileService: ProfileService,
@@ -59,6 +63,7 @@ export class SidebarComponent implements OnInit {
    this.uploadPhoto();
    this.getProfile();
    this.courier();
+   this.fillForms();
   }
 
   courier() {
@@ -74,11 +79,78 @@ export class SidebarComponent implements OnInit {
 
   }
 
-  // fillForms() {
-  //   this.fm = {
-  //     kurir : data.name,
-  //   };
-  // }
+  fillForms() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.profileService.getProfileBuyer(luser.token).subscribe(data => {
+
+      // console.log('ini data: ', data);
+
+      this.fm = {
+        name : data.name,
+        address: data.address,
+        postal: data.postal,
+        npwp : data.npwp,
+        phone : data.phone,
+        idcard: data.idcard,
+        villageId: data.villageId,
+      }
+
+      this.userImgAvatar = data.imageAvatar ?'data:image/png;base64,' + data.imageAvatar : '/assets/img/kristy.png';
+      const sharedData = {
+        image: this.userImgAvatar,
+        name: this.fm.name,
+        email: this.fm.email
+      };
+    });
+  }
+
+  setCanvas(e, newIMG) {
+    if (!this.updateImg) { return false; }
+    const cnv = document.createElement('canvas');
+    const el = e.target;
+    const w = el.width;
+    const h = el.height;
+
+    cnv.width = w;
+    cnv.height = h;
+    cnv.getContext('2d').drawImage(el, 0, 0, w, h);
+
+    this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
+
+    this.profileService.updatebuyerProfile(this.fm).subscribe(data => {
+
+      if (data.status === '1') {
+        swal(
+          'Success',
+          'Upload Photo berhasil',
+          'success'
+        )
+      }else {
+        swal(
+          'Opps!',
+          data.message,
+          'error'
+        );
+      }
+
+    });
+
+    this.flagService.changeMessage('upload-photo');
+  }
+
+  setUrl(event, img) {
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
+  }
+
 
   uploadPhoto() {
     this.flagService.currentMessage.subscribe(respon => {
