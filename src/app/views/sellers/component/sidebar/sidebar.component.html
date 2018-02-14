@@ -51,13 +51,17 @@
         </div>
 
     </div>
-    <div class='side-third'>
+    <div class='side-third' *ngIf="stores.length > 0">
         <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="ui form">
             <div class="grouped fields">
-                <label>Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.</label>
-                <div class="field" *ngFor="let c of courierList">
-                    <sui-checkbox name="kurir" value="{{c.shipperId}}">{{c.name}}</sui-checkbox>
+                <label>
+                    Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.
+                </label>
+                <div class="field" *ngFor="let option of options">
+                    <label for="{{option.value}}" style="cursor: pointer">
+                        <input type="checkbox" id="{{option.value}}" name="couriers" value="{{option.value}}" [checked]="option.checked">{{option.name}}
+                    </label>
                 </div>
             </div>
         </div>

@@ -152,7 +152,20 @@ export class SearchDashboardComponent implements OnInit {
   }
 
   openModalShop() {
-    this.modal = true;
+
+    this.storeService.getStatus().subscribe(data => {
+      console.log('data[0].statusCode: ', data[0].statusCode);
+      if (data[0].statusCode === 'AP') {
+        this.modal = true;
+      } else {
+        swal(
+          'Opps!',
+          'Toko Anda belum diverifikasi!',
+          'error'
+        );
+      }
+    });
+
   }
 
   closeModalShop() {
