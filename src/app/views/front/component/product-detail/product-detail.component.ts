@@ -253,7 +253,6 @@ export class ProductDetailComponent implements OnInit {
     console.log('pro', productId);
     this.detailService.getUlasan(productId).subscribe(response => {
       this.uli = response;
-     console.log('kampret', response);
     });
   }
   // ininih(productId) {
