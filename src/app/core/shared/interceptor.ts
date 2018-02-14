@@ -46,6 +46,7 @@ export class Interceptor implements HttpInterceptor {
             });
           }
         }else if (err.status === 404) {
+        }else if (err.status === 400) {
           // swal('Oops!...something wrong...')
           // .then((result) => {
           //   //this.routes.navigateByUrl('/404');
@@ -53,12 +54,12 @@ export class Interceptor implements HttpInterceptor {
         }else if (err.status === 500) {
           // swal('Oops!...something wrong...')
           // .then((result) => {
-            this.routes.navigateByUrl('/maintenance');
+          //  this.routes.navigateByUrl('/maintenance');
          // });
         }else {
           // swal('Oops!...something wrong...')
           // .then((result) => {
-            this.routes.navigateByUrl('/maintenance');
+          //  this.routes.navigateByUrl('/maintenance');
          // });
         }
       }
