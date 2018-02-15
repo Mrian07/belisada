@@ -94,6 +94,7 @@ export class AddProductsComponent implements OnInit {
   gambarnya: any;
   cat3Id: number;
   partNumber: string;
+  pid: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -298,6 +299,7 @@ export class AddProductsComponent implements OnInit {
       });
     });
     this.news = '';
+    this.pid = hasil.productId;
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.ctr.cat1 = hasil.category1Id;
@@ -342,6 +344,7 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.garansiDays = hasil.guaranteeDays;
     }
+    console.log(hasil);
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -546,7 +549,7 @@ export class AddProductsComponent implements OnInit {
     const productData = {
       pricelist: this.price,
       description: this.description,
-      productId: this.productId,
+      productId: this.pid,
       mBpartnerStoreId: this.storeId,
       weight: this.weight,
       dimensionswidth: this.lebar,
@@ -561,6 +564,7 @@ export class AddProductsComponent implements OnInit {
       isGuarantee: this.isGuarantee,
       guaranteeDays: this.garansiDays
     };
+    console.log(productData);
     this.store.dispatch(new fromActions.EditProduct(productData));
   }
 
