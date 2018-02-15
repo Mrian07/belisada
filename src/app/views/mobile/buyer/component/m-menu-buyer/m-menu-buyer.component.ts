@@ -24,4 +24,7 @@ export class MMenuBuyerComponent implements OnInit {
     this.router.navigateByUrl('/mobile/buyer/m-profile-buyer');
   }
 
+  goChangePassword() {
+    this.router.navigateByUrl('/mobile/buyer/m-change-password-buyer');
+  }
 }
