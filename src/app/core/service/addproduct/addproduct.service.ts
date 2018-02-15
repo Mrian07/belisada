@@ -42,7 +42,6 @@ export class AddproductService extends AbstractRestService<Product.Product> {
   }
 
   UpdatePrice(data): Observable<any> {
-    console.log(data);
     return this.http.put(this.configuration.serverWithAccUrl + '/seller/product/legitimate/update', data)
       .map(response => response as any);
   }

@@ -35,7 +35,7 @@
                     <div class="ten wide field">
 
                         <div class="result-container">
-                            <input type="text" list="productname" (keyup)="search($event)" [(ngModel)]="selectCats"/>
+                            <input type="text" list="productname" (keyup)="search($event)" (keyup.enter)="search($event)" [(ngModel)]="selectCats"/>
                             <div class="result" *ngIf="[results] !== 0">
                               <div class="result-item" *ngFor="let hasil of results " (click)="productSelected(hasil)">{{ hasil.name }}</div>
                             </div>

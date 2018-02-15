@@ -19,22 +19,18 @@ export class TransactionBuyerComponent implements OnInit {
 
 
   orderDetail(id) {
-    console.log('ini id yah', id.transactionId);
     this.router.navigate(['/buyer/order-detail-buyer', id.transactionId]);
   }
   narikDataDariBelakang() {
     this.tsBuyer.getAll().subscribe(data => {
       this.aaa = data;
-      console.log('ah elah', data);
     });
   }
 
   orderConfirm(id) {
-    console.log('ini id3 yah', id.transactionId);
     this.router.navigate(['/buyer/confirmation-buyer', id.transactionId]);
   }
   reviewBoss(id) {
-    console.log('reviewBoss', id.transactionId);
     this.router.navigate(['/buyer/review-buyer', id.transactionId]);
   }
 
