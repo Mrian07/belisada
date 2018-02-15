@@ -259,12 +259,12 @@ export class MFrontHeaderComponent implements OnInit {
 
       }
     }  else {
-      this.router.navigateByUrl('/sign-up');
+      this.router.navigateByUrl('/m-sign-up');
     }
   }
 
   home() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/mobile');
   }
 
   onClickOutside(event: Object) {
@@ -280,11 +280,11 @@ export class MFrontHeaderComponent implements OnInit {
   }
 
   register() {
-    this.router.navigateByUrl('/sign-up');
+    this.router.navigateByUrl('/mobile/m-sign-up');
   }
 
   login() {
-    this.router.navigateByUrl('/sign-in');
+    this.router.navigateByUrl('/mobile/m-sign-in');
     // this.isLogin = true;
     // swal({
     //   title: 'Login Akun',

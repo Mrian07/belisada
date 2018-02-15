@@ -29,7 +29,7 @@ interface AppState {
 })
 
 export class AddProductsComponent implements OnInit {
-
+  disabled: any;
   message$: Observable<Search>;
   courier: any;
   editid: any;
@@ -79,6 +79,7 @@ export class AddProductsComponent implements OnInit {
   isGuarantee: any;
   guaranteeDays: any;
   news: any;
+  news2: any;
   selectedColor = [];
   fm: any = {};
   ctr: any = {};
@@ -147,7 +148,9 @@ export class AddProductsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.disabled = '';
     this.title.setTitle('Belisada Seller - Add Product');
+    this.news2 = 'Pilih hanya Brand/Merk yang sudah ada di daftar';
     this.courier = 0;
     this.news = '';
     this.results = [];
@@ -234,9 +237,15 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectCategory(id: number) {
-    this.categoryService.CategoryTwo(id).subscribe(data => {
-      this.subcategory = data;
-    });
+    console.log('1001178', id);
+    if (id === 1001178) {
+      this.disabled = true;
+    }else {
+      this.categoryService.CategoryTwo(id).subscribe(data => {
+        this.disabled = '';
+        this.subcategory = data;
+      });
+    }
   }
 
   selectSubCategory(id: number) {
@@ -354,9 +363,11 @@ export class AddProductsComponent implements OnInit {
   selectBrands(id: number) {
     this.productBrandId = id;
   }
+  checkBrand(id: number) {
+    console.log('check', id);
+  }
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
-
   }
 
   getStore() {

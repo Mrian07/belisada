@@ -51,7 +51,7 @@
                     <div class="two wide field">
                             Brands
                     </div>
-                    <div class="six wide field">
+                    <div class="three wide field">
                         <div class="field">
                             <sui-select class="selection"
                                 [(ngModel)]="ctr.brand"
@@ -65,7 +65,9 @@
                                     <sui-select-option *ngFor="let option of brnds.filteredOptions" [value]="option" (click)="selectBrands(option.m_productbrand_id)"></sui-select-option>
                             </sui-select>
                         </div>
+
                     </div>
+                    <div class="four wide field" align="left"><div class="new-product">{{news2}}</div></div>
                 </div>
                 <div class="inline twelve fields" *ngIf="[results] == 0">
                         <div class="two wide field">
@@ -93,6 +95,7 @@
                                     placeholder="{{ctr.cat2name}}"
                                     [options]="subcategory"
                                     [optionTemplate]="optionTemplate"
+                                    isDisabled="{{disabled}}"
                                     #subs
                                     >
                                         <sui-select-option *ngFor="let option of subs.filteredOptions" [value]="option" (click)="selectSubCategory(option.m_product_category_id)">{{option.name}}</sui-select-option>
@@ -106,6 +109,7 @@
                                     placeholder="{{ctr.cat3name}}"
                                     [options]="subcategories"
                                     [optionTemplate]="optionTemplate"
+                                    isDisabled="{{disabled}}"
                                     #subsi
                                     >
                                         <sui-select-option *ngFor="let option of subsi.filteredOptions" [value]="option" (click)="selectSubCategories(option.m_product_category_id)">{{option.name}}</sui-select-option>
@@ -157,8 +161,9 @@
                             Harga Rp.
                         </div>
                         <div class="five wide field">
-                            <input type="text" placeholder="Harga" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="price" value="{{price}}"/>
+                            <input type="text" name="harga" required placeholder="Harga" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="price" value="{{price}}"/>
                         </div>
+
                         <div class="seven wide field small">
                             Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : Rp. {{ price | number }} )</span>
                         </div>

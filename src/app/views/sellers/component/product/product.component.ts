@@ -30,17 +30,20 @@ export class ProductComponent implements OnInit {
     private ngZone: NgZone,
     private actionsSubject: ActionsSubject,
 ) { }
-
+  hargabaru: any;
+  ind: number;
   storeId: number;
   check: Boolean;
   st: Boolean = true;
   sellerProduct: Observable<any>;
-  totalItem: Observable<any>;
+  totalItem:  Observable<any>;
   queryString: any = '';
   status: any;
   editmode: Boolean;
   editedPrice: number;
   editProduct: Subscription;
+  edits: any;
+  product: any;
 
   ngOnInit() {
     this.editmode = false;
@@ -50,12 +53,18 @@ export class ProductComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.EDITPRODUCTSUCCESS)
         .subscribe((action: fromActions.EditProductSuccess) => {
-          this.ngZone.run(() => { this.sellerProduct = Observable.of(action.success); console.log('edit Done!'); });
-           swal(
-                'Product berhasil di Perbarui!',
-                'success'
-              ).then((result) => {
-              });
+          this.ngZone.run(() => { this.sellerProduct = Observable.of(action.success); console.log('edit Done!');
+          swal(
+            'Product berhasil di Perbarui!',
+            'success'
+          ).then((result) => {
+           // location.reload();
+           this.list();
+            // console.log('this');
+            //this.sellerProduct = this.store.select(fromProduct.getProductState);
+          });
+        });
+
         });
   }
 
@@ -72,15 +81,21 @@ export class ProductComponent implements OnInit {
          this.routes.navigateByUrl('seller/dashboard');
         });
       }
-      this.sellerProduct = this.store.select(fromProduct.getProductState);
-      this.store.select(fromProduct.getProductState).subscribe(datas => {
-
-      });
+    this.list();
+      // this.store.select(fromProduct.getProductState).subscribe(datas => {
+      //   this.sellerProduct = datas;
+      // });
     });
   }
 
+  list() {
+    this.sellerProduct = this.store.select(fromProduct.getProductState);
+  }
+
   checks(i) {
-    //console.log(i);
+
+    ///console.log(i);
+
   }
 
   inactive (id: number) {
@@ -134,39 +149,46 @@ export class ProductComponent implements OnInit {
     this.routes.navigateByUrl('/seller/add-products/add');
   }
 
-  editProducts(data) {
-    this.editmode = true;
+  editProducts(data, index) {
+    // this.editmode = true;
+    // this.ind = index;
+    // this.edits = true;
+    // this.hargabaru = data.pricelist;
     this.shared.shareData = data;
     this.routes.navigateByUrl('/seller/add-products/edit');
   }
 
-  // editPrice(data) {
-  //   this.editmode = false;
-  //  // this.sellerProduct = new EmptyObservable();
-  //   this.getList();
-  //   const productData = {
-  //     pricelist: data,
-  //     // description: this.description,
-  //     // productId: this.productId,
-  //     // mBpartnerStoreId: this.storeId,
-  //     // weight: this.weight,
-  //     // dimensionswidth: this.lebar,
-  //     // dimensionslength: this.panjang,
-  //     // dimensionsheight: this.tinggi,
-  //     // specialPrice: this.specialPrice,
-  //     // isAsapShipping: this.asap ,
-  //     // tag: [this.productName],
-  //     // qtyOnSeller: this.stok,
-  //     // qtyOnHand: +this.qtyOnHand,
-  //     // classification: this.classification,
-  //     // isGuarantee: this.isGuarantee,
-  //     // guaranteeDays: this.garansiDays
-  //   };
-  //   console.log(productData);
+  editPrice(q) {
+    this.editmode = false;
+    console.log(q);
 
-  //   //this.store.dispatch(new fromActions.EditProduct(productData));
 
-  // }
+   // this.sellerProduct = new EmptyObservable();
+
+    const productData = {
+      pricelist: this.hargabaru,
+      productId: q.productId,
+      mBpartnerStoreId: q.mBpartnerStoreId,
+      weight: q.weight,
+      dimensionswidth: q.dimensionswidth,
+      dimensionslength: q.dimensionslength,
+      dimensionsheight: q.dimensionsheight,
+      specialPrice: q.specialPrice,
+      isAsapShipping: q.isAsapShipping ,
+      tag: [q.name],
+      qtyOnSeller: q.qtyOnSeller,
+      qtyOnHand: +q.qtyOnHand,
+      classification: q.conditionCode,
+      isGuarantee: q.isGuarantee,
+      guaranteeDays: q.guaranteeDays
+    };
+    console.log(productData);
+    this.store.dispatch(new fromActions.EditProduct(productData));
+    this.sellerProduct = new EmptyObservable();
+    // "qtyOnSeller":37,
+    // "pricelist":6000000,
+    // "productId":31173
+  }
 
   search(event) {
     const key = event.target.value;

@@ -6,7 +6,7 @@
           <div class="ten wide column">
               <div class="ui right aligned category search">
                   <div class="ui icon input">
-                      <input class="prompt" [(ngModel)]="queryString" placeholder="Cari produk..." type="text"/>
+                      <input class="prompt" [(ngModel)]="queryString" [ngModelOptions]="{standalone: true}" placeholder="Cari produk..." type="text"/>
                       <i class="search icon"></i>
                   </div>
                   <div class="results"></div>
@@ -63,7 +63,7 @@
                   <!-- <th>Hapus</th> -->
               </tr>
           </thead>
-          <tbody *ngFor="let product of sellerProduct | async | searchFilter:queryString ; let i = index">
+          <tbody *ngFor="let product of sellerProduct | async; let i = index">
             <tr>
                 <td class="collapsing">
                     <input type="checkbox" checked="{{check}}" (change)="checks(i)"/>
@@ -88,13 +88,19 @@
                     </div> -->
 
                     <div class="ui right labeled input">
-                        <label for="amount" class="ui label">Rp.</label>
-                        <input placeholder="Amount" id="amount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [value]="product.pricelist | number" type="text" [disabled]="!editmode"/>
+                        <label for="amount" class="ui label" *ngIf="!editmode">Rp.</label>
+                        <label for="amount" class="ui label" *ngIf="editmode && i === ind">Rp.</label>
+                        <input placeholder="Amount" id="amount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        [value]="product.pricelist | number" type="text" [disabled]="true" *ngIf="!editmode"/>
+                        <input placeholder="{{product.pricelist}}" id="amount" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                        value="product.pricelist" type="text" *ngIf="editmode && i === ind" [(ngModel)]="hargabaru"/>
+                        <!-- <div class="priceTag" [contentEditable]="editmode" *ngIf="editmode && i === ind">{{product.pricelist}}</div>
+                        <div class="priceTag" [contentEditable]="editmode" *ngIf="!editmode">{{product.pricelist | number}}</div> -->
                         <div *ngIf="product.statusCode !== 'RJ'">
-                            <a class="ui tag label" *ngIf="!editmode" (click)="editProducts(product)">
+                            <a class="ui tag label" *ngIf="!editmode" (click)="editProducts(product, i)">
                                     <i *ngIf="!editmode" class="edit icon"></i>
                             </a>
-                            <a class="ui tag label" *ngIf="editmode"  (click)="editPrice(product)">
+                            <a class="ui tag label" *ngIf="editmode && i === ind"  (click)="editPrice(product)">
                                     <i class="save icon"></i>
                             </a>
                         </div>

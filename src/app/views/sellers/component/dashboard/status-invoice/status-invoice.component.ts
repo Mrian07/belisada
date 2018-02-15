@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { StoreService } from '../../../../../core/service/store/store.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../../../../core/model/product';
@@ -16,6 +16,10 @@ export class StatusInvoiceComponent implements OnInit {
   productList: any;
   color: string;
   status: string;
+  editmode: any;
+  ind: any;
+  hargabaru: any;
+  qtybaru: any;
 
   constructor(
     private auth: TokenService,
@@ -45,6 +49,32 @@ export class StatusInvoiceComponent implements OnInit {
         this.productList = data.productList;
       });
     }
+  }
+  toEdit(i) {
+    this.editmode = true;
+    this.ind = i;
+  }
+
+  toBlur(list, i) {
+
+    if (this.hargabaru === undefined) {
+      this.hargabaru = list.pricelist;
+    }
+    if (this.qtybaru === undefined) {
+     this.qtybaru = list.qtyOnSeller;
+    }
+    this.editmode = false;
+    this.productList[i].pricelist = this.hargabaru;
+    this.productList[i].stock = this.qtybaru;
+    const editData = {
+      qtyOnSeller: this.qtybaru,
+      pricelist: this.hargabaru,
+      productId: list.productId,
+    };
+    this.sellers.UpdatePrice(editData).subscribe(data => {
+      console.log(data);
+      this.editmode = false;
+    });
   }
 
   inactive (id: number) {
