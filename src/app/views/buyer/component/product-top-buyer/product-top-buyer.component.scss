@@ -1,21 +1,197 @@
-.border-item{
-    border: 1px solid #dddddd;
-    padding:5px;
+// .border-item{
+//     border: 1px solid #dddddd;
+//     padding:5px;
+//     text-align: center;
+// }
+
+// .border-item-second{
+//     background: #232f3d;
+//     padding:5px;
+//     color: #f1f9fc;
+// }
+
+// .icon-cart{
+//     font-size:20px;
+//     text-align: right;
+// }
+
+// .border-item-third{
+//     background: #f8992d;
+//     padding:5px;
+// }
+$text-color-title: #252222;
+$text-color-amount: #949494;
+
+.products {
+    display: grid;
+    grid-gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+
+    .products__grid:hover .price {
+        margin-top: -30px;
+    }
+
+    .products__grid:hover .products__action a {
+        animation: fadeInZoom .25s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+    
+    .products__wrapper--img {
+        width: 100%;
+        height: 250px;
+        position: relative;
+    }
+    
+    .products__img {
+        max-width: 100%;
+        max-height: 100%;  
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        transform: translate(-50%, -50%);    
+    }
+
+    .products__action {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        backface-visibility: hidden;
+
+        a,
+        a:link,
+        a:visited {
+            opacity: 0;
+            display: block;
+            font-size: 1.4em;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            line-height: 35px;
+            color: rgba(0, 0, 0, 0.7);
+            text-decoration: none;
+            text-transform: none;
+
+            i {
+                margin: 0;
+            }
+        }
+    }
+
+    .products__wrapper--desc {
+        // font-size: 62.5%;
+    }
+
+    .products__title {
+        // height: 40px;
+        overflow: hidden;
+        font-size: 15px;
+        line-height: 1.5;
+        font-weight: 400;
+        text-align: left;
+        margin-bottom: 0;
+        font-family: Lora,'MS Sans Serif', Geneva, sans-serif;
+
+        a,
+        a:link,
+        a:visited {
+            color: $text-color-title;
+            display: inline;
+            padding-bottom: 1px;
+            letter-spacing: .3px;
+            border-bottom: 1px solid rgba(0,0,0,.1);
+            transition-duration: .5s;
+        }
+        a:hover {
+            border-bottom: 1px solid rgba(0,0,0,.3);
+        }
+    }
+}
+
+%height-placeholder {
+    height: 32px;
+    line-height: 32px;
+}
+
+.wrapper__swap {
+    @extend %height-placeholder;
+    overflow: hidden;
+}
+
+.price {
+    @extend %height-placeholder;
+    // display: block;
+    overflow: hidden;
+    transition: all .25s ease-in-out;
+}
+
+.btn--add {
+    @extend %height-placeholder;
+
+    a,
+    a:link,
+    a:visited {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        color: #000;
+        white-space: nowrap;
+        font-weight: 700;
+        text-transform: none;
+    }
+}
+
+.amount {
+    color: $text-color-amount;
+}
+
+/**
+* Tooltip
+*/
+.tooltip {
+    position: relative;
+    display: block;
+    // border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
     text-align: center;
+    // border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    right: 110%;
 }
 
-.border-item-second{
-    background: #232f3d;
-    padding:5px;
-    color: #f1f9fc;
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 100%; /* To the right of the tooltip */
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
 }
 
-.icon-cart{
-    font-size:20px;
-    text-align: right;
+.tooltip:hover .tooltiptext {
+    visibility: visible;
 }
 
-.border-item-third{
-    background: #f8992d;
-    padding:5px;
+
+@keyframes fadeInZoom {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
