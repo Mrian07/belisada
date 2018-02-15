@@ -134,9 +134,7 @@ export class LoginComponent implements OnInit {
         cartItem.productId = item.productId;
         cartItem.quantity = item.quantity;
         cart.items.push(cartItem);
-        console.log('cart_loop', cart);
       });
-      console.log('jalan dulu gak ni?');
     });
   }
 
@@ -149,7 +147,6 @@ export class LoginComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + 'sign in data : ' , userData);
       }
     );
   }
