@@ -161,8 +161,9 @@
                             Harga Rp.
                         </div>
                         <div class="five wide field">
-                            <input type="text" placeholder="Harga" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="price" value="{{price}}"/>
+                            <input type="text" name="harga" required placeholder="Harga" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="price" value="{{price}}"/>
                         </div>
+
                         <div class="seven wide field small">
                             Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : Rp. {{ price | number }} )</span>
                         </div>

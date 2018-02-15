@@ -153,7 +153,7 @@ export function ProductReducer(
   switch (action.type) {
 
     case actions.GETPRODUCTSUCCESS : {
-      return action.product;
+      return [...action.product];
     }
 
     case actions.GETSTORELIST : {

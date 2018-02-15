@@ -368,7 +368,6 @@ export class AddProductsComponent implements OnInit {
   }
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
-
   }
 
   getStore() {
