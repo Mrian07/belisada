@@ -1,19 +1,55 @@
-<div class="ui grid">
-  <div class="four wide column" *ngFor="let item of allProduct">
+<!-- <div class="ui grid">
+    <div class="four wide column" *ngFor="let item of allProduct">
     <div class="border-item" (click)="detail(item.productId, item.aliasName)" style="cursor: pointer;">
-      <img class="ui tiny spaced image" src="{{item.imageurl}}" alt="profile picture"/>
+        <img class="ui tiny spaced image" src="{{item.imageurl}}" alt="profile picture"/>
     </div>
     <div class="border-item-second"> 
 
         <div class="ui grid">
-          <div class="twelve wide column">
-              <small>{{item.name}}</small><br>
-              Rp.{{ item.pricelist | number }}
-          </div>
-          <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
+            <div class="twelve wide column">
+                <small>{{item.name}}</small><br>
+                Rp.{{ item.pricelist | number }}
+            </div>
+            <div class="four wide column"><i class="shop icon"></i><br><i class="heart icon"></i> <i class="star icon"></i></div>
         </div>
 
     </div>
-  </div>
+</div>
 
+</div> -->
+
+
+<div class="products">
+    <div class="products__grid" *ngFor="let item of allProduct">
+        <div class="products__wrapper--img">
+            <a routerLink="/Product-detail/{{item.productId}}/{{item.aliasName}}">
+                <img class="products__img" src="{{item.imageurl}}" alt="profile picture"/>
+            </a>
+            <div class="products__action">
+                <div class="tooltip">
+                    <a (click)="addToWishlist(item.productId)"><i class="empty heart icon"></i></a>
+                    <span class="tooltiptext">Add to wishlist</span>
+                </div>
+                <div class="tooltip">
+                    <a href=""><i class="zoom icon"></i></a>
+                    <span class="tooltiptext">Quick view</span>
+                </div>
+            </div>
+        </div>
+        <div class="products__wrapper--desc">
+            <h3 class="products__title">
+                <a routerLink="/Product-detail/{{item.productId}}/{{item.aliasName}}">{{item.name}}</a>
+            </h3>
+            <div class="wrapper__price">
+                <div class="wrapper__swap">
+                    <div class="price">
+                        <span class="amount price__normal">Rp {{ item.pricelist | number }}</span>
+                    </div>
+                    <div class="btn--add">
+                        <a (click)="addProductToCart(item.productId, +1, item.mBpartnerStoreId)"><i class="shop icon"></i> Add to cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

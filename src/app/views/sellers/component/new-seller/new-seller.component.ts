@@ -148,7 +148,6 @@ export class NewSellerComponent implements OnInit {
     if (!this.createStoreForm.valid) {
       return;
     } else {
-      console.log('onSubmit');
       const model = this.createStoreForm.value;
       const dataStore = {
         mBpartnerStoreId: this.mBpartnerStoreId,

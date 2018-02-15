@@ -48,7 +48,6 @@ export class SearchDashboardComponent implements OnInit {
     this.title.setTitle('Belisada Seller - Dashboard');
     this.getStoreData();
     this.storeService.getStatus().subscribe(data => {
-      console.log('data[0].statusCode: ', data[0].statusCode);
       if (data.length !== 0) {
         this.storeName = data[0].name;
         if (this.sharedService.shareData) {
@@ -154,7 +153,6 @@ export class SearchDashboardComponent implements OnInit {
   openModalShop() {
 
     this.storeService.getStatus().subscribe(data => {
-      console.log('data[0].statusCode: ', data[0].statusCode);
       if (data[0].statusCode === 'AP') {
         this.modal = true;
       } else {

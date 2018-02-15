@@ -24,7 +24,6 @@ export class ActivationComponent implements OnInit {
   ngOnInit() {
     this.email = this.route.snapshot.queryParamMap.get('email');
     this.act_key = this.route.snapshot.queryParamMap.get('key');
-    console.log(this.act_key);
     this.register.activate(this.act_key).subscribe(data => {
       if (data.message) {
         this.message = data.message;
@@ -32,7 +31,6 @@ export class ActivationComponent implements OnInit {
       if (data.status === '1') {
         this.success = true;
       }
-      console.log(data);
     });
   }
   resendEmail() {
