@@ -7,12 +7,28 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./m-menu-buyer.component.scss']
 })
 export class MMenuBuyerComponent implements OnInit {
-
+  isOpen;
+  isDisabled;
   constructor(
     private router: Router,
   ) { }
 
   ngOnInit() {
+
+  }
+  goSeller() {
+
+  }
+  goWishlist() {
+
+  }
+  goBilling() {
+
+  }
+  goShipping() {
+
+  }
+  goTransaction() {
 
   }
 
