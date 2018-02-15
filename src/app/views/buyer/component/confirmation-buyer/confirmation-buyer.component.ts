@@ -22,11 +22,8 @@ export class ConfirmationBuyerComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.tigo = params.id;
-      // console.log('pa', this.tsId);
       this.tsBuyer.getAll().subscribe(data => {
-        console.log('data', data);
         this.cart = data.find(x => x.transactionId == params.id);
-        // console.log('this.cart', this.cart);
       });
     });
   }
@@ -60,11 +57,8 @@ export class ConfirmationBuyerComponent implements OnInit {
   uploadBukti() {
     this.route.params.subscribe( params3 => {
       this.tigo = params3.id;
-      // console.log('pa', this.tsId);
       this.tsBuyer.getAll().subscribe(data2 => {
-        console.log('data', data2);
         this.cart = data2.find(xx => xx.transactionId == params3.id);
-        console.log('this.cart', this.cart.orderNumber);
       });
     });
     const data = {
@@ -72,7 +66,6 @@ export class ConfirmationBuyerComponent implements OnInit {
       imageEvidence: this.fm.imageID
     };
     this.transactions.completions(data).subscribe( result => {
-     console.log(result);
     });
   }
 

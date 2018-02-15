@@ -16,7 +16,6 @@ export class HeaderBuyerComponent implements OnInit {
   user: any;
   ngOnInit() {
     this.user = this.loginService.whoLogin();
-    console.log('loged user:', this.user);
   }
 
   logout() {
