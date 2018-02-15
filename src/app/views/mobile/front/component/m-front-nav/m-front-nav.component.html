@@ -1,0 +1,38 @@
+<div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+    <!-- <a href="#">About</a>
+    <a href="#">Services</a>
+     -->
+  
+      <div class="togglebox">
+        <div *ngFor="let item of navigationObjects">
+          <input id="{{ item.name }}" type="radio" name="toggle"/>
+          <label for="{{ item.name }}" *ngIf="lang == 'id'">{{ item.name }}</label>
+          <label for="{{ item.name }}" *ngIf="lang == 'en'">{{ item.name }}</label>
+          <div class="content">
+  
+  
+              <div class="nav-column" [ngClass]="{'border-nav': ix <= 4}"
+              *ngFor="let i of item.c2; let ix = index" [attr.data-index]="ix">
+  
+                <div class="top-categories" *ngIf="ix <= 4">
+                    <div (click)="toList(i.aliasname, i.m_product_category_id)" (click)="closeNav()">
+                        <span *ngIf="lang == 'id'">{{ i.name }}</span><span *ngIf="lang == 'en'">{{ i.name_en }}</span>
+                    </div>
+                </div>
+                <div class="item" *ngIf="ix > 4">
+  
+                    <div (click)="toList(i.aliasname, i.m_product_category_id)" (click)="closeNav()">
+                        <span *ngIf="lang == 'id'">{{ i.name }}</span><span *ngIf="lang == 'en'">{{ i.name_en }}</span>
+                    </div>
+  
+                </div>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  

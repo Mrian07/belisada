@@ -17,12 +17,10 @@ export class WishlistBuyerComponent implements OnInit {
   ngOnInit() {
     this.fils3();
     // this.btnDelete(this.id);
-    console.log('kapret');
   }
   fils3() {
     this.iniserviceyah.getAll().subscribe(data => {
       this.dat = data;
-      console.log('ini apa sih ', data);
     });
   }
   btnDelete(id) {
@@ -38,8 +36,6 @@ export class WishlistBuyerComponent implements OnInit {
       if (result.value) {
         this.iniserviceyah.delete(id).subscribe(data => {
           this.po = data;
-          console.log(data);
-          // alert('keapus bro');
           this.fils3();
         });
       }

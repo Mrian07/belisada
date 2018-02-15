@@ -47,8 +47,9 @@ export class RekeningComponent implements OnInit {
   role: any;
   accountName: string;
   accountNo: string;
-  show = false;
-  show1 = true;
+  show: boolean = false;
+  show1: boolean = true;
+  tst = false;
   mBankAccountId: number;
   id: number;
   rekening: Observable<any>;
@@ -69,7 +70,7 @@ export class RekeningComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.DELETEBANKSUCCESS)
         .subscribe((action: fromActions.DeleteBankSuccess) => {
-          this.ngZone.run(() => { this.rekening = Observable.of(action.success); 
+          this.ngZone.run(() => { this.rekening = Observable.of(action.success);
             //console.log('delete Done!');
           });
            swal(
@@ -83,8 +84,7 @@ export class RekeningComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.EDITBANKSUCCESS)
         .subscribe((action: fromActions.EditBankSuccess) => {
-          this.ngZone.run(() => { this.rekening = Observable.of(action.success); 
-            //console.log('edit Done!');
+          this.ngZone.run(() => { this.rekening = Observable.of(action.success);
           });
            swal(
                 'Rekening berhasil di Perbarui!',
@@ -132,6 +132,7 @@ export class RekeningComponent implements OnInit {
   }
 
   editRek() {
+
     if (this.selectedCategory.mbankId === undefined) {
       swal('Nama Bank Harus dipilih');
     } else {
@@ -149,6 +150,8 @@ export class RekeningComponent implements OnInit {
     this.accountNo = id.accountNo;
     this.mBankAccountId = id.mBankAccountId;
     this.show1 = false;
+    this.show = true;
+    // this.show = true;
     this.selectedCategory = this.searchrek.find(x => x.mbankId === id.mBankId);
   }
 

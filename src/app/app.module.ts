@@ -102,6 +102,18 @@ import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem
 import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
 import { MFrontHeaderComponent } from './views/mobile/front/component/m-front-header/m-front-header.component';
 import { MFrontHomeComponent } from './views/mobile/front/component/m-front-home/m-front-home.component';
+import { MFrontFooterComponent } from './views/mobile/front/component/m-front-footer/m-front-footer.component';
+import { MFrontNavComponent } from './views/mobile/front/component/m-front-nav/m-front-nav.component';
+import { MFrontSlideShowComponent } from './views/mobile/front/component/m-front-slide-show/m-front-slide-show.component';
+import { MCategoryComponent } from './views/mobile/front/component/m-category/m-category.component';
+import { MSignInComponent } from './views/mobile/front/component/m-sign-in/m-sign-in.component';
+import { MSignUpComponent } from './views/mobile/front/component/m-sign-up/m-sign-up.component';
+import { MDashboardBuyerComponent } from './views/mobile/buyer/component/m-dashboard-buyer/m-dashboard-buyer.component';
+import { MBuyerLayoutComponent } from './core/layout/mobile/m-buyer-layout/m-buyer-layout.component';
+import { MMenuBuyerComponent } from './views/mobile/buyer/component/m-menu-buyer/m-menu-buyer.component';
+import { MProfileBuyerComponent } from './views/mobile/buyer/component/m-profile-buyer/m-profile-buyer.component';
+import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
+import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -202,7 +214,19 @@ export function getAuthServiceConfigs() {
 
     MFrontLayoutComponent,
     MFrontHeaderComponent,
-    MFrontHomeComponent
+    MFrontHomeComponent,
+    MFrontFooterComponent,
+    MFrontNavComponent,
+    MFrontSlideShowComponent,
+    MCategoryComponent,
+    MSignInComponent,
+    MSignUpComponent,
+    MDashboardBuyerComponent,
+    MBuyerLayoutComponent,
+    MMenuBuyerComponent,
+    MProfileBuyerComponent,
+    MSellerLayoutComponent,
+    MChangePasswordBuyerComponent
 
 
     // WishlistComponent,

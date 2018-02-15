@@ -197,6 +197,7 @@
 
       "seller" :
   {
+          "ubah" : "Change Password",
           "title" : "Welcome, ",
           "one" : "Dashboard",
           "two" : "Inbox",

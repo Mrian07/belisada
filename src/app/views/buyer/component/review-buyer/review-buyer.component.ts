@@ -16,16 +16,12 @@ export class ReviewBuyerComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe( params => {
       this.tsId = params.id;
-      // console.log('pa', this.tsId);
       this.tsBuyer.getAll().subscribe(data => {
-        // console.log('data', data);
         this.cart = data.find(x => x.transactionId === +params.id);
-        console.log('this.cart', this.cart);
       });
     });
   }
   repiew(id) {
-    console.log('id', id);
     this.router.navigate(['/buyer/ulasan/', id]);
   }
 

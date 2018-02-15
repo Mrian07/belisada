@@ -1,3 +1,25 @@
+body {
+    padding: 1em;
+}
+
+.ui.action.input input[type=file] {
+    display: none;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
 .address-book {
     font-size: 50px!important;
     margin-top: 10px;
@@ -35,6 +57,17 @@ hr {
     color:#111111;
     padding-bottom:20px;
     border-bottom:10px solid #2d3e52;
+}
+
+.side-fourth{
+    background-color: #18222d;
+    padding:10px;
+    color:#111111;
+    padding-bottom:20px;
+}
+
+.menu-fourth{
+    padding: 10px;
 }
 
 .main-menu{

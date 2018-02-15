@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { StoreService } from '../../../../../core/service/store/store.service';
 import { Observable } from 'rxjs/Observable';
 import { Product } from '../../../../../core/model/product';
@@ -16,6 +16,10 @@ export class StatusInvoiceComponent implements OnInit {
   productList: any;
   color: string;
   status: string;
+  editmode: any;
+  ind: any;
+  hargabaru: any;
+  qtybaru: any;
 
   constructor(
     private auth: TokenService,
@@ -39,12 +43,38 @@ export class StatusInvoiceComponent implements OnInit {
         return;
       }
       const storeId = user.stores[0].mBpartnerStoreId;
-      console.log(storeId);
+      // console.log(storeId);
       this.sellers.GetReviewProduct(storeId).subscribe(data => {
-        console.log(data);
+        // console.log(data);
         this.productList = data.productList;
       });
     }
+  }
+  toEdit(i) {
+    this.editmode = true;
+    this.ind = i;
+  }
+
+  toBlur(list, i) {
+    console.log(list);
+    if (this.hargabaru === undefined) {
+      this.hargabaru = list.pricelist;
+    }
+    if (this.qtybaru === undefined) {
+     this.qtybaru = list.qtyOnSeller;
+    }
+    this.editmode = false;
+    this.productList[i].pricelist = this.hargabaru;
+    this.productList[i].stock = this.qtybaru;
+    const editData = {
+      qtyOnSeller: this.qtybaru,
+      pricelist: this.hargabaru,
+      productId: list.productId,
+    };
+    this.sellers.UpdatePrice(editData).subscribe(data => {
+      console.log(data);
+      this.editmode = false;
+    });
   }
 
   inactive (id: number) {
@@ -90,7 +120,7 @@ export class StatusInvoiceComponent implements OnInit {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Ya'
     }).then((result) => {
-      console.log(result);
+      // console.log(result);
       this.productList = [];
       if (result.value) {
         this.sellers.Inactive(data).subscribe(res => {
@@ -107,7 +137,7 @@ export class StatusInvoiceComponent implements OnInit {
 
   getQr(id: number) {
     this.sellers.GetQr(id).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       swal({
         imageUrl: data.image_url,
         imageHeight: 400,

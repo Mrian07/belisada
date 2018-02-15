@@ -1,0 +1,33 @@
+<div class="ui middle aligned divided list" style="border-bottom: 1px solid #dddddd; margin-bottom:10px; padding-bottom:10px;">
+    <div class="item">
+      <div class="right floated content">
+        <div class="ui button btn-home"><i class="home icon" (click)="goDashboard()"></i></div> 
+
+          <div class="ui dropdown button" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+              <div class="text"><i class="sidebar icon"></i></div>
+              <i class="dropdown icon"></i>
+              <div class="menu" suiDropdownMenu>
+                  <div class="item" (click)="goDashboard()"><i class="home icon"></i> Dashboard</div>
+                  <div class="item" (click)="editProfileBuyer()" translate><i class="user icon"></i> user.buyer.eprof</div>
+                  <div class="item" (click)="goChangePassword()" translate><i class="privacy icon"></i> user.buyer.cpass</div>
+                  <div class="item" (click)="goBilling()" translate><i class="calculator icon"></i> user.buyer.bill</div>
+                  <div class="item" (click)="goShipping()" translate><i class="shipping icon"></i> user.buyer.ship</div>
+                  <div class="item" (click)="goTransaction()" translate><i class="law icon"></i> user.buyer.alltrans</div>
+                  <div class="item" (click)="goSeller()"><i class="shop icon"></i> Seller</div>
+                  <div class="item" (click)="goWishlist()"><i class="empty heart icon"></i> Wishlist</div>
+                  <div class="item"><i class="mail icon"></i> Inbox</div>
+              </div>
+          </div>
+
+
+      </div>
+      <img class="ui avatar image" src="/assets/img/kristy.png">
+      <div class="content">
+          <div class="header">Lalang</div>
+          lalang@email.com
+        </div>
+    </div>
+</div>
+
+
+

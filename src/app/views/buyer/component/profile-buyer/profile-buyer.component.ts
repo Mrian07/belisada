@@ -76,7 +76,6 @@ export class ProfileBuyerComponent implements OnInit {
       // console.log('batan', data);
 
       if (!data) {
-        return console.log('kosong');
       }
       // console.log('ini data: ', data);
       if (data.dateOfBirth && data.dateOfBirth != '') {
@@ -174,7 +173,8 @@ export class ProfileBuyerComponent implements OnInit {
           'Success',
           'Upload Photo berhasil',
           'success'
-        );
+        ).then((result)=> { location.reload(); } )
+        // location.reload();
       }else {
         swal(
           'Opps!',
