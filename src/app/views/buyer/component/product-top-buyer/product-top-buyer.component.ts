@@ -23,7 +23,6 @@ export class ProductTopBuyerComponent implements OnInit {
       this.route.params.subscribe( params => {
       this.productId = params.id;
       this.productService.ProductNew(this.productId).subscribe(datas => {
-        console.log(datas)
         this.productData = datas;
         this.allProduct = this.productData.productList;
       });

@@ -80,7 +80,7 @@ export class DashboardComponent implements OnInit {
 
   getAllStore() {
     this.storeService.getAll().subscribe(response => {
-      console.log('getAllStore response: ', response);
+      // console.log('getAllStore response: ', response);
       this.stores = response;
       this.isReady = true;
     });

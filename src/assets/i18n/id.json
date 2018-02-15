@@ -199,6 +199,7 @@
 
        "seller" :
    {
+          "ubah" : "Ubah Password",
            "title" : "Selamat datang, ",
            "one" : "Dashboard",
            "two" : "Kotak Masuk",
