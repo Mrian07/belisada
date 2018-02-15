@@ -43,4 +43,12 @@ export class MMenuBuyerComponent implements OnInit {
   goChangePassword() {
     this.router.navigateByUrl('/mobile/buyer/m-change-password-buyer');
   }
+
+  goBilling() {
+    this.router.navigateByUrl('/mobile/buyer/m-billingAddress');
+  }
+
+  goShipping() {
+    this.router.navigateByUrl('/mobile/buyer/m-shippingAddress');
+  }
 }
