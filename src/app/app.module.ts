@@ -111,6 +111,8 @@ import { MSignUpComponent } from './views/mobile/front/component/m-sign-up/m-sig
 import { MDashboardBuyerComponent } from './views/mobile/buyer/component/m-dashboard-buyer/m-dashboard-buyer.component';
 import { MBuyerLayoutComponent } from './core/layout/mobile/m-buyer-layout/m-buyer-layout.component';
 import { MMenuBuyerComponent } from './views/mobile/buyer/component/m-menu-buyer/m-menu-buyer.component';
+import { MProfileBuyerComponent } from './views/mobile/buyer/component/m-profile-buyer/m-profile-buyer.component';
+import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -220,7 +222,9 @@ export function getAuthServiceConfigs() {
     MSignUpComponent,
     MDashboardBuyerComponent,
     MBuyerLayoutComponent,
-    MMenuBuyerComponent
+    MMenuBuyerComponent,
+    MProfileBuyerComponent,
+    MSellerLayoutComponent
 
 
     // WishlistComponent,

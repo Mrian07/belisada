@@ -13,11 +13,15 @@ export class MMenuBuyerComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.home();
+
   }
 
-  home() {
+  goDashboard() {
     this.router.navigateByUrl('/mobile/buyer');
+  }
+
+  editProfileBuyer() {
+    this.router.navigateByUrl('/mobile/buyer/m-profile-buyer');
   }
 
 }
