@@ -22,12 +22,6 @@ export class MMenuBuyerComponent implements OnInit {
   goWishlist() {
 
   }
-  goBilling() {
-
-  }
-  goShipping() {
-
-  }
   goTransaction() {
 
   }
