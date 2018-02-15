@@ -56,7 +56,7 @@ export class StatusInvoiceComponent implements OnInit {
   }
 
   toBlur(list, i) {
-
+    console.log(list);
     if (this.hargabaru === undefined) {
       this.hargabaru = list.pricelist;
     }
