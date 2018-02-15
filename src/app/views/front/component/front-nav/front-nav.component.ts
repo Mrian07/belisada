@@ -42,6 +42,7 @@ export class FrontNavComponent implements OnInit {
   getCategoryOne(cb) {
     this.categoryService.CategoryOne().subscribe(data => {
       this.c1 = data;
+      console.log('123123', this.c1);
       cb();
     });
   }
@@ -75,5 +76,5 @@ export class FrontNavComponent implements OnInit {
   //   this.shared.shareData = id;
   //   this.router.navigateByUrl('/category/' + id);
   }
-  
+
 }

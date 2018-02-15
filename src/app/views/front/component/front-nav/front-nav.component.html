@@ -3,7 +3,7 @@
         <li role="menuitem" *ngFor="let item of navigationObjects"><a *ngIf="lang == 'id'">{{ item.name }}</a><a *ngIf="lang == 'en'">{{ item.nameEn }}</a>
             <div class="category2 mega-menu" aria-hidden="true" role="menu"  id="menu-header">
                 <div class="left-image">
-                    <img class="ui image" src="/assets/img/demo/C1-1.jpg" alt="Image not found" onError="this.src='/assets/img/no-image.png'"/>
+                    <img class="ui image" [src]="item.imageurl" alt="Image not found" onError="this.src='/assets/img/no-image.png'"/>
                 </div>
                 <div class="right-nav-column">
                     <div class="nav-column text-center" [ngClass]="{'border-nav': ix <= 4}"

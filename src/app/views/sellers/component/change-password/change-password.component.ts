@@ -35,9 +35,7 @@ export class ChangePasswordComponent implements OnInit {
     // this.div.nativeElement.innerHTML ='';
 
     if (this.role === 6) {
-       console.log('kampret3', this.role);
     } else {
-       console.log('kampret', this.role);
     }
   }
 
