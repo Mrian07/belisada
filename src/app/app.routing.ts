@@ -1,3 +1,5 @@
+import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
+import { MProfileBuyerComponent } from './views/mobile/buyer/component/m-profile-buyer/m-profile-buyer.component';
 import { MBuyerLayoutComponent } from './core/layout/mobile/m-buyer-layout/m-buyer-layout.component';
 import { MDashboardBuyerComponent } from './views/mobile/buyer/component/m-dashboard-buyer/m-dashboard-buyer.component';
 import { MSignUpComponent } from './views/mobile/front/component/m-sign-up/m-sign-up.component';
@@ -411,8 +413,6 @@ const routes: Routes = [
   },
 
 
-
-
   {
     path: 'mobile',
     component: MFrontLayoutComponent,
@@ -459,14 +459,21 @@ const routes: Routes = [
             }
           },
           {
-            path: 'm-dashboard',
-            component: MDashboardBuyerComponent,
+            path: 'm-profile-buyer',
+            component: MProfileBuyerComponent,
             data: {
-              title: 'dashboard'
+              title: 'Profile'
+            }
+          },
+          {
+            path: 'm-change-password-buyer',
+            component: MChangePasswordBuyerComponent,
+            data: {
+              title: 'Change Password'
             }
           },
         ]
-        },
+      },
 
     ]
   },

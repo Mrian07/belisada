@@ -1,0 +1,87 @@
+
+  <div class="ui grid stackable">
+      <div class="sixteen wide stretched column">
+
+              <p translate>user.buyer.text.profile</p>
+                <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                      <h4 class="ui dividing header" translate>user.profile.title</h4>
+                    <div class="field">
+                        <label translate>user.profile.nama</label>
+                        <input name="name" #name placeholder="Masukan nama" type="text" [(ngModel)]="fm.name" required/>
+                        <div *ngIf="f.submitted && name.invalid" class="ui pointing red basic label">Nama tidak boleh kosong</div>
+                    </div>
+                    <div class="field">
+                        <label translate>user.profile.tgllahir</label>
+                        <ng-datepicker name="dateOfBirth" [options]="options" [(ngModel)]="dob" (ngModelChange)="setDOB($event)"></ng-datepicker>
+                    </div>
+                    <div class="field">
+                        <label translate>user.profile.alamat</label>
+                        <input name="address" #address placeholder="Masukan alamat" type="text" [(ngModel)]="fm.address" required/>
+                        <div *ngIf="f.submitted && address.invalid" class="ui pointing red basic label">Alamat tidak boleh kosong</div>
+                    </div>
+                    <div class="field">
+                          <label translate>user.profile.provinsi</label>
+                          <sui-select name="province" #provs [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
+                              <sui-select-option *ngFor="let option of provs.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
+                          </sui-select>
+                      </div>
+                      <div class="field">
+                          <label translate>user.profile.kota</label>
+                          <sui-select name="city" #city [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih kota" [(ngModel)]="adr.city">
+                              <sui-select-option *ngFor="let option of city.filteredOptions" [value]="option" (click)="getDistrict(option.mcityId)">{{option.name}}</sui-select-option>
+                          </sui-select>
+                      </div>
+                      <div class="field">
+                          <label translate>user.profile.kecamatan</label>
+                          <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
+                              <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
+                          </sui-select>
+                      </div>
+                      <div class="field">
+                          <label translate>user.profile.kelurahan</label>
+                          <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
+                              <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setVilage(option)">{{option.name}}</sui-select-option>
+                          </sui-select>
+                      </div>
+                    <!-- <div class="field">
+                        <label>Provinsi</label>
+                        <sui-select name="province" class="selection" labelField="name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
+                            <sui-select-option *ngFor="let option of provinces" [value]="option" value="option.name" (click)="getCity(option.mregionId)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Kota</label>
+                        <sui-select class="selection" labelField="name" name="city" placeholder="Pilih Kota" [(ngModel)]="adr.city">
+                            <sui-select-option *ngFor="let option of cities" [value]="option" value="option.name" (click)="getDistrict(option.mcityId)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Kecamatan</label>
+                        <sui-select class="selection" labelField="name" name="district" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
+                            <sui-select-option *ngFor="let option of districts" [value]="option" value="option.name" (click)="getVillage(option.mdistrictId)"></sui-select-option>
+                        </sui-select>
+                    </div>
+                    <div class="field">
+                        <label>Kelurahan</label>
+                        <sui-select name="village" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
+                            <sui-select-option *ngFor="let option of villages" [value]="option" value="option.name" (click)="setVilage(option)"></sui-select-option>
+                        </sui-select>
+                    </div> -->
+                    <div class="field">
+                        <label translate>user.profile.kodepos</label>
+                        <input name="postal" #postal placeholder="Masukan kode POS" type="text" [(ngModel)]="fm.postal" required/>
+                        <div *ngIf="f.submitted && postal.invalid" class="ui pointing red basic label">Kodepos tidak boleh kosong</div>
+                    </div>
+                    <div class="field">
+                        <label translate>user.profile.hp</label>
+                        <input name="phone" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
+                    </div>
+
+                    <div class="ui divider"></div>
+
+                    <button class="ui primary button" type="submit">Simpan</button>
+                </form>
+
+    </div>
+ 
+</div>

@@ -94,6 +94,7 @@ export class AddProductsComponent implements OnInit {
   gambarnya: any;
   cat3Id: number;
   partNumber: string;
+  pid: any;
   warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
 
   countries = [
@@ -143,7 +144,6 @@ export class AddProductsComponent implements OnInit {
         this.editid = id;
       });
       this.quantity = this.countries;
-      //console.log(this.quantity);
     }
 
 
@@ -237,7 +237,6 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectCategory(id: number) {
-    console.log('1001178', id);
     if (id === 1001178) {
       this.disabled = true;
     }else {
@@ -255,7 +254,6 @@ export class AddProductsComponent implements OnInit {
   }
 
   selectSubCategories(id: number) {
-    console.log(id);
     this.cat3Id = id;
   }
 
@@ -283,10 +281,8 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
-        //console.log(data);
         if (data.length === 0) {
           this.results = [];
-         // this.clearAll();
           this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
         }
       });
@@ -296,18 +292,14 @@ export class AddProductsComponent implements OnInit {
 
 
   productSelected(hasil: any) {
-    console.log(hasil);
     this.categoryService.CategoryTwo(hasil.category1Id).subscribe(cat2 => {
       this.subcategory = cat2;
-      //console.log(cat2);
-      //this.ctr.cat2  = this.subcategory.find(x => x.m_product_category_id === hasil.category1Id);
       this.categoryService.CategoryThree(hasil.category2Id).subscribe(cat3 => {
         this.subcategories = cat3;
-       // console.log(cat3);
-        //this.ctr.cat3  = this.subcategories.find(x => x.m_product_category_id === hasil.hasil.category2Id);
       });
     });
     this.news = '';
+    this.pid = hasil.productId;
     this.productName = hasil.name;
     this.selectedCategory = hasil.category1Name;
     this.ctr.cat1 = hasil.category1Id;
@@ -352,7 +344,7 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.garansiDays = hasil.guaranteeDays;
     }
-    console.log(this.ctr);
+    console.log(hasil);
   }
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
@@ -364,7 +356,7 @@ export class AddProductsComponent implements OnInit {
     this.productBrandId = id;
   }
   checkBrand(id: number) {
-    console.log('check', id);
+    // console.log('check', id);
   }
   @HostListener('document:click', ['$event']) clickedOutside($event) {
     this.results = [];
@@ -402,16 +394,12 @@ export class AddProductsComponent implements OnInit {
        }
   }
   subs() {
-    console.log(this.qtyOnHand + '/' + this.stok);
-        if (this.qtyOnHand > 0 && this.stok == 0) {
-          console.log('asap');
+        if (this.qtyOnHand > 0 && this.stok === 0) {
           this.addProductsAsap();
         }else if (this.qtyOnHand > 0 && this.stok > 0) {
-          console.log('asap & regular');
           this.addProductsAsap();
           this.addProducts();
-        }else  if (this.qtyOnHand == 0 && this.stok > 0) {
-          console.log('regular');
+        }else  if (this.qtyOnHand === 0 && this.stok > 0) {
           this.addProducts();
         }
   }
@@ -425,7 +413,6 @@ export class AddProductsComponent implements OnInit {
           'Semua Field harus di isi'
         );
     }else {
-      //console.log(this.userImage + '---' + this.imageurl);
       if ( this.userImage === undefined && this.imageurl !== undefined) {
         this.gambarnya = [];
       }else if ( this.userImage !== undefined && this.imageurl === undefined) {
@@ -475,7 +462,6 @@ export class AddProductsComponent implements OnInit {
         isGuarantee: this.isGuarantee,
         guaranteeDays: +this.garansiDays
       };
-      //console.log(productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
       swal({
         title: 'Belisada.co.id',
@@ -489,14 +475,6 @@ export class AddProductsComponent implements OnInit {
   }
   gudang($event) {
     $event.preventDefault();
-    //console.log($event.target.value + '=' + this.stok );
-    // if ($event.target.value < this.stok) {
-    //   swal(
-    //     'Quantity lebih kecil',
-    //     'Dari barang yang akan dikirim ke gudang',
-    //     'error'
-    //   );
-    // }else {
       this.qtyOnHand = +$event.target.value;
   //  }
   }
@@ -548,20 +526,19 @@ export class AddProductsComponent implements OnInit {
          // this.store.dispatch(new fromActions.AddProduct(productData));
          // this.clearAll();
        // }
-      //}
-  }
+}
 
   updateProducts() {
-    if ( this.productId === undefined) {
-      swal('Nama Product harus diisi');
-    }else {
-      if (this.asap === 'Y') {
-        this.open();
-      }else {
+    // if ( this.productId === undefined) {
+    //   swal('Nama Product harus diisi');
+    // }else {
+    //   if (this.asap === 'Y') {
+    //     this.open();
+    //   }else {
         this.stok = this.stok;
         this.updateData();
-      }
-    }
+    //   }
+    // }
   }
 
   updateData() {
@@ -572,7 +549,7 @@ export class AddProductsComponent implements OnInit {
     const productData = {
       pricelist: this.price,
       description: this.description,
-      productId: this.productId,
+      productId: this.pid,
       mBpartnerStoreId: this.storeId,
       weight: this.weight,
       dimensionswidth: this.lebar,
@@ -587,6 +564,7 @@ export class AddProductsComponent implements OnInit {
       isGuarantee: this.isGuarantee,
       guaranteeDays: this.garansiDays
     };
+    console.log(productData);
     this.store.dispatch(new fromActions.EditProduct(productData));
   }
 
