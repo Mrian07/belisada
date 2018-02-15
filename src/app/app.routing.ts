@@ -1,3 +1,8 @@
+import { MBuyerLayoutComponent } from './core/layout/mobile/m-buyer-layout/m-buyer-layout.component';
+import { MDashboardBuyerComponent } from './views/mobile/buyer/component/m-dashboard-buyer/m-dashboard-buyer.component';
+import { MSignUpComponent } from './views/mobile/front/component/m-sign-up/m-sign-up.component';
+import { MSignInComponent } from './views/mobile/front/component/m-sign-in/m-sign-in.component';
+import { MCategoryComponent } from './views/mobile/front/component/m-category/m-category.component';
 import { MFrontHomeComponent } from './views/mobile/front/component/m-front-home/m-front-home.component';
 import { AsapbyBelisComponent } from './views/front/component/seller-center/asapby-belis/asapby-belis.component';
 import { CaraBerjualanComponent } from './views/front/component/seller-center/cara-berjualan/cara-berjualan.component';
@@ -420,19 +425,48 @@ const routes: Routes = [
         }
       },
       {
-        path: 'info-jual-beli',
-        component: InfoComponent,
+        path: 'm-category/:id/:aliasname',
+        component: MCategoryComponent,
         data: {
-          title: 'info'
+          title: 'category'
         }
       },
       {
-        path: 'inbox',
-        component: InboxComponent,
+        path: 'm-sign-in',
+        component: MSignInComponent,
         data: {
-          title: 'info'
+          title: 'Sign In'
         }
-      }
+      },
+      {
+        path: 'm-sign-up',
+        component: MSignUpComponent,
+        data: {
+          title: 'Sign Up'
+        }
+      },
+
+      {
+        path: 'buyer',
+        component: MBuyerLayoutComponent,
+        canActivateChild: [OnlyLoggedInUsersGuard],
+        children: [
+          {
+            path: '',
+            component: MDashboardBuyerComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+          {
+            path: 'm-dashboard',
+            component: MDashboardBuyerComponent,
+            data: {
+              title: 'dashboard'
+            }
+          },
+        ]
+        },
 
     ]
   },

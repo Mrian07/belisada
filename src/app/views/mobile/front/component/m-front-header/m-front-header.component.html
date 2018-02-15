@@ -1,3 +1,4 @@
+<app-m-front-nav></app-m-front-nav>
 <div class="header1 top-bg" (click)="imgTop" style="cursor: pointer;">
     <img src="/assets/img/bg-top-main2.jpg?r={{randoms}}" border="0" />
 </div>
@@ -26,8 +27,8 @@
 </div>
 <div class="header-second">
     <div class="ui grid">
-      <div class="one wide column"><i class="sidebar icon" style="font-size:30px;cursor:pointer" (click)="openNav()"></i></div>
-      <div class="six wide column"><img class="ui image" src="/assets/img/logo.png?r={{randoms}}" alt="profile picture"/></div>
+      <div class="two wide column" style="font-size:30px;cursor:pointer" (click)="openNav()"><i class="sidebar icon"></i></div>
+      <div class="six wide column"><img class="ui image" src="/assets/img/logo.png?r={{randoms}}" (click)="home()" style="cursor: pointer;" alt="profile picture"/></div>
       <div class="eight wide column"> 
         
           <div class="ui grid">
@@ -118,9 +119,9 @@
                     <div class="dropdown-profile-content">
 
                         <div class="ui buttons">
-                            <button class="ui mini red button" translate>header.nav.login</button>
+                            <button class="ui mini red button" (click)="login()" translate>header.nav.login</button>
                         <div class="or"></div>
-                            <button class="ui mini positive button" translate>header.nav.register</button>
+                            <button class="ui mini positive button" (click)="register()" translate>header.nav.register</button>
                         </div>
 
                             <!-- <button class="mini ui right labeled red icon button" (click)="logout()">
@@ -131,16 +132,16 @@
                         <br><br>
                         <strong translate>header.nav.welcome<br> {{userName}}</strong>
                         <div class='dropdown-menu-account'>
-                            <a routerLink="/buyer/dashboard">Dashboard</a><br>
-                            <a routerLink="/buyer/transaction-buyer" translate>header.dropmuser.m1</a><br>
+                            <a routerLink="/mobile/buyer/m-dashboard">Dashboard</a><br>
+                            <a routerLink="/mobile/buyer/transaction-buyer" translate>header.dropmuser.m1</a><br>
                             <a routerLink="#" (click)="mulaiMenjual()">Seller Dashboard</a><br>
                             <a routerLink="/" translate>header.dropmuser.m2</a><br>
                             <a href="http://blog.belisada.co.id" target="_target">Blog</a><br>
-                            <a routerLink="/buyer/profile-buyer">Profile</a><br>
-                            <a routerLink="/buyer/change-password" translate>header.dropmuser.m3</a><br>
-                            <a routerLink="/buyer/billingAddress" translate>header.dropmuser.m4</a><br>
-                            <a routerLink="/buyer/shippingAddress" translate>header.dropmuser.m5</a><br>
-                            <a routerLink="/contact-us" translate>header.dropmuser.m6</a><br>
+                            <a routerLink="/mobile/buyer/profile-buyer">Profile</a><br>
+                            <a routerLink="/mobile/buyer/change-password" translate>header.dropmuser.m3</a><br>
+                            <a routerLink="/mobile/buyer/billingAddress" translate>header.dropmuser.m4</a><br>
+                            <a routerLink="/mobile/buyer/shippingAddress" translate>header.dropmuser.m5</a><br>
+                            <a routerLink="#" translate>header.dropmuser.m6</a><br>
                         </div>
 
                     </div>
@@ -159,16 +160,16 @@
                             </button><br><br>
                             <strong translate>header.nav.welcome<br> {{userName}}</strong>
                             <div class='dropdown-menu-account'>
-                                <a routerLink="/buyer/dashboard">Dashboard</a><br>
-                                <a routerLink="/buyer/transaction-buyer" translate>header.dropmuser.m1</a><br>
+                                <a routerLink="/mobile/buyer/m-dashboard">Dashboard</a><br>
+                                <a routerLink="/mobile/buyer/transaction-buyer" translate>header.dropmuser.m1</a><br>
                                 <a routerLink="#" (click)="mulaiMenjual()">Seller Dashboard</a><br>
                                 <a routerLink="/" translate>header.dropmuser.m2</a><br>
                                 <a href="http://blog.belisada.co.id" target="_target">Blog</a><br>
-                                <a routerLink="/buyer/profile-buyer">Profile</a><br>
-                                <a routerLink="/buyer/change-password" translate>header.dropmuser.m3</a><br>
-                                <a routerLink="/buyer/billingAddress" translate>header.dropmuser.m4</a><br>
-                                <a routerLink="/buyer/shippingAddress" translate>header.dropmuser.m5</a><br>
-                                <a routerLink="/contact-us" translate>header.dropmuser.m6</a><br>
+                                <a routerLink="/mobile/buyer/profile-buyer">Profile</a><br>
+                                <a routerLink="/mobile/buyer/change-password" translate>header.dropmuser.m3</a><br>
+                                <a routerLink="/mobile/buyer/billingAddress" translate>header.dropmuser.m4</a><br>
+                                <a routerLink="/mobile/buyer/shippingAddress" translate>header.dropmuser.m5</a><br>
+                                <a routerLink="/m-contact-us" translate>header.dropmuser.m6</a><br>
                             </div>
 
                     </div>
