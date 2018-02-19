@@ -1,11 +1,6 @@
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
-<<<<<<< HEAD
-import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
-import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
-=======
 import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
->>>>>>> 5bae1718e87b6620f9ec5f63fabee51227960bb6
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
@@ -96,6 +91,8 @@ import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/revie
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
 import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
 import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
+import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
+import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
 
 const routes: Routes = [
   {
@@ -559,7 +556,7 @@ const routes: Routes = [
         ]
       },
 
-     
+
 
     ]
   },

@@ -20,6 +20,11 @@ export class CategoryService {
     return this.http.get(this.configuration.serverWithAccUrl + '/category/c1/')
     .map(response => response as Category[]);
   }
+
+  CategoryOneSeller(): Observable<Category[]> {
+    return this.http.get(this.configuration.serverWithAccUrl + '/category/c1/')
+    .map(response => response as Category[]);
+  }
   test(): Observable<Bidang[]> {
     return this.http.get(this.configuration.serverWithAccUrl + '/businesstype')
     .map(response => response as Bidang[]);
