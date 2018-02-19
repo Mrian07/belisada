@@ -124,13 +124,13 @@ export class AddBillingComponent implements OnInit {
 
         if (result.value) {
           this.shippingAddressService.create(data).subscribe(response => {
-            console.log('ini submit ', response);
+            // console.log('ini submit ', response);
             this.triggerEvent.emit(true);
             this.createComForm.reset();
             this.fillForms();
           });
           this.billingAddressService.create(data).subscribe(response => {
-            console.log('ini submit ', response);
+            // console.log('ini submit ', response);
             this.triggerEvent.emit(true);
             this.createComForm.reset();
             window.location.reload();
@@ -139,7 +139,7 @@ export class AddBillingComponent implements OnInit {
 
         } else if (result.dismiss === 'cancel') {
            this.billingAddressService.create(data).subscribe(response => {
-            console.log('ini submit ', response);
+            // console.log('ini submit ', response);
             this.triggerEvent.emit(true);
             this.createComForm.reset();
             window.location.reload();
