@@ -1,3 +1,4 @@
+import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
 import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
 import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
 import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
@@ -82,6 +83,7 @@ import { FaqSellerCenterComponent } from './views/front/component/seller-center/
 import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/review-buyer.component';
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
 import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
+import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
 
 const routes: Routes = [
   {
@@ -443,6 +445,13 @@ const routes: Routes = [
       {
         path: 'm-sign-up',
         component: MSignUpComponent,
+        data: {
+          title: 'Sign Up'
+        }
+      },
+      {
+        path: 'm-cara-berbelanja',
+        component: MCaraBerbelanjaComponent,
         data: {
           title: 'Sign Up'
         }
