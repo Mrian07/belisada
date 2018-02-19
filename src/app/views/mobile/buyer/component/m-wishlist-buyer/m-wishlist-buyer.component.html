@@ -1,0 +1,28 @@
+<h1>My Wishlist</h1>
+<div class="wrapper" *ngFor="let item of dat">
+    <div>
+    <div class="wrpaeer2">
+        <div class="wish-img" align="center">
+            <img class="ui image" src="{{item.imageurl}}" alt="profile picture"/>
+        </div>
+        <div>
+            <span class="gr">Stock : {{item.stock}}</span>
+            <div class="gap-between-elements"></div>
+            <span> {{item.name}}</span>
+            <div class="gap-between-elements"></div>
+            <span>4.5</span>
+            <sui-rating [(ngModel)]="rating" [maximum]="1" [isReadonly]="readonly"></sui-rating>
+            <span>(29)</span>
+            <div class="gap-between-elements"></div>
+            <span>Rp. {{item.pricelist | number}}</span>
+        </div>
+        <div>
+            <button class="ui circular facebook icon button gatsb" (click)="btnDelete(item.productId)">
+                <i class="trash icon"></i>
+              </button>
+              <div class="gap-between-elements8"></div>
+        </div>
+    </div>
+    </div>
+  </div>
+

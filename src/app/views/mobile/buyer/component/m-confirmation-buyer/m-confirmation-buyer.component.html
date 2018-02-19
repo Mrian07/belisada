@@ -1,0 +1,56 @@
+<p><a routerLink="/mobile/buyer/m-transaction-buyer" class="menu-top-side"><i class="angle double left icon"></i>Kembali</a></p>
+<table class="ui very basic collapsing celled table" style="width:700px">
+    <thead>
+      <tr><th>Tanggal Order</th>
+      <th>Total Pembayaran</th>
+      <th>Metode Pembayaran</th>
+      <th>Order Number</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td>
+            {{cart.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}
+          </td>
+          <td>
+              Rp.{{cart.grandTotal | number}}
+          </td>
+          <td>
+             {{cart.paymentMethod}}
+          </td>
+          <td>
+              {{cart.orderNumber}}
+          </td>
+          <td>
+              {{cart.transactionStatus}}
+          </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="ui grid">
+      <div class="sixteen wide center aligned column">    
+
+      <form class="ui form">
+        <p>Kirimkan bukti transfer Anda dengan meng-klik tombol <b>Upload Bukti Transfer</b> dibawah.</p>
+    
+
+            <div class="upload-btn-wrapper">
+                <p><img class="ui middle aligned small image" src="/assets/img/noimage.png" (load)="setCanvas($event, 'imageIDCard')" #imageTrans ></p>
+                <button class="ui green button"><i class="cloud icon"></i> Upload Bukti Transfer</button>
+                <input type="file" name="fileTrans"  (change)="setUrl($event, imageTrans)" />
+                
+            </div>
+     
+            <br><br>
+            <button class="ui primary button" (click)="uploadBukti()">
+              Kirim Konfirmasi
+            </button>
+
+        
+      </form>
+
+    </div>
+  </div>

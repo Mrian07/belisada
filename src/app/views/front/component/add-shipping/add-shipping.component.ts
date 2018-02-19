@@ -110,6 +110,7 @@ export class AddShippingComponent implements OnInit {
         this.triggerEvent.emit(true);
 
         this.createComForm.reset();
+        this._markFormPristine(this.createComForm);
         if (response.status === '1') {
           swal(
             'Success',
@@ -180,6 +181,14 @@ export class AddShippingComponent implements OnInit {
 
   setPostalCode(postalcode) {
     this.createComForm.controls['postalCode'].setValue(postalcode);
+  }
+
+  private _markFormPristine(form: FormGroup): void {
+    console.log('form:before ', form);
+    Object.keys(form.controls).forEach(control => {
+        form.controls[control].markAsPristine();
+    });
+    console.log('form:after ', form);
   }
 
 }

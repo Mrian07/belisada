@@ -1,4 +1,11 @@
+import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
+import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
+<<<<<<< HEAD
+import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
+import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
+=======
 import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
+>>>>>>> 5bae1718e87b6620f9ec5f63fabee51227960bb6
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
@@ -536,13 +543,41 @@ const routes: Routes = [
               title: 'Order Detail'
             }
           },
+          {
+            path: 'm-confirmation-buyer/:id',
+            component: MConfirmationBuyerComponent,
+            data: {
+              title: 'Confirmation Buyer'
+            }
+          },
+          {
+            path: 'm-wishlist-buyer',
+            component: MWishlistBuyerComponent,
+            data: {
+              title: 'Wishlist Buyer'
+          },
         ]
       },
+
+     
 
     ]
   },
 
-
+  {
+    path: 'mobile-seller',
+    component: MSellerLayoutComponent,
+    canActivateChild: [OnlyLoggedInUsersGuard],
+    children: [
+      {
+        path: '',
+        component: MDashboardComponent,
+        data: {
+          title: 'dashboard'
+        }
+      },
+    ]
+  },
 
 
 

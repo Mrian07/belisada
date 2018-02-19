@@ -124,6 +124,11 @@ import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
+import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
+import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
+import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
+import { MMenuSellerComponent } from './views/mobile/seller/component/m-menu-seller/m-menu-seller.component';
+import { MHeaderComponent } from './views/mobile/seller/component/m-header/m-header.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -245,7 +250,12 @@ export function getAuthServiceConfigs() {
     MCheckoutComponent,
     MFinishOrderComponent,
     MTransactionBuyerComponent,
-    MOrderDetailBuyerComponent
+    MOrderDetailBuyerComponent,
+    MConfirmationBuyerComponent,
+    MWishlistBuyerComponent,
+    MDashboardComponent,
+    MMenuSellerComponent,
+    MHeaderComponent
 
 
     // WishlistComponent,
