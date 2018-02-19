@@ -1,14 +1,15 @@
-import { TransactionListService } from './../../../../core/service/transcations-list/transaction-list.service';
+import { TransactionListService } from '../../../../../core/service/transcations-list/transaction-list.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { TrasnactionList } from '../../../../core/model/trasnaction-list';
+import { TrasnactionList } from '../../../../../core/model/trasnaction-list';
+
 @Component({
-  selector: 'app-order-detail-buyer',
-  templateUrl: './order-detail-buyer.component.html',
-  styleUrls: ['./order-detail-buyer.component.scss']
+  selector: 'app-m-order-detail-buyer',
+  templateUrl: './m-order-detail-buyer.component.html',
+  styleUrls: ['./m-order-detail-buyer.component.scss']
 })
-export class OrderDetailBuyerComponent implements OnInit {
-  
+export class MOrderDetailBuyerComponent implements OnInit {
+
   cartItems: any;
   cart: TrasnactionList = new TrasnactionList();
   tsId: any;

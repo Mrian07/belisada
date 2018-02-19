@@ -1,34 +1,34 @@
 import swal from 'sweetalert2';
 import { Component, OnInit, NgZone, HostListener } from '@angular/core';
-import { ShippingAddressService } from '../../../../core/service/shipping-address/shipping-address.service';
-import { ShippingAddress } from '../../../../core/model/shipping-address';
-import { BilingAddressService } from '../../../../core/service/billing-address/biling-address.service';
-import { BillingAddress } from '../../../../core/model/billing-address';
+import { ShippingAddressService } from '../../../../../core/service/shipping-address/shipping-address.service';
+import { ShippingAddress } from '../../../../../core/model/shipping-address';
+import { BilingAddressService } from '../../../../../core/service/billing-address/biling-address.service';
+import { BillingAddress } from '../../../../../core/model/billing-address';
 import { Title } from '@angular/platform-browser';
-import { ShareService } from '../../../../core/service/shared.service';
-import * as frontActions from '../../../../store/actions/front';
-import * as fromProduct from '../../../../store/reducers';
-import { LocalStorageService } from '../../../../core/service/storage.service';
-import { FreightRate } from '../../../../core/model/FreightRate';
-import { FreightRateService } from '../../../../core/service/freight-rate/freight-rate.service';
-import { Checkout } from '../../../../core/model/checkout';
-import { Product } from '../../../../core/model/product';
-import { CartItem } from '../../../../core/model/shoppingcart/cart-item';
-import { ShoppingCartService } from '../../../../core/service/shopping-cart/shopping-cart.service';
+import { ShareService } from '../../../../../core/service/shared.service';
+import * as frontActions from '../../../../../store/actions/front';
+import * as fromProduct from '../../../../../store/reducers';
+import { LocalStorageService } from '../../../../../core/service/storage.service';
+import { FreightRate } from '../../../../../core/model/FreightRate';
+import { FreightRateService } from '../../../../../core/service/freight-rate/freight-rate.service';
+import { Checkout } from '../../../../../core/model/checkout';
+import { Product } from '../../../../../core/model/product';
+import { CartItem } from '../../../../../core/model/shoppingcart/cart-item';
+import { ShoppingCartService } from '../../../../../core/service/shopping-cart/shopping-cart.service';
 import { Subscription } from 'rxjs/Subscription';
-import { ShoppingCart } from '../../../../core/model/shoppingcart/shoppnig-cart';
+import { ShoppingCart } from '../../../../../core/model/shoppingcart/shoppnig-cart';
 import { Observable } from 'rxjs/Observable';
-import { ProductService } from '../../../../core/service/product/product.service';
+import { ProductService } from '../../../../../core/service/product/product.service';
 import { ActionsSubject, Store } from '@ngrx/store';
-import { PaymentMethodDto } from '../../../../core/model/paymentMethodDto';
-import { PaymentMethod } from '../../../../core/model/PaymentMethod';
-import { PaymentMethodDetail } from '../../../../core/model/PaymentMethodDetail';
-import { CheckoutService } from '../../../../core/service/checkout/checkout.service';
+import { PaymentMethodDto } from '../../../../../core/model/paymentMethodDto';
+import { PaymentMethod } from '../../../../../core/model/PaymentMethod';
+import { PaymentMethodDetail } from '../../../../../core/model/PaymentMethodDetail';
+import { CheckoutService } from '../../../../../core/service/checkout/checkout.service';
 import { Router } from '@angular/router';
 import { NG_VALIDATORS, Validator, Validators, AbstractControl, ValidatorFn, FormsModule } from '@angular/forms';
-import { TokenService } from '../../../../core/service/token/token.service';
-import { PaymentMethodService } from '../../../../core/service/payment-method/payment-method.service';
-import { FlagService } from '../../../../core/service/flag.service';
+import { TokenService } from '../../../../../core/service/token/token.service';
+import { PaymentMethodService } from '../../../../../core/service/payment-method/payment-method.service';
+import { FlagService } from '../../../../../core/service/flag.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: Product;
@@ -39,11 +39,11 @@ interface ICartItemWithProduct extends CartItem {
 const CHECKOUT_KEY  = 'checkout';
 
 @Component({
-  selector: 'app-checkout',
-  templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.scss']
+  selector: 'app-m-checkout',
+  templateUrl: './m-checkout.component.html',
+  styleUrls: ['./m-checkout.component.scss']
 })
-export class CheckoutComponent implements OnInit {
+export class MCheckoutComponent implements OnInit {
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
@@ -84,9 +84,6 @@ export class CheckoutComponent implements OnInit {
   editBilling: Boolean = false;
   flag: string;
   tapOneShip: Boolean = true;
-
-  isDispatched: Boolean = false;
-
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
@@ -235,7 +232,7 @@ export class CheckoutComponent implements OnInit {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.itemsTotal = cart.itemsTotal;
       this.deliveryTotal = cart.deliveryTotal;
-      this.grossTotal = cart.grossTotal;
+      this.grossTotal = cart.grossTotal + this.uniqueCode;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -254,6 +251,7 @@ export class CheckoutComponent implements OnInit {
     if (this.grossTotal === 0) {
       this.router.navigateByUrl('/cart');
     }
+
   }
 
   public updateQuantity(event: any, item: any) {
@@ -318,10 +316,9 @@ export class CheckoutComponent implements OnInit {
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);
     if (paymentMethod === 'R') {
       this.paymentMethodService.getUniqueCodeTransfer(paymentMethod).subscribe(response => {
-        console.log('response: ', response);
+        // console.log('response: ', response);
         this.uniqueCode = response;
-        // this.shoppingCartService.calculateUniqueCode(response);
-        // console.log('this.cartItems selectPaymentMethod: ', this.cartItems);
+        this.shoppingCart();
       });
     }
   }
@@ -341,9 +338,7 @@ export class CheckoutComponent implements OnInit {
       fr.shipperName = '';
       this.freightRate = fr;
     }
-    this.isDispatched = true;
     this.shoppingCartService.setDeliveryOption(courier);
-    console.log('this.cartItems selectShippingMethod: ', this.cartItems);
   }
 
   getAllShippingAddress() {
@@ -394,7 +389,7 @@ export class CheckoutComponent implements OnInit {
     this.checkout.courierAmt = this.deliveryTotal;
     this.checkout.courierId = this.freightRate.shipperId;
     this.checkout.courierName = this.freightRate.shipperName;
-    this.checkout.grandTotal = this.grossTotal + this.uniqueCode;
+    this.checkout.grandTotal = this.grossTotal;
     this.checkout.isoncePickup = 'Y';
     this.checkout.mBankAccountId = this.paymentMethodDetail.mBankAccountId;
     this.checkout.paymentMethod = this.paymentMethod.code;
@@ -419,12 +414,12 @@ export class CheckoutComponent implements OnInit {
         'Selamat transaksi Anda berhasil diproses.',
         'success'
       );
-      this.router.navigateByUrl('/finish-order/' + response.id);
+      this.router.navigateByUrl('/mobile/m-finish-order/' + response.id);
     });
   }
 
   prev() {
-    this.router.navigateByUrl('/cart');
+    this.router.navigateByUrl('/mobile/m-cart');
   }
 
   scrollToQuestionNode(id) {

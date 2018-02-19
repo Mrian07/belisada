@@ -23,7 +23,7 @@ export class MMenuBuyerComponent implements OnInit {
 
   }
   goTransaction() {
-
+    this.router.navigateByUrl('/mobile/buyer/m-transaction-buyer');
   }
 
   goDashboard() {
