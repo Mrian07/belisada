@@ -1,3 +1,4 @@
+import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
 import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
 import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
@@ -461,6 +462,13 @@ const routes: Routes = [
         component: MCheckoutComponent,
         data: {
           title: 'Checkout'
+        }
+      },
+      {
+        path: 'm-finish-order/:id',
+        component: MFinishOrderComponent,
+        data: {
+          title: 'Finish Order'
         }
       },
       {

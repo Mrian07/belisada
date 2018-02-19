@@ -414,7 +414,7 @@ export class MCheckoutComponent implements OnInit {
         'Selamat transaksi Anda berhasil diproses.',
         'success'
       );
-      this.router.navigateByUrl('/finish-order/' + response.id);
+      this.router.navigateByUrl('/mobile/m-finish-order/' + response.id);
     });
   }
 
