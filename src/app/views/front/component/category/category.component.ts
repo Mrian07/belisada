@@ -30,6 +30,7 @@ export class CategoryComponent implements OnInit {
   total: number;
   pageError: any;
   lang: any;
+  defaultImg: string = '/assets/img/no-image.png';
 
   constructor(
     private categoryService: CategoryService,
