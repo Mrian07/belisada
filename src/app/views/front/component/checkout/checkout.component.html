@@ -374,7 +374,7 @@
                 Kode unik: Rp {{ uniqueCode | number }} (+)<br>
                 Potongan: Rp.0 (-)<br>
                 <div class='b-total'>
-                TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal | number }}</font>
+                TOTAL PEMBAYARAN: <font color='red'>Rp {{ grossTotal + uniqueCode | number }}</font>
                 </div>
 
             </div>

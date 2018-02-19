@@ -84,6 +84,9 @@ export class CheckoutComponent implements OnInit {
   editBilling: Boolean = false;
   flag: string;
   tapOneShip: Boolean = true;
+
+  isDispatched: Boolean = false;
+
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
@@ -232,7 +235,7 @@ export class CheckoutComponent implements OnInit {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.itemsTotal = cart.itemsTotal;
       this.deliveryTotal = cart.deliveryTotal;
-      this.grossTotal = cart.grossTotal + this.uniqueCode;
+      this.grossTotal = cart.grossTotal;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -251,7 +254,6 @@ export class CheckoutComponent implements OnInit {
     if (this.grossTotal === 0) {
       this.router.navigateByUrl('/cart');
     }
-
   }
 
   public updateQuantity(event: any, item: any) {
@@ -316,9 +318,10 @@ export class CheckoutComponent implements OnInit {
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);
     if (paymentMethod === 'R') {
       this.paymentMethodService.getUniqueCodeTransfer(paymentMethod).subscribe(response => {
-        // console.log('response: ', response);
+        console.log('response: ', response);
         this.uniqueCode = response;
-        this.shoppingCart();
+        // this.shoppingCartService.calculateUniqueCode(response);
+        // console.log('this.cartItems selectPaymentMethod: ', this.cartItems);
       });
     }
   }
@@ -338,7 +341,9 @@ export class CheckoutComponent implements OnInit {
       fr.shipperName = '';
       this.freightRate = fr;
     }
+    this.isDispatched = true;
     this.shoppingCartService.setDeliveryOption(courier);
+    console.log('this.cartItems selectShippingMethod: ', this.cartItems);
   }
 
   getAllShippingAddress() {
@@ -389,7 +394,7 @@ export class CheckoutComponent implements OnInit {
     this.checkout.courierAmt = this.deliveryTotal;
     this.checkout.courierId = this.freightRate.shipperId;
     this.checkout.courierName = this.freightRate.shipperName;
-    this.checkout.grandTotal = this.grossTotal;
+    this.checkout.grandTotal = this.grossTotal + this.uniqueCode;
     this.checkout.isoncePickup = 'Y';
     this.checkout.mBankAccountId = this.paymentMethodDetail.mBankAccountId;
     this.checkout.paymentMethod = this.paymentMethod.code;
