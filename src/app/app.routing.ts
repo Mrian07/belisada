@@ -1,3 +1,4 @@
+import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
 import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
@@ -511,7 +512,13 @@ const routes: Routes = [
               title: 'Shipping Adress'
             }
           },
-          
+          {
+            path: 'm-transaction-buyer',
+            component: MTransactionBuyerComponent,
+            data: {
+              title: 'Transaksi Buyer'
+            }
+          },
         ]
       },
 
