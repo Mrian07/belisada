@@ -120,6 +120,7 @@ import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.com
 import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
+import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -238,7 +239,8 @@ export function getAuthServiceConfigs() {
     MCartComponent,
     MCheckoutComponent,
     MFinishOrderComponent,
-    MTransactionBuyerComponent
+    MTransactionBuyerComponent,
+    MOrderDetailBuyerComponent
 
 
     // WishlistComponent,

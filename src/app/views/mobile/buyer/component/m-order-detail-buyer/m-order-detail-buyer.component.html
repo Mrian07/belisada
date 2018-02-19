@@ -1,0 +1,67 @@
+
+<p><a routerLink="/mobile/buyer/m-transaction-buyer" class="menu-top-side"><i class="angle double left icon"></i>Kembali</a></p>
+<table class="ui very basic collapsing celled table">
+    <thead>
+      <tr><th>Tanggal Order</th>
+      <th>Total Pembayaran</th>
+      <th>Metode Pembayaran</th>
+      <th>Order Number</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr>
+        <td>
+             {{cart.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}
+          </td>
+          <td>
+              Rp.{{cart.grandTotal | number}}
+          </td>
+          <td>
+              {{cart.paymentMethod}}
+          </td>
+          <td>
+              {{cart.orderNumber}}
+          </td>
+          <td>
+              {{cart.transactionStatus}}
+          </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+<hr size='1' color='#dddddd'>
+  <div class="row animated rollIn">
+      <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+          <thead class="cf">
+            <tr>
+              <th>Image</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+        <tbody>
+          <tr *ngFor="let item of cart.items">
+            <td class="valTd" data-title="Image">
+              <img class="ui tiny image" [src]="item.imageurl" style="margin: 0 auto;">
+            </td>
+            <td class="valTd" data-title="Nama">
+              {{ item.name }}
+            </td>
+            <td class="valTd text-right" data-title="Harga">
+              {{ item.subtotal | currency:'Rp ' }}
+            </td>
+            <td class="valTd text-right" data-title="Jumlah">
+              {{item.quantity}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <!-- <h4>Total: {{(cart | async).grossTotal | currency:'Rp '}}</h4> -->

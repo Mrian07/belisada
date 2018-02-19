@@ -21,9 +21,9 @@
       </td>
       <td>
               <div *ngIf="item.transactionStatus === 'COMPLETED'; else login">
-                      <button class="ui basic button" (click)="reviewBoss(item)">Review</button>
-                  </div>
-                  <ng-template #login><button class="ui basic button" (click)="orderConfirm(item)">Konfirmasi</button></ng-template>
+                  <button class="ui basic button" (click)="reviewBoss(item)">Review</button>
+              </div>
+              <ng-template #login><button class="ui basic button" (click)="orderConfirm(item)">Konfirmasi</button></ng-template>
 
 
       </td>

@@ -1,3 +1,4 @@
+import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
@@ -517,6 +518,13 @@ const routes: Routes = [
             component: MTransactionBuyerComponent,
             data: {
               title: 'Transaksi Buyer'
+            }
+          },
+          {
+            path: 'm-order-detail-buyer/:id',
+            component: MOrderDetailBuyerComponent,
+            data: {
+              title: 'Order Detail'
             }
           },
         ]

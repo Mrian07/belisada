@@ -20,7 +20,7 @@ export class MTransactionBuyerComponent implements OnInit {
 
 
   orderDetail(id) {
-    this.router.navigate(['/buyer/order-detail-buyer', id.transactionId]);
+    this.router.navigate(['/mobile/buyer/m-order-detail-buyer', id.transactionId]);
   }
   narikDataDariBelakang() {
     this.tsBuyer.getAll().subscribe(data => {
@@ -29,10 +29,10 @@ export class MTransactionBuyerComponent implements OnInit {
   }
 
   orderConfirm(id) {
-    this.router.navigate(['/buyer/confirmation-buyer', id.transactionId]);
+    this.router.navigate(['/mobile/buyer/m-confirmation-buyer', id.transactionId]);
   }
   reviewBoss(id) {
-    this.router.navigate(['/buyer/review-buyer', id.transactionId]);
+    this.router.navigate(['/mobile/buyer/m-review-buyer', id.transactionId]);
   }
 
 }
