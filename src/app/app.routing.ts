@@ -1,3 +1,4 @@
+import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
 import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
 import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
 import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
@@ -455,7 +456,13 @@ const routes: Routes = [
           title: 'Cart'
         }
       },
-
+      {
+        path: 'm-checkout',
+        component: MCheckoutComponent,
+        data: {
+          title: 'Checkout'
+        }
+      },
       {
         path: 'buyer',
         component: MBuyerLayoutComponent,
