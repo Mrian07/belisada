@@ -108,9 +108,6 @@ export class AddBillingComponent implements OnInit {
         villageId: model.vilaggeId.mvillageId
       };
 
-
-
-
       swal({
         text: 'Apakah Anda Ingin Menyimpan Alamat Penagihan Sebagai Alamat Pengiriman ?',
         type: 'warning',
@@ -139,8 +136,7 @@ export class AddBillingComponent implements OnInit {
             window.location.reload();
             this.fillForms();
           });
-        // result.dismiss can be 'cancel', 'overlay',
-        // 'close', and 'timer'
+
         } else if (result.dismiss === 'cancel') {
            this.billingAddressService.create(data).subscribe(response => {
             console.log('ini submit ', response);
@@ -155,28 +151,6 @@ export class AddBillingComponent implements OnInit {
 
       });
 
-      // this.billingAddressService.create(data).subscribe(response => {
-      //   console.log('ini submit ', response);
-      //   this.triggerEvent.emit(true);
-      //   this.createComForm.reset();
-      //   if (response.status === '1') {
-      //     swal(
-      //       'Success',
-      //       'Data billing berhasil ditambahkan',
-      //     //  response.message,
-      //       'success'
-      //     ).then(result => {
-      //       location.reload();
-      //     });
-      //   }else {
-      //     swal(
-      //       'Opps!',
-      //       response.message,
-      //       'error'
-      //     );
-      //   }
-      //   this.fillForms();
-      // });
     }
   }
 
