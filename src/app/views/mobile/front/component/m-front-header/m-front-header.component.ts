@@ -321,13 +321,13 @@ export class MFrontHeaderComponent implements OnInit {
   }
 
   toProductDetail(id: number, alias: string) {
-    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+    this.router.navigateByUrl('/mobile/m-product-detail/' + id + '/' + alias);
   }
   viewCart() {
-    this.router.navigateByUrl('/cart');
+    this.router.navigateByUrl('/mobile/m-cart');
   }
   checkout() {
-    this.router.navigateByUrl('/checkout');
+    this.router.navigateByUrl('/mobile/m-checkout');
   }
 
 
