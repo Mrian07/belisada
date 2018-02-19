@@ -1,22 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { LoginService } from '../../../../core/service/login/login.service';
-import { ChatService } from '../../../../core/service/chat/chat.service';
-
+import { LoginService } from '../../../../../core/service/login/login.service';
+import { ChatService } from '../../../../../core/service/chat/chat.service';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-m-header',
+  templateUrl: './m-header.component.html',
+  styleUrls: ['./m-header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class MHeaderComponent implements OnInit {
 
   constructor(private loginService: LoginService, private router: Router, private chat: ChatService) { }
   user: any;
   ngOnInit() {
     this.user = this.loginService.whoLogin();
-    // console.log('loged user:', this.user);
+    console.log('loged user:', this.user);
   }
 
   logout() {
@@ -43,14 +42,6 @@ export class HeaderComponent implements OnInit {
         });
       }
     });
-  }
-
-  goBuyer() {
-    this.router.navigateByUrl('/buyer');
-  }
-
-  goHome() {
-    this.router.navigateByUrl('/');
   }
 
 }

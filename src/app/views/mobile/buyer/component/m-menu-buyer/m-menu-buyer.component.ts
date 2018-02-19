@@ -17,7 +17,7 @@ export class MMenuBuyerComponent implements OnInit {
 
   }
   goSeller() {
-
+    this.router.navigateByUrl('/mobile-seller');
   }
   goWishlist() {
     this.router.navigateByUrl('/mobile/buyer/m-wishlist-buyer');
