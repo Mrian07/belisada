@@ -1,3 +1,7 @@
+import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
+import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
+import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
+import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
 import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
 import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
 import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
@@ -455,7 +459,20 @@ const routes: Routes = [
           title: 'Cart'
         }
       },
-
+      {
+        path: 'm-checkout',
+        component: MCheckoutComponent,
+        data: {
+          title: 'Checkout'
+        }
+      },
+      {
+        path: 'm-finish-order/:id',
+        component: MFinishOrderComponent,
+        data: {
+          title: 'Finish Order'
+        }
+      },
       {
         path: 'buyer',
         component: MBuyerLayoutComponent,
@@ -496,7 +513,20 @@ const routes: Routes = [
               title: 'Shipping Adress'
             }
           },
-          
+          {
+            path: 'm-transaction-buyer',
+            component: MTransactionBuyerComponent,
+            data: {
+              title: 'Transaksi Buyer'
+            }
+          },
+          {
+            path: 'm-order-detail-buyer/:id',
+            component: MOrderDetailBuyerComponent,
+            data: {
+              title: 'Order Detail'
+            }
+          },
         ]
       },
 

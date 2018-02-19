@@ -1,0 +1,33 @@
+
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>Tanggal Order</th>
+      <th>Total</th>
+      <th>Order Number</th>
+      <th>Status</th>
+      <th>Detail</th>
+      <th>Konfirmasi</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of aaa">
+      <td>{{item.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+      <td>Rp {{item.grandTotal | number}}</td>
+      <td>{{item.orderNumber}}</td>
+      <td>{{item.transactionStatus}}</td>
+      <td>
+        <button class="ui basic button" (click)="orderDetail(item)">Detail</button>
+      </td>
+      <td>
+              <div *ngIf="item.transactionStatus === 'COMPLETED'; else login">
+                  <button class="ui basic button" (click)="reviewBoss(item)">Review</button>
+              </div>
+              <ng-template #login><button class="ui basic button" (click)="orderConfirm(item)">Konfirmasi</button></ng-template>
+
+
+      </td>
+    </tr>
+
+  </tbody>
+</table>

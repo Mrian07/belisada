@@ -149,6 +149,6 @@ export class MCartComponent implements OnInit {
     }
 
     checkout() {
-      this.router.navigateByUrl('/mobile/checkout');
+      this.router.navigateByUrl('/mobile/m-checkout');
     }
   }
