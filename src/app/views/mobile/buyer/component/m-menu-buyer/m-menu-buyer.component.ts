@@ -7,12 +7,22 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./m-menu-buyer.component.scss']
 })
 export class MMenuBuyerComponent implements OnInit {
-
+  isOpen;
+  isDisabled;
   constructor(
     private router: Router,
   ) { }
 
   ngOnInit() {
+
+  }
+  goSeller() {
+
+  }
+  goWishlist() {
+
+  }
+  goTransaction() {
 
   }
 
@@ -26,5 +36,13 @@ export class MMenuBuyerComponent implements OnInit {
 
   goChangePassword() {
     this.router.navigateByUrl('/mobile/buyer/m-change-password-buyer');
+  }
+
+  goBilling() {
+    this.router.navigateByUrl('/mobile/buyer/m-billingAddress');
+  }
+
+  goShipping() {
+    this.router.navigateByUrl('/mobile/buyer/m-shippingAddress');
   }
 }

@@ -51,9 +51,6 @@ export class DalemReviewComponent implements OnInit {
     this.detailData = this.store.select<any>(fromProduct.getDetailState)
       .subscribe(data => {
         this.kambing = data.detail;
-        // this.kampretLuh = this.kambing.image[0];
-        // this.kampretLuh = data.detail.image[0];
-        console.log(this.kambing);
       });
   }
   asd() {
@@ -63,7 +60,7 @@ export class DalemReviewComponent implements OnInit {
       review: this.review,
       star: this.star
     };
-    console.log('kampretLuh', data3);
+    // console.log('kampretLuh', data3);
     this.kampReviw.createTapiPut(data3).subscribe(data => {
       if (data.message === 'gagal Tambah') {
         swal(

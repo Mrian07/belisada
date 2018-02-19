@@ -80,13 +80,6 @@ export class ChangePasswordBuyerComponent implements OnInit {
 //     this.getRole();
 //   }
 
-//   getRole() {
-//     if (this.role === 6) {
-//        console.log('kampret3', this.role);
-//     } else {
-//        console.log('kampret', this.role);
-//     }
-//   }
 
 //   changePassword() {
 //     const changePasswordData = {

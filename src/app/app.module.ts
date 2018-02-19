@@ -114,6 +114,11 @@ import { MMenuBuyerComponent } from './views/mobile/buyer/component/m-menu-buyer
 import { MProfileBuyerComponent } from './views/mobile/buyer/component/m-profile-buyer/m-profile-buyer.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
+import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
+import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
+import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
+import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
+import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -226,7 +231,12 @@ export function getAuthServiceConfigs() {
     MMenuBuyerComponent,
     MProfileBuyerComponent,
     MSellerLayoutComponent,
-    MChangePasswordBuyerComponent
+    MChangePasswordBuyerComponent,
+    MBillingAddressComponent,
+    MShippingAddressComponent,
+    MCartComponent,
+    MCheckoutComponent,
+    MFinishOrderComponent
 
 
     // WishlistComponent,

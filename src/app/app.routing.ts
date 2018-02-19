@@ -1,3 +1,6 @@
+import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
+import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
+import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
 import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
 import { MProfileBuyerComponent } from './views/mobile/buyer/component/m-profile-buyer/m-profile-buyer.component';
 import { MBuyerLayoutComponent } from './core/layout/mobile/m-buyer-layout/m-buyer-layout.component';
@@ -445,6 +448,13 @@ const routes: Routes = [
           title: 'Sign Up'
         }
       },
+      {
+        path: 'm-cart',
+        component: MCartComponent,
+        data: {
+          title: 'Cart'
+        }
+      },
 
       {
         path: 'buyer',
@@ -472,6 +482,21 @@ const routes: Routes = [
               title: 'Change Password'
             }
           },
+          {
+            path: 'm-billingAddress',
+            component: MBillingAddressComponent,
+            data: {
+              title: 'Billing Adress'
+            }
+          },
+          {
+            path: 'm-shippingAddress',
+            component: MShippingAddressComponent,
+            data: {
+              title: 'Shipping Adress'
+            }
+          },
+          
         ]
       },
 
