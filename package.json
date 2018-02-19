@@ -5,8 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "server": "concurrently --kill-others-on-fail \"npm run htmllint\" \"npm run lint\" \"npm run start\"",
-    "server-l": "concurrently --kill-others-on-fail \"npm run htmllint-l\" \"npm run lint\" \"npm run start\"",
+    "server": "concurrently --kill-others-on-fail \"npm run htmllint\" \"npm run lint\" \"npm run start\" -w",
+    "server-l": "concurrently --kill-others-on-fail \"npm run htmllint-l\" \"npm run lint\" \"npm run start\" -w",
     "build": "ng",
     "build:prod": "ng build --prod --aot",
     "test": "ng test",
