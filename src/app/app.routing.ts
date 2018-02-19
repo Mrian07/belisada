@@ -1,3 +1,4 @@
+import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
 import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
@@ -535,6 +536,12 @@ const routes: Routes = [
               title: 'Confirmation Buyer'
             }
           },
+          {
+            path: 'm-wishlist-buyer',
+            component: MWishlistBuyerComponent,
+            data: {
+              title: 'Wishlist Buyer'
+          }
         ]
       },
 

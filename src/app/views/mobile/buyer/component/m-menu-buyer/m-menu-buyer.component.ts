@@ -20,7 +20,7 @@ export class MMenuBuyerComponent implements OnInit {
 
   }
   goWishlist() {
-
+    this.router.navigateByUrl('/mobile/buyer/m-wishlist-buyer');
   }
   goTransaction() {
     this.router.navigateByUrl('/mobile/buyer/m-transaction-buyer');
