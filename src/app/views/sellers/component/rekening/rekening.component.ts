@@ -108,16 +108,13 @@ export class RekeningComponent implements OnInit {
     // this.div.nativeElement.innerHTML ='';
 
     if (this.role === 6) {
-      //  console.log('kampret3', this.role);
     }else {
-      //  console.log('kampret');
     }
 
 
   }
   getBankList() {
     this.rekening = this.store.select<any>(fromProduct.getBankState);
-    // console.log(this.rekening);
   }
 
   saveRek() {
