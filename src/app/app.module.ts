@@ -116,11 +116,19 @@ import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-s
 import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
 import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
 import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
+import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
+import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
+// import { ComponentComponent } from './views/mobile/front/component/component.component';
 import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
 import { MCheckoutComponent } from './views/mobile/front/component/m-checkout/m-checkout.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
+import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
+import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
+import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
+import { MMenuSellerComponent } from './views/mobile/seller/component/m-menu-seller/m-menu-seller.component';
+import { MHeaderComponent } from './views/mobile/seller/component/m-header/m-header.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -236,11 +244,18 @@ export function getAuthServiceConfigs() {
     MChangePasswordBuyerComponent,
     MBillingAddressComponent,
     MShippingAddressComponent,
+    MCaraBerjualanComponent,
+    MCaraBerbelanjaComponent,
     MCartComponent,
     MCheckoutComponent,
     MFinishOrderComponent,
     MTransactionBuyerComponent,
-    MOrderDetailBuyerComponent
+    MOrderDetailBuyerComponent,
+    MConfirmationBuyerComponent,
+    MWishlistBuyerComponent,
+    MDashboardComponent,
+    MMenuSellerComponent,
+    MHeaderComponent
 
 
     // WishlistComponent,
