@@ -97,6 +97,7 @@ import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/revie
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
 import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
 import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
+import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 
 const routes: Routes = [
   {
@@ -469,7 +470,14 @@ const routes: Routes = [
           title: 'Sign Up'
         }
       },
-{
+      {
+        path: 'm-product-detail/:id/:alias',
+        component: MProductDetailComponent,
+        data: {
+          title: 'product'
+        }
+      },
+      {
         path: 'm-cart',
         component: MCartComponent,
         data: {

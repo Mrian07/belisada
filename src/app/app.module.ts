@@ -12,6 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import localeID from '@angular/common/locales/id';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'angular5-social-login';
+import { ImageZoomModule } from 'angular2-image-zoom';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -137,6 +138,7 @@ import { MChangePasswordComponent } from './views/mobile/seller/component/m-chan
 import { MMenuProfileComponent } from './views/mobile/seller/component/m-menu-profile/m-menu-profile.component';
 import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
+import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -269,6 +271,8 @@ export function getAuthServiceConfigs() {
     MMenuProfileComponent,
     MRekeningComponent,
     MTokoComponent,
+    MProductDetailComponent
+
 
     // WishlistComponent,
     // AsapComponent
@@ -276,6 +280,7 @@ export function getAuthServiceConfigs() {
   imports: [
     BrowserModule,
     SocialLoginModule,
+    ImageZoomModule,
     // ServiceWorkerModule.register('/ngsw-worker.js', {
     //   enabled: environment.production,
     // }),
