@@ -1,3 +1,4 @@
+import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
 import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
 import { MChangePasswordComponent } from './views/mobile/seller/component/m-change-password/m-change-password.component';
@@ -564,6 +565,13 @@ const routes: Routes = [
             component: MWishlistBuyerComponent,
             data: {
               title: 'Wishlist Buyer'
+            }
+          },
+          {
+            path: 'm-avatar-buyer',
+            component: MAvatarBuyerComponent,
+            data: {
+              title: 'Avatar Buyer'
             }
           },
         ]
