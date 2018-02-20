@@ -1,0 +1,150 @@
+<app-m-menu-profile></app-m-menu-profile>
+<div class="ui">
+    <div class="ui grid">
+        <div class="sixteen wide column">
+            <div class="ui grid stackable ">
+                <!-- <div class="four wide column">
+                    <div class="ui card">
+                        <div class="image">
+                            <img src="{{userImgAvatar}}" alt="Profile Picture" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+                        </div>
+                        <div class="content">
+                            <a class="header">{{ user.name }}</a>
+                            <div class="meta">
+                                <span class="date">{{ user.email }}</span>
+                            </div>
+                            <div class="description">
+                                Max file 5 MB. Format (.JPG, .JPEG, .PNG)
+                            </div>
+                        </div>
+                        <div class="extra content center aligned">
+                            <div class="upload-btn-wrapper">
+                                <button class="ui orange button">Pilih Photo</button>
+                                <input type="file" name="myfile" (change)="setUrl($event, avaImg)" />
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="sixteen wide column">
+                    <p>Silakan lengkapi data diri Anda pada form dibawah ini.</p>
+                    <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+                            <h4 class="ui dividing header" translate>user.profile.title</h4>
+                        <div class="field">
+                            <label translate>user.profile.nama</label>
+                            <input name="name" #name placeholder="Masukan nama" type="text" [(ngModel)]="fm.name" required/>
+                            <div *ngIf="f.submitted && name.invalid" class="ui pointing red basic label">Nama tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.tgllahir</label>
+                            <ng-datepicker name="dateOfBirth" [options]="options" [(ngModel)]="dob" (ngModelChange)="setDOB($event)"></ng-datepicker>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.alamat</label>
+                            <input name="address" #address placeholder="Masukan alamat" type="text" [(ngModel)]="fm.address" required/>
+                            <div *ngIf="f.submitted && address.invalid" class="ui pointing red basic label">Alamat tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.provinsi</label>
+                            <sui-select name="province" #provs [isSearchable]="true" [options]="provinces" [optionTemplate]="optionTemplate" class="selection" labelField="option.name" placeholder="Pilih provinsi" [(ngModel)]="adr.province">
+                                <sui-select-option *ngFor="let option of provs.filteredOptions" [value]="option" (click)="getCity(option.mregionId)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.kota</label>
+                            <sui-select name="city" #city [isSearchable]="true" [options]="cities" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih kota" [(ngModel)]="adr.city">
+                                <sui-select-option *ngFor="let option of city.filteredOptions" [value]="option" (click)="getDistrict(option.mcityId)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.kecamatan</label>
+                            <sui-select name="kecamtan" #camat [isSearchable]="true" [options]="districts" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Kelurahan / Kecamatan" [(ngModel)]="adr.district">
+                                <sui-select-option *ngFor="let option of camat.filteredOptions" [value]="option" (click)="getVillage(option.mdistrictId)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.kelurahan</label>
+                            <sui-select name="desa" #desa [isSearchable]="true" [options]="villages" [optionTemplate]="optionTemplate" class="selection" labelField="name" placeholder="Pilih Desa" [(ngModel)]="adr.village">
+                                <sui-select-option *ngFor="let option of desa.filteredOptions" [value]="option" (click)="setVilage(option)">{{option.name}}</sui-select-option>
+                            </sui-select>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.kodepos</label>
+                            <input name="postal" #postal placeholder="Masukan kode POS" type="text" [(ngModel)]="fm.postal" required/>
+                            <div *ngIf="f.submitted && postal.invalid" class="ui pointing red basic label">Kodepos tidak boleh kosong</div>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.hp</label>
+                            <input name="phone" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor handphone" type="text" [(ngModel)]="fm.phone"/>
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.ktp</label>
+                            <input name="ktp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor KTP" type="text" [(ngModel)]="fm.idcard"/>
+                        </div>
+                        <img class="ui middle aligned image" style="max-width: 500px; width:530px; max-height: 300px; height: auto; margin-bottom:10px;" src="{{userImageKTP}}" (load)="setCanvas($event, 'imageIDCard')" #imgKTP >
+                        <div class="upload-btn-wrapper">
+                            <button class="ui green button"><i class="cloud icon"></i> Upload file KTP</button>
+                            <input type="file" name="fileNpwp" (change)="setUrl($event, imgKTP)" />
+                        </div>
+                        <div class="field">
+                            <label translate>user.profile.npwp</label>
+                            <input name="npwp" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Masukan nomor NPWP" type="text"  [(ngModel)]="fm.npwp"/>
+                        </div>
+
+                        <!-- <div class="ui divider"></div> -->
+                        <img class="ui middle aligned image" style="max-width: 500px; width:530px; max-height: 300px; height: auto; margin-bottom:10px;" src="{{userImageNPWP}}" (load)="setCanvas($event, 'imageNPWP')" #imgNpwp >
+                        <!-- <br>
+                        <small>Besar file maksimum 5 MB.<br/>Format file yang diperbolehkan (.JPG, .JPEG, .PNG)</small>
+                        <br> -->
+                        <div class="upload-btn-wrapper">
+                            <button class="ui green button"><i class="cloud icon"></i> Upload file NPWP</button>
+                            <input type="file" name="fileNpwp" (change)="setUrl($event, imgNpwp)" />
+                        </div>
+
+                        <div class="ui divider"></div>
+
+                        <button class="ui primary button" type="submit">Simpan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      <!-- <div *ngIf="role == 6; else login">
+   <div class="four wide column">
+            <div class="ui vertical fluid right tabular menu">
+                <a routerLink="/seller/profile" class="active item">
+                    Data Diri
+                </a>
+                <a routerLink="/seller/change-password" class="item">
+                    Ubah Password
+                </a>
+                <a routerLink="/seller/rekening" class="item">
+                    Rekening Bank
+                </a>
+                <a routerLink="/seller/toko" class="item">
+                    Info Toko
+                </a>
+                <a routerLink="/seller/info-perusahaan" class="item">
+                    Info Perusahaan
+                </a>
+            </div>
+        </div>
+</div> -->
+<!-- <ng-template #login>
+    <div class="four wide column">
+            <div class="ui vertical fluid right tabular menu">
+                <a routerLink="/seller/profile" class="active item">
+                    Data Diri
+                </a>
+                <a routerLink="/seller/change-password" class="item">
+                    Ubah Password
+                </a>
+                <a routerLink="/seller/rekening" class="item">
+                    Rekening Bank
+                </a>
+                <a routerLink="/seller/toko" class="item">
+                    Info Toko
+                </a>
+            </div>
+        </div>
+</ng-template> -->
+    </div>
+</div>

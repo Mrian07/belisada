@@ -31,7 +31,7 @@ interface ICartItemWithProduct extends CartItem {
   styleUrls: ['./m-front-header.component.scss']
 })
 export class MFrontHeaderComponent implements OnInit {
-  
+
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
@@ -152,7 +152,7 @@ export class MFrontHeaderComponent implements OnInit {
   }
 
   searchEnter(searchKey, searchCategory) {
-    //console.log('test');
+
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;
@@ -228,10 +228,10 @@ export class MFrontHeaderComponent implements OnInit {
     if (luser) {
       if (luser.role === 1) {
 
-        this.router.navigateByUrl('/buyer');
+        this.router.navigateByUrl('/mobile/buyer');
         const user = JSON.parse(localStorage.user);
         if (user.role === 3 || user.role === 2) {
-          this.router.navigateByUrl('/seller/dashboard');
+          this.router.navigateByUrl('/mobile-seller');
         } else {
 
           swal({
@@ -245,7 +245,7 @@ export class MFrontHeaderComponent implements OnInit {
             confirmButtonText: 'Daftar Sebagai Seller'
           }).then((result) => {
             if (result.value) {
-                this.router.navigateByUrl('/buyer/seller-propose');
+                this.router.navigateByUrl('/mobile/buyer/seller-propose');
             } else {
                 return false;
             }
@@ -255,11 +255,11 @@ export class MFrontHeaderComponent implements OnInit {
 
       } else if (luser.role === 2 || luser.role === 3) {
 
-        this.router.navigateByUrl('/seller/dashboard');
+        this.router.navigateByUrl('/mobile-seller');
 
       }
     }  else {
-      this.router.navigateByUrl('/m-sign-up');
+      this.router.navigateByUrl('/mobile/m-sign-up');
     }
   }
 
@@ -272,7 +272,7 @@ export class MFrontHeaderComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
-    this.router.navigateByUrl('/Product-detail/' + hasil.productId + '/' + hasil.aliasName);
+    this.router.navigateByUrl('/mobile/Product-detail/' + hasil.productId + '/' + hasil.aliasName);
     this.results = [];
   }
   hapusbersih() {
@@ -285,39 +285,6 @@ export class MFrontHeaderComponent implements OnInit {
 
   login() {
     this.router.navigateByUrl('/mobile/m-sign-in');
-    // this.isLogin = true;
-    // swal({
-    //   title: 'Login Akun',
-    //   // text: 'Silakan login sesuai dengan type akun Anda',
-    //   type: 'info',
-    //   html:
-    //     '<div class="content">' +
-    //     '<div class="ui grid">' +
-    //         '<div class="eight wide column">' +
-    //             '<div class="column">' +
-    //                 '<div class="ui segment">' +
-    //                     '<p><strong><i class="shopping bag icon"></i> Sebagai Buyer</strong></p>' +
-    //                     // '<p>Login untuk customer Belisada.</p>' +
-    //                     '<a href="/sign-in" class="ui green button">Enter</a>' +
-    //                 '</div>' +
-    //             '</div>' +
-    //         '</div>' +
-    //         '<div class="eight wide column">' +
-    //             '<div class="column">' +
-    //                 '<div class="ui segment">' +
-    //                     '<p><strong><i class="shop icon"></i> Sebagai Seller</strong></p>' +
-    //                     // '<p>Login untuk seller Belisada.</p>' +
-    //                     '<a href="/login" class="ui olive button">Enter</a>' +
-    //                 '</div>' +
-    //             '</div>' +
-    //         '</div>' +
-    //     '</div>' +
-
-    // '</div>',
-    //     showCloseButton: true,
-    //     showConfirmButton: false,
-    //     confirmButtonText: 'Yes, delete it!'
-    // } );
   }
 
   toProductDetail(id: number, alias: string) {
@@ -364,14 +331,10 @@ export class MFrontHeaderComponent implements OnInit {
     location.reload();
   }
 
-
-
-
-
   openNav() {
     document.getElementById('mySidenav').style.width = '250px';
     document.getElementById('main').style.marginLeft = '250px';
     document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
-}
+  }
 
 }
