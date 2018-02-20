@@ -91,13 +91,23 @@
             <!-- <td>:</td> -->
             <td><span class="stok">{{ ProductList.condition }}</span></td>
         </tr>
+        <tr class="gap-between-elements">
+            <td class="coll-1">Dimensions</td>
+            <!-- <td>:</td> -->
+            <td><span>{{ ProductList.dimensionslength }} cm L x {{ ProductList.dimensionswidth }} cm W x {{ ProductList.dimensionsheight }} cm H</span></td>
+        </tr>
+        <tr class="gap-between-elements">
+            <td class="coll-1">Berat</td>
+            <!-- <td>:</td> -->
+            <td><span>{{ ProductList.weight }} Kg</span></td>
+        </tr>
         <!-- <tr class="gap-between-elements">
             <td class="coll-1" translate>goods.detail.color</td>
 
             <td></td>
         </tr> -->
         <tr class="gap-between-elements">
-            <td class="coll-1" translate>Highlight</td>
+            <td class="coll-1" style="padding-bottom: 33px" translate>Highlight</td>
             <!-- <td>:</td> -->
             <td><p align="left" [innerHTML]="ProductList.highlight | sanitizeHtml"></p></td>
         </tr>
