@@ -68,12 +68,12 @@ export class MMenuSellerComponent implements OnInit {
     this.router.navigateByUrl('/mobile/buyer');
   }
 
-  editProfileBuyer() {
-    this.router.navigateByUrl('/mobile/buyer/m-profile-buyer');
+  editProfile() {
+    this.router.navigate(['/mobile-seller/m-profile']);
   }
 
   goChangePassword() {
-    this.router.navigateByUrl('/mobile/buyer/m-change-password-buyer');
+    this.router.navigateByUrl('/mobile-seller/m-change-password');
   }
 
   goBilling() {

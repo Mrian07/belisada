@@ -1,3 +1,7 @@
+import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
+import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
+import { MChangePasswordComponent } from './views/mobile/seller/component/m-change-password/m-change-password.component';
+import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
 import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
@@ -569,6 +573,34 @@ const routes: Routes = [
         component: MDashboardComponent,
         data: {
           title: 'dashboard'
+        }
+      },
+      {
+        path: 'm-profile',
+        component: MProfileComponent,
+        data: {
+          title: 'profile'
+        }
+      },
+      {
+        path: 'm-change-password',
+        component: MChangePasswordComponent,
+        data: {
+          title: 'Change Password'
+        }
+      },
+      {
+        path: 'm-rekening',
+        component: MRekeningComponent,
+        data: {
+          title: 'Rekening'
+        }
+      },
+      {
+        path: 'm-toko',
+        component: MTokoComponent,
+        data: {
+          title: 'Toko'
         }
       },
     ]

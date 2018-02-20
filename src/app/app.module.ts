@@ -1,3 +1,6 @@
+import { StoreService } from './core/service/store/store.service';
+import { RekeningSService } from './core/service/rekening/rekening-s.service';
+import { ChangePasswordService } from './core/service/changepassword/change-password.service';
 import { FlagService } from './core/service/flag.service';
 import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStrategy, registerLocaleData  } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
@@ -129,6 +132,11 @@ import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishli
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
 import { MMenuSellerComponent } from './views/mobile/seller/component/m-menu-seller/m-menu-seller.component';
 import { MHeaderComponent } from './views/mobile/seller/component/m-header/m-header.component';
+import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
+import { MChangePasswordComponent } from './views/mobile/seller/component/m-change-password/m-change-password.component';
+import { MMenuProfileComponent } from './views/mobile/seller/component/m-menu-profile/m-menu-profile.component';
+import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
+import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -255,8 +263,12 @@ export function getAuthServiceConfigs() {
     MWishlistBuyerComponent,
     MDashboardComponent,
     MMenuSellerComponent,
-    MHeaderComponent
-
+    MHeaderComponent,
+    MProfileComponent,
+    MChangePasswordComponent,
+    MMenuProfileComponent,
+    MRekeningComponent,
+    MTokoComponent,
 
     // WishlistComponent,
     // AsapComponent
@@ -294,7 +306,10 @@ export function getAuthServiceConfigs() {
     SeoService,
     ForgotPasswordService,
     FlagService,
+    ChangePasswordService,
     TransactionsService,
+    RekeningSService,
+    StoreService
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
