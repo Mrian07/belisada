@@ -20,7 +20,7 @@
                     <div class="four wide column" *ngFor="let item of productList">
                         <div class="b-product">
                             <p style="cursor: pointer"><img class="ui centered small image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'" (click)="detail(item.productId, item.aliasName)"></p>
-                            <div class="title-product" (click)="detail(item.productId, item.aliasName)">{{item.aliasName}}</div>
+                            <div class="title-product" (click)="detail(item.productId, item.aliasName)">{{item.name}}</div>
 
 
                             <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>

@@ -10,6 +10,7 @@ import { District } from '../../../../core/model/district';
 import { Village } from '../../../../core/model/village';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ShareService } from '../../../../core/service/shared.service';
+import { FlagService } from '../../../../core/service/flag.service';
 
 @Component({
   selector: 'app-add-billing',
@@ -52,7 +53,8 @@ export class AddBillingComponent implements OnInit {
     private ngZone: NgZone,
     private shippingAddressService: ShippingAddressService,
     private shareService: ShareService,
-    private billingAddressService: BilingAddressService
+    private billingAddressService: BilingAddressService,
+    private flagService: FlagService
   ) { }
 
   ngOnInit() {
@@ -133,7 +135,8 @@ export class AddBillingComponent implements OnInit {
             // console.log('ini submit ', response);
             this.triggerEvent.emit(true);
             this.createComForm.reset();
-            window.location.reload();
+            //window.location.reload();
+            this.flagService.changeMessage('add-billing');
             this.fillForms();
           });
 
@@ -142,11 +145,11 @@ export class AddBillingComponent implements OnInit {
             // console.log('ini submit ', response);
             this.triggerEvent.emit(true);
             this.createComForm.reset();
-            window.location.reload();
+            // window.location.reload();
+            this.flagService.changeMessage('add-billing');
             this.fillForms();
           });
         }
-
 
 
       });
