@@ -211,7 +211,7 @@ export class AddProductsComponent implements OnInit {
   }
 
   getCategory() {
-    this.categoryService.CategoryOne().subscribe(data => {
+    this.categoryService.CategoryOneSeller().subscribe(data => {
       this.category = data;
     });
   }

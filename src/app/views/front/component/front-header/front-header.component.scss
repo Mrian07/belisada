@@ -2,6 +2,10 @@
     z-index: 501!important;
 }
 
+.text-right-lagi {
+    padding-top: 30px !important;
+}
+
 .header-top {
     background: #f7982d;
     color: #2c4528;
@@ -54,7 +58,7 @@
     // width: 16.67%;
     box-sizing: border-box;
     white-space: nowrap;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     display: grid;
     // float: left;
 }
@@ -91,6 +95,7 @@
 .cart-icon {
    position: absolute;
    right: 20px;
+   padding-top: 14px;
    cursor: pointer;
 }
 
@@ -593,6 +598,7 @@ search-bar {
     right: 0; left: auto;
     padding-left:10px;
     padding-right:10px;
+    padding-top:10px;
     border-top:1px solid #002e43;
     border-left:1px solid #002e43;
     border-right:1px solid #002e43;

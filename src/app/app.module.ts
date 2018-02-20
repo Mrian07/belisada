@@ -314,7 +314,7 @@ export function getAuthServiceConfigs() {
     ChangePasswordService,
     TransactionsService,
     RekeningSService,
-    StoreService
+    StoreService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,

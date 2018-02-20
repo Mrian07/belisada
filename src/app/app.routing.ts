@@ -4,8 +4,6 @@ import { MChangePasswordComponent } from './views/mobile/seller/component/m-chan
 import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
-import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
-import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
 import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
@@ -97,6 +95,8 @@ import { ReviewBuyerComponent } from './views/buyer/component/review-buyer/revie
 import { DalemReviewComponent } from './views/buyer/component/review-buyer/dalem-review/dalem-review.component';
 import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-front-layout.component';
 import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
+import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
+import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
 import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 
 const routes: Routes = [
