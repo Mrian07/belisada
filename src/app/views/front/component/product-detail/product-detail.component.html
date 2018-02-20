@@ -32,6 +32,8 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2>{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
+    <span>By :</span> <span class="asd3" (click)="brand(ProductList.brandname)">{{ ProductList.brandname }}</span>
+    <div class="gap-between-elements"></div>
     <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
     <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->
     <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
@@ -114,35 +116,47 @@
         </tr>
     </table>
 
-          <div class="gap-between-elements3"></div>
+          <!-- <div class="gap-between-elements3"></div> -->
           <table border=0>
               <tr>
-                  <td class="xo"></td>
-                  <td class="cio" translate>goods.detail.nhelp</td>
+                  <td class="xo cio" translate> goods.detail.nhelp</td>
+                  <!-- <td class="cio" translate>goods.detail.nhelp</td> -->
               </tr>
               <tr>
-                    <td class="xo"></td>
-                    <td>
+                    <td class="xo">
+                            <a routerLink="/contact-us" translate>
+                                <i class="mail icon"></i> goods.detail.contact
+                            </a>
+                    </td>
+                    <!-- <td>
                         <a routerLink="/contact-us" translate>
                             <i class="mail icon"></i> goods.detail.contact
                         </a>
-                    </td>
+                    </td> -->
               </tr>
               <tr>
-                    <td class="xo"></td>
-                    <td>
+                    <td class="xo">
                         <a (click)="open_chat()">
                             <i class="comment outline icon mail"></i> Live Chat
                         </a>
                     </td>
+                    <!-- <td>
+                        <a (click)="open_chat()">
+                            <i class="comment outline icon mail"></i> Live Chat
+                        </a>
+                    </td> -->
               </tr>
               <tr>
-                    <td class="xo"></td>
-                    <td>
+                    <td class="xo">
+                            <a routerLink="/Customer-Care" translate>
+                                <i class="volume control phone icon mail"></i> goods.detail.callcenter
+                            </a>
+                    </td>
+                    <!-- <td>
                         <a routerLink="/Customer-Care" translate>
                             <i class="volume control phone icon mail"></i> goods.detail.callcenter
                         </a>
-                    </td>
+                    </td> -->
               </tr>
           </table>
 
