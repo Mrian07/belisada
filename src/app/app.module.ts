@@ -9,6 +9,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import localeID from '@angular/common/locales/id';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SocialLoginModule, AuthServiceConfig, GoogleLoginProvider, FacebookLoginProvider} from 'angular5-social-login';
+import { ImageZoomModule } from 'angular2-image-zoom';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -129,6 +130,7 @@ import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishli
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
 import { MMenuSellerComponent } from './views/mobile/seller/component/m-menu-seller/m-menu-seller.component';
 import { MHeaderComponent } from './views/mobile/seller/component/m-header/m-header.component';
+import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -255,7 +257,8 @@ export function getAuthServiceConfigs() {
     MWishlistBuyerComponent,
     MDashboardComponent,
     MMenuSellerComponent,
-    MHeaderComponent
+    MHeaderComponent,
+    MProductDetailComponent
 
 
     // WishlistComponent,
@@ -264,6 +267,7 @@ export function getAuthServiceConfigs() {
   imports: [
     BrowserModule,
     SocialLoginModule,
+    ImageZoomModule,
     // ServiceWorkerModule.register('/ngsw-worker.js', {
     //   enabled: environment.production,
     // }),
