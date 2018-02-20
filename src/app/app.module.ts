@@ -140,6 +140,7 @@ import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
 import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
+import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -273,7 +274,8 @@ export function getAuthServiceConfigs() {
     MRekeningComponent,
     MTokoComponent,
     MProductDetailComponent,
-    MAvatarBuyerComponent
+    MAvatarBuyerComponent,
+    MAvatarSellerComponent
 
 
     // WishlistComponent,

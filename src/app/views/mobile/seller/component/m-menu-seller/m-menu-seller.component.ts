@@ -91,4 +91,8 @@ export class MMenuSellerComponent implements OnInit {
     this.router.navigate(['/mobile-seller/faq-seller']);
   }
 
+  goAvatar() {
+    this.router.navigateByUrl('/mobile-seller/m-avatar-seller');
+  }
+
 }

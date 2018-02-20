@@ -1,3 +1,4 @@
+import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
 import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
 import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
@@ -617,6 +618,13 @@ const routes: Routes = [
         component: MTokoComponent,
         data: {
           title: 'Toko'
+        }
+      },
+      {
+        path: 'm-avatar-seller',
+        component: MAvatarSellerComponent,
+        data: {
+          title: 'Avatar Seller'
         }
       },
     ]

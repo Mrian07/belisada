@@ -6,14 +6,14 @@ import swal from 'sweetalert2';
 import { FlagService } from '../../../../../core/service/flag.service';
 
 @Component({
-  selector: 'app-m-avatar-buyer',
-  templateUrl: './m-avatar-buyer.component.html',
-  styleUrls: ['./m-avatar-buyer.component.scss']
+  selector: 'app-m-avatar-seller',
+  templateUrl: './m-avatar-seller.component.html',
+  styleUrls: ['./m-avatar-seller.component.scss']
 })
-export class MAvatarBuyerComponent implements OnInit {
+export class MAvatarSellerComponent implements OnInit {
 
   updateImg: Boolean = false;
-
+  
     imgTop: any;
 
     buyerName: string;
