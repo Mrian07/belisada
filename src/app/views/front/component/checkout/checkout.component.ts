@@ -129,6 +129,7 @@ export class CheckoutComponent implements OnInit {
     this.flagEditBilling();
     this.flagEditShipping();
     this.flagAddShipping();
+    this.flagAddBilling();
   }
 
   loadDataBilling() {
@@ -145,6 +146,15 @@ export class CheckoutComponent implements OnInit {
         }
         // if (this.shippingAddressList.isDefault)
       });
+    });
+  }
+
+  flagAddBilling() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'add-billing') {
+        this.loadDataBilling();
+      }
     });
   }
 
@@ -405,7 +415,12 @@ export class CheckoutComponent implements OnInit {
       || this.checkout.paymentMethod === undefined
       || this.checkout.billingAddress === null
       || this.checkout.shippingAddress === null) {
-        swal('Tolong lengkapi semua data saat checkout!');
+        //swal('Tolong lengkapi semua data saat checkout!');
+        swal(
+          'Gagal!',
+          'Silakan lengkapi semua data checkout.',
+          'error'
+        );
         return;
     }
     this.checkoutService.doCheckout(this.checkout).subscribe(response => {
