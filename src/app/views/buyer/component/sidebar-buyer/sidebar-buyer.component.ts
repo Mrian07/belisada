@@ -51,7 +51,7 @@ export class SidebarBuyerComponent implements OnInit {
     this.lang = localStorage.getItem('languange');
     this.getProfileBuyer();
     this.getNavigationCategory();
-    this.uploadPhoto();
+    // this.uploadPhoto();
     this.fillForms();
   }
 
@@ -128,14 +128,14 @@ export class SidebarBuyerComponent implements OnInit {
   }
 
 
-  uploadPhoto() {
-    this.flagService.currentMessage.subscribe(respon => {
-      this.message = respon;
-      if (this.message === 'upload-photo') {
-        this.getProfileBuyer();
-      }
-    });
-  }
+  // uploadPhoto() {
+  //   this.flagService.currentMessage.subscribe(respon => {
+  //     this.message = respon;
+  //     if (this.message === 'upload-photo') {
+  //       this.getProfileBuyer();
+  //     }
+  //   });
+  // }
 
   getCategoryOne(cb) {
     this.categoryService.CategoryOne().subscribe(data => {
