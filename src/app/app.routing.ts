@@ -552,12 +552,10 @@ const routes: Routes = [
             component: MWishlistBuyerComponent,
             data: {
               title: 'Wishlist Buyer'
+            }
           },
         ]
-      },
-
-     
-
+      }
     ]
   },
 
@@ -575,14 +573,6 @@ const routes: Routes = [
       },
     ]
   },
-
-
-
-
-
-
-
-
   {
     path: '',
     component: FrontLayoutComponent,
@@ -772,8 +762,9 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: '/404'
-  }
+  },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,
