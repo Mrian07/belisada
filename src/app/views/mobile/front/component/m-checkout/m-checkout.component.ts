@@ -84,6 +84,9 @@ export class MCheckoutComponent implements OnInit {
   editBilling: Boolean = false;
   flag: string;
   tapOneShip: Boolean = true;
+
+  isDispatched: Boolean = false;
+
   constructor(
     private shippingAddressService: ShippingAddressService,
     private ngZone: NgZone,
@@ -126,6 +129,7 @@ export class MCheckoutComponent implements OnInit {
     this.flagEditBilling();
     this.flagEditShipping();
     this.flagAddShipping();
+    this.flagAddBilling();
   }
 
   loadDataBilling() {
@@ -142,6 +146,15 @@ export class MCheckoutComponent implements OnInit {
         }
         // if (this.shippingAddressList.isDefault)
       });
+    });
+  }
+
+  flagAddBilling() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'add-billing') {
+        this.loadDataBilling();
+      }
     });
   }
 
@@ -232,7 +245,7 @@ export class MCheckoutComponent implements OnInit {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.itemsTotal = cart.itemsTotal;
       this.deliveryTotal = cart.deliveryTotal;
-      this.grossTotal = cart.grossTotal + this.uniqueCode;
+      this.grossTotal = cart.grossTotal;
       this.cartItems = [];
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe((product) => {
@@ -251,7 +264,6 @@ export class MCheckoutComponent implements OnInit {
     if (this.grossTotal === 0) {
       this.router.navigateByUrl('/cart');
     }
-
   }
 
   public updateQuantity(event: any, item: any) {
@@ -316,9 +328,10 @@ export class MCheckoutComponent implements OnInit {
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);
     if (paymentMethod === 'R') {
       this.paymentMethodService.getUniqueCodeTransfer(paymentMethod).subscribe(response => {
-        // console.log('response: ', response);
+        console.log('response: ', response);
         this.uniqueCode = response;
-        this.shoppingCart();
+        // this.shoppingCartService.calculateUniqueCode(response);
+        // console.log('this.cartItems selectPaymentMethod: ', this.cartItems);
       });
     }
   }
@@ -338,7 +351,9 @@ export class MCheckoutComponent implements OnInit {
       fr.shipperName = '';
       this.freightRate = fr;
     }
+    this.isDispatched = true;
     this.shoppingCartService.setDeliveryOption(courier);
+    console.log('this.cartItems selectShippingMethod: ', this.cartItems);
   }
 
   getAllShippingAddress() {
@@ -389,7 +404,7 @@ export class MCheckoutComponent implements OnInit {
     this.checkout.courierAmt = this.deliveryTotal;
     this.checkout.courierId = this.freightRate.shipperId;
     this.checkout.courierName = this.freightRate.shipperName;
-    this.checkout.grandTotal = this.grossTotal;
+    this.checkout.grandTotal = this.grossTotal + this.uniqueCode;
     this.checkout.isoncePickup = 'Y';
     this.checkout.mBankAccountId = this.paymentMethodDetail.mBankAccountId;
     this.checkout.paymentMethod = this.paymentMethod.code;
@@ -400,7 +415,12 @@ export class MCheckoutComponent implements OnInit {
       || this.checkout.paymentMethod === undefined
       || this.checkout.billingAddress === null
       || this.checkout.shippingAddress === null) {
-        swal('Tolong lengkapi semua data saat checkout!');
+        //swal('Tolong lengkapi semua data saat checkout!');
+        swal(
+          'Gagal!',
+          'Silakan lengkapi semua data checkout.',
+          'error'
+        );
         return;
     }
     this.checkoutService.doCheckout(this.checkout).subscribe(response => {
@@ -414,12 +434,12 @@ export class MCheckoutComponent implements OnInit {
         'Selamat transaksi Anda berhasil diproses.',
         'success'
       );
-      this.router.navigateByUrl('/mobile/m-finish-order/' + response.id);
+      this.router.navigateByUrl('/finish-order/' + response.id);
     });
   }
 
   prev() {
-    this.router.navigateByUrl('/mobile/m-cart');
+    this.router.navigateByUrl('/cart');
   }
 
   scrollToQuestionNode(id) {

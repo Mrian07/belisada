@@ -1,3 +1,7 @@
+import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
+import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
+import { MChangePasswordComponent } from './views/mobile/seller/component/m-change-password/m-change-password.component';
+import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
 import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
@@ -93,6 +97,7 @@ import { MFrontLayoutComponent } from './core/layout/mobile/m-front-layout/m-fro
 import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
 import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
 import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
+import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 
 const routes: Routes = [
   {
@@ -465,7 +470,14 @@ const routes: Routes = [
           title: 'Sign Up'
         }
       },
-{
+      {
+        path: 'm-product-detail/:id/:alias',
+        component: MProductDetailComponent,
+        data: {
+          title: 'product'
+        }
+      },
+      {
         path: 'm-cart',
         component: MCartComponent,
         data: {
@@ -569,6 +581,34 @@ const routes: Routes = [
         component: MDashboardComponent,
         data: {
           title: 'dashboard'
+        }
+      },
+      {
+        path: 'm-profile',
+        component: MProfileComponent,
+        data: {
+          title: 'profile'
+        }
+      },
+      {
+        path: 'm-change-password',
+        component: MChangePasswordComponent,
+        data: {
+          title: 'Change Password'
+        }
+      },
+      {
+        path: 'm-rekening',
+        component: MRekeningComponent,
+        data: {
+          title: 'Rekening'
+        }
+      },
+      {
+        path: 'm-toko',
+        component: MTokoComponent,
+        data: {
+          title: 'Toko'
         }
       },
     ]
