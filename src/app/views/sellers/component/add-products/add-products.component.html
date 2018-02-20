@@ -62,7 +62,8 @@
                                 [optionTemplate]="optionTemplate"
                                 #brnds
                                 >
-                                    <sui-select-option *ngFor="let option of brnds.filteredOptions" [value]="option" (click)="selectBrands(option.m_productbrand_id)"></sui-select-option>
+                                <sui-select-option *ngFor="let option of brnds.filteredOptions" [value]="option" (click)="selectBrands(option.m_productbrand_id)"></sui-select-option>
+                                <sui-select-option value="other" (click)="selectBrands(000)"></sui-select-option>
                             </sui-select>
                         </div>
 

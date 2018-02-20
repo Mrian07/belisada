@@ -22,7 +22,7 @@ export class CategoryService {
   }
 
   CategoryOneSeller(): Observable<Category[]> {
-    return this.http.get(this.configuration.serverWithAccUrl + '/category/c1/')
+    return this.http.get(this.configuration.serverWithAccUrl + '/category/c1s/')
     .map(response => response as Category[]);
   }
   test(): Observable<Bidang[]> {
