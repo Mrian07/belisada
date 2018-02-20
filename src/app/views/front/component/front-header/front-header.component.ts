@@ -90,8 +90,6 @@ export class FrontHeaderComponent implements OnInit {
     this.shoppingCart();
     const lang = localStorage.getItem('languange');
 
-    console.log('lang', lang);
-
     if (!lang || lang === 'undefined') {
       localStorage.setItem('languange', 'id');
       this.lang = localStorage.getItem('languange');
@@ -101,6 +99,7 @@ export class FrontHeaderComponent implements OnInit {
       this.translate.use(this.lang);
     }
     this.random();
+    this.flagUploadAvatar();
   }
 
   flagLogout() {
@@ -110,6 +109,16 @@ export class FrontHeaderComponent implements OnInit {
         this.cekLogin();
       }
     });
+  }
+
+  flagUploadAvatar() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'upload-photo') {
+        this.getProfile();
+      }
+    });
+
   }
 
   cekLogin() {
@@ -148,13 +157,11 @@ export class FrontHeaderComponent implements OnInit {
       this.searchService.search(key).subscribe(data => {
         this.results = data;
         this.popularSearch();
-        // console.log(data);
       });
     }
   }
 
   searchEnter(searchKey, searchCategory) {
-    //console.log('test');
     this.queryParams = { q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;
@@ -368,14 +375,11 @@ export class FrontHeaderComponent implements OnInit {
   }
 
 
-
-
-
   openNav() {
     document.getElementById('mySidenav').style.width = '250px';
     document.getElementById('main').style.marginLeft = '250px';
     document.body.style.backgroundColor = 'rgba(0,0,0,0.4)';
-}
+  }
 
 
 
