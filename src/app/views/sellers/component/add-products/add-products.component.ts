@@ -99,6 +99,7 @@ export class AddProductsComponent implements OnInit {
   productPictures: any[] = [];
   tempImages: any[] = [];
   isNewProduct: Boolean = true;
+  isLoading: Boolean;
 
   countries = [
     {id: 0, name: '0' , selected: false},
@@ -177,13 +178,14 @@ export class AddProductsComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.ADDPRODUCTSUCCESS)
         .subscribe((action: fromActions.AddProductSuccess) => {
-            swal(
-              'Produk berhasil di tambahkan!',
-              'success'
-            ).then((result) => {
-              this.router.navigateByUrl('/seller/product-list');
-              this.clearAll();
-            });
+          this.isLoading = false;
+          swal(
+            'Produk berhasil di tambahkan!',
+            'success'
+          ).then((result) => {
+            this.router.navigateByUrl('/seller/product-list');
+            this.clearAll();
+          });
         });
     this.editSub = this.actionsSubject
     .asObservable()
@@ -515,15 +517,16 @@ export class AddProductsComponent implements OnInit {
         guaranteeDays: +this.garansiDays
       };
       console.log('productData: ', productData);
+      this.isLoading = true;
       this.store.dispatch(new fromActions.AddProduct(productData));
-      swal({
-        title: 'Belisada.co.id',
-        text: 'Uploading',
-        timer: 3000,
-        onOpen: () => {
-          swal.showLoading();
-        }
-      });
+      // swal({
+      //   title: 'Belisada.co.id',
+      //   text: 'Uploading',
+      //   timer: 3000,
+      //   onOpen: () => {
+      //     swal.showLoading();
+      //   }
+      // });
     }
   }
   gudang($event) {
