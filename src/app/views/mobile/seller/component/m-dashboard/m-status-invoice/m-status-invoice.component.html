@@ -25,7 +25,7 @@
                     <td *ngIf="!editmode" (click)="toEdit(i)">{{ list.stock }}</td>
                     <td *ngIf="editmode && ind == i" [contentEditable]="true" (blur)="toBlur(list,i)" (input)="qtybaru = $event.target.innerText">{{ list.stock }}</td>
                     <td *ngIf="!editmode" (click)="toEdit(i)" [contentEditable]="false">Rp.{{ list.pricelist | number }}</td>
-                    <td *ngIf="editmode && ind == i" [contentEditable]="true" (blur)="toBlur(list, i)" (input)="hargabaru = $event.target.innerText" >{{ list.pricelist }}</td>
+                    <td *ngIf="editmode && ind == i" [contentEditable]="true" (blur)="toBlur(list, i)" (input)="hargabaru = $event.target.innerText">{{ list.pricelist }}</td>
                     <td>
                     <!-- <td><div class="ui {{color}} horizontal label">{{status}}</div> -->
                         <a class="ui small label" *ngIf="list.statusCode === 'DR'">{{list.status}}</a>
