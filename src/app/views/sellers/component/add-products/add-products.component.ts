@@ -91,11 +91,14 @@ export class AddProductsComponent implements OnInit {
   highlight: any;
   category3: any;
   productBrandId: number;
-  gambarnya: any;
+  gambarnya: any[] = [];
   cat3Id: number;
   partNumber: string;
   pid: any;
-  warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black']
+  warnanya = ['red', 'orange', 'yellow', 'olive', 'green', 'teal', 'blue', 'violet', 'pulple', 'pink', 'brown', 'grey', 'black'];
+  productPictures: any[] = [];
+  tempImages: any[] = [];
+  isNewProduct: Boolean = true;
 
   countries = [
     {id: 0, name: '0' , selected: false},
@@ -273,20 +276,25 @@ export class AddProductsComponent implements OnInit {
   }
 
   search(event) {
-    const key = event.target.value;
-    if (key === '') {
-      this.results = [];
-      this.clearAll();
-      this.news = '';
-    }else {
-      this.searchService.search(key).subscribe(data => {
-        this.results = data;
-        if (data.length === 0) {
-          this.results = [];
-          this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
-        }
-      });
-    }
+    // setTimeout(() => {
+      const key = event.target.value;
+      if (key === '') {
+        this.results = [];
+        this.clearAll();
+        this.news = '';
+        this.isNewProduct = true;
+      }else {
+        this.searchService.search(key).subscribe(data => {
+          console.log('data: ', data);
+          this.results = data;
+          if (data.length === 0) {
+            this.isNewProduct = true;
+            this.results = [];
+            this.news = 'Product yang ada masukan adalah product baru, silahkan isi detail product';
+          }
+        });
+      }
+    // }, 1000);
   }
 
 
@@ -334,6 +342,9 @@ export class AddProductsComponent implements OnInit {
     this.qtyOnHand = hasil.qtyOnHand;
     this.qtySeller = hasil.qtyOnSeller;
     this.partNumber = hasil.partNumber;
+    this.isNewProduct = false;
+    this.productPictures = [];
+
     if ( hasil.isGuarantee === undefined) {
       this.isGuarantee = 'N';
     }else {
@@ -344,10 +355,45 @@ export class AddProductsComponent implements OnInit {
     }else {
       this.garansiDays = hasil.guaranteeDays;
     }
+
+    for(let i = 0; i < 5; i++) {
+      let imgUrl = '';
+      switch (i) {
+        case 0:
+          imgUrl = hasil.imageurl;
+          break;
+
+        case 1:
+          imgUrl = hasil.imageurl2;
+          break;
+
+        case 2:
+          imgUrl = hasil.imageurl3;
+          break;
+
+        case 3:
+          imgUrl = hasil.imageurl4;
+          break;
+
+        case 4:
+          imgUrl = hasil.imageurl5;
+          break;
+      
+        default:
+          break;
+      }
+      if (imgUrl !== '') {
+        this.productPictures.push(imgUrl);
+      }
+      console.log('this.productPictures: ', this.productPictures);
+    }
+    
     console.log(hasil);
   }
+
   getBrands() {
     this.categoryService.BrandCategory().subscribe(data => {
+      console.log('data brand: ', data);
       this.brands = data;
       this.toggle = false;
     });
@@ -413,15 +459,21 @@ export class AddProductsComponent implements OnInit {
           'Semua Field harus di isi'
         );
     }else {
-      if ( this.userImage === undefined && this.imageurl !== undefined) {
+      if (this.isNewProduct) {
+        this.productPictures.forEach(item => {
+          this.gambarnya.push(item.substr(item.indexOf(",") + 1));
+        })
+      } else {
         this.gambarnya = [];
-      }else if ( this.userImage !== undefined && this.imageurl === undefined) {
-        this.gambarnya = [this.userImage];
-      }else if ( this.userImage === undefined && this.imageurl === undefined) {
+      }
+      console.log('this.productPictures.length: ', this.productPictures.length);
+      if (this.productPictures.length < 3) {
         swal(
           'Belisada.co.id',
-          'Gambar harus ada'
+          'Anda harus memasukan gambar minimal 3!',
+          'info'
         );
+        return;
       }
       if (this.cat3Id === undefined) {
         this.cat3Id = this.ctr.cat3;
@@ -462,6 +514,7 @@ export class AddProductsComponent implements OnInit {
         isGuarantee: this.isGuarantee,
         guaranteeDays: +this.garansiDays
       };
+      console.log('productData: ', productData);
       this.store.dispatch(new fromActions.AddProduct(productData));
       swal({
         title: 'Belisada.co.id',
@@ -556,7 +609,7 @@ export class AddProductsComponent implements OnInit {
       dimensionslength: this.panjang,
       dimensionsheight: this.tinggi,
       specialPrice: this.specialPrice,
-      isAsapShipping: this.asap ,
+      isAsapShipping: this.asap,
       tag: [this.productName],
       qtyOnSeller: this.stok,
       qtyOnHand: +this.qtyOnHand,
@@ -665,5 +718,35 @@ export class AddProductsComponent implements OnInit {
     cnv.getContext('2d').drawImage(el, 0, 0, w, h);
 
     this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
+  }
+
+  removeImage(index: number) {
+    if (index > -1) {
+      this.productPictures.splice(index, 1);
+    }
+  }
+
+  getSelectedFiles(event: any) {
+    let files = [].slice.call(event.target.files);
+    this.readThis(files);
+  }
+
+  readThis(files: any[]): void {
+    files.forEach(file => {
+      const myReader: FileReader = new FileReader();
+      myReader.onloadend = (e) => {
+        if (this.productPictures.length < 5) {
+          this.productPictures.push(myReader.result);
+        } else {
+          swal(
+            'Belisada.co.id',
+            'Kamu hanya bisa menambahkan maksimal 5 gambar',
+            'info'
+          )
+        }
+        console.log('this.productPictures: ', this.productPictures);
+      }
+      myReader.readAsDataURL(file);
+    })
   }
 }
