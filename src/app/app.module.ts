@@ -141,6 +141,14 @@ import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.co
 import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
 import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
+import { MMyTopProdukComponent } from './views/mobile/seller/component/m-dashboard/m-my-top-produk/m-my-top-produk.component';
+import { MNotificationComponent } from './views/mobile/seller/component/m-dashboard/m-notification/m-notification.component';
+import { MOpenCloseShopComponent } from './views/mobile/seller/component/m-dashboard/m-open-close-shop/m-open-close-shop.component';
+import { MProdukReportComponent } from './views/mobile/seller/component/m-dashboard/m-produk-report/m-produk-report.component';
+import { MSalesStatusComponent } from './views/mobile/seller/component/m-dashboard/m-sales-status/m-sales-status.component';
+import { MSearchDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-search-dashboard/m-search-dashboard.component';
+import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashboard/m-status-invoice/m-status-invoice.component';
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -275,8 +283,15 @@ export function getAuthServiceConfigs() {
     MTokoComponent,
     MProductDetailComponent,
     MAvatarBuyerComponent,
-    MAvatarSellerComponent
-
+    MAvatarSellerComponent,
+    MMyTopProdukComponent,
+    MNotificationComponent,
+    MOpenCloseShopComponent,
+    MProdukReportComponent,
+    MSalesStatusComponent,
+    MSearchDashboardComponent,
+    MStatusInvoiceComponent,
+    MCourierComponent
 
     // WishlistComponent,
     // AsapComponent

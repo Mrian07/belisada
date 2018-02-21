@@ -1,3 +1,4 @@
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
 import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
@@ -627,6 +628,13 @@ const routes: Routes = [
           title: 'Avatar Seller'
         }
       },
+      // {
+      //   path: 'm-courier',
+      //   component: MCourierComponent,
+      //   data: {
+      //     title: 'Courier'
+      //   }
+      // },
     ]
   },
   {
