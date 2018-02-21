@@ -1,7 +1,7 @@
 
 <div class="ui grid container">
   <div class="six wide column" style="width: 406px !important;
-  margin-left: 62px">
+  margin-left: 300px">
     <div class="ui breadcrumb kamb">
         <div class="gap-top">
     <a class="section" (click)="home()">Home</a>
@@ -32,7 +32,7 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2>{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-    <span>By :</span> <span class="asd3" (click)="brand(ProductList.brandname)">{{ ProductList.brandname }}</span>
+    <span>Brand :</span> <span class="asd3" (click)="brand(ProductList.brandname)">{{ ProductList.brandname }}</span>
     <div class="gap-between-elements"></div>
     <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
     <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->
@@ -97,7 +97,7 @@
         <tr class="gap-between-elements">
             <td class="coll-1">Dimensions</td>
             <!-- <td>:</td> -->
-            <td><span>{{ ProductList.dimensionslength }} cm L x {{ ProductList.dimensionswidth }} cm W x {{ ProductList.dimensionsheight }} cm H</span></td>
+            <td><span>{{ ProductList.dimensionslength }} cm (L) x {{ ProductList.dimensionswidth }} cm (W) x {{ ProductList.dimensionsheight }} cm (H)</span></td>
         </tr>
         <tr class="gap-between-elements">
             <td class="coll-1">Berat</td>
@@ -110,9 +110,9 @@
             <td></td>
         </tr> -->
         <tr class="gap-between-elements">
-            <td class="coll-1" style="padding-bottom: 33px" translate>Highlight</td>
+            <td class="coll-1 ulKanan" style="vertical-align: top" translate>Highlight</td>
             <!-- <td>:</td> -->
-            <td><p align="left" [innerHTML]="ProductList.highlight | sanitizeHtml"></p></td>
+            <td class="ulKanan"><p align="left" [innerHTML]="ProductList.highlight | sanitizeHtml"></p></td>
         </tr>
     </table>
 

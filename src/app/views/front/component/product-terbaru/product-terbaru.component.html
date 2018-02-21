@@ -1,34 +1,22 @@
-<!-- <div class="object">
-        <div class="object-rope"></div>
-        <div class="object-shape">
-            Coming <span class="soon">Soon</span>
-        </div>
 
-    </div> -->
-
-    <div class="top"></div>
-
-    <div class="ui grid stackable">
-        <div class="four wide column" *ngFor="let item of productList">
-            <div class="b-product">
-                <p style="cursor: pointer"><img class="ui centered small image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'" (click)="detail(item.productId, item.aliasName)"></p>
-                <div class="title-product" (click)="detail(item.productId, item.aliasName)">{{item.name}}</div>
-
-
-                <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
-                    <div class="yu">
-                        <div class="selledby" *ngIf="item.storeName !== ''">dijual oleh: <span>{{ item.storeName }}</span></div>
-                        <div class="selledby" *ngIf="item.storeName === ''">dijual oleh: <span>Belisada</span></div>
-                        <span (click)="detail(item.productId, item.aliasName)">Stok: {{item.stock}}</span>
-                        
-                    </div>
-                    <!-- <div class="yu"><i class="info circle icon"></i>Stok Tersedia</div> -->
-                    <!-- <span class="yu">di Jual oleh</span> <span class="yu3">Samsung</span> -->
-    
-                </div>
- 
-                
+  <div class="gap-between-elements"></div>
+  <img class="ui centered Massive image" width="1300px" src="/assets/img/produk_terbaru.png">
+ <section class="section-category">
+    <div class="category-wrapper-grid">
+        <div class="category-grid" *ngFor="let item3 of productList" >
+            <a (click)="detail(item3.productId, item3.aliasName)">
+                <div class="category-content" *ngIf="item3.imageurl === ''" [ngStyle]="{'background-image':'url(' + defaultImg + ')'}"></div>
+                <div class="category-content" *ngIf="item3.imageurl !== ''" [ngStyle]="{'background-image':'url(' + item3.imageurl + ')'}"></div>
+                <hr>
+                <div class="title-product">{{item3.name}}</div>
+            </a>
+            <div class="price pricelist"><span>Rp {{item3.pricelist | number}}</span><br/>
             </div>
+                <div class="yu">
+                    <div class="selledby" *ngIf="item3.storeName !== ''">dijual oleh: <span>{{ item3.storeName }}</span></div>
+                    <div class="selledby" *ngIf="item3.storeName === ''">dijual oleh: <span>Belisada</span></div>
+                    <span >Stok: {{item3.stock}}</span>
+                </div>
         </div>
     </div>
-
+</section>
