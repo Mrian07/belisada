@@ -50,16 +50,6 @@ export class MMenuSellerComponent implements OnInit {
     });
   }
 
-  goSeller() {
-    this.router.navigateByUrl('/mobile-seller');
-  }
-  goWishlist() {
-    this.router.navigateByUrl('/mobile/buyer/m-wishlist-buyer');
-  }
-  goTransaction() {
-    this.router.navigateByUrl('/mobile/buyer/m-transaction-buyer');
-  }
-
   goDashboard() {
     this.router.navigateByUrl('/mobile-seller');
   }
@@ -76,11 +66,33 @@ export class MMenuSellerComponent implements OnInit {
     this.router.navigateByUrl('/mobile-seller/m-change-password');
   }
 
-  goBilling() {
-    this.router.navigateByUrl('/mobile/buyer/m-billingAddress');
+  goRekening() {
+    this.router.navigateByUrl('/mobile-seller/m-rekening');
   }
 
-  goShipping() {
-    this.router.navigateByUrl('/mobile/buyer/m-shippingAddress');
+  goInfoToko() {
+    this.router.navigateByUrl('/mobile-seller/m-toko');
   }
+
+
+  goKontak() {
+    this.router.navigate(['/mobile-seller/kontak']);
+  }
+
+  goPaymentInfo() {
+    this.router.navigate(['/mobile-seller/payment-info']);
+  }
+
+  goSallesReport() {
+    this.router.navigate(['/mobile-seller/salles-report']);
+  }
+
+  goFaqSeller() {
+    this.router.navigate(['/mobile-seller/faq-seller']);
+  }
+
+  goAvatar() {
+    this.router.navigateByUrl('/mobile-seller/m-avatar-seller');
+  }
+
 }

@@ -1,0 +1,49 @@
+<div class="ui grid">
+    <div class="sixteen wide column">
+
+        <span *ngIf="!storeName">
+            <div class="ui red segment">
+            Anda belum memiliki toko, segera daftarkan toko Anda agar bisa berjualan.
+            </div>
+        </span>
+        <div class="b-store" *ngIf="storeName">
+
+            <h3 *ngIf="storeName">{{storeName}} 
+            </h3>
+
+                Status Toko :  {{ storeStatus }}
+                <div class="ui grid">
+                    <div class="eight wide column">
+                        <div class="b-store-left">
+                            Saat Ini Toko {{toko}}
+                        </div>
+                    </div>
+                    <div class="eight wide column">
+                        <div class="b-store-right">
+                            <button class="fluid ui {{btnColor}} button" *ngIf="buka" (click)="openModalShop()">
+                                Buka Toko Anda
+                            </button>
+                            <button class="fluid ui {{btnColor}} button" *ngIf="tutup" (click)="openModalShop()">
+                                Tutup Toko Anda
+                            </button>
+                        </div>    
+                    </div>
+                </div>     
+        </div>
+
+        <div class="btn-tambah">
+                <button class="huge fluid ui red button" (click)="addProducts()">Tambah Produk Anda</button>
+        </div>
+
+    </div>
+</div>
+
+
+<div id="myModal" class="modal" *ngIf="modal">
+  <div class="modal-content">
+        <span class="close" (click)="closeModalShop()">&times;</span>
+        <app-m-open-close-shop></app-m-open-close-shop>
+    </div>
+</div>
+
+

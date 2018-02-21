@@ -45,4 +45,8 @@ export class MMenuBuyerComponent implements OnInit {
   goShipping() {
     this.router.navigateByUrl('/mobile/buyer/m-shippingAddress');
   }
+
+  goAvatar() {
+    this.router.navigateByUrl('/mobile/buyer/m-avatar-buyer');
+  }
 }

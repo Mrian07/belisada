@@ -1,3 +1,6 @@
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
+import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
+import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
 import { MRekeningComponent } from './views/mobile/seller/component/m-rekening/m-rekening.component';
 import { MChangePasswordComponent } from './views/mobile/seller/component/m-change-password/m-change-password.component';
@@ -566,6 +569,13 @@ const routes: Routes = [
               title: 'Wishlist Buyer'
             }
           },
+          {
+            path: 'm-avatar-buyer',
+            component: MAvatarBuyerComponent,
+            data: {
+              title: 'Avatar Buyer'
+            }
+          },
         ]
       }
     ]
@@ -611,6 +621,20 @@ const routes: Routes = [
           title: 'Toko'
         }
       },
+      {
+        path: 'm-avatar-seller',
+        component: MAvatarSellerComponent,
+        data: {
+          title: 'Avatar Seller'
+        }
+      },
+      // {
+      //   path: 'm-courier',
+      //   component: MCourierComponent,
+      //   data: {
+      //     title: 'Courier'
+      //   }
+      // },
     ]
   },
   {

@@ -99,6 +99,16 @@ export class MFrontHeaderComponent implements OnInit {
       this.translate.use(this.lang);
     }
     this.random();
+    this.flagUploadAvatar();
+  }
+
+  flagUploadAvatar() {
+    this.flagService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'upload-photo') {
+        this.getProfile();
+      }
+    });
   }
 
   flagLogout() {

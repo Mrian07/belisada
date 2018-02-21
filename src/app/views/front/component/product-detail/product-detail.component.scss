@@ -44,7 +44,22 @@
     margin-right: 3px;
 }
 .xo {
-    width: 90px;
+    width: 142px;
+}
+.asd3 {
+    cursor: pointer;
+ color:#3ea5dd;
+}
+.ulKanan p {
+    // color:red;
+    margin:0;
+}
+td ul {
+    margin: 0;
+}
+.ulKanan ul {
+    // color: red;
+    margin:0;
 }
 .pls{
     margin-right: 55px;
@@ -79,7 +94,7 @@
 }
 .wrapper{
     display:grid;
-    grid-template-columns: 20% 43% 26%;
+    grid-template-columns: 26% 48% 26%;
     /*
     grid-column-gap:1em;
     grid-row-gap:1em;
@@ -114,7 +129,7 @@
       color: #fa9a24 !important;
   }
   .gedein {
-      font-size:2rem;
+      font-size:23px;
   }
   .xx {
       color:#18B9D0;
