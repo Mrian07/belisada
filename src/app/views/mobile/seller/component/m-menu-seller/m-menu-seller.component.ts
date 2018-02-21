@@ -49,6 +49,21 @@ export class MMenuSellerComponent implements OnInit {
       }
     });
   }
+  goOngkir() {
+
+  }
+  goToProduct() {
+
+  }
+  gotoDana() {
+
+  }
+  gotoLacak() {
+
+  }
+  gotoContact() {
+
+  }
 
   goDashboard() {
     this.router.navigateByUrl('/mobile-seller');

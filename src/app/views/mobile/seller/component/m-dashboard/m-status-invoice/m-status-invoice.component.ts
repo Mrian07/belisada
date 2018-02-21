@@ -6,7 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./m-status-invoice.component.scss']
 })
 export class MStatusInvoiceComponent implements OnInit {
-
+  productList = [
+    {
+      'name': 'name',
+      'email': 'email'
+    },
+    {
+      'name': 'name1',
+      'email': 'email1'
+    }
+  ];
   constructor() { }
 
   ngOnInit() {

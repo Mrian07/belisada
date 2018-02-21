@@ -13,6 +13,10 @@ export class Product {
   qtyOnHand: number;
   qtyOnSeller: number;
 
+  dimensionslength: any;
+  dimensionswidth: any;
+  dimensionsheight: any;
+
   public updateFrom(src: Product): void {
     this.mBpartnerStoreId = src.mBpartnerStoreId;
     this.pricelist = src.pricelist;

@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./m-notification.component.scss']
 })
 export class MNotificationComponent implements OnInit {
-
+  dana;
+  message;
   constructor() { }
 
   ngOnInit() {
+  }
+  widthdraw() {
+
+  }
+  toProfile() {
+
   }
 
 }

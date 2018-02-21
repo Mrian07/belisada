@@ -17,6 +17,10 @@ export class ProductDetail {
   category1Name: string;
   productbrandId: number;
   brandname: string;
+
+  dimensionslength: any;
+  dimensionswidth: any;
+  dimensionsheight: any;
   sku: string;
   aliasName: string;
   allRate: number;

@@ -72,6 +72,9 @@ export class ProductDetailComponent implements OnInit {
   specs: any;
   uli: any;
   usedStock: number;
+  dimensionslength: any;
+  dimensionswidth: any;
+  dimensionsheight: any;
 
   garansiDay = [
     {day: 0 , val: 'Tidak Bergaransi'},
