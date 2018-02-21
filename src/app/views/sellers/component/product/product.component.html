@@ -96,7 +96,7 @@
                         value="product.pricelist" type="text" *ngIf="editmode && i === ind" [(ngModel)]="hargabaru"/>
                         <!-- <div class="priceTag" [contentEditable]="editmode" *ngIf="editmode && i === ind">{{product.pricelist}}</div>
                         <div class="priceTag" [contentEditable]="editmode" *ngIf="!editmode">{{product.pricelist | number}}</div> -->
-                        <div *ngIf="product.statusCode !== 'RJ'">
+                        <div *ngIf="product.statusCode !== 'RJ' && product.statusCode !== 'AP'">
                             <a class="ui tag label" *ngIf="!editmode" (click)="editProducts(product, i)">
                                     <i *ngIf="!editmode" class="edit icon"></i>
                             </a>
