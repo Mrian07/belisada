@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MSalesStatusComponent implements OnInit {
 
+  test: any;
   constructor() { }
 
   ngOnInit() {
