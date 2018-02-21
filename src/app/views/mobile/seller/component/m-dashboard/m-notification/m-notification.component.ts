@@ -16,5 +16,11 @@ export class MNotificationComponent implements OnInit {
 
   ngOnInit() {
   }
+  widthdraw() {
+
+  }
+  toProfile() {
+
+  }
 
 }

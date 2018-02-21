@@ -68,6 +68,21 @@ export class MMenuSellerComponent implements OnInit {
       }
     });
   }
+  goOngkir() {
+
+  }
+  goToProduct() {
+
+  }
+  gotoDana() {
+
+  }
+  gotoLacak() {
+
+  }
+  gotoContact() {
+
+  }
 
   goDashboard() {
     this.router.navigateByUrl('/mobile-seller');
@@ -91,11 +106,6 @@ export class MMenuSellerComponent implements OnInit {
 
   goInfoToko() {
     this.router.navigateByUrl('/mobile-seller/m-toko');
-  }
-
-
-  goOngkir() {
-
   }
 
   goTopProduct() {

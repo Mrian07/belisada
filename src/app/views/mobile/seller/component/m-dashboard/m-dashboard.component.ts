@@ -13,6 +13,9 @@ export class MDashboardComponent implements OnInit {
 
   ngOnInit() {
   }
+  receiveMessage(a) {
+
+  }
 
 
 }
