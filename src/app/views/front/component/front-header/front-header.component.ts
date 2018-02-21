@@ -169,6 +169,7 @@ export class FrontHeaderComponent implements OnInit {
     }
     this.router.navigate(['/search'], { queryParams: this.queryParams });
     this.selectedSearchCategory = '';
+    this.results = [];
   }
 
   getProfile() {

@@ -13,7 +13,7 @@
                   <div class="item" (click)="goChangePassword()" translate><i class="privacy icon"></i> user.seller.ubah</div>
                   <div class="item" (click)="goRekening()" translate><i class="payment icon"></i> user.seller.rek</div>
                   <div class="item" (click)="goInfoToko()" translate><i class="law icon"></i> user.seller.shop</div>
-
+                  <div class="item" (click)="goOngkir()" translate><i class="law icon"></i> Ongkos Kirim</div>
                   <div class="divider"></div>
                   <div class="item" (click)="goDashboard()" class="item" translate>user.seller.one</div>
                   <div class="item" (click)="goKontak()" class="item" translate>user.seller.two</div>
@@ -31,7 +31,7 @@
 
 
       </div>
-      <img class="ui avatar image" src="/assets/img/kristy.png">
+      <img class="ui avatar image avatar" src="/assets/img/kristy.png" (click)="goAvatar()">
       <div class="content">
           <div class="header">Lalang</div>
           lalang@email.com
