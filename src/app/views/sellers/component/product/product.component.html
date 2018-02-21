@@ -112,11 +112,11 @@
                 </td>
                 <td>
                     <small>
-                            <a class="ui small label" *ngIf="product.statusCode === 'DR'">{{product.status}}</a>
-                            <a class="ui small yellow label" *ngIf="product.statusCode === 'PE'">{{product.status}}</a>
-                            <a class="ui small orange label" *ngIf="product.statusCode === 'RV'">{{product.status}}</a>
-                            <a class="ui small red label" *ngIf="product.statusCode === 'RJ'">{{product.status}}</a>
-                            <a class="ui small green label" *ngIf="product.statusCode === 'AP'">{{product.status}}</a>
+                            <span class="ui small label" *ngIf="product.statusCode === 'DR'">{{product.status}}</span>
+                            <span class="ui small yellow label" *ngIf="product.statusCode === 'PE'">{{product.status}}</span>
+                            <span class="ui small orange label" *ngIf="product.statusCode === 'RV'">{{product.status}}</span>
+                            <span class="ui small red label" *ngIf="product.statusCode === 'RJ'">{{product.status}}</span>
+                            <span class="ui small green label" *ngIf="product.statusCode === 'AP'">{{product.status}}</span>
                     </small>
                 </td>
                 <td *ngIf="product.isAsapShipping === 'N'">
