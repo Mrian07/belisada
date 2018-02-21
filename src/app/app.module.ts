@@ -1,3 +1,4 @@
+import { MyTopProductService } from './core/service/mytopproduct/my-top-product.service';
 import { StoreService } from './core/service/store/store.service';
 import { RekeningSService } from './core/service/rekening/rekening-s.service';
 import { ChangePasswordService } from './core/service/changepassword/change-password.service';
@@ -333,6 +334,7 @@ export function getAuthServiceConfigs() {
     ChangePasswordService,
     TransactionsService,
     RekeningSService,
+    MyTopProductService,
     StoreService,
     {
       provide: LocationStrategy,

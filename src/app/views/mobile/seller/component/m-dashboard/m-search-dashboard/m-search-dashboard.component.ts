@@ -57,7 +57,6 @@ export class MSearchDashboardComponent implements OnInit {
         if ( data[0].statusCode === 'AP') {
           this.storeStatus = data[0].status;
           this.status = true;
-          this.btnColor = 'green';
         }else if ( data[0].statusCode === 'DR') {
             this.storeStatus = 'Toko anda akan di approve dalam 24 jam';
             this.status = false;
@@ -65,7 +64,6 @@ export class MSearchDashboardComponent implements OnInit {
         } else {
           this.storeStatus = data[0].status;
           this.status = false;
-          this.btnColor = 'red';
         }
       }
       // this.bukaToko();
@@ -93,10 +91,12 @@ export class MSearchDashboardComponent implements OnInit {
             this.buka = true;
             this.tutup = false;
             this.toko = 'Tutup';
+            this.btnColor = 'green';
           } else {
             this.buka = false;
             this.tutup = true;
             this.toko = 'Buka';
+            this.btnColor = 'red';
           }
       });
     });

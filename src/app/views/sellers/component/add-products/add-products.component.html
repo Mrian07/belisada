@@ -344,3 +344,6 @@
         <button class="ui red button" (click)="cancel()">Cancel</button>
     </div>
 
+    <sui-dimmer class="page" [(isDimmed)]="isLoading">
+        <div class="ui text loader">Uploading...</div>
+    </sui-dimmer>

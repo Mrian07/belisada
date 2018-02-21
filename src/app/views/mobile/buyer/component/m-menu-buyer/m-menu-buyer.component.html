@@ -22,10 +22,10 @@
 
 
       </div>
-      <img class="ui avatar image avatar" src="/assets/img/kristy.png" (click)="goAvatar()">
-      <div class="content">
-          <div class="header">Lalang</div>
-          lalang@email.com
+      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+        <div class="content">
+            <div class="header">{{name}}</div>
+            {{email}}
         </div>
     </div>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ProfileService } from '../../../../../core/service/profile/profile.service';
 
 @Component({
   selector: 'app-m-menu-buyer',
@@ -11,11 +12,28 @@ export class MMenuBuyerComponent implements OnInit {
   isDisabled;
   constructor(
     private router: Router,
+    private profileService: ProfileService
   ) { }
 
-  ngOnInit() {
+  userImgAvatar: string;
+  fm: any = {};
+  name: string;
+  email: string;
 
+  ngOnInit() {
+    this.fillForms();
   }
+
+  fillForms() {
+    const luser = JSON.parse(localStorage.getItem('user'));
+    this.profileService.getProfileBuyer(luser.token).subscribe(data => {
+
+      this.userImgAvatar = data.imageAvatar ?'data:image/png;base64,' + data.imageAvatar : '/assets/img/kristy.png';
+      this.name = data.name;
+      this.email = data.email;
+    });
+  }
+
   goSeller() {
     this.router.navigateByUrl('/mobile-seller');
   }
