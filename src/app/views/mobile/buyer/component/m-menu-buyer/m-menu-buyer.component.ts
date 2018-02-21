@@ -19,6 +19,7 @@ export class MMenuBuyerComponent implements OnInit {
   fm: any = {};
   name: string;
   email: string;
+  setCanvas: any;
 
   ngOnInit() {
     this.fillForms();

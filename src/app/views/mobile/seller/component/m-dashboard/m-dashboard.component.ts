@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MDashboardComponent implements OnInit {
 
+  messageEvent: any;
+  
   constructor() { }
 
   ngOnInit() {

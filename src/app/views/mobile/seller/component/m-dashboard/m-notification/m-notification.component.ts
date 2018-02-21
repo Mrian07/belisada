@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MNotificationComponent implements OnInit {
 
+  dana: any;
+  message: string;
+  withdrawal: any;
+  topProfile: any;
+  test: any;
   constructor() { }
 
   ngOnInit() {

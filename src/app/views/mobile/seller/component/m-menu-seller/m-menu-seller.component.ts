@@ -26,6 +26,7 @@ export class MMenuSellerComponent implements OnInit {
   fm: any = {};
   name: string;
   email: string;
+  setCanvas:any;
 
   ngOnInit() {
     this.user = this.loginService.whoLogin();
@@ -92,6 +93,27 @@ export class MMenuSellerComponent implements OnInit {
     this.router.navigateByUrl('/mobile-seller/m-toko');
   }
 
+
+  goOngkir() {
+
+  }
+
+  goTopProduct() {
+    this.router.navigate(['/']);
+  }
+
+  goToDana() {
+    this.router.navigate(['/']);
+  }
+
+  goToLacak() {
+    this.router.navigate(['/']);
+  }
+
+  goToContact() {
+    this.router.navigate(['/']);
+  }
+  
 
   goKontak() {
     this.router.navigate(['/mobile-seller/kontak']);
