@@ -22,10 +22,10 @@
                     <td><a *ngIf="list.isActive === 'Y'" (click)="detail(list.productId, list.aliasName)" style="cursor: pointer;">{{ list.name }}</a>
                         <span *ngIf="list.isActive === 'N'">{{ list.name }}</span></td>
                     <td>{{ list.sku }}</td>
-                    <td *ngIf="!editmode" (click)="toEdit(i)">{{ list.stock }}</td>
+                    <td *ngIf="!editmode" (click)="toEdit(i)" style="cursor: pointer;" data-tooltip="Klik untuk ubah Qty">{{ list.stock }}</td>
                     <td *ngIf="editmode && ind == i" [contentEditable]="true" (blur)="toBlur(list,i)" (input)="qtybaru = $event.target.innerText">{{ list.stock }}</td>
-                    <td *ngIf="!editmode" (click)="toEdit(i)" [contentEditable]="false">Rp.{{ list.pricelist | number }}</td>
-                    <td *ngIf="editmode && ind == i" [contentEditable]="true" (blur)="toBlur(list, i)" (input)="hargabaru = $event.target.innerText" >{{ list.pricelist }}</td>
+                    <td *ngIf="!editmode" (click)="toEdit(i)" [contentEditable]="false" style="cursor: pointer;" data-tooltip="Klik untuk ubah harga">Rp.{{ list.pricelist | number }}</td>
+                    <td *ngIf="editmode && ind == i" [contentEditable]="true" (blur)="toBlur(list, i)" (input)="hargabaru = $event.target.innerText">{{ list.pricelist }}</td>
                     <td>
                     <!-- <td><div class="ui {{color}} horizontal label">{{status}}</div> -->
                         <a class="ui small label" *ngIf="list.statusCode === 'DR'">{{list.status}}</a>
