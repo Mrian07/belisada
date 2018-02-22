@@ -58,9 +58,10 @@
     // width: 16.67%;
     box-sizing: border-box;
     white-space: nowrap;
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
     display: grid;
     // float: left;
+    // margin-top:-100px;
 }
 
 .logo-container > img {
@@ -76,7 +77,7 @@
 .mid-header-container {
     // width: 66.67%;
     box-sizing: border-box;
-    padding: 5px 15px;
+    padding: 5px 15px 0;
     grid-area: mid-header-container;
     // float: left;
 }
@@ -115,7 +116,7 @@
     // float: left;
     display: grid;
     box-sizing: border-box;
-    padding: 5px;
+    padding: 5px 5px 0;
     grid-area: right-header-container;
 }
 
@@ -225,7 +226,7 @@ search-bar {
 .welcome {
     float:left;
     padding-left: 7px;
-    padding-bottom: 20px;
+    // padding-bottom: 20px;
 }
 
 .welcome a:link {
