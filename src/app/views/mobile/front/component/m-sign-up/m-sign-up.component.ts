@@ -19,7 +19,6 @@ import { ShareService } from '../../../../../core/service/shared.service';
 })
 export class MSignUpComponent implements OnInit {
 
-  
   email: string;
   password: string;
   phone: string;
@@ -69,22 +68,6 @@ export class MSignUpComponent implements OnInit {
     }
   }
 
-  
-
-  // mouseoverPass() {
-  //   this.obj = document.getElementById('password');
-  //   this.obj.type = 'text';
-  //   this.viewPass = true;
-  //   this.hidePass = false;
-  // }
-
-  // mouseoutPass() {
-  //   this.obj = document.getElementById('myPassword');
-  //   this.obj.type = 'password';
-  //   this.hidePass = true;
-  //   this.viewPass = hide;
-  // }
-
   popUp() {
     this.isReady = true;
   }
@@ -110,18 +93,14 @@ export class MSignUpComponent implements OnInit {
 
     console.log(registerData);
     this.categoryService.register(registerData).subscribe(data => {
-      // console.log('ini data', data);
       if (data.status === '1') {
         swal(
           'Selamat',
           'Pendaftaran Anda Berhasil',
           'success',
         ).then(() => {
-         // this.loka = this.shared.shareData;
          this.shared.shareData = registerData;
-          //console.log(this.loka);
-          //location.reload();
-          this.router.navigateByUrl('/PesanLogin');
+          this.router.navigateByUrl('/mobile/m-sign-up-success');
         });
       }else {
         swal(

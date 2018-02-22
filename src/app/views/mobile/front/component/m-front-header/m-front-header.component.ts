@@ -107,6 +107,8 @@ export class MFrontHeaderComponent implements OnInit {
       this.flag = respon;
       if (this.flag === 'upload-photo') {
         this.getProfile();
+      }else if (this.flag === 'sign-in') {
+        this.cekLogin();
       }
     });
   }
