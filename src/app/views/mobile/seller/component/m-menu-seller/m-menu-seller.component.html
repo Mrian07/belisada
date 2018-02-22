@@ -13,7 +13,7 @@
                   <div class="item" (click)="goChangePassword()" translate><i class="privacy icon"></i> user.seller.ubah</div>
                   <div class="item" (click)="goRekening()" translate><i class="payment icon"></i> user.seller.rek</div>
                   <div class="item" (click)="goInfoToko()" translate><i class="law icon"></i> user.seller.shop</div>
-                  <div class="item" (click)="goOngkir()" translate><i class="law icon"></i> Ongkos Kirim</div>
+                  <div class="item" (click)="goOngkir()" translate><i class="shipping icon"></i> Ongkos Kirim</div>
                   <div class="divider"></div>
                   <div class="item" (click)="goDashboard()" class="item" translate>user.seller.one</div>
                   <div class="item" (click)="goKontak()" class="item" translate>user.seller.two</div>
@@ -31,7 +31,7 @@
 
 
       </div>
-      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar"/>
       <div class="content">
           <div class="header">{{name}}</div>
           {{email}}

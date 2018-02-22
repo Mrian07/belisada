@@ -1,3 +1,4 @@
+import { CourierService } from './core/service/courier/courier.service';
 import { MyTopProductService } from './core/service/mytopproduct/my-top-product.service';
 import { StoreService } from './core/service/store/store.service';
 import { RekeningSService } from './core/service/rekening/rekening-s.service';
@@ -7,7 +8,7 @@ import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStra
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import localeID from '@angular/common/locales/id';
@@ -149,9 +150,10 @@ import { MProdukReportComponent } from './views/mobile/seller/component/m-dashbo
 import { MSalesStatusComponent } from './views/mobile/seller/component/m-dashboard/m-sales-status/m-sales-status.component';
 import { MSearchDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-search-dashboard/m-search-dashboard.component';
 import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashboard/m-status-invoice/m-status-invoice.component';
-import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
+
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -294,9 +296,9 @@ export function getAuthServiceConfigs() {
     MSalesStatusComponent,
     MSearchDashboardComponent,
     MStatusInvoiceComponent,
-    MCourierComponent,
     MLostPasswordComponent,
     MSignUpSuccessComponent,
+    MCourierComponent,
 
     // WishlistComponent,
     // AsapComponent
@@ -340,6 +342,8 @@ export function getAuthServiceConfigs() {
     RekeningSService,
     MyTopProductService,
     StoreService,
+    CourierService,
+    TranslateService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
