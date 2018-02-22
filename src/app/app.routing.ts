@@ -1,6 +1,10 @@
+import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
+import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
+import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
+import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
-import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
 import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
@@ -526,6 +530,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'm-contact-us',
+        component: MContactUsComponent,
+        data: {
+          title: 'Contact Us'
+        }
+      },
+      {
         path: 'm-finish-order/:id',
         component: MFinishOrderComponent,
         data: {
@@ -659,13 +670,34 @@ const routes: Routes = [
           title: 'Avatar Seller'
         }
       },
-      // {
-      //   path: 'm-courier',
-      //   component: MCourierComponent,
-      //   data: {
-      //     title: 'Courier'
-      //   }
-      // },
+      {
+        path: 'm-courier',
+        component: MCourierComponent,
+        data: {
+          title: 'Courier'
+        }
+      },
+      {
+        path: 'm-product-list',
+        component: MProductListComponent,
+        data: {
+          title: 'Product List'
+        }
+      },
+      {
+        path: 'm-product',
+        component: MProductComponent,
+        data: {
+          title: 'Product'
+        }
+      },
+      {
+        path: 'm-add-products/:id',
+        component: MAddProductsComponent,
+        data: {
+          title: 'Add Product'
+        }
+      },
     ]
   },
   {

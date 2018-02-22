@@ -1,15 +1,17 @@
-<div class="ui pointing dropdown button fluid center aligned" suiDropdown>
-    <div class="text">Menu Seller</div>
-    <i class="dropdown icon"></i>
-    <div class="menu" suiDropdownMenu>
-        <div class="item" (click)="editProfile()" class="item">Profile</div>
-        <div class="item" (click)="goDashboard()" class="item" translate>user.seller.one</div>
-        <div class="item" (click)="goKontak()" class="item" translate>user.seller.two</div>
-
-        <div class="item" (click)="goPaymentInfo()" class="item" translate>user.seller.three</div>
-        <div class="item" (click)="goToProduct()" class="item" translate>user.seller.four</div>
-
-        <div class="item" (click)="goSallesReport()" class="item" translate>user.seller.five</div>
-        <div class="item" (click)="goFaqSeller()" class="item" translate>user.seller.nine</div>
-    </div>
+<div class='side-third' *ngIf="stores.length > 0">
+  <form class="ui form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+  <div class="ui form">
+      <div class="grouped fields">
+          <label>
+              Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.
+          </label>
+          <div class="field" *ngFor="let option of options">
+              <label for="{{option.value}}" style="cursor: pointer">
+                  <input type="checkbox" id="{{option.value}}" name="couriers" value="{{option.value}}" [checked]="option.checked"> {{option.name}}
+              </label>
+          </div>
+      </div>
   </div>
+  <button class="ui primary button" type="submit">Simpan</button>
+  </form>
+</div>

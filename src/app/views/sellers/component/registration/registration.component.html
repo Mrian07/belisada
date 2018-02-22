@@ -6,7 +6,7 @@
         <div *ngIf="f.submitted && !_name.valid" class="ui pointing red basic label">Name is required and minimum 3 character</div>
     </div>
     <div class="field">
-        <label>No Telpon</label>
+        <label>No Telepon</label>
         <input type="number" name="phone" ng-pattern="/^\d{5}$/"  placeholder="No Telpon" [(ngModel)]="phone" #_phone="ngModel" required minlength="8"/>
         <div *ngIf="f.submitted && !_phone.valid" class="ui pointing red basic label">Phone is required, minimum 8 character</div>
     </div>
@@ -27,7 +27,7 @@
     </div>
     <div class="ui checkbox gap-between-elements text-center">
         <input type="checkbox" name="tc" [(ngModel)]="tc" required #_tc="ngModel">
-        <label>saya telah membaca dan menyetujui <a class="pointer" (click)= "popUp()">Kebijakan belisada</a></label>
+        <label>Saya telah membaca dan menyetujui <a class="pointer" (click)= "popUp()">Kebijakan belisada</a></label>
         <div *ngIf="f.submitted && !_tc.valid" class="ui pointing red basic label">You must accept our term</div>
       </div>
     <div class="text-center gap-between-elements">

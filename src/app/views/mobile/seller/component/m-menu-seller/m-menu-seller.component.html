@@ -13,12 +13,12 @@
                   <div class="item" (click)="goChangePassword()" translate><i class="privacy icon"></i> user.seller.ubah</div>
                   <div class="item" (click)="goRekening()" translate><i class="payment icon"></i> user.seller.rek</div>
                   <div class="item" (click)="goInfoToko()" translate><i class="law icon"></i> user.seller.shop</div>
-                  <div class="item" (click)="goOngkir()" translate><i class="law icon"></i> Ongkos Kirim</div>
+                  <div class="item" (click)="goOngkir()" translate><i class="shipping icon"></i> Ongkos Kirim</div>
                   <div class="divider"></div>
                   <div class="item" (click)="goDashboard()" class="item" translate>user.seller.one</div>
-                  <div class="item" (click)="goKontak()" class="item" translate>user.seller.two</div>
+                  <!-- <div class="item" (click)="goKontak()" class="item" translate>user.seller.two</div> -->
                   <div class="item" (click)="goPaymentInfo()" class="item" translate>user.seller.three</div>
-                  <div class="item" (click)="goToProduct()" class="item" translate>user.seller.four</div>
+                  <div class="item" (click)="goTopProduct()" class="item" translate>user.seller.four</div>
                   <div class="item" (click)="gotoDana()" class="item" translate>user.seller.saldo</div>
                   <div class="item" (click)="gotoLacak()" class="item" translate>user.seller.lacak</div>
                   <div class="item" (click)="goSallesReport()" class="item" translate>user.seller.five</div>
@@ -31,7 +31,7 @@
 
 
       </div>
-      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar" (load)="setCanvas($event,'imageAvatar')" #avaImg />
+      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar"/>
       <div class="content">
           <div class="header">{{name}}</div>
           {{email}}

@@ -1,3 +1,9 @@
+import { SearchService } from './core/service/search/search.service';
+import { CategoryService } from './core/service/category/category.service';
+import { BrandsService } from './core/service/brands/brands.service';
+import { AddproductService } from './core/service/addproduct/addproduct.service';
+import { ShareService } from './core/service/shared.service';
+import { CourierService } from './core/service/courier/courier.service';
 import { MyTopProductService } from './core/service/mytopproduct/my-top-product.service';
 import { StoreService } from './core/service/store/store.service';
 import { RekeningSService } from './core/service/rekening/rekening-s.service';
@@ -7,7 +13,7 @@ import { LocationStrategy, HashLocationStrategy, APP_BASE_HREF, PathLocationStra
 import { BrowserModule } from '@angular/platform-browser';
 import { LOCALE_ID, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 // import localeID from '@angular/common/locales/id';
@@ -149,12 +155,16 @@ import { MProdukReportComponent } from './views/mobile/seller/component/m-dashbo
 import { MSalesStatusComponent } from './views/mobile/seller/component/m-dashboard/m-sales-status/m-sales-status.component';
 import { MSearchDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-search-dashboard/m-search-dashboard.component';
 import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashboard/m-status-invoice/m-status-invoice.component';
-import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 import { MAboutUsComponent } from './views/mobile/front/component/m-about-us/m-about-us.component';
 import { MFaqComponent } from './views/mobile/front/component/m-faq/m-faq.component';
 // import { MAboutUsComponent } from './views/front/mobile/front/component/m-about-us/m-about-us.component';
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
+import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
+import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
+import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
+import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -297,12 +307,15 @@ export function getAuthServiceConfigs() {
     MSalesStatusComponent,
     MSearchDashboardComponent,
     MStatusInvoiceComponent,
-    MCourierComponent,
     MLostPasswordComponent,
     MSignUpSuccessComponent,
     MAboutUsComponent,
     MFaqComponent,
-    // MAboutUsComponent,
+    MCourierComponent,
+    MProductListComponent,
+    MProductComponent,
+    MAddProductsComponent,
+    MContactUsComponent,
 
     // WishlistComponent,
     // AsapComponent
@@ -346,6 +359,13 @@ export function getAuthServiceConfigs() {
     RekeningSService,
     MyTopProductService,
     StoreService,
+    CourierService,
+    TranslateService,
+    ShareService,
+    AddproductService,
+    BrandsService,
+    CategoryService,
+    SearchService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,

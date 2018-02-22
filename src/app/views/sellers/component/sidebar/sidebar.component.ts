@@ -189,13 +189,27 @@ export class SidebarComponent implements OnInit {
       mBpartnerStoreId: this.stores[0].mBpartnerStoreId,
       shipper: this.selectedOptions
     };
-
-    this.courierService.save(data).subscribe(x => {
-      if (x.status === '1') {
-
-      }
-      swal(x.message);
-    });
+    const shipper = data.shipper.find(x => x.used === 'Y');
+    if (shipper !== undefined) {
+      this.courierService.save(data).subscribe(x => {
+        if (x.status === '1') {
+          swal('Belisada.co.id',
+            'Informasi kurir anda berhasil tersimpan',
+            'success'
+          );
+        } else {
+          swal('Belisada.co.id',
+            x.message,
+            'error'
+          );
+        }
+      });
+    } else {
+      swal('Belisada.co.id',
+          'Anda belum memilih satupun jenis kurir',
+          'info'
+        );
+    }
   }
 
   uploadPhoto() {
