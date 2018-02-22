@@ -3,7 +3,7 @@
         <div class="chat-header">
             <div class="pull-right">
                 <i (click)="hide()" class="minus icon link" suiPopup popupText="Hide chat"></i>
-                <i *ngIf="soc && soc.connected && chats.length > 0" (click)="close()" class="unlinkify icon link" suiPopup popupText="disconnect"></i>
+                <i *ngIf="soc && soc.connected && chats.length > 0" (click)="close()" class="times icon link" suiPopup popupText="disconnect"></i>
             </div>
             <div *ngIf="cs">
                 <img class="cs-profile-picture" src="{{cs.avatar}}" alt="cs-ava"/>
@@ -25,6 +25,12 @@
                     </div>
                 </div>
                 <div class="ui indeterminate text loader" *ngIf="chatStage==2">Connecting ...</div>
+                <div class="ui indeterminate text loader" *ngIf="chatStage==4">
+                    <h3>You're disconnected</h3>
+                    <div class="chat-act">
+                        <button class="ui negative basic button" (click)="reconnect()">Reconnect</button>
+                    </div>
+                </div>
             </sui-dimmer>
         </div>
         <div class="chat-footer" *ngIf="chatStage==1">

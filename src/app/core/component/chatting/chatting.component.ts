@@ -62,7 +62,7 @@ export class ChattingComponent implements OnInit {
     this.chatStage = 2;
     return this.chat.connect({
       connect: () => {
-        console.log('soc:', this.soc);
+        // console.log('soc:', this.soc);
         this.chats = [];
         this.chatStage = 1;
       },
@@ -127,6 +127,7 @@ export class ChattingComponent implements OnInit {
     this.soc.emit('close_msg', this.rating);
     this.chat.disconnect();
     this.hiden = true;
+    this.chatStage = 4;
     delete this.cs;
   }
 
