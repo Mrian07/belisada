@@ -1,3 +1,5 @@
+import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
+import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
 import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
 import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
 import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
@@ -611,6 +613,13 @@ const routes: Routes = [
               title: 'Avatar Buyer'
             }
           },
+          {
+            path: 'm-seller-propose',
+            component: MSellerProposeComponent,
+            data: {
+              title: 'Seller Propose'
+            }
+          },
         ]
       }
     ]
@@ -689,6 +698,13 @@ const routes: Routes = [
         component: MAddProductsComponent,
         data: {
           title: 'Add Product'
+        }
+      },
+      {
+        path: 'm-new-seller',
+        component: MNewSellerComponent,
+        data: {
+          title: 'New Seller'
         }
       },
     ]

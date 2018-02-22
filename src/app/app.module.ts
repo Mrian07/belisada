@@ -163,6 +163,8 @@ import { MProductComponent } from './views/mobile/seller/component/m-product/m-p
 import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
 import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
 import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
+import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
+import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
 
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
@@ -314,6 +316,8 @@ export function getAuthServiceConfigs() {
     MAddProductsComponent,
     MContactUsComponent,
     MAfterSalesServiceComponent,
+    MSellerProposeComponent,
+    MNewSellerComponent,
 
     // WishlistComponent,
     // AsapComponent
