@@ -1,3 +1,8 @@
+import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
+import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
+import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
+import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
+import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
 import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
@@ -103,7 +108,8 @@ import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-
 import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
 import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
 import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
-
+import { MAboutUsComponent } from './views/mobile/front/component/m-about-us/m-about-us.component';
+import { MFaqComponent } from './views/mobile/front/component/m-faq/m-faq.component';
 const routes: Routes = [
   {
     path: '',
@@ -462,6 +468,20 @@ const routes: Routes = [
         }
       },
       {
+        path: 'm-about-us',
+        component: MAboutUsComponent,
+        data: {
+          title: 'Sign In'
+        }
+      },
+       {
+        path: 'm-faq',
+        component: MFaqComponent,
+        data: {
+          title: 'Sign In'
+        }
+      },
+      {
         path: 'm-sign-up',
         component: MSignUpComponent,
         data: {
@@ -508,6 +528,20 @@ const routes: Routes = [
         component: MLostPasswordComponent,
         data: {
           title: 'Lost Password'
+        }
+      },
+      {
+        path: 'm-contact-us',
+        component: MContactUsComponent,
+        data: {
+          title: 'Contact Us'
+        }
+      },
+      {
+        path: 'm-after-sales-service',
+        component: MAfterSalesServiceComponent,
+        data: {
+          title: 'After Sales Service'
         }
       },
       {
@@ -649,6 +683,27 @@ const routes: Routes = [
         component: MCourierComponent,
         data: {
           title: 'Courier'
+        }
+      },
+      {
+        path: 'm-product-list',
+        component: MProductListComponent,
+        data: {
+          title: 'Product List'
+        }
+      },
+      {
+        path: 'm-product',
+        component: MProductComponent,
+        data: {
+          title: 'Product'
+        }
+      },
+      {
+        path: 'm-add-products/:id',
+        component: MAddProductsComponent,
+        data: {
+          title: 'Add Product'
         }
       },
     ]

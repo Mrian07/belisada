@@ -1,11 +1,10 @@
 <div class="ui grid container">
-    <div class="six wide column">
+    <div class="sixteen wide column">
         <div class="ui breadcrumb kamb">
             <div class="gap-top">
                 <a class="section" (click)="home()">Home</a>
                 <div class="divider"> / </div>
                 <a routerLink="/category/{{ProductList.category2Id}}/{{ProductList.category2Name}}" class="section">{{ProductList.category2Name}}</a>
-                <!-- <a class="section"></a> -->
                 <div class="divider"> / </div>
                 <div class="active section">{{ProductList.category3Name}}</div>
             </div>
@@ -16,8 +15,7 @@
 
     <div align="right" class="okeNih">
         <div class="image-container">
-            <!-- <img [imageZoom]="theImage" [src]="theImage" class="ui image detail-img" [style.width.px]="270" [style.height.px]="270" [lensWidth]="600" [lensHeight]="600"> -->
-            <img [imageZoom]="theImage" [src]="theImage" class="detail-img" [lensWidth]="600" [lensHeight]="600">
+            <img [src]="theImage" class="detail-img">
         </div>
 
         <div class="thumbnail-container">
@@ -28,31 +26,17 @@
     </div>
 
     <div style="border-right:1px solid #f1f1f1;">
-        <h2 class="kekiridikit">{{ProductList.name}}</h2>
+        <h2>{{ProductList.name}}</h2>
         <div class="gap-between-elements"></div>
         <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
-        <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->
         <span class="lcl">({{ProductList.allRate}})</span><i class="write icon"></i><span translate>goods.detail.write</span>
         <div class="gap-between-elements"></div>
         <span translate>goods.detail.titlefive</span> : <span><b>{{storeName}}</b></span>
         <div class="gap-between-elements"></div>
-        <!-- <table border = "1" *ngIf="ProductList.specialPrice !== 0; else login2">
-        <tr>
-            <td>Harga :</td>
-            <td class="gets">Rp. {{ProductList.specialPrice | number}}
-                <span class="borderni">{{popx | number:percent}}% Off </span>Hemat: {{kamp | number:'3.2-5'}}</td>
-        </tr>
-    </table>
-    <ng-template #login2>
-            <table border="1">
-
-            </table>
-            </ng-template> -->
 
         <table width="100%;">
             <tr *ngIf="ProductList.specialPrice !== 0" class="gap-between-elements">
                 <td class="coll-1" translate>goods.detail.titleone</td>
-                <!-- <td>:</td> -->
                 <td>
                     <span class="gets">Rp. {{ ProductList.specialPrice | number }}</span>
                     <span class="borderni">{{ popx | number:percent }}% Off</span>
@@ -61,24 +45,20 @@
             </tr>
             <tr *ngIf="ProductList.specialPrice === 0" class="gap-between-elements">
                 <td class="coll-1" translate>goods.detail.titleone</td>
-                <!-- <td>:</td> -->
                 <td>
                     <span class="gets">Rp. {{ ProductList.pricelist | number }}</span>
                 </td>
             </tr>
             <tr *ngIf="ProductList.specialPrice !== 0" class="gap-between-elements">
                 <td class="coll-1">Harga Awal</td>
-                <!-- <td>:</td> -->
                 <td><s>Rp {{ ProductList.pricelist | number }}</s></td>
             </tr>
             <tr class="gap-between-elements">
                 <td class="coll-1">Stok</td>
-                <!-- <td>:</td> -->
                 <td><span class="stok">{{ usedStock }}</span></td>
             </tr>
             <tr class="gap-between-elements">
                 <td class="xo coll-1"></td>
-                <!-- <td></td> -->
                 <td *ngIf="asap && (ProductList.qtyOnHand > 0)">Belanja online murah, gratis pengiriman area Jakarta* Pilih barang dengan layanan Untuk pengiriman Pasti 2 hari
                     <img src="https://myacico.co.id/images/general/asap.png" class="ui middle aligned tiny image" (click)="asap3()">
 
@@ -86,17 +66,10 @@
             </tr>
             <tr class="gap-between-elements">
                 <td class="coll-1">Kondisi Barang</td>
-                <!-- <td>:</td> -->
                 <td><span class="stok">{{ ProductList.condition }}</span></td>
             </tr>
-            <!-- <tr class="gap-between-elements">
-            <td class="coll-1" translate>goods.detail.color</td>
-
-            <td></td>
-        </tr> -->
             <tr class="gap-between-elements">
                 <td class="coll-1" translate>Highlight</td>
-                <!-- <td>:</td> -->
                 <td>
                     <p align="left" [innerHTML]="ProductList.highlight | sanitizeHtml"></p>
                 </td>
@@ -173,20 +146,10 @@
         <img src="https://dev.myacico.co.id/images/general/ico_bank_02.png" width="35" class="ui middle aligned mini image">
         <img src="https://dev.myacico.co.id/images/general/ico_bank_04.png" width="35" class="ui middle aligned mini image">
         <div class="gap-between-elements"></div>
-        <!-- <strong>Garansi : </strong><span>{{garansi}}</span>
-            <div class="gap-between-elements"></div>
-            <strong>Jumlah : </strong>
-            <sui-select class="selection" placeholder="Jumlah" [(ngModel)]="quantity">
-                <sui-select-option [value]="q" *ngFor="let q of arrStock"></sui-select-option>
-            </sui-select> -->
         <div class="gap-between-elements"></div>
         <span class="pz" translate>goods.detail.titlecourier</span>
         <div class="gap-between-elements"></div>
         <table border=0 style="margin-top: -13px">
-            <!-- <tr>
-                    <td><img src="https://dev.myacico.co.id/images/general/s-myacicocourier.jpg"></td>
-                    <td>Gratis pengiriman* untuk wilayah jakarta dan jaminan pengiriman dalam 2 hari</td>
-                </tr> -->
             <tr>
                 <td>
                     <img src="https://dev.myacico.co.id/images/general/s-ninjaxpress.jpg">
@@ -215,11 +178,9 @@
         <table class="ui ten wide column  table">
             <thead>
                 <tr>
-                    <!-- <th>Produk</th> -->
                     <th>Informasi Penjual</th>
                     <th>Harga + Pengiriman</th>
                     <th>Condition</th>
-                    <!-- <th>Delivery</th> -->
 
                     <th>Opsi Pembelian</th>
                 </tr>
@@ -239,7 +200,6 @@
                         <span *ngIf="product.isAsapShipping === 'Y'">& GRATIS Pengiriman</span>
                     </td>
                     <td>{{ product.condition }}</td>
-                    <!-- <td></td> -->
 
                     <td>
                         <button *ngIf="product.stock <= 0" type="submit" class="poi" [ngStyle]="{ cursor: product.stock <= 0 ? 'no-drop' : 'pointer' }" style="margin-bottom: -8px;" (click)="addProductToCart(product.productId, 1, product.mBpartnerStoreId)" [disabled]="product.stock <= 0">
@@ -257,7 +217,7 @@
 </div>
 
 <sui-tabset>
-    <div class="ui top attached tabular menu">
+    <div class="ui top attached tabular menu u-overflow">
         <a class="item" suiTabHeader="1">Deskripsi</a>
         <a class="item" suiTabHeader="2">Spesifikasi</a>
         <a class="item" suiTabHeader="3">Ulasan</a>

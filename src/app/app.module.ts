@@ -1,3 +1,8 @@
+import { SearchService } from './core/service/search/search.service';
+import { CategoryService } from './core/service/category/category.service';
+import { BrandsService } from './core/service/brands/brands.service';
+import { AddproductService } from './core/service/addproduct/addproduct.service';
+import { ShareService } from './core/service/shared.service';
 import { CourierService } from './core/service/courier/courier.service';
 import { MyTopProductService } from './core/service/mytopproduct/my-top-product.service';
 import { StoreService } from './core/service/store/store.service';
@@ -152,8 +157,15 @@ import { MSearchDashboardComponent } from './views/mobile/seller/component/m-das
 import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashboard/m-status-invoice/m-status-invoice.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
+import { MAboutUsComponent } from './views/mobile/front/component/m-about-us/m-about-us.component';
+import { MFaqComponent } from './views/mobile/front/component/m-faq/m-faq.component';
+// import { MAboutUsComponent } from './views/front/mobile/front/component/m-about-us/m-about-us.component';
 import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
-
+import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
+import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
+import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
+import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
+import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -298,7 +310,14 @@ export function getAuthServiceConfigs() {
     MStatusInvoiceComponent,
     MLostPasswordComponent,
     MSignUpSuccessComponent,
+    MAboutUsComponent,
+    MFaqComponent,
     MCourierComponent,
+    MProductListComponent,
+    MProductComponent,
+    MAddProductsComponent,
+    MContactUsComponent,
+    MAfterSalesServiceComponent,
 
     // WishlistComponent,
     // AsapComponent
@@ -344,6 +363,11 @@ export function getAuthServiceConfigs() {
     StoreService,
     CourierService,
     TranslateService,
+    ShareService,
+    AddproductService,
+    BrandsService,
+    CategoryService,
+    SearchService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,

@@ -7,7 +7,7 @@
           </label>
           <div class="field" *ngFor="let option of options">
               <label for="{{option.value}}" style="cursor: pointer">
-                  <input type="checkbox" id="{{option.value}}" name="couriers" value="{{option.value}}" [checked]="option.checked">{{option.name}}
+                  <input type="checkbox" id="{{option.value}}" name="couriers" value="{{option.value}}" [checked]="option.checked"> {{option.name}}
               </label>
           </div>
       </div>
