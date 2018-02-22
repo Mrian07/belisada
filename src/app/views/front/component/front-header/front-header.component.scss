@@ -3,7 +3,8 @@
 }
 
 .text-right-lagi {
-    padding-top: 30px !important;
+    // padding-top: 30px !important;
+    padding-top:6px;
 }
 
 .header-top {
@@ -60,6 +61,8 @@
     white-space: nowrap;
     // padding-bottom: 20px;
     display: grid;
+    position: relative;
+    bottom: 10px;
     // float: left;
     // margin-top:-100px;
 }
@@ -77,7 +80,7 @@
 .mid-header-container {
     // width: 66.67%;
     box-sizing: border-box;
-    padding: 5px 15px 0;
+    padding: 0px 15px 0;
     grid-area: mid-header-container;
     // float: left;
 }
@@ -96,7 +99,7 @@
 .cart-icon {
    position: absolute;
    right: 20px;
-   padding-top: 14px;
+//    padding-top: 14px;
    cursor: pointer;
 }
 
@@ -603,6 +606,7 @@ search-bar {
     border-top:1px solid #002e43;
     border-left:1px solid #002e43;
     border-right:1px solid #002e43;
+    top:-15px;
   }
 
 .dropdown-profile:hover{

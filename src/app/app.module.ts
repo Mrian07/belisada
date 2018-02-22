@@ -157,6 +157,9 @@ import { MSearchDashboardComponent } from './views/mobile/seller/component/m-das
 import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashboard/m-status-invoice/m-status-invoice.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
+import { MAboutUsComponent } from './views/mobile/front/component/m-about-us/m-about-us.component';
+import { MFaqComponent } from './views/mobile/front/component/m-faq/m-faq.component';
+// import { MAboutUsComponent } from './views/front/mobile/front/component/m-about-us/m-about-us.component';
 import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
 import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
@@ -165,7 +168,6 @@ import { MContactUsComponent } from './views/mobile/front/component/m-contact-us
 import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
 import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
 import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
-
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -310,6 +312,8 @@ export function getAuthServiceConfigs() {
     MStatusInvoiceComponent,
     MLostPasswordComponent,
     MSignUpSuccessComponent,
+    MAboutUsComponent,
+    MFaqComponent,
     MCourierComponent,
     MProductListComponent,
     MProductComponent,

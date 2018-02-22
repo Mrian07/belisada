@@ -110,7 +110,8 @@ import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-
 import { MConfirmationBuyerComponent } from './views/mobile/buyer/component/m-confirmation-buyer/m-confirmation-buyer.component';
 import { MWishlistBuyerComponent } from './views/mobile/buyer/component/m-wishlist-buyer/m-wishlist-buyer.component';
 import { MProductDetailComponent } from './views/mobile/front/component/m-product-detail/m-product-detail.component';
-
+import { MAboutUsComponent } from './views/mobile/front/component/m-about-us/m-about-us.component';
+import { MFaqComponent } from './views/mobile/front/component/m-faq/m-faq.component';
 const routes: Routes = [
   {
     path: '',
@@ -464,6 +465,20 @@ const routes: Routes = [
       {
         path: 'm-sign-in',
         component: MSignInComponent,
+        data: {
+          title: 'Sign In'
+        }
+      },
+      {
+        path: 'm-about-us',
+        component: MAboutUsComponent,
+        data: {
+          title: 'Sign In'
+        }
+      },
+       {
+        path: 'm-faq',
+        component: MFaqComponent,
         data: {
           title: 'Sign In'
         }
