@@ -13,12 +13,12 @@
                     <span class="date">{{storeName}}</span>
                 </div>
                 <div class="description">
-                    Max file 5 MB. Format (.JPG, .JPEG, .PNG)
+                    <!--Max file 5 MB. Format (.JPG, .JPEG, .PNG)-->
                 </div>
             </div>
             <div class="extra content center aligned" style="cursor: pointer;">
                 <div class="upload-btn-wrapper">
-                    <button class="ui youtube button">Pilih Photo</button>
+                    <button class="ui youtube button">Ganti Photo</button>
                     <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
                 </div>
             </div>
@@ -58,7 +58,7 @@
   </div>
   <div class='side-fourth'>
     <div class='menu-fourth'>
-        <p><a (click)="editProfile()" class="item" translate><i class="user icon"></i> Edit Profile</a></p>
+        <p><a (click)="editProfile()" class="item" translate><i class="user icon"></i> Edit Profil</a></p>
         <p><a (click)="goChangePassword()" class="item" translate><i class="privacy icon"></i>user.seller.ubah</a></p>
         <p><a (click)="goRekening()" class="item" translate><i class="payment icon"></i> user.seller.rek</a></p>
         <p><a (click)="goInfoToko()" class="item" translate><i class="law icon"></i> user.seller.shop</a></p>
@@ -92,7 +92,7 @@
         <div class="ui form">
             <div class="grouped fields">
                 <label>
-                    Silakan pilih salah satu atau beberapa jenis kurir yang Anda inginkan.
+                    Silakan pilih salah satu atau beberapa kurir yang Anda inginkan.
                 </label>
                 <div class="field" *ngFor="let option of options">
                     <label for="{{option.value}}" style="cursor: pointer">
