@@ -1,6 +1,6 @@
 <app-m-front-nav></app-m-front-nav>
 <div class="header1 top-bg" (click)="imgTop" style="cursor: pointer;">
-    <img src="/assets/img/bg-top-main2.jpg?r={{randoms}}" border="0" />
+    <!-- <img src="/assets/img/bg-top-main2.jpg?r={{randoms}}" border="0" /> -->
 </div>
 <div class="header-top">
     <ul class="header-top-menu">
@@ -13,20 +13,20 @@
     </ul>
 </div>
 <div class="header-top2">
-    <div class="ui grid">
-        <div class="sixteen wide column">
-            <ul class="header-mid-menu">
-                <li><a class="link-red2" (click)="mulaiMenjual()" translate>header.nav.ssell</a></li>
-                <li><a routerLink="/Customer-Service" translate>header.nav.cs</a></li>
-                <li><a routerLink="/cara-berbelanja" translate>header.nav.htshop</a>
-                <li><a class="link-yellow" routerLink="/product-terbaru" translate>header.nav.nproduct</a></li>
-                <li><a href="http://blog.belisada.co.id/" translate>header.nav.blog</a></li>
-            </ul>     
-        </div>
-    </div>
+    <!-- <div class="ui grid">
+        <div class="sixteen wide column"> -->
+    <ul class="header-mid-menu">
+        <li><a class="link-red2" (click)="mulaiMenjual()" translate>header.nav.ssell</a></li>
+        <li><a routerLink="/Customer-Service" translate>header.nav.cs</a></li>
+        <li><a routerLink="/cara-berbelanja" translate>header.nav.htshop</a>
+        <li><a class="link-yellow" routerLink="/product-terbaru" translate>header.nav.nproduct</a></li>
+        <li><a href="http://blog.belisada.co.id/" translate>header.nav.blog</a></li>
+    </ul>     
+        <!-- </div>
+    </div> -->
 </div>
 <div class="header-second">
-    <div class="ui grid">
+    <div class="ui grid" style="margin-top: 0; margin-right: 0;">
       <div class="two wide column" style="font-size:30px;cursor:pointer" (click)="openNav()"><i class="sidebar icon"></i></div>
       <div class="six wide column"><img class="ui image" src="/assets/img/logo.png?r={{randoms}}" (click)="home()" style="cursor: pointer;" alt="profile picture"/></div>
       <div class="eight wide column"> 
@@ -99,7 +99,7 @@
 
       </div>
     </div>
-    <div class="ui grid">
+    <div class="ui grid" style="margin-right: 0;">
         <div class="eight wide column">
             <div class="text-promo">
             <span class="thin-info-text">Dapatkan Promo Menarik Di</span><br/>

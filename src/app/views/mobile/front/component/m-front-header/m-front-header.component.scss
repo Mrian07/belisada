@@ -1,7 +1,7 @@
 .header-top {
     background: #f7982d;
     color: #2c4528;
-    margin-bottom:10px;
+    // margin-bottom:10px;
 }
 
 .header-top ul {
@@ -408,7 +408,7 @@
 
 
 .header-mid-menu {
-    margin-top: -15px;
+    // margin-top: -15px;
 }
 .header-mid-menu a {
     color:#ffffff;
@@ -419,23 +419,18 @@
    color: orange;
 }
 
-.header-mid-menu ul {
+.header-mid-menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    margin-top:0px;
-    margin-top:100px;
 }
 
 .header-mid-menu li {
-    float: right;
-    margin-right: 30px;
+    display: inline-block;
     font-size:12px;
-    display: block;
     font-weight: bold;
-    // width:20%;
     text-decoration: none;
+    margin-left: 15px;
 }
 
 .header-mid-menu li .link-red2 {
@@ -458,6 +453,8 @@
 
 .header-top2{
     background: #333;
+    text-align: right;
+    padding: 3px 10px;
 }
 
 .btn-src{
