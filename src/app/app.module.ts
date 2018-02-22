@@ -150,6 +150,8 @@ import { MSalesStatusComponent } from './views/mobile/seller/component/m-dashboa
 import { MSearchDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-search-dashboard/m-search-dashboard.component';
 import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashboard/m-status-invoice/m-status-invoice.component';
 import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
+import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
+import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -292,7 +294,9 @@ export function getAuthServiceConfigs() {
     MSalesStatusComponent,
     MSearchDashboardComponent,
     MStatusInvoiceComponent,
-    MCourierComponent
+    MCourierComponent,
+    MLostPasswordComponent,
+    MSignUpSuccessComponent,
 
     // WishlistComponent,
     // AsapComponent
