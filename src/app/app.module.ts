@@ -161,6 +161,7 @@ import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-c
 import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
 import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
 import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
+import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
 
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
@@ -310,6 +311,7 @@ export function getAuthServiceConfigs() {
     MProductListComponent,
     MProductComponent,
     MAddProductsComponent,
+    MContactUsComponent,
 
     // WishlistComponent,
     // AsapComponent

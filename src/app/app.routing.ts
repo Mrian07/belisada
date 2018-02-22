@@ -1,3 +1,4 @@
+import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
 import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
 import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
 import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
@@ -511,6 +512,13 @@ const routes: Routes = [
         component: MLostPasswordComponent,
         data: {
           title: 'Lost Password'
+        }
+      },
+      {
+        path: 'm-contact-us',
+        component: MContactUsComponent,
+        data: {
+          title: 'Contact Us'
         }
       },
       {
