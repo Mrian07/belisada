@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../../../../../core/service/profile/profile.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-m-menu-buyer',
@@ -35,7 +36,31 @@ export class MMenuBuyerComponent implements OnInit {
   }
 
   goSeller() {
-    this.router.navigateByUrl('/mobile-seller');
+    this.router.navigateByUrl('/mobile/buyer');
+    const user = JSON.parse(localStorage.user);
+    if (user.role === 3 || user.role === 2) {
+      this.router.navigateByUrl('/mobile-seller');
+    } else {
+
+      swal({
+        title: 'Warning',
+        text: 'Anda belum menjadi Seller. Apakah Anda ingin mendaftar sebagai Seller?',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#1d7d0a',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Tidak',
+        confirmButtonText: 'Daftar Sebagai Seller'
+      }).then((result) => {
+        if (result.value) {
+            this.router.navigateByUrl('/mobile/buyer/m-seller-propose');
+        } else {
+            return false;
+        }
+      });
+
+   }
+
   }
   goWishlist() {
     this.router.navigateByUrl('/mobile/buyer/m-wishlist-buyer');
