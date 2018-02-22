@@ -1,6 +1,6 @@
+import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
-import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MAvatarSellerComponent } from './views/mobile/seller/component/m-avatar-seller/m-avatar-seller.component';
 import { MAvatarBuyerComponent } from './views/mobile/buyer/component/m-avatar-buyer/m-avatar-buyer.component';
 import { MTokoComponent } from './views/mobile/seller/component/m-toko/m-toko.component';
@@ -644,13 +644,13 @@ const routes: Routes = [
           title: 'Avatar Seller'
         }
       },
-      // {
-      //   path: 'm-courier',
-      //   component: MCourierComponent,
-      //   data: {
-      //     title: 'Courier'
-      //   }
-      // },
+      {
+        path: 'm-courier',
+        component: MCourierComponent,
+        data: {
+          title: 'Courier'
+        }
+      },
     ]
   },
   {

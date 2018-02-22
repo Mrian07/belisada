@@ -26,7 +26,6 @@ export class MMenuSellerComponent implements OnInit {
   fm: any = {};
   name: string;
   email: string;
-  setCanvas:any;
 
   ngOnInit() {
     this.user = this.loginService.whoLogin();
@@ -63,29 +62,22 @@ export class MMenuSellerComponent implements OnInit {
           'Anda sudah keluar dari Account Area.',
           'success'
         ).then(()=> {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/mobile');
         });
       }
     });
   }
-  goOngkir() {
 
-  }
   goToProduct() {
-
-  }
-  gotoDana() {
-
-  }
-  gotoLacak() {
-
-  }
-  gotoContact() {
 
   }
 
   goDashboard() {
     this.router.navigateByUrl('/mobile-seller');
+  }
+
+  goOngkir() {
+    this.router.navigateByUrl('/mobile-seller/m-courier');
   }
 
   goBuyer() {
