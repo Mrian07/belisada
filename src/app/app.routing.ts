@@ -1,3 +1,4 @@
+import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
 import { MContactUsComponent } from './views/mobile/front/component/m-contact-us/m-contact-us.component';
 import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
 import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
@@ -534,6 +535,13 @@ const routes: Routes = [
         component: MContactUsComponent,
         data: {
           title: 'Contact Us'
+        }
+      },
+      {
+        path: 'm-after-sales-service',
+        component: MAfterSalesServiceComponent,
+        data: {
+          title: 'After Sales Service'
         }
       },
       {
