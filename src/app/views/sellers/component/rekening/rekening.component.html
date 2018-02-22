@@ -9,6 +9,19 @@
                     <form class="ui form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
                         <h4 class="ui dividing header">Rekening Bank</h4>
                         <div class="field">
+                            <label>Nama Pemilik</label>
+                            <input name="pemilik" placeholder="Masukan nama pemilik" #_accountName="ngModel" [(ngModel)]="accountName" required type="text"/>
+                            <div *ngIf="_accountNo.invalid && (_accountNo.dirty || _accountNo.touched)" class="ui pointing red basic label">Nama Pemilik</div>
+                        </div>
+
+                        <div class="field">
+                            <label>Nama Bank</label>
+                            <sui-select class="selection" labelField="name" placeholder="Masukan nama Bank" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}">
+                                <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId" [ngModelOptions]="{standalone: true}" ngDefaultControl>{{selectedCategory}}</sui-select-option>
+                            </sui-select>
+                        </div>
+
+                        <div class="field">
                             <label>No. Rekening</label>
 
                             <input name="accountNo" placeholder="Masukan nomor rekening" type="number" [(ngModel)]="accountNo"  required  #_accountNo="ngModel" min="0" max="16"/>
@@ -16,18 +29,6 @@
                             <!-- <div *ngIf="!_accountNo.dirty && !_accountNo.pristine" class="ui pointing red basic label">No Rek Is Required</div> -->
                         </div>
 
-                        <div class="field">
-                            <label>Nama Bank</label>
-                            <sui-select class="selection" labelField="name" placeholder="Nama Bank" [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone: true}">
-                                <sui-select-option *ngFor="let option of searchrek" [value]="option" value="option.mbankId" [ngModelOptions]="{standalone: true}" ngDefaultControl>{{selectedCategory}}</sui-select-option>
-                            </sui-select>
-                        </div>
-
-                        <div class="field">
-                            <label>Pemilik</label>
-                            <input name="pemilik" placeholder="Masukan nama pemilik" #_accountName="ngModel" [(ngModel)]="accountName" required type="text"/>
-                            <div *ngIf="_accountNo.invalid && (_accountNo.dirty || _accountNo.touched)" class="ui pointing red basic label">Nama Pemilik</div>
-                        </div>
                         <div *ngIf="show">
                                 <button
                                         class="ui primary button"
@@ -75,8 +76,8 @@
                 <thead>
                     <tr>
                         <th>Nama Pemilik</th>
-                        <th>No. Rekening</th>
                         <th>Nama Bank</th>
+                        <th>No. Rekening</th>
                         <th>Ubah</th>
 
                         <th>Hapus</th>
@@ -85,8 +86,8 @@
                 <tbody *ngFor="let option3 of rekening | async">
                     <tr>
                             <td>{{option3.accountName}}</td>
-                            <td>{{option3.accountNo}}</td>
                             <td>{{option3.bankName}}</td>
+                            <td>{{option3.accountNo}}</td>
 
                             <!-- <td><input name="accountNo" placeholder="Masukan nomor rekening" type="text" [(ngModel)]="mBankAccountId"  value="{{option.mBankAccountId}}" #_mBankAccountId="ngModel" [ngModelOptions]="{standalone: true}"/>{{option.mBankAccountId}}"</td> -->
 
