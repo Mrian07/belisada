@@ -331,14 +331,19 @@ h1{
         */
         grid-gap:1em;
       }
-      .iniNone {
-          display:none;
-      }
-      .okeNih {
-          margin-right: 250px;
-      }
+    //   .iniNone {
+    //       display:none;
+    //   }
+    //   .okeNih {
+    //       margin-right: 250px;
+    //   }
       .kekiridikit {
           font-size: 22px;
       }
 
+}
+
+.u-overflow {
+    overflow-x: auto;
+    overflow-y: hidden;
 }
