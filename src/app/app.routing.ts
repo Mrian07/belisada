@@ -1,3 +1,6 @@
+import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
+import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
+import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
 import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
@@ -649,6 +652,27 @@ const routes: Routes = [
         component: MCourierComponent,
         data: {
           title: 'Courier'
+        }
+      },
+      {
+        path: 'm-product-list',
+        component: MProductListComponent,
+        data: {
+          title: 'Product List'
+        }
+      },
+      {
+        path: 'm-product',
+        component: MProductComponent,
+        data: {
+          title: 'Product'
+        }
+      },
+      {
+        path: 'm-add-products/:id',
+        component: MAddProductsComponent,
+        data: {
+          title: 'Add Product'
         }
       },
     ]

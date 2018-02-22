@@ -68,9 +68,6 @@ export class MMenuSellerComponent implements OnInit {
     });
   }
 
-  goToProduct() {
-
-  }
 
   goDashboard() {
     this.router.navigateByUrl('/mobile-seller');
@@ -101,7 +98,7 @@ export class MMenuSellerComponent implements OnInit {
   }
 
   goTopProduct() {
-    this.router.navigate(['/']);
+    this.router.navigateByUrl('/mobile-seller/m-product-list');
   }
 
   goToDana() {

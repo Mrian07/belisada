@@ -1,3 +1,8 @@
+import { SearchService } from './core/service/search/search.service';
+import { CategoryService } from './core/service/category/category.service';
+import { BrandsService } from './core/service/brands/brands.service';
+import { AddproductService } from './core/service/addproduct/addproduct.service';
+import { ShareService } from './core/service/shared.service';
 import { CourierService } from './core/service/courier/courier.service';
 import { MyTopProductService } from './core/service/mytopproduct/my-top-product.service';
 import { StoreService } from './core/service/store/store.service';
@@ -153,6 +158,9 @@ import { MStatusInvoiceComponent } from './views/mobile/seller/component/m-dashb
 import { MLostPasswordComponent } from './views/mobile/front/component/m-lost-password/m-lost-password.component';
 import { MSignUpSuccessComponent } from './views/mobile/front/component/m-sign-up-success/m-sign-up-success.component';
 import { MCourierComponent } from './views/mobile/seller/component/m-courier/m-courier.component';
+import { MProductListComponent } from './views/mobile/seller/component/m-product-list/m-product-list.component';
+import { MProductComponent } from './views/mobile/seller/component/m-product/m-product.component';
+import { MAddProductsComponent } from './views/mobile/seller/component/m-add-products/m-add-products.component';
 
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
@@ -299,6 +307,9 @@ export function getAuthServiceConfigs() {
     MLostPasswordComponent,
     MSignUpSuccessComponent,
     MCourierComponent,
+    MProductListComponent,
+    MProductComponent,
+    MAddProductsComponent,
 
     // WishlistComponent,
     // AsapComponent
@@ -344,6 +355,11 @@ export function getAuthServiceConfigs() {
     StoreService,
     CourierService,
     TranslateService,
+    ShareService,
+    AddproductService,
+    BrandsService,
+    CategoryService,
+    SearchService,
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
