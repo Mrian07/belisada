@@ -63,7 +63,7 @@ export class MMenuSellerComponent implements OnInit {
           'Anda sudah keluar dari Account Area.',
           'success'
         ).then(()=> {
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/mobile');
         });
       }
     });

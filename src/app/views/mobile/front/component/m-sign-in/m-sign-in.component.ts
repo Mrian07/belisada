@@ -19,6 +19,7 @@ import { CartItem } from '../../../../../core/model/shoppingcart/cart-item';
 import { ShoppingCartService } from '../../../../../core/service/shopping-cart/shopping-cart.service';
 import { LocalStorageService } from '../../../../../core/service/storage.service';
 import { ProductService } from '../../../../../core/service/product/product.service';
+import { FlagService } from '../../../../../core/service/flag.service';
 
 const CART_KEY = 'cart';
 const CART_POST_KEY = 'cartpost';
@@ -52,7 +53,8 @@ export class MSignInComponent implements OnInit {
       private title: Title,
       private shared: ShareService,
       private shoppingCartService: ShoppingCartService,
-      private productService: ProductService
+      private productService: ProductService,
+      private flagService: FlagService
     ) {
       this.storage = this.storageService.get();
     }
@@ -115,6 +117,7 @@ export class MSignInComponent implements OnInit {
           this.setCartToLocalStorage();
           // this.router.navigate([this.returnUrl]);
           this.router.navigateByUrl('/mobile');
+          this.flagService.changeMessage('sign-in');
         }
       });
     }
