@@ -81,10 +81,10 @@
           "ourapps" : "Download Our Applications",
     "alertone" : "Your message has been successfully sent, Your request will be immediately followed up. Thank You",
     "alerttwo" : "Something is wrong! Please fill in the required fields",
-    "viewall" : "LIHAT SEMUA",
-    "gratis" : "Jakarta Area Free Delivery",
+    "viewall" : "VIEW ALL",
+    "gratis" : "Free Delivery (Jakarta Area)",
     "moredetailone" : "Belisada.co.id, the most comprehensive and trusted e-commerce with various products and fantastic promotion Belisada.co.id, as an e-commerce in Indonesia, providing 10 categories to fulfill customers’ needs. Belisada categories includes Computers, Gadgets, Fashion and Lifestyle, Audio Visual, Mechanical Electrical, Hobby, Home Appliances, Office Equipment, Food Groceries, and Mom and Kids. Belisada.co.id will complete your requirement for Business Laptop, Gaming Laptop, Consumer Laptop and Selfie Expert Smartphone with the latest and the most popular items. Moreover, Belisada.co.id offers the latest lifestyle products from each categories. If you need Mechanical Electrical products, Belisada.co.id will cover it with complete Mechanical Electrical tools, such as Drill, Genset, and Grinder. All various Home Appliance such as AC, Kitchen Equipment, Refrigerator, Stove, Sewing Supplies, Washing Machine, Sanitary Supplies and Households Goods. You can find foods and beverages in groceries and lovely baby things in Mom and Kids. It added with Office Equipment like Office Furniture, Art Supplies, Document Archiving, Book, Label Printer, Smart Access, Office Desk Accessories, Calculator, Attendance Machines, Papers, Shredder, Binding and Laminating, Board, Cashier Equipment. Let’s Shop your daily needs at Belisada.co.id, the most comprehensive and trusted e-commerce. Feel your “Total Shopping Experience” with exploring thousands selection products in 10 Categories at Belisada.co.id.",
-    "moredetailtwo" : "We will send your order for free for Jakarta area",
+    "moredetailtwo" : "We will send your order for free (Jakarta Area)",
     "moredetailthree" : "Shipping in 2-7 Days As the most comprehensive product categories and promotion online shop, Belisada.co.id will guarantee your shipping order in fastest way. We committed to deliver your product in 2-7 days. The Shipment is supported by ASAP, Ninja Express and JNE.",
     "moredetailfour" : "Competitive Price Belisada.co.id always in competitive price to ensure every customer gets the cheapest laptop, cheapest gadget, cheapest tablet, cheapest camera, cheapest drone, cheapest headset, cheapest game and cheapest AC. Our online payment always in various simple ways. Belisada.co.id provides the payment methods of Visa, Mastercards, CIMB Clicks, Mandiri KlikPay and KlikPay BCA",
     "moredetailfive" : "7 Days Return Warranty E-commerce Belisada.co.id is very comfortable and trusted. 7 Days Return Warranty make customers feel comfortable and No Worry with Our Products. Replacement of Defective Items certified by Belisada.co.id without Delivery Fee in Return. Please Contact our Customer Care through telephone, email or live chat to assist you"
@@ -153,7 +153,7 @@
     "wishoke" : "Thank you! Your item has already entered into the Wishlist",
     "delwish" : "You won't be able to revert this!",
     "editok" : "Your changes is success updated!",
-    "editfail" : "Your changes is Fail!",
+    "editfail" : "Your changes is Failed!",
     "noquantity" : "Please input the quantity!",
     "nocart" : "Your cart is still empty, please fill your shopping cart with interesting products that Belisada.co.id provide here"
   }
@@ -216,7 +216,7 @@
           "lacak" : "Search Your Product",
           "notifikasi" : "Notification",
           "contact" : "Contact Us",
-    "titleone" : "Profile Seller",
+    "titleone" : "Seller Profile",
     "titletwo" : "Store Information",
     "titlethree" : "Bank Account",
     "titlefour" : "Change Password",
