@@ -1,3 +1,4 @@
+import { MProductSearchComponent } from './views/mobile/front/component/m-product-search/m-product-search.component';
 import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
 import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
 import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
@@ -460,6 +461,20 @@ const routes: Routes = [
         component: MCategoryComponent,
         data: {
           title: 'category'
+        }
+      },
+      {
+        path: 'm-product-list',
+        component: MProductSearchComponent,
+        data: {
+          title: 'product List'
+        }
+      },
+      {
+        path: 'm-search',
+        component: MProductSearchComponent,
+        data: {
+          title: 'product Search'
         }
       },
       {
