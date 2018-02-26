@@ -468,15 +468,15 @@ export class AddProductsComponent implements OnInit {
       } else {
         this.gambarnya = [];
       }
-      console.log('this.productPictures.length: ', this.productPictures.length);
-      if (this.productPictures.length < 3) {
-        swal(
-          'Belisada.co.id',
-          'Anda harus memasukan gambar minimal 3!',
-          'info'
-        );
-        return;
-      }
+      // console.log('this.productPictures.length: ', this.productPictures.length);
+      // if (this.productPictures.length < 3) {
+      //   swal(
+      //     'Belisada.co.id',
+      //     'Anda harus memasukan gambar minimal 3!',
+      //     'info'
+      //   );
+      //   return;
+      // }
       if (this.cat3Id === undefined) {
         this.cat3Id = this.ctr.cat3;
       }

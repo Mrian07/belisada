@@ -33,7 +33,7 @@ import swal from 'sweetalert2';
 export class ChattingComponent implements OnInit {
   hiden: boolean = !localStorage.chat_hide || JSON.parse(localStorage.chat_hide);
   onSignIn: boolean = this.router.url == '/sign-in';
-  user: any = this.loginsrv.whoLogin();
+  user: any;
   chats = [];
   info: string;
   typingTimer: Object;
@@ -46,6 +46,7 @@ export class ChattingComponent implements OnInit {
   constructor(private loginsrv: LoginService, private chat: ChatService, private router: Router, private shared: ShareService) { }
 
   ngOnInit() {
+    this.user = this.loginsrv.whoLogin();
     this.chat.change.subscribe(hiden => {
       this.hiden = hiden;
     });
