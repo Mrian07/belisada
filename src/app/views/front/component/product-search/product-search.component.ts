@@ -44,7 +44,7 @@ export class ProductSearchComponent implements OnInit {
   total = 0;
   limit = 12;
   pages: any = [];
-  listStyleType = 'list-grid';
+  listStyleType = 'list-row';
   pageParams: any;
   getDetailData: Subscription;
   getSidebarFilter: Subscription;
