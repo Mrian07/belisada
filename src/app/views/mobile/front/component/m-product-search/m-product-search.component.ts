@@ -53,6 +53,8 @@ export class MProductSearchComponent implements OnInit {
   cat;
   brand;
   parent;
+  isOpen: any;
+  isDisabled: any;
   // priceMin;
   // priceMax;
 
