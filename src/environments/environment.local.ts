@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'https://dev-acc-jav.belisada.co.id:8443/belisada-dev/',
   chatUrl: 'http://localhost:3000'
 };
