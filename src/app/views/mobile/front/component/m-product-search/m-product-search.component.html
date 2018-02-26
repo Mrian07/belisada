@@ -7,102 +7,81 @@
 <p></p>
 
 
-<div class="ui pointing dropdown button" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
-  <i class="filter icon"></i>
-  <span class="text">Filter List</span>
-  <div class="menu" suiDropdownMenu style="width:300px;">
+<div class="ui grid">
+    <div class="six wide column">
+
+        <div class="ui dropdown button" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+            <i class="filter icon"></i>
+            <span class="text">Filter</span>
+            <div class="menu" suiDropdownMenu style="width:250px;">
+
+                <div class="sidebar-search">
+                    
+                    <div class="accordion-loop" *ngFor="let item of sidebarFilters">
+                        <button class="accordion">{{ item.filter }}
+                            <i class="dropdown icon"></i>
+                        </button>
+                        <div class="panel">
+                            <div class="grouped fields" *ngIf="item.filterAlias !== 'Price'">
+                                <div class="field" *ngFor="let data of item.data">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" (change)="updateFilter(item.filterAlias, data)" [name]="data.valueId" [id]="data.valueId">
+                                        <label [for]="data.valueId">{{ data.value }} ({{ data.count }})</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="item.filterAlias === 'Price'">
+                                <nouislider *ngFor="let price of item.data" [connect]="true" [min]="price.min" [max]="price.max" [step]="1" [(ngModel)]="someRange" ></nouislider>
+            
+                                <div class="ui grid">
+                                    <div class="seven wide column mini ui input">
+                                        <input type="text" id="priceMin" [value]="someRange[0]">
+                                    </div>
+                                    <div class="two wide column text-center">
+                                        -
+                                    </div>
+                                    <div class="seven wide column mini ui input">
+                                        <input type="text" id="priceMax" [value]="someRange[1]">
+                                    </div>
+                                </div>
+            
+                                <div class="ui grid">
+                                    <div class="sixteen wide column" style="padding-top:0">
+                                        <button type="button" class="fluid mini ui blue button" (click)="generateFilterParams()" (click)="isOpen = !isOpen">Submit</button>
+                                    </div>
+                                </div>
+                                <!-- <input type="text" [value]="someRange[0]">
+                                <input type="text" [value]="someRange[1]"> -->
+                            </div>
+            
+                        </div>
+                    </div>
+            
+                    <!-- <ul>
+                        <li *ngFor="let item of sidebarFilters">{{ item.filter }}
+                            <i class="plus icon"></i>
+                            <ul>
+                                <li *ngFor="let data of item.data">
+                                    {{ data.value }}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul> -->
+                </div>
 
 
 
+            </div>
+        </div>
 
 
-      <div class="sidebar-search">
-          
-                  <div class="accordion-loop" *ngFor="let item of sidebarFilters">
-                      <button class="accordion">{{ item.filter }}
-                          <i class="dropdown icon"></i>
-                      </button>
-                      <div class="panel">
-                          <div class="grouped fields" *ngIf="item.filterAlias !== 'Price'">
-                              <div class="field" *ngFor="let data of item.data">
-                                  <div class="ui checkbox">
-                                      <input type="checkbox" (change)="updateFilter(item.filterAlias, data)" [name]="data.valueId" [id]="data.valueId">
-                                      <label [for]="data.valueId">{{ data.value }} ({{ data.count }})</label>
-                                  </div>
-                              </div>
-                          </div>
-                          <div *ngIf="item.filterAlias === 'Price'">
-                              <nouislider *ngFor="let price of item.data" [connect]="true" [min]="price.min" [max]="price.max" [step]="1" [(ngModel)]="someRange" ></nouislider>
-          
-                              <div class="ui grid">
-                                  <div class="seven wide column mini ui input">
-                                      <input type="text" id="priceMin" [value]="someRange[0]">
-                                  </div>
-                                  <div class="two wide column text-center">
-                                      -
-                                  </div>
-                                  <div class="seven wide column mini ui input">
-                                      <input type="text" id="priceMax" [value]="someRange[1]">
-                                  </div>
-                              </div>
-          
-                              <div class="ui grid">
-                                  <div class="sixteen wide column" style="padding-top:0">
-                                      <button type="button" class="fluid mini ui blue button" (click)="generateFilterParams()" (click)="isOpen = !isOpen">Submit</button>
-                                  </div>
-                              </div>
-                              <!-- <input type="text" [value]="someRange[0]">
-                              <input type="text" [value]="someRange[1]"> -->
-                          </div>
-          
-                      </div>
-                  </div>
-          
-                  <!-- <ul>
-                      <li *ngFor="let item of sidebarFilters">{{ item.filter }}
-                          <i class="plus icon"></i>
-                          <ul>
-                              <li *ngFor="let data of item.data">
-                                  {{ data.value }}
-                              </li>
-                          </ul>
-                      </li>
-                  </ul> -->
-              </div>
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="header">
-      Search Issues
     </div>
-    <div class="ui left icon input">
-      <i class="search icon"></i>
-      <input type="text" name="search" placeholder="Search...">
+    <div class="ten wide column right aligned">
+        <sui-select placeholder="Atur Berdasarkan" [(ngModel)]="selectedOption" class="selection">
+            <sui-select-option *ngFor="let option of sortOrder" value="{{option.sort}}" [value]="option.ob" (click)="sortThis(option.ob)" ></sui-select-option>
+        </sui-select>
     </div>
-    <div class="header">
-      <i class="tags icon"></i>
-      Filter by tag
-    </div>
-    <div class="item">
-      <div class="ui red empty circular label"></div>
-      Important
-    </div>
-    <div class="item">
-      <div class="ui blue empty circular label"></div>
-      Announcement
-    </div>
-    <div class="item">
-      <div class="ui black empty circular label"></div>
-      Discussion
-    </div> -->
-  </div>
+
 </div>
 
 <div class="search-results" *ngFor="let item of productSearchResault.productList">
