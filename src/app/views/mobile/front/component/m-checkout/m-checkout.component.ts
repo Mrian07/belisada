@@ -208,7 +208,7 @@ export class MCheckoutComponent implements OnInit {
 
   cekLogin() {
     if (!this.auth.getUser()) {
-      this.router.navigateByUrl('/sign-in');
+      this.router.navigateByUrl('/mobile/m-sign-in');
     }
   }
 
@@ -262,7 +262,7 @@ export class MCheckoutComponent implements OnInit {
 
 
     if (this.grossTotal === 0) {
-      this.router.navigateByUrl('/cart');
+      this.router.navigateByUrl('/mobile/m-cart');
     }
   }
 
@@ -434,12 +434,12 @@ export class MCheckoutComponent implements OnInit {
         'Selamat transaksi Anda berhasil diproses.',
         'success'
       );
-      this.router.navigateByUrl('/finish-order/' + response.id);
+      this.router.navigateByUrl('/mobile/m-finish-order/' + response.id);
     });
   }
 
   prev() {
-    this.router.navigateByUrl('/cart');
+    this.router.navigateByUrl('/mobile/m-cart');
   }
 
   scrollToQuestionNode(id) {
