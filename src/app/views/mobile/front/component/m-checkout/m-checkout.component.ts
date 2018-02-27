@@ -514,5 +514,8 @@ export class MCheckoutComponent implements OnInit {
     // console.log(pageYOffset);
   }
 
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/mobile/m-product-detail/' + id + '/' + alias);
+  }
 
 }
