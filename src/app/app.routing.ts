@@ -1,3 +1,7 @@
+import { MSallesReportComponent } from './views/mobile/seller/component/m-salles-report/m-salles-report.component';
+import { MLacakBarangAndaComponent } from './views/mobile/seller/component/m-lacak-barang-anda/m-lacak-barang-anda.component';
+import { MTarikDanaComponent } from './views/mobile/seller/component/m-tarik-dana/m-tarik-dana.component';
+import { MReturnCancelComponent } from './views/mobile/front/component/m-return-cancel/m-return-cancel.component';
 import { MWarrantyComponent } from './views/mobile/front/component/m-warranty/m-warranty.component';
 import { MCopyrightPolicyComponent } from './views/mobile/front/component/m-copyright-policy/m-copyright-policy.component';
 import { MPrivacyPolicyComponent } from './views/mobile/front/component/m-privacy-policy/m-privacy-policy.component';
@@ -462,6 +466,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'm-return-cancel',
+        component: MReturnCancelComponent,
+        data: {
+          title: 'Return Cancel'
+        }
+      },
+      {
         path: 'm-terms-conditions',
         component: MTermsConditionsComponent,
         data: {
@@ -757,10 +768,31 @@ const routes: Routes = [
         }
       },
       {
+        path: 'm-lacak-barang-anda',
+        component: MLacakBarangAndaComponent,
+        data: {
+          title: 'Lacak Barang Anda'
+        }
+      },
+      {
+        path: 'm-salles-report',
+        component: MSallesReportComponent,
+        data: {
+          title: 'Salles Report'
+        }
+      },
+      {
         path: 'm-product',
         component: MProductComponent,
         data: {
           title: 'Product'
+        }
+      },
+      {
+        path: 'm-tarik-dana',
+        component: MTarikDanaComponent,
+        data: {
+          title: 'Tarik Dana'
         }
       },
       {

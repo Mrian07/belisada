@@ -174,6 +174,10 @@ import { MCareerComponent } from './views/mobile/front/component/m-career/m-care
 import { MPrivacyPolicyComponent } from './views/mobile/front/component/m-privacy-policy/m-privacy-policy.component';
 import { MCopyrightPolicyComponent } from './views/mobile/front/component/m-copyright-policy/m-copyright-policy.component';
 import { MWarrantyComponent } from './views/mobile/front/component/m-warranty/m-warranty.component';
+import { MReturnCancelComponent } from './views/mobile/front/component/m-return-cancel/m-return-cancel.component';
+import { MTarikDanaComponent } from './views/mobile/seller/component/m-tarik-dana/m-tarik-dana.component';
+import { MLacakBarangAndaComponent } from './views/mobile/seller/component/m-lacak-barang-anda/m-lacak-barang-anda.component';
+import { MSallesReportComponent } from './views/mobile/seller/component/m-salles-report/m-salles-report.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -334,6 +338,10 @@ export function getAuthServiceConfigs() {
     MPrivacyPolicyComponent,
     MCopyrightPolicyComponent,
     MWarrantyComponent,
+    MReturnCancelComponent,
+    MTarikDanaComponent,
+    MLacakBarangAndaComponent,
+    MSallesReportComponent,
 
     // WishlistComponent,
     // AsapComponent
