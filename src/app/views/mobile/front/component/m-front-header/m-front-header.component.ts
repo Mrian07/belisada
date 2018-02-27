@@ -284,7 +284,7 @@ export class MFrontHeaderComponent implements OnInit {
   }
 
   productSelected(hasil: any) {
-    this.router.navigateByUrl('/mobile/Product-detail/' + hasil.productId + '/' + hasil.aliasName);
+    this.router.navigateByUrl('/mobile/m-product-detail/' + hasil.productId + '/' + hasil.aliasName);
     this.results = [];
   }
   hapusbersih() {

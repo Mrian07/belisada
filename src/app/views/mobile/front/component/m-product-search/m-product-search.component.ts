@@ -307,6 +307,6 @@ export class MProductSearchComponent implements OnInit {
   }
 
   detail(id: number, alias: string) {
-    this.router.navigateByUrl('/mobile/m-product-detail' + id + '/' + alias);
+    this.router.navigateByUrl('/mobile/m-product-detail/' + id + '/' + alias);
   }
 }
