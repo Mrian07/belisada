@@ -169,6 +169,11 @@ import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-af
 import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
 import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
 import { MProductSearchComponent } from './views/mobile/front/component/m-product-search/m-product-search.component';
+import { MTermsConditionsComponent } from './views/mobile/front/component/m-terms-conditions/m-terms-conditions.component';
+import { MCareerComponent } from './views/mobile/front/component/m-career/m-career.component';
+import { MPrivacyPolicyComponent } from './views/mobile/front/component/m-privacy-policy/m-privacy-policy.component';
+import { MCopyrightPolicyComponent } from './views/mobile/front/component/m-copyright-policy/m-copyright-policy.component';
+import { MWarrantyComponent } from './views/mobile/front/component/m-warranty/m-warranty.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -324,6 +329,11 @@ export function getAuthServiceConfigs() {
     MSellerProposeComponent,
     MNewSellerComponent,
     MProductSearchComponent,
+    MTermsConditionsComponent,
+    MCareerComponent,
+    MPrivacyPolicyComponent,
+    MCopyrightPolicyComponent,
+    MWarrantyComponent,
 
     // WishlistComponent,
     // AsapComponent

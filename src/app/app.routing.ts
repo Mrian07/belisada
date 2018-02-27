@@ -1,3 +1,8 @@
+import { MWarrantyComponent } from './views/mobile/front/component/m-warranty/m-warranty.component';
+import { MCopyrightPolicyComponent } from './views/mobile/front/component/m-copyright-policy/m-copyright-policy.component';
+import { MPrivacyPolicyComponent } from './views/mobile/front/component/m-privacy-policy/m-privacy-policy.component';
+import { MCareerComponent } from './views/mobile/front/component/m-career/m-career.component';
+import { MTermsConditionsComponent } from './views/mobile/front/component/m-terms-conditions/m-terms-conditions.component';
 import { MProductSearchComponent } from './views/mobile/front/component/m-product-search/m-product-search.component';
 import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
 import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
@@ -454,6 +459,41 @@ const routes: Routes = [
         component: MFrontHomeComponent,
         data: {
           title: 'home'
+        }
+      },
+      {
+        path: 'm-terms-conditions',
+        component: MTermsConditionsComponent,
+        data: {
+          title: 'Terms Conditions'
+        }
+      },
+      {
+        path: 'm-career',
+        component: MCareerComponent,
+        data: {
+          title: 'Karir'
+        }
+      },
+      {
+        path: 'm-privacy-policy',
+        component: MPrivacyPolicyComponent,
+        data: {
+          title: 'Privacy Policy'
+        }
+      },
+      {
+        path: 'm-copyright-policy',
+        component: MCopyrightPolicyComponent,
+        data: {
+          title: 'Copyright Policy'
+        }
+      },
+      {
+        path: 'm-warranty',
+        component: MWarrantyComponent,
+        data: {
+          title: 'Warranty'
         }
       },
       {
