@@ -151,4 +151,8 @@ export class MCartComponent implements OnInit {
     checkout() {
       this.router.navigateByUrl('/mobile/m-checkout');
     }
+
+    detail(id: number, alias: string) {
+      this.router.navigateByUrl('/mobile/m-product-detail/' + id + '/' + alias);
+    }
   }

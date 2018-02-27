@@ -152,4 +152,8 @@ export class CartComponent implements OnInit {
   checkout() {
     this.router.navigateByUrl('/checkout');
   }
+
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
 }
