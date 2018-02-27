@@ -5,6 +5,6 @@ import { environment } from '../../../environments/environment';
 export class Configuration {
   serverWithApiUrl = 'https://api.myacico.co.id/dev';
   serverWithAccUrl = environment.apiUrl;
-  serverWithNetUrl = 'https://api-net.belisada.co.id/belisada';
+  serverWithNetUrl = environment.api2Url;
   serverWithImgUrl = 'https://storage.googleapis.com/myacicoproductimg';
 }
