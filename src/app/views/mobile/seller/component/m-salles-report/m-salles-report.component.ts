@@ -7,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MSallesReportComponent implements OnInit {
 
+  options: any;
+  optionsLookup: any;
+  selectedOption: any;
+  alertSelected: any;
+
   constructor() { }
 
   ngOnInit() {
