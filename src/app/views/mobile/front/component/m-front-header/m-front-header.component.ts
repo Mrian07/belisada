@@ -170,7 +170,7 @@ export class MFrontHeaderComponent implements OnInit {
       this.queryParams['parent'] = 1;
       this.queryParams['id'] = searchCategory.mProductCategoryId;
     }
-    this.router.navigate(['/search'], { queryParams: this.queryParams });
+    this.router.navigate(['/mobile/m-search'], { queryParams: this.queryParams });
     this.selectedSearchCategory = '';
   }
 
