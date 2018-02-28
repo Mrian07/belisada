@@ -31,7 +31,6 @@ import { MChangePasswordComponent } from './views/mobile/seller/component/m-chan
 import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
-import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
