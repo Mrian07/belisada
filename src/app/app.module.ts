@@ -178,6 +178,14 @@ import { MReturnCancelComponent } from './views/mobile/front/component/m-return-
 import { MTarikDanaComponent } from './views/mobile/seller/component/m-tarik-dana/m-tarik-dana.component';
 import { MLacakBarangAndaComponent } from './views/mobile/seller/component/m-lacak-barang-anda/m-lacak-barang-anda.component';
 import { MSallesReportComponent } from './views/mobile/seller/component/m-salles-report/m-salles-report.component';
+import { MKnpBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-knp-belisada/m-knp-belisada.component';
+import { MInboxComponent } from './views/mobile/front/component/m-seller-center/m-inbox/m-inbox.component';
+import { MAsapbyBelisComponent } from './views/mobile/front/component/m-seller-center/m-asapby-belis/m-asapby-belis.component';
+// tslint:disable-next-line:max-line-length
+import { MBerjualanBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-berjualan-belisada/m-berjualan-belisada.component';
+import { MHeaderdisellerComponent } from './views/mobile/front/component/m-seller-center/m-headerdiseller/m-headerdiseller.component';
+import { MSellerCenterComponent } from './views/mobile/front/component/m-seller-center/m-seller-center.component';
+import { MSidebarComponent } from './views/mobile/front/component/m-seller-center/m-sidebar/m-sidebar.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -342,6 +350,13 @@ export function getAuthServiceConfigs() {
     MTarikDanaComponent,
     MLacakBarangAndaComponent,
     MSallesReportComponent,
+    MKnpBelisadaComponent,
+    MInboxComponent,
+    MAsapbyBelisComponent,
+    MBerjualanBelisadaComponent,
+    MHeaderdisellerComponent,
+    MSellerCenterComponent,
+    MSidebarComponent,
 
     // WishlistComponent,
     // AsapComponent
