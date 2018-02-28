@@ -52,6 +52,7 @@ export class ProductSearchComponent implements OnInit {
   pageTitle: string;
   cat;
   brand;
+  alias: string;
   parent;
   // priceMin;
   // priceMax;
@@ -84,8 +85,6 @@ export class ProductSearchComponent implements OnInit {
       .subscribe(params => {
         this.cat = params.cat === undefined ? [] : params.cat.substr(1).slice(0, -1).split(',');
         this.brand = params.brand === undefined ? [] : params.brand.substr(1).slice(0, -1).split(',');
-        console.log('this.cat: ', this.cat);
-        console.log('this.brand: ', this.brand);
         this.keys = params.q;
         if (params.page) {
           this.currentPage = params.page;
@@ -109,7 +108,6 @@ export class ProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
-          console.log('this.getDetailData()');
           this.loading = false;
           this.getDetailDatas();
         });
@@ -118,7 +116,6 @@ export class ProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GET_SIDEBAR_FILTER_SUCCESS)
         .subscribe((action: frontActions.GetSidebarFilterSuccess) => {
-          console.log('this.getSidebarFilter()');
           this.loading = false;
           this.getSidebarFilters();
         });
@@ -130,7 +127,7 @@ export class ProductSearchComponent implements OnInit {
     if (this.keys === undefined) {
       this.title.setTitle('Belisada - Product List');
     } else {
-      this.title.setTitle('Belisada - Search Result');
+      this.title.setTitle('Belisada - Search Result' + ' ' + this.keys);
     }
   }
 
@@ -168,7 +165,6 @@ export class ProductSearchComponent implements OnInit {
     this.loading = true;
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
-        console.log(response);
         this.loading = false;
         if (!isEmpty(response)) {
           this.productSearchResault = response;
@@ -265,7 +261,6 @@ export class ProductSearchComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETLISTSUCCESS)
     .subscribe((action: frontActions.GetListSuccess) => {
-      console.log('this.getDetailData()');
       this.loading = false;
       this.getDetailDatas();
     });
@@ -279,8 +274,6 @@ export class ProductSearchComponent implements OnInit {
         this.loading = false;
         if (!isEmpty(response)) {
           this.sidebarFilters = response;
-
-          console.log('this.sidebarFilters', this.sidebarFilters);
           this.sidebarFilters.forEach(x => {
             if (x.filterAlias === 'Price') {
               x.data.forEach(item => {
