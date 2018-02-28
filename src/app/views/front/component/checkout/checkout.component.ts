@@ -514,5 +514,7 @@ export class CheckoutComponent implements OnInit {
     // console.log(pageYOffset);
   }
 
-
+  detail(id: number, alias: string) {
+    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+  }
 }

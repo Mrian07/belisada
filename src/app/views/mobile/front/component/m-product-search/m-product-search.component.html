@@ -1,0 +1,130 @@
+
+<p *ngIf="keys !== undefined">HASIL PENCARIAN <b>"{{ keys }}"</b></p>
+<p class="text-center" *ngIf="loading === false && total === 0">Tidak Ada Produk</p>
+<div class="ui active centered inline loader" *ngIf="loading === true">
+  <div class="ui small text loader">Loading</div>
+</div>
+<p></p>
+
+
+<div class="ui grid">
+    <div class="six wide column">
+
+        <div class="ui dropdown button" suiDropdown [(isOpen)]="isOpen" [isDisabled]="isDisabled">
+            <i class="filter icon"></i>
+            <span class="text">Filter</span>
+            <div class="menu" suiDropdownMenu style="width:250px;">
+
+                <div class="sidebar-search">
+                    
+                    <div class="accordion-loop" *ngFor="let item of sidebarFilters">
+                        <button class="accordion">{{ item.filter }}
+                            <i class="dropdown icon"></i>
+                        </button>
+                        <div class="panel">
+                            <div class="grouped fields" *ngIf="item.filterAlias !== 'Price'">
+                                <div class="field" *ngFor="let data of item.data">
+                                    <div class="ui checkbox">
+                                        <input type="checkbox" (change)="updateFilter(item.filterAlias, data)" [name]="data.valueId" [id]="data.valueId">
+                                        <label [for]="data.valueId">{{ data.value }} ({{ data.count }})</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="item.filterAlias === 'Price'">
+                                <nouislider *ngFor="let price of item.data" [connect]="true" [min]="price.min" [max]="price.max" [step]="1" [(ngModel)]="someRange" ></nouislider>
+            
+                                <div class="ui grid">
+                                    <div class="seven wide column mini ui input">
+                                        <input type="text" id="priceMin" [value]="someRange[0]">
+                                    </div>
+                                    <div class="two wide column text-center">
+                                        -
+                                    </div>
+                                    <div class="seven wide column mini ui input">
+                                        <input type="text" id="priceMax" [value]="someRange[1]">
+                                    </div>
+                                </div>
+            
+                                <div class="ui grid">
+                                    <div class="sixteen wide column" style="padding-top:0">
+                                        <button type="button" class="fluid mini ui blue button" (click)="generateFilterParams()" (click)="isOpen = !isOpen">Submit</button>
+                                    </div>
+                                </div>
+                                <!-- <input type="text" [value]="someRange[0]">
+                                <input type="text" [value]="someRange[1]"> -->
+                            </div>
+            
+                        </div>
+                    </div>
+            
+                    <!-- <ul>
+                        <li *ngFor="let item of sidebarFilters">{{ item.filter }}
+                            <i class="plus icon"></i>
+                            <ul>
+                                <li *ngFor="let data of item.data">
+                                    {{ data.value }}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul> -->
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="ten wide column right aligned">
+        <sui-select placeholder="Atur Berdasarkan" [(ngModel)]="selectedOption" class="selection">
+            <sui-select-option *ngFor="let option of sortOrder" value="{{option.sort}}" [value]="option.ob" (click)="sortThis(option.ob)" ></sui-select-option>
+        </sui-select>
+    </div>
+
+</div>
+
+<div class="search-results" *ngFor="let item of productSearchResault.productList">
+
+  <img class="ui image" src="{{item.imageurl}}" onError="this.src='/assets/img/no-image.png'">
+
+    <div class="header-title"><a (click)="detail(item.productId, item.aliasName)" class="item" title="{{item.name | truncate : 35 }}" style="cursor: pointer;"> <strong>{{item.name}}</strong></a></div>
+    <div class="price pricelist"><a (click)="detail(item.productId, item.aliasName)">Rp {{item.pricelist | number}}</a><br/>
+        <div class="yu">
+            <div class="selledby">dijual oleh: <span >{{ item.storeName }}</span></div>
+            <span (click)="detail(item.productId, item.aliasName)">Stok: {{item.stock}}</span>
+            <img *ngIf="item.isAsapShipping === 'Y'" src="/assets/img/asap_big.png" alt="">
+        </div>
+    </div>
+    <div class="highlight">
+        <sui-rating class="star rating" [maximum]="5" [isReadonly]="true" [(ngModel)]="item.rate"></sui-rating>
+        <p (click)="detail(item.productId, item.aliasName)" [innerHTML] = "item.highlight | words: 15 | sanitizeHtml ">
+        </p>
+    </div>
+
+</div>
+
+<div class="paging">
+  <ul>
+      <li>
+          <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+      </li>
+      <li>
+          <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+      </li>
+      <li *ngFor="let p of pages">
+          <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+      </li>
+      <li>
+          <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPages}">Next</a>
+      </li>
+      <li>
+          <a (click)="setPage(lastPages)" [ngClass]="{disabled:currentPage == lastPages}">Last</a>
+      </li>
+  </ul>
+</div>
+
+
+
+
+
