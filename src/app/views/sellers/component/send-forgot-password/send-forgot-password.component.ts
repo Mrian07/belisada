@@ -20,13 +20,13 @@ export class SendForgotPasswordComponent implements OnInit {
     private router: Router) {
     this.route.params.subscribe( params => {
       this.act_key = params.key;
-      console.log('ini datanya,', params);
+      //console.log('ini datanya,', params);
     });
   }
 
   ngOnInit() {
     this.act_key = this.route.snapshot.queryParamMap.get('key');
-    console.log(this.act_key);
+    //console.log(this.act_key);
   }
 
   pazz() {
@@ -34,7 +34,7 @@ export class SendForgotPasswordComponent implements OnInit {
       password : this.password,
       key : this.act_key,
     };
-    console.log(registernih);
+    //console.log(registernih);
     this.forgotPassowrd.fgtPassword(registernih).subscribe(data => {
       if (data.status === '1') {
         swal(

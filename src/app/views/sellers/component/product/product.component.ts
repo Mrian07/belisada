@@ -99,7 +99,7 @@ export class ProductComponent implements OnInit {
   }
 
   inactive (id: number) {
-    console.log(id);
+    //console.log(id);
     const data = {
       isActive: 'N',
       productId: 31097
@@ -160,7 +160,7 @@ export class ProductComponent implements OnInit {
 
   editPrice(q) {
     this.editmode = false;
-    console.log(q);
+    //console.log(q);
 
 
    // this.sellerProduct = new EmptyObservable();
@@ -182,7 +182,7 @@ export class ProductComponent implements OnInit {
       isGuarantee: q.isGuarantee,
       guaranteeDays: q.guaranteeDays
     };
-    console.log(productData);
+    //console.log(productData);
     this.store.dispatch(new fromActions.EditProduct(productData));
     this.sellerProduct = new EmptyObservable();
     // "qtyOnSeller":37,

@@ -134,7 +134,7 @@ export class StoreComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
+    //console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });
