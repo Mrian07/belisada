@@ -1,3 +1,4 @@
+import { MSliderDepanComponent } from './views/mobile/front/component/m-slider-depan/m-slider-depan.component';
 import { MAsapbyBelisComponent } from './views/mobile/front/component/m-seller-center/m-asapby-belis/m-asapby-belis.component';
 import { MBerjualanBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-berjualan-belisada/m-berjualan-belisada.component';
 import { MKnpBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-knp-belisada/m-knp-belisada.component';
@@ -474,6 +475,13 @@ const routes: Routes = [
         component: MReturnCancelComponent,
         data: {
           title: 'Return Cancel'
+        }
+      },
+      {
+        path: 'm-slider-depan',
+        component: MSliderDepanComponent,
+        data: {
+          title: 'Slider Depan'
         }
       },
       {

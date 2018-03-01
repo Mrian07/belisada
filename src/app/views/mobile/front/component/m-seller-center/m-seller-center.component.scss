@@ -93,28 +93,28 @@ hr {
     }
 
     .footer-item-container {
-        display: grid;
-        grid-gap: 1em;
-        grid-template-columns: 40px auto;
-        border-right: 2px solid #fff;
+        width:100%;
+        // display: grid;
+        // grid-gap: 1em;
+        // grid-template-columns: 40px auto;
 
-        .icon-footer {
-            height: 30px;
-        }
+        // .icon-footer {
+        //     height: 30px;
+        // }
 
-        .footer-item-caption {
-            display: block;
-            color: #fff;
-            height: 60px;
-            overflow: hidden;
-        }
+        // .footer-item-caption {
+        //     display: block;
+        //     color: #fff;
+        //     height: 60px;
+        //     overflow: hidden;
+        // }
 
-        a {
-            color: #333;
-        }
-        a:hover {
-            color: #000;
-        }
+        // a {
+        //     color: #333;
+        // }
+        // a:hover {
+        //     color: #000;
+        // }
     }
 
     .remove-border-right {
