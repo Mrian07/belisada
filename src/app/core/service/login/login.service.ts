@@ -41,12 +41,12 @@ export class LoginService {
       const segments = user.token.split('.');
 
       if (segments.length !== 3) {
-        console.log('token: Not enough or too many segments');
+        // console.log('token: Not enough or too many segments');
         return;
       }
       const payload = JSON.parse(base64urlDecode(segments[1]));
       if (payload.exp && Date.now() > payload.exp*1000) {
-        console.log('Token expired');
+        // console.log('Token expired');
         return;
       }
 

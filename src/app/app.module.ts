@@ -127,7 +127,6 @@ import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-s
 import { MChangePasswordBuyerComponent } from './views/mobile/buyer/component/m-change-password-buyer/m-change-password-buyer.component';
 import { MBillingAddressComponent } from './views/mobile/buyer/component/m-billing-address/m-billing-address.component';
 import { MShippingAddressComponent } from './views/mobile/buyer/component/m-shipping-address/m-shipping-address.component';
-import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
 import { MCaraBerbelanjaComponent } from './views/mobile/front/component/m-cara-berbelanja/m-cara-berbelanja.component';
 // import { ComponentComponent } from './views/mobile/front/component/component.component';
 import { MCartComponent } from './views/mobile/front/component/m-cart/m-cart.component';
@@ -168,6 +167,25 @@ import { MContactUsComponent } from './views/mobile/front/component/m-contact-us
 import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
 import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
 import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
+import { MProductSearchComponent } from './views/mobile/front/component/m-product-search/m-product-search.component';
+import { MTermsConditionsComponent } from './views/mobile/front/component/m-terms-conditions/m-terms-conditions.component';
+import { MCareerComponent } from './views/mobile/front/component/m-career/m-career.component';
+import { MPrivacyPolicyComponent } from './views/mobile/front/component/m-privacy-policy/m-privacy-policy.component';
+import { MCopyrightPolicyComponent } from './views/mobile/front/component/m-copyright-policy/m-copyright-policy.component';
+import { MWarrantyComponent } from './views/mobile/front/component/m-warranty/m-warranty.component';
+import { MReturnCancelComponent } from './views/mobile/front/component/m-return-cancel/m-return-cancel.component';
+import { MTarikDanaComponent } from './views/mobile/seller/component/m-tarik-dana/m-tarik-dana.component';
+import { MLacakBarangAndaComponent } from './views/mobile/seller/component/m-lacak-barang-anda/m-lacak-barang-anda.component';
+import { MSallesReportComponent } from './views/mobile/seller/component/m-salles-report/m-salles-report.component';
+import { MKnpBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-knp-belisada/m-knp-belisada.component';
+import { MInboxComponent } from './views/mobile/front/component/m-seller-center/m-inbox/m-inbox.component';
+import { MAsapbyBelisComponent } from './views/mobile/front/component/m-seller-center/m-asapby-belis/m-asapby-belis.component';
+// tslint:disable-next-line:max-line-length
+import { MBerjualanBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-berjualan-belisada/m-berjualan-belisada.component';
+import { MHeaderdisellerComponent } from './views/mobile/front/component/m-seller-center/m-headerdiseller/m-headerdiseller.component';
+import { MSellerCenterComponent } from './views/mobile/front/component/m-seller-center/m-seller-center.component';
+import { MSidebarComponent } from './views/mobile/front/component/m-seller-center/m-sidebar/m-sidebar.component';
+import { MSliderDepanComponent } from './views/mobile/front/component/m-slider-depan/m-slider-depan.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -283,7 +301,6 @@ export function getAuthServiceConfigs() {
     MChangePasswordBuyerComponent,
     MBillingAddressComponent,
     MShippingAddressComponent,
-    MCaraBerjualanComponent,
     MCaraBerbelanjaComponent,
     MCartComponent,
     MCheckoutComponent,
@@ -322,6 +339,24 @@ export function getAuthServiceConfigs() {
     MAfterSalesServiceComponent,
     MSellerProposeComponent,
     MNewSellerComponent,
+    MProductSearchComponent,
+    MTermsConditionsComponent,
+    MCareerComponent,
+    MPrivacyPolicyComponent,
+    MCopyrightPolicyComponent,
+    MWarrantyComponent,
+    MReturnCancelComponent,
+    MTarikDanaComponent,
+    MLacakBarangAndaComponent,
+    MSallesReportComponent,
+    MKnpBelisadaComponent,
+    MInboxComponent,
+    MAsapbyBelisComponent,
+    MBerjualanBelisadaComponent,
+    MHeaderdisellerComponent,
+    MSellerCenterComponent,
+    MSidebarComponent,
+    MSliderDepanComponent,
 
     // WishlistComponent,
     // AsapComponent

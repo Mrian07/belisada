@@ -63,7 +63,7 @@ export class FrontSlideShowComponent implements OnInit {
   }
   /* It will be triggered on every slide*/
   onmoveFn(data: NgxCarouselStore) {
-    console.log(data);
+    // console.log(data);
   }
   slideShow() {
     this.router.navigateByUrl('/Slider-Depan');

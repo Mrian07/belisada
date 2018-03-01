@@ -4,7 +4,7 @@
             <div class="gap-top">
                 <a class="section" (click)="home()">Home</a>
                 <div class="divider"> / </div>
-                <a routerLink="/category/{{ProductList.category2Id}}/{{ProductList.category2Name}}" class="section">{{ProductList.category2Name}}</a>
+                <a routerLink="/mobile/m-category/{{ProductList.category2Id}}/{{ProductList.category2Name}}" class="section">{{ProductList.category2Name}}</a>
                 <div class="divider"> / </div>
                 <div class="active section">{{ProductList.category3Name}}</div>
             </div>
@@ -75,7 +75,7 @@
                 </td>
             </tr>
         </table>
-
+<!-- 
         <div class="gap-between-elements3"></div>
         <table border=0>
             <tr>
@@ -106,7 +106,7 @@
                     </a>
                 </td>
             </tr>
-        </table>
+        </table> -->
 
     </div>
 
@@ -216,6 +216,68 @@
     </div>
 </div>
 
+
+<sui-accordion class="styled fluid">
+    <sui-accordion-panel [isOpen]="true">
+        <div title>
+            <i class="dropdown icon"></i>
+            Deskripsi
+        </div>
+        <div content>
+            <p style=" max-width: 1000px; overflow:hidden;" [innerHTML]="ProductList.description | sanitizeHtml"></p>
+        </div>
+    </sui-accordion-panel>
+    <sui-accordion-panel>
+        <div title>
+            <i class="dropdown icon"></i>
+            Spesifikasi
+        </div>
+        <div content>
+            <span *ngIf="specs === 0">Spesifikasi Masih Belum Tersedia</span>
+            <li *ngFor="let item of ProductList.specification">{{item.attribute}} : {{item.value}}</li>
+        </div>
+    </sui-accordion-panel>
+    <sui-accordion-panel>
+        <div title>
+            <i class="dropdown icon"></i>
+            Ulasan
+        </div>
+        <div content>
+            <div class="wrapperyu">
+                <div class="jamu" *ngFor="let itex of uli">
+                    <div class="kkalo">
+                        <div class="ui labeled button lpp" tabindex="0">
+                            <div class="ui red button lpp">
+                                <i class="heart icon"></i> {{itex.name}}
+                            </div>
+                            <div class="ui basic red left pointing label">
+                                Pembeli
+                            </div>
+    
+                        </div>
+                        <br/>
+                        <div>
+                            {{itex.title}}
+                        </div>
+                        <p>Tanggal Pembelian : {{itex.created}}</p>
+                        <sui-rating class="star" [ngModel]="itex.star" [maximum]="5" [isReadonly]="true"></sui-rating>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </sui-accordion-panel>
+    <sui-accordion-panel>
+        <div title>
+            <i class="dropdown icon"></i>
+            Pertanyaan
+        </div>
+        <div content>
+            Belum ada Pertanyaan
+        </div>
+    </sui-accordion-panel>
+</sui-accordion>
+
+<!-- 
 <sui-tabset>
     <div class="ui top attached tabular menu u-overflow">
         <a class="item" suiTabHeader="1">Deskripsi</a>
@@ -254,4 +316,4 @@
         </div>
     </div>
     <div class="ui bottom attached segment" suiTabContent="4">Belum ada Pertanyaan</div>
-</sui-tabset>
+</sui-tabset> -->

@@ -34,7 +34,13 @@
     <div style="border-right:1px solid #f1f1f1;">
     <h2>{{ProductList.name}}</h2>
     <div class="gap-between-elements"></div>
-    <span>Brand :</span> <span class="asd3" (click)="brand(ProductList.brandname)">{{ ProductList.brandname }}</span>
+    <div *ngIf="ProductList.brandname === ''; else k">
+       
+    </div>
+    <ng-template #k>
+            <span>Brand :</span> <span class="asd3" (click)="brand(ProductList.brandname)">{{ ProductList.brandname }}</span>   
+             </ng-template>
+   
     <div class="gap-between-elements"></div>
     <sui-rating class="star gedein" [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating>
     <!-- <sui-rating [ngModel]="ProductList.rate" [maximum]="5" [isReadonly]="true"></sui-rating> -->

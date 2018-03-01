@@ -184,11 +184,11 @@ export class AddShippingComponent implements OnInit {
   }
 
   private _markFormPristine(form: FormGroup): void {
-    console.log('form:before ', form);
+    // console.log('form:before ', form);
     Object.keys(form.controls).forEach(control => {
         form.controls[control].markAsPristine();
     });
-    console.log('form:after ', form);
+    // console.log('form:after ', form);
   }
 
 }

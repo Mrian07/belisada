@@ -1,4 +1,4 @@
-<div class="column">
+<div class="column" style="margin-left:300px;">
   <app-search-dashboard></app-search-dashboard>
 </div>
 <div class="column">
@@ -31,9 +31,9 @@
 
 </div>
 
-<!-- 
-<sui-modal [isClosable]="false" (dismissed)="alert($event)" #modal *ngIf="stores.length == 0 && isReady">
-  <div class="header">Selamat datang di belisada</div>
+
+<sui-modal [isClosable]="false" (dismissed)="alert($event)" #modal *ngIf="stores.length == 0 && isReady" style="padding-top:300px;">
+  <div class="header" style="margin-top:350px;">Selamat datang di belisada</div>
   <div class="content">
       <p>Selamat datang user di Area Store,</p>
       <p>Diarea ini Anda bisa melakukan penjualan produk, namun ada tahapan yang wajib Anda penuhi diantaranya:</p>
@@ -46,7 +46,9 @@
 
   </div>
   <div class="actions">
+      <!-- <button class="ui red button" (click)="modal.deny()">Cancel</button> -->
+      <!-- <button class="ui green button" (click)="modal.approve('done')" autofocus>Ok</button> -->
       <button class="ui green button" (click)="daftarToko()" (click)="modal.deny()" autofocus>Daftarkan Toko Anda Sekarang</button>
       <button class="ui red button" (click)="modal.deny()">Tidak Sekarang</button>
   </div>
-</sui-modal> -->
+</sui-modal>

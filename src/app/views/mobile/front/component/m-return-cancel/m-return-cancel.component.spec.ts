@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MCaraBerjualanComponent } from './m-cara-berjualan.component';
+import { MReturnCancelComponent } from './m-return-cancel.component';
 
-describe('MCaraBerjualanComponent', () => {
-  let component: MCaraBerjualanComponent;
-  let fixture: ComponentFixture<MCaraBerjualanComponent>;
+describe('MReturnCancelComponent', () => {
+  let component: MReturnCancelComponent;
+  let fixture: ComponentFixture<MReturnCancelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MCaraBerjualanComponent ]
+      declarations: [ MReturnCancelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MCaraBerjualanComponent);
+    fixture = TestBed.createComponent(MReturnCancelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

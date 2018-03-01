@@ -65,9 +65,9 @@ export class InfoPerusahaanComponent implements OnInit {
     // this.store.dispatch(new fromActions.GetBank(user.token));
     this.perusahaan = this.store.select('p');
     this.perusahaan.subscribe(x => {
-      console.log(x);
+      // console.log(x);
     });
-    console.log('asdasdasdasd', this.perusahaan);
+    // console.log('asdasdasdasd', this.perusahaan);
     // this.getProvince();
     this.getCategoryOne();
     this.createFormControls();
@@ -116,7 +116,7 @@ export class InfoPerusahaanComponent implements OnInit {
     cnv.getContext('2d').drawImage(el, 0, 0, w, h);
 
     this.newImage = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
-    console.log('newImg:', this.newImage);
+    // console.log('newImg:', this.newImage);
   }
 
   onSubmit() {
@@ -136,7 +136,7 @@ export class InfoPerusahaanComponent implements OnInit {
       imageCorporateNpwp: this.newImage
     };
     this.infoPerusahaan.update(data).subscribe(response => {
-      console.log('ini submit ', response);
+      // console.log('ini submit ', response);
       this.createComForm.reset();
       if (response.status === '1') {
         swal(
@@ -191,7 +191,7 @@ export class InfoPerusahaanComponent implements OnInit {
     });
   }
   selectCategories(sectorTypeId: number) {
-    console.log(sectorTypeId);
+    // console.log(sectorTypeId);
   }
 
 
@@ -239,16 +239,16 @@ export class InfoPerusahaanComponent implements OnInit {
       } else {
         this.userImageNPWP = '/assets/img/noimage.png';
       }
-      console.log('gini:1', data);
+      // console.log('gini:1', data);
     });
   }
   fillForms() {
     const luser = JSON.parse(localStorage.getItem('user'));
     this.infoPerusahaan.getProfile(luser.token).subscribe(data => {
       if (!data) {
-        console.log('kosong');
+        // console.log('kosong');
       }else {
-        console.log('ini data: ', data);
+        // console.log('ini data: ', data);
 
         this.masterService.getCity(data.regionId).subscribe(city => {
           this.cities = city;
@@ -302,7 +302,7 @@ export class InfoPerusahaanComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
+    // console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });

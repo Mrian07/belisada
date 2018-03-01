@@ -1,0 +1,123 @@
+.ui.grid {
+    margin-bottom: 0rem !important;
+}
+@import url('https://fonts.googleapis.com/css?family=Quicksand:500,700');
+.ik {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+hr {
+    border : 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+.wrapper{
+    display:grid;
+    grid-template-columns: 100%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+  .buku {
+    font-size: 37px;
+    color: white
+  }
+  .kamiSia {
+      font-size: 17px;
+      color: white;
+  }
+  .wrapper3{
+    display:grid;
+    grid-template-columns: 15% 79%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+  .wrapper2{
+    display:grid;
+    grid-template-columns: 20% 20% 20% 20%;
+    /*
+    grid-column-gap:1em;
+    grid-row-gap:1em;
+    */
+    grid-gap:1em;
+  }
+
+  .wrapper > div{
+    // background:#eee;
+    padding:1em;
+  }
+  .wrapper > div:nth-child(odd){
+    background:#FF9441;
+  }
+.header-seller-center {
+    display: table;
+    width: 100%;
+    height: 250px;
+    margin-bottom: 2em;
+    background-color: #FF9441;
+    background-image: url('/assets/img/seller-center/seller-center.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+
+    .caption {
+        display: table-cell;
+        padding: 0 1em;
+        font-size: 2em;
+        color: #ffffff;
+        vertical-align: middle;
+    }
+}
+
+.need-help-wrapper {
+    display: grid;
+    grid-gap: 1em;
+    padding: 1em;
+    grid-template-columns: 10% repeat(3, 1fr) 10%;
+    background-color: #f89930;
+
+    .need-help-title-wrapper {
+        grid-column: 1/6;
+        text-align: center;
+        color: #fff;
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    .footer-item-container {
+        width:100%;
+        // display: grid;
+        // grid-gap: 1em;
+        // grid-template-columns: 40px auto;
+
+        // .icon-footer {
+        //     height: 30px;
+        // }
+
+        // .footer-item-caption {
+        //     display: block;
+        //     color: #fff;
+        //     height: 60px;
+        //     overflow: hidden;
+        // }
+
+        // a {
+        //     color: #333;
+        // }
+        // a:hover {
+        //     color: #000;
+        // }
+    }
+
+    .remove-border-right {
+        border-right: none;
+    }
+}

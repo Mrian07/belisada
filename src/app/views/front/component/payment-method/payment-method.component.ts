@@ -80,7 +80,7 @@ export class PaymentMethodComponent implements OnInit {
 
   ngOnInit() {
     this.title.setTitle('Belisada - Payment Method');
-    console.log('shared:', this.shared.shareData);
+    // console.log('shared:', this.shared.shareData);
     this.subscription = this.actionsSubject
     .asObservable()
     .filter(action => action.type === frontActions.GET_PAYMENT_METHOD_SUCCESS)
@@ -106,7 +106,7 @@ export class PaymentMethodComponent implements OnInit {
 
       this.freightRateService.getFreightRates(this.shippingAddress.villageId).subscribe(response => {
         this.freightRates = response;
-        console.log('this.freightRates: ', this.freightRates);
+        // console.log('this.freightRates: ', this.freightRates);
       });
     });
   }
@@ -119,7 +119,7 @@ export class PaymentMethodComponent implements OnInit {
 
   selectShippingMethod(shippingMethodId) {
     const courier = this.freightRates.find((x) => x.shipperId === +shippingMethodId);
-    console.log('courier: ', courier);
+    // console.log('courier: ', courier);
     if (courier) {
       this.checkout.courierId = courier.shipperId;
       this.checkout.courierAmt = courier.amount;
@@ -157,7 +157,7 @@ export class PaymentMethodComponent implements OnInit {
     } else {
       swal('Pastikan payment method dan kirir pengiriman terpilih');
     }
-    console.log('this.checkout: ', this.checkout);
+    // console.log('this.checkout: ', this.checkout);
     // this.router.navigateByUrl('/confirm-order');
   }
 

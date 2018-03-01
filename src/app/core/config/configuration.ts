@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class Configuration {
   serverWithApiUrl = 'https://api.myacico.co.id/dev';
-  serverWithAccUrl = 'https://dev-acc-jav.belisada.co.id:8443/belisada-dev';
-  serverWithNetUrl = 'https://api-net.belisada.co.id/belisada';
+  serverWithAccUrl = environment.apiUrl;
+  serverWithNetUrl = environment.api2Url;
   serverWithImgUrl = 'https://storage.googleapis.com/myacicoproductimg';
 }

@@ -265,7 +265,7 @@ export class MProductDetailComponent implements OnInit {
   //   console.log('ini loh3333', this.productId);
   // }
   home() {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/mobile');
   }
   asap3() {
     this.router.navigateByUrl('/asap');
@@ -273,7 +273,7 @@ export class MProductDetailComponent implements OnInit {
   }
 
   detail(id: number, alias: string) {
-    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+    this.router.navigateByUrl('/product-detail/' + id + '/' + alias);
   }
 
   ngOnDestroy() {

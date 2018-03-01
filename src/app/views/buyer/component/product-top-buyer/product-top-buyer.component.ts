@@ -38,7 +38,7 @@ export class ProductTopBuyerComponent implements OnInit {
   getWishlist() {
     this.wishlistBuyerService.getAll().subscribe(data => {
       this.whistlist = data;
-      console.log('this.whistlist: ', this.whistlist);
+      // console.log('this.whistlist: ', this.whistlist);
     });
   }
 
@@ -46,7 +46,7 @@ export class ProductTopBuyerComponent implements OnInit {
     this.route.params.subscribe( params => {
     this.productId = params.id;
     this.productService.ProductNew(this.productId).subscribe(datas => {
-        console.log('datas: ', datas);
+        // console.log('datas: ', datas);
         this.productData = datas;
         this.allProduct = this.productData.productList;
       });

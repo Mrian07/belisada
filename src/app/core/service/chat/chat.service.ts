@@ -28,7 +28,7 @@ export class ChatService {
       }
       this.socket = io(environment.chatUrl + '/?dat=' + this.user.token);
       this.socket.on('disconnect', () => {
-        console.log('you\'re offline');
+        // console.log('you\'re offline');
       });
       for(let e in event) {
         this.socket.on(e, event[e]);

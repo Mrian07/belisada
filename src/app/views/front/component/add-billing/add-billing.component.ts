@@ -164,7 +164,7 @@ export class AddBillingComponent implements OnInit {
   }
 
   btnDelete(id) {
-    console.log(id);
+    // console.log(id);
     const user = JSON.parse(localStorage.user);
     this.billingAddressService.delete(id).subscribe(data => {
       this.billingAddress = data;
@@ -179,7 +179,7 @@ export class AddBillingComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
+    // console.log(id);
     this.masterService.getCity(id).subscribe(data => {
       this.cities = data;
     });

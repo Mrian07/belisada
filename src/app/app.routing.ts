@@ -1,3 +1,19 @@
+import { MSliderDepanComponent } from './views/mobile/front/component/m-slider-depan/m-slider-depan.component';
+import { MAsapbyBelisComponent } from './views/mobile/front/component/m-seller-center/m-asapby-belis/m-asapby-belis.component';
+import { MBerjualanBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-berjualan-belisada/m-berjualan-belisada.component';
+import { MKnpBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-knp-belisada/m-knp-belisada.component';
+import { MInboxComponent } from './views/mobile/front/component/m-seller-center/m-inbox/m-inbox.component';
+import { MSellerCenterComponent } from './views/mobile/front/component/m-seller-center/m-seller-center.component';
+import { MSallesReportComponent } from './views/mobile/seller/component/m-salles-report/m-salles-report.component';
+import { MLacakBarangAndaComponent } from './views/mobile/seller/component/m-lacak-barang-anda/m-lacak-barang-anda.component';
+import { MTarikDanaComponent } from './views/mobile/seller/component/m-tarik-dana/m-tarik-dana.component';
+import { MReturnCancelComponent } from './views/mobile/front/component/m-return-cancel/m-return-cancel.component';
+import { MWarrantyComponent } from './views/mobile/front/component/m-warranty/m-warranty.component';
+import { MCopyrightPolicyComponent } from './views/mobile/front/component/m-copyright-policy/m-copyright-policy.component';
+import { MPrivacyPolicyComponent } from './views/mobile/front/component/m-privacy-policy/m-privacy-policy.component';
+import { MCareerComponent } from './views/mobile/front/component/m-career/m-career.component';
+import { MTermsConditionsComponent } from './views/mobile/front/component/m-terms-conditions/m-terms-conditions.component';
+import { MProductSearchComponent } from './views/mobile/front/component/m-product-search/m-product-search.component';
 import { MNewSellerComponent } from './views/mobile/seller/component/m-new-seller/m-new-seller.component';
 import { MSellerProposeComponent } from './views/mobile/buyer/component/m-seller-propose/m-seller-propose.component';
 import { MAfterSalesServiceComponent } from './views/mobile/front/component/m-after-sales-service/m-after-sales-service.component';
@@ -16,7 +32,6 @@ import { MChangePasswordComponent } from './views/mobile/seller/component/m-chan
 import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
-import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
@@ -456,10 +471,73 @@ const routes: Routes = [
         }
       },
       {
+        path: 'm-return-cancel',
+        component: MReturnCancelComponent,
+        data: {
+          title: 'Return Cancel'
+        }
+      },
+      {
+        path: 'm-slider-depan',
+        component: MSliderDepanComponent,
+        data: {
+          title: 'Slider Depan'
+        }
+      },
+      {
+        path: 'm-terms-conditions',
+        component: MTermsConditionsComponent,
+        data: {
+          title: 'Terms Conditions'
+        }
+      },
+      {
+        path: 'm-career',
+        component: MCareerComponent,
+        data: {
+          title: 'Karir'
+        }
+      },
+      {
+        path: 'm-privacy-policy',
+        component: MPrivacyPolicyComponent,
+        data: {
+          title: 'Privacy Policy'
+        }
+      },
+      {
+        path: 'm-copyright-policy',
+        component: MCopyrightPolicyComponent,
+        data: {
+          title: 'Copyright Policy'
+        }
+      },
+      {
+        path: 'm-warranty',
+        component: MWarrantyComponent,
+        data: {
+          title: 'Warranty'
+        }
+      },
+      {
         path: 'm-category/:id/:aliasname',
         component: MCategoryComponent,
         data: {
           title: 'category'
+        }
+      },
+      {
+        path: 'm-product-list',
+        component: MProductSearchComponent,
+        data: {
+          title: 'product List'
+        }
+      },
+      {
+        path: 'm-search',
+        component: MProductSearchComponent,
+        data: {
+          title: 'product Search'
         }
       },
       {
@@ -552,6 +630,54 @@ const routes: Routes = [
         data: {
           title: 'Finish Order'
         }
+      },
+      {
+        path: 'm-seller-center',
+        component: MSellerCenterComponent,
+        children: [
+          {
+            path: 'm-inbox',
+            component: MInboxComponent,
+            data: {
+              title: 'Inbox'
+            }
+          },
+          {
+            path: 'm-why-choose-us',
+            component: KnpBelisadaComponent,
+            data: {
+              title: 'Why Choose Us'
+            }
+          },
+          {
+            path: 'm-faq-on-seller-center',
+            component: FaqSellerCenterComponent,
+            data: {
+              title: 'FAQ Seller'
+            }
+          },
+          {
+            path: 'm-berjualan-dibelisada',
+            component: BerjualanBelisadaComponent,
+            data: {
+              title: 'Berjualan Di Belisada'
+            }
+          },
+          {
+            path: 'm-cara-berjualan',
+            component: CaraBerjualanComponent,
+            data: {
+              title: 'Cara Berjualan'
+            }
+          },
+          {
+            path: 'm-asap-by-belisada',
+            component: AsapbyBelisComponent,
+            data: {
+              title: 'ASAP'
+            }
+          },
+        ],
       },
       {
         path: 'buyer',
@@ -702,10 +828,31 @@ const routes: Routes = [
         }
       },
       {
+        path: 'm-lacak-barang-anda',
+        component: MLacakBarangAndaComponent,
+        data: {
+          title: 'Lacak Barang Anda'
+        }
+      },
+      {
+        path: 'm-salles-report',
+        component: MSallesReportComponent,
+        data: {
+          title: 'Salles Report'
+        }
+      },
+      {
         path: 'm-product',
         component: MProductComponent,
         data: {
           title: 'Product'
+        }
+      },
+      {
+        path: 'm-tarik-dana',
+        component: MTarikDanaComponent,
+        data: {
+          title: 'Tarik Dana'
         }
       },
       {

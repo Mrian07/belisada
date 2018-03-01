@@ -24,14 +24,10 @@
                   <div class="item" (click)="goSallesReport()" class="item" translate>user.seller.five</div>
                   <div class="item" (click)="goFaqSeller()" class="item" translate>user.seller.nine</div>
                   <div class="item" (click)="goToContact()" class="item" translate>user.seller.contact</div>
-
-
               </div>
           </div>
-
-
       </div>
-      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar"/>
+      <img src="{{userImgAvatar}}" alt="Profile Picture" class="ui avatar image avatar" (click)="goAvatar()"/>
       <div class="content">
           <div class="header">{{name}}</div>
           {{email}}

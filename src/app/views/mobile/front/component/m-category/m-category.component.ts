@@ -94,7 +94,7 @@ export class MCategoryComponent implements OnInit {
       id : id,
       ob : 6
     };
-    this.router.navigate(['/product-list'], { queryParams: this.queryParams });
+    this.router.navigate(['/mobile/m-product-list'], { queryParams: this.queryParams });
   }
 
   reloadr() {

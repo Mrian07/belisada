@@ -37,6 +37,6 @@ export class NotificationComponent implements OnInit {
     this.router.navigateByUrl('seller/profile');
   }
   widthdraw() {
-    console.log('click');
+    // console.log('click');
   }
 }

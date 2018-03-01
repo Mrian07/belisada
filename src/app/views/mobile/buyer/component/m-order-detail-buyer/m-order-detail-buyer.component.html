@@ -1,35 +1,14 @@
 
 <p><a routerLink="/mobile/buyer/m-transaction-buyer" class="menu-top-side"><i class="angle double left icon"></i>Kembali</a></p>
-<table class="ui very basic collapsing celled table">
-    <thead>
-      <tr><th>Tanggal Order</th>
-      <th>Total Pembayaran</th>
-      <th>Metode Pembayaran</th>
-      <th>Order Number</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-    <tbody>
-      <tr>
-        <td>
-             {{cart.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}
-          </td>
-          <td>
-              Rp.{{cart.grandTotal | number}}
-          </td>
-          <td>
-              {{cart.paymentMethod}}
-          </td>
-          <td>
-              {{cart.orderNumber}}
-          </td>
-          <td>
-              {{cart.transactionStatus}}
-          </td>
-
-      </tr>
-    </tbody>
-  </table>
+<div class="sixteen wide column">
+  <div class="ui segment">
+    <b>Tanggal Order:</b>  {{cart.transactionTime | date: 'dd/MM/yyyy hh:mm:ss'}}<br>
+    <b>Total Pembayaran:</b> Rp.{{cart.grandTotal | number}}<br>
+    <b>Metode Pembayaran:</b> {{cart.paymentMethod}}<br>
+    <b>Order Number:</b> {{cart.orderNumber}}<br>
+    <b>Status:</b> {{cart.transactionStatus}}
+  </div>
+</div>
 
 <hr size='1' color='#dddddd'>
   <div class="row animated rollIn">

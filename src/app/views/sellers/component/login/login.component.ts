@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
     .filter(action => action.type === fromActions.LOGINSUCCESS)
     .subscribe((action: fromActions.LoginSuccess) => {
       this.loading = false;
-      console.log(action);
+      // console.log(action);
       localStorage.user = JSON.stringify(action);
       // this.router.navigateByUrl('/seller/dashboard');
         // swal(
@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
   }
 
   setCartToLocalStorage() {
-    console.log('setCartToLocalStorage');
+    // console.log('setCartToLocalStorage');
     const cart = new ShoppingCart();
     this.shoppingCartService.getSingleResult().subscribe(response => {
       cart.grossTotal = response.grossTotal;

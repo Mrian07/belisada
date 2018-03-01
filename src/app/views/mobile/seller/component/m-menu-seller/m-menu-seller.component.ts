@@ -102,17 +102,16 @@ export class MMenuSellerComponent implements OnInit {
   }
 
   goToDana() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/mobile-seller/m-tarik-dana']);
   }
 
   goToLacak() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/mobile-seller/m-lacak-barang-anda']);
   }
 
   goToContact() {
     this.router.navigate(['/']);
   }
-  
 
   goKontak() {
     this.router.navigate(['/mobile-seller/kontak']);
@@ -123,7 +122,7 @@ export class MMenuSellerComponent implements OnInit {
   }
 
   goSallesReport() {
-    this.router.navigate(['/mobile-seller/salles-report']);
+    this.router.navigate(['/mobile-seller/m-salles-report']);
   }
 
   goFaqSeller() {

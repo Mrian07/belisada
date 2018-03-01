@@ -130,7 +130,7 @@ export class HomeEffects {
                 paymentMethodDto.paymentMethod = data;
                 paymentMethodDto.paymentMethodDetails = paymentMethodDetails;
                 paymentMethodDtos.push(paymentMethodDto);
-                console.log('paymentMethodDto: ', paymentMethodDtos);
+                // console.log('paymentMethodDto: ', paymentMethodDtos);
                 return [ new frontActions.GetPaymentMethodSuccess(paymentMethodDtos) ];
               })
             )

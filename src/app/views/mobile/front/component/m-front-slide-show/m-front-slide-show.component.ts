@@ -67,19 +67,19 @@ export class MFrontSlideShowComponent implements OnInit {
     console.log(data);
   }
   slideShow() {
-    this.router.navigateByUrl('/Slider-Depan');
+    this.router.navigateByUrl('/mobile/m-slider-depan');
   }
   slideGadget() {
-    this.router.navigateByUrl('/category/1000503/Aksesoris-Gadget');
+    this.router.navigateByUrl('/mobile/m-category/1000503/m-aksesoris-gadget');
   }
   beliDiSini() {
-    this.router.navigateByUrl('/seller-center/Why-Choose-Us');
+    this.router.navigateByUrl('/mobile/m-seller-center/m-why-choose-us');
   }
   beliIphone() {
-    this.router.navigateByUrl('/search?q=iphone');
+    this.router.navigateByUrl('/mobile/m-search?q=iphone');
   }
   beliLcd() {
-    this.router.navigateByUrl('/product-list?parent=3&id=1000732&ob=6');
+    this.router.navigateByUrl('/mobile/m-product-list?parent=3&id=1000732&ob=6');
   }
 }
 
