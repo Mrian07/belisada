@@ -1,3 +1,8 @@
+import { MAsapbyBelisComponent } from './views/mobile/front/component/m-seller-center/m-asapby-belis/m-asapby-belis.component';
+import { MBerjualanBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-berjualan-belisada/m-berjualan-belisada.component';
+import { MKnpBelisadaComponent } from './views/mobile/front/component/m-seller-center/m-knp-belisada/m-knp-belisada.component';
+import { MInboxComponent } from './views/mobile/front/component/m-seller-center/m-inbox/m-inbox.component';
+import { MSellerCenterComponent } from './views/mobile/front/component/m-seller-center/m-seller-center.component';
 import { MSallesReportComponent } from './views/mobile/seller/component/m-salles-report/m-salles-report.component';
 import { MLacakBarangAndaComponent } from './views/mobile/seller/component/m-lacak-barang-anda/m-lacak-barang-anda.component';
 import { MTarikDanaComponent } from './views/mobile/seller/component/m-tarik-dana/m-tarik-dana.component';
@@ -26,7 +31,6 @@ import { MChangePasswordComponent } from './views/mobile/seller/component/m-chan
 import { MProfileComponent } from './views/mobile/seller/component/m-profile/m-profile.component';
 import { MSellerLayoutComponent } from './core/layout/mobile/m-seller-layout/m-seller-layout.component';
 import { MDashboardComponent } from './views/mobile/seller/component/m-dashboard/m-dashboard.component';
-import { MCaraBerjualanComponent } from './views/mobile/front/component/m-cara-berjualan/m-cara-berjualan.component';
 import { MOrderDetailBuyerComponent } from './views/mobile/buyer/component/m-order-detail-buyer/m-order-detail-buyer.component';
 import { MTransactionBuyerComponent } from './views/mobile/buyer/component/m-transaction-buyer/m-transaction-buyer.component';
 import { MFinishOrderComponent } from './views/mobile/front/component/m-finish-order/m-finish-order.component';
@@ -618,6 +622,54 @@ const routes: Routes = [
         data: {
           title: 'Finish Order'
         }
+      },
+      {
+        path: 'm-seller-center',
+        component: MSellerCenterComponent,
+        children: [
+          {
+            path: 'm-inbox',
+            component: MInboxComponent,
+            data: {
+              title: 'Inbox'
+            }
+          },
+          {
+            path: 'm-why-choose-us',
+            component: KnpBelisadaComponent,
+            data: {
+              title: 'Why Choose Us'
+            }
+          },
+          {
+            path: 'm-faq-on-seller-center',
+            component: FaqSellerCenterComponent,
+            data: {
+              title: 'FAQ Seller'
+            }
+          },
+          {
+            path: 'm-berjualan-dibelisada',
+            component: BerjualanBelisadaComponent,
+            data: {
+              title: 'Berjualan Di Belisada'
+            }
+          },
+          {
+            path: 'm-cara-berjualan',
+            component: CaraBerjualanComponent,
+            data: {
+              title: 'Cara Berjualan'
+            }
+          },
+          {
+            path: 'm-asap-by-belisada',
+            component: AsapbyBelisComponent,
+            data: {
+              title: 'ASAP'
+            }
+          },
+        ],
       },
       {
         path: 'buyer',
