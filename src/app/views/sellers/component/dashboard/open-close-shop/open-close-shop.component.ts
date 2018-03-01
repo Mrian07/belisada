@@ -50,7 +50,7 @@ export class OpenCloseShopComponent implements OnInit {
 
       this.storeId = response[0].mBpartnerStoreId;
       this.storeService.cekOpenClose(this.storeId).subscribe(respon => {
-        console.log('respon ', respon);
+        // console.log('respon ', respon);
         this.isClose = respon.status;
         this.dateS = respon.dateStart;
         this.dateE = respon.dateEnd;
@@ -167,7 +167,7 @@ export class OpenCloseShopComponent implements OnInit {
 
   formateDate(date: string) {
     const tempArrDate = date.split('-');
-    console.log('tempArrDate: ', tempArrDate);
+    // console.log('tempArrDate: ', tempArrDate);
 
     return tempArrDate[2] + '-' + tempArrDate[1] + '-' + tempArrDate[0];
   }

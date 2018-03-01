@@ -87,7 +87,7 @@ export class EditShippingComponent implements OnInit {
 
   fillForms() {
     this.shipList = this.sharedService.shareData;
-    console.log('inilaoh', this.shipList);
+    // console.log('inilaoh', this.shipList);
     this.getAllStorex(this.shipList);
   }
 

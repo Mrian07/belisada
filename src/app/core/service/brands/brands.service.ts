@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Brands } from '../../model/brands';
 import { Observable } from 'rxjs/Observable';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Configuration } from './../../config/configuration';
 import { AbstractRestService } from '../abstract.rest.service';
 import 'rxjs/add/operator/map';
@@ -18,5 +18,14 @@ export class BrandsService {
   SellerBrandCategory(): Observable<Brands[]> {
     return this.http.get(this.configuration.serverWithNetUrl + '/productbrand/seller')
     .map(response => response as Brands[]);
+  }
+
+  getProductBrand(queryParams): Observable<Brands[]> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k){
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.serverWithNetUrl + '/productbrand/seller', {params: params})
+      .map(response => response as Brands[]);
   }
 }

@@ -15,13 +15,13 @@ export class PsnLoginComponent implements OnInit {
   ngOnInit() {
     // const tg = this.shared.shareData;
     // this.datadata = tg.email;
-    console.log(this.shared.shareData.email);
+    // console.log(this.shared.shareData.email);
   }
   kolonel() {
     if (!this.auth.getUser()) {
-     console.log('ini ada');
+    //  console.log('ini ada');
     } else {
-      console.log('tidak ada');
+      // console.log('tidak ada');
     }
   }
 }

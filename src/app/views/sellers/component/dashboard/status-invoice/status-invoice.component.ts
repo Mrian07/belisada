@@ -56,7 +56,7 @@ export class StatusInvoiceComponent implements OnInit {
   }
 
   toBlur(list, i) {
-    console.log(list);
+    // console.log(list);
     if (this.hargabaru === undefined) {
       this.hargabaru = list.pricelist;
     }
@@ -72,7 +72,7 @@ export class StatusInvoiceComponent implements OnInit {
       productId: list.productId,
     };
     this.sellers.UpdatePrice(editData).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.editmode = false;
     });
   }
@@ -94,7 +94,7 @@ export class StatusInvoiceComponent implements OnInit {
       this.productList = [];
       if (result.value) {
         this.sellers.Inactive(data).subscribe(res => {
-          console.log(res);
+          // console.log(res);
           this.getRev();
           swal(
           'Non Aktifkan!',
@@ -106,7 +106,7 @@ export class StatusInvoiceComponent implements OnInit {
   }
 
   active (id: number) {
-    console.log(id);
+    // console.log(id);
     const data = {
       isActive: 'Y',
       productId: id
