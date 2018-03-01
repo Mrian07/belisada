@@ -69,7 +69,7 @@ export class ChattingComponent implements OnInit {
       },
       reconnect_attempt: () => {
         this.chatStage = 2;
-        console.log('reconnecting');
+        // console.log('reconnecting');
       },
       history: his => {
         this.chats = his;
@@ -108,7 +108,7 @@ export class ChattingComponent implements OnInit {
     localStorage.chat_hide = this.hiden;
     if(!this.soc || !this.soc.connected) {
       this.connect().then(soc => this.soc = soc, err => {
-        console.log('chat:', err);
+        // console.log('chat:', err);
         if(err == 100) {
           return false;
         }
