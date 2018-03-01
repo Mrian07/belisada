@@ -37,7 +37,7 @@ export class MAfterSalesServiceComponent implements OnInit {
       message: this.message
     };
     this.poernaJoeal.emailContactUs(data).subscribe(response => {
-      console.log('berhasil');
+      // console.log('berhasil');
     });
   }
 

@@ -73,7 +73,7 @@ export class MFrontHomeComponent implements OnInit {
 
   loadHome() {
     this.store.select<any>(fromProduct.getHomeState).subscribe(data => {
-      console.log(data);
+      // console.log(data);
       this.ngZone.run(() => {
         const tempData: TopProductCategory[] = data.home;
         if (tempData) {

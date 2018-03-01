@@ -75,7 +75,7 @@ export class MProfileBuyerComponent implements OnInit {
       // console.log('batan', data);
 
       if (!data) {
-        return console.log('kosong');
+        return;
       }
       // console.log('ini data: ', data);
       if (data.dateOfBirth && data.dateOfBirth != '') {

@@ -328,7 +328,7 @@ export class MCheckoutComponent implements OnInit {
     this.paymentMethodDetail = this.paymentMethodDto.paymentMethodDetails.find(x => x.mBankAccountId === +mBankAccountId);
     if (paymentMethod === 'R') {
       this.paymentMethodService.getUniqueCodeTransfer(paymentMethod).subscribe(response => {
-        console.log('response: ', response);
+        // console.log('response: ', response);
         this.uniqueCode = response;
         // this.shoppingCartService.calculateUniqueCode(response);
         // console.log('this.cartItems selectPaymentMethod: ', this.cartItems);

@@ -72,7 +72,7 @@ export class MCartComponent implements OnInit {
         cart.items.forEach(item => {
           this.productService.get(item.productId).subscribe((product) => {
             // const product = prod;
-            console.log('product: ', product);
+            // console.log('product: ', product);
             const usedStock = (product.isAsapShipping === 'Y' && product.qtyOnHand > 0) ? product.qtyOnHand : product.stock;
             this.cartItems.push({
               ...item,
@@ -80,7 +80,7 @@ export class MCartComponent implements OnInit {
               arrStock: Array.from(new Array(usedStock), (val, index) => index + 1),
               totalCost: product.pricelist * item.quantity });
   
-            console.log('this.cartItems: ', this.cartItems);
+            // console.log('this.cartItems: ', this.cartItems);
           });
         });
       });

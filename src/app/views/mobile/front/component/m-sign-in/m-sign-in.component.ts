@@ -123,14 +123,14 @@ export class MSignInComponent implements OnInit {
     }
   
     setCartToLocalStorage() {
-      console.log('setCartToLocalStorage');
+      // console.log('setCartToLocalStorage');
       const cart = new ShoppingCart();
       const preLoginCart = new ShoppingCart();
       const storedCart = this.storage.getItem(CART_KEY);
-      console.log('storedCart', storedCart);
+      // console.log('storedCart', storedCart);
       if (storedCart && JSON.parse(storedCart).items.length !== 0) {
         // if () {
-          console.log('isStoredCart');
+          // console.log('isStoredCart');
           preLoginCart.updateFrom(JSON.parse(storedCart));
           preLoginCart.items.forEach((item, index) => {
   
@@ -142,7 +142,7 @@ export class MSignInComponent implements OnInit {
                 weightPerItem: product.weight
               };
               this.shoppingCartService.create(data).subscribe(response => {
-                console.log('response: ', response);
+                // console.log('response: ', response);
                 if (index === preLoginCart.items.length - 1) {
                   return cb();
                 } else {
@@ -164,18 +164,18 @@ export class MSignInComponent implements OnInit {
             cartItem.productId = item.productId;
             cartItem.quantity = item.quantity;
             cart.items.push(cartItem);
-            console.log('cart_loop', cart);
+            // console.log('cart_loop', cart);
           });
           this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
           this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
           this.shoppingCartService.dispatch(cart);
-          console.log('jalan dulu gak ni?');
+          // console.log('jalan dulu gak ni?');
         });
       }
   
       const that = this;
       function cb() {
-        console.log('callback called');
+        // console.log('callback called');
         that.shoppingCartService.getSingleResult().subscribe(response => {
           cart.grossTotal = response.grossTotal;
           cart.deliveryTotal = response.deliveryTotal;
@@ -187,12 +187,12 @@ export class MSignInComponent implements OnInit {
             cartItem.productId = item.productId;
             cartItem.quantity = item.quantity;
             cart.items.push(cartItem);
-            console.log('cart_loop', cart);
+            // console.log('cart_loop', cart);
           });
           that.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
           that.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
           that.shoppingCartService.dispatch(cart);
-          console.log('jalan dulu gak ni?');
+          // console.log('jalan dulu gak ni?');
         });
       }
     }
@@ -206,7 +206,7 @@ export class MSignInComponent implements OnInit {
       }
       this.socialAuthService.signIn(socialPlatformProvider).then(
         (userData) => {
-          console.log(socialPlatform + 'sign in data : ' , userData);
+          // console.log(socialPlatform + 'sign in data : ' , userData);
         }
       );
     }

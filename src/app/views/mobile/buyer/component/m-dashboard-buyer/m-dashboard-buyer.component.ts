@@ -27,14 +27,11 @@ export class MDashboardBuyerComponent implements OnInit {
   fils3() {
     this.iniserviceyah.getAll().subscribe(data => {
       this.dat = data;
-      console.log('ini apa sih ', data);
     });
   }
   allProduct() {
     this.productService.AllNewProduct().subscribe(response => {
-
       this.productList = response;
-      console.log('ini', this.productList);
     });
   }
   detail(id: number, alias: string) {
@@ -53,8 +50,6 @@ export class MDashboardBuyerComponent implements OnInit {
       if (result.value) {
         this.iniserviceyah.delete(id).subscribe(data => {
           this.po = data;
-          console.log(data);
-          // alert('keapus bro');
           this.fils3();
         });
       }

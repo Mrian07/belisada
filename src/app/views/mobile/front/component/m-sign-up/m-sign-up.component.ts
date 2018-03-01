@@ -81,7 +81,7 @@ export class MSignUpComponent implements OnInit {
       userType: this.userType,
       password2: this.password2
     };
-    console.log(registerData.name);
+    // console.log(registerData.name);
     if (this.password !== this.password2) {
       swal(
         'Opps!',
@@ -91,7 +91,7 @@ export class MSignUpComponent implements OnInit {
       return false;
     }
 
-    console.log(registerData);
+    // console.log(registerData);
     this.categoryService.register(registerData).subscribe(data => {
       if (data.status === '1') {
         swal(
@@ -122,7 +122,7 @@ export class MSignUpComponent implements OnInit {
     }
     this.socialAuthService.signIn(socialPlatformProvider).then(
       (userData) => {
-        console.log(socialPlatform + 'sign in data : ' , userData);
+        // console.log(socialPlatform + 'sign in data : ' , userData);
       }
     );
   }

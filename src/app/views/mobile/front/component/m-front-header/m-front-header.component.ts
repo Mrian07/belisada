@@ -88,7 +88,7 @@ export class MFrontHeaderComponent implements OnInit {
     this.shoppingCart();
     const lang = localStorage.getItem('languange');
 
-    console.log('lang', lang);
+    // console.log('lang', lang);
 
     if (!lang || lang === 'undefined') {
       localStorage.setItem('languange', 'id');
