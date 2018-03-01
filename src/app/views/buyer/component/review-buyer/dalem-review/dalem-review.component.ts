@@ -44,7 +44,7 @@ export class DalemReviewComponent implements OnInit {
       .subscribe((action: frontActions.GetDetailSuccess) => {
          this.kampret();
       });
-      console.log('this' , params);
+      // console.log('this' , params);
     });
   }
   kampret() {

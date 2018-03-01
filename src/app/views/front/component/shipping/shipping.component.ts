@@ -60,7 +60,7 @@ export class ShippingComponent implements OnInit {
         if (this.billingAddressList.length === 0) {
           this.billing = true;
         }
-        console.log('this.billingAddressList: ', this.billingAddressList);
+        // console.log('this.billingAddressList: ', this.billingAddressList);
       });
     });
   }

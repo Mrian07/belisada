@@ -75,7 +75,7 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
       }
       cart.items.push(item);
     }
-    console.log(console.log('cart: ', cart));
+    // console.log(console.log('cart: ', cart));
     item.quantity += quantity;
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
     if (cart.items.length === 0) {
@@ -102,7 +102,7 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
   }
 
   public setDeliveryOption(freightRate: FreightRate): void {
-    console.log('freightRate: ', freightRate);
+    // console.log('freightRate: ', freightRate);
     const cart = this.retrieve();
     cart.freightRate = freightRate;
     this.calculateCart(cart, (modifiedCart) => {
@@ -113,7 +113,7 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
 
   public updateQuantity(productId: number, quantity: number) {
     const cart = this.retrieve();
-    console.log(cart);
+    // console.log(cart);
     let item = cart.items.find((p) => p.productId === productId);
     if (item === undefined) {
       item = new CartItem();
@@ -134,14 +134,14 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
   }
 
   private calculateCart(cart: ShoppingCart, calculateCartCb) {
-    console.log('calculateCart: ', cart);
+    // console.log('calculateCart: ', cart);
     cart.itemsTotal = 0;
     cart.deliveryTotal = 0;
     cart.items.forEach((item, index) => {
       this.productService.get(item.productId)
       .subscribe(product => {
         product.weight = (product.weight === 0) ? 1 : product.weight;
-        console.log('product.weight: ', product.weight);
+        // console.log('product.weight: ', product.weight);
         cart.itemsTotal += item.quantity * product.pricelist;
         cart.deliveryTotal +=
           (cart.freightRate === undefined) ? 0 : cart.freightRate.amount * item.quantity * product.weight;
@@ -211,7 +211,7 @@ export class ShoppingCartService extends AbstractRestService<CartItemResponse> {
         cartItem.productId = item.productId;
         cartItem.quantity = item.quantity;
         cart.items.push(cartItem);
-        console.log('cart_loop: ', cart);
+        // console.log('cart_loop: ', cart);
         if (index === (response.items.length - 1)) {
           return cbSuccess(cart);
         } else {

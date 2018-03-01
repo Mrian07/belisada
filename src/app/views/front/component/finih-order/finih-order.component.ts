@@ -46,7 +46,7 @@ export class FinihOrderComponent implements OnInit {
       this.transactionId = params.id;
 
       this.transactionsService.finihOrder(params.id).subscribe(respon => {
-        console.log(respon);
+        // console.log(respon);
 
         this.billingName = respon.billingName;
         this.billingAddress = respon.billingAddress;
@@ -61,7 +61,7 @@ export class FinihOrderComponent implements OnInit {
         this.grandTotal = respon.grandTotal;
 
         this.items = respon.items;
-        console.log('ini produk',  this.items);
+        // console.log('ini produk',  this.items);
         respon.items.forEach(x => {
           this.itemsTotal += x.subtotal;
         });

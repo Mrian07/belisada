@@ -25,7 +25,7 @@ export class LostPasswordComponent implements OnInit {
       type : this.type
     };
 
-    console.log(registerData);
+    // console.log(registerData);
     this.sendEmailService.SendEmail(registerData).subscribe(data => {
       if (data.status === '1') {
         swal(

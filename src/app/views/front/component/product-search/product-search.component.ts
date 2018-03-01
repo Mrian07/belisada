@@ -196,8 +196,8 @@ export class ProductSearchComponent implements OnInit {
   }
 
   updateFilter(filterAlias, data) {
-    console.log('filterAlias: ', filterAlias);
-    console.log('data: ', data);
+    // console.log('filterAlias: ', filterAlias);
+    // console.log('data: ', data);
     // let filter = '';
     switch (filterAlias) {
       case 'Category':
@@ -253,7 +253,7 @@ export class ProductSearchComponent implements OnInit {
       cat: (this.filterParams.cat.length === 0) ? '()' : cat,
       brand: (this.filterParams.brand.length === 0) ? '()' : brand
     };
-    console.log(this.Params);
+    // console.log(this.Params);
     this.store.dispatch(new frontActions.GetList(JSON.parse(JSON.stringify(this.Params))));
     // this.storeFilter.dispatch(new frontActions.GetSidebarFilter(this.keys));
 

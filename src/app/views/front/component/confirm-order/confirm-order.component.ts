@@ -116,7 +116,7 @@ export class ConfirmOrderComponent implements OnInit {
       this.shippingAddress = datas.find((x) => x.addressId === this.checkout.shippingAddress);
       this.freightRateService.getFreightRates(this.shippingAddress.villageId).subscribe(response => {
         this.freightRate = response.find((x) => x.shipperId === this.checkout.courierId);
-        console.log('this.freightRate: ', this.freightRate);
+        // console.log('this.freightRate: ', this.freightRate);
       });
     });
   }
@@ -153,9 +153,9 @@ export class ConfirmOrderComponent implements OnInit {
 
   finish() {
     this.checkout.grandTotal = this.grossTotal;
-    console.log('this.checkout: ', this.checkout);
+    // console.log('this.checkout: ', this.checkout);
     this.checkoutService.doCheckout(this.checkout).subscribe(response => {
-      console.log('response: ', response);
+      // console.log('response: ', response);
       if (response.status === '1') {
         this.router.navigateByUrl('/finish-order');
       } else {

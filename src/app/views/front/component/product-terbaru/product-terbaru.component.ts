@@ -23,7 +23,7 @@ export class ProductTerbaruComponent implements OnInit {
     this.productService.AllNewProduct().subscribe(response => {
 
       this.productList = response;
-      console.log('ini', this.productList);
+      // console.log('ini', this.productList);
     });
   }
 
