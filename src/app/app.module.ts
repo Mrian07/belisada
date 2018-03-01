@@ -185,6 +185,7 @@ import { MBerjualanBelisadaComponent } from './views/mobile/front/component/m-se
 import { MHeaderdisellerComponent } from './views/mobile/front/component/m-seller-center/m-headerdiseller/m-headerdiseller.component';
 import { MSellerCenterComponent } from './views/mobile/front/component/m-seller-center/m-seller-center.component';
 import { MSidebarComponent } from './views/mobile/front/component/m-seller-center/m-sidebar/m-sidebar.component';
+import { MSliderDepanComponent } from './views/mobile/front/component/m-slider-depan/m-slider-depan.component';
 
 // import { RepiewComponent } from './core/service/repiew/repiew.component';
 // registerLocaleData(localeID, 'id');
@@ -355,6 +356,7 @@ export function getAuthServiceConfigs() {
     MHeaderdisellerComponent,
     MSellerCenterComponent,
     MSidebarComponent,
+    MSliderDepanComponent,
 
     // WishlistComponent,
     // AsapComponent
