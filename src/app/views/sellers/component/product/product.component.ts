@@ -53,7 +53,7 @@ export class ProductComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.EDITPRODUCTSUCCESS)
         .subscribe((action: fromActions.EditProductSuccess) => {
-          this.ngZone.run(() => { this.sellerProduct = Observable.of(action.success); console.log('edit Done!');
+          this.ngZone.run(() => { this.sellerProduct = Observable.of(action.success); console.log('edit Done!', this.sellerProduct);
           swal(
             'Product berhasil di Perbarui!',
             'success'

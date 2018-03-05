@@ -36,7 +36,7 @@
 
                         <div class="result-container">
 
-                            <input type="text" list="productname" (keyup)="search($event)" [(ngModel)]="selectCats"/>
+                            <input type="text" list="productname" (keyup)="search($event)" (change)="prodNameChange(selectCats)" [(ngModel)]="selectCats"/>
                             <div class="result" *ngIf="[results] !== 0">
                                 <div class="result-item" *ngFor="let hasil of results " (click)="productSelected(hasil)" (keyup.enter)="search($event)">{{ hasil.name }}</div>
                             </div>
@@ -261,7 +261,7 @@
                             Part Number
                         </div>
                         <div class="eleven wide field">
-                            <input type="text" maxlength="120"  placeholder="" [(ngModel)]="partNumber" value="{{partNumber}}"/>
+                            <input type="text" maxlength="120"  placeholder="" [(ngModel)]="partNumber"/>
                         </div>
                     </div>
                 </div>

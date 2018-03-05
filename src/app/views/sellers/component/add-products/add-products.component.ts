@@ -228,6 +228,7 @@ export class AddProductsComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === fromActions.ADDPRODUCTSUCCESS)
         .subscribe((action: fromActions.AddProductSuccess) => {
+          console.log('action: ', action);
           this.isLoading = false;
           swal(
             'Produk berhasil di tambahkan!',
@@ -380,6 +381,7 @@ export class AddProductsComponent implements OnInit {
     this.ctr.cat3name = hasil.category3Name;
     this.ctr.brand = hasil.productbrandId;
     this.ctr.brandname = hasil.brandname;
+    this.cat3Id = hasil.category3Id;
     this.selectedSubCategory = hasil.category2Name;
     this.selectedSubCategories = hasil.category3Name;
     this.txtSearch = hasil.brandname;
@@ -461,6 +463,9 @@ export class AddProductsComponent implements OnInit {
       this.toggle = false;
     });
   }
+  prodNameChange(selectCats) {
+    this.productName = selectCats;
+  }
   selectBrands(id: number) {
     this.productBrandId = id;
   }
@@ -514,14 +519,24 @@ export class AddProductsComponent implements OnInit {
   }
   addProducts() {
     this.userImage = this.fm.imageNPWP;
-    if (this.price === undefined && this.productName === undefined &&
-     this.weight === undefined && this.panjang === undefined && this.lebar === undefined
-      && this.tinggi === undefined && this.stok === 0) {
+    console.log(this.price);
+    console.log(this.productName);
+    console.log(this.cat3Id);
+    console.log(this.weight);
+    console.log(this.panjang);
+    console.log(this.lebar);
+    console.log(this.tinggi);
+    console.log(this.stok);
+    if (this.price === undefined || this.productName === undefined || this.cat3Id === undefined ||
+     this.weight === undefined || this.panjang === undefined || this.lebar === undefined
+      || this.tinggi === undefined || this.stok === 0) {
         swal(
           'Belisada.co.id',
-          'Semua Field harus di isi'
+          'Semua Field harus di isi',
+          'warning'
         );
-    }else {
+        return;
+    } else {
       if (this.isNewProduct) {
         this.productPictures.forEach(item => {
           this.gambarnya.push(item.substr(item.indexOf(",") + 1));
@@ -529,15 +544,15 @@ export class AddProductsComponent implements OnInit {
       } else {
         this.gambarnya = [];
       }
-      // console.log('this.productPictures.length: ', this.productPictures.length);
-      // if (this.productPictures.length < 3) {
-      //   swal(
-      //     'Belisada.co.id',
-      //     'Anda harus memasukan gambar minimal 3!',
-      //     'info'
-      //   );
-      //   return;
-      // }
+      console.log('this.productPictures.length: ', this.productPictures.length);
+      if (this.productPictures.length < 1) {
+        swal(
+          'Belisada.co.id',
+          'Anda harus memasukan gambar minimal 1!',
+          'info'
+        );
+        return;
+      }
       if (this.cat3Id === undefined) {
         this.cat3Id = this.ctr.cat3;
       }
