@@ -95,10 +95,11 @@ export class MFrontHomeComponent implements OnInit {
     });
   }
   detail(id: number, alias: string) {
-    this.router.navigateByUrl('/Product-detail/' + id + '/' + alias);
+    this.router.navigateByUrl('/mobile/m-product-detail/' + id + '/' + alias);
+    console.log('aaa');
   }
   cate(id: number, name: string) {
-    this.router.navigateByUrl('/category/' + id + '/' + name);
+    this.router.navigateByUrl('/mobile/m-category/' + id + '/' + name);
   }
 
   brand(q: any) {
