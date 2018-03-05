@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('myacico-smp App', () => {
+describe('angular-kadal App', () => {
   let page: AppPage;
 
   beforeEach(() => {
