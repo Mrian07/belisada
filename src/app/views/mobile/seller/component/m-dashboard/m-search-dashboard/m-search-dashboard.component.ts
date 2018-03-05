@@ -134,10 +134,10 @@ export class MSearchDashboardComponent implements OnInit {
             'Anda belum membuat Toko!',
             'klik OK untuk melanjutkan'
           ).then((result) => {
-            this.router.navigateByUrl('seller/toko');
+            this.router.navigateByUrl('mobile-seller/m-toko');
           });
         }else {
-          this.router.navigate(['seller/add-products/add']);
+          this.router.navigate(['mobile-seller/m-add-products/add']);
         }
       });
    }
