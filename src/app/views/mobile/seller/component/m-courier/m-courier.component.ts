@@ -63,7 +63,7 @@ export class MCourierComponent implements OnInit {
     }
 
     this.storeService.getAll().subscribe(response => {
-      console.log('response: ', response);
+      //console.log('response: ', response);
       this.stores = response;
       this.courier();
     });
@@ -72,7 +72,7 @@ export class MCourierComponent implements OnInit {
   courier() {
     if (this.stores.length !== 0) {
       this.courierService.getByStoreId(this.stores[0].mBpartnerStoreId).subscribe(response => {
-        console.log('response: ', response);
+       // console.log('response: ', response);
         response.forEach(courier => {
           this.options.push({
             name: courier.name,

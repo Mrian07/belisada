@@ -17,9 +17,9 @@ export class MSidebarComponent implements OnInit {
   
     ngOnInit() {
       this.route.url.subscribe( url => {
-        console.log('url: ', url);
+        // console.log('url: ', url);
         this.uri = this.router.url.split('/');
-        console.log('this.uri: ', this.uri);
+        // console.log('this.uri: ', this.uri);
       });
     }
 

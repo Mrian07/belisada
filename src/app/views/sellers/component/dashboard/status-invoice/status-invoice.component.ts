@@ -124,7 +124,7 @@ export class StatusInvoiceComponent implements OnInit {
       this.productList = [];
       if (result.value) {
         this.sellers.Inactive(data).subscribe(res => {
-          console.log(res);
+          //console.log(res);
           this.getRev();
           swal(
           'Aktifkan!',

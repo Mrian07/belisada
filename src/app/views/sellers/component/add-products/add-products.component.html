@@ -48,13 +48,37 @@
                     <div class="new-product">{{news}}</div>
 
                 </div>
+                <!-- <small>items: {{sum}}</small> -->
                 <div class="inline twelve fields">
                     <div class="two wide field">
-                            Brands
+                        Brands
                     </div>
+                    <!-- <ul class="drick-select-list">
+                        <li *ngFor="let i of brands" (click)="sBrand(i)">
+                            {{i.name}}
+                        </li>
+                    </ul> -->
                     <div class="three wide field">
-                        <div class="field">
-                            <sui-select class="selection"
+                        <!-- <div class="field"> -->
+                            <div class="drick-select-container">
+                                <div class="ui icon input parent">
+                                    <input class="drick-select__text" [ngClass]="{'active':onTextFocus}" type="text" [(ngModel)]="txtSearch"
+                                        (keyup)="searchBrand()"
+                                        (focus)="onTextFocus = true" (focusout)="onFocusOut()" placeholder="Select one">
+                                    <i class="drick-select__icon caret down icon"></i>
+                                </div>
+                                <div class="drick-select-container--toggle" [ngClass]="{'active':onTextFocus}"
+                                    id="drick-scroll-container"
+                                    (scroll)="onScrollDown()">
+                                    <ul class="drick-select-list">
+                                        <li *ngFor="let i of brands" (click)="selectBrand(i)">
+                                            {{i.name}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <sui-select class="selection"
+                                id="select-brand"
                                 [(ngModel)]="ctr.brand"
                                 labelField="name"
                                 isSearchable="true"
@@ -64,16 +88,16 @@
                                 #brnds
                                 >
                                 <sui-select-option *ngFor="let option of brnds.filteredOptions" [value]="option" (click)="selectBrands(option.m_productbrand_id)"></sui-select-option>
-                            </sui-select>
-                        </div>
+                            </sui-select> -->
+                        <!-- </div> -->
 
                     </div>
                     <!-- <div class="four wide field" align="left"><div class="new-product">{{news2}}</div></div> -->
                 </div>
                 <div class="inline twelve fields" *ngIf="[results] == 0">
                         <div class="two wide field">
-                                Category Product
-                            </div>
+                            Category Product
+                        </div>
                         <div class="six wide field">
                             <div class="field">
                                 <sui-select class="selection"

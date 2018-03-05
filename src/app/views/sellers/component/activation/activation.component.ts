@@ -47,7 +47,6 @@ export class ActivationComponent implements OnInit {
           email : result.value,
           type: 'activation'
         }).subscribe(data => {
-          console.log(data);
           swal({
             type: 'success',
             title: data.message,

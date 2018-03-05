@@ -32,7 +32,6 @@ export class MDashboardBuyerComponent implements OnInit {
   }
   allProduct() {
     this.productService.AllNewProduct().subscribe(response => {
-
       this.productList = response;
       // console.log('ini', this.productList);
     });

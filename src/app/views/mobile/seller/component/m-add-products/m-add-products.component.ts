@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit, HostListener, NgZone } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnInit, HostListener, NgZone, ElementRef } from '@angular/core';
 import { StoreModule, Store, ActionsSubject } from '@ngrx/store';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -29,6 +29,8 @@ interface AppState {
 })
 export class MAddProductsComponent implements OnInit {
 
+  array = [];
+  sum = 100;
   disabled: any;
   message$: Observable<Search>;
   courier: any;
@@ -36,7 +38,7 @@ export class MAddProductsComponent implements OnInit {
   condition: string;
   selectProd: object;
   selectCats: any;
-  selectedBrands: string;
+  selectedBrands: string = '';
   selectedCategory: string;
   selectedSubCategory: string;
   selectedSubCategories: string;
@@ -100,6 +102,11 @@ export class MAddProductsComponent implements OnInit {
   tempImages: any[] = [];
   isNewProduct: Boolean = true;
   isLoading: Boolean;
+  onTextFocus: Boolean = false;
+  querySearch: string;
+  txtSearch: string;
+  current: number = 1;
+  limit: number = 100;
 
   countries = [
     {id: 0, name: '0' , selected: false},
@@ -134,22 +141,64 @@ export class MAddProductsComponent implements OnInit {
     {id: 29, name: '29' , selected: false},
     {id: 30, name: '30' , selected: false},
   ];
-    constructor(private searchService: SearchService, private categoryService: CategoryService,
-      private route: ActivatedRoute, private router: Router, private storeService: StoreService,
-      private addService: AddproductService,
-      private actionsSubject: ActionsSubject,
-      private brand: BrandsService,
-      private store: Store<fromProduct.Products>,
-      private title: Title,
-      private shared: ShareService,
-      private ngzone: NgZone
-    ) {
-      this.route.params.subscribe( id => {
-        this.editid = id;
-      });
-      this.quantity = this.countries;
-    }
+  constructor(private searchService: SearchService, private categoryService: CategoryService,
+    private route: ActivatedRoute, private router: Router, private storeService: StoreService,
+    private addService: AddproductService,
+    private actionsSubject: ActionsSubject,
+    private brandService: BrandsService,
+    private store: Store<fromProduct.Products>,
+    private title: Title,
+    private shared: ShareService,
+    private ngzone: NgZone,
+    private el: ElementRef
+  ) {
+    this.route.params.subscribe( id => {
+      this.editid = id;
+    });
+    this.quantity = this.countries;
 
+    for (let i = 0; i < this.sum; ++i) {
+      this.array.push(i);
+    }
+  }
+
+  onFocusOut() {
+    setTimeout(() => { this.onTextFocus = false }, 200)
+  }
+
+  onScrollDown () {
+    const scr = this.el.nativeElement.querySelector('#drick-scroll-container');
+    console.log('scr.scrollHeight: ', scr.scrollHeight);
+    console.log('scr.style.height: ', scr.clientHeight);
+    console.log('scr.scrollTop: ', scr.scrollTop);
+    if (scr.scrollHeight - scr.clientHeight == scr.scrollTop) {
+      const queryParams = {
+        current: this.current += 1,
+        limit: this.limit,
+        q: this.querySearch === undefined ? '' : this.querySearch
+      }
+      this.brandService.getProductBrand(queryParams).subscribe(response => {
+        this.brands = this.brands.concat(response);
+      });
+    };
+  }
+
+  searchBrand() {
+    this.querySearch = this.txtSearch;
+    const queryParams = {
+      current: this.current = 1,
+      limit: this.limit,
+      q: this.querySearch === undefined ? '' : this.querySearch
+    }
+    this.brandService.getProductBrand(queryParams).subscribe(response => {
+      this.brands = response;
+    });
+  }
+
+  selectBrand(brand) {
+    this.txtSearch = brand.name;
+    this.productBrandId = brand.m_productbrand_id;
+  }
 
   ngOnInit() {
     this.disabled = '';
@@ -159,7 +208,7 @@ export class MAddProductsComponent implements OnInit {
     this.news = '';
     this.results = [];
     this.getCategory();
-    this.getBrands();
+    // this.getBrands();
     this.getStore();
     this.garansiDays = 0;
     this.stok = 0;
@@ -172,6 +221,7 @@ export class MAddProductsComponent implements OnInit {
       this.editMode = true;
       this.editData = this.shared.shareData;
       this.countries[this.editData.stock].selected = true;
+      // this.shared.shareData.
       this.productSelected(this.shared.shareData);
     }
     this.redirectSub = this.actionsSubject
@@ -183,7 +233,7 @@ export class MAddProductsComponent implements OnInit {
             'Produk berhasil di tambahkan!',
             'success'
           ).then((result) => {
-            this.router.navigateByUrl('/seller/product-list');
+            this.router.navigateByUrl('/mobile-seller/m-product-list');
             this.clearAll();
           });
         });
@@ -197,9 +247,18 @@ export class MAddProductsComponent implements OnInit {
           ).then((result) => {
             this.clearAll();
             this.shared.shareData = '';
-            this.router.navigateByUrl('/seller/product-list');
+            this.router.navigateByUrl('/mobile-seller/m-product-list');
           });
     });
+
+    const queryParams = {
+      current: 1,
+      limit: this.limit,
+      q: this.querySearch === undefined ? '' : this.querySearch
+    }
+    this.brandService.getProductBrand(queryParams).subscribe(response => {
+      this.brands = response;
+    })
   }
 
   onInput($event) {
@@ -302,6 +361,7 @@ export class MAddProductsComponent implements OnInit {
 
 
   productSelected(hasil: any) {
+    console.log('hasil: ', hasil);
     this.categoryService.CategoryTwo(hasil.category1Id).subscribe(cat2 => {
       this.subcategory = cat2;
       this.categoryService.CategoryThree(hasil.category2Id).subscribe(cat3 => {
@@ -322,6 +382,7 @@ export class MAddProductsComponent implements OnInit {
     this.ctr.brandname = hasil.brandname;
     this.selectedSubCategory = hasil.category2Name;
     this.selectedSubCategories = hasil.category3Name;
+    this.txtSearch = hasil.brandname;
     this.selectedBrands = hasil.brandname;
     this.productBrandId = hasil.productbrandId;
     this.results = [];
@@ -464,19 +525,19 @@ export class MAddProductsComponent implements OnInit {
       if (this.isNewProduct) {
         this.productPictures.forEach(item => {
           this.gambarnya.push(item.substr(item.indexOf(",") + 1));
-        })
+        });
       } else {
         this.gambarnya = [];
       }
-      console.log('this.productPictures.length: ', this.productPictures.length);
-      if (this.productPictures.length < 3) {
-        swal(
-          'Belisada.co.id',
-          'Anda harus memasukan gambar minimal 3!',
-          'info'
-        );
-        return;
-      }
+      // console.log('this.productPictures.length: ', this.productPictures.length);
+      // if (this.productPictures.length < 3) {
+      //   swal(
+      //     'Belisada.co.id',
+      //     'Anda harus memasukan gambar minimal 3!',
+      //     'info'
+      //   );
+      //   return;
+      // }
       if (this.cat3Id === undefined) {
         this.cat3Id = this.ctr.cat3;
       }
@@ -745,11 +806,11 @@ export class MAddProductsComponent implements OnInit {
             'Belisada.co.id',
             'Kamu hanya bisa menambahkan maksimal 5 gambar',
             'info'
-          )
+          );
         }
         console.log('this.productPictures: ', this.productPictures);
       }
       myReader.readAsDataURL(file);
-    })
+    });
   }
 }

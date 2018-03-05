@@ -192,22 +192,22 @@ export function BankReducer(
   switch (action.type) {
 
     case actions.ADDBANKSUCCESS : {
-      console.log(action.success);
+      // console.log(action.success);
         return action.success;
     }
 
     case actions.EDITBANKSUCCESS : {
-      console.log(action.success);
+      // console.log(action.success);
         return action.success;
     }
 
     case actions.GETBANKLIST : {
-      console.log(action.bank);
+      // console.log(action.bank);
         return action.bank;
     }
 
     case actions.DELETEBANKSUCCESS : {
-      console.log(action.success);
+      // console.log(action.success);
         return [action.success];
     }
 

@@ -86,8 +86,8 @@ export class MProductSearchComponent implements OnInit {
       .subscribe(params => {
         this.cat = params.cat === undefined ? [] : params.cat.substr(1).slice(0, -1).split(',');
         this.brand = params.brand === undefined ? [] : params.brand.substr(1).slice(0, -1).split(',');
-        console.log('this.cat: ', this.cat);
-        console.log('this.brand: ', this.brand);
+        // console.log('this.cat: ', this.cat);
+        // console.log('this.brand: ', this.brand);
         this.keys = params.q;
         if (params.page) {
           this.currentPage = params.page;
@@ -111,7 +111,7 @@ export class MProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GETLISTSUCCESS)
         .subscribe((action: frontActions.GetListSuccess) => {
-          console.log('this.getDetailData()');
+          // console.log('this.getDetailData()');
           this.loading = false;
           this.getDetailDatas();
         });
@@ -120,7 +120,7 @@ export class MProductSearchComponent implements OnInit {
         .asObservable()
         .filter(action => action.type === frontActions.GET_SIDEBAR_FILTER_SUCCESS)
         .subscribe((action: frontActions.GetSidebarFilterSuccess) => {
-          console.log('this.getSidebarFilter()');
+          // console.log('this.getSidebarFilter()');
           this.loading = false;
           this.getSidebarFilters();
         });
@@ -170,7 +170,7 @@ export class MProductSearchComponent implements OnInit {
     this.loading = true;
     this.ngZone.run(() => {
       this.store.select<any>(fromProduct.getListState).subscribe(response => {
-        console.log(response);
+        // console.log(response);
         this.loading = false;
         if (!isEmpty(response)) {
           this.productSearchResault = response;
@@ -202,8 +202,8 @@ export class MProductSearchComponent implements OnInit {
   }
 
   updateFilter(filterAlias, data) {
-    console.log('filterAlias: ', filterAlias);
-    console.log('data: ', data);
+    // console.log('filterAlias: ', filterAlias);
+    // console.log('data: ', data);
     // let filter = '';
     switch (filterAlias) {
       case 'Category':
@@ -259,7 +259,7 @@ export class MProductSearchComponent implements OnInit {
       cat: (this.filterParams.cat.length === 0) ? '()' : cat,
       brand: (this.filterParams.brand.length === 0) ? '()' : brand
     };
-    console.log(this.Params);
+    // console.log(this.Params);
     this.store.dispatch(new frontActions.GetList(JSON.parse(JSON.stringify(this.Params))));
     // this.storeFilter.dispatch(new frontActions.GetSidebarFilter(this.keys));
 
@@ -267,7 +267,7 @@ export class MProductSearchComponent implements OnInit {
     .asObservable()
     .filter(action => action.type === frontActions.GETLISTSUCCESS)
     .subscribe((action: frontActions.GetListSuccess) => {
-      console.log('this.getDetailData()');
+      // console.log('this.getDetailData()');
       this.loading = false;
       this.getDetailDatas();
     });
@@ -282,7 +282,7 @@ export class MProductSearchComponent implements OnInit {
         if (!isEmpty(response)) {
           this.sidebarFilters = response;
 
-          console.log('this.sidebarFilters', this.sidebarFilters);
+          // console.log('this.sidebarFilters', this.sidebarFilters);
           this.sidebarFilters.forEach(x => {
             if (x.filterAlias === 'Price') {
               x.data.forEach(item => {
