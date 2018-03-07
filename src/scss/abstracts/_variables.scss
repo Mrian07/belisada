@@ -1,0 +1,33 @@
+/// Z-indexes map, gathering all Z layers of the application
+/// @access public
+/// @type Map
+/// @prop {String} key - Layer's name
+/// @prop {Number} value - Z value mapped to the key
+$z-indexes: (
+    'modal': 5000,
+    'dropdown': 4000,
+    'default': 1,
+    'below': -1,
+);
+
+$btn-colors: (
+    "green": #88D5D1,
+    "white": #fff
+);
+$btn-text-color-light: #fff;
+$btn-text-color-dark: #4A6C80;
+
+// COLORS
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-dark: #777;
+$color-white: #fff;
+$color-black: #000;
+
+// GRID
+$grid-width: 114rem;
+$gutter-vertical: 3rem;
+$gutter-horizontal: 3rem;
