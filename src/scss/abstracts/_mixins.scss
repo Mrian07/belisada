@@ -88,12 +88,20 @@
 
 @mixin btn-theme($btn-color, $text-color) {
     color: $text-color;
-	background-color: $btn-color;
-	&:hover, &:active {
+    background-color: $btn-color;
+    &:hover, &:active {
 		background-color: darken($btn-color, 6%);
     }
-    &:focus {
-        outline: 0;
+
+    &.inverted {
+        color: $btn-color;
+        border: 1px solid $btn-color;
+        background-color: transparent;
+
+        &:hover, &:active {
+            color: $btn-text-color-light;
+            background-color: darken($btn-color, 6%);
+        }
     }
 }
 

@@ -3,30 +3,76 @@
 .btn {
     display: inline-block;
     padding: 1rem 2rem;
-    border-radius: 2rem;
-    border: .1rem solid;
+    border-radius: .5rem;
+    border: 0;
     font-family: 'Muli', sans-serif;
     font-weight: 300;
-    font-size: 1.5rem;
-    -webkit-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.2);
-    -moz-box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.2);
-    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.2);
-	@include transition(0.2s ease-in-out); 
-	text: {
-		decoration: none;
-	}
+    font-size: 1.2rem;
     cursor:pointer;
+	text: {
+        decoration: none;
+    }
+    &:focus {
+        outline: 0;
+    }
+    // @include transition(0.2s ease-in-out);
+    @include prefix((
+        box-shadow: 0px 3px 6px 0px rgba($color-black, .15),
+        transition: .2s ease-in-out
+    ), webkit moz ms o);
+
+    &.round {
+        border-radius: 2rem;
+    }
 }
+
 
 /* Themes */
+.btn-blue-sky {
+    $btn-color: btn-color("blue-sky");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-orange {
+    $btn-color: btn-color("orange");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-yellow {
+    $btn-color: btn-color("yellow");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
 .btn-green {
     $btn-color: btn-color("green");
-    border-color: $btn-color;
-	@include btn-theme($btn-color, $btn-text-color-light);
+    @include btn-theme($btn-color, $btn-text-color-light);
 }
-
-.btn-white {
-    $btn-color: btn-color("white");
-    border-color: $btn-text-color-dark;
-    @include btn-theme($btn-color, $btn-text-color-dark);
+.btn-purple {
+    $btn-color: btn-color("purple");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-blue {
+    $btn-color: btn-color("blue");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-silver {
+    $btn-color: btn-color("silver");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-ash {
+    $btn-color: btn-color("ash");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-grey {
+    $btn-color: btn-color("grey");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-navy {
+    $btn-color: btn-color("navy");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-dark-grey {
+    $btn-color: btn-color("dark-grey");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+.btn-black {
+    $btn-color: btn-color("black");
+    @include btn-theme($btn-color, $btn-text-color-light);
 }
