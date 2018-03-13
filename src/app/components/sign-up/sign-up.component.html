@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div>
+        <img class="img-test" src="../assets/Asset_3.png">
+    </div>
+    <div>
+        <div>
+            <span class="f-registrasi">registrasi</span>
+        </div>
+        <div>
+            <input type="text" placeholder="Nama">
+        </div>
+        <div>
+            <input type="email"  name="myEmail" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required placeholder="Email">
+            <!-- <input type="email" id="fname" name="fname" placeholder="Email"> -->
+        </div>
+        <div>
+                <input type="password" placeholder="Password">
+        </div>
+        <div>
+            <input type="password" placeholder="Ulangi Password">
+        </div>
+        <div>
+            <input type="text" placeholder="No Handphone +62">
+        </div>
+        <div class="wrapper2">
+            <div>
+                <form [formGroup]="reactiveForm">
+                    <re-captcha 
+                      formControlName="recaptchaReactive"
+                    ></re-captcha>
+                    <button [disabled]="reactiveForm.invalid">Submit</button>
+                </form>
+            </div>
+            <div>
+                <label class="container">
+                    <div class="text-box">
+                    <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                    <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
+                    </div>
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-orange">Orange Button</button>
+        </div>
+    </div>
+</div>
+
