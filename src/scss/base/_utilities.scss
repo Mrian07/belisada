@@ -2,10 +2,6 @@
 
 .u-margin-bottom-8 { margin-bottom: 8rem; }
 
-.component-center{
-    margin:0px auto;
-}
-
 a.link-text:link {
     color: #37aeee;
     text-decoration: none;
@@ -19,4 +15,9 @@ a.link-text:hover{
     color: #5bc2f9;
     text-decoration: none;
 }
+
+.component-center{
+    text-align: center;
+}
+
 
