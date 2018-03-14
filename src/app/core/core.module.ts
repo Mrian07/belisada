@@ -1,3 +1,4 @@
+import { FooterComponent } from './../components/layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -13,6 +14,7 @@ import { HeaderComponent } from './../components/layout/header/header.component'
   declarations: [
     LayoutComponent,
     HeaderComponent,
+    FooterComponent,
     // HomeComponent
   ],
   providers: [],

@@ -10,7 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-import { FooterComponent } from './components/footer/footer.component';
+// import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { UserServiceService } from './core/services/service/User/user-service.service';
 import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend';
@@ -24,7 +24,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     AppComponent,
     SignUpComponent,
     HomeComponent,
-    FooterComponent,
+    // FooterComponent,
     SigninComponent
   ],
   imports: [
