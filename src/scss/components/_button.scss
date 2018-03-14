@@ -75,3 +75,21 @@
     $btn-color: btn-color("black");
     @include btn-theme($btn-color, $btn-text-color-light);
 }
+
+.btn-size-80 {
+    width: 80%;
+}
+
+.btn-alert-ok {
+    color: #000;
+    background: #fff;
+    padding:10px 40px 10px 40px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-alert-ok:hover {
+    color: #000;
+    background: #f1c145;
+}
