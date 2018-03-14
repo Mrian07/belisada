@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CustomAlert } from './alert';
 
 @Component({
@@ -11,8 +13,8 @@ export class SigninComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    const a = new CustomAlert();
-    a.show('This is just a test...');
+    // const a = new CustomAlert();
+    // a.show('This is just a test...');
   }
 
   tombolAlert() {
