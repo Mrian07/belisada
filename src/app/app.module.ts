@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaLoaderService} from 'ng-recaptcha';
+import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaLoaderService } from 'ng-recaptcha';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { UserServiceService } from './core/services/service/User/user-service.service';
 import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend';
+import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { AlertService } from './core/services/service/alert/alert.service';
@@ -42,6 +43,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   providers: [
     UserServiceService,
     fakeBackendProvider,
+    UserService,
     // AlertService,
     {
       provide: RECAPTCHA_SETTINGS,

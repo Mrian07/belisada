@@ -19,7 +19,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'Daftar',
+        path: 'daftar',
         component: SignUpComponent,
     }
 ];

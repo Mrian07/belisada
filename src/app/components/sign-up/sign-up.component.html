@@ -9,18 +9,14 @@
         <div>
           
             <form  (ngSubmit)= "fs.form.valid && register()" #fs="ngForm" novalidate>
-                <input type="text" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required placeholder="nama" />
-                <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div>
-                <!-- <div *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
-                class="alert alert-danger">jgn kosong</div>
-           <pre>Dirty? {{ vForValidation.controls.firstName.dirty }}</pre> -->
+                <input type="text" name="firstName" [(ngModel)]="signupData.f_name" required placeholder="nama" />
+                <!-- <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div> -->
              
         <div>
-            <input type="text"  placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required />
-            <!-- <input type="email" id="fname" name="fname" placeholder="Email"> -->
+            <input type="text"  placeholder="Email" name="email" [(ngModel)]="signupData.email" required />
         </div>
         <div>
-                <input type="password" placeholder="Password" name="password" [(ngModel)]="model.password">
+                <input type="password" placeholder="Password" name="password" [(ngModel)]="signupData.password">
         </div>
         <div>
             <input type="password" placeholder="Ulangi Password">
