@@ -1,3 +1,23 @@
 .text-center { text-align: center; }
 
 .u-margin-bottom-8 { margin-bottom: 8rem; }
+
+a.link-text:link {
+    color: #37aeee;
+    text-decoration: none;
+}
+
+a.link-text:visited {
+    color: #37aeee;
+}
+
+a.link-text:hover{
+    color: #5bc2f9;
+    text-decoration: none;
+}
+
+.component-center{
+    text-align: center;
+}
+
+

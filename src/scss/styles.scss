@@ -10,7 +10,12 @@
 @import "components/button";
 @import "components/toggle-buttons";
 @import "components/checkbox";
+@import "components/form";
+
 @import "layout/grid";
 @import "layout/header";
+@import "layout/body";
+@import "layout/footer";
 
 @import "pages/home";
+@import "pages/signin";

@@ -7,14 +7,20 @@
             <span class="f-registrasi">registrasi</span>
         </div>
         <div>
-            <input type="text" placeholder="Nama">
-        </div>
+          
+            <form  (ngSubmit)= "fs.form.valid && register()" #fs="ngForm" novalidate>
+                <input type="text" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required placeholder="nama" />
+                <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div>
+                <!-- <div *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
+                class="alert alert-danger">jgn kosong</div>
+           <pre>Dirty? {{ vForValidation.controls.firstName.dirty }}</pre> -->
+             
         <div>
-            <input type="email"  name="myEmail" email pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" required placeholder="Email">
+            <input type="text"  placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required />
             <!-- <input type="email" id="fname" name="fname" placeholder="Email"> -->
         </div>
         <div>
-                <input type="password" placeholder="Password">
+                <input type="password" placeholder="Password" name="password" [(ngModel)]="model.password">
         </div>
         <div>
             <input type="password" placeholder="Ulangi Password">
@@ -22,6 +28,8 @@
         <div>
             <input type="text" placeholder="No Handphone +62">
         </div>
+        <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
+    </form>
         <div class="wrapper2">
             <div>
                 <form [formGroup]="reactiveForm">
@@ -43,7 +51,7 @@
             </div>
         </div>
         <div>
-            <button class="btn btn-orange">Orange Button</button>
+            <div class="component-center"><button type="submit" class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
         </div>
     </div>
 </div>
