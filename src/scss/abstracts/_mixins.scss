@@ -86,11 +86,18 @@
     }
 }
 
+@mixin transition($val...) {
+    -webkit-transition: $val;
+	-moz-transition: $val; 
+	-o-transition: $val; 
+	transition: $val; 
+}
+
 @mixin btn-theme($btn-color, $text-color) {
     color: $text-color;
     background-color: $btn-color;
     &:hover, &:active {
-		background-color: darken($btn-color, 6%);
+        background-color: darken($btn-color, 6%);
     }
 
     &.inverted {
@@ -105,9 +112,7 @@
     }
 }
 
-@mixin transition($val...) {
-	-webkit-transition: $val;
-	-moz-transition: $val; 
-	-o-transition: $val; 
-	transition: $val; 
+@mixin select-box-theme($select-box-color, $select-box-font-color) {
+    color: $select-box-font-color;
+    background-color: $select-box-color;
 }

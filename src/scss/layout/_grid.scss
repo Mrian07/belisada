@@ -4,6 +4,9 @@
     &:not(:last-child) {
         margin-bottom: $gutter-vertical;
     }
+    &:after {
+        clear: both;
+    }
 
     [class^="col-"] {
         float: left;

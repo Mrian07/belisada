@@ -5,7 +5,6 @@
     padding: 1rem 2rem;
     border-radius: .5rem;
     border: 0;
-    font-family: 'Muli', sans-serif;
     font-weight: 300;
     font-size: 1.2rem;
     cursor:pointer;
@@ -79,4 +78,18 @@
 
 .btn-size-80 {
     width: 80%;
+}
+
+.btn-alert-ok {
+    color: #000;
+    background: #fff;
+    padding:10px 40px 10px 40px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-alert-ok:hover {
+    color: #000;
+    background: #f1c145;
 }
