@@ -5,34 +5,52 @@
         </a>
     </div>
     <div class="header__search-box">
-        <div class="select-box-container" clickOutside>
-            <div class="select-box select-box-orange" (click)="isSelectBoxActive = !isSelectBoxActive">
-                <span>Select Category</span>
-                <fa name="caret-down"></fa>
-                <input type="hidden" name="">
+        <div class="search-by-category-wrapper">
+            <div class="select-box-container">
+                <div class="select-box select-box-orange" (click)="isSelectBoxActive = !isSelectBoxActive">
+                    <span>All Category</span>
+                    <fa name="caret-down"></fa>
+                    <input type="hidden" name="">
+                </div>
+                <div class="drick-select-container--toggle" [ngClass]="{'active':isSelectBoxActive}">
+                    <ul class="drick-select-list">
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                        <li>aaaaa</li>
+                    </ul>
+                </div>
             </div>
-            <div class="drick-select-container--toggle" [ngClass]="{'active':isSelectBoxActive}">
-                <ul class="drick-select-list">
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                    <li>aaaaa</li>
-                </ul>
+            <div class="input-group icon-right with-select-box">
+                <input type="text" class="input" placeholder="Typing"/>
+                <fa name="search"></fa>
             </div>
         </div>
     </div>
     <div class="header__account-box">
+        <ul>
+            <li>
+                <img src="/assets/img/cart.png" alt="">
+            </li>
+            <li>
+                <!-- <div class="profile-wrapper"> -->
+                    <img class="u-display-block centered-block-element img-circle" src="/assets/img/profile.png" alt="">
+                    <span class="u-display-block text-profile">Masuk</span>
+                <!-- </div> -->
+            </li>
+            <li>
+                <img class="country-flag" src="/assets/img/id_flag.png" alt="">
+                <span class="text-language">
+                    ID<br>
+                    <fa name="caret-down"></fa>
+                </span>
+            </li>
+        </ul>
     </div>
-    <!-- <div class="header__logo-box">
-
-    </div>
-    <div class="header__logo-box">
-
-    </div> -->
 </div>

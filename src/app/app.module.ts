@@ -14,7 +14,6 @@ import { SigninComponent } from './components/signin/signin.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     FooterComponent,
     SigninComponent
   ],
