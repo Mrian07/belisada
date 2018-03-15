@@ -34,7 +34,7 @@
                 <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
                 <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 8 characters long.  </p>
                 </div>
-        </div>
+                <!-- <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div> -->
         <div>
                 <input type="password"
                 class="form-control"
@@ -67,7 +67,7 @@
                 </div>
             </div>
         <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center" [disabled]="vForValidation.invalid">MASUK</button></div>
-    </form>
-    </div>
+    <!-- </form> -->
+    <!-- </div> -->
 </div>
 

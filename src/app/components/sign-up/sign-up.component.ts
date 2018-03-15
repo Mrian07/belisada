@@ -10,6 +10,9 @@ import { UserServiceService } from '../../core/services/service/User/user-servic
 import { AlertService } from '../../core/services/service/alert/alert.service';
 import { User } from '../../core/services/cart/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
+import { UserService } from '../../core/services/user/user.service';
+import { SignupData } from '../../core/services/user/models/user';
+// import { AlertService } from '../../core/services/service/alert/alert.service';
 // import { Alert } from 'selenium-webdriver';
 @Component({
   selector: 'app-sign-up',
@@ -21,6 +24,7 @@ export class SignUpComponent implements OnInit {
   model: any = {};
   currentUser: User;
   users: User[] = [];
+  signupData: SignupData = new SignupData();
   loading = false;
   password: FormControl;
   confirmPassword: FormControl;
@@ -36,7 +40,7 @@ export class SignUpComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.loadAllUsers();
+    // this.loadAllUsers();
     this.firstName = new FormControl('', Validators.required);
     this.password = new FormControl('', [
       Validators.required,
@@ -65,16 +69,10 @@ export class SignUpComponent implements OnInit {
 //        ? null : {'mismatch': true};
 //  }
 //  console.log('asdasda', passwordMatchValidator);
-    this.reactiveForm = new FormGroup({
-      recaptchaReactive: new FormControl(null, Validators.required)
-  });
-  }
-   loadAllUsers() {
-    if (this.password !== this.confirmPassword) {
-      console.log('tidaksama');
-      return false;
     }
-}
+    // this.reactiveForm = new FormGroup({
+    //   recaptchaReactive: new FormControl(null, Validators.required)
+    // });
   onTest(form: NgForm) {
     const model = this.vForValidation.value;
     this.loading = true;
