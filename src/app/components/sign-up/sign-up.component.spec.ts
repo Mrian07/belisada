@@ -33,9 +33,30 @@ describe('SignUpComponent', () => {
     fixture = TestBed.createComponent(SignUpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    // get test component from the fixture
+    component = fixture.componentInstance;
+    component.ngOnInit();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('forms should contains firstName, password, confirmPassword, email, recaptchaReactive', () => {
+    expect(component.vForValidation.controls['firstName']).toBeTruthy();
+    expect(component.vForValidation.controls['password']).toBeTruthy();
+    expect(component.vForValidation.controls['confirmPassword']).toBeTruthy();
+    expect(component.vForValidation.controls['email']).toBeTruthy();
+    expect(component.vForValidation.controls['recaptchaReactive']).toBeTruthy();
+  });
+
+  it('firstName validation', () => {
+
+    let control = component.vForValidation.controls['firstName'];
+
+    control.setValue('');
+
+    expect(control.valid).toBeFalsy();
   });
 });

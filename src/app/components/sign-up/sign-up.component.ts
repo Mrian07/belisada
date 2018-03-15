@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm} from '@angular/forms';
+import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
@@ -32,6 +32,7 @@ export class SignUpComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
+    private fb: FormBuilder
     // private alertService: AlertService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -39,12 +40,12 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     // this.loadAllUsers();
-    this.firstName = new FormControl('', Validators.required);
-    this.password = new FormControl('', [
-      Validators.required,
-      Validators.minLength(8)
-    ]);
-    this.vForValidation = new FormGroup({
+    // this.firstName = new FormControl('', Validators.required);
+    // this.password = new FormControl('', [
+    //   Validators.required,
+    //   Validators.minLength(8)
+    // ]);
+    this.vForValidation = this.fb.group({
       firstName: new FormControl(null, Validators.required),
       password: new FormControl('', [
         Validators.required,
@@ -57,11 +58,11 @@ export class SignUpComponent implements OnInit {
       email: new FormControl('', [
         Validators.required,
         Validators.pattern('[^ @]*@[^ @]*')
-    ]),
-    recaptchaReactive: new FormControl(null, Validators.required)
-  }
-  , PasswordValidation.MatchPassword
-);
+      ]),
+      recaptchaReactive: new FormControl(null, Validators.required)
+    },
+    PasswordValidation.MatchPassword
+  );
 //   function passwordMatchValidator(g: FormGroup) {
 //     return g.get('password').value === g.get('password2').value
 //        ? null : {'mismatch': true};
