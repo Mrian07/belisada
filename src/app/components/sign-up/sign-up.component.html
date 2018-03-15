@@ -1,0 +1,54 @@
+<div class="wrapper">
+    <div>
+        <img class="img-test" src="../assets/Asset_3.png">
+    </div>
+    <div>
+        <div>
+            <span class="f-registrasi">registrasi</span>
+        </div>
+        <div>
+          
+            <form  (ngSubmit)= "fs.form.valid && register()" #fs="ngForm" novalidate>
+                <input type="text" name="firstName" [(ngModel)]="signupData.f_name" required placeholder="nama" />
+                <!-- <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div> -->
+             
+        <div>
+            <input type="text"  placeholder="Email" name="email" [(ngModel)]="signupData.email" required />
+        </div>
+        <div>
+                <input type="password" placeholder="Password" name="password" [(ngModel)]="signupData.password">
+        </div>
+        <div>
+            <input type="password" placeholder="Ulangi Password">
+        </div>
+        <div>
+            <input type="text" placeholder="No Handphone +62">
+        </div>
+        <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
+    </form>
+        <div class="wrapper2">
+            <div>
+                <form [formGroup]="reactiveForm">
+                    <re-captcha 
+                      formControlName="recaptchaReactive"
+                    ></re-captcha>
+                    <button [disabled]="reactiveForm.invalid">Submit</button>
+                </form>
+            </div>
+            <div>
+                <label class="container">
+                    <div class="text-box">
+                    <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                    <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
+                    </div>
+                    <input type="checkbox">
+                    <span class="checkmark"></span>
+                  </label>
+            </div>
+        </div>
+        <div>
+            <div class="component-center"><button type="submit" class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
+        </div>
+    </div>
+</div>
+

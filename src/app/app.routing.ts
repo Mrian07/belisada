@@ -2,6 +2,8 @@ import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { SigninComponent } from './components/signin/signin.component';
 
 const routes: Routes = [
     {
@@ -14,8 +16,19 @@ const routes: Routes = [
                 data: {
                     title: 'home'
                 }
+            },
+            {
+                path: 'signin',
+                component: SigninComponent,
+                data: {
+                    title: 'Sign In'
+                }
             }
         ]
+    },
+    {
+        path: 'daftar',
+        component: SignUpComponent,
     }
 ];
 

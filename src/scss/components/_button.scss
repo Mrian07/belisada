@@ -91,5 +91,19 @@
 
 .btn-alert-ok:hover {
     color: #000;
+    background: #ededed;
+}
+
+.btn-alert-cancel {
+    color: #000;
     background: #f1c145;
+    padding:10px 40px 10px 40px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.btn-alert-ok:hover {
+    color: #000;
+    background: #f8d375;
 }
