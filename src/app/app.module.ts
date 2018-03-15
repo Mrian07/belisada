@@ -16,7 +16,7 @@ import { UserServiceService } from './core/services/service/User/user-service.se
 import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { AlertService } from './core/services/service/alert/alert.service';
+import { AlertService } from './core/services/service/alert/alert.service';
 
 
 @NgModule({
@@ -42,7 +42,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
   providers: [
     UserServiceService,
     fakeBackendProvider,
-    // AlertService,
+    AlertService,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

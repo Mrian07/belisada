@@ -7,52 +7,67 @@
             <span class="f-registrasi">registrasi</span>
         </div>
         <div>
-          
-            <form  (ngSubmit)= "fs.form.valid && register()" #fs="ngForm" novalidate>
-                <input type="text" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required placeholder="nama" />
-                <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div>
-                <!-- <div *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
-                class="alert alert-danger">jgn kosong</div>
-           <pre>Dirty? {{ vForValidation.controls.firstName.dirty }}</pre> -->
-             
+            <form [formGroup]="vForValidation"
+                    (ngSubmit)= "onTest(fs)" #fs="ngForm" novalidate>
+                    <input type="text"
+                    class="form-control"
+                    formControlName="firstName"
+                    placeholder="FirstName"
+                    required>
+                <div *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
+                class="alert alert-danger">jgn kosong
+                </div>
         <div>
-            <input type="text"  placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" required />
-            <!-- <input type="email" id="fname" name="fname" placeholder="Email"> -->
+            <input type="text"  placeholder="Email"  formControlName="email" email name="email" required />
+            <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched) "
+                class="alert alert-danger">Harap masukan Email yang benar
+            </div>
         </div>
         <div>
-                <input type="password" placeholder="Password" name="password" [(ngModel)]="model.password">
+                <input type="password"
+                    class="form-control"
+                    formControlName="password"
+                    placeholder="Password"
+                    required>
+                <div class="form-control-feedback"
+                    *ngIf="vForValidation.controls.password.errors && (vForValidation.controls.password.dirty || vForValidation.controls.password.touched)">
+                <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
+                <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 8 characters long.  </p>
+                </div>
         </div>
         <div>
-            <input type="password" placeholder="Ulangi Password">
+                <input type="password"
+                class="form-control"
+                formControlName="confirmPassword"
+                placeholder="Ketik Ulang Password"
+                required>
+                <div class="form-control-feedback"
+                *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
+                <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch">Password Harus Sama !</p>
+                </div>
         </div>
         <div>
             <input type="text" placeholder="No Handphone +62">
         </div>
-        <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
-    </form>
         <div class="wrapper2">
-            <div>
-                <form [formGroup]="reactiveForm">
-                    <re-captcha 
-                      formControlName="recaptchaReactive"
-                    ></re-captcha>
-                    <button [disabled]="reactiveForm.invalid">Submit</button>
-                </form>
+                <div>
+                        <re-captcha 
+                        formControlName="recaptchaReactive"
+                        ></re-captcha>
+                </div>
+                <div>
+                    <label class="container">
+                        <div class="text-box">
+                        <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                        <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
+                        </div>
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
             </div>
-            <div>
-                <label class="container">
-                    <div class="text-box">
-                    <span class="heading-primary-main">Dapatkan info Menarik di </span>
-                    <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
-                    </div>
-                    <input type="checkbox">
-                    <span class="checkmark"></span>
-                  </label>
-            </div>
-        </div>
-        <div>
-            <div class="component-center"><button type="submit" class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
-        </div>
+        <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center" [disabled]="vForValidation.invalid">MASUK</button></div>
+    </form>
     </div>
 </div>
 
