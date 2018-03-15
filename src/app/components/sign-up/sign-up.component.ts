@@ -6,8 +6,6 @@ import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 // import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserServiceService } from '../../core/services/service/User/user-service.service';
-import { AlertService } from '../../core/services/service/alert/alert.service';
 import { User } from '../../core/services/cart/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
@@ -33,8 +31,8 @@ export class SignUpComponent implements OnInit {
   firstName: FormControl;
   constructor(
     private router: Router,
-    private userService: UserServiceService,
-    private alertService: AlertService
+    private userService: UserService,
+    // private alertService: AlertService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
    }
@@ -86,12 +84,12 @@ export class SignUpComponent implements OnInit {
         .subscribe(
             data => {
               console.log('this.alertService.success:');
-              this.alertService.success('Registration successful', true);
+              // this.alertService.success('Registration successful', true);
                 // this.router.navigate(['login']);
             },
             error => {
               console.log(error);
-              this.alertService.error(error);
+              // this.alertService.error(error);
                 this.loading = false;
             });
     console.log(model);
@@ -103,11 +101,11 @@ export class SignUpComponent implements OnInit {
     this.userService.create(this.model)
         .subscribe(
             data => {
-              this.alertService.success('Registration successful', true);
+              // this.alertService.success('Registration successful', true);
                 // this.router.navigate(['login']);
             },
             error => {
-              this.alertService.error(error);
+              // this.alertService.error(error);
                 this.loading = false;
             });
 }

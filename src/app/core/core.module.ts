@@ -21,7 +21,7 @@ import { HeaderComponent } from './../components/layout/header/header.component'
   // declarations: [],
   imports: [
     CommonModule,
-    AngularFontAwesomeModule,
+    // AngularFontAwesomeModule,
     CoreRoutingModule,
   ],
 })

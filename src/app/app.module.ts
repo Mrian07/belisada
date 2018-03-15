@@ -1,3 +1,4 @@
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,24 +13,21 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 // import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
-import { UserServiceService } from './core/services/service/User/user-service.service';
 import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend';
 import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AlertService } from './core/services/service/alert/alert.service';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     HomeComponent,
-    // FooterComponent,
     SigninComponent
   ],
   imports: [
     BrowserModule,
+    AngularFontAwesomeModule,
     AppRoutingModule,
     CoreModule,
     FormsModule,
@@ -37,15 +35,12 @@ import { AlertService } from './core/services/service/alert/alert.service';
     HttpClientModule,
     ReactiveFormsModule,
     RecaptchaModule,
-    // RouterModule.forRoot({ path: '/oke', component: SignUpComponent}),
     RecaptchaFormsModule,
   ],
   providers: [
-    UserServiceService,
     fakeBackendProvider,
     // AlertService,
     UserService,
-    AlertService,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
