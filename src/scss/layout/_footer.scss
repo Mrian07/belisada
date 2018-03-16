@@ -1,7 +1,14 @@
 .footer{
-    background:#232f3d;
+    background:#022e54;
     color: #e2e3e4;
-    text-align: center;
     padding:20px;
     font-size: 15px;
+}
+
+.menuList{
+    list-style-type: none;
+}
+
+.footer.center{
+    text-align: center;
 }
