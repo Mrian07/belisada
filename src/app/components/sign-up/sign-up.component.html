@@ -9,21 +9,16 @@
         <div>
             <form [formGroup]="vForValidation"
                     (ngSubmit)= "onTest(fs)" #fs="ngForm" novalidate>
-                    <!-- <div class="form-group"
-                    [ngClass]="{
-                   'has-danger': vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched),
-                   'has-success': vForValidation.controls.firstName.valid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)
-                 }"> -->
                     <input type="text"
-                    formControlName="firstName"
-                    placeholder="FirstName"
+                    formControlName="fullname"
+                    placeholder="fullname"
                     class="input-style-text"
                     required
                     [ngClass]="{
-                        'has-danger': vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched),
-                        'has-success': vForValidation.controls.firstName.valid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)
+                        'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched),
+                        'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)
                       }">  
-                <div  *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
+                <div  *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)"
                 class="alert alert-danger toll tooltip">
                 <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
                 </div>  
@@ -59,6 +54,7 @@
                 <input type="password"
                 formControlName="confirmPassword"
                 placeholder="Ketik Ulang Password"
+                class="input-style-text"
                 required>
                 <div class="form-control-feedback"
                 *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
@@ -70,6 +66,7 @@
             <input type="text"
              placeholder="No Handphone +62"
              formControlName="phoneNumber"
+            class="input-style-text"
              value="+62"
              class="input-style-text">
         </div>

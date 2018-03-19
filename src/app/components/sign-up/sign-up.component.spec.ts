@@ -43,17 +43,17 @@ describe('SignUpComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('forms should contains firstName, password, confirmPassword, email, recaptchaReactive', () => {
-    expect(component.vForValidation.controls['firstName']).toBeTruthy();
+  it('forms should contains fullname, password, confirmPassword, email, recaptchaReactive', () => {
+    expect(component.vForValidation.controls['fullname']).toBeTruthy();
     expect(component.vForValidation.controls['password']).toBeTruthy();
     expect(component.vForValidation.controls['confirmPassword']).toBeTruthy();
     expect(component.vForValidation.controls['email']).toBeTruthy();
     expect(component.vForValidation.controls['recaptchaReactive']).toBeTruthy();
   });
 
-  it('firstName validation', () => {
+  it('fullname validation', () => {
 
-    let control = component.vForValidation.controls['firstName'];
+    let control = component.vForValidation.controls['fullname'];
 
     control.setValue('');
 
