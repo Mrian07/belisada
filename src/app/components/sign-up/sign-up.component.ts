@@ -32,7 +32,7 @@ export class SignUpComponent implements OnInit {
   confirmPassword: FormControl;
   public reactiveForm;
   public vForValidation: FormGroup;
-  firstName: FormControl;
+  fullname: FormControl;
   constructor(
     private router: Router,
     private userService: UserService,
@@ -45,13 +45,13 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     // this.loadAllUsers();
-    // this.firstName = new FormControl('', Validators.required);
+    // this.fullname = new FormControl('', Validators.required);
     // this.password = new FormControl('', [
     //   Validators.required,
     //   Validators.minLength(8)
     // ]);
     this.vForValidation = this.fb.group({
-      firstName: new FormControl(null, Validators.required),
+      fullname: new FormControl(null, Validators.required),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(8)
@@ -82,12 +82,12 @@ export class SignUpComponent implements OnInit {
     const model = this.vForValidation.value;
     this.loading = true;
     const tesTing: User = new User();
-    tesTing.firstName = model.firstName,
+    tesTing.fullname = model.fullname,
     tesTing.email = model.email,
     tesTing.phone = model.phoneNumber,
     tesTing.password = model.password;
     // {
-    //   firstName: this.firstName,
+    //   fullname: this.fullname,
     //   email: this.email,
     //   phone: this.phoneNumber
     // };

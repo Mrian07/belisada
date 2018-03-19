@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
@@ -11,7 +12,7 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             {
-                path: 'home',
+                path: '',
                 component: HomeComponent,
                 data: {
                     title: 'home'
@@ -22,6 +23,13 @@ const routes: Routes = [
                 component: SigninComponent,
                 data: {
                     title: 'Sign In'
+                }
+            },
+            {
+                path: 'forgot-password',
+                component: ForgotPasswordComponent,
+                data: {
+                    title: 'Lose Password'
                 }
             }
         ]
