@@ -35,6 +35,13 @@
     $btn-color: btn-color("orange");
     @include btn-theme($btn-color, $btn-text-color-light);
 }
+// penambahan button disabled orange Wahyu
+.btn-orange-disabled {
+    cursor: not-allowed;
+    $btn-color: btn-color("orange");
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
+// akhir dari penambahan button disabled wahyu
 .btn-yellow {
     $btn-color: btn-color("yellow");
     @include btn-theme($btn-color, $btn-text-color-light);
