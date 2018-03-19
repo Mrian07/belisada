@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern('[a-z0-9._%+-@]+@[a-z0-9.-]+\.[a-z]{2,4}')
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
     ]),
     phoneNumber: new FormControl('', [
       Validators.pattern('[0-9]+')
