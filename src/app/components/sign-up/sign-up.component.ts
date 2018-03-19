@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm} from '@angular/forms';
+import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 // import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserServiceService } from '../../core/services/service/User/user-service.service';
-import { AlertService } from '../../core/services/service/alert/alert.service';
 import { User } from '../../core/services/cart/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
@@ -28,7 +26,7 @@ export class SignUpComponent implements OnInit {
   loading = false;
   phoneNumber: FormControl;
   password: FormControl;
-  email:FormControl;
+  email: FormControl;
   confirmPassword: FormControl;
   public reactiveForm;
   public vForValidation: FormGroup;
@@ -36,19 +34,21 @@ export class SignUpComponent implements OnInit {
   constructor(
     private router: Router,
     private userService: UserService,
-    private alertService: AlertService
+    // private alertService: AlertService,
+    private fb: FormBuilder
+    // private alertService: AlertService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
    }
 
   ngOnInit() {
     // this.loadAllUsers();
-    this.firstName = new FormControl('', Validators.required);
-    this.password = new FormControl('', [
-      Validators.required,
-      Validators.minLength(8)
-    ]);
-    this.vForValidation = new FormGroup({
+    // this.firstName = new FormControl('', Validators.required);
+    // this.password = new FormControl('', [
+    //   Validators.required,
+    //   Validators.minLength(8)
+    // ]);
+    this.vForValidation = this.fb.group({
       firstName: new FormControl(null, Validators.required),
       password: new FormControl('', [
         Validators.required,
@@ -95,13 +95,13 @@ export class SignUpComponent implements OnInit {
         .subscribe(
             data => {
               console.log('this.alertService.success:', data);
-              this.alertService.success('Registration successful', true);
+              // this.alertService.success('Registration successful', true);
                 // this.router.navigate(['login']);
             },
             error => {
               console.log(error);
               alert(error);
-              this.alertService.error(error);
+              // this.alertService.error(error);
                 this.loading = false;
             });
     console.log(tesTing);
@@ -114,11 +114,11 @@ export class SignUpComponent implements OnInit {
     this.userService.signup (this.model)
         .subscribe(
             data => {
-              this.alertService.success('Registration successful', true);
+              // this.alertService.success('Registration successful', true);
                 // this.router.navigate(['login']);
             },
             error => {
-              this.alertService.error(error);
+              // this.alertService.error(error);
                 this.loading = false;
             });
 }
