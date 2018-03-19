@@ -1,12 +1,21 @@
 .footer{
     background:#022e54;
-    color: #e2e3e4;
+    color: #f7f7f7;
     padding:20px;
     font-size: 15px;
 }
 
 .menuList{
     list-style-type: none;
+}
+
+.menuList a{
+    color: #f7f7f7;
+    text-decoration: none;
+}
+
+.menuList a:hover{
+    color: #d4d2d2;
 }
 
 .footer.center{
