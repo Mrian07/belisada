@@ -43,12 +43,6 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loadAllUsers();
-    // this.fullname = new FormControl('', Validators.required);
-    // this.password = new FormControl('', [
-    //   Validators.required,
-    //   Validators.minLength(8)
-    // ]);
     this.vForValidation = this.fb.group({
       fullname: new FormControl(null, Validators.required),
       password: new FormControl('', [
@@ -57,11 +51,10 @@ export class SignUpComponent implements OnInit {
       ]),
       confirmPassword: new FormControl('', [
         Validators.required
-        // Validators.minLength(8)
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}')
+        Validators.pattern('[a-z0-9._%+-@]+@[a-z0-9.-]+\.[a-z]{2,4}')
     ]),
     phoneNumber: new FormControl('', [
       Validators.pattern('[0-9]+')
@@ -69,13 +62,7 @@ export class SignUpComponent implements OnInit {
     recaptchaReactive: new FormControl(null, Validators.required)
   }
   , {validator: PasswordValidation.MatchPassword}
-);
-  function passwordMatchValidator(g: FormGroup) {
-    return g.get('password').value !== g.get('confirmPassword').value
-       ? null : {'mismatch': true};
- }
- console.log('asdasda', passwordMatchValidator);
-    }
+);}
 
   onTest(k: NgForm) {
     const model = this.vForValidation.value;
@@ -85,40 +72,19 @@ export class SignUpComponent implements OnInit {
     tesTing.email = model.email,
     tesTing.phone = model.phoneNumber,
     tesTing.password = model.password;
-    // {
-    //   fullname: this.fullname,
-    //   email: this.email,
-    //   phone: this.phoneNumber
-    // };
     this.userService.create(tesTing)
         .subscribe(
             data => {
-              // console.log('this.alertService.success:', data);
-              // this.alertService.success('Registration successful', true);
-                // this.router.navigate(['login']);
+              console.log('sukses');
             },
             error => {
               console.log(error);
               alert(error);
-              // this.alertService.error(error);
                 this.loading = false;
             });
     console.log(tesTing);
     this.vForValidation.reset();
 
     console.log(k);
-  }
-  register() {
-    this.loading = true;
-    this.userService.signup(this.model)
-      .subscribe(
-        data => {
-          // this.alertService.success('Registration successful', true);
-          // this.router.navigate(['login']);
-        },
-        error => {
-          // this.alertService.error(error);
-          this.loading = false;
-        });
   }
 }
