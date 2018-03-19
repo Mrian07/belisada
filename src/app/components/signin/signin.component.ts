@@ -10,11 +10,24 @@ import { CustomAlert } from './alert';
 })
 export class SigninComponent implements OnInit {
 
+  email: string;
+  password: string;
+  fm: any = {};
+
   constructor() { }
 
   ngOnInit() {
     // const a = new CustomAlert();
     // a.show('This is just a test...');
+  }
+
+  fillForms() {
+
+    this.fm = {
+      email : 'email',
+      password: 'password',
+    }
+
   }
 
   tombolAlert() {

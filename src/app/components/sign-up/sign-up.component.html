@@ -8,24 +8,44 @@
         </div>
         <div>
             <form [formGroup]="vForValidation"
-                    (ngSubmit)= "onTest(fs)" #fs="ngForm" novalidate>
+                    (ngSubmit)= "onTest()" #fs="ngForm" novalidate>
+                    <!-- <div class="form-group"
+                    [ngClass]="{
+                   'has-danger': vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched),
+                   'has-success': vForValidation.controls.firstName.valid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)
+                 }"> -->
                     <input type="text"
-                    class="form-control"
                     formControlName="firstName"
                     placeholder="FirstName"
-                    required>
-                <div *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
-                class="alert alert-danger">jgn kosong
-                </div>
+                    class="inputInputStyleText"
+                    required
+                    [ngClass]="{
+                        'has-danger': vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched),
+                        'has-success': vForValidation.controls.firstName.valid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)
+                      }">  
+                <div  *ngIf="vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched)"
+                class="alert alert-danger toll tooltip">
+                <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
+                </div>  
         <div>
-            <input type="text"  placeholder="Email"  formControlName="email" email name="email" required />
-            <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched) "
-                class="alert alert-danger">Harap masukan Email yang benar
-            </div>
+            <input type="text"
+              placeholder="Email"
+            formControlName="email"
+            class="inputInputStyleText"
+             email
+             name="email"
+              required 
+             [ngClass]="{
+                'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched),
+                'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)
+              }"> 
+              <div  *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)"
+                class="alert alert-danger toll tooltip">
+                <span class="tooltiptext">Masukan Email Yang Benar</span>
+                </div>
         </div>
         <div>
                 <input type="password"
-                    class="form-control"
                     formControlName="password"
                     placeholder="Password"
                     required>
@@ -34,10 +54,9 @@
                 <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
                 <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 8 characters long.  </p>
                 </div>
-                <!-- <div *ngIf="fs.submitted && !firstName.valid" class="help-block">First Name is required</div> -->
+                <!-- <div *ngIf="fs.submitted && !email.valid" class="help-block">First Name is required</div> -->
         <div>
                 <input type="password"
-                class="form-control"
                 formControlName="confirmPassword"
                 placeholder="Ketik Ulang Password"
                 required>
@@ -47,7 +66,11 @@
                 </div>
         </div>
         <div>
-            <input type="text" placeholder="No Handphone +62">
+            <input type="text"
+             placeholder="No Handphone +62"
+             formControlName="phoneNumber"
+             value="+62"
+             class="inputInputStyleText">
         </div>
         <div class="wrapper2">
                 <div>
@@ -66,7 +89,16 @@
                     </label>
                 </div>
             </div>
-        <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center" [disabled]="vForValidation.invalid">MASUK</button></div>
+            <div *ngIf="vForValidation.invalid; else signUp">
+                <div class="component-center">
+                       
+                        <div class="component-center"><button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Oops</button></div>
+                </div>
+            </div>
+            <ng-template #signUp>
+                    <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center">Daftar</button></div>
+                <!-- <div class="component-center"><button class="btn btn-orange" [disabled]="vForValidation.invalid">Daftar</button></div> -->
+            </ng-template>
     <!-- </form> -->
     <!-- </div> -->
 </div>
