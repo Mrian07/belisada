@@ -1,4 +1,4 @@
-<div class="container">
+<div class="containPage has-header">
   <div class="row">
     <div class="col-8">
       <div class="welcome">Selamat Datang Di Belisada.co.id</div>
@@ -6,54 +6,18 @@
     </div>
     <div class="col-4">
       <div class="title-page">Login</div>
-      <form action="#">
+      <form class="form-inline" action="#">
         <div class="form-group">
-          <input type="email" class="form-control" placeholder="Email" id="email">
+          <input type="email" class="inputInputStyleText" placeholder="Email" id="email">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" placeholder="Password" id="pwd">
+          <input type="password" class="inputInputStyleText" placeholder="Password" id="pwd">
         </div>
         <div class="text-registration">Belum Punya Akun? <a href="" class="link-text">REGISTRASI</a> Disini</div>
         <div class="component-center"><button type="submit" class="btn btn-orange btn-size-80 text-btn component-center">MASUK</button></div>
       </form>         
     </div>
   </div>
-  
-</div> 
-
-<div id="dialog-overlay"></div>
-<div id="dialog-box">
-    <div>
-        <div id="dialog-box-head"></div>
-        <div id="dialog-box-body"></div>
-        <div id="dialog-box-foot"></div>
-    </div>
 </div>
 
-<button (click)="tombolAlert()">Tombol Alert</button>
 
-<h1>Document Title ...</h1>
-
-<h2>Document Header ...</h2>
-
-<button onclick="alert('This is just a test...')">Default Alert</button>
-<button onclick="Alert.show('This is just a test...')">Custom Alert</button>
-<button onclick="Alert.show('This is just another test...')">Custom Alert 2</button>
-<hr />
-
-<h3>Document content ...</h3>
-
-<p id="post_1">Today is a lovely day ...
-    <button onclick="Confirm.show('Delete Post?','delete_post','post_1')">Delete</button>
-</p>
-<p id="post_2">I like pickles ...
-    <button onclick="Confirm.show('Delete Post?','delete_post','post_2')">Delete</button>
-</p>
-<button onclick="Alert.show('Hello World')">Custom Alert</button>
-<hr />
-
-<h4 id="status">Default Text</h4>
-
-<button onclick="Prompt.show('Type some text:','changeText')">Change Text</button>
-<button onclick="Prompt.show('Type a color name:','doStuff')">Do stuff</button>
-<button onclick="Alert.show('Hello World')">Alert</button>
