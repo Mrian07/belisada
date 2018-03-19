@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { SignupResponse } from './models/user';
-
+import { User } from '../cart/models/user';
+import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class UserService {
 
-  constructor() { }
-
-  signup(data): Observable<SignupResponse>{
+  constructor(private http: HttpClient) { }
+  create(user: User) {
+    return this.http.post('/api/users', user);
+}
+  signup(data): Observable<SignupResponse> {
     const sss: SignupResponse = {status: 1, msg: 'Sukses membuat akun'};
     const err1: SignupResponse = {status: 2, msg: 'Gagal membuat akun'};
     const err2: SignupResponse = {status: 3, msg: 'Gagal membuat akun'};

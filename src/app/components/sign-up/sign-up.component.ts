@@ -26,14 +26,16 @@ export class SignUpComponent implements OnInit {
   users: User[] = [];
   signupData: SignupData = new SignupData();
   loading = false;
+  phoneNumber: FormControl;
   password: FormControl;
+  email:FormControl;
   confirmPassword: FormControl;
   public reactiveForm;
   public vForValidation: FormGroup;
   firstName: FormControl;
   constructor(
     private router: Router,
-    private userService: UserServiceService,
+    private userService: UserService,
     private alertService: AlertService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -60,6 +62,9 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.pattern('[^ @]*@[^ @]*')
     ]),
+    phoneNumber: new FormControl('', [
+      Validators.pattern('[0-9]+')
+    ]),
     recaptchaReactive: new FormControl(null, Validators.required)
   }
   , PasswordValidation.MatchPassword
@@ -73,34 +78,40 @@ export class SignUpComponent implements OnInit {
     // this.reactiveForm = new FormGroup({
     //   recaptchaReactive: new FormControl(null, Validators.required)
     // });
-  onTest(form: NgForm) {
+  onTest() {
     const model = this.vForValidation.value;
     this.loading = true;
-    const tesTing = {
-      firstName: model.firstName,
-      email: model.email
-    };
-    this.userService.create(
-      model
-    )
+    const tesTing: User = new User();
+    tesTing.firstName = model.firstName,
+    tesTing.email = model.email,
+    tesTing.phone = model.phoneNumber,
+    tesTing.password = model.password;
+    // {
+    //   firstName: this.firstName,
+    //   email: this.email,
+    //   phone: this.phoneNumber
+    // };
+    this.userService.create(tesTing)
         .subscribe(
             data => {
-              console.log('this.alertService.success:');
+              console.log('this.alertService.success:', data);
               this.alertService.success('Registration successful', true);
                 // this.router.navigate(['login']);
             },
             error => {
               console.log(error);
+              alert(error);
               this.alertService.error(error);
                 this.loading = false;
             });
-    console.log(model);
+    console.log(tesTing);
+    this.vForValidation.reset();
 
-    console.log(form);
+    // console.log(form);
   }
   register() {
     this.loading = true;
-    this.userService.create(this.model)
+    this.userService.signup (this.model)
         .subscribe(
             data => {
               this.alertService.success('Registration successful', true);
