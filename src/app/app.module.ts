@@ -17,13 +17,15 @@ import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend'
 import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpComponent,
     HomeComponent,
-    SigninComponent
+    SigninComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
