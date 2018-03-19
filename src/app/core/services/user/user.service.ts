@@ -28,7 +28,7 @@ export class UserService {
         observer.error(err2);
       }, 5000);
 
-    })
+    });
   }
 
   getAll() {
