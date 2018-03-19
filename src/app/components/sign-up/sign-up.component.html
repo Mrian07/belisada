@@ -8,7 +8,7 @@
         </div>
         <div>
             <form [formGroup]="vForValidation"
-                    (ngSubmit)= "onTest()" #fs="ngForm" novalidate>
+                    (ngSubmit)= "onTest(fs)" #fs="ngForm" novalidate>
                     <!-- <div class="form-group"
                     [ngClass]="{
                    'has-danger': vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched),
@@ -17,7 +17,7 @@
                     <input type="text"
                     formControlName="firstName"
                     placeholder="FirstName"
-                    class="inputInputStyleText"
+                    class="input-style-text"
                     required
                     [ngClass]="{
                         'has-danger': vForValidation.controls.firstName.invalid && (vForValidation.controls.firstName.dirty || vForValidation.controls.firstName.touched),
@@ -31,7 +31,7 @@
             <input type="text"
               placeholder="Email"
             formControlName="email"
-            class="inputInputStyleText"
+            class="input-style-text"
              email
              name="email"
               required 
@@ -63,6 +63,7 @@
                 <div class="form-control-feedback"
                 *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
                 <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch">Password Harus Sama !</p>
+                <!-- <p *ngIf="vForValidation.controls.confirmPassword.errors?.MatchPassword">asdas</p> -->
                 </div>
         </div>
         <div>
@@ -70,7 +71,7 @@
              placeholder="No Handphone +62"
              formControlName="phoneNumber"
              value="+62"
-             class="inputInputStyleText">
+             class="input-style-text">
         </div>
         <div class="wrapper2">
                 <div>
@@ -92,7 +93,7 @@
             <div *ngIf="vForValidation.invalid; else signUp">
                 <div class="component-center">
                        
-                        <div class="component-center"><button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Oops</button></div>
+                        <div class="component-center"><button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Oops Harap isi semua data</button></div>
                 </div>
             </div>
             <ng-template #signUp>
