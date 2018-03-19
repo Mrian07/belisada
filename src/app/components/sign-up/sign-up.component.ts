@@ -62,7 +62,7 @@ export class SignUpComponent implements OnInit {
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern('[^ @]*@[^ @]*')
+        Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}')
     ]),
     phoneNumber: new FormControl('', [
       Validators.pattern('[0-9]+')
@@ -94,7 +94,7 @@ export class SignUpComponent implements OnInit {
     this.userService.create(tesTing)
         .subscribe(
             data => {
-              console.log('this.alertService.success:', data);
+              // console.log('this.alertService.success:', data);
               // this.alertService.success('Registration successful', true);
                 // this.router.navigate(['login']);
             },
