@@ -33,7 +33,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     const body = {
                         id: user.id,
                         username: user.username,
-                        firstName: user.firstName,
+                        fullname: user.fullname,
                         lastName: user.lastName,
                         token: 'fake-jwt-token'
                     };
