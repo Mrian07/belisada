@@ -7,9 +7,11 @@ import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
 // import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../core/services/cart/models/user';
-import { PasswordValidation } from '../../shared/validators/password.validator';
+// PasswordValidation
+// import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
 import { SignupData } from '../../core/services/user/models/user';
+import { PasswordValidation } from '../../shared/validators/password.validator';
 // import { AlertService } from '../../core/services/service/alert/alert.service';
 // import { Alert } from 'selenium-webdriver';
 @Component({
@@ -67,18 +69,16 @@ export class SignUpComponent implements OnInit {
     ]),
     recaptchaReactive: new FormControl(null, Validators.required)
   }
-  , PasswordValidation.MatchPassword
+  , {validator: PasswordValidation.MatchPassword}
 );
-//   function passwordMatchValidator(g: FormGroup) {
-//     return g.get('password').value === g.get('password2').value
-//        ? null : {'mismatch': true};
-//  }
-//  console.log('asdasda', passwordMatchValidator);
+  function passwordMatchValidator(g: FormGroup) {
+    return g.get('password').value !== g.get('confirmPassword').value
+       ? null : {'mismatch': true};
+ }
+ console.log('asdasda', passwordMatchValidator);
     }
-    // this.reactiveForm = new FormGroup({
-    //   recaptchaReactive: new FormControl(null, Validators.required)
-    // });
-  onTest() {
+   
+  onTest(k: NgForm) {
     const model = this.vForValidation.value;
     this.loading = true;
     const tesTing: User = new User();
@@ -107,7 +107,7 @@ export class SignUpComponent implements OnInit {
     console.log(tesTing);
     this.vForValidation.reset();
 
-    // console.log(form);
+    console.log(k);
   }
   register() {
     this.loading = true;

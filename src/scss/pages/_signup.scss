@@ -1,12 +1,12 @@
-.has-danger {
-    // border-color: red !important;
-    // background: red;
-}
-.has-success {
-    border-color: blue;
-}
-input#input .has-danger .tes {
-    border-color: yellow;
+.input-style-text {
+
+    &.has-danger {
+        border-color: red;
+    }
+
+    &.has-success {
+        border-color: blue;
+    }
 }
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -70,6 +70,8 @@ input#input .has-danger .tes {
 }
 .inputInputStyleText {
     width: 100%;
+.input-style-text {
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -77,6 +79,14 @@ input#input .has-danger .tes {
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
+
+    &.has-danger {
+        border-color: red;
+    }
+
+    &.has-success {
+        border-color: blue;
+    }
 }
 input[type=email] {
     width: 100%;
