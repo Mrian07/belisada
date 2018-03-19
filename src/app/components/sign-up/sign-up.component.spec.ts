@@ -48,6 +48,7 @@ describe('SignUpComponent', () => {
     expect(component.vForValidation.controls['password']).toBeTruthy();
     expect(component.vForValidation.controls['confirmPassword']).toBeTruthy();
     expect(component.vForValidation.controls['email']).toBeTruthy();
+    expect(component.vForValidation.controls['phoneNumber']).toBeTruthy();
     expect(component.vForValidation.controls['recaptchaReactive']).toBeTruthy();
   });
 
