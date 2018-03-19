@@ -21,7 +21,6 @@ import { PasswordValidation } from '../../shared/validators/password.validator';
 })
 export class SignUpComponent implements OnInit {
   public declarativeFormCaptchaValue: string;
-  model: any = {};
   currentUser: User;
   users: User[] = [];
   signupData: SignupData = new SignupData();
@@ -41,7 +40,7 @@ export class SignUpComponent implements OnInit {
     // private alertService: AlertService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-   }
+  }
 
   ngOnInit() {
     // this.loadAllUsers();
@@ -77,7 +76,7 @@ export class SignUpComponent implements OnInit {
  }
  console.log('asdasda', passwordMatchValidator);
     }
-   
+
   onTest(k: NgForm) {
     const model = this.vForValidation.value;
     this.loading = true;
@@ -111,16 +110,15 @@ export class SignUpComponent implements OnInit {
   }
   register() {
     this.loading = true;
-    this.userService.signup (this.model)
-        .subscribe(
-            data => {
-              // this.alertService.success('Registration successful', true);
-                // this.router.navigate(['login']);
-            },
-            error => {
-              // this.alertService.error(error);
-                this.loading = false;
-            });
-}
-
+    this.userService.signup(this.model)
+      .subscribe(
+        data => {
+          // this.alertService.success('Registration successful', true);
+          // this.router.navigate(['login']);
+        },
+        error => {
+          // this.alertService.error(error);
+          this.loading = false;
+        });
+  }
 }

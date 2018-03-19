@@ -9,26 +9,47 @@ import { CustomAlert } from './alert';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+  createComForm: FormGroup;
 
-  email: string;
-  password: string;
-  fm: any = {};
+  email: FormControl;
+  password: FormControl;
+  // fm: any = {};
 
-  constructor() { }
+  constructor(
+    // private router: Router,
+  ) { }
 
   ngOnInit() {
     // const a = new CustomAlert();
     // a.show('This is just a test...');
+    this.createFormControls();
+    this.createForm();
   }
 
-  fillForms() {
-
-    this.fm = {
-      email : 'email',
-      password: 'password',
-    }
-
+  createFormControls() {
+    this.email = new FormControl('', Validators.required);
+    this.password = new FormControl('', Validators.required);
   }
+
+  createForm() {
+    this.createComForm = new FormGroup({
+      email: this.email,
+      password: this.password,
+    });
+  }
+
+  onSubmit() {
+    alert('sssss');
+  }
+
+  // fillForms() {
+
+  //   this.fm = {
+  //     email : 'email',
+  //     password: 'password',
+  //   }
+
+  // }
 
   tombolAlert() {
     const a = new CustomAlert();
