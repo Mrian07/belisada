@@ -4,4 +4,8 @@
     width:90%;
     padding:10px;
     margin:0px auto;
+
+    &.has-header {
+        padding-top: 60px;
+    }
 }

@@ -4,7 +4,7 @@
 
 .header {
     @include position(fixed, top 0 left 0);
-    // position: fixed;
+    z-index: z(header);
     height: 6rem;
     width: 100%;
     background-color: #ffffff;
@@ -39,11 +39,9 @@
 
         ul {
             list-style-type: none;
-            // initial li
 
             li {
                 float: left;
-                // display: inline-block;
                 padding: 1.5rem;
                 height: 6rem;
                 position: relative;
@@ -64,22 +62,12 @@
                     text-align: center;
                     padding: .5rem;
                 }
-              
-                // secondary ul
+
                 ul {
                     display: none;
                 }
             }
         }
-
-        // .dropdown-menu {
-        //     display: table;
-        //     list-style: none;
-
-        //     li {
-        //         display: table-cell;
-        //     }
-        // }
     }
 }
 
