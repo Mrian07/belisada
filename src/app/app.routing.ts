@@ -19,7 +19,7 @@ const routes: Routes = [
                 }
             },
             {
-                path: 'signin',
+                path: 'sign-in',
                 component: SigninComponent,
                 data: {
                     title: 'Sign In'

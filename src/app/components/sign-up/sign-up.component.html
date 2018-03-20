@@ -1,103 +1,73 @@
-<div class="wrapper has-header">
-    <div>
-        <img class="img-test" src="../assets/Asset_3.png">
-    </div>
-    <div>
-        <div>
-            <span class="f-registrasi">registrasi</span>
-        </div>
-        <div>
-            <form [formGroup]="vForValidation"
-                    (ngSubmit)= "onTest(fs)" #fs="ngForm" novalidate>
-                    <input type="text"
-                    formControlName="fullname"
-                    placeholder="fullname"
-                    class="input-style-text"
-                    required
-                    [ngClass]="{
-                        'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
-                        'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
-                      }">  
-                <div  *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)"
-                class="alert alert-danger toll tooltip">
-                <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
-                </div>  
-        <div>
-            <input type="text"
-              placeholder="Email"
-            formControlName="email"
-            class="input-style-text"
-             email
-             name="email"
-              required 
-             [ngClass]="{
-                'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
-                'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-              }"> 
-              <div  *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)"
-                class="alert alert-danger toll tooltip">
-                <span class="tooltiptext">Masukan Email Yang Benar</span>
-                </div>
-        </div>
-        <div>
-                <input type="password"
-                    formControlName="password"
-                    placeholder="Password"
-                    required>
-                <div class="form-control-feedback"
-                    *ngIf="vForValidation.controls.password.errors && (vForValidation.controls.password.dirty || vForValidation.controls.password.touched)">
-                <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
-                <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 8 characters long.  </p>
-                </div>
-                <!-- <div *ngIf="fs.submitted && !email.valid" class="help-block">First Name is required</div> -->
-        <div>
-                <input type="password"
-                formControlName="confirmPassword"
-                placeholder="Ketik Ulang Password"
-                class="input-style-text"
-                required>
-                <div class="form-control-feedback"
-                *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
-                <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch">Password Harus Sama !</p>
-                <!-- <p *ngIf="vForValidation.controls.confirmPassword.errors?.MatchPassword">asdas</p> -->
-                </div>
-        </div>
-        <div>
-            <input type="text"
-             placeholder="No Handphone +62"
-             formControlName="phoneNumber"
-            class="input-style-text"
-             value="+62"
-             class="input-style-text">
-        </div>
-        <div class="wrapper2">
-                <div>
-                        <re-captcha 
-                        formControlName="recaptchaReactive"
-                        ></re-captcha>
-                </div>
-                <div>
-                    <label class="container">
-                        <div class="text-box">
-                        <span class="heading-primary-main">Dapatkan info Menarik di </span>
-                        <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
-                        </div>
-                        <input type="checkbox">
-                        <span class="checkmark"></span>
-                    </label>
-                </div>
-            </div>
-            <div *ngIf="vForValidation.invalid; else signUp">
-                <div class="component-center">
-                       
-                        <div class="component-center"><button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Daftar</button></div>
-                </div>
-            </div>
-            <ng-template #signUp>
-                    <div class="component-center"><button class="btn btn-orange btn-size-80 text-btn component-center">Daftar</button></div>
-                <!-- <div class="component-center"><button class="btn btn-orange" [disabled]="vForValidation.invalid">Daftar</button></div> -->
-            </ng-template>
-    <!-- </form> -->
-    <!-- </div> -->
-</div>
 
+<div class="wrapper has-header">
+        <div>
+            <img class="img-test" src="../assets/Asset_3.png">
+        </div>
+        <div>
+            <div>
+                <span class="f-registrasi">registrasi</span>
+            </div>
+            <div>
+                <form [formGroup]="vForValidation" (ngSubmit)="onTest(fs)" #fs="ngForm" novalidate>
+                    <input type="text" formControlName="fullname" placeholder="fullname" class="input-style-text" required [ngClass]="{
+    'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
+    'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
+    }">
+                    <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip">
+                        <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" required [ngClass]="{
+    'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
+    'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
+    }">
+                        <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
+                            <span class="tooltiptext">Masukan Email Yang Benar</span>
+                        </div>
+                    </div>
+                    <div>
+                        <input type="password" formControlName="password" placeholder="Password" required>
+                        <div class="form-control-feedback" *ngIf="vForValidation.controls.password.errors && (vForValidation.controls.password.dirty || vForValidation.controls.password.touched)">
+                            <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
+                            <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 8 characters long. </p>
+                        </div>
+                        <!-- <div *ngIf="fs.submitted && !email.valid" class="help-block">First Name is required</div> -->
+                        <div>
+                            <input type="password" formControlName="confirmPassword" placeholder="Ketik Ulang Password" class="input-style-text" required>
+                            <div class="form-control-feedback" *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
+                                <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch">Password Harus Sama !</p>
+                                <!-- <p *ngIf="vForValidation.controls.confirmPassword.errors?.MatchPassword">asdas</p> -->
+                            </div>
+                        </div>
+                        <div>
+                            <input type="text" placeholder="No Handphone +62" formControlName="phoneNumber" class="input-style-text" value="+62" class="input-style-text">
+                        </div>
+                        <div class="wrapper2">
+                            <div>
+                                <re-captcha formControlName="recaptchaReactive"></re-captcha>
+                            </div>
+                            <div>
+                                <label class="container">
+                                <div class="text-box">
+                                <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                                <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
+                                </div>
+                            <input type="checkbox">
+                            <span class="checkmark"></span>
+                            </label>
+                            </div>
+                        </div>
+                        <div *ngIf="vForValidation.invalid; else signUp">
+                            <div class="component-center">
+                                <div class="component-center">
+                                    <button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Daftar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #signUp>
+                            <div class="component-center">
+                                <button class="btn btn-orange btn-size-80 text-btn component-center">Daftar</button>
+                            </div>
+                            <!-- <div class="component-center"><button class="btn btn-orange" [disabled]="vForValidation.invalid">Daftar</button></div> -->
+                        </ng-template>
+</div>

@@ -1,9 +1,7 @@
 .input-style-text {
-
     &.has-danger {
         border-color: red;
     }
-
     &.has-success {
         border-color: blue;
     }
@@ -18,8 +16,6 @@
     padding: 5px 9px 6px;
     visibility: visible;
     border: 1px solid black;
-
-    /* Position the tooltip */
     position: relative;
     z-index: 1;
 }
@@ -33,40 +29,29 @@
     border-style: solid;
     border-color: transparent transparent black transparent;
 }
-.wrapper{
-    display:grid;
+.wrapper {
+    display: grid;
     // color: $color-red;
     grid-template-columns: 50% 50%;
-    /*
-    grid-column-gap:1em;
-    grid-row-gap:1em;
-    */
     padding-top: 6rem;
-    grid-gap:1em;
-  }
-  .wrapper2 {
-    display:grid;
+    grid-gap: 1em;
+}
+.wrapper2 {
+    display: grid;
     // color: $color-red;
     grid-template-columns: 50% 50%;
-    /*
-    grid-column-gap:1em;
-    grid-row-gap:1em;
-    */
-    // grid-gap:1em;
-  }
+    // grid-gap: 1em;
+}
 .f-registrasi {
     text-transform: uppercase;
-    color:#0F516A;
+    color: #0F516A;
     font-size: 25px;
     font-weight: bold;
 }
-  
-  .wrapper > div{
-    // background:#eee;
-    padding:1em;
-  }
- 
-
+.wrapper > div {
+    // background: #eee;
+    padding: 1em;
+}
 .input-style-text {
     width: 100%;
     padding: 12px 20px;
@@ -76,11 +61,9 @@
     -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
-
     &.has-danger {
         border-color: red;
     }
-
     &.has-success {
         border-color: blue;
     }
@@ -105,14 +88,12 @@ input[type=password] {
     transition: 0.5s;
     outline: none;
 }
-
 .text-box {
     position: absolute;
-    /* top: 40%; */
     left: 24%;
-    transform: translate(-33%, -31%);
-    // text-align: left; 
-  }
+    transform: translate(-33%,-31%);
+    // text-align: left;
+}
 .heading-primary-sub {
     display: block;
     font-size: 10px;
@@ -125,5 +106,3 @@ input[type=password] {
     // font-weight: 700;
     letter-spacing: 1px;
 }
-
-   
