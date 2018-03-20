@@ -26,6 +26,10 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'signup',
+                component: SignUpComponent,
+            },
+            {
                 path: 'forgot-password',
                 component: ForgotPasswordComponent,
                 data: {
@@ -34,10 +38,7 @@ const routes: Routes = [
             }
         ]
     },
-    {
-        path: 'sign-up',
-        component: SignUpComponent,
-    }
+    
 ];
 
 
