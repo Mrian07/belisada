@@ -1,31 +1,31 @@
 <div class="wrapper">
-        <div>
-            <img class="img-test" src="../assets/Asset_3.png">
+        <div *ngIf="title === true;">
+            <img src="../assets/Asset_3.png">
         </div>
         <div>
-            <div>
+            <div *ngIf="title === true;">
                 <span class="f-registrasi">registrasi</span>
             </div>
-            <div>
+            <div *ngIf="title === true;">
                 <form [formGroup]="vForValidation" (ngSubmit)="onTest(fs)" #fs="ngForm" novalidate>
                     <input type="text" formControlName="fullname" placeholder="fullname" class="input-style-text" required [ngClass]="{
-    'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
-    'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
-    }">
+                                    'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
+                                    'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
+                                    }">
                     <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip">
                         <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
                     </div>
                     <div>
                         <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" required [ngClass]="{
-    'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
-    'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-    }">
+                                    'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
+                                    'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
+                                    }">
                         <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
                             <span class="tooltiptext">Masukan Email Yang Benar</span>
                         </div>
                     </div>
                     <div>
-                        <input type="password" formControlName="password" placeholder="Password" required>
+                        <input type="password" formControlName="password" class="input-style-text" placeholder="Password" required>
                         <div class="form-control-feedback" *ngIf="vForValidation.controls.password.errors && (vForValidation.controls.password.dirty || vForValidation.controls.password.touched)">
                             <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
                             <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 8 characters long. </p>
@@ -39,7 +39,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="text" placeholder="No Handphone +62" formControlName="phoneNumber" class="input-style-text" value="+62" class="input-style-text">
+                            <input type="text" placeholder="No Handphone +62" formControlName="phoneNumber" value="+62" class="input-style-text">
                         </div>
                         <div class="wrapper2">
                             <div>
@@ -47,13 +47,13 @@
                             </div>
                             <div>
                                 <label class="container">
-                                <div class="text-box">
-                                <span class="heading-primary-main">Dapatkan info Menarik di </span>
-                                <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
-                                </div>
-                            <input type="checkbox">
-                            <span class="checkmark"></span>
-                            </label>
+                                    <div class="text-box">
+                                        <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                                        <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
+                                    </div>
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                         </div>
                         <div *ngIf="vForValidation.invalid; else signUp">
@@ -67,6 +67,25 @@
                             <div class="component-center">
                                 <button class="btn btn-orange btn-size-80 text-btn component-center">Daftar</button>
                             </div>
-                            <!-- <div class="component-center"><button class="btn btn-orange" [disabled]="vForValidation.invalid">Daftar</button></div> -->
                         </ng-template>
+                    </div>
+                </form>
+    
+                <button (click)="asd()">asdsadas</button>
+            </div>
 </div>
+</div>
+            <div *ngIf="title === false">
+                    <h1 class="headingIf">
+                            success
+                            </h1>
+                            <div class="loader">
+                                    <svg class="circular">
+                                       <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2"  stroke-color="#f00" stroke-miterlimit="10"/>
+                                       
+                                    </svg>
+                                    <svg class="suc">
+                                    <path class="checkmark__check" fill="none" d="M10.7,20.4l5.3,5.3l12.4-12.5"></path>
+                                    </svg>
+                                  </div>
+            </div>
