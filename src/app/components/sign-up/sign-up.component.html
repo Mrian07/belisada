@@ -7,7 +7,7 @@
                 <span class="f-registrasi">registrasi</span>
             </div>
             <div>
-                <form [formGroup]="vForValidation" (ngSubmit)="onTest(fs)" #fs="ngForm" novalidate>
+                <form [formGroup]="vForValidation" (ngSubmit)="submit(fs)" #fs="ngForm" novalidate>
                     <input type="text" formControlName="fullname" placeholder="fullname" class="input-style-text" required [ngClass]="{
     'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
     'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
