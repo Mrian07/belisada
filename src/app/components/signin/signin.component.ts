@@ -13,10 +13,9 @@ export class SigninComponent implements OnInit {
 
   email: FormControl;
   password: FormControl;
-  // fm: any = {};
 
   constructor(
-    // private router: Router,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -39,7 +38,13 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    alert('sssss');
+    // alert('proses');
+    const a = new CustomAlert();
+    a.show('This is just a test...');
+  }
+
+  forgotPassword() {
+    this.router.navigate(['/forgot-password']);
   }
 
   // fillForms() {

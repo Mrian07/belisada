@@ -16,7 +16,7 @@
           <div class="form-control-feedback" *ngIf="password.invalid && (password.dirty)">Password tidak boleh kosong</div>
         </div>
         <div class="text-registration">Belum Punya Akun? <a href="" class="link-text">REGISTRASI</a> Disini<br>
-          Lupa Password? <a href="" class="link-text">Klik</a> Disini
+          Lupa Password? <a routerLink="#" class="link-text" (click)="forgotPassword()">Klik</a> Disini
         </div>
         <div class="component-center">
           <button class="btn btn-orange btn-size-80 text-btn component-center" type="submit">MASUK</button>  
@@ -25,5 +25,3 @@
     </div>
   </div>
 </div>
-
-

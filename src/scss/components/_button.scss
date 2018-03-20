@@ -123,7 +123,7 @@
 
 .input-group > div{
   display: table-cell;
-  border: 1px solid #ddd;
+  border: 1px solid #ffffff;
   vertical-align: middle;  /* needed for Safari */
 }
 
@@ -142,6 +142,7 @@
   display: block;
   width: 100%;
   padding: 8px;
+  background: transparent;
 }
 
 .cursor{
