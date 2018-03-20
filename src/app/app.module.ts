@@ -22,10 +22,6 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent,
-    HomeComponent,
-    SigninComponent,
-    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,

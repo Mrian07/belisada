@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CustomAlert } from './alert';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signin',
@@ -9,56 +10,35 @@ import { CustomAlert } from './alert';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
-  createComForm: FormGroup;
-
-  email: FormControl;
-  password: FormControl;
+  signinFormGroup: FormGroup;
 
   constructor(
     private router: Router,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit() {
-    // const a = new CustomAlert();
-    // a.show('This is just a test...');
-    this.createFormControls();
-    this.createForm();
+    this.createFormControl();
   }
 
-  createFormControls() {
-    this.email = new FormControl('', Validators.required);
-    this.password = new FormControl('', Validators.required);
-  }
-
-  createForm() {
-    this.createComForm = new FormGroup({
-      email: this.email,
-      password: this.password,
+  createFormControl() {
+    this.signinFormGroup = this.fb.group({
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+      ]),
     });
   }
 
   onSubmit() {
-    // alert('proses');
-    const a = new CustomAlert();
-    a.show('This is just a test...');
+    swal('This is just a test...');
   }
 
-  forgotPassword() {
+  toForgotPassword() {
     this.router.navigate(['/forgot-password']);
-  }
-
-  // fillForms() {
-
-  //   this.fm = {
-  //     email : 'email',
-  //     password: 'password',
-  //   }
-
-  // }
-
-  tombolAlert() {
-    const a = new CustomAlert();
-    a.show('This is just a test...');
   }
 
 }

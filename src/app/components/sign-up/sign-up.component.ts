@@ -62,7 +62,8 @@ export class SignUpComponent implements OnInit {
     recaptchaReactive: new FormControl(null, Validators.required)
   }
   , {validator: PasswordValidation.MatchPassword}
-);}
+);
+}
 
   onTest(k: NgForm) {
     const model = this.vForValidation.value;

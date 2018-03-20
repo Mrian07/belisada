@@ -9,12 +9,21 @@ import { throwIfAlreadyLoaded } from './module-import.guard';
 
 import { CoreRoutingModule } from './core.routing';
 import { HeaderComponent } from './../components/layout/header/header.component';
+import { SignUpComponent } from '../components/sign-up/sign-up.component';
+import { HomeComponent } from '../components/home/home.component';
+import { SigninComponent } from '../components/signin/signin.component';
+import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+
+    SignUpComponent,
+    HomeComponent,
+    SigninComponent,
+    ForgotPasswordComponent
     // HomeComponent
   ],
   providers: [],

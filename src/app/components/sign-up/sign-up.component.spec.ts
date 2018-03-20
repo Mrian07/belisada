@@ -15,7 +15,7 @@ describe('SignUpComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SignUpComponent ],
-      imports: [ 
+      imports: [
         HttpClientModule,
         RouterTestingModule,
         ReactiveFormsModule,
@@ -33,9 +33,6 @@ describe('SignUpComponent', () => {
     fixture = TestBed.createComponent(SignUpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    // get test component from the fixture
-    component = fixture.componentInstance;
     component.ngOnInit();
   });
 
@@ -53,8 +50,7 @@ describe('SignUpComponent', () => {
   });
 
   it('fullname validation', () => {
-
-    let control = component.vForValidation.controls['fullname'];
+    const control = component.vForValidation.controls['fullname'];
 
     control.setValue('');
 

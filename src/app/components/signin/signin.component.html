@@ -1,27 +1,34 @@
 <div class="containPage has-header">
-  <div class="row">
-    <div class="col-8">
-        <div class="welcome">Selamat Datang Di Belisada.co.id</div>
-        <img src="assets/img/asset_3.png" border="0" width="100%">
+    <div class="row">
+        <div class="col-8">
+            <div class="welcome">Selamat Datang Di Belisada.co.id</div>
+            <img src="assets/img/asset_3.png" border="0" width="100%">
+        </div>
+        <div class="col-4">
+            <div class="title-page">Login</div>
+            <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>
+                <div class="form-group">
+                    <input type="email" class="inputInputStyleText" placeholder="Email" formControlName="email">
+                    <div class="form-control-feedback"
+                        *ngIf="signinFormGroup.controls.email.invalid && signinFormGroup.controls.email.dirty">
+                            Email tidak boleh kosong
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="inputInputStyleText" placeholder="Password" formControlName="password">
+                    <div class="form-control-feedback"
+                        *ngIf="signinFormGroup.controls.password.invalid && signinFormGroup.controls.password.dirty">
+                            Password tidak boleh kosong
+                    </div>
+                </div>
+                <div class="text-registration">
+                    Belum Punya Akun? <a routerLink="/sign-up" class="link-text">REGISTRASI</a> Disini<br>
+                    Lupa Password? <a routerLink="/forgot-password" class="link-text">Klik</a> Disini
+                </div>
+                <div class="component-center">
+                    <button class="btn btn-orange btn-size-80 text-btn component-center" type="submit">MASUK</button>  
+                </div>
+            </form>         
+        </div>
     </div>
-    <div class="col-4">
-      <div class="title-page">Login</div>
-      <form class="ui form" (ngSubmit)="onSubmit()" novalidate>
-        <div class="form-group">
-          <input type="email" class="inputInputStyleText" placeholder="Email" formControlName="email">
-          <div class="form-control-feedback" *ngIf="email.invalid && (email.dirty)">Email tidak boleh kosong</div>
-        </div>
-        <div class="form-group">
-          <input type="password" class="inputInputStyleText" placeholder="Password" formControlName="password">
-          <div class="form-control-feedback" *ngIf="password.invalid && (password.dirty)">Password tidak boleh kosong</div>
-        </div>
-        <div class="text-registration">Belum Punya Akun? <a href="" class="link-text">REGISTRASI</a> Disini<br>
-          Lupa Password? <a routerLink="#" class="link-text" (click)="forgotPassword()">Klik</a> Disini
-        </div>
-        <div class="component-center">
-          <button class="btn btn-orange btn-size-80 text-btn component-center" type="submit">MASUK</button>  
-        </div>
-      </form>         
-    </div>
-  </div>
 </div>
