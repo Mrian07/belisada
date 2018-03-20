@@ -1,4 +1,3 @@
-import { FooterComponent } from './../components/layout/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -8,6 +7,8 @@ import { throwIfAlreadyLoaded } from './module-import.guard';
 // import { UserComponent } from './services/models/user/user';
 
 import { CoreRoutingModule } from './core.routing';
+import { SaniComponent } from './../components/sani/sani.component';
+import { FooterComponent } from './../components/layout/footer/footer.component';
 import { HeaderComponent } from './../components/layout/header/header.component';
 
 @NgModule({
@@ -15,6 +16,7 @@ import { HeaderComponent } from './../components/layout/header/header.component'
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    SaniComponent
     // HomeComponent
   ],
   providers: [],
