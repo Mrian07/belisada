@@ -3,12 +3,11 @@ import { User } from './../cart/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { SignupResponse, SignupData, EmailChecking } from './models/user';
+import { SignupResponse, SignupData, SigninRequest, SigninResponse, EmailChecking } from './models/user';
 
 import 'rxjs/add/operator/map';
 
 @Injectable()
-
 export class UserService {
 
   constructor(
@@ -19,13 +18,38 @@ export class UserService {
   create1(user: User) {
     return this.http.post('/api/users', user);
   }
-  signup(data: SignupData): Observable<SignupResponse> {
-    return this.http.post(this.config.apiURL + '/account/create', data)
-      .map(resp => resp as SignupResponse);
-  }
   checkEmail(data: EmailChecking): Observable<EmailChecking> {
     return this.http.post(this.config.apiURL + '/account/checkemail', data)
       .map(resp => resp as EmailChecking);
+  }
+
+  // signup(data): Observable<SignupResponse> {
+  //   const sss: SignupResponse = {status: 1, msg: 'Sukses membuat akun'};
+  //   const err1: SignupResponse = {status: 2, msg: 'Gagal membuat akun'};
+  //   const err2: SignupResponse = {status: 3, msg: 'Gagal membuat akun'};
+
+  //   return new Observable(observer => {
+  //     setTimeout(() => {
+  //       observer.next(sss);
+  //     }, 1000);
+
+  //     setTimeout(() => {
+  //       observer.next(err1);
+  //     }, 3000);
+
+  //     setTimeout(() => {
+  //       observer.error(err2);
+  //     }, 5000);
+
+  //   });
+  // }
+  signup(data: SignupData): Observable<SignupResponse> {
+    return this.http.post(this.config.apiURL + '/account/create', data)
+      .map(response => response as SignupResponse);
+  }
+  signin(request: SigninRequest): Observable<SigninResponse> {
+    return this.http.post(this.config.apiURL + '/account/login', request)
+      .map(response => response as SigninResponse);
   }
   getAll() {
     return this.http.get<User[]>('/api/users');

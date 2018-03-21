@@ -33,9 +33,6 @@ describe('SignUpComponent', () => {
     fixture = TestBed.createComponent(SignUpComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-
-    // get test component from the fixture
-    component = fixture.componentInstance;
     component.ngOnInit();
   });
 
@@ -76,9 +73,20 @@ describe('SignUpComponent', () => {
     const control = component.vForValidation.controls['password'];
     expect(control).toBeTruthy();
     control.setValue('');
+<<<<<<< HEAD
+    expect(control.valid).toBeFalsy();
+    control.setValue('123456');
+=======
+>>>>>>> fd3157aaebe092c1de833cf0604aba89d40c1eb7
     expect(control.valid).toBeFalsy();
     control.setValue('123456');
     expect(control.valid).toBeFalsy();
+  });
+
+  it('forms also contains confirmPassword, phoneNumber and recaptchaReactive', () => {
+    expect(component.vForValidation.controls['confirmPassword']).toBeTruthy();
+    expect(component.vForValidation.controls['phoneNumber']).toBeTruthy();
+    expect(component.vForValidation.controls['recaptchaReactive']).toBeTruthy();
   });
 
   it('forms also contains confirmPassword, phoneNumber and recaptchaReactive', () => {

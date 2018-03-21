@@ -9,39 +9,32 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+// import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 // import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
-import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend';
 import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { Configuration } from './core/config/configuration';
+import { SignUpVerificationComponent } from './components/sign-up-verification/sign-up-verification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpComponent,
-    HomeComponent,
-    SigninComponent,
-    ForgotPasswordComponent
+    SignUpVerificationComponent,
   ],
   imports: [
     BrowserModule,
-    AngularFontAwesomeModule,
     AppRoutingModule,
     CoreModule,
-    FormsModule,
+    // FormsModule,
     SharedModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
+    // ReactiveFormsModule,
   ],
   providers: [
-    fakeBackendProvider,
+    // fakeBackendProvider,
     // AlertService,
     Configuration,
     UserService,
