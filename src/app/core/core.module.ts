@@ -35,9 +35,23 @@ import { HttpClientModule } from '@angular/common/http';
   // declarations: [],
   imports: [
     CommonModule,
-    
+    AngularFontAwesomeModule,
+    CoreRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
+    UserService,
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
+      } as RecaptchaSettings,
+    },
+    RecaptchaLoaderService
   ],
 })
 export class CoreModule {

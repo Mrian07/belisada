@@ -33,16 +33,6 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
   ],
   providers: [
     fakeBackendProvider,
-    UserService,
-    RecaptchaModule,
-    RecaptchaFormsModule,
-    {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: {
-        siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
-      } as RecaptchaSettings,
-    },
-    RecaptchaLoaderService
   ],
   bootstrap: [AppComponent]
 })
