@@ -1,8 +1,10 @@
+import { SigninRequest } from './../../core/services/user/models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { CustomAlert } from './alert';
 import swal from 'sweetalert2';
+import { UserService } from '../../core/services/user/user.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,7 +16,8 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -34,7 +37,16 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    swal('This is just a test...');
+    const signinRequest: SigninRequest = this.signinFormGroup.value;
+    this.userService.signin(signinRequest).subscribe(
+      result => {
+        // Handle result
+        console.log(result);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   toForgotPassword() {
