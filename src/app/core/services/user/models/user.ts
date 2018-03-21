@@ -1,11 +1,16 @@
 export class SignupData {
-    f_name: string;
+    name: string;
     email: string;
-    hp: string;
+    phone: string;
     password: string;
-    news_feed: boolean;
+    news_feed?: boolean;
 
     constructor() {}
+}
+export class EmailChecking {
+    email: string;
+    message?: string;
+    status?: string;
 }
 
 export class SignupResponse {

@@ -4,16 +4,11 @@ import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-// import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../core/services/cart/models/user';
-// PasswordValidation
-// import { PasswordValidation } from '../../shared/validators/password.validator';
-import { UserService } from '../../core/services/user/user.service';
-import { SignupData } from '../../core/services/user/models/user';
+import { SignupData, EmailChecking } from '../../core/services/user/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
-// import { AlertService } from '../../core/services/service/alert/alert.service';
-// import { Alert } from 'selenium-webdriver';
+import { UserService } from '../../core/services/user/user.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -24,7 +19,11 @@ export class SignUpComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
   signupData: SignupData = new SignupData();
+  emailChecking: EmailChecking = new EmailChecking();
   loading = false;
+  title = true;
+  message: string;
+  status: string;
   phoneNumber: FormControl;
   password: FormControl;
   email: FormControl;
@@ -34,7 +33,7 @@ export class SignUpComponent implements OnInit {
   fullname: FormControl;
   constructor(
     private router: Router,
-    private userService: UserService,
+    private userservice: UserService,
     // private alertService: AlertService,
     private fb: FormBuilder
     // private alertService: AlertService
@@ -43,48 +42,65 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.vForValidation = this.fb.group({
-      fullname: new FormControl(null, Validators.required),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8)
-      ]),
-      confirmPassword: new FormControl('', [
-        Validators.required
-      ]),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-    ]),
-    phoneNumber: new FormControl('', [
-      Validators.pattern('[0-9]+')
-    ]),
-    recaptchaReactive: new FormControl(null, Validators.required)
+    this.vForValidation = this.fb.group(
+      {
+        fullname: new FormControl(null, Validators.required),
+        password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(8)
+        ]),
+        confirmPassword: new FormControl('', [
+          Validators.required
+        ]),
+        email: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+        ]),
+        phoneNumber: new FormControl('', [
+          Validators.pattern('[0-9]+')
+        ]),
+        recaptchaReactive: new FormControl(null, Validators.required)
+      },
+      {validator: PasswordValidation.MatchPassword}
+    );
   }
-  , {validator: PasswordValidation.MatchPassword}
-);}
+  checkEmail() {
+    console.log('asd');
+    const modelz = this.vForValidation.value;
+    this.emailChecking.email = modelz.email,
+    this.userservice.checkEmail(this.emailChecking)
 
-  onTest(k: NgForm) {
+    .subscribe(
+      data => {
+        this.message = data.message;
+        this.status = data.status;
+        console.log('suskses', data);
+        console.log(this.message);
+      },
+      error => {
+        console.log('error', error);
+      });
+  }
+
+  submit() {
     const model = this.vForValidation.value;
     this.loading = true;
-    const tesTing: User = new User();
-    tesTing.fullname = model.fullname,
-    tesTing.email = model.email,
-    tesTing.phone = model.phoneNumber,
-    tesTing.password = model.password;
-    this.userService.create(tesTing)
-        .subscribe(
-            data => {
-              console.log('sukses');
-            },
-            error => {
-              console.log(error);
-              alert(error);
-                this.loading = false;
-            });
-    console.log(tesTing);
+    this.title = false;
+    this.signupData.name = model.fullname,
+    this.signupData.email = model.email,
+    this.signupData.phone = model.phoneNumber,
+    this.signupData.password = model.password;
+    this.userservice.signup(this.signupData)
+      .subscribe(
+        data => {
+          console.log('sukses', data);
+          this.loading = false;
+        },
+        error => {
+          console.log(error);
+          alert(error);
+          this.loading = false;
+        });
     this.vForValidation.reset();
-
-    console.log(k);
   }
 }

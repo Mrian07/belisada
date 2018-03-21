@@ -18,6 +18,7 @@ import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { Configuration } from './core/config/configuration';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
   providers: [
     fakeBackendProvider,
     // AlertService,
+    Configuration,
     UserService,
     {
       provide: RECAPTCHA_SETTINGS,
@@ -49,7 +51,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
         siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
       } as RecaptchaSettings,
     },
-    RecaptchaLoaderService
+    RecaptchaLoaderService,
   ],
   bootstrap: [AppComponent]
 })

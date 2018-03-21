@@ -26,4 +26,17 @@ a.link-text:hover{
     text-align: center;
 }
 
+.panel{
+    border: 1px solid #dddddd;
+    box-shadow: 2px 4px #ebeaea;
+    padding:10px;
+    border-radius:5px;
+    margin-bottom:10px;
+}
+
+.center { text-align:center; }
+
+.left { text-align:left; }
+
+.right { text-align:right; }
 
