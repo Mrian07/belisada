@@ -13,7 +13,6 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 // import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
-import { fakeBackendProvider } from './core/services/cart/fixtures/fake-backend';
 import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -32,7 +31,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
     // ReactiveFormsModule,
   ],
   providers: [
-    fakeBackendProvider,
+
   ],
   bootstrap: [AppComponent]
 })

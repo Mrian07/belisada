@@ -19,6 +19,7 @@ import { UserService } from './services/user/user.service';
 import { RecaptchaModule, RecaptchaLoaderService, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { Configuration } from './config/configuration';
 
 @NgModule({
   declarations: [
@@ -39,12 +40,13 @@ import { HttpClientModule } from '@angular/common/http';
     CoreRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ],
-  providers: [
-    UserService,
+    HttpClientModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+  ],
+  providers: [
+    Configuration,
+    UserService,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

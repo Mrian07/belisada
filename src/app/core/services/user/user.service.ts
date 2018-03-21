@@ -8,7 +8,6 @@ import { SignupResponse, SignupData } from './models/user';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-
 export class UserService {
 
   constructor(
