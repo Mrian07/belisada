@@ -40,20 +40,47 @@ describe('SignUpComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('forms should contains fullname, password, confirmPassword, email, recaptchaReactive', () => {
-    expect(component.vForValidation.controls['fullname']).toBeTruthy();
-    expect(component.vForValidation.controls['password']).toBeTruthy();
-    expect(component.vForValidation.controls['confirmPassword']).toBeTruthy();
-    expect(component.vForValidation.controls['email']).toBeTruthy();
-    expect(component.vForValidation.controls['phoneNumber']).toBeTruthy();
-    expect(component.vForValidation.controls['recaptchaReactive']).toBeTruthy();
+  it('fullname validation', () => {
+    const fullname = component.vForValidation.controls['fullname'];
+    expect(fullname).toBeTruthy();
+    fullname.setValue('');
+    expect(fullname.valid).toBeFalsy();
   });
 
-  it('fullname validation', () => {
-    const control = component.vForValidation.controls['fullname'];
-
+  it('email validation', () => {
+    const control = component.vForValidation.controls['email'];
+    expect(control).toBeTruthy();
     control.setValue('');
-
     expect(control.valid).toBeFalsy();
+    control.setValue('tes');
+    expect(control.valid).toBeFalsy();
+    control.setValue('tes@tes');
+    expect(control.valid).toBeFalsy();
+    control.setValue('tes.tes');
+    expect(control.valid).toBeFalsy();
+  });
+
+  it('password validation', () => {
+    const control = component.vForValidation.controls['password'];
+    expect(control).toBeTruthy();
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+    control.setValue('123456');
+    expect(control.valid).toBeFalsy();
+  });
+
+  it('password validation', () => {
+    const control = component.vForValidation.controls['password'];
+    expect(control).toBeTruthy();
+    control.setValue('');
+    expect(control.valid).toBeFalsy();
+    control.setValue('123456');
+    expect(control.valid).toBeFalsy();
+  });
+
+  it('forms also contains confirmPassword, phoneNumber and recaptchaReactive', () => {
+    expect(component.vForValidation.controls['confirmPassword']).toBeTruthy();
+    expect(component.vForValidation.controls['phoneNumber']).toBeTruthy();
+    expect(component.vForValidation.controls['recaptchaReactive']).toBeTruthy();
   });
 });

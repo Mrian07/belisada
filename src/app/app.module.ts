@@ -9,7 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+// import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 // import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
@@ -25,20 +25,17 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
   ],
   imports: [
     BrowserModule,
-    AngularFontAwesomeModule,
     AppRoutingModule,
     CoreModule,
-    FormsModule,
+    // FormsModule,
     SharedModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
+    // ReactiveFormsModule,
   ],
   providers: [
     fakeBackendProvider,
-    // AlertService,
     UserService,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
