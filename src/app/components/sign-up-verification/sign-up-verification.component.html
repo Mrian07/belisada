@@ -7,7 +7,7 @@
         <h1>Aktifasi Gagal</h1>
         <p>Maaf aktifasi Anda gagal dikarenakan link aktifasi Anda sudah expired.
         <br><br>
-        <a href="">Klik disini untuk melakukan aktifasi ulang</a>
+        <a routerLink="#" (click)="reActivation()">Klik disini untuk melakukan aktifasi ulang</a>
 
         </p>
     </div>
@@ -54,6 +54,13 @@
 
         </p>
     </div>
+
+    <div *ngIf="status===4">
+        <h1>Email Aktifasi Berhasil Dikirim</h1>
+        <p>Silakan cek email Anda dan lakukan aktifasi ulang.
+        </p>
+    </div>
+
 
     <br><br>
     <div class="b-footer">

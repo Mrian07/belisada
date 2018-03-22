@@ -35,4 +35,9 @@ export class SignUpVerificationComponent implements OnInit {
       }
     );
   }
+
+  reActivation() {
+    //alert('sssss');
+    this.status = 4;
+  }
 }
