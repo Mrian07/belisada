@@ -97,7 +97,7 @@ export class SignUpComponent implements OnInit {
             this.loading = false;
             this.title = false;
           } else {
-            alert('eror');
+            alert (data.message);
         }
         }
       );

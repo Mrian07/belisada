@@ -16,6 +16,7 @@ export class EmailChecking {
 export class SignupResponse {
     status: number;
     msg: string;
+    message?: string;
 }
 
 export class SigninRequest {
