@@ -24,7 +24,7 @@
             </div>
             <div *ngIf="title === true;">
                 <form [formGroup]="vForValidation" (ngSubmit)="submit()" #fs="ngForm" novalidate>
-                    <input type="text" formControlName="fullname" placeholder="fullname" class="input-style-text" required [ngClass]="{
+                    <input type="text" formControlName="fullname" placeholder="Nama Lengkap" class="input-style-text" required [ngClass]="{
         'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
         'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
         }">
