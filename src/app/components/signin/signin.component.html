@@ -19,7 +19,7 @@
             <div class="title-page">Login</div>
             <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>
                 <div class="form-group">
-                    <input type="email" class="inputInputStyleText" placeholder="Email" formControlName="email">
+                    <input type="email" class="input-style-text" placeholder="Email" formControlName="email">
                     <div class="form-control-validation"
                         *ngIf="signinFormGroup.controls.email.errors
                             && signinFormGroup.controls.email.dirty">
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="password" class="inputInputStyleText" placeholder="Password" formControlName="password">
+                    <input type="password" class="input-style-text" placeholder="Password" formControlName="password">
                     <div class="form-control-validation"
                         *ngIf="signinFormGroup.controls.password.errors
                             && signinFormGroup.controls.password.dirty">
