@@ -9,6 +9,7 @@ import { User } from '../../core/services/cart/models/user';
 import { SignupData, EmailChecking } from '../../core/services/user/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -22,6 +23,7 @@ export class SignUpComponent implements OnInit {
   emailChecking: EmailChecking = new EmailChecking();
   loading = false;
   title = true;
+  emailToSuccess: string;
   message: string;
   status: string;
   phoneNumber: FormControl;
@@ -43,7 +45,6 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.isSubscribe);
     this.vForValidation = this.fb.group(
       {
         isSubscribe: new FormControl(''),
@@ -68,7 +69,6 @@ export class SignUpComponent implements OnInit {
     );
   }
   checkEmail() {
-    console.log('asd');
     const modelz = this.vForValidation.value;
     this.emailChecking.email = modelz.email,
     this.userservice.checkEmail(this.emailChecking)
@@ -77,17 +77,11 @@ export class SignUpComponent implements OnInit {
       data => {
         this.message = data.message;
         this.status = data.status;
-        console.log('suskses', data);
-        console.log(this.message);
       },
       error => {
         console.log('error', error);
       });
   }
-  changeValue() {
-    console.log(this.isSubscribe.value);
-    this.isSubscribe = new FormControl(!this.isSubscribe.value);
-}
 
   submit() {
     const model = this.vForValidation.value;
@@ -101,16 +95,22 @@ export class SignUpComponent implements OnInit {
       .subscribe(
         (response) => {
           if (response.status === 1) {
-            console.log(this.isSubscribe.value);
-            this.isSubscribe = new FormControl(!this.isSubscribe.value);
-            console.log('sukses', response);
+            this.emailToSuccess = this.signupData.email;
             this.loading = false;
             this.title = false;
           } else {
-            alert (response.message);
-            // console.log(Error);
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: response.message,
+            });
         }
-        }, (error) => alert(error)
+        }, (error) =>
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: error,
+        })
       );
     this.vForValidation.reset();
   }
