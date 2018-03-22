@@ -3,7 +3,10 @@ import { User } from './../cart/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { SignupResponse, SignupData, SigninRequest, SigninResponse, ActivationRequest, ActivationResponse } from './models/user';
+import {
+  SignupResponse, SignupData, SigninRequest,
+  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking
+} from './models/user';
 
 import 'rxjs/add/operator/map';
 
@@ -17,6 +20,10 @@ export class UserService {
 
   create1(user: User) {
     return this.http.post('/api/users', user);
+  }
+  checkEmail(data: EmailChecking): Observable<EmailChecking> {
+    return this.http.post(this.config.apiURL + '/account/checkemail', data)
+      .map(resp => resp as EmailChecking);
   }
 
   // signup(data): Observable<SignupResponse> {

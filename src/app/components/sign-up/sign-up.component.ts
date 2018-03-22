@@ -4,16 +4,11 @@ import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {RecaptchaModule, RECAPTCHA_SETTINGS} from 'ng-recaptcha';
 import {RecaptchaFormsModule} from 'ng-recaptcha/forms';
-// import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from '../../core/services/cart/models/user';
-// PasswordValidation
-// import { PasswordValidation } from '../../shared/validators/password.validator';
-import { UserService } from '../../core/services/user/user.service';
-import { SignupData } from '../../core/services/user/models/user';
+import { SignupData, EmailChecking } from '../../core/services/user/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
-// import { AlertService } from '../../core/services/service/alert/alert.service';
-// import { Alert } from 'selenium-webdriver';
+import { UserService } from '../../core/services/user/user.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -24,7 +19,11 @@ export class SignUpComponent implements OnInit {
   currentUser: User;
   users: User[] = [];
   signupData: SignupData = new SignupData();
+  emailChecking: EmailChecking = new EmailChecking();
   loading = false;
+  title = true;
+  message: string;
+  status: string;
   phoneNumber: FormControl;
   password: FormControl;
   email: FormControl;
@@ -34,7 +33,7 @@ export class SignUpComponent implements OnInit {
   fullname: FormControl;
   constructor(
     private router: Router,
-    private userService: UserService,
+    private userservice: UserService,
     // private alertService: AlertService,
     private fb: FormBuilder
     // private alertService: AlertService
@@ -65,25 +64,43 @@ export class SignUpComponent implements OnInit {
       {validator: PasswordValidation.MatchPassword}
     );
   }
+  checkEmail() {
+    console.log('asd');
+    const modelz = this.vForValidation.value;
+    this.emailChecking.email = modelz.email,
+    this.userservice.checkEmail(this.emailChecking)
 
-  submit(k: NgForm) {
+    .subscribe(
+      data => {
+        this.message = data.message;
+        this.status = data.status;
+        console.log('suskses', data);
+        console.log(this.message);
+      },
+      error => {
+        console.log('error', error);
+      });
+  }
+
+  submit() {
     const model = this.vForValidation.value;
     this.loading = true;
     this.signupData.name = model.fullname,
     this.signupData.email = model.email,
     this.signupData.phone = model.phoneNumber,
     this.signupData.password = model.password;
-    this.userService.signup(this.signupData)
+    this.userservice.signup(this.signupData)
       .subscribe(
         data => {
-          console.log('sukses', data);
-          this.loading = false;
-        },
-        error => {
-          console.log(error);
-          alert(error);
-          this.loading = false;
-        });
+          if (data.status === 1) {
+            console.log('sukses', data);
+            this.loading = false;
+            this.title = false;
+          } else {
+            alert('eror');
+        }
+        }
+      );
     this.vForValidation.reset();
   }
 }

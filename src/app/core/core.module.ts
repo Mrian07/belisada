@@ -26,6 +26,8 @@ import { Configuration } from './config/configuration';
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
+    SaniComponent,
+    // HomeComponent
     SignUpComponent,
     HomeComponent,
     SigninComponent,

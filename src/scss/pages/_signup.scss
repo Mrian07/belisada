@@ -1,10 +1,19 @@
 .input-style-text {
     &.has-danger {
+        // border: 3px solid #ccc;
         border-color: red;
     }
     &.has-success {
-        border-color: blue;
+        border-color: #ccc;
     }
+}
+.errspan {
+    float: right;
+    margin-right: 166px;
+    margin-top: -36px;
+    position: relative;
+    z-index: 2;
+    color: red;
 }
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -52,8 +61,17 @@
     // background: #eee;
     padding: 1em;
 }
+.bottom-center {
+    text-align: center;
+    font-size: 13px;
+}
+.text-syarat-dan-ketentuan {
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 1px solid grey;
+}
 .input-style-text {
-    width: 100%;
+    width: 80%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -65,29 +83,10 @@
         border-color: red;
     }
     &.has-success {
-        border-color: blue;
+        border-color: #ccc;
     }
 }
-input[type=email] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-}
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border: 3px solid #ccc;
-    -webkit-transition: 0.5s;
-    transition: 0.5s;
-    outline: none;
-}
+
 .text-box {
     position: absolute;
     left: 24%;
@@ -106,3 +105,72 @@ input[type=password] {
     // font-weight: 700;
     letter-spacing: 1px;
 }
+.headingIf {
+    color: #61ad34;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+// loader 
+.loader {
+    position: relative;
+    margin: 0px auto;
+    width: 100px;
+    height:100px;
+    // zoom: $zoom;
+  }
+  .circular{animation:rotate 2s linear forwards ;width:100px;height:100px;position:relative}
+  .path{stroke:#007aff; stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+    animation: 
+     dash 1.5s ease-in-out forwards,
+     color 6s ease-in-out infinite
+    ;
+    stroke-linecap: round;}
+    @keyframes dash{
+   0%{
+    stroke-dasharray: 1,200;
+    stroke-dashoffset: 0;
+   }
+  
+   100%{
+    stroke-dasharray: 150,200;
+    stroke-dashoffset: 10;
+   }
+  
+  }
+  @keyframes color{
+    100%, 0%{
+      stroke: #f00;
+    }
+    40%{
+      stroke: #007aff;
+    }
+    66%{
+      stroke: #24555d;
+    }
+    80%, 90%{
+      stroke: #789642;
+    }
+  }
+  @keyframes rotate{
+      100%{transform:rotate(360deg)}
+      }
+      
+  .checkmark__check {
+      transform-origin: 50% 50%;
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      
+       animation: stroke 0.5s  cubic-bezier(0.65, 0, 0.45, 1) 1.5s forwards, color 6s linear infinite;}
+      @keyframes stroke {
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  .suc{stroke:#007aff;
+      stroke-width:2;
+      position:absolute;top:30px;left:30px;
+      width:40px;height:40px;}
+
+      //akhir loader

@@ -7,6 +7,11 @@ export class SignupData {
 
     constructor() {}
 }
+export class EmailChecking {
+    email: string;
+    message?: string;
+    status?: string;
+}
 
 export class SignupResponse {
     status: number;
