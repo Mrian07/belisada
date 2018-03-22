@@ -1,4 +1,7 @@
+import { UserService } from './../../core/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ActivationRequest } from '../../core/services/user/models/user';
 
 @Component({
   selector: 'app-sign-up-verification',
@@ -7,9 +10,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignUpVerificationComponent implements OnInit {
 
-  constructor() { }
+  key: string;
 
-  ngOnInit() {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService
+  ) {
+
   }
 
+  ngOnInit() {
+    this.key = this.activatedRoute.snapshot.queryParamMap.get('key');
+    console.log('this.key: ', this.key);
+    const activationRequest: ActivationRequest = new ActivationRequest();
+    activationRequest.key = this.key;
+    this.userService.activation(activationRequest).subscribe(
+      response => {
+        console.log('response: ', response);
+      },
+      error => {
+        console.log('error: ', error);
+      }
+    );
+  }
 }

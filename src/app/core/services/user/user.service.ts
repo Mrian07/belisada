@@ -3,7 +3,7 @@ import { User } from './../cart/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { SignupResponse, SignupData, SigninRequest, SigninResponse } from './models/user';
+import { SignupResponse, SignupData, SigninRequest, SigninResponse, ActivationRequest, ActivationResponse } from './models/user';
 
 import 'rxjs/add/operator/map';
 
@@ -43,10 +43,17 @@ export class UserService {
     return this.http.post(this.config.apiURL + '/account/create', data)
       .map(response => response as SignupResponse);
   }
+
   signin(request: SigninRequest): Observable<SigninResponse> {
     return this.http.post(this.config.apiURL + '/account/login', request)
       .map(response => response as SigninResponse);
   }
+
+  activation(request: ActivationRequest): Observable<ActivationResponse> {
+    return this.http.post(this.config.apiURL + '/account/activation', request)
+    .map(response => response as ActivationResponse);
+  }
+
   getAll() {
     return this.http.get<User[]>('/api/users');
   }
