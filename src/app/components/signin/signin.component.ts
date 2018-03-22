@@ -37,6 +37,7 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('this.signinFormGroup: ', this.signinFormGroup);
     const signinRequest: SigninRequest = this.signinFormGroup.value;
     this.userService.signin(signinRequest).subscribe(
       result => {

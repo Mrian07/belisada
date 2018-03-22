@@ -33,3 +33,12 @@ export class SigninResponse {
     phone: string;
     token: string;
 }
+
+export class ActivationRequest {
+    key: string;
+}
+
+export class ActivationResponse {
+    status: string;
+    message: string;
+}
