@@ -35,11 +35,13 @@
                         <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
         'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
         'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-        }">
-                        <fa name="fas fa-ban errspan"></fa>
-                        <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
-                            <span class="tooltiptext">Masukan Email Yang Benar</span>
-                        </div>
+        }"> 
+        <div *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
+                <fa name="fas fa-ban errspan"></fa>
+           <span class="tooltiptext">Email ini sudah teregistrasi</span> 
+        </div>
+          <!-- <span>Email Ini sudah Terdaftar</span> -->
+                        <!-- <fa name="fas fa-ban errspan"></fa> -->
                     </div>
                     <ng-template #login>
                         <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
@@ -80,7 +82,7 @@
                                         <span class="heading-primary-main">Dapatkan info Menarik di </span>
                                         <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
                                     </div>
-                                    <input type="checkbox">
+                                    <input type="checkbox" formControlName= "isSubscribe" (change)="changeValue()">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>

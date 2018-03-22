@@ -27,6 +27,7 @@ export class SignUpComponent implements OnInit {
   phoneNumber: FormControl;
   password: FormControl;
   email: FormControl;
+  isSubscribe = new FormControl(true);
   confirmPassword: FormControl;
   public reactiveForm;
   public vForValidation: FormGroup;
@@ -42,8 +43,10 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.isSubscribe);
     this.vForValidation = this.fb.group(
       {
+        isSubscribe: new FormControl(''),
         fullname: new FormControl(null, Validators.required),
         password: new FormControl('', [
           Validators.required,
@@ -81,18 +84,25 @@ export class SignUpComponent implements OnInit {
         console.log('error', error);
       });
   }
+  changeValue() {
+    console.log(this.isSubscribe.value);
+    this.isSubscribe = new FormControl(!this.isSubscribe.value);
+}
 
   submit() {
     const model = this.vForValidation.value;
     this.loading = true;
-    this.signupData.name = model.fullname,
-    this.signupData.email = model.email,
-    this.signupData.phone = model.phoneNumber,
+    this.signupData.name = model.fullname;
+    this.signupData.email = model.email;
+    this.signupData.phone = model.phoneNumber;
     this.signupData.password = model.password;
+    this.signupData.isSubscribe = model.isSubscribe;
     this.userservice.signup(this.signupData)
       .subscribe(
         data => {
           if (data.status === 1) {
+            console.log(this.isSubscribe.value);
+            this.isSubscribe = new FormControl(!this.isSubscribe.value);
             console.log('sukses', data);
             this.loading = false;
             this.title = false;
