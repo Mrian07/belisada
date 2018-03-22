@@ -99,17 +99,18 @@ export class SignUpComponent implements OnInit {
     this.signupData.isSubscribe = model.isSubscribe;
     this.userservice.signup(this.signupData)
       .subscribe(
-        data => {
-          if (data.status === 1) {
+        (response) => {
+          if (response.status === 1) {
             console.log(this.isSubscribe.value);
             this.isSubscribe = new FormControl(!this.isSubscribe.value);
-            console.log('sukses', data);
+            console.log('sukses', response);
             this.loading = false;
             this.title = false;
           } else {
-            alert (data.message);
+            alert (response.message);
+            // console.log(Error);
         }
-        }
+        }, (error) => alert(error)
       );
     this.vForValidation.reset();
   }
