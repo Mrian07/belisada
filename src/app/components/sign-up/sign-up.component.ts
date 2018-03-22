@@ -85,7 +85,6 @@ export class SignUpComponent implements OnInit {
   submit() {
     const model = this.vForValidation.value;
     this.loading = true;
-    this.title = false;
     this.signupData.name = model.fullname,
     this.signupData.email = model.email,
     this.signupData.phone = model.phoneNumber,
@@ -93,14 +92,15 @@ export class SignUpComponent implements OnInit {
     this.userservice.signup(this.signupData)
       .subscribe(
         data => {
-          console.log('sukses', data);
-          this.loading = false;
-        },
-        error => {
-          console.log(error);
-          alert(error);
-          this.loading = false;
-        });
+          if (data.status === 1) {
+            console.log('sukses', data);
+            this.loading = false;
+            this.title = false;
+          } else {
+            alert('eror');
+        }
+        }
+      );
     this.vForValidation.reset();
   }
 }
