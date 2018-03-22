@@ -11,6 +11,7 @@ import { ActivationRequest } from '../../core/services/user/models/user';
 export class SignUpVerificationComponent implements OnInit {
 
   key: string;
+  status: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,7 +27,8 @@ export class SignUpVerificationComponent implements OnInit {
     activationRequest.key = this.key;
     this.userService.activation(activationRequest).subscribe(
       response => {
-        console.log('response: ', response);
+        console.log('response: ', response.status);
+        this.status = response.status;
       },
       error => {
         console.log('error: ', error);

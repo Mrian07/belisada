@@ -3,42 +3,48 @@
         <img src="assets/img/logo.png" border="0">
     </div>
 
-    <!-- <div class="congratulation-box">
-        <span>Selamat Bergabung</span>
-        <div class="orange-triangle"></div>
-        <div class="blue-bar"></div>
-    </div> -->
+    <div *ngIf="status===0">
+        <h1>Aktifasi Gagal</h1>
+        <p>Maaf aktifasi Anda gagal dikarenakan link aktifasi Anda sudah expired.
+        <br><br>
+        <a href="">Klik disini untuk melakukan aktifasi ulang</a>
 
-    <h1>Selamat Bergabung Di Belisada.co.id</h1>
-    <p>
-        Hallo <b>Adam Darmawan</b>,
-        <br><br>
+        </p>
+    </div>
 
-        Sekarang kamu sudah bisa belanja di <b>Belisada.co.id</b> - Beli Apa Saja Ada. Sebelum memulai, ada baiknya kamu pelajari beberapa hal berikut:
-        <br><br>
-        <b>Panduan Pengguna Baru</b>
-        <br><br>
-        <a href="" class="link-text">Cara Berbelanja</a><br>
-        <a href="" class="link-text">Cara Berjualan</a><br>
-        <a href="" class="link-text">3 Langkah Belanja Online Mudah di Belisada.co.id</a><br>
-        <a href="" class="link-text">Panduan Keamanan untuk Terhindar dari Penipuan</a><br>
-        <br>
-        Punya pertanyaan atau butuh konsultasi untuk berjualan online? Hubungi cs@belisada.co.id atau kunjungi halaman bantuan belisada.co.id.
-    </p>
-    <div class="b-green">
-        <div class="row">
-            <div class="col-1 icon-lampu">
-                    <img src="assets/img/siren.png" border="0" width="50">
-            </div>
-            <div class="col-11 text-green">
-                    Harap tidak menginformasikan nomor kontak, alamat email, atau password Anda kepada siapapun, termasuk pihak yang mengatasnamakan Belisada.co.id.
+    <div *ngIf="status===1">
+        <h1>Selamat Bergabung Di Belisada.co.id</h1>
+        <p>
+            Hallo <b>Adam Darmawan</b>,
+            <br><br>
+
+            Sekarang kamu sudah bisa belanja di <b>Belisada.co.id</b> - Beli Apa Saja Ada. Sebelum memulai, ada baiknya kamu pelajari beberapa hal berikut:
+            <br><br>
+            <b>Panduan Pengguna Baru</b>
+            <br><br>
+            <a href="" class="link-text">Cara Berbelanja</a><br>
+            <a href="" class="link-text">Cara Berjualan</a><br>
+            <a href="" class="link-text">3 Langkah Belanja Online Mudah di Belisada.co.id</a><br>
+            <a href="" class="link-text">Panduan Keamanan untuk Terhindar dari Penipuan</a><br>
+            <br>
+            Punya pertanyaan atau butuh konsultasi untuk berjualan online? Hubungi cs@belisada.co.id atau kunjungi halaman bantuan belisada.co.id.
+        </p>
+        <div class="b-green">
+            <div class="row">
+                <div class="col-1 icon-lampu">
+                        <img src="assets/img/siren.png" border="0" width="50">
+                </div>
+                <div class="col-11 text-green">
+                        Harap tidak menginformasikan nomor kontak, alamat email, atau password Anda kepada siapapun, termasuk pihak yang mengatasnamakan Belisada.co.id.
+                </div>
             </div>
         </div>
-    </div>
-    <p>Terima kasih atas perhatian dan kepercayaan Anda.</p>
-    <br>
-    <div class="center">
-    <button class="btn btn-orange btn-size-80 text-btn component-center">Go To Belisada</button>
+        <p>Terima kasih atas perhatian dan kepercayaan Anda.</p>
+        <br>
+        <div class="center">
+        <button class="btn btn-orange btn-size-80 text-btn component-center">Go To Belisada</button>
+        </div>
+
     </div>
     <br><br>
     <div class="b-footer">
