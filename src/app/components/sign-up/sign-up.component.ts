@@ -69,9 +69,14 @@ export class SignUpComponent implements OnInit {
       {validator: PasswordValidation.MatchPassword}
     );
   }
+  changeValue() {
+    console.log(this.isSubscribe.value);
+    this.isSubscribe = new FormControl(!this.isSubscribe.value);
+}
   checkEmail() {
     const modelz = this.vForValidation.value;
     this.emailChecking.email = modelz.email,
+    console.log( this.emailChecking.email);
     this.userservice.checkEmail(this.emailChecking)
     .subscribe(
       data => {
