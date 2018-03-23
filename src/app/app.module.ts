@@ -18,12 +18,12 @@ import { UserService } from './core/services/user/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { Configuration } from './core/config/configuration';
-import { SignUpVerificationComponent } from './components/sign-up-verification/sign-up-verification.component';
+import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpVerificationComponent,
+    SignUpActivationComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { SignUpVerificationComponent } from './components/sign-up-verification/sign-up-verification.component';
+import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -45,8 +45,8 @@ const routes: Routes = [
         component: SaniComponent
     },
     {
-        path: 'sign-up-verification',
-        component: SignUpVerificationComponent
+        path: 'sign-up-activation',
+        component: SignUpActivationComponent
     },
 ];
 

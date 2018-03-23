@@ -50,8 +50,4 @@ export class SigninComponent implements OnInit {
     );
   }
 
-  toForgotPassword() {
-    this.router.navigate(['/forgot-password']);
-  }
-
 }

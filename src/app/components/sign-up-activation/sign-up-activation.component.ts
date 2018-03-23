@@ -4,11 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { ActivationRequest } from '../../core/services/user/models/user';
 
 @Component({
-  selector: 'app-sign-up-verification',
-  templateUrl: './sign-up-verification.component.html',
-  styleUrls: ['./sign-up-verification.component.scss']
+  selector: 'app-sign-up-activation',
+  templateUrl: './sign-up-activation.component.html',
+  styleUrls: ['./sign-up-activation.component.scss']
 })
-export class SignUpVerificationComponent implements OnInit {
+export class SignUpActivationComponent implements OnInit {
 
   key: string;
   status: any;
