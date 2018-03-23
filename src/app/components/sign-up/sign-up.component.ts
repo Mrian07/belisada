@@ -9,6 +9,7 @@ import { User } from '../../core/services/cart/models/user';
 import { SignupData, EmailChecking } from '../../core/services/user/models/user';
 import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -22,11 +23,13 @@ export class SignUpComponent implements OnInit {
   emailChecking: EmailChecking = new EmailChecking();
   loading = false;
   title = true;
+  emailToSuccess: string;
   message: string;
   status: string;
   phoneNumber: FormControl;
   password: FormControl;
   email: FormControl;
+  isSubscribe = new FormControl(true);
   confirmPassword: FormControl;
   public reactiveForm;
   public vForValidation: FormGroup;
@@ -44,6 +47,7 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
     this.vForValidation = this.fb.group(
       {
+        isSubscribe: new FormControl(''),
         fullname: new FormControl(null, Validators.required),
         password: new FormControl('', [
           Validators.required,
@@ -65,7 +69,6 @@ export class SignUpComponent implements OnInit {
     );
   }
   checkEmail() {
-    console.log('asd');
     const modelz = this.vForValidation.value;
     this.emailChecking.email = modelz.email,
     this.userservice.checkEmail(this.emailChecking)
@@ -74,8 +77,6 @@ export class SignUpComponent implements OnInit {
       data => {
         this.message = data.message;
         this.status = data.status;
-        console.log('suskses', data);
-        console.log(this.message);
       },
       error => {
         console.log('error', error);
@@ -85,21 +86,31 @@ export class SignUpComponent implements OnInit {
   submit() {
     const model = this.vForValidation.value;
     this.loading = true;
-    this.signupData.name = model.fullname,
-    this.signupData.email = model.email,
-    this.signupData.phone = model.phoneNumber,
+    this.signupData.name = model.fullname;
+    this.signupData.email = model.email;
+    this.signupData.phone = model.phoneNumber;
     this.signupData.password = model.password;
+    this.signupData.isSubscribe = model.isSubscribe;
     this.userservice.signup(this.signupData)
       .subscribe(
-        data => {
-          if (data.status === 1) {
-            console.log('sukses', data);
+        (response) => {
+          if (response.status === 1) {
+            this.emailToSuccess = this.signupData.email;
             this.loading = false;
             this.title = false;
           } else {
-            alert (data.message);
+            swal({
+              type: 'error',
+              title: 'Oops...',
+              text: response.message,
+            });
         }
-        }
+        }, (error) =>
+        swal({
+          type: 'error',
+          title: 'Oops...',
+          text: error,
+        })
       );
     this.vForValidation.reset();
   }

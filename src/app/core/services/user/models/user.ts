@@ -17,6 +17,7 @@ export class SignupData {
     phone: string;
     password: string;
     news_feed?: boolean;
+    isSubscribe?: boolean;
 
     constructor() {}
 }
