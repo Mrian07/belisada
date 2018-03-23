@@ -65,6 +65,7 @@
 .bottom-center {
     text-align: center;
     font-size: 13px;
+    padding-bottom: 6px;
 }
 .text-syarat-dan-ketentuan {
     text-transform: uppercase;
@@ -91,6 +92,11 @@
     &.has-success {
         border-color: #ccc;
     }
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 .text-box {
