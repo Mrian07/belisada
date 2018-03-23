@@ -10,6 +10,7 @@ import { SignupData, EmailChecking } from '../../core/services/user/models/user'
 import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
 import swal from 'sweetalert2';
+import { LowerCasePipe } from '@angular/common';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -72,7 +73,6 @@ export class SignUpComponent implements OnInit {
     const modelz = this.vForValidation.value;
     this.emailChecking.email = modelz.email,
     this.userservice.checkEmail(this.emailChecking)
-
     .subscribe(
       data => {
         this.message = data.message;

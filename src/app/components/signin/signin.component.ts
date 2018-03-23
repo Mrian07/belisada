@@ -1,10 +1,10 @@
-import { SigninRequest } from './../../core/services/user/models/user';
+import { SigninRequest, UserLocalStorage } from './../../core/services/user/models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import { CustomAlert } from './alert';
-import swal from 'sweetalert2';
 import { UserService } from '../../core/services/user/user.service';
+
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-signin',
@@ -43,8 +43,21 @@ export class SigninComponent implements OnInit {
       result => {
         // Handle result
         console.log(result);
+        if (result.status === 0) {
+          swal(
+            'belisada.co.id',
+            result.message,
+            'warning'
+          );
+        } else {
+          const token: string = result.token;
+          console.log('userData: ', this.userService.getUserData(token));
+          this.userService.setUserToLocalStorage(token);
+          this.router.navigate(['/']);
+        }
       },
       error => {
+        swal('belisada.co.id', 'unknown error', 'error');
         console.log(error);
       }
     );

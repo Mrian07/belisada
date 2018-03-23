@@ -1,3 +1,16 @@
+import { BaseResponseModel } from '../../../models/base-response.model';
+
+export class UserLocalStorage {
+    token: string;
+}
+
+export class UserData {
+    avatar: string;
+    email: string;
+    name: string;
+    role: number;
+}
+
 export class SignupData {
     name: string;
     email: string;
@@ -27,7 +40,7 @@ export class SigninRequest {
     constructor() {}
 }
 
-export class SigninResponse {
+export class SigninResponse extends BaseResponseModel {
     name: string;
     email: string;
     role: number;
@@ -39,7 +52,6 @@ export class ActivationRequest {
     key: string;
 }
 
-export class ActivationResponse {
-    status: string;
-    message: string;
+export class ActivationResponse extends BaseResponseModel {
+
 }
