@@ -1,3 +1,4 @@
+import { LocalStorageEnum } from './../../enum/local-storage.enum';
 import { Configuration } from './../../config/configuration';
 import { User } from './../cart/models/user';
 import { Injectable } from '@angular/core';
@@ -5,17 +6,19 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
   SignupResponse, SignupData, SigninRequest,
-  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking
+  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData
 } from './models/user';
 
 import 'rxjs/add/operator/map';
+import { JWTUtil } from '../../util/jwt.util';
 
 @Injectable()
 export class UserService {
 
   constructor(
     private http: HttpClient,
-    private config: Configuration
+    private config: Configuration,
+    private jwtUtil: JWTUtil
   ) { }
 
   create1(user: User) {
@@ -61,24 +64,14 @@ export class UserService {
     .map(response => response as ActivationResponse);
   }
 
-  getAll() {
-    return this.http.get<User[]>('/api/users');
+  setUserToLocalStorage(token) {
+    localStorage.setItem(LocalStorageEnum.TOKEN_KEY, token);
   }
 
-  getById(id: number) {
-    return this.http.get('/api/users/' + id);
+  getUserData(token) {
+    let userData: UserData = new UserData();
+    userData = this.jwtUtil.parseJwt(token).UserData;
+    // console.log('userData: ', userData);
+    return userData;
   }
-
-  create(user: User) {
-    return this.http.post('/api/users', user);
-  }
-
-  update(user: User) {
-    return this.http.put('/api/users/' + user.id, user);
-  }
-
-  delete(id: number) {
-    return this.http.delete('/api/users/' + id);
-  }
-
 }

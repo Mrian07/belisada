@@ -20,6 +20,7 @@ import { RecaptchaModule, RecaptchaLoaderService, RecaptchaSettings, RECAPTCHA_S
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './config/configuration';
+import { JWTUtil } from './util/jwt.util';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { Configuration } from './config/configuration';
   ],
   providers: [
     Configuration,
+    JWTUtil,
     UserService,
     {
       provide: RECAPTCHA_SETTINGS,
