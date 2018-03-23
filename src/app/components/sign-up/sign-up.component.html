@@ -47,7 +47,7 @@
                     <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
             'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
             'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-            }">
+            }">{{email | lowercase}}
 
                     <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
                         <span class="tooltiptext">Harap masukan format email dengan benar</span>

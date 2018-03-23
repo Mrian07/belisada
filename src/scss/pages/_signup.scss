@@ -49,7 +49,8 @@
     display: grid;
     // color: $color-red;
     grid-template-columns: 50% 50%;
-    // grid-gap: 1em;
+    grid-gap: 1em;
+    padding-top: 10px;
 }
 .f-registrasi {
     text-transform: uppercase;
@@ -97,6 +98,7 @@
     left: 24%;
     transform: translate(-33%,-31%);
     // text-align: left;
+    top: 5px;
 }
 .heading-primary-sub {
     display: block;
