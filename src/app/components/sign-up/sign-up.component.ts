@@ -70,13 +70,11 @@ export class SignUpComponent implements OnInit {
     );
   }
   changeValue() {
-    console.log(this.isSubscribe.value);
     this.isSubscribe = new FormControl(!this.isSubscribe.value);
 }
   checkEmail() {
     const modelz = this.vForValidation.value;
     this.emailChecking.email = modelz.email,
-    console.log( this.emailChecking.email);
     this.userservice.checkEmail(this.emailChecking)
     .subscribe(
       data => {
@@ -86,6 +84,14 @@ export class SignUpComponent implements OnInit {
       error => {
         console.log('error', error);
       });
+  }
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+    }
   }
 
   submit() {
@@ -106,7 +112,6 @@ export class SignUpComponent implements OnInit {
           } else {
             swal({
               type: 'error',
-              
               title: 'Oops...',
               text: response.message,
             });

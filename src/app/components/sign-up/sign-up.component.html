@@ -70,7 +70,7 @@
                         </div>
                     </div>
                     <div>
-                        <input type="number" placeholder="No Handphone +62" formControlName="phoneNumber" value="+62" class="input-style-text">
+                        <input type="text" placeholder="No Handphone +62" formControlName="phoneNumber"(keypress)="keyPress($event)" class="input-style-text">
                     </div>
                     <div class="wrapper2">
                         <div>
