@@ -106,6 +106,7 @@ export class SignUpComponent implements OnInit {
           } else {
             swal({
               type: 'error',
+              
               title: 'Oops...',
               text: response.message,
             });
