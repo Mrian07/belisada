@@ -11,6 +11,7 @@ import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
 import swal from 'sweetalert2';
 import { LowerCasePipe } from '@angular/common';
+// import { checkAndUpdatePureExpressionDynamic } from '@angular/core/src/view/pure_expression';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -66,7 +67,7 @@ export class SignUpComponent implements OnInit {
         ]),
         recaptchaReactive: new FormControl(null, Validators.required)
       },
-      {validator: PasswordValidation.MatchPassword}
+      {validator: PasswordValidation.MatchPassword,  updateOn: 'blur'}
     );
   }
   changeValue() {
@@ -78,8 +79,30 @@ export class SignUpComponent implements OnInit {
     this.userservice.checkEmail(this.emailChecking)
     .subscribe(
       data => {
+        if (data.message !== '1') {
+          console.log(data.message);
         this.message = data.message;
         this.status = data.status;
+        } else {
+          console.log('its Good');
+        }
+      },
+      error => {
+        console.log('error', error);
+      });
+  }
+  onSearchChange(searchValue : string ) {
+    const modelz = this.vForValidation.value;
+    this.emailChecking.email = modelz.email,
+    this.userservice.checkEmail(this.emailChecking)
+    .subscribe(
+      data => {
+        if (data.message !== '1') {
+        this.message = data.message;
+        this.status = data.status;
+        } else {
+          console.log('its Good');
+        }
       },
       error => {
         console.log('error', error);

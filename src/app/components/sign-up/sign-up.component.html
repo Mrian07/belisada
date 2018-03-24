@@ -31,8 +31,8 @@
                 <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip">
                     <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
                 </div>
-                <div *ngIf="status === 1; else login">
-                    <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
+                <div *ngIf="status === 1; else register">
+                    <input type="text" placeholder="Email" formControlName="email" class="input-style-text" (input)="onSearchChange($event.target.value)" email name="email" (change)="checkEmail()" required [ngClass]="{
         'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
         'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
         }">
@@ -40,10 +40,11 @@
                         <fa name="fas fa-ban errspan"></fa>
                         <span class="tooltiptext">Email ini sudah teregistrasi</span>
                     </div>
+                    <!-- *ngIf="name.invalid && (name.dirty || name.touched)" -->
                     <!-- <span>Email Ini sudah Terdaftar</span> -->
                     <!-- <fa name="fas fa-ban errspan"></fa> -->
                 </div>
-                <ng-template #login>
+                <ng-template #register>
                     <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
             'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
             'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
