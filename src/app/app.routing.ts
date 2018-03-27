@@ -1,3 +1,4 @@
+import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LayoutBuyerComponent } from './components/buyer/layout-buyer/layout-buyer.component';
 import { ProfileComponent } from './components/buyer/profile/profile.component';
@@ -68,6 +69,20 @@ const routes: Routes = [
             component: ProfileComponent,
             data: {
               title: 'Profile'
+            }
+          },
+          {
+            path: 'profile',
+            component: ProfileComponent,
+            data: {
+              title: 'Profile'
+            }
+          },
+          {
+            path: 'profile-edit',
+            component: ProfileEditComponent,
+            data: {
+                title: 'Edit Profile'
             }
           },
         ]
