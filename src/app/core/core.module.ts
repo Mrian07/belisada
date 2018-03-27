@@ -1,3 +1,5 @@
+import { SidebarBuyerComponent } from './../components/buyer/layout-buyer/sidebar-buyer/sidebar-buyer.component';
+import { LayoutBuyerComponent } from './../components/buyer/layout-buyer/layout-buyer.component';
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -21,19 +23,24 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './config/configuration';
 import { JWTUtil } from './util/jwt.util';
+import { AuthenticationComponent } from '../components/layout/authentication/authentication.component';
+import { LeftComponent } from '../components/layout/authentication/left/left.component';
 
 @NgModule({
   declarations: [
     LayoutComponent,
+    LayoutBuyerComponent,
     HeaderComponent,
     FooterComponent,
-    SaniComponent,
     // HomeComponent
     SignUpComponent,
     HomeComponent,
     SigninComponent,
     ForgotPasswordComponent,
-    SaniComponent
+    SaniComponent,
+    SidebarBuyerComponent,
+    LeftComponent,
+    AuthenticationComponent
     // HomeComponent
   ],
   // declarations: [],

@@ -19,11 +19,17 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { Configuration } from './core/config/configuration';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
+import { ProfileComponent } from './components/buyer/profile/profile.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpActivationComponent,
+    ProfileComponent,
+    ResetPasswordComponent,
+    ProfileEditComponent,
   ],
   imports: [
     BrowserModule,
