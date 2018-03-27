@@ -1,3 +1,5 @@
+import { SidebarBuyerComponent } from './../components/buyer/layout-buyer/sidebar-buyer/sidebar-buyer.component';
+import { LayoutBuyerComponent } from './../components/buyer/layout-buyer/layout-buyer.component';
 import { CommonModule } from '@angular/common';
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -25,15 +27,16 @@ import { JWTUtil } from './util/jwt.util';
 @NgModule({
   declarations: [
     LayoutComponent,
+    LayoutBuyerComponent,
     HeaderComponent,
     FooterComponent,
-    SaniComponent,
     // HomeComponent
     SignUpComponent,
     HomeComponent,
     SigninComponent,
     ForgotPasswordComponent,
-    SaniComponent
+    SaniComponent,
+    SidebarBuyerComponent
     // HomeComponent
   ],
   // declarations: [],
