@@ -14,12 +14,14 @@
 @import "components/form";
 @import "components/image";
 @import "components/alert";
+@import "components/formControl";
 
 @import "layout/grid";
 @import "layout/header";
 @import "layout/body";
 @import "layout/footer";
 
+@import "pages/authentication";
 @import "pages/home";
 @import "pages/signin";
 @import "pages/signup";

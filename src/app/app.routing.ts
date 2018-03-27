@@ -7,6 +7,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SaniComponent } from './components/sani/sani.component';
+import { AuthenticationComponent } from './components/layout/authentication/authentication.component';
 
 const routes: Routes = [
     {
@@ -21,6 +22,19 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'forgot-password',
+                component: ForgotPasswordComponent,
+                data: {
+                    title: 'Lose Password'
+                }
+            }
+        ]
+    },
+    {
+        path: 'authentication',
+        component: AuthenticationComponent,
+        children: [
+            {
                 path: 'sign-in',
                 component: SigninComponent,
                 data: {
@@ -30,14 +44,11 @@ const routes: Routes = [
             {
                 path: 'sign-up',
                 component: SignUpComponent,
-            },
-            {
-                path: 'forgot-password',
-                component: ForgotPasswordComponent,
                 data: {
-                    title: 'Lose Password'
+                    title: 'Sign Up'
                 }
-            }
+            },
+
         ]
     },
     {

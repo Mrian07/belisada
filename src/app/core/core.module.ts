@@ -21,6 +21,8 @@ import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './config/configuration';
 import { JWTUtil } from './util/jwt.util';
+import { AuthenticationComponent } from '../components/layout/authentication/authentication.component';
+import { LeftComponent } from '../components/layout/authentication/left/left.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { JWTUtil } from './util/jwt.util';
     HomeComponent,
     SigninComponent,
     ForgotPasswordComponent,
-    SaniComponent
+    SaniComponent,
+    LeftComponent,
+    AuthenticationComponent
     // HomeComponent
   ],
   // declarations: [],
