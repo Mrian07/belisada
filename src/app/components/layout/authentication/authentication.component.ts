@@ -16,13 +16,13 @@ export class AuthenticationComponent implements OnInit {
   }
   goToSignIn() {
     this.router.navigateByUrl('/authentication/sign-in');
-    // location.reload();
+    location.reload();
     this.href = this.router.url;
         console.log(this.router.url);
   }
   goToSignUp() {
     this.router.navigateByUrl('/authentication/sign-up');
-    // location.reload();
+    location.reload();
     this.href = this.router.url;
         console.log(this.router.url);
   }
