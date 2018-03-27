@@ -13,14 +13,22 @@ export class ResetPasswordComponent implements OnInit {
   password_repeat: FormControl;
 
   constructor(
-    private router: Router,
+    // private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit() {
     this.createFormControls();
     this.createForm();
+    this.loadData();
   }
 
+  loadData() {
+    this.route.params.subscribe( params => {
+      // this.transactionId = params.id;
+      console.log(params.id);
+    });
+  }
   createFormControls() {
     this.password = new FormControl('', Validators.required);
     this.password_repeat = new FormControl('', Validators.required);
