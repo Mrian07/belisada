@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LayoutBuyerComponent } from './components/buyer/layout-buyer/layout-buyer.component';
 import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
@@ -38,6 +39,13 @@ const routes: Routes = [
                 component: ForgotPasswordComponent,
                 data: {
                     title: 'Lose Password'
+                }
+            },
+            {
+                path: 'reset-password',
+                component: ResetPasswordComponent,
+                data: {
+                    title: 'Reset Password'
                 }
             }
         ]

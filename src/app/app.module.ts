@@ -20,12 +20,14 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { Configuration } from './core/config/configuration';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
 import { ProfileComponent } from './components/buyer/profile/profile.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignUpActivationComponent,
     ProfileComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
