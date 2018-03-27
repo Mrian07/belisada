@@ -31,7 +31,14 @@ const routes: Routes = [
                 data: {
                     title: 'Lose Password'
                 }
-            }
+            },
+            {
+                path: 'reset-password/:id',
+                component: ResetPasswordComponent,
+                data: {
+                    title: 'Reset Password'
+                }
+            },
         ]
     },
     {
@@ -52,13 +59,6 @@ const routes: Routes = [
                     title: 'Sign Up'
                 }
             },
-            {
-                path: 'reset-password/:id',
-                component: ResetPasswordComponent,
-                data: {
-                    title: 'Reset Password'
-                }
-            }
         ]
     },
     {
