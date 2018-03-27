@@ -1,3 +1,7 @@
+import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { LayoutBuyerComponent } from './components/buyer/layout-buyer/layout-buyer.component';
+import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
@@ -48,7 +52,13 @@ const routes: Routes = [
                     title: 'Sign Up'
                 }
             },
-
+            {
+                path: 'reset-password/:id',
+                component: ResetPasswordComponent,
+                data: {
+                    title: 'Reset Password'
+                }
+            }
         ]
     },
     {
@@ -59,6 +69,35 @@ const routes: Routes = [
         path: 'sign-up-activation',
         component: SignUpActivationComponent
     },
+
+    {
+        path: 'buyer',
+        component: LayoutBuyerComponent,
+        children: [
+          {
+            path: '',
+            component: ProfileComponent,
+            data: {
+              title: 'Profile'
+            }
+          },
+          {
+            path: 'profile',
+            component: ProfileComponent,
+            data: {
+              title: 'Profile'
+            }
+          },
+          {
+            path: 'profile-edit',
+            component: ProfileEditComponent,
+            data: {
+                title: 'Edit Profile'
+            }
+          },
+        ]
+    },
+
 ];
 
 
