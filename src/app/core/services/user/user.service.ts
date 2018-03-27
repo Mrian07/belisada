@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
-  SignupResponse, SignupData, SigninRequest,
+  SignupResponse, SignupData, SigninRequest, GetResetPwdKeyResponse,
   SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData
 } from './models/user';
 
@@ -73,5 +73,14 @@ export class UserService {
     userData = this.jwtUtil.parseJwt(token).UserData;
     // console.log('userData: ', userData);
     return userData;
+  }
+
+  getResetPwdKey(email) {
+    const data = {
+      email: email,
+      type: 'resetpassword'
+    }
+    return this.http.post(this.config.apiURL + '/account/sendemail', data)
+    .map(res => res as GetResetPwdKeyResponse)
   }
 }

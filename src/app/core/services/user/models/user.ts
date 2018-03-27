@@ -55,3 +55,11 @@ export class ActivationRequest {
 export class ActivationResponse extends BaseResponseModel {
 
 }
+
+export class GetResetPwdKeyRequest {
+    email: string;
+}
+
+export class GetResetPwdKeyResponse extends BaseResponseModel {
+
+}
