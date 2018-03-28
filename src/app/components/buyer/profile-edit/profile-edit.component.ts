@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../core/services/user/user.service';
 import { SigninRequest, UserLocalStorage } from '../../../core/services/user/models/user';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile-edit',
@@ -52,6 +53,22 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
-  }
+  onSubmit() {
+    const model = this.createComForm.value;
+    const b = {
+      name: model.name,
+      // email: model.email,
+      phone: model.phone,
+    };
+    console.log('data', b);
+    this.userService.updateProfile(b).subscribe(data => {
+      console.log('test', data);
+      swal(
+        'Sukses',
+        'Ubah data pengiriman berhasil.',
+        'success'
+      );
+    });
+   }
 
 }

@@ -81,12 +81,12 @@ export class UserService {
       type: 'resetpassword'
     }
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
-    .map(res => res as ForgotPasswdResponse)
+    .map(res => res as ForgotPasswdResponse);
   }
 
   resetPasswd(data) {
     return this.http.post(this.config.apiURL + '/account/resetpassword', data)
-    .map(res => res as ResetPasswdResponse)
+    .map(res => res as ResetPasswdResponse);
   }
 
   getProfile(token: string) {
@@ -96,4 +96,15 @@ export class UserService {
       return this.http.get(this.config.apiURL + '/profile/', { headers })
       .map(resp => resp as Profile);
   }
+
+  updateProfile(updateData) {
+    console.log('test2', localStorage.getItem('token'));
+    const user = JSON.parse(localStorage.user);
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('token', localStorage.getItem('token'));
+      return this.http.put(this.config.apiURL + '/profile/update/', updateData, { headers })
+      .map(resp => resp as Profile);
+  }
+
 }
