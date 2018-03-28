@@ -56,10 +56,19 @@ export class ActivationResponse extends BaseResponseModel {
 
 }
 
-export class GetResetPwdKeyRequest {
+export class ForgotPasswdRequest {
     email: string;
 }
 
-export class GetResetPwdKeyResponse extends BaseResponseModel {
+export class ForgotPasswdResponse extends BaseResponseModel {
+
+}
+
+export class ResetPasswdRequest {
+    key: string;
+    newPassword: string;
+}
+
+export class ResetPasswdResponse extends BaseResponseModel {
 
 }

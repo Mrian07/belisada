@@ -1,4 +1,4 @@
-import { GetResetPwdKeyRequest } from './../../core/services/user/models/user';
+import { ForgotPasswdRequest } from './../../core/services/user/models/user';
 import { UserService } from './../../core/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -27,8 +27,8 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    let data: GetResetPwdKeyRequest = this.createComForm.value;
-    this.userService.getResetPwdKey(data.email).subscribe(rsl => {
+    let data: ForgotPasswdRequest = this.createComForm.value;
+    this.userService.forgotPasswd(data.email).subscribe(rsl => {
       console.log('get key:', rsl);
       alert(rsl.message);
     })

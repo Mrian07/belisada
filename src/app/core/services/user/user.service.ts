@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
-  SignupResponse, SignupData, SigninRequest, GetResetPwdKeyResponse,
-  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData
+  SignupResponse, SignupData, SigninRequest, ForgotPasswdResponse, ResetPasswdResponse,
+  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData, ResetPasswdRequest
 } from './models/user';
 
 import 'rxjs/add/operator/map';
@@ -75,12 +75,17 @@ export class UserService {
     return userData;
   }
 
-  getResetPwdKey(email) {
+  forgotPasswd(email) {
     const data = {
       email: email,
       type: 'resetpassword'
     }
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
-    .map(res => res as GetResetPwdKeyResponse)
+    .map(res => res as ForgotPasswdResponse)
+  }
+
+  resetPasswd(data) {
+    return this.http.post(this.config.apiURL + '/account/resetpassword', data)
+    .map(res => res as ResetPasswdResponse)
   }
 }

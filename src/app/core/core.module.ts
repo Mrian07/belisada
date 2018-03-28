@@ -16,6 +16,7 @@ import { SignUpComponent } from '../components/sign-up/sign-up.component';
 import { HomeComponent } from '../components/home/home.component';
 import { SigninComponent } from '../components/signin/signin.component';
 import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from '../components/reset-password/reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user/user.service';
 import { RecaptchaModule, RecaptchaLoaderService, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
@@ -32,7 +33,7 @@ import { LeftComponent } from '../components/layout/authentication/left/left.com
     LayoutBuyerComponent,
     HeaderComponent,
     FooterComponent,
-    // HomeComponent
+    ResetPasswordComponent,
     SignUpComponent,
     HomeComponent,
     SigninComponent,
