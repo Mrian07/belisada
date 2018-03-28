@@ -1,5 +1,7 @@
-export class SubscribeM {
-email: string;
-message?: string;
-status?: string;
+import { BaseResponseModel } from './../../../models/base-response.model';
+export class SubscribeRequest {
+  email: string;
+}
+export class SubscribeResponse extends BaseResponseModel {
+
 }
