@@ -34,7 +34,7 @@
                     </div>
                     <div class="input-group-icon cursor" (click)="onSubscribe()">OK</div>
                 </div>
-                <div *ngIf="fGroupFooter.controls.email.invalid && (fGroupFooter.controls.email.dirty && fGroupFooter.controls.email.touched)">
+                <div *ngIf="fGroupFooter.controls.email.dirty && fGroupFooter.controls.email.invalid">
                     <span class="tooltiptext">Harap masukan format email dengan benar</span>
                 </div>
 

@@ -4,22 +4,24 @@
     <div class="view-line">
       <div class="title-line">Foto Profile</div> <img src="/assets/img/profile-buyer.jpg" alt="">
     </div>
+    <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="view-line">
-      <div class="title-line">Nama</div> <input type="password" class="input-style-text" placeholder="Password" formControlName="password">
+      <div class="title-line">Nama</div> <input type="text" class="input-style-text" placeholder="Password" formControlName="Masukan nama"  formControlName="name">
     </div>
     <div class="view-line">
-      <div class="title-line">Email</div> <input type="password" class="input-style-text" placeholder="Password" formControlName="password">
+      <div class="title-line">Email</div> <input type="text" class="input-style-text" placeholder="Password" formControlName="Masukan email" disabled  formControlName="email">
     </div>
     <div class="view-line">
-      <div class="title-line">No.Handphone</div><input type="password" class="input-style-text" placeholder="Password" formControlName="password">  
+      <div class="title-line">No.Handphone</div><input type="text" class="input-style-text" placeholder="Password" formControlName="Masukan phone"  formControlName="phone">  
+    </div>
+    <!-- <div class="view-line">
+      <div class="title-line">Tanggal Lahir</div><input type="text" class="input-style-text" placeholder="Password" formControlName="password">
     </div>
     <div class="view-line">
-      <div class="title-line">Tanggal Lahir</div><input type="password" class="input-style-text" placeholder="Password" formControlName="password">
-    </div>
-    <div class="view-line">
-      <div class="title-line">Jenis Kelamin</div><input type="password" class="input-style-text" placeholder="Password" formControlName="password">
-    </div>
+      <div class="title-line">Jenis Kelamin</div><input type="text" class="input-style-text" placeholder="Password" formControlName="password">
+    </div> -->
     <br>
     <button type="submit" class="btn btn-silver text-btn-profile component-center">Update Profile</button>
+    </form>
   </div>
 
