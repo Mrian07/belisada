@@ -16,7 +16,7 @@ export class ProfileEditComponent implements OnInit {
   email: FormControl;
   phone: FormControl;
 
-  fm: any = {};
+  ship;
 
   constructor(
     private userService: UserService
@@ -24,7 +24,8 @@ export class ProfileEditComponent implements OnInit {
 
   ngOnInit() {
     this.createFormControls();
-    this.loadData();
+    this.createForm();
+    this.fillForms();
   }
 
   createFormControls() {
@@ -33,25 +34,24 @@ export class ProfileEditComponent implements OnInit {
     this.phone = new FormControl('', Validators.required);
   }
 
-  loadData() {
+  createForm() {
+    this.createComForm = new FormGroup({
+      name: this.name,
+      email: this.email,
+      phone: this.phone
+     });
+  }
+
+  fillForms() {
+    const model = this.createComForm.value;
     this.userService.getProfile(localStorage.getItem('token')).subscribe(data => {
-      // console.log('ini:', data);
-      // console.log('ini2:', data['0'].name);
-
-      // this.fm = {
-      //   name : data['0'].name,
-      //   email: data['0'].email,
-      //   phone: data['0'].phone,
-      // }
-
-      this.createComForm = new FormGroup({
-        name: data['0'].name,
-        email: data['0'].email,
-        phone: data['0'].phone,
-      });
+    this.name.setValue(data['0'].name);
+    this.email.setValue(data['0'].email);
+    this.phone.setValue(data['0'].phone);
 
     });
-  //  console.log('ini:', localStorage.getUserData('token'));
+  }
+
   }
 
 }
