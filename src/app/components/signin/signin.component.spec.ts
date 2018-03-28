@@ -34,10 +34,8 @@ describe('SigninComponent', () => {
     expect(component).toBeTruthy();
   });
 
-<<<<<<< HEAD
   it('should create', () => {
     expect(component).toBeTruthy();
-=======
   it('forms should contains email, password', () => {
     expect(component.signinFormGroup.controls['email']).toBeTruthy();
     expect(component.signinFormGroup.controls['password']).toBeTruthy();
@@ -62,6 +60,5 @@ describe('SigninComponent', () => {
     control.setValue('');
 
     expect(control.valid).toBeFalsy();
->>>>>>> fd3157aaebe092c1de833cf0604aba89d40c1eb7
   });
 });

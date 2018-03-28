@@ -2,11 +2,11 @@ import { LocalStorageEnum } from './../../enum/local-storage.enum';
 import { Configuration } from './../../config/configuration';
 import { User } from './../cart/models/user';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
   SignupResponse, SignupData, SigninRequest, GetResetPwdKeyResponse,
-  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData
+  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData, Profile
 } from './models/user';
 
 import 'rxjs/add/operator/map';
@@ -82,5 +82,13 @@ export class UserService {
     }
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
     .map(res => res as GetResetPwdKeyResponse)
+  }
+
+  getProfile(token: string) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('token', token);
+      return this.http.get(this.config.apiURL + '/profile/', { headers })
+      .map(resp => resp as Profile);
   }
 }

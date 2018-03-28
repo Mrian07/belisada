@@ -63,3 +63,15 @@ export class GetResetPwdKeyRequest {
 export class GetResetPwdKeyResponse extends BaseResponseModel {
 
 }
+
+export class Profile {
+
+    name: string;
+    email: string;
+    phone: string;
+
+
+    status?: string;
+    message?: string;
+
+}
