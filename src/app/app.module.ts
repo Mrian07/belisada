@@ -18,7 +18,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Configuration } from './core/config/configuration';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
 import { ProfileComponent } from './components/buyer/profile/profile.component';
-import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
+
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { SubscribeService } from './core/services/subscribe/subscribe.service';
     AppComponent,
     SignUpActivationComponent,
     ProfileComponent,
-    ProfileEditComponent,
+    
   ],
   imports: [
     BrowserModule,

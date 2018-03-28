@@ -72,3 +72,15 @@ export class ResetPasswdRequest {
 export class ResetPasswdResponse extends BaseResponseModel {
 
 }
+
+export class Profile {
+
+    name: string;
+    email: string;
+    phone: string;
+
+
+    status?: string;
+    message?: string;
+
+}

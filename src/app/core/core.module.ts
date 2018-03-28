@@ -1,3 +1,4 @@
+import { ProfileEditComponent } from './../components/buyer/profile-edit/profile-edit.component';
 import { SidebarBuyerComponent } from './../components/buyer/layout-buyer/sidebar-buyer/sidebar-buyer.component';
 import { LayoutBuyerComponent } from './../components/buyer/layout-buyer/layout-buyer.component';
 import { CommonModule } from '@angular/common';
@@ -27,6 +28,7 @@ import { JWTUtil } from './util/jwt.util';
 import { AuthenticationComponent } from '../components/layout/authentication/authentication.component';
 import { LeftComponent } from '../components/layout/authentication/left/left.component';
 
+
 @NgModule({
   declarations: [
     LayoutComponent,
@@ -41,7 +43,8 @@ import { LeftComponent } from '../components/layout/authentication/left/left.com
     SaniComponent,
     SidebarBuyerComponent,
     LeftComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
+    ProfileEditComponent,
     // HomeComponent
   ],
   // declarations: [],
