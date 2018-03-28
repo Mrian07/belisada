@@ -22,6 +22,7 @@ import { SignUpActivationComponent } from './components/sign-up-activation/sign-
 import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
+import { SubscribeService } from './core/services/subscribe/subscribe.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { ProfileEditComponent } from './components/buyer/profile-edit/profile-ed
     // AlertService,
     Configuration,
     UserService,
+    SubscribeService,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

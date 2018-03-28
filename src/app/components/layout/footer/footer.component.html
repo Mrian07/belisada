@@ -16,12 +16,15 @@
     </ul>
   </div>
   <div class="col-4">
-  <form class="form-inline" action="/action_page.php">
+  <form class="form-inline" [formGroup]="fGroupFooter">
 
     <label for="email">Subscribe to our newsletter:</label>
     <div class="input-group">
-      <div class="input-group-area"><input type="text" placeholder="Email Address" class="footer-input"></div>
-      <div class="input-group-icon cursor">OK</div>
+      <div class="input-group-area"><input type="text" formControlName="email"  placeholder="Email Address" class="footer-input"></div>
+      <div class="input-group-icon cursor"  (click)="onSubscribe()">OK</div>
+    </div>
+    <div *ngIf="fGroupFooter.controls.email.invalid && (fGroupFooter.controls.email.dirty && fGroupFooter.controls.email.touched)">
+        <span class="tooltiptext">Harap masukan format email dengan benar</span>
     </div>
 
   </form> 
