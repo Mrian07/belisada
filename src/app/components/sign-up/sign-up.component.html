@@ -1,7 +1,7 @@
 <div class="wrapper form-group">
         <div class="tabs">
-                <div class="tab-2">
-                  <label for="tab2-1">registrasi</label>
+                <div class="tab-2" *ngIf="title === true;">
+                  <label for="tab2-1">Registrasi</label>
                   <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
                   <div>
                         <div>
@@ -95,11 +95,11 @@
                             </div>
                   </div>
                 </div>
-                <div class="tab-2">
-                  <label for="tab2-2">Login</label>
-                  <a routerLink="/authentication/sign-in">
+                <div class="tab-2" *ngIf="title === true;">
+                  <label for="tab2-2"  (click)="goToSignIn()">Login</label>
+                  <!-- <a routerLink="/authentication/sign-in"> -->
                   <input id="tab2-2" name="tabs-two" type="radio">
-                </a>
+                <!-- </a> -->
                   </div>
                   <div>
                   </div>
