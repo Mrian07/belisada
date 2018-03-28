@@ -1,39 +1,52 @@
 <div class="footer">
 
-  <div class="row">
-  <div class="col-2">
-    <ul class="menuList">
-      <li><a href="">About US</a></li>
-      <li><a href="">Contact</a></li>
-      <li><a href="">Term & Conditions</a></li>
-    </ul>
-  </div>
-  <div class="col-2">
-    <ul class="menuList">
-      <li><a href=""><fa name="facebook"></fa> Facebook</a></li>
-      <li><a href=""><fa name="twitter"></fa> Twitter</a></li>
-      <li><a href=""><fa name="instagram"></fa> Instagram</a></li>
-    </ul>
-  </div>
-  <div class="col-4">
-  <form class="form-inline" [formGroup]="fGroupFooter">
+    <div class="row">
+        <div class="col-2">
+            <ul class="menuList">
+                <li><a href="">About US</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href="">Term & Conditions</a></li>
+            </ul>
+        </div>
+        <div class="col-2">
+            <ul class="menuList">
+                <li>
+                    <a href="">
+                        <fa name="facebook"></fa> Facebook</a>
+                </li>
+                <li>
+                    <a href="">
+                        <fa name="twitter"></fa> Twitter</a>
+                </li>
+                <li>
+                    <a href="">
+                        <fa name="instagram"></fa> Instagram</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-4">
+            <form class="form-inline" [formGroup]="fGroupFooter">
 
-    <label for="email">Subscribe to our newsletter:</label>
-    <div class="input-group">
-      <div class="input-group-area"><input type="text" formControlName="email"  placeholder="Email Address" class="footer-input"></div>
-      <div class="input-group-icon cursor"  (click)="onSubscribe()">OK</div>
-    </div>
-    <div *ngIf="fGroupFooter.controls.email.invalid && (fGroupFooter.controls.email.dirty && fGroupFooter.controls.email.touched)">
-        <span class="tooltiptext">Harap masukan format email dengan benar</span>
-    </div>
+                <label for="email">Subscribe to our newsletter:</label>
+                <div class="input-group">
+                    <div class="input-group-area">
+                        <input type="text" formControlName="email" placeholder="Email Address" class="footer-input">
+                    </div>
+                    <div class="input-group-icon cursor" (click)="onSubscribe()">OK</div>
+                </div>
+                <div *ngIf="fGroupFooter.controls.email.invalid && (fGroupFooter.controls.email.dirty && fGroupFooter.controls.email.touched)">
+                    <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                </div>
 
-  </form> 
-  </div>
-  <div class="col-4">Jalan Kesehatan No.60 O-P, RT.2 RW.4 Petojo Selatan, Gambir,<br>Jakarta Pusat 10160.<br><br>cs@belisada.co.id</div>
-  </div>
-  <div class="center">
-    Copyright © 2017 belisada.co.id. All Rights Reserved.
-  </div>
-  
+            </form>
+        </div>
+        <div class="col-4">Jalan Kesehatan No.60 O-P, RT.2 RW.4 Petojo Selatan, Gambir,
+            <br>Jakarta Pusat 10160.
+            <br>
+            <br>cs@belisada.co.id</div>
+    </div>
+    <div class="center">
+        Copyright © 2017 belisada.co.id. All Rights Reserved.
+    </div>
 
 </div>
