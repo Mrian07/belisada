@@ -1,110 +1,108 @@
-<div class="wrapper form-group">
-        <div class="tabs">
-            <div class="tab-2" *ngIf="title === true;">
-                <label for="tab2-1">Registrasi</label>
-                <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
-                <div>
-                    <div>
-                        <div *ngIf="title === true;">
-                            <span class="f-registrasi">registrasi</span>
-                        </div>
-                        <div *ngIf="title === true;">
-                            <form [formGroup]="vForValidation" (ngSubmit)="submit()" #fs="ngForm" novalidate>
-                                <input type="text" formControlName="fullname" placeholder="Nama Lengkap" class="input-style-text" required [ngClass]="{
-                                    'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
-                                    'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
-                                    }">
-                                <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip">
-                                    <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
-                                </div>
-                                <div *ngIf="status === 1; else register">
-                                    <input type="text" placeholder="Email" formControlName="email" class="input-style-text" (input)="onSearchChange($event.target.value)" email name="email" (change)="checkEmail()" required [ngClass]="{
-                                    'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
-                                    'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-                                    }">
-                                    <div *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
-                                        <fa name="fas fa-ban errspan"></fa>
-                                        <span class="tooltiptext">Email ini sudah teregistrasi</span>
-                                    </div>
-                                    <!-- *ngIf="name.invalid && (name.dirty || name.touched)" -->
-                                    <!-- <span>Email Ini sudah Terdaftar</span> -->
-                                    <!-- <fa name="fas fa-ban errspan"></fa> -->
-                                </div>
-                                <ng-template #register>
-                                    <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
-                                        'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
-                                        'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-                                        }">{{email | lowercase}}
-    
-                                    <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
-                                        <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                                    </div>
-                                    <!-- </div> -->
-                                </ng-template>
-    
-                                <div>
-                                    <input type="password" formControlName="password" class="input-style-text" placeholder="Password" required>
-                                    <div class="form-control-feedback" *ngIf="vForValidation.controls.password.errors && (vForValidation.controls.password.dirty || vForValidation.controls.password.touched)">
-                                        <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
-                                        <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 7 characters long. </p>
-                                    </div>
-                                    <!-- <div *ngIf="fs.submitted && !email.valid" class="help-block">First Name is required</div> -->
-                                    <div>
-                                        <input type="password" formControlName="confirmPassword" placeholder="Ketik Ulang Password" class="input-style-text" required>
-                                        <div class="form-control-feedback" *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
-                                            <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch">Password Harus Sama !</p>
-                                            <!-- <p *ngIf="vForValidation.controls.confirmPassword.errors?.MatchPassword">asdas</p> -->
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <input type="text" placeholder="No Handphone +62" formControlName="phoneNumber" (keypress)="keyPress($event)" class="input-style-text">
-                                    </div>
-                                    <div class="wrapper2">
-                                        <div>
-                                            <re-captcha formControlName="recaptchaReactive"></re-captcha>
-                                        </div>
-                                        <div>
-                                            <label class="container">
-                                                            <div class="text-box">
-                                                                <span class="heading-primary-main">Dapatkan info Menarik di </span>
-                                                                <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
-                                                            </div>
-                                                            <input type="checkbox" formControlName="isSubscribe" (change)="changeValue()">
-                                                            <span class="checkmark"></span>
-                                                        </label>
-                                        </div>
-                                    </div>
-                                    <div class="bottom-center">
-                                        <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
-                                    </div>
-                                    <div *ngIf="vForValidation.invalid; else signUp">
-                                        <div class="component-center">
-                                            <div class="component-center">
-                                                <button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Daftar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ng-template #signUp>
-                                        <div class="component-center">
-                                            <button class="btn btn-orange btn-size-80 text-btn component-center">Daftar</button>
-                                        </div>
-                                    </ng-template>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-2" *ngIf="title === true;">
-                <label for="tab2-2" (click)="goToSignIn()">Login</label>
-                <!-- <a routerLink="/authentication/sign-in"> -->
-                <input id="tab2-2" name="tabs-two" type="radio">
-                <!-- </a> -->
-            </div>
+<div class="tabs">
+    <div class="tab-2" *ngIf="title === true;">
+        <label for="tab2-1">Registrasi</label>
+        <input id="tab2-1" name="tabs-two" type="radio" checked="checked">
+        <div>
             <div>
+                <div *ngIf="title === true;">
+                    <span class="f-registrasi">registrasi</span>
+                </div>
+                <div *ngIf="title === true;">
+                    <form [formGroup]="vForValidation" (ngSubmit)="submit()" #fs="ngForm" novalidate>
+                        <input type="text" formControlName="fullname" placeholder="Nama Lengkap" class="input-style-text" required [ngClass]="{
+                            'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
+                            'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
+                            }">
+                        <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip">
+                            <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
+                        </div>
+                        <div *ngIf="status === 1; else register">
+                            <input type="text" placeholder="Email" formControlName="email" class="input-style-text" (input)="onSearchChange($event.target.value)" email name="email" (change)="checkEmail()" required [ngClass]="{
+                            'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
+                            'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
+                            }">
+                            <div *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
+                                <fa name="fas fa-ban errspan"></fa>
+                                <span class="tooltiptext">Email ini sudah teregistrasi</span>
+                            </div>
+                            <!-- *ngIf="name.invalid && (name.dirty || name.touched)" -->
+                            <!-- <span>Email Ini sudah Terdaftar</span> -->
+                            <!-- <fa name="fas fa-ban errspan"></fa> -->
+                        </div>
+                        <ng-template #register>
+                            <input type="text" placeholder="Email" formControlName="email" class="input-style-text" email name="email" (change)="checkEmail()" required [ngClass]="{
+                                'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
+                                'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
+                                }">{{email | lowercase}}
+
+                            <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
+                                <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                            </div>
+                            <!-- </div> -->
+                        </ng-template>
+
+                        <div>
+                            <input type="password" formControlName="password" class="input-style-text" placeholder="Password" required>
+                            <div class="form-control-feedback" *ngIf="vForValidation.controls.password.errors && (vForValidation.controls.password.dirty || vForValidation.controls.password.touched)">
+                                <p *ngIf="vForValidation.controls.password.errors.required">Password is required</p>
+                                <p *ngIf="vForValidation.controls.password.errors.minlength">Password must be 7 characters long. </p>
+                            </div>
+                            <!-- <div *ngIf="fs.submitted && !email.valid" class="help-block">First Name is required</div> -->
+                            <div>
+                                <input type="password" formControlName="confirmPassword" placeholder="Ketik Ulang Password" class="input-style-text" required>
+                                <div class="form-control-feedback" *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)">
+                                    <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch">Password Harus Sama !</p>
+                                    <!-- <p *ngIf="vForValidation.controls.confirmPassword.errors?.MatchPassword">asdas</p> -->
+                                </div>
+                            </div>
+                            <div>
+                                <input type="text" placeholder="No Handphone +62" formControlName="phoneNumber" (keypress)="keyPress($event)" class="input-style-text">
+                            </div>
+                            <div class="wrapper2">
+                                <div>
+                                    <re-captcha formControlName="recaptchaReactive"></re-captcha>
+                                </div>
+                                <div>
+                                    <label class="container">
+                                                    <div class="text-box">
+                                                        <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                                                        <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
+                                                    </div>
+                                                    <input type="checkbox" formControlName="isSubscribe" (change)="changeValue()">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                </div>
+                            </div>
+                            <div class="bottom-center">
+                                <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
+                            </div>
+                            <div *ngIf="vForValidation.invalid; else signUp">
+                                <div class="component-center">
+                                    <div class="component-center">
+                                        <button class="btn btn-size-80 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">Daftar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #signUp>
+                                <div class="component-center">
+                                    <button class="btn btn-orange btn-size-80 text-btn component-center">Daftar</button>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+    <div class="tab-2" *ngIf="title === true;">
+        <label for="tab2-2" (click)="goToSignIn()">Login</label>
+        <!-- <a routerLink="/authentication/sign-in"> -->
+        <input id="tab2-2" name="tabs-two" type="radio">
+        <!-- </a> -->
+    </div>
+    <div>
+    </div>
+</div>
     
     <!-- </div> -->
     <div *ngIf="title === false" class="wrapper">
