@@ -2,11 +2,11 @@ import { LocalStorageEnum } from './../../enum/local-storage.enum';
 import { Configuration } from './../../config/configuration';
 import { User } from './../cart/models/user';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
-  SignupResponse, SignupData, SigninRequest, GetResetPwdKeyResponse,
-  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData
+  SignupResponse, SignupData, SigninRequest, ResetPasswdResponse, SendEmailRequest, SendEmailResponse,
+  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData, ResetPasswdRequest, Profile
 } from './models/user';
 
 import 'rxjs/add/operator/map';
@@ -75,12 +75,32 @@ export class UserService {
     return userData;
   }
 
-  getResetPwdKey(email) {
-    const data = {
-      email: email,
-      type: 'resetpassword'
-    }
+  sendEmail(data: SendEmailRequest) {
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
-    .map(res => res as GetResetPwdKeyResponse)
+    .map(res => res as SendEmailResponse);
   }
+
+  resetPasswd(data) {
+    return this.http.post(this.config.apiURL + '/account/resetpassword', data)
+    .map(res => res as ResetPasswdResponse);
+  }
+
+  getProfile(token: string) {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('token', token);
+      return this.http.get(this.config.apiURL + '/profile/', { headers })
+      .map(resp => resp as Profile);
+  }
+
+  updateProfile(updateData) {
+    console.log('test2', localStorage.getItem('token'));
+    const user = JSON.parse(localStorage.user);
+    const headers = new HttpHeaders()
+      .set('content-type', 'application/json')
+      .set('token', localStorage.getItem('token'));
+      return this.http.put(this.config.apiURL + '/profile/update/', updateData, { headers })
+      .map(resp => resp as Profile);
+  }
+
 }

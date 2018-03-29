@@ -1,3 +1,4 @@
+import { ProfileEditComponent } from './../components/buyer/profile-edit/profile-edit.component';
 import { SidebarBuyerComponent } from './../components/buyer/layout-buyer/sidebar-buyer/sidebar-buyer.component';
 import { LayoutBuyerComponent } from './../components/buyer/layout-buyer/layout-buyer.component';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,7 @@ import { SignUpComponent } from '../components/sign-up/sign-up.component';
 import { HomeComponent } from '../components/home/home.component';
 import { SigninComponent } from '../components/signin/signin.component';
 import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from '../components/reset-password/reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user/user.service';
 import { RecaptchaModule, RecaptchaLoaderService, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
@@ -27,13 +29,14 @@ import { AuthenticationComponent } from '../components/layout/authentication/aut
 import { LeftComponent } from '../components/layout/authentication/left/left.component';
 import { SignUpActivationComponent } from '../components/sign-up-activation/sign-up-activation.component';
 
+
 @NgModule({
   declarations: [
     LayoutComponent,
     LayoutBuyerComponent,
     HeaderComponent,
     FooterComponent,
-    // HomeComponent
+    ResetPasswordComponent,
     SignUpComponent,
     HomeComponent,
     SigninComponent,
@@ -43,6 +46,7 @@ import { SignUpActivationComponent } from '../components/sign-up-activation/sign
     LeftComponent,
     AuthenticationComponent,
     SignUpActivationComponent,
+    ProfileEditComponent,
     // HomeComponent
   ],
   // declarations: [],

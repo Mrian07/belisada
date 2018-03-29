@@ -9,26 +9,23 @@ import { SharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-// import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 // import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { UserService } from './core/services/user/user.service';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { Configuration } from './core/config/configuration';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
 import { ProfileComponent } from './components/buyer/profile/profile.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
+
+import { SubscribeService } from './core/services/subscribe/subscribe.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
-    ResetPasswordComponent,
-    ProfileEditComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -36,13 +33,13 @@ import { ProfileEditComponent } from './components/buyer/profile-edit/profile-ed
     CoreModule,
     // FormsModule,
     SharedModule,
-    // ReactiveFormsModule,
   ],
   providers: [
     // fakeBackendProvider,
     // AlertService,
     Configuration,
     UserService,
+    SubscribeService,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
