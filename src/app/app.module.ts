@@ -25,7 +25,6 @@ import { SubscribeService } from './core/services/subscribe/subscribe.service';
   declarations: [
     AppComponent,
     ProfileComponent,
-    
   ],
   imports: [
     BrowserModule,

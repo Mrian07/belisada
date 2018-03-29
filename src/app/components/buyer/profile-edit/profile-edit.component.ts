@@ -57,8 +57,9 @@ export class ProfileEditComponent implements OnInit {
     const model = this.createComForm.value;
     const b = {
       name: model.name,
-      // email: model.email,
       phone: model.phone,
+      gender: '',
+      dateOfBirth: '',
     };
     console.log('data', b);
     this.userService.updateProfile(b).subscribe(data => {
