@@ -14,6 +14,8 @@ export class ProfileComponent implements OnInit {
   name: string;
   email: string;
   phone: number;
+  gender: string;
+  dateOfBirth: any;
 
   constructor(
     private router: Router,
