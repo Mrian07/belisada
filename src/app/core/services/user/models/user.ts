@@ -1,3 +1,4 @@
+import { SendEmailTypeEnum } from './../../../enum/send-email-type.enum';
 import { BaseResponseModel } from '../../../models/base-response.model';
 
 export class UserLocalStorage {
@@ -56,11 +57,12 @@ export class ActivationResponse extends BaseResponseModel {
 
 }
 
-export class ForgotPasswdRequest {
+export class SendEmailRequest {
     email: string;
+    type: SendEmailTypeEnum;
 }
 
-export class ForgotPasswdResponse extends BaseResponseModel {
+export class SendEmailResponse extends BaseResponseModel {
 
 }
 

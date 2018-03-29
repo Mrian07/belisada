@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
-  SignupResponse, SignupData, SigninRequest, ForgotPasswdResponse, ResetPasswdResponse,
+  SignupResponse, SignupData, SigninRequest, ResetPasswdResponse, SendEmailRequest, SendEmailResponse,
   SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData, ResetPasswdRequest, Profile
 } from './models/user';
 
@@ -75,13 +75,9 @@ export class UserService {
     return userData;
   }
 
-  forgotPasswd(email) {
-    const data = {
-      email: email,
-      type: 'resetpassword'
-    }
+  sendEmail(data: SendEmailRequest) {
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
-    .map(res => res as ForgotPasswdResponse);
+    .map(res => res as SendEmailResponse);
   }
 
   resetPasswd(data) {
