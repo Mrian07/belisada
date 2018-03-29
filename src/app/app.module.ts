@@ -24,7 +24,6 @@ import { SubscribeService } from './core/services/subscribe/subscribe.service';
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpActivationComponent,
     ProfileComponent,
     
   ],

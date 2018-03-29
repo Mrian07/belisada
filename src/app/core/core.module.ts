@@ -27,6 +27,7 @@ import { Configuration } from './config/configuration';
 import { JWTUtil } from './util/jwt.util';
 import { AuthenticationComponent } from '../components/layout/authentication/authentication.component';
 import { LeftComponent } from '../components/layout/authentication/left/left.component';
+import { SignUpActivationComponent } from '../components/sign-up-activation/sign-up-activation.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { LeftComponent } from '../components/layout/authentication/left/left.com
     SidebarBuyerComponent,
     LeftComponent,
     AuthenticationComponent,
+    SignUpActivationComponent,
     ProfileEditComponent,
     // HomeComponent
   ],
