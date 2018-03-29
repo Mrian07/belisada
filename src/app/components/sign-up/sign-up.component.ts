@@ -74,7 +74,7 @@ export class SignUpComponent implements OnInit {
       this.isSubscribe = new FormControl(!this.isSubscribe.value);
   }
   goToSignIn() {
-    this.router.navigateByUrl('/authentication/sign-in');
+    this.router.navigateByUrl('/account/sign-in');
   }
   checkEmail() {
       const modelz = this.vForValidation.value;

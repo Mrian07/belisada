@@ -15,13 +15,13 @@ export class AuthenticationComponent implements OnInit {
   ngOnInit() {
   }
   goToSignIn() {
-    this.router.navigateByUrl('/authentication/sign-in');
+    this.router.navigateByUrl('/account/sign-in');
     location.reload();
     this.href = this.router.url;
         console.log(this.router.url);
   }
   goToSignUp() {
-    this.router.navigateByUrl('/authentication/sign-up');
+    this.router.navigateByUrl('/account/sign-up');
     location.reload();
     this.href = this.router.url;
         console.log(this.router.url);
