@@ -46,6 +46,33 @@ export class SignUpActivationComponent implements OnInit {
     );
   }
 
+  onSubmit() {
+    // console.log('this.signinFormGroup: ', this.signinFormGroup);
+    // const signinRequest: SigninRequest = this.signinFormGroup.value;
+    // this.userService.signin(signinRequest).subscribe(
+    //   result => {
+    //     // Handle result
+    //     console.log(result);
+    //     if (result.status === 0) {
+    //       swal(
+    //         'belisada.co.id',
+    //         result.message,
+    //         'warning'
+    //       );
+    //     } else {
+    //       const token: string = result.token;
+    //       console.log('userData: ', this.userService.getUserData(token));
+    //       this.userService.setUserToLocalStorage(token);
+    //       this.router.navigate(['/']);
+    //     }
+    //   },
+    //   error => {
+    //     swal('belisada.co.id', 'unknown error', 'error');
+    //     console.log(error);
+    //   }
+    // );
+  }
+
   createForm() {
     this.resendEmailFormGroup = this.fb.group({
       email: new FormControl('', [
