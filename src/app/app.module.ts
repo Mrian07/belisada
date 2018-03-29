@@ -26,7 +26,6 @@ import { ProfileEditComponent } from './components/buyer/profile-edit/profile-ed
 @NgModule({
   declarations: [
     AppComponent,
-    SignUpActivationComponent,
     ProfileComponent,
     ResetPasswordComponent,
     ProfileEditComponent,

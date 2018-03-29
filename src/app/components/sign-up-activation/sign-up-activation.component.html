@@ -1,77 +1,27 @@
-<div class="containPage font-family-lato">
-    <div class="b-header">
-        <img src="assets/img/logo.png" border="0">
-    </div>
+<div class="">
+    <h2>{{ activationResponse.message }}</h2>
+    <p>Maaf, silahkan isi alamat email anda, kami akan mengirimkan email aktivasi yang baru, kemudian cek kotak masuk email anda.</p>
+    <form [formGroup]="resendEmailFormGroup" (ngSubmit)="onSubmit()" novalidate>
+        <div class="sn-form-group has-right-button">
+            <input formControlName="email" type="email" name="" id="" class="sn-input sn-input-text" placeholder="Ketikan email anda"/>
+            <button class="action-btn" type="submit" [disabled]="resendEmailFormGroup.invalid">Kirim</button>
 
-    <div *ngIf="status===0">
-        <h1>Aktifasi Gagal</h1>
-        <p>Maaf aktifasi Anda gagal dikarenakan link aktifasi Anda sudah expired.
-        <br><br>
-        <a routerLink="#" (click)="reActivation()">Klik disini untuk melakukan aktifasi ulang</a>
-
-        </p>
-    </div>
-
-    <div *ngIf="status===1">
-        <h1>Selamat Bergabung Di Belisada.co.id</h1>
-        <p>
-            Hallo <b>Adam Darmawan</b>,
-            <br><br>
-
-            Sekarang kamu sudah bisa belanja di <b>Belisada.co.id</b> - Beli Apa Saja Ada. Sebelum memulai, ada baiknya kamu pelajari beberapa hal berikut:
-            <br><br>
-            <b>Panduan Pengguna Baru</b>
-            <br><br>
-            <a href="" class="link-text">Cara Berbelanja</a><br>
-            <a href="" class="link-text">Cara Berjualan</a><br>
-            <a href="" class="link-text">3 Langkah Belanja Online Mudah di Belisada.co.id</a><br>
-            <a href="" class="link-text">Panduan Keamanan untuk Terhindar dari Penipuan</a><br>
-            <br>
-            Punya pertanyaan atau butuh konsultasi untuk berjualan online? Hubungi cs@belisada.co.id atau kunjungi halaman bantuan belisada.co.id.
-        </p>
-        <div class="b-green">
-            <div class="row">
-                <div class="col-1 icon-lampu">
-                        <img src="assets/img/siren.png" border="0" width="50">
-                </div>
-                <div class="col-11 text-green">
-                        Harap tidak menginformasikan nomor kontak, alamat email, atau password Anda kepada siapapun, termasuk pihak yang mengatasnamakan Belisada.co.id.
-                </div>
+            <div class="form-control-validation"
+                *ngIf="resendEmailFormGroup.controls.email.errors
+                    && resendEmailFormGroup.controls.email.dirty">
+                <p *ngIf="resendEmailFormGroup.controls.email.errors.required">Email tidak boleh kosong</p>
+                <p *ngIf="resendEmailFormGroup.controls.email.errors.pattern">Masukan Email Yang Benar</p>
             </div>
         </div>
-        <p>Terima kasih atas perhatian dan kepercayaan Anda.</p>
-        <br>
-        <div class="center">
-        <button class="btn btn-orange btn-size-80 text-btn component-center">Go To Belisada</button>
-        </div>
-
-    </div>
-
-    <div *ngIf="status===2">
-        <h1>Aktifasi Gagal</h1>
-        <p>Akun Anda sudah diaktifasi sebelumnya dan tidak perlu dilakukan aktifasi ulang.
-        <br><br>
-
-        </p>
-    </div>
-
-    <div *ngIf="status===3">
-        <h1>Email Aktifasi Berhasil Dikirim</h1>
-        <p>Silakan cek email Anda dan lakukan aktifasi ulang.
-        </p>
-    </div>
-
-
-    <br><br>
-    <div class="b-footer">
-        PT. Belisada Global Indonesia<br>
-        Jl. Kesehatan No. 60 O-P,<br>
-        RT 2, RW. 4 Petojo Selatan, Gambir,<br>
-        Jakarta Pusat 10160,<br>
-        Email: cs@belisada.co.id
-    </div>
-
-    <div class="b-footer-sub">
-        Follow us <label>@belisada</label> | Like us on <label>BelisadaID</label>.
-    </div>
+    </form>
 </div>
+
+<div class="">
+    <h2>{{ activationResponse.message }}</h2>
+    <p>Maaf, kami baru saja mengirimkan email aktivasi yang baru karena sudah habis masa berlaku, silahkan cek kotak masuk email anda</p>
+</div>
+
+<div class="">
+    <h2>{{ activationResponse.message }}</h2>
+    <p>Selamat, akun anda sudah aktif, silahkan klik disini untuk masuk</p>
+</div> 

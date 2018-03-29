@@ -42,7 +42,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'authentication',
+        path: 'account',
         component: AuthenticationComponent,
         children: [
             {
@@ -59,45 +59,44 @@ const routes: Routes = [
                     title: 'Sign Up'
                 }
             },
+            {
+                path: 'activation',
+                component: SignUpActivationComponent
+            },
         ]
-    },
-    {
-        path: 'sani',
-        component: SaniComponent
-    },
-    {
-        path: 'sign-up-activation',
-        component: SignUpActivationComponent
     },
 
     {
         path: 'buyer',
         component: LayoutBuyerComponent,
         children: [
-          {
-            path: '',
-            component: ProfileComponent,
-            data: {
-              title: 'Profile'
-            }
-          },
-          {
-            path: 'profile',
-            component: ProfileComponent,
-            data: {
-              title: 'Profile'
-            }
-          },
-          {
-            path: 'profile-edit',
-            component: ProfileEditComponent,
-            data: {
-                title: 'Edit Profile'
-            }
-          },
+            {
+                path: '',
+                component: ProfileComponent,
+                data: {
+                    title: 'Profile'
+                }
+            },
+            {
+                path: 'profile',
+                component: ProfileComponent,
+                data: {
+                    title: 'Profile'
+                }
+            },
+            {
+                path: 'profile-edit',
+                component: ProfileEditComponent,
+                data: {
+                    title: 'Edit Profile'
+                }
+            },
         ]
     },
-
+    {
+        path: 'sani',
+        component: SaniComponent
+    },
 ];
 
 
