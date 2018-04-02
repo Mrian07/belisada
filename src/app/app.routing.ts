@@ -72,6 +72,7 @@ const routes: Routes = [
     {
         path: 'buyer',
         component: LayoutBuyerComponent,
+        canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
             {
                 path: '',
