@@ -12,6 +12,8 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { SaniComponent } from './components/sani/sani.component';
 import { AuthenticationComponent } from './components/layout/authentication/authentication.component';
+import { StoreComponent } from './components/seller/store/store.component';
+import { LayoutSellerComponent } from './components/seller/layout-seller/layout-seller.component';
 
 const routes: Routes = [
     {
@@ -90,7 +92,20 @@ const routes: Routes = [
                 data: {
                     title: 'Edit Profile'
                 }
-            },
+            }
+        ]
+    },
+    {
+        path: 'seller',
+        component: LayoutSellerComponent,
+        children: [
+            {
+                path: 'store',
+                component: StoreComponent,
+                data: {
+                    title: 'Store'
+                }
+            }
         ]
     },
     {

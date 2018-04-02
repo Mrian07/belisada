@@ -16,13 +16,16 @@
 @import "components/alert";
 @import "components/formControl";
 
+@import "layout/sidebar-seller";
 @import "layout/grid";
 @import "layout/header";
 @import "layout/body";
 @import "layout/footer";
 @import "layout/sidebar-buyer";
+@import "layout/top-layout-seller";
 
 @import "pages/authentication";
+@import "pages/buyer-store";
 @import "pages/home";
 @import "pages/signin";
 @import "pages/signup";

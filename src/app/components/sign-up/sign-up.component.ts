@@ -82,7 +82,7 @@ export class SignUpComponent implements OnInit {
           this.userservice.checkEmail(this.emailChecking)
           .subscribe(
               data => {
-                  if (data.message !== '1') {
+                  if (data.status !== '1') {
                       this.message = data.message;
                       this.status = data.status;
                   } else {
