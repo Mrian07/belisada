@@ -17,6 +17,7 @@ export class ForgotPasswordComponent implements OnInit {
   email: FormControl;
   field_form: boolean;
   alert: boolean;
+  msg: string;
 
   constructor(
     private router: Router,
@@ -35,22 +36,29 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    const data: SendEmailRequest = new SendEmailRequest();
-    data.email = this.email.value;
-    data.type = SendEmailTypeEnum.RESET_PASSWORD;
-    this.userService.sendEmail(data).subscribe(rsl => {
-      // console.log(rsl.status);
+    console.log('ini', this.email.value);
+    if (this.email.value == '') {
+      this.alert = true;
+      this.msg = 'Silakan masukan email Anda.';
+    } else {
+      const data: SendEmailRequest = new SendEmailRequest();
+      data.email = this.email.value;
+      data.type = SendEmailTypeEnum.RESET_PASSWORD;
+      this.userService.sendEmail(data).subscribe(rsl => {
+        // console.log(rsl.status);
+        if (rsl.status === 1) {
+          this.alert = false;
+          this.field_form = false;
+          this.result = rsl.status;
+        } else {
+          this.alert = true;
+          this.msg = 'Maaf email Anda tidak terdaftar. Silakan masukan email Anda yang terdaftar di belisada.co.id.';
+        }
 
-      if (rsl.status === 1) {
-        this.alert = false;
-        this.field_form = false;
-        this.result = rsl.status;
-      } else {
-        this.alert = true;
-      }
+        // this.result = rsl.status;
+      });
+    }
 
-      // this.result = rsl.status;
-    });
   }
 
   reEnter() {
