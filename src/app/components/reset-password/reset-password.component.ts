@@ -48,18 +48,14 @@ export class ResetPasswordComponent implements OnInit {
       this.alert = true;
       this.msg = 'Ulangi password baru tidak boleh kosong.';
     } else {
-      console.log('iniiii ', this.rstForm.value.password_repeat);
       this.data.newPassword = this.rstForm.value.password;
       this.userService.resetPasswd(this.data).subscribe(rsl => {
-        // console.log('resp reset pswd:', rsl);
         if (rsl.status === 4) {
           this.alert = true;
           this.msg = 'Key sudah tidak berlaku';
         }
-        // alert(rsl.message);
       });
     }
-   
   }
 
   loadData() {

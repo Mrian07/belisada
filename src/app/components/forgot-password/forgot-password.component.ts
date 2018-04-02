@@ -45,7 +45,6 @@ export class ForgotPasswordComponent implements OnInit {
       data.email = this.email.value;
       data.type = SendEmailTypeEnum.RESET_PASSWORD;
       this.userService.sendEmail(data).subscribe(rsl => {
-        // console.log(rsl.status);
         if (rsl.status === 1) {
           this.alert = false;
           this.field_form = false;
