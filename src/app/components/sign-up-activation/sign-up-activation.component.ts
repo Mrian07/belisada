@@ -1,9 +1,11 @@
 import { UserService } from './../../core/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ActivationRequest, ActivationResponse, UserData } from '../../core/services/user/models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActivationRequest, ActivationResponse, UserData, SendEmailRequest } from '../../core/services/user/models/user';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { JWTUtil } from '../../core/util/jwt.util';
+import swal from 'sweetalert2';
+import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
 
 @Component({
   selector: 'app-sign-up-activation',
@@ -13,11 +15,12 @@ import { JWTUtil } from '../../core/util/jwt.util';
 export class SignUpActivationComponent implements OnInit {
 
   key: string;
-  activationData: UserData;
-  resendEmailFormGroup: FormGroup;
+  emailFC: FormControl;
+  activationData;
   activationResponse: ActivationResponse = new ActivationResponse();
 
   constructor(
+    private router: Router,
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private fb: FormBuilder,
@@ -30,15 +33,31 @@ export class SignUpActivationComponent implements OnInit {
     this.createForm();
 
     this.key = this.activatedRoute.snapshot.queryParamMap.get('key');
-    this.activationData = this.jwtUtil.parseJwt(this.key);
     console.log('this.key: ', this.key);
     const activationRequest: ActivationRequest = new ActivationRequest();
     activationRequest.key = this.key;
     this.userService.activation(activationRequest).subscribe(
       response => {
         this.activationResponse = response;
+
+        if (this.key !== null && this.activationResponse.status === 3) {
+          this.activationData = this.jwtUtil.parseJwt(this.key);
+          const data: SendEmailRequest = new SendEmailRequest();
+          data.email = this.activationData.sub;
+          data.type = SendEmailTypeEnum.ACTIVATION;
+          this.userService.sendEmail(data).subscribe(
+            result => {
+              console.log('result: ', result);
+              // setTimeout(() => {
+                // this.router.navigate(['/account/sign-in']);
+              // }, 5000);  // 5s
+            },
+            error => {
+              console.log('error: ', error);
+            }
+          );
+        }
         console.log('response: ', response.status);
-        // this.status = response.status;
       },
       error => {
         console.log('error: ', error);
@@ -47,42 +66,33 @@ export class SignUpActivationComponent implements OnInit {
   }
 
   onSubmit() {
-    // console.log('this.signinFormGroup: ', this.signinFormGroup);
-    // const signinRequest: SigninRequest = this.signinFormGroup.value;
-    // this.userService.signin(signinRequest).subscribe(
-    //   result => {
-    //     // Handle result
-    //     console.log(result);
-    //     if (result.status === 0) {
-    //       swal(
-    //         'belisada.co.id',
-    //         result.message,
-    //         'warning'
-    //       );
-    //     } else {
-    //       const token: string = result.token;
-    //       console.log('userData: ', this.userService.getUserData(token));
-    //       this.userService.setUserToLocalStorage(token);
-    //       this.router.navigate(['/']);
-    //     }
-    //   },
-    //   error => {
-    //     swal('belisada.co.id', 'unknown error', 'error');
-    //     console.log(error);
-    //   }
-    // );
+    const data: SendEmailRequest = new SendEmailRequest();
+    data.email = this.emailFC.value;
+    data.type = SendEmailTypeEnum.ACTIVATION;
+    this.userService.sendEmail(data).subscribe(
+      result => {
+        swal(
+          'belisada.co.id',
+          result.message,
+          'success'
+        );
+        console.log('result: ', result);
+      },
+      error => {
+        swal(
+          'belisada.co.id',
+          'Unknown error',
+          'error'
+        );
+        console.log('error: ', error);
+      }
+    );
   }
 
   createForm() {
-    this.resendEmailFormGroup = this.fb.group({
-      email: new FormControl('', [
-          Validators.required,
-          Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-      ])
-    });
+    this.emailFC = new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+    ]);
   }
-
-  // reActivation() {
-    // this.status = 4;
-  // }
 }

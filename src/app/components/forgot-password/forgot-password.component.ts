@@ -15,6 +15,9 @@ import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
 export class ForgotPasswordComponent implements OnInit {
   result: number = -1;
   email: FormControl;
+  field_form: boolean;
+  alert: boolean;
+  msg: string;
 
   constructor(
     private router: Router,
@@ -22,20 +25,39 @@ export class ForgotPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.alert = false;
+    this.field_form = true;
+
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-    ])
+    ]);
   }
 
   onSubmit() {
-    const data: SendEmailRequest = new SendEmailRequest();
-    data.email = this.email.value;
-    data.type = SendEmailTypeEnum.RESET_PASSWORD;
-    this.userService.sendEmail(data).subscribe(rsl => {
-      // console.log(rsl.status);
-      this.result = rsl.status;
-    });
+    console.log('ini', this.email.value);
+    if (this.email.value == '') {
+      this.alert = true;
+      this.msg = 'Silakan masukan email Anda.';
+    } else {
+      const data: SendEmailRequest = new SendEmailRequest();
+      data.email = this.email.value;
+      data.type = SendEmailTypeEnum.RESET_PASSWORD;
+      this.userService.sendEmail(data).subscribe(rsl => {
+        if (rsl.status === 1) {
+          this.alert = false;
+          this.field_form = false;
+          this.result = rsl.status;
+        } else {
+          this.alert = true;
+          this.msg = 'Maaf email Anda tidak terdaftar. Silakan masukan email Anda yang terdaftar di belisada.co.id.';
+        }
+
+        // this.result = rsl.status;
+      });
+    }
+
   }
 
   reEnter() {

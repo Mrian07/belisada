@@ -9,6 +9,9 @@
       <div>
         <div>
               <div class="title-page">Login</div>
+                <div *ngIf="alert==true" class="alert-error">
+                    <p>{{ msg }}</p>
+                </div>
               <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>
                   <div class="form-group">
                       <input type="email" class="input-style-text" placeholder="Email" formControlName="email">

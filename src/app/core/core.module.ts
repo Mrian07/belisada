@@ -28,6 +28,9 @@ import { JWTUtil } from './util/jwt.util';
 import { AuthenticationComponent } from '../components/layout/authentication/authentication.component';
 import { LeftComponent } from '../components/layout/authentication/left/left.component';
 import { SignUpActivationComponent } from '../components/sign-up-activation/sign-up-activation.component';
+import { LayoutSellerComponent } from '../components/seller/layout-seller/layout-seller.component';
+import { SidebarLayoutComponent } from '../components/seller/layout-seller/sidebar-layout/sidebar-layout.component';
+import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top-layout-seller/top-layout-seller.component';
 
 
 @NgModule({
@@ -40,13 +43,16 @@ import { SignUpActivationComponent } from '../components/sign-up-activation/sign
     SignUpComponent,
     HomeComponent,
     SigninComponent,
+    TopLayoutSellerComponent,
     ForgotPasswordComponent,
     SaniComponent,
     SidebarBuyerComponent,
+    SidebarLayoutComponent,
     LeftComponent,
     AuthenticationComponent,
     SignUpActivationComponent,
     ProfileEditComponent,
+    LayoutSellerComponent
     // HomeComponent
   ],
   // declarations: [],
