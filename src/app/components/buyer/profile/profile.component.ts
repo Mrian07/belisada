@@ -28,12 +28,14 @@ export class ProfileComponent implements OnInit {
 
   loadData() {
     this.userService.getProfile(localStorage.getItem('token')).subscribe(data => {
-      //console.log('ini:', data);
-      // console.log('ini2:', data['0'].name);
       this.name = data.name;
       this.email = data.email;
       this.phone = data.phone;
-      this.gender = data.gender;
+      if (data.gender === 'M') {
+        this.gender = 'Laki-laki';
+      } else {
+        this.gender = 'Perempuan';
+      }
       this.dateOfBirth = data.dateOfBirth;
 
     });

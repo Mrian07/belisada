@@ -43,7 +43,9 @@ export class ProfileEditComponent implements OnInit {
     this.createComForm = new FormGroup({
       name: this.name,
       email: this.email,
-      phone: this.phone
+      phone: this.phone,
+      gender: this.gender,
+      dateOfBirth: this.dateOfBirth
      });
   }
 
@@ -53,7 +55,8 @@ export class ProfileEditComponent implements OnInit {
     this.name.setValue(data.name);
     this.email.setValue(data.email);
     this.phone.setValue(data.phone);
-
+    this.gender.setValue(data.gender);
+    this.dateOfBirth.setValue(data.dateOfBirth);
     });
   }
 
@@ -62,8 +65,8 @@ export class ProfileEditComponent implements OnInit {
     const b = {
       name: model.name,
       phone: model.phone,
-      gender: '',
-      dateOfBirth: '',
+      gender: model.gender,
+      dateOfBirth: model.dateOfBirth,
     };
     console.log('data', b);
     this.userService.updateProfile(b).subscribe(data => {
