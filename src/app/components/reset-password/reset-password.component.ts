@@ -64,9 +64,12 @@ export class ResetPasswordComponent implements OnInit {
           this.field_form = false;
           this.alert = false;
           this.success = true;
+        } else if (rsl.status === 3) {
+          this.alert = true;
+          this.msg = 'Maaf token Anda sudah Expired silakan ulangi lupa password.';
         } else if (rsl.status === 4) {
           this.alert = true;
-          this.msg = 'Key sudah tidak berlaku';
+          this.msg = 'Maaf key Anda sudah tidak berlaku.';
         }
       });
     }
