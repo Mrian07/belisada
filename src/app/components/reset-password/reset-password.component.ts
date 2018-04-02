@@ -50,6 +50,10 @@ export class ResetPasswordComponent implements OnInit {
     } else {
       this.data.newPassword = this.rstForm.value.password;
       this.userService.resetPasswd(this.data).subscribe(rsl => {
+
+
+        console.log(rsl);
+
         if (rsl.status === 4) {
           this.alert = true;
           this.msg = 'Key sudah tidak berlaku';

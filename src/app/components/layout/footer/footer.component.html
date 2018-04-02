@@ -25,16 +25,16 @@
             </ul>
         </div>
         <div class="col-4">
-            <form class="form-inline" [formGroup]="fGroupFooter">
+            <form class="form-inline" (ngSubmit)="subscribe()">
 
                 <label for="email">Subscribe to our newsletter:</label>
                 <div class="input-group">
                     <div class="input-group-area">
-                        <input type="text" formControlName="email" placeholder="Email Address" class="footer-input">
+                        <input type="text" [formControl]="subscribe_email" placeholder="Email Address" class="footer-input">
                     </div>
-                    <div class="input-group-icon cursor" (click)="onSubscribe()">OK</div>
+                    <div class="input-group-icon cursor" (click)="subscribe()">OK</div>
                 </div>
-                <div *ngIf="fGroupFooter.controls.email.dirty && fGroupFooter.controls.email.invalid">
+                <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
                     <span class="tooltiptext">Harap masukan format email dengan benar</span>
                 </div>
 
