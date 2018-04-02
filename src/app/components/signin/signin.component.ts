@@ -13,6 +13,8 @@ import swal from 'sweetalert2';
 })
 export class SigninComponent implements OnInit {
   signinFormGroup: FormGroup;
+  alert: boolean;
+  msg: string;
 
   constructor(
     private router: Router,
@@ -37,35 +39,33 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.signinFormGroup.invalid) {
-      return;
+    if (this.signinFormGroup.value.email === '' || this.signinFormGroup.value.password === '') {
+      this.alert = true;
+      this.msg = 'Silakan masukan email dan password Anda.';
+    } else {
+      // console.log('this.signinFormGroup: ', this.signinFormGroup.value.email);
+      const signinRequest: SigninRequest = this.signinFormGroup.value;
+      this.userService.signin(signinRequest).subscribe(
+        result => {
+          // Handle result
+          if (result.status === 0) {
+            this.alert = true;
+            this.msg = 'Maaf email yang Anda masukan belum terdaftar.';
+          } else {
+            const token: string = result.token;
+            console.log('userData: ', this.userService.getUserData(token));
+            this.userService.setUserToLocalStorage(token);
+            this.router.navigate(['/']);
+          }
+        },
+        error => {
+          swal('belisada.co.id', 'unknown error', 'error');
+        }
+      );
     }
 
-    console.log('this.signinFormGroup: ', this.signinFormGroup);
-    const signinRequest: SigninRequest = this.signinFormGroup.value;
-    this.userService.signin(signinRequest).subscribe(
-      result => {
-        // Handle result
-        console.log(result);
-        if (result.status === 0) {
-          swal(
-            'belisada.co.id',
-            result.message,
-            'warning'
-          );
-        } else {
-          const token: string = result.token;
-          console.log('userData: ', this.userService.getUserData(token));
-          this.userService.setUserToLocalStorage(token);
-          this.router.navigate(['/']);
-        }
-      },
-      error => {
-        swal('belisada.co.id', 'unknown error', 'error');
-        console.log(error);
-      }
-    );
   }
+  
   goToSignUp() {
     this.router.navigateByUrl('/account/sign-up');
   }

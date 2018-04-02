@@ -20,11 +20,14 @@ import { SignUpActivationComponent } from './components/sign-up-activation/sign-
 import { ProfileComponent } from './components/buyer/profile/profile.component';
 
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
+import { StoreComponent } from './components/seller/store/store.component';
+import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
+    StoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ import { SubscribeService } from './core/services/subscribe/subscribe.service';
     Configuration,
     UserService,
     SubscribeService,
+    OnlyLoggedInUsersGuard,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

@@ -6,20 +6,24 @@
     </div>
     <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="view-line">
-      <div class="title-line">Nama</div> <input type="text" class="input-style-text" placeholder="Password" formControlName="Masukan nama"  formControlName="name">
+      <div class="title-line">Nama</div> <input type="text" class="input-style-text" formControlName="name">
     </div>
     <div class="view-line">
-      <div class="title-line">Email</div> <input type="text" class="input-style-text" placeholder="Password" formControlName="Masukan email" disabled  formControlName="email">
+      <div class="title-line">Email</div> <input type="text" class="input-style-text" disabled  formControlName="email">
     </div>
     <div class="view-line">
-      <div class="title-line">No.Handphone</div><input type="text" class="input-style-text" placeholder="Password" formControlName="Masukan phone"  formControlName="phone">  
-    </div>
-    <!-- <div class="view-line">
-      <div class="title-line">Tanggal Lahir</div><input type="text" class="input-style-text" placeholder="Password" formControlName="password">
+      <div class="title-line">No.Handphone</div><input type="text" class="input-style-text" formControlName="phone">  
     </div>
     <div class="view-line">
-      <div class="title-line">Jenis Kelamin</div><input type="text" class="input-style-text" placeholder="Password" formControlName="password">
-    </div> -->
+      <div class="title-line">Tanggal Lahir</div><input type="text" class="input-style-text" formControlName="dateOfBirth">
+    </div>
+    <div class="view-line">
+      <div class="title-line">Jenis Kelamin</div>
+      <select class="input-style-text" formControlName="gender">
+        <option value="M">Laki-laki</option>
+        <option value="F">Perempuan</option>
+      </select>
+    </div>
     <br>
     <button type="submit" class="btn btn-silver text-btn-profile component-center">Update Profile</button>
     </form>

@@ -12,6 +12,10 @@ import { ResetPasswdRequest } from '../../core/services/user/models/user';
 export class ResetPasswordComponent implements OnInit {
   rstForm: FormGroup;
   data: ResetPasswdRequest = new ResetPasswdRequest;
+  alert: boolean;
+  msg: string;
+  success: boolean;
+  field_form: boolean;
 
   constructor(
     private router: Router,
@@ -20,6 +24,8 @@ export class ResetPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.alert = false;
+    this.field_form = true;
     this.createForm();
     this.loadData();
   }
@@ -39,18 +45,39 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    // return console.log(this.rstForm);
-    this.data.newPassword = this.rstForm.value.password;
-    this.userService.resetPasswd(this.data).subscribe(rsl => {
-      console.log('resp reset pswd:', rsl);
-      alert(rsl.message);
-    });
+    if (this.rstForm.value.password === '') {
+      this.alert = true;
+      this.field_form = true;
+      this.msg = 'Password baru tidak boleh kosong.';
+    } else if (this.rstForm.value.password_repeat === '') {
+      this.alert = true;
+      this.field_form = true;
+      this.msg = 'Ulangi password baru tidak boleh kosong.';
+    } else {
+      this.data.newPassword = this.rstForm.value.password;
+      this.userService.resetPasswd(this.data).subscribe(rsl => {
+
+
+        // console.log(rsl);
+
+        if (rsl.status === 1) {
+          this.field_form = false;
+          this.alert = false;
+          this.success = true;
+        } else if (rsl.status === 3) {
+          this.alert = true;
+          this.msg = 'Maaf token Anda sudah Expired silakan ulangi lupa password.';
+        } else if (rsl.status === 4) {
+          this.alert = true;
+          this.msg = 'Maaf key Anda sudah tidak berlaku.';
+        }
+      });
+    }
   }
 
   loadData() {
     this.route.params.subscribe( params => {
       this.data.key = params.id;
-      // console.log(params.id);
     });
   }
 
