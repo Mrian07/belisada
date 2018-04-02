@@ -12,7 +12,8 @@ import { ResetPasswdRequest } from '../../core/services/user/models/user';
 export class ResetPasswordComponent implements OnInit {
   rstForm: FormGroup;
   data: ResetPasswdRequest = new ResetPasswdRequest;
-
+  alert: boolean;
+  msg: string;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -20,6 +21,7 @@ export class ResetPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.alert = false;
     this.createForm();
     this.loadData();
   }
@@ -39,12 +41,25 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    // return console.log(this.rstForm);
-    this.data.newPassword = this.rstForm.value.password;
-    this.userService.resetPasswd(this.data).subscribe(rsl => {
-      console.log('resp reset pswd:', rsl);
-      alert(rsl.message);
-    });
+    if (this.rstForm.value.password === '') {
+      this.alert = true;
+      this.msg = 'Password baru tidak boleh kosong.';
+    } else if ((this.rstForm.value.password_repeat === '') {
+      this.alert = true;
+      this.msg = 'Ulangi password baru tidak boleh kosong.';
+    } else {
+      console.log('iniiii ', this.rstForm.value.password_repeat);
+      this.data.newPassword = this.rstForm.value.password;
+      this.userService.resetPasswd(this.data).subscribe(rsl => {
+        // console.log('resp reset pswd:', rsl);
+        if (rsl.status === 4) {
+          this.alert = true;
+          this.msg = 'Key sudah tidak berlaku';
+        }
+        // alert(rsl.message);
+      });
+    }
+   
   }
 
   loadData() {
