@@ -44,7 +44,7 @@ export class ResetPasswordComponent implements OnInit {
     this.userService.resetPasswd(this.data).subscribe(rsl => {
       console.log('resp reset pswd:', rsl);
       alert(rsl.message);
-    })
+    });
   }
 
   loadData() {
