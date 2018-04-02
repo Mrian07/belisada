@@ -78,7 +78,6 @@ export class ResetPasswordComponent implements OnInit {
   loadData() {
     this.route.params.subscribe( params => {
       this.data.key = params.id;
-      // console.log(params.id);
     });
   }
 
