@@ -14,6 +14,7 @@ import { SaniComponent } from './components/sani/sani.component';
 import { AuthenticationComponent } from './components/layout/authentication/authentication.component';
 import { StoreComponent } from './components/seller/store/store.component';
 import { LayoutSellerComponent } from './components/seller/layout-seller/layout-seller.component';
+import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
 
 const routes: Routes = [
     {
@@ -98,6 +99,7 @@ const routes: Routes = [
     {
         path: 'seller',
         component: LayoutSellerComponent,
+        canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
             {
                 path: 'store',

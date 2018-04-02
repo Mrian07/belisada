@@ -21,6 +21,7 @@ import { ProfileComponent } from './components/buyer/profile/profile.component';
 
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 import { StoreComponent } from './components/seller/store/store.component';
+import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { StoreComponent } from './components/seller/store/store.component';
     Configuration,
     UserService,
     SubscribeService,
+    OnlyLoggedInUsersGuard,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
