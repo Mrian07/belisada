@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
   token: string;
   name: string;
   email: string;
-  phone: number;
+  phone: string;
   gender: string;
   dateOfBirth: any;
 
@@ -28,11 +28,14 @@ export class ProfileComponent implements OnInit {
 
   loadData() {
     this.userService.getProfile(localStorage.getItem('token')).subscribe(data => {
-      console.log('ini:', data);
+      //console.log('ini:', data);
       // console.log('ini2:', data['0'].name);
-      this.name = data['0'].name;
-      this.email = data['0'].email;
-      this.phone = data['0'].phone;
+      this.name = data.name;
+      this.email = data.email;
+      this.phone = data.phone;
+      this.gender = data.gender;
+      this.dateOfBirth = data.dateOfBirth;
+
     });
   //  console.log('ini:', localStorage.getUserData('token'));
   }

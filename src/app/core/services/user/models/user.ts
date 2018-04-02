@@ -80,7 +80,8 @@ export class Profile {
     name: string;
     email: string;
     phone: string;
-
+    gender: string;
+    dateOfBirth: string;
 
     status?: string;
     message?: string;
