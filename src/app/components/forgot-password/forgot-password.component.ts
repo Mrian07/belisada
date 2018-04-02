@@ -15,6 +15,8 @@ import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
 export class ForgotPasswordComponent implements OnInit {
   result: number = -1;
   email: FormControl;
+  field_form: boolean;
+  alert: boolean;
 
   constructor(
     private router: Router,
@@ -22,10 +24,14 @@ export class ForgotPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    this.alert = false;
+    this.field_form = true;
+
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-    ])
+    ]);
   }
 
   onSubmit() {
@@ -34,7 +40,16 @@ export class ForgotPasswordComponent implements OnInit {
     data.type = SendEmailTypeEnum.RESET_PASSWORD;
     this.userService.sendEmail(data).subscribe(rsl => {
       // console.log(rsl.status);
-      this.result = rsl.status;
+
+      if (rsl.status === 1) {
+        this.alert = false;
+        this.field_form = false;
+        this.result = rsl.status;
+      } else {
+        this.alert = true;
+      }
+
+      // this.result = rsl.status;
     });
   }
 
