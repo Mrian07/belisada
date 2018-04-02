@@ -16,6 +16,8 @@ export class ProfileEditComponent implements OnInit {
   name: FormControl;
   email: FormControl;
   phone: FormControl;
+  gender: FormControl;
+  dateOfBirth: FormControl;
 
   ship;
 
@@ -33,6 +35,8 @@ export class ProfileEditComponent implements OnInit {
     this.name = new FormControl('', Validators.required);
     this.email = new FormControl('', Validators.required);
     this.phone = new FormControl('', Validators.required);
+    this.gender = new FormControl('', Validators.required);
+    this.dateOfBirth = new FormControl('', Validators.required);
   }
 
   createForm() {
@@ -46,9 +50,9 @@ export class ProfileEditComponent implements OnInit {
   fillForms() {
     const model = this.createComForm.value;
     this.userService.getProfile(localStorage.getItem('token')).subscribe(data => {
-    this.name.setValue(data['0'].name);
-    this.email.setValue(data['0'].email);
-    this.phone.setValue(data['0'].phone);
+    this.name.setValue(data.name);
+    this.email.setValue(data.email);
+    this.phone.setValue(data.phone);
 
     });
   }
@@ -57,8 +61,9 @@ export class ProfileEditComponent implements OnInit {
     const model = this.createComForm.value;
     const b = {
       name: model.name,
-      // email: model.email,
       phone: model.phone,
+      gender: '',
+      dateOfBirth: '',
     };
     console.log('data', b);
     this.userService.updateProfile(b).subscribe(data => {
