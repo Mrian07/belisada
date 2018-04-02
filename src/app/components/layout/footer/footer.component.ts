@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { SubscribeService } from '../../../core/services/subscribe/subscribe.service';
 import swal from 'sweetalert2';
 import { SubscribeRequest } from '../../../core/services/subscribe/model/subscribe-m';
@@ -9,32 +9,33 @@ import { SubscribeRequest } from '../../../core/services/subscribe/model/subscri
   // styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  fGroupFooter: FormGroup;
-  subcribeRequest: SubscribeRequest = new SubscribeRequest();
+  subscribe_email: FormControl;
+  subscribeRequest: SubscribeRequest = new SubscribeRequest();
 
-  constructor(private fb: FormBuilder, private onSubs: SubscribeService) {}
+  constructor(private onSubs: SubscribeService) {}
 
   ngOnInit() {
-    this.fGroupFooter = this.fb.group({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-      ])
-    });
+    this.subscribe_email = new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+    ]);
   }
-  onSubscribe() {
-    if(!this.fGroupFooter.controls.email.invalid) {
-      this.subcribeRequest = this.fGroupFooter.value;
+
+  subscribe() {
+    if (!this.subscribe_email.invalid) {
+      this.subscribeRequest.email = this.subscribe_email.value;
       // this.emailSub.email = modelFooter.email;
-      this.onSubs.newsLetter(this.subcribeRequest)
+      this.onSubs.newsLetter(this.subscribeRequest)
         .subscribe(data => {
           swal(data.message);
+          if (data.status === 1) {
+            this.subscribe_email.reset();
+          }
         },
         error => {
           swal('Ops, try again later');
           console.log('error', error);
         });
-      this.fGroupFooter.reset();
     }
   }
 
