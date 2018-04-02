@@ -39,6 +39,7 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit() {
+
     if (this.signinFormGroup.value.email === '' || this.signinFormGroup.value.password === '') {
       this.alert = true;
       this.msg = 'Silakan masukan email dan password Anda.';
