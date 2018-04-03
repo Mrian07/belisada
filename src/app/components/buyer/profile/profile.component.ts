@@ -27,7 +27,7 @@ export class ProfileComponent implements OnInit {
   }
 
   loadData() {
-    this.userService.getProfile(localStorage.getItem('token')).subscribe(data => {
+    this.userService.getProfile().subscribe(data => {
       this.name = data.name;
       this.email = data.email;
       this.phone = data.phone;

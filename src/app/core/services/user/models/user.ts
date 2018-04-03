@@ -87,3 +87,16 @@ export class Profile {
     message?: string;
 
 }
+
+export class EditProfileRequest {
+
+    name: string;
+    email: string;
+    phone: string;
+    gender: string;
+    dateOfBirth: string;
+}
+
+export class EditProfileResponse extends BaseResponseModel {
+
+}
