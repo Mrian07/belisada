@@ -31,6 +31,7 @@ import { SignUpActivationComponent } from '../components/sign-up-activation/sign
 import { LayoutSellerComponent } from '../components/seller/layout-seller/layout-seller.component';
 import { SidebarLayoutComponent } from '../components/seller/layout-seller/sidebar-layout/sidebar-layout.component';
 import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top-layout-seller/top-layout-seller.component';
+import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top
     AuthenticationComponent,
     SignUpActivationComponent,
     ProfileEditComponent,
-    LayoutSellerComponent
+    LayoutSellerComponent,
+    CreateStoreComponent
     // HomeComponent
   ],
   // declarations: [],
