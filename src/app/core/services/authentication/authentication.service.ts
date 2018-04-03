@@ -17,5 +17,13 @@ export class AuthenticationService {
         } ;
         return this.http.post(this.configuration.apiURL + '/account/checktoken', token)
         .map(resp => resp as Token);
-      }
+    }
+
+    getToken() {
+        const json = localStorage.user;
+        if (json) {
+            const user = JSON.parse(localStorage.user);
+            return user.token;
+        }
+    }
 }
