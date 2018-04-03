@@ -1,3 +1,4 @@
+import { Interceptor } from './core/services/interceptor/interceptor.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -22,12 +23,18 @@ import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 import { StoreComponent } from './components/seller/store/store.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
+import { CreateStoreComponent } from './components/buyer/create-store/create-store.component';
+import { Page404Component } from './components/page-404/page-404.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     StoreComponent,
+    CreateStoreComponent,
+    Page404Component,
+    MaintenanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +55,10 @@ import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard
       useValue: {
         siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
       } as RecaptchaSettings,
+    },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
     },
     RecaptchaLoaderService,
   ],

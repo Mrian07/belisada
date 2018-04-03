@@ -1,3 +1,5 @@
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { Page404Component } from './components/page-404/page-404.component';
 import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LayoutBuyerComponent } from './components/buyer/layout-buyer/layout-buyer.component';
@@ -15,6 +17,7 @@ import { AuthenticationComponent } from './components/layout/authentication/auth
 import { StoreComponent } from './components/seller/store/store.component';
 import { LayoutSellerComponent } from './components/seller/layout-seller/layout-seller.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
+import { CreateStoreComponent } from './components/buyer/create-store/create-store.component';
 
 const routes: Routes = [
     {
@@ -29,7 +32,7 @@ const routes: Routes = [
                 }
             },
         ]
-    },
+    },   
     {
         path: 'account',
         component: AuthenticationComponent,
@@ -94,6 +97,13 @@ const routes: Routes = [
                 data: {
                     title: 'Edit Profile'
                 }
+            },
+            {
+                path: 'create-store',
+                component: CreateStoreComponent,
+                data: {
+                    title: 'Store'
+                }
             }
         ]
     },
@@ -114,6 +124,14 @@ const routes: Routes = [
     {
         path: 'sani',
         component: SaniComponent
+    },
+    {
+        path: '404',
+        component: Page404Component,
+    },
+    {
+        path: 'maintenance',
+        component: MaintenanceComponent,
     },
 ];
 

@@ -14,6 +14,9 @@ export class SidebarBuyerComponent implements OnInit {
 
   ngOnInit() {
   }
+  goToCreateStore() {
+    this.router.navigateByUrl('/buyer/create-store');
+  }
 
   profile() {
     this.router.navigateByUrl('/account/profile');
