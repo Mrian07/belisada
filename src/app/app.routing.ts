@@ -17,6 +17,7 @@ import { AuthenticationComponent } from './components/layout/authentication/auth
 import { StoreComponent } from './components/seller/store/store.component';
 import { LayoutSellerComponent } from './components/seller/layout-seller/layout-seller.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
+import { CreateStoreComponent } from './components/buyer/create-store/create-store.component';
 
 const routes: Routes = [
     {
@@ -95,6 +96,13 @@ const routes: Routes = [
                 component: ProfileEditComponent,
                 data: {
                     title: 'Edit Profile'
+                }
+            },
+            {
+                path: 'create-store',
+                component: CreateStoreComponent,
+                data: {
+                    title: 'Store'
                 }
             }
         ]

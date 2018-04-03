@@ -22,6 +22,7 @@ import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 import { StoreComponent } from './components/seller/store/store.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
+import { CreateStoreComponent } from './components/buyer/create-store/create-store.component';
 import { Page404Component } from './components/page-404/page-404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 
@@ -30,6 +31,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
     AppComponent,
     ProfileComponent,
     StoreComponent,
+    CreateStoreComponent,
     Page404Component,
     MaintenanceComponent,
   ],
