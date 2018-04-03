@@ -6,9 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-store.component.scss']
 })
 export class CreateStoreComponent implements OnInit {
-
+  fileToUpload: File = null;
   constructor() { }
 
   ngOnInit() {
   }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+}
 }

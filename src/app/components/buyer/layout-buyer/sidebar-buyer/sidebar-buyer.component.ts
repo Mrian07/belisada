@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar-buyer',
@@ -8,12 +8,18 @@ import { Router } from '@angular/router';
 })
 export class SidebarBuyerComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+  ) { }
 
   ngOnInit() {
   }
   goToCreateStore() {
     this.router.navigateByUrl('/buyer/create-store');
+  }
+
+  profile() {
+    this.router.navigateByUrl('/account/profile');
   }
 
 }

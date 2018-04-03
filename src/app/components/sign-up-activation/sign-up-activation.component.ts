@@ -47,20 +47,14 @@ export class SignUpActivationComponent implements OnInit {
           data.type = SendEmailTypeEnum.ACTIVATION;
           this.userService.sendEmail(data).subscribe(
             result => {
-              console.log('result: ', result);
-              // setTimeout(() => {
-                // this.router.navigate(['/account/sign-in']);
-              // }, 5000);  // 5s
+              // DO SOMETHING HERE, AFTER SUCCESS FUCNTION
             },
             error => {
-              console.log('error: ', error);
             }
           );
         }
-        console.log('response: ', response.status);
       },
       error => {
-        console.log('error: ', error);
       }
     );
   }
@@ -74,9 +68,9 @@ export class SignUpActivationComponent implements OnInit {
         swal(
           'belisada.co.id',
           result.message,
-          'success'
+          (result.status === 0) ? 'error' : 'success'
         );
-        console.log('result: ', result);
+        this.emailFC.reset();
       },
       error => {
         swal(
@@ -84,7 +78,6 @@ export class SignUpActivationComponent implements OnInit {
           'Unknown error',
           'error'
         );
-        console.log('error: ', error);
       }
     );
   }
