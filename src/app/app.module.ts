@@ -22,12 +22,14 @@ import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 import { StoreComponent } from './components/seller/store/store.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
+import { CreateStoreComponent } from './components/buyer/create-store/create-store.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     StoreComponent,
+    CreateStoreComponent,
   ],
   imports: [
     BrowserModule,
