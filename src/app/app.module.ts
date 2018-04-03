@@ -22,12 +22,16 @@ import { ProfileComponent } from './components/buyer/profile/profile.component';
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 import { StoreComponent } from './components/seller/store/store.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
+import { Page404Component } from './components/page-404/page-404.component';
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProfileComponent,
     StoreComponent,
+    Page404Component,
+    MaintenanceComponent,
   ],
   imports: [
     BrowserModule,

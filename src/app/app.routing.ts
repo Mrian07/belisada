@@ -1,3 +1,5 @@
+import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { Page404Component } from './components/page-404/page-404.component';
 import { ProfileEditComponent } from './components/buyer/profile-edit/profile-edit.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { LayoutBuyerComponent } from './components/buyer/layout-buyer/layout-buyer.component';
@@ -29,7 +31,7 @@ const routes: Routes = [
                 }
             },
         ]
-    },
+    },   
     {
         path: 'account',
         component: AuthenticationComponent,
@@ -114,6 +116,14 @@ const routes: Routes = [
     {
         path: 'sani',
         component: SaniComponent
+    },
+    {
+        path: '404',
+        component: Page404Component,
+    },
+    {
+        path: 'maintenance',
+        component: MaintenanceComponent,
     },
 ];
 
