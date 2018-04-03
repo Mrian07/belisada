@@ -1,8 +1,7 @@
 import { SendEmailRequest } from './../../core/services/user/models/user';
 import { UserService } from './../../core/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 import swal from 'sweetalert2';
 import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
@@ -13,21 +12,16 @@ import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
   // styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-  result: number = -1;
   email: FormControl;
-  field_form: boolean;
-  alert: boolean;
+  success: boolean;
   msg: string;
 
   constructor(
-    private router: Router,
     private userService: UserService
   ) { }
 
   ngOnInit() {
-
-    this.alert = false;
-    this.field_form = true;
+    this.success = false;
 
     this.email = new FormControl('', [
       Validators.required,
@@ -36,32 +30,20 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('ini', this.email.value);
-    if (this.email.value == '') {
-      this.alert = true;
-      this.msg = 'Silakan masukan email Anda.';
-    } else {
+    if (this.email.valid) {
+      delete this.msg;
       const data: SendEmailRequest = new SendEmailRequest();
       data.email = this.email.value;
       data.type = SendEmailTypeEnum.RESET_PASSWORD;
       this.userService.sendEmail(data).subscribe(rsl => {
         if (rsl.status === 1) {
-          this.alert = false;
-          this.field_form = false;
-          this.result = rsl.status;
+          this.success = true;
         } else {
-          this.alert = true;
-          this.msg = 'Maaf email Anda tidak terdaftar. Silakan masukan email Anda yang terdaftar di belisada.co.id.';
+          this.msg = rsl.message;
+          // this.email.setErrors({'server': true});
+          // this.msg = 'Maaf email Anda tidak terdaftar. Silakan masukan email Anda yang terdaftar di belisada.co.id.';
         }
-
-        // this.result = rsl.status;
       });
     }
-
   }
-
-  reEnter() {
-    this.result = -1;
-  }
-
 }

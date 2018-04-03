@@ -34,6 +34,7 @@ import { LayoutSellerComponent } from '../components/seller/layout-seller/layout
 import { SidebarLayoutComponent } from '../components/seller/layout-seller/sidebar-layout/sidebar-layout.component';
 import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top-layout-seller/top-layout-seller.component';
 import { DateUtil } from './util/date.util';
+import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import { DateUtil } from './util/date.util';
     AuthenticationComponent,
     SignUpActivationComponent,
     ProfileEditComponent,
-    LayoutSellerComponent
+    LayoutSellerComponent,
+    CreateStoreComponent
     // HomeComponent
   ],
   // declarations: [],

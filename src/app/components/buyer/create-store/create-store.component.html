@@ -1,0 +1,57 @@
+<div class="border-store">
+    <div class="padding-for-top-store">
+        <div class="row">
+            <div class="col-1"> <img class="img-small-store" src="assets/img/store_icon.png"></div>
+            <div class="col-11 left-col"> <span class="text-profil-toko">Profil Toko</span></div>
+
+        </div>
+    </div>
+    <hr>
+    <form [formGroup]="storeFgroup"  novalidate>
+    <div class="wrapper-for-store-profile">
+           
+        <div>
+            <label>Upload Foto Toko Mu disini : </label>
+            <br>
+            <input type="file" id="file" accept="image/*" (change)="handleFileInput($event.target.files)">
+        </div>
+        <div>
+           <div>
+              <img class="img-small-store" src="assets/img/shop.png">
+              <label>Nama Toko</label>
+           </div>
+            <input type="text" formControlName="toko"  class="input-style-text" placeholder="Nama Toko" required [ngClass]="{
+                'has-danger': storeFgroup.controls.toko.invalid && (storeFgroup.controls.toko.dirty),
+                'has-success': storeFgroup.controls.toko.valid && (storeFgroup.controls.toko.dirty)
+                }">
+                <div *ngIf="storeFgroup.controls.toko.invalid && (storeFgroup.controls.toko.dirty && storeFgroup.controls.toko.touched)" class="alert alert-danger toll tooltip">
+                        <span class="tooltiptext">Nama toko Tidak Boleh Kosong</span>
+                    </div>
+            <div>
+                <img class="img-small-store" src="assets/img/map.png">
+                <label>Alamat Toko</label>
+            </div>
+            <input type="text" formControlName="alamat"  class="input-style-text" placeholder="Alamat Toko"
+            [ngClass]="{
+                'has-danger': storeFgroup.controls.alamat.invalid && (storeFgroup.controls.alamat.dirty),
+                'has-success': storeFgroup.controls.alamat.valid && (storeFgroup.controls.alamat.dirty)
+                }">
+            <div>
+                <img class="img-small-store" src="assets/img/edit.png">
+                <label>Deskripsi Toko</label>
+            </div>
+            <input type="text" class="input-style-text" placeholder="Deskripsi Toko">
+            <div class="component-center">
+                <button class="btn btn-size-30 btn btn-orange component-center" [disabled]="storeFgroup.invalid" (click)="onSent()">Simpan</button>
+            </div>
+        
+       
+        </div>
+   
+        <div>
+            <label>Dumy</label>
+            <br>
+        </div>
+    </div>
+</form>
+</div>
