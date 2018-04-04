@@ -1,4 +1,5 @@
-//import { Interceptor } from './core/services/interceptor/interceptor.service';
+import { AuthenticationService } from './core/services/authentication/authentication.service';
+import { Interceptor } from './core/services/interceptor/interceptor.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -47,6 +48,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
     Configuration,
     UserService,
     SubscribeService,
+    AuthenticationService,
     OnlyLoggedInUsersGuard,
     {
       provide: RECAPTCHA_SETTINGS,
@@ -54,10 +56,10 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
         siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
       } as RecaptchaSettings,
     },
-    // { provide: HTTP_INTERCEPTORS,
-    //   useClass: Interceptor,
-    //   multi: true
-    // },
+    { provide: HTTP_INTERCEPTORS,
+      useClass: Interceptor,
+      multi: true
+    },
     RecaptchaLoaderService,
   ],
   bootstrap: [AppComponent]

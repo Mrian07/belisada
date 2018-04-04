@@ -11,19 +11,18 @@ export class AuthenticationService {
     constructor(private configuration: Configuration, private http: HttpClient, private routes: Router) { }
 
     checkToken() {
-        const user = JSON.parse(localStorage.user);
-        const token = {
-          token : user.token
+        const token = localStorage.getItem('token');
+        const objToken = {
+          token : token
         } ;
-        return this.http.post(this.configuration.apiURL + '/account/checktoken', token)
+        return this.http.post(this.configuration.apiURL + '/account/checktoken', objToken)
         .map(resp => resp as Token);
     }
 
     getToken() {
-        const json = localStorage.user;
-        if (json) {
-            const user = JSON.parse(localStorage.user);
-            return user.token;
+        const token = localStorage.getItem('token');
+        if (token) {
+            return token;
         }
     }
 }
