@@ -13,7 +13,21 @@
         <div>
             <label>Upload Foto Toko Mu disini : </label>
             <br>
-            <input type="file" id="file" accept="image/*" (change)="handleFileInput($event.target.files)">
+            <h3>Gambar Produk</h3>
+                <ul class="add_product_image clearfix" id="image-list">
+                    <li class="u-inline-list-gap" *ngFor="let item of productPictures; let i = index">
+                        <div class="image-preview" [ngStyle]="{'background-image': 'url(' + item + ')'}">
+                            <span class="action-button" (click)="removeImage(i)" *ngIf="isNewProduct">
+                                <i class="trash alternate outline icon"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pikcker-wrapper picker-add-image" *ngIf="(productPictures.length < 5 && isNewProduct)">
+                            <input type="file" multiple="" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
+                        </div>
+                    </li>
+                </ul>
         </div>
         <div>
            <div>
