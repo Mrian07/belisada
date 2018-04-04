@@ -87,18 +87,12 @@ export class UserService {
   }
 
   getProfile() {
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/json')
-      .set('token', localStorage.getItem('token'));
-      return this.http.get(this.config.apiURL + '/profile/', { headers })
+      return this.http.get(this.config.apiURL + '/profile/')
         .map(resp => resp as Profile);
   }
 
   updateProfile(updateData: EditProfileRequest) {
-    const headers = new HttpHeaders()
-      .set('content-type', 'application/json')
-      .set('token', localStorage.getItem('token'));
-      return this.http.put(this.config.apiURL + '/profile/update/', updateData, { headers })
+      return this.http.put(this.config.apiURL + '/profile/update/', updateData)
         .map(resp => resp as EditProfileResponse);
   }
 

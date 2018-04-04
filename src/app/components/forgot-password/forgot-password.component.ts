@@ -2,6 +2,7 @@ import { SendEmailRequest } from './../../core/services/user/models/user';
 import { UserService } from './../../core/services/user/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 import swal from 'sweetalert2';
 import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
@@ -17,6 +18,7 @@ export class ForgotPasswordComponent implements OnInit {
   msg: string;
 
   constructor(
+    private router: Router,
     private userService: UserService
   ) { }
 
@@ -46,4 +48,5 @@ export class ForgotPasswordComponent implements OnInit {
       });
     }
   }
+
 }
