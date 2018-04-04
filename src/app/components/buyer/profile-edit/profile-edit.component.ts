@@ -47,7 +47,7 @@ export class ProfileEditComponent implements OnInit {
     this.fillForms();
   }
 
-  
+  /* Fungsi ini untuk membuat nama form */
   createFormControls() {
     this.createComForm = this.fb.group({
       name: new FormControl('', Validators.required),
@@ -58,7 +58,7 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
-  /* Fungsi ini untuk mempersialkan form untuk diisi dengan data yang diambil dari fungsi getProfile pada service userService */
+  /* Fungsi ini untuk mempersiapkan form untuk diisi dengan data yang diambil dari fungsi getProfile pada service userService */
   fillForms() {
     this.userService.getProfile().subscribe(data => {
       const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
