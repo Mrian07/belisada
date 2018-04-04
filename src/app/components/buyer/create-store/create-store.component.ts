@@ -45,12 +45,12 @@ export class CreateStoreComponent implements OnInit {
     files.forEach(file => {
       const myReader: FileReader = new FileReader();
       myReader.onloadend = (e) => {
-        if (this.storePictures.length < 5) {
+        if (this.storePictures.length < 1) {
           this.storePictures.push(myReader.result);
         } else {
           swal(
             'Belisada.co.id',
-            'Kamu hanya bisa menambahkan maksimal 5 gambar',
+            'Kamu hanya bisa menambahkan maksimal 1 gambar',
             'info'
           );
         }

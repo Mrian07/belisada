@@ -21,10 +21,10 @@ export class FooterComponent implements OnInit {
     ]);
   }
 
+  /* Fungsi ini untuk mendaftarkan email dengan dilakukan validasi email terlebih dulu apakah sudah terdaftar atau belum. */
   subscribe() {
     if (!this.subscribe_email.invalid) {
       this.subscribeRequest.email = this.subscribe_email.value;
-      // this.emailSub.email = modelFooter.email;
       this.onSubs.newsLetter(this.subscribeRequest)
         .subscribe(data => {
           swal(data.message);
@@ -34,7 +34,6 @@ export class FooterComponent implements OnInit {
         },
         error => {
           swal('Ops, try again later');
-          console.log('error', error);
         });
     }
   }

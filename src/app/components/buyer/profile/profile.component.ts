@@ -10,6 +10,7 @@ import { SigninRequest, UserLocalStorage } from '../../../core/services/user/mod
 })
 export class ProfileComponent implements OnInit {
 
+  /* Mendeklarasikan nama variable*/
   token: string;
   name: string;
   email: string;
