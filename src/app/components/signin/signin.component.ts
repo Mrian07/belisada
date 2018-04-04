@@ -50,7 +50,7 @@ export class SigninComponent implements OnInit {
           // Handle result
           if (result.status === 0) {
             this.alert = true;
-            this.msg = 'Maaf email yang Anda masukan belum terdaftar.';
+            this.msg = result.message;
           } else {
             const token: string = result.token;
             console.log('userData: ', this.userService.getUserData(token));
