@@ -1,8 +1,11 @@
+import { IMyDpOptions } from 'mydatepicker';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../core/services/user/user.service';
-import { SigninRequest, UserLocalStorage } from '../../../core/services/user/models/user';
+import { SigninRequest, UserLocalStorage, EditProfileRequest } from '../../../core/services/user/models/user';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
+import { DateUtil } from '../../../core/util/date.util';
+import { DateFormatEnum } from '../../../core/enum/date-format.enum';
 
 @Component({
   selector: 'app-profile-edit',
@@ -10,73 +13,88 @@ import swal from 'sweetalert2';
   styleUrls: ['./profile-edit.component.scss']
 })
 export class ProfileEditComponent implements OnInit {
+
+  // ----- Start date picker declaration required
+  now: Date = new Date();
+  defaultDateFormat: DateFormatEnum = DateFormatEnum.DDMMYYYY_WITH_SLASH;
+
+  myDatePickerOptions: IMyDpOptions = {
+    // other options... https://github.com/kekeh/mydatepicker#options-attribute
+    dateFormat: this.defaultDateFormat,
+    todayBtnTxt: 'Today',
+    editableDateField: false,
+    firstDayOfWeek: 'mo',
+    sunHighlight: true,
+    inline: false,
+    disableSince: {
+      year: this.now.getFullYear(),
+      month: this.now.getMonth() + 1,
+      day: this.now.getDate()
+    }
+  };
+  // ----- End date picker declaration required
+
   createComForm: FormGroup;
 
-  token: string;
-  name: FormControl;
-  email: FormControl;
-  phone: FormControl;
-  gender: FormControl;
-  dateOfBirth: FormControl;
-
-  ship;
-
   constructor(
-    private userService: UserService
+    private fb: FormBuilder,
+    private dateUtil: DateUtil,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
     this.createFormControls();
-    this.createForm();
     this.fillForms();
   }
 
   createFormControls() {
-    this.name = new FormControl('', Validators.required);
-    this.email = new FormControl('', Validators.required);
-    this.phone = new FormControl('', Validators.required);
-    this.gender = new FormControl('', Validators.required);
-    this.dateOfBirth = new FormControl('', Validators.required);
-  }
-
-  createForm() {
-    this.createComForm = new FormGroup({
-      name: this.name,
-      email: this.email,
-      phone: this.phone,
-      gender: this.gender,
-      dateOfBirth: this.dateOfBirth
-     });
+    this.createComForm = this.fb.group({
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
+      gender: new FormControl('', Validators.required),
+      dateOfBirth: new FormControl('', Validators.required)
+    });
   }
 
   fillForms() {
-    const model = this.createComForm.value;
-    this.userService.getProfile(localStorage.getItem('token')).subscribe(data => {
-    this.name.setValue(data.name);
-    this.email.setValue(data.email);
-    this.phone.setValue(data.phone);
-    this.gender.setValue(data.gender);
-    this.dateOfBirth.setValue(data.dateOfBirth);
+    this.userService.getProfile().subscribe(data => {
+      const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
+      this.createComForm.patchValue({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        gender: data.gender,
+        dateOfBirth: {
+          date: {
+              year: dob.getFullYear(),
+              month: dob.getMonth() + 1,
+              day: dob.getDate()
+            }
+          }
+      });
     });
   }
 
   onSubmit() {
-    const model = this.createComForm.value;
-    const b = {
-      name: model.name,
-      phone: model.phone,
-      gender: model.gender,
-      dateOfBirth: model.dateOfBirth,
-    };
-    console.log('data', b);
-    this.userService.updateProfile(b).subscribe(data => {
-      console.log('test', data);
+    const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+    editProfileRequest.name = this.createComForm.controls['name'].value;
+    editProfileRequest.phone = this.createComForm.controls['phone'].value;
+    editProfileRequest.gender = this.createComForm.controls['gender'].value;
+    editProfileRequest.dateOfBirth =
+      this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+    // const b = {
+    //   name: model.name,
+    //   phone: model.phone,
+    //   gender: model.gender,
+    //   dateOfBirth: this.dateUtil.formatMyDate(model.dateOfBirth.date, this.defaultDateFormat),
+    // };
+    this.userService.updateProfile(editProfileRequest).subscribe(data => {
       swal(
         'Sukses',
         'Ubah data pengiriman berhasil.',
         'success'
       );
     });
-   }
-
+  }
 }

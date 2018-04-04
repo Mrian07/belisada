@@ -1,31 +1,34 @@
 
-  <div class="b-profile">
+<div class="b-profile">
     <h1>Informasi Anda</h1>
     <div class="view-line">
-      <div class="title-line">Foto Profile</div> <img src="/assets/img/profile-buyer.jpg" alt="">
+        <div class="title-line">Foto Profile</div> <img src="/assets/img/profile-buyer.jpg" alt="">
     </div>
     <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
-    <div class="view-line">
-      <div class="title-line">Nama</div> <input type="text" class="input-style-text" formControlName="name">
-    </div>
-    <div class="view-line">
-      <div class="title-line">Email</div> <input type="text" class="input-style-text" disabled  formControlName="email">
-    </div>
-    <div class="view-line">
-      <div class="title-line">No.Handphone</div><input type="text" class="input-style-text" formControlName="phone">  
-    </div>
-    <div class="view-line">
-      <div class="title-line">Tanggal Lahir</div><input type="text" class="input-style-text" formControlName="dateOfBirth">
-    </div>
-    <div class="view-line">
-      <div class="title-line">Jenis Kelamin</div>
-      <select class="input-style-text" formControlName="gender">
-        <option value="M">Laki-laki</option>
-        <option value="F">Perempuan</option>
-      </select>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-silver text-btn-profile component-center">Update Profile</button>
+        <div class="view-line">
+            <div class="title-line">Nama</div> <input type="text" class="input-style-text" formControlName="name">
+        </div>
+        <div class="view-line">
+            <div class="title-line">Email</div> <input type="text" class="input-style-text" disabled  formControlName="email">
+        </div>
+        <div class="view-line">
+            <div class="title-line">No.Handphone</div><input type="text" class="input-style-text" formControlName="phone">  
+        </div>
+        <div class="view-line">
+            <div class="title-line">Tanggal Lahir</div>
+            <!-- <input type="text" class="input-style-text" formControlName="dateOfBirth"> -->
+            <my-date-picker name="mydate" [options]="myDatePickerOptions"
+                formControlName="dateOfBirth"></my-date-picker>
+        </div>
+        <div class="view-line">
+            <div class="title-line">Jenis Kelamin</div>
+            <select class="input-style-text" formControlName="gender">
+                <option value="M">Laki-laki</option>
+                <option value="F">Perempuan</option>
+            </select>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-silver text-btn-profile component-center">Update Profile</button>
     </form>
-  </div>
+</div>
 

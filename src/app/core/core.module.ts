@@ -9,6 +9,8 @@ import { LayoutComponent } from './../components/layout/layout.component';
 import { throwIfAlreadyLoaded } from './module-import.guard';
 // import { UserComponent } from './services/models/user/user';
 
+import { MyDatePickerModule } from 'mydatepicker';
+
 import { CoreRoutingModule } from './core.routing';
 import { SaniComponent } from './../components/sani/sani.component';
 import { FooterComponent } from './../components/layout/footer/footer.component';
@@ -31,6 +33,7 @@ import { SignUpActivationComponent } from '../components/sign-up-activation/sign
 import { LayoutSellerComponent } from '../components/seller/layout-seller/layout-seller.component';
 import { SidebarLayoutComponent } from '../components/seller/layout-seller/sidebar-layout/sidebar-layout.component';
 import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top-layout-seller/top-layout-seller.component';
+import { DateUtil } from './util/date.util';
 import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
 
 
@@ -67,10 +70,12 @@ import { CreateStoreComponent } from '../components/buyer/create-store/create-st
     HttpClientModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    MyDatePickerModule
   ],
   providers: [
     Configuration,
     JWTUtil,
+    DateUtil,
     UserService,
     {
       provide: RECAPTCHA_SETTINGS,
