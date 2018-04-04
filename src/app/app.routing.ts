@@ -112,13 +112,13 @@ const routes: Routes = [
         component: LayoutSellerComponent,
         canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
-            {
-                path: 'store',
-                component: StoreComponent,
-                data: {
-                    title: 'Store'
-                }
-            }
+            // {
+            //     path: 'store',
+            //     component: StoreComponent,
+            //     data: {
+            //         title: 'Store'
+            //     }
+            // }
         ]
     },
     {

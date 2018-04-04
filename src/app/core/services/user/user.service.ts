@@ -6,7 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
   SignupResponse, SignupData, SigninRequest, ResetPasswdResponse, SendEmailRequest, SendEmailResponse,
-  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData, ResetPasswdRequest, Profile
+  SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData,
+  ResetPasswdRequest, Profile, EditProfileResponse, EditProfileRequest
 } from './models/user';
 
 import 'rxjs/add/operator/map';
@@ -61,7 +62,7 @@ export class UserService {
 
   activation(request: ActivationRequest): Observable<ActivationResponse> {
     return this.http.post(this.config.apiURL + '/account/activation', request)
-    .map(response => response as ActivationResponse);
+      .map(response => response as ActivationResponse);
   }
 
   setUserToLocalStorage(token) {
@@ -77,30 +78,28 @@ export class UserService {
 
   sendEmail(data: SendEmailRequest) {
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
-    .map(res => res as SendEmailResponse);
+      .map(res => res as SendEmailResponse);
   }
 
   resetPasswd(data) {
     return this.http.post(this.config.apiURL + '/account/resetpassword', data)
-    .map(res => res as ResetPasswdResponse);
+      .map(res => res as ResetPasswdResponse);
   }
 
-  getProfile(token: string) {
+  getProfile() {
     const headers = new HttpHeaders()
       .set('Content-Type', 'application/json')
-      .set('token', token);
+      .set('token', localStorage.getItem('token'));
       return this.http.get(this.config.apiURL + '/profile/', { headers })
-      .map(resp => resp as Profile);
+        .map(resp => resp as Profile);
   }
 
-  updateProfile(updateData) {
-    console.log('test2', localStorage.getItem('token'));
-    const user = JSON.parse(localStorage.user);
+  updateProfile(updateData: EditProfileRequest) {
     const headers = new HttpHeaders()
       .set('content-type', 'application/json')
       .set('token', localStorage.getItem('token'));
       return this.http.put(this.config.apiURL + '/profile/update/', updateData, { headers })
-      .map(resp => resp as Profile);
+        .map(resp => resp as EditProfileResponse);
   }
 
 }

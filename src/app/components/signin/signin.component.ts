@@ -65,7 +65,7 @@ export class SigninComponent implements OnInit {
     }
 
   }
-  
+
   goToSignUp() {
     this.router.navigateByUrl('/account/sign-up');
   }

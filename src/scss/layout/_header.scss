@@ -1,8 +1,8 @@
-.header > div {
+.bs-header > div {
     float: left;
 }
 
-.header {
+.bs-header {
     @include position(fixed, top 0 left 0);
     z-index: z(header);
     height: 6rem;
