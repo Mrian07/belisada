@@ -12,6 +12,8 @@ import swal from 'sweetalert2';
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+
+  /* Mendeklarasikan nama variable*/
   signinFormGroup: FormGroup;
   alert: boolean;
   msg: string;
@@ -26,6 +28,7 @@ export class SigninComponent implements OnInit {
     this.createFormControl();
   }
 
+  /* Fungsi untuk membuat nama field pada form */
   createFormControl() {
     this.signinFormGroup = this.fb.group({
       email: new FormControl('', [
@@ -38,6 +41,7 @@ export class SigninComponent implements OnInit {
     });
   }
 
+  /* Fungsi ini untuk melakukan input data sign in dengan melakukan validasi pengecekan email, password */
   onSubmit() {
     if (this.signinFormGroup.value.email === '' || this.signinFormGroup.value.password === '') {
       this.alert = true;
@@ -50,7 +54,7 @@ export class SigninComponent implements OnInit {
           // Handle result
           if (result.status === 0) {
             this.alert = true;
-            this.msg = 'Maaf email yang Anda masukan belum terdaftar.';
+            this.msg = result.message;
           } else {
             const token: string = result.token;
             console.log('userData: ', this.userService.getUserData(token));
@@ -63,7 +67,6 @@ export class SigninComponent implements OnInit {
         }
       );
     }
-
   }
 
   goToSignUp() {

@@ -10,6 +10,7 @@ import { SigninRequest, UserLocalStorage } from '../../../core/services/user/mod
 })
 export class ProfileComponent implements OnInit {
 
+  /* Mendeklarasikan nama variable*/
   token: string;
   name: string;
   email: string;
@@ -26,6 +27,7 @@ export class ProfileComponent implements OnInit {
     this.loadData();
   }
 
+  /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
   loadData() {
     this.userService.getProfile().subscribe(data => {
       this.name = data.name;
@@ -39,9 +41,9 @@ export class ProfileComponent implements OnInit {
       this.dateOfBirth = data.dateOfBirth;
 
     });
-  //  console.log('ini:', localStorage.getUserData('token'));
   }
 
+  /* Fungsi ini untuk berpindah halaman ke halaman edit */
   edit() {
     this.router.navigate(['/buyer/profile-edit']);
   }

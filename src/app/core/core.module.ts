@@ -35,7 +35,7 @@ import { SidebarLayoutComponent } from '../components/seller/layout-seller/sideb
 import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top-layout-seller/top-layout-seller.component';
 import { DateUtil } from './util/date.util';
 import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
-
+import { StoreService } from './services/store/store.service';
 
 @NgModule({
   declarations: [
@@ -77,6 +77,7 @@ import { CreateStoreComponent } from '../components/buyer/create-store/create-st
     JWTUtil,
     DateUtil,
     UserService,
+    StoreService,
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {

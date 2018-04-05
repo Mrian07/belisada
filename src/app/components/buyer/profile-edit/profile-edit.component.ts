@@ -47,6 +47,7 @@ export class ProfileEditComponent implements OnInit {
     this.fillForms();
   }
 
+  /* Fungsi ini untuk membuat nama form */
   createFormControls() {
     this.createComForm = this.fb.group({
       name: new FormControl('', Validators.required),
@@ -57,6 +58,7 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
+  /* Fungsi ini untuk mempersiapkan form untuk diisi dengan data yang diambil dari fungsi getProfile pada service userService */
   fillForms() {
     this.userService.getProfile().subscribe(data => {
       const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
@@ -76,6 +78,7 @@ export class ProfileEditComponent implements OnInit {
     });
   }
 
+  /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit() {
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     editProfileRequest.name = this.createComForm.controls['name'].value;
@@ -92,7 +95,7 @@ export class ProfileEditComponent implements OnInit {
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
       swal(
         'Sukses',
-        'Ubah data pengiriman berhasil.',
+        'Ubah data profile berhasil.',
         'success'
       );
     });
