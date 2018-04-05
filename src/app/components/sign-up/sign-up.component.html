@@ -57,6 +57,9 @@
                             </div>
                             <div>
                                 <input type="text" placeholder="No Telephone 0213502099" formControlName="phoneNumber" (keypress)="keyPress($event)" class="input-style-text">
+                                <div *ngIf="vForValidation.controls.phoneNumber.invalid && (vForValidation.controls.phoneNumber.dirty && vForValidation.controls.phoneNumber.touched)" class="alert alert-danger toll tooltip">
+                                    <span class="tooltiptext">Harap masukan format telephone dengan benar</span>
+                                </div>
                             </div>
                             <div class="wrapper2">
                                 <div>
