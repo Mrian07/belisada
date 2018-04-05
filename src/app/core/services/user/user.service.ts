@@ -72,7 +72,6 @@ export class UserService {
   getUserData(token) {
     let userData: UserData = new UserData();
     userData = this.jwtUtil.parseJwt(token).UserData;
-    // console.log('userData: ', userData);
     return userData;
   }
 

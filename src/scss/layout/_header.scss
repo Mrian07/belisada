@@ -50,7 +50,8 @@
                     height: 2rem;
                 }
                 .text-profile {
-                    line-height: 1rem;
+                    line-height: 2rem;
+                    font-size: 1.2rem;
                 }
 
                 .country-flag {
@@ -63,14 +64,21 @@
                     padding: .5rem;
                 }
 
-                .account-menu__container {
-                    position: absolute;
-                    top: 6rem;
-                    padding: 1rem 1.5rem;
-                    background-color: $color-white;
-                    @include prefix((
-                        box-shadow: 0px 0px 6px 0px rgba($color-black, .15)
-                    ), webkit moz ms o);
+                .account-menu {
+
+                    &--trigger {
+                        cursor: pointer;
+                    }
+                
+                    &__container {
+                        position: absolute;
+                        top: 6rem;
+                        padding: 1rem 1.5rem;
+                        background-color: $color-white;
+                        @include prefix((
+                            box-shadow: 0px 0px 6px 0px rgba($color-black, .15)
+                        ), webkit moz ms o);
+                    }
                 }
             }
         }
