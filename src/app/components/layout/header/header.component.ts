@@ -5,11 +5,13 @@ import { UserData } from '../../../core/services/user/models/user';
 import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
+import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  // directives: [ClickOutsideDirective],
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
 
@@ -58,5 +60,12 @@ export class HeaderComponent implements OnInit {
 
   toggleAccountMenu() {
     this.isAccountMenu = !this.isAccountMenu;
+  }
+
+  onClickOutside(event: Object) {
+    console.log('asasdasd');
+    if (event && event['value'] === true) {
+      this.isAccountMenu = false;
+    }
   }
 }
