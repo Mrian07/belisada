@@ -47,6 +47,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
+    //   this.checkEmail();
       this.vForValidation = this.fb.group({
           isSubscribe: new FormControl(''),
           fullname: new FormControl(null, Validators.required),
@@ -85,6 +86,7 @@ export class SignUpComponent implements OnInit {
                   if (data.status !== '1') {
                       this.message = data.message;
                       this.status = data.status;
+                      console.log(data);
                   } else {
                       console.log('its Good');
                   }
@@ -119,7 +121,7 @@ export class SignUpComponent implements OnInit {
       }
   }
 
-  submit() {
+  submit(form: NgForm) {
       const model = this.vForValidation.value;
       this.loading = true;
       this.signupData.name = model.fullname;
@@ -137,7 +139,7 @@ export class SignUpComponent implements OnInit {
                   } else {
                       swal({
                           type: 'error',
-                          title: 'Oops...',
+                          title: 'gagal...',
                           text: response.message,
                       });
                   }
@@ -148,6 +150,7 @@ export class SignUpComponent implements OnInit {
                   text: error,
               })
           );
+          console.log(form);
       this.vForValidation.reset();
   }
 }
