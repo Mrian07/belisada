@@ -36,6 +36,7 @@ import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top
 import { DateUtil } from './util/date.util';
 import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
 import { StoreService } from './services/store/store.service';
+import { ClickOutsideDirective } from '../shared/directives/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { StoreService } from './services/store/store.service';
     SignUpActivationComponent,
     ProfileEditComponent,
     LayoutSellerComponent,
-    CreateStoreComponent
+    CreateStoreComponent,
+    ClickOutsideDirective
     // HomeComponent
   ],
   // declarations: [],
@@ -70,7 +72,7 @@ import { StoreService } from './services/store/store.service';
     HttpClientModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-    MyDatePickerModule
+    MyDatePickerModule,
   ],
   providers: [
     Configuration,
