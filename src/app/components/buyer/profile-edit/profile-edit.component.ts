@@ -76,6 +76,7 @@ export class ProfileEditComponent implements OnInit {
           }
       });
     });
+
   }
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
