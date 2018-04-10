@@ -9,7 +9,7 @@
 }
 .errspan {
     float: right;
-    margin-right: 10px;
+    margin-right: 83px;
     margin-top: -36px;
     position: relative;
     z-index: 2;
@@ -41,7 +41,7 @@
 .wrapper2 {
     display: grid;
     // color: $color-red;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 30% 33% 27%;
     grid-gap: 1em;
     padding-top: 10px;
 }
@@ -87,6 +87,23 @@
         border-color: #ccc;
     }
 }
+.input-style-text-90 {
+    width: 90%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #6e6e6e;
+    border-radius:5px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    &.has-danger {
+        border-color: red;
+    }
+    &.has-success {
+        border-color: #ccc;
+    }
+}
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
@@ -95,7 +112,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .text-box {
     position: absolute;
-    left: 24%;
+    left: 36%;
     transform: translate(-33%,-31%);
     // text-align: left;
     top: 5px;
@@ -253,11 +270,36 @@ select:focus {
       //akhir loader
  @media (max-width:1440px) {
     .wrapper2 {
-       display: grid;
-       // color: $color-red;
-       grid-template-columns: 66%;
-       grid-gap: 1em;
-       padding-top: 10px;
-       padding-bottom: 33px;
-   }
+        display: grid;
+        // color: $color-red;
+        grid-template-columns: 30% 33% 27%;
+        grid-gap: 1em;
+        padding-top: 10px;
+    }
+    .text-box {
+        position: absolute;
+        left: 36%;
+        transform: translate(-33%,-31%);
+        // text-align: left;
+        top: 5px;
+    }
+}
+@media (max-width:920px) {
+    .wrapper2 {
+        display: grid;
+        // color: $color-red;
+        grid-template-columns: 100%;
+        grid-gap: 1em;
+        padding-top: 10px;
+    }
+    .text-box {
+        position: absolute;
+        left: 36%;
+        transform: translate(-33%,-31%);
+        // text-align: left;
+        top: 5px;
+    }
+}
+.padding-wrapper {
+    padding:22px;
 }
