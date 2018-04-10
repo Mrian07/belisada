@@ -91,4 +91,9 @@ export class CreateStoreComponent implements OnInit {
     };
     myReader.readAsDataURL(files[0]);
   }
+  removeImage(index: number) {
+    if (index > -1) {
+      this.storePictures.splice(index, 1);
+    }
+  }
 }
