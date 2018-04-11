@@ -11,12 +11,13 @@ import { PasswordValidation } from '../../shared/validators/password.validator';
 import { UserService } from '../../core/services/user/user.service';
 import swal from 'sweetalert2';
 import { LowerCasePipe } from '@angular/common';
-// import { checkAndUpdatePureExpressionDynamic } from '@angular/core/src/view/pure_expression';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss']
 })
+
 export class SignUpComponent implements OnInit {
   public declarativeFormCaptchaValue: string;
   currentUser: User;
@@ -47,7 +48,7 @@ export class SignUpComponent implements OnInit {
   }
 
   ngOnInit() {
-    //   this.checkEmail();
+      //   this.checkEmail();
       this.vForValidation = this.fb.group({
           isSubscribe: new FormControl(''),
           fullname: new FormControl(null, Validators.required),
@@ -62,10 +63,16 @@ export class SignUpComponent implements OnInit {
               Validators.required,
               Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
           ]),
-        //   phoneNumber: new FormControl('', [
-        //       Validators.pattern('[0-9]+')
-        //   ]),
-        //   recaptchaReactive: new FormControl(null, Validators.required)
+
+          /*
+          berguna untuk dokumentasi recaptcha dan phone number
+          dokumentasi
+          //   phoneNumber: new FormControl('', [
+          //       Validators.pattern('[0-9]+')
+          //   ]),
+          //   recaptchaReactive: new FormControl(null, Validators.required)
+          */
+
       }, {
           validator: PasswordValidation.MatchPassword,
           updateOn: 'blur'
@@ -75,7 +82,7 @@ export class SignUpComponent implements OnInit {
       this.isSubscribe = new FormControl(!this.isSubscribe.value);
   }
   goToSignIn() {
-    this.router.navigateByUrl('/account/sign-in');
+      this.router.navigateByUrl('/account/sign-in');
   }
   checkEmail() {
       const modelz = this.vForValidation.value;
@@ -86,7 +93,6 @@ export class SignUpComponent implements OnInit {
                   if (data.status !== '1') {
                       this.message = data.message;
                       this.status = data.status;
-                      console.log(data);
                   } else {
                       console.log('its Good');
                   }
@@ -150,7 +156,7 @@ export class SignUpComponent implements OnInit {
                   text: error,
               })
           );
-          console.log(form);
+      console.log(form);
       this.vForValidation.reset();
   }
 }
