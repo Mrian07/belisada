@@ -62,10 +62,10 @@ export class SignUpComponent implements OnInit {
               Validators.required,
               Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
           ]),
-          phoneNumber: new FormControl('', [
-              Validators.pattern('[0-9]+')
-          ]),
-          recaptchaReactive: new FormControl(null, Validators.required)
+        //   phoneNumber: new FormControl('', [
+        //       Validators.pattern('[0-9]+')
+        //   ]),
+        //   recaptchaReactive: new FormControl(null, Validators.required)
       }, {
           validator: PasswordValidation.MatchPassword,
           updateOn: 'blur'

@@ -25,6 +25,11 @@ export class UserService {
   create1(user: User) {
     return this.http.post('/api/users', user);
   }
+
+  /*
+    check email is using by signUp Components for checking email if
+    email is existing from backend
+  */
   checkEmail(data: EmailChecking): Observable<EmailChecking> {
     return this.http.post(this.config.apiURL + '/account/checkemail', data)
       .map(resp => resp as EmailChecking);
