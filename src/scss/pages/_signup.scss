@@ -15,16 +15,24 @@
     z-index: 2;
     color: red;
 }
+.border {
+    border: 1px solid;
+}
+
+.testing {
+      border-radius: 6px;
+    border: 1px solid;
+    color: red;
+    width: 363px;
+    text-align: center;
+    padding: 5px 9px 6px;
+}
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
     // background-color: black;
-    color: red;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 9px 6px;
+
     visibility: visible;
-    border: 1px solid black;
     position: relative;
     z-index: 1;
 }
@@ -104,10 +112,10 @@
         border-color: #ccc;
     }
 }
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .text-box {
@@ -135,7 +143,7 @@ input[type=number]::-webkit-outer-spin-button {
     text-transform: uppercase;
 }
 
-// loader 
+// loader
 .loader {
     position: relative;
     margin: 0px auto;
@@ -146,7 +154,7 @@ input[type=number]::-webkit-outer-spin-button {
   .circular{animation:rotate 2s linear forwards ;width:100px;height:100px;position:relative}
   .path{stroke:#007aff; stroke-dasharray: 1,200;
     stroke-dashoffset: 0;
-    animation: 
+    animation:
      dash 1.5s ease-in-out forwards,
      color 6s ease-in-out infinite
     ;
@@ -156,12 +164,12 @@ input[type=number]::-webkit-outer-spin-button {
     stroke-dasharray: 1,200;
     stroke-dashoffset: 0;
    }
-  
+
    100%{
     stroke-dasharray: 150,200;
     stroke-dashoffset: 10;
    }
-  
+
   }
   @keyframes color{
     100%, 0%{
@@ -250,12 +258,12 @@ select:focus {
   @keyframes rotate{
       100%{transform:rotate(360deg)}
       }
-      
+
   .checkmark__check {
       transform-origin: 50% 50%;
       stroke-dasharray: 48;
       stroke-dashoffset: 48;
-      
+
        animation: stroke 0.5s  cubic-bezier(0.65, 0, 0.45, 1) 1.5s forwards, color 6s linear infinite;}
       @keyframes stroke {
     100% {

@@ -32,7 +32,9 @@
                     <div class="input-group-area">
                         <input type="text" [formControl]="subscribe_email" placeholder="Email Address" class="footer-input">
                     </div>
-                    <div class="input-group-icon cursor" (click)="subscribe()">OK</div>
+                    <div class="input-group-icon cursor" (click)="subscribe()">
+                        <span>Subscribe</span>
+                    </div>
                 </div>
                 <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
                     <span class="tooltiptext">Harap masukan format email dengan benar</span>

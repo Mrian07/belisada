@@ -13,7 +13,7 @@
                             'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
                             'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
                             }">
-                        <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip">
+                        <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip testing">
                             <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
                         </div>
                         <div *ngIf="status === 1; else register">
@@ -23,11 +23,11 @@
                             }">
                             <div #b *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
                                 <fa name="fas fa-ban errspan"></fa>
-                                <span class="tooltiptext">Email ini sudah teregistrasi</span>
+                                <div class="testing">
+                                    <span class="tooltiptext">Email ini sudah teregistrasi</span>
+                                </div>
+
                             </div>
-                            <!-- *ngIf="name.invalid && (name.dirty || name.touched)" -->
-                            <!-- <span>Email Ini sudah Terdaftar</span> -->
-                            <!-- <fa name="fas fa-ban errspan"></fa> -->
                         </div>
                         <ng-template #register>
                             <input type="text" placeholder="Email" formControlName="email" class="input-style-text-90" email name="email" (change)="checkEmail()" required [ngClass]="{
@@ -35,10 +35,9 @@
                             'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
                             }">{{email | lowercase}}
 
-                            <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip">
+                            <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip testing">
                                 <span class="tooltiptext">Harap masukan format email dengan benar</span>
                             </div>
-                            <!-- </div> -->
                         </ng-template>
 
                         <div>
@@ -58,7 +57,7 @@
                                     <re-captcha formControlName="recaptchaReactive"></re-captcha>
                                 </div> -->
                                 <div>
-                                   
+
                                 </div>
                                 <div>
                                         <div>
@@ -70,10 +69,10 @@
                                                     <input type="checkbox" formControlName="isSubscribe" (change)="changeValue()">
                                                     <span class="checkmark"></span>
                                                 </label>
-                                            </div>
+                                        </div>
                                 </div>
                                 <div>
-                                    
+
                                 </div>
                             </div>
                             <div class="bottom-center">
@@ -86,7 +85,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
 
                             <ng-template #signUp>
                                 <div class="component-center">
