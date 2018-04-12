@@ -86,6 +86,27 @@ export class Profile {
     status?: string;
     message?: string;
 
+
+    regionId?: any;
+    address: string;
+    mcityId: number;
+    cityName: string;
+    countryId: number;
+    countryName: string;
+    districtId: number;
+    districtName: string;
+    idcard: string;
+    imageAvatar: string;
+    imageIDCard: string;
+    imageNPWP: string;
+    mBpartnerId: number;
+    npwp: string;
+    regionName: string;
+    villageId: number;
+    villageName: string;
+
+
+
 }
 
 export class EditProfileRequest {

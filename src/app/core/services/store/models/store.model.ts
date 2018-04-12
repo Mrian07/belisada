@@ -15,6 +15,7 @@ export class CheckStoreRequest {
     name: string;
 }
 
+
 export class CheckStoreResponse extends BaseResponseModel {
 
 }

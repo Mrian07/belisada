@@ -1,68 +1,98 @@
 <div class="border-store">
-    <div class="padding-for-top-store">
-        <div class="row">
-            <div class="col-1"> <img class="img-small-store" src="assets/img/store_icon.png"></div>
-            <div class="col-11 left-col"> <span class="text-profil-toko">Profil Toko</span></div>
+        <div class="padding-for-top-store">
+            <div class="row">
+                <div class="col-1"> <img class="img-small-store" src="assets/img/store_icon.png"></div>
+                <div class="col-11 left-col"> <span class="text-profil-toko">Profil Toko</span></div>
+            </div>
         </div>
-    </div>
-    <hr>
-    <form [formGroup]="store" (ngSubmit)="onSent()"  novalidate>
+        <hr>
+        <form [formGroup]="store" (ngSubmit)="onSent()" novalidate>
         <div class="wrapper-for-store-profile">
-
             <div class="padding-for-photo">
                 <label>Upload Foto Toko Mu disini : </label>
                 <ul class="add_product_image clearfix" id="image-list">
                     <li class="u-inline-list-gap">
                         <div *ngIf="data.picture" class="image-preview" [ngStyle]="{'background-image': 'url(' + data.picture + ')'}">
-                            <span class="action-button" (click)="removeImage(i)">
-                                <i class="trash alternate outline icon"></i>
-                            </span>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="pikcker-wrapper picker-add-image" *ngIf="data.picture === undefined">
-                            <input type="file" multiple="" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
-                        </div>
-                    </li>
-                </ul>
+                        <span class="action-button" (click)="removeImage(i)">
+                        <i class="trash alternate outline icon"></i>
+                        </span>
+            </div>
+            </li>
+            <li>
+            <div class="pikcker-wrapper picker-add-image" *ngIf="data.picture === undefined">
+            <input type="file" formControlName="storePicture" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
+            </div>
+            </li>
+            </ul>
+        </div>
+        <div>
+            <div>
+                <img class="img-small-store" src="assets/img/shop.png">
+                <label>Nama Toko</label>
+            </div>
+            <input type="text" formControlName="name" class="input-style-text" placeholder="Nama Toko" [ngClass]="{ 'has-danger': store.controls.name.invalid && store.controls.name.dirty, 'has-success': store.controls.name.valid && store.controls.name.dirty}">
+            <div *ngIf="store.controls.name.dirty && store.controls.name.errors &&  store.controls.name.errors.required" class="alert alert-danger toll tooltip">
+                <span class="tooltiptext">Nama toko Tidak Boleh Kosong</span>
+            </div>
+            <div *ngIf="store.controls.name.errors && store.controls.name.errors.server" class="alert alert-danger toll tooltip">
+                <span class="tooltiptext">{{serverMessage}}</span>
+            </div>
+            <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
+            <div>
+                <img class="img-small-store" src="assets/img/map.png">
+                <label>Alamat Toko</label>
+            </div>
+            <select formControlName="province" required class="input-style-text">
+            <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
+            <option *ngFor="let option of provinces" [ngValue]="option.regionId"
+            placeholder="Pilih kota">
+            {{ option.regionName }}
+            </option>
+
+            </select>
+            <select formControlName="city" class="input-style-text">
+            <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
+            <option  *ngFor="let option of cities"
+            [ngValue]="option.cityId"
+            placeholder="Pilih kota"
+            >{{ option.cityName }}
+            </option>
+            </select>
+
+            <select formControlName="district" class="input-style-text">
+            <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
+            <option  *ngFor="let option of districts"
+            [ngValue]="option.districtId">
+            {{ option.districtName }}
+            </option>
+            </select>
+
+            <select formControlName="villageId" class="input-style-text">
+            <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
+            <option  *ngFor="let option of villages"
+            placeholder="Pilih kota"
+            [ngValue]="option.villageId">
+            {{ option.villageName }}
+            </option>
+            </select>
+            <input type="text" formControlName="postal" class="input-style-text" placeholder="Postal">
+            <input type="text" formControlName="address" class="input-style-text" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
+            <div *ngIf="store.controls.address.invalid && store.controls.address.dirty" class="alert alert-danger toll tooltip">
+                <span class="tooltiptext">Alamat tidak boleh kosong</span>
             </div>
             <div>
-                <div>
-                    <img class="img-small-store" src="assets/img/shop.png">
-                    <label>Nama Toko</label>
-                </div>
-                <input type="text" formControlName="name"  class="input-style-text" placeholder="Nama Toko" [ngClass]="{ 'has-danger': store.controls.name.invalid && store.controls.name.dirty, 'has-success': store.controls.name.valid && store.controls.name.dirty}">
-                <div *ngIf="store.controls.name.dirty && store.controls.name.errors &&  store.controls.name.errors.required" class="alert alert-danger toll tooltip">
-                    <span class="tooltiptext">Nama toko Tidak Boleh Kosong</span>
-                </div>
-                <div *ngIf="store.controls.name.errors && store.controls.name.errors.server" class="alert alert-danger toll tooltip">
-                    <span class="tooltiptext">{{serverMessage}}</span>
-                </div>
-                <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
-                <div>
-                    <img class="img-small-store" src="assets/img/map.png">
-                    <label>Alamat Toko</label>
-                </div>
-                <input type="text" formControlName="address"  class="input-style-text" placeholder="Alamat Toko"
-                [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
-                <div *ngIf="store.controls.address.invalid && store.controls.address.dirty" class="alert alert-danger toll tooltip">
-                    <span class="tooltiptext">Alamat tidak boleh kosong</span>
-                </div>
-                <div>
-                    <img class="img-small-store" src="assets/img/edit.png">
-                    <label>Deskripsi Toko</label>
-                </div>
-                <input type="text" class="input-style-text" formControlName="description" placeholder="Deskripsi Toko">
-                <div class="component-center">
-                    <button class="btn btn-size-30 btn btn-orange component-center" [disabled]="store.invalid">Simpan</button>
-                </div>
-
+                <img class="img-small-store" src="assets/img/edit.png">
+                <label>Deskripsi Toko</label>
             </div>
-
-            <div>
-                <label>Dumy</label>
-                <br>
+            <input type="text" class="input-style-text" formControlName="description" placeholder="Deskripsi Toko">
+            <div class="component-center">
+                <button class="btn btn-size-30 btn btn-orange component-center" [disabled]="store.invalid">Simpan</button>
             </div>
         </div>
+        <div>
+            <label>Dumy</label>
+            <br>
+        </div>
+    </div>
     </form>
-</div>
+    </div>

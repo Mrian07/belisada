@@ -35,8 +35,10 @@ export class ProfileComponent implements OnInit {
       this.phone = data.phone;
       if (data.gender === 'M') {
         this.gender = 'Laki-laki';
-      } else {
+      } if ( data.gender === 'F') {
         this.gender = 'Perempuan';
+      } else {
+        console.log('a');
       }
       this.dateOfBirth = data.dateOfBirth;
 
