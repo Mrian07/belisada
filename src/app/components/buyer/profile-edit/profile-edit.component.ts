@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import swal from 'sweetalert2';
 import { DateUtil } from '../../../core/util/date.util';
 import { DateFormatEnum } from '../../../core/enum/date-format.enum';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile-edit',
@@ -40,6 +41,7 @@ export class ProfileEditComponent implements OnInit {
         private fb: FormBuilder,
         private dateUtil: DateUtil,
         private userService: UserService,
+        private router: Router,
     ) { }
 
     ngOnInit() {
@@ -93,5 +95,9 @@ export class ProfileEditComponent implements OnInit {
                 'success'
             );
         });
+    }
+
+    cancel() {
+        this.router.navigate(['/buyer/profile']);
     }
 }
