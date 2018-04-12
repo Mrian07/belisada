@@ -67,17 +67,15 @@ export class ProfileEditComponent implements OnInit {
         email: data.email,
         phone: data.phone,
         gender: data.gender,
-        dateOfBirth: {
+        dateOfBirth: (dob instanceof Date && !isNaN(dob.valueOf())) ? {
           date: {
               year: dob.getFullYear(),
               month: dob.getMonth() + 1,
               day: dob.getDate()
             }
-          }
+          } : null
       });
-      console.log('ini: ', data);
     });
-
   }
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
@@ -87,13 +85,7 @@ export class ProfileEditComponent implements OnInit {
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
     editProfileRequest.gender = this.createComForm.controls['gender'].value;
     editProfileRequest.dateOfBirth =
-      this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
-    // const b = {
-    //   name: model.name,
-    //   phone: model.phone,
-    //   gender: model.gender,
-    //   dateOfBirth: this.dateUtil.formatMyDate(model.dateOfBirth.date, this.defaultDateFormat),
-    // };
+    this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
       swal(
         'Sukses',
