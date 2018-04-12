@@ -14,12 +14,12 @@ export class SidebarBuyerComponent implements OnInit {
 
     ngOnInit() {
     }
-    goToCreateStore() {
-        this.router.navigateByUrl('/buyer/create-store');
-    }
+    // goToCreateStore() {
+    //     this.router.navigateByUrl('/buyer/create-store');
+    // }
 
-    profile() {
-        this.router.navigateByUrl('/account/profile');
-    }
+    // profile() {
+    //     this.router.navigateByUrl('/account/profile');
+    // }
 
 }
