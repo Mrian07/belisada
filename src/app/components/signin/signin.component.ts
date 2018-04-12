@@ -47,7 +47,6 @@ export class SigninComponent implements OnInit {
       this.alert = true;
       this.msg = 'Silakan masukan email dan password Anda.';
     } else {
-      // console.log('this.signinFormGroup: ', this.signinFormGroup.value.email);
       const signinRequest: SigninRequest = this.signinFormGroup.value;
       this.userService.signin(signinRequest).subscribe(
         result => {
@@ -57,7 +56,6 @@ export class SigninComponent implements OnInit {
             this.msg = result.message;
           } else {
             const token: string = result.token;
-            console.log('userData: ', this.userService.getUserData(token));
             this.userService.setUserToLocalStorage(token);
             this.router.navigate(['/']);
           }
@@ -69,6 +67,7 @@ export class SigninComponent implements OnInit {
     }
   }
 
+  /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
   goToSignUp() {
     this.router.navigateByUrl('/account/sign-up');
   }
