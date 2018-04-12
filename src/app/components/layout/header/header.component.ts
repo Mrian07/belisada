@@ -63,7 +63,6 @@ export class HeaderComponent implements OnInit {
   }
 
   onClickOutside(event: Object) {
-    console.log('asasdasd');
     if (event && event['value'] === true) {
       this.isAccountMenu = false;
     }

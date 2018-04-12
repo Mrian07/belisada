@@ -75,6 +75,7 @@ export class ProfileEditComponent implements OnInit {
             }
           }
       });
+      console.log('ini: ', data);
     });
 
   }
