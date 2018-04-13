@@ -28,7 +28,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     if (this.userData) { this.isLogin = true; }
-    console.log('this.userData: ', this.userData);
   }
 
   logout() {
