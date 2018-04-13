@@ -20,7 +20,7 @@ label {
     padding: 1rem;
 
     &.has-right-button {
-        
+
     }
     &.sn-input-text {
 
@@ -30,6 +30,13 @@ label {
 .form-group{
     margin-bottom:15px;
 }
+.error-msg {
+    color: #a94442;
+  }
+  .fix-error-icon {
+    top: 27px;
+  }
+
 
 .form-control{
     display:block;
@@ -62,7 +69,7 @@ input::placeholder {
 
 .input-group {
     position: relative;
-    
+
     &.icon-right {
         input {
             height: 3.7rem;
