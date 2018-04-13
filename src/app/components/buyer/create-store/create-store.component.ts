@@ -8,10 +8,11 @@ import { CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './../
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
+
 @Component({
-  selector: 'app-create-store',
-  templateUrl: './create-store.component.html',
-  // styleUrls: ['./create-store.component.scss']
+    selector: 'app-create-store',
+    templateUrl: './create-store.component.html',
+    // styleUrls: ['./create-store.component.scss']
 })
 export class CreateStoreComponent implements OnInit {
   fileToUpload: File = null;
@@ -32,7 +33,7 @@ export class CreateStoreComponent implements OnInit {
   districts: District[];
   villages: Village[];
 
-  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService) { }
+  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService) {}
 
   ngOnInit() {
     this.storeName = new FormControl(null, Validators.required);
@@ -42,10 +43,10 @@ export class CreateStoreComponent implements OnInit {
       address: new FormControl(null, Validators.required),
       description: new FormControl(),
       storePicture: new FormControl(),
-      province :  new FormControl(),
-      city :  new FormControl(),
-      district :  new FormControl(),
-      villageId :  new FormControl(),
+      province: new FormControl(),
+      city: new FormControl(),
+      district: new FormControl(),
+      villageId: new FormControl(),
       postal: new FormControl()
 
     });
@@ -79,50 +80,6 @@ export class CreateStoreComponent implements OnInit {
       console.log('val village : ', val);
     });
   }
-
-  fillForms() {
-
-
-  }
-
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-  }
-
-  checkStoreName() {
-    const check_data: CheckStoreRequest = new CheckStoreRequest;
-    check_data.name = this.storeName.value;
-    this.storeService.isExist(check_data).subscribe(rsl => {
-      if (rsl.status !== 1) {
-        this.storeName.setErrors({'server': true});
-        this.serverMessage = rsl.message;
-      }
-      this.nameChecking = false;
-      if (this.pending_submit) {
-        this.onSent();
-        this.pending_submit = false;
-      }
-    }, err => {
-      this.nameChecking = false;
-      this.storeName.setErrors({'server': true});
-      this.serverMessage = 'opps, please try again';
-    });
-  }
-
-
-  setCanvas(e, newIMG) {
-    const cnv = document.createElement('canvas');
-    const el = e.target;
-    const w = el.width;
-    const h = el.height;
-
-    cnv.width = w;
-    cnv.height = h;
-    cnv.getContext('2d').drawImage(el, 0, 0, w, h);
-
-    this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
-  }
-
   getProvince() {
     // Country ID harcoded to Indonesia
     this.storeService.getProvince('209').subscribe(data => {
@@ -149,6 +106,48 @@ export class CreateStoreComponent implements OnInit {
     });
   }
 
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+
+  checkStoreName() {
+    const check_data: CheckStoreRequest = new CheckStoreRequest;
+    check_data.name = this.storeName.value;
+    this.storeService.isExist(check_data).subscribe(rsl => {
+      if (rsl.status !== 1) {
+        this.storeName.setErrors({
+          'server': true
+        });
+        this.serverMessage = rsl.message;
+      }
+      this.nameChecking = false;
+      if (this.pending_submit) {
+        this.onSent();
+        this.pending_submit = false;
+      }
+    }, err => {
+      this.nameChecking = false;
+      this.storeName.setErrors({
+        'server': true
+      });
+      this.serverMessage = 'opps, please try again';
+    });
+  }
+
+
+  setCanvas(e, newIMG) {
+    const cnv = document.createElement('canvas');
+    const el = e.target;
+    const w = el.width;
+    const h = el.height;
+
+    cnv.width = w;
+    cnv.height = h;
+    cnv.getContext('2d').drawImage(el, 0, 0, w, h);
+
+    this.fm[newIMG] = cnv.toDataURL('image/jpeg', 0.5).slice(23).replace(' ', '+');
+  }
+
 
   getSelectedFiles(event: any) {
     let files = [].slice.call(event.target.files);
@@ -156,7 +155,7 @@ export class CreateStoreComponent implements OnInit {
   }
 
   readThis(files: any[]): void {
-    if(files.length <= 0) {
+    if (files.length <= 0) {
       alert('masukan foto');
       return;
     }
@@ -173,7 +172,9 @@ export class CreateStoreComponent implements OnInit {
     const f = event.target.files[0];
     const that = this;
 
-    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    if (!f.type.match(/image.*/)) {
+      return alert('Not valid image file');
+    }
     fr.onload = function() {
       that.updateImg = true;
       img.src = fr.result;
@@ -192,11 +193,10 @@ export class CreateStoreComponent implements OnInit {
       return false;
     }
 
-  const model = this.store.value;
-  model.storePicture =  this.data.picture;
+    const model = this.store.value;
+    model.storePicture = this.data.picture;
 
-    this.storeService.create(model).subscribe(rsl => {
-    });
+    this.storeService.create(model).subscribe(rsl => {});
 
   }
 }

@@ -42,6 +42,9 @@
                 <img class="img-small-store" src="assets/img/map.png">
                 <label>Alamat Toko</label>
             </div>
+            <textarea rows="4" cols="50" formControlName="address"  class="input-style-text" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}" >
+
+            </textarea>
             <select formControlName="province" required class="input-style-text">
             <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
             <option *ngFor="let option of provinces" [ngValue]="option.regionId"
@@ -76,7 +79,7 @@
             </option>
             </select>
             <input type="text" formControlName="postal" class="input-style-text" placeholder="Postal">
-            <input type="text" formControlName="address" class="input-style-text" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
+            <!-- <input type="text" formControlName="address" class="input-style-text" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}"> -->
             <div *ngIf="store.controls.address.invalid && store.controls.address.dirty" class="alert alert-danger toll tooltip">
                 <span class="tooltiptext">Alamat tidak boleh kosong</span>
             </div>

@@ -5,56 +5,56 @@ import { FormGroup, FormControl, Validators, FormBuilder, ReactiveFormsModule } 
 import { ResetPasswdRequest } from '../../core/services/user/models/user';
 
 @Component({
-  selector: 'app-reset-password',
-  templateUrl: './reset-password.component.html',
-  // styleUrls: ['./reset-password.component.scss']
+    selector: 'app-reset-password',
+    templateUrl: './reset-password.component.html'
 })
 export class ResetPasswordComponent implements OnInit {
-  rstForm: FormGroup;
-  data: ResetPasswdRequest = new ResetPasswdRequest;
-  msg: string;
-  success: boolean;
-  field_form: boolean;
+    rstForm: FormGroup;
+    data: ResetPasswdRequest = new ResetPasswdRequest;
+    msg: string;
+    success: boolean;
+    field_form: boolean;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private userService: UserService
-  ) { }
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private userService: UserService
+    ) { }
 
-  ngOnInit() {
-    this.createForm();
-    this.route.queryParams.subscribe( params => {
-      this.data.key = params.key;
-    });
-  }
-
-  createForm() {
-    this.rstForm = new FormGroup({
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(7)
-      ]),
-      password_repeat: new FormControl('', [
-          Validators.required
-      ]),
-    }, (fg: FormGroup) => {
-      return fg.get('password').value === fg.get('password_repeat').value ? null : {'mismatch': true};
-    });
-  }
-
-  onSubmit() {
-    if (this.rstForm.valid) {
-      this.data.newPassword = this.rstForm.value.password;
-      this.userService.resetPasswd(this.data).subscribe(rsl => {
-
-        this.msg = rsl.message;
-
-        if (rsl.status === 1) {
-          this.success = true;
-        }
-      });
+    ngOnInit() {
+        this.createForm();
+        this.route.queryParams.subscribe( params => {
+        this.data.key = params.key;
+        });
     }
-  }
+
+    createForm() {
+        this.rstForm = new FormGroup({
+        password: new FormControl('', [
+            Validators.required,
+            Validators.minLength(7)
+        ]),
+        password_repeat: new FormControl('', [
+            Validators.required
+        ]),
+        }, (fg: FormGroup) => {
+            return fg.get('password').value === fg.get('password_repeat').value ? null : {'mismatch': true};
+        });
+    }
+
+    /*Fungsi ini untuk melakukan proses reset password*/
+    onSubmit() {
+        if (this.rstForm.valid) {
+        this.data.newPassword = this.rstForm.value.password;
+        this.userService.resetPasswd(this.data).subscribe(rsl => {
+
+            this.msg = rsl.message;
+
+            if (rsl.status === 1) {
+            this.success = true;
+            }
+        });
+        }
+    }
 
 }

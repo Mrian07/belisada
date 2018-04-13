@@ -10,43 +10,41 @@ import { SendEmailTypeEnum } from '../../core/enum/send-email-type.enum';
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
-  // styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit {
-  email: FormControl;
-  success: boolean;
-  msg: string;
+    email: FormControl;
+    success: boolean;
+    msg: string;
 
-  constructor(
-    private router: Router,
-    private userService: UserService
-  ) { }
+    constructor(
+        private router: Router,
+        private userService: UserService
+    ) { }
 
-  ngOnInit() {
-    this.success = false;
+    ngOnInit() {
+        this.success = false;
 
-    this.email = new FormControl('', [
-      Validators.required,
-      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-    ]);
-  }
-
-  onSubmit() {
-    if (this.email.valid) {
-      delete this.msg;
-      const data: SendEmailRequest = new SendEmailRequest();
-      data.email = this.email.value;
-      data.type = SendEmailTypeEnum.RESET_PASSWORD;
-      this.userService.sendEmail(data).subscribe(rsl => {
-        if (rsl.status === 1) {
-          this.success = true;
-        } else {
-          this.msg = rsl.message;
-          // this.email.setErrors({'server': true});
-          // this.msg = 'Maaf email Anda tidak terdaftar. Silakan masukan email Anda yang terdaftar di belisada.co.id.';
-        }
-      });
+        this.email = new FormControl('', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+        ]);
     }
-  }
+
+    /*Fungsi untuk melakukan request reset password dengan memasukan email terdaftar*/
+    onSubmit() {
+        if (this.email.valid) {
+        delete this.msg;
+        const data: SendEmailRequest = new SendEmailRequest();
+        data.email = this.email.value;
+        data.type = SendEmailTypeEnum.RESET_PASSWORD;
+        this.userService.sendEmail(data).subscribe(rsl => {
+                if (rsl.status === 1) {
+                this.success = true;
+                } else {
+                this.msg = rsl.message;
+                }
+            });
+        }
+    }
 
 }
