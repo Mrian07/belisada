@@ -100,7 +100,7 @@
         background-color: darken($btn-color, 6%);
     }
 
-    &.inverted {
+    &.btn--inverted {
         color: $btn-color;
         border: 1px solid $btn-color;
         background-color: transparent;

@@ -6,59 +6,59 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SigninComponent', () => {
-    let component: SigninComponent;
-    let fixture: ComponentFixture<SigninComponent>;
+  let component: SigninComponent;
+  let fixture: ComponentFixture<SigninComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-        declarations: [
-            SigninComponent
-        ],
-        imports: [
-            HttpClientModule,
-            RouterTestingModule,
-            ReactiveFormsModule
-        ],
-        })
-        .compileComponents();
-    }));
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+    declarations: [
+        SigninComponent
+    ],
+    imports: [
+        HttpClientModule,
+        RouterTestingModule,
+        ReactiveFormsModule
+    ],
+    })
+    .compileComponents();
+  }));
 
-    beforeEach(() => {
-        fixture = TestBed.createComponent(SigninComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-        component.ngOnInit();
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SigninComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    component.ngOnInit();
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
-    it('forms should contains email, password', () => {
-        expect(component.signinFormGroup.controls['email']).toBeTruthy();
-        expect(component.signinFormGroup.controls['password']).toBeTruthy();
-    });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  it('forms should contains email, password', () => {
+    expect(component.signinFormGroup.controls['email']).toBeTruthy();
+    expect(component.signinFormGroup.controls['password']).toBeTruthy();
+  });
 
-    it('email validation', () => {
-        const email = component.signinFormGroup.controls['email'];
+  it('email validation', () => {
+    const email = component.signinFormGroup.controls['email'];
 
-        email.setValue('');
-        expect(email.valid).toBeFalsy();
+    email.setValue('');
+    expect(email.valid).toBeFalsy();
 
-        email.setValue('uname@hostname');
-        expect(email.valid).toBeFalsy();
+    email.setValue('uname@hostname');
+    expect(email.valid).toBeFalsy();
 
-        email.setValue('uname.domain');
-        expect(email.valid).toBeFalsy();
-    });
+    email.setValue('uname.domain');
+    expect(email.valid).toBeFalsy();
+  });
 
-    it('email password', () => {
-        const control = component.signinFormGroup.controls['password'];
+  it('email password', () => {
+    const control = component.signinFormGroup.controls['password'];
 
-        control.setValue('');
+    control.setValue('');
 
-        expect(control.valid).toBeFalsy();
-    });
+    expect(control.valid).toBeFalsy();
+  });
 });

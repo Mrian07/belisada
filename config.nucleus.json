@@ -1,0 +1,11 @@
+{
+    "title":"Sani CSS Framework",
+    "files":["src/scss/*.scss", "src/scss/**/*.scss"],
+    "target":"styleguide",
+    "css":"../src/assets/css/styles.css",
+    "namespace":"page",
+    "verbose":3,
+    "counterCSS":null,
+    "staticLipsum":false,
+    "placeholderService":false
+}
