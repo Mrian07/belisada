@@ -9,6 +9,8 @@ export class SubscribeService {
 
   constructor(private http: HttpClient, private configuration: Configuration) { }
 
+  // param: {email: string}
+  // used by layout/footer component
   newsLetter(data: SubscribeRequest): Observable<SubscribeResponse> {
     return this.http.post(this.configuration.apiURL + '/subscribe/create', data)
       .map(response => response as SubscribeResponse);
