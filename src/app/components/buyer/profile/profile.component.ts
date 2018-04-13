@@ -16,12 +16,15 @@ export class ProfileComponent implements OnInit {
     gender: string;
 
     constructor(
-        private router: Router,
-        private userService: UserService
+      private router:    edit() {
+        this.router.navigate(['/buyer/profile-edit']);
+      }
+   Router,
+      private userService: UserService
     ) { }
 
     ngOnInit() {
-        this.loadData();
+      this.loadData();
     }
 
   /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
@@ -35,11 +38,11 @@ export class ProfileComponent implements OnInit {
       } else {
         console.log('a');
       }
-        });
-    }
+    });
+  }
 
     /* Fungsi ini untuk berpindah halaman ke halaman edit */
-    edit() {
-        this.router.navigate(['/buyer/profile-edit']);
-    }
+  edit() {
+    this.router.navigate(['/buyer/profile-edit']);
+  }
 }
