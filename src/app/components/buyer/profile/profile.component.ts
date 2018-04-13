@@ -16,10 +16,7 @@ export class ProfileComponent implements OnInit {
     gender: string;
 
     constructor(
-      private router:    edit() {
-        this.router.navigate(['/buyer/profile-edit']);
-      }
-   Router,
+      private router: Router,
       private userService: UserService
     ) { }
 
