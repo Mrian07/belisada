@@ -11,14 +11,14 @@ describe('SigninComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
+    declarations: [
         SigninComponent
-      ],
-      imports: [
+    ],
+    imports: [
         HttpClientModule,
         RouterTestingModule,
         ReactiveFormsModule
-      ],
+    ],
     })
     .compileComponents();
   }));

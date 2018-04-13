@@ -1,3 +1,4 @@
+import { Profile } from './../../../core/services/user/models/user';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { UserService } from '../../../core/services/user/user.service';
@@ -11,12 +12,8 @@ import { SigninRequest, UserLocalStorage } from '../../../core/services/user/mod
 export class ProfileComponent implements OnInit {
 
   /* Mendeklarasikan nama variable*/
-  token: string;
-  name: string;
-  email: string;
-  phone: string;
+  profile: Profile = new Profile();
   gender: string;
-  dateOfBirth: any;
 
   constructor(
     private router: Router,
@@ -30,20 +27,18 @@ export class ProfileComponent implements OnInit {
   /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
   loadData() {
     this.userService.getProfile().subscribe(data => {
-      this.name = data.name;
-      this.email = data.email;
-      this.phone = data.phone;
+      this.profile = data;
       if (data.gender === 'M') {
-        this.gender = 'Laki-laki';
+          this.gender = 'Laki-laki';
+      } if ( data.gender === 'F') {
+          this.gender = 'Perempuan';
       } else {
-        this.gender = 'Perempuan';
+          console.log('a');
       }
-      this.dateOfBirth = data.dateOfBirth;
-
     });
   }
 
-  /* Fungsi ini untuk berpindah halaman ke halaman edit */
+    /* Fungsi ini untuk berpindah halaman ke halaman edit */
   edit() {
     this.router.navigate(['/buyer/profile-edit']);
   }

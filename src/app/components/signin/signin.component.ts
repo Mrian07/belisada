@@ -31,13 +31,13 @@ export class SigninComponent implements OnInit {
   /* Fungsi untuk membuat nama field pada form */
   createFormControl() {
     this.signinFormGroup = this.fb.group({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-      ]),
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+    ]),
     });
   }
 
@@ -47,30 +47,29 @@ export class SigninComponent implements OnInit {
       this.alert = true;
       this.msg = 'Silakan masukan email dan password Anda.';
     } else {
-      // console.log('this.signinFormGroup: ', this.signinFormGroup.value.email);
       const signinRequest: SigninRequest = this.signinFormGroup.value;
       this.userService.signin(signinRequest).subscribe(
-        result => {
-          // Handle result
-          if (result.status === 0) {
-            this.alert = true;
-            this.msg = result.message;
-          } else {
-            const token: string = result.token;
-            console.log('userData: ', this.userService.getUserData(token));
-            this.userService.setUserToLocalStorage(token);
-            this.router.navigate(['/']);
-          }
-        },
-        error => {
-          swal('belisada.co.id', 'unknown error', 'error');
+      result => {
+        // Handle result
+        if (result.status === 0) {
+          this.alert = true;
+          this.msg = result.message;
+        } else {
+          const token: string = result.token;
+          this.userService.setUserToLocalStorage(token);
+          this.router.navigate(['/']);
+        }
+      },
+      error => {
+        swal('belisada.co.id', 'unknown error', 'error');
         }
       );
     }
   }
 
+  /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
   goToSignUp() {
-    this.router.navigateByUrl('/account/sign-up');
+      this.router.navigateByUrl('/account/sign-up');
   }
 
 }

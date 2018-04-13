@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import swal from 'sweetalert2';
 import { DateUtil } from '../../../core/util/date.util';
 import { DateFormatEnum } from '../../../core/enum/date-format.enum';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-profile-edit',
@@ -27,9 +28,9 @@ export class ProfileEditComponent implements OnInit {
     sunHighlight: true,
     inline: false,
     disableSince: {
-      year: this.now.getFullYear(),
-      month: this.now.getMonth() + 1,
-      day: this.now.getDate()
+    year: this.now.getFullYear(),
+    month: this.now.getMonth() + 1,
+    day: this.now.getDate()
     }
   };
   // ----- End date picker declaration required
@@ -40,6 +41,7 @@ export class ProfileEditComponent implements OnInit {
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private userService: UserService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -50,30 +52,31 @@ export class ProfileEditComponent implements OnInit {
   /* Fungsi ini untuk membuat nama form */
   createFormControls() {
     this.createComForm = this.fb.group({
-      name: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      phone: new FormControl('', Validators.required),
-      gender: new FormControl('', Validators.required),
-      dateOfBirth: new FormControl('', Validators.required)
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    phone: new FormControl('', Validators.required),
+    gender: new FormControl('', Validators.required),
+    dateOfBirth: new FormControl('', Validators.required)
     });
   }
 
   /* Fungsi ini untuk mempersiapkan form untuk diisi dengan data yang diambil dari fungsi getProfile pada service userService */
   fillForms() {
     this.userService.getProfile().subscribe(data => {
-      const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
-      this.createComForm.patchValue({
+    const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
+    this.createComForm.patchValue(
+      {
         name: data.name,
         email: data.email,
         phone: data.phone,
         gender: data.gender,
-        dateOfBirth: {
-          date: {
-              year: dob.getFullYear(),
-              month: dob.getMonth() + 1,
-              day: dob.getDate()
+        dateOfBirth: (dob instanceof Date && !isNaN(dob.valueOf())) ? {
+        date: {
+            year: dob.getFullYear(),
+            month: dob.getMonth() + 1,
+            day: dob.getDate()
             }
-          }
+        } : null
       });
     });
   }
@@ -85,13 +88,7 @@ export class ProfileEditComponent implements OnInit {
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
     editProfileRequest.gender = this.createComForm.controls['gender'].value;
     editProfileRequest.dateOfBirth =
-      this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
-    // const b = {
-    //   name: model.name,
-    //   phone: model.phone,
-    //   gender: model.gender,
-    //   dateOfBirth: this.dateUtil.formatMyDate(model.dateOfBirth.date, this.defaultDateFormat),
-    // };
+    this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
       swal(
         'Sukses',
@@ -99,5 +96,9 @@ export class ProfileEditComponent implements OnInit {
         'success'
       );
     });
+  }
+
+  cancel() {
+    this.router.navigate(['/buyer/profile']);
   }
 }

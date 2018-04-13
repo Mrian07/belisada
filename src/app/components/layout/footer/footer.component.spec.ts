@@ -9,8 +9,8 @@ describe('FooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
-      imports: [ AngularFontAwesomeModule ]
+    declarations: [ FooterComponent ],
+    imports: [ AngularFontAwesomeModule ]
     })
     .compileComponents();
   }));

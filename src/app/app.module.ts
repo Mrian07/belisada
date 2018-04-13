@@ -12,7 +12,6 @@ import { AppRoutingModule } from './app.routing';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-// import { FooterComponent } from './components/layout/footer/footer.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { UserService } from './core/services/user/user.service';
 
@@ -28,40 +27,37 @@ import { Page404Component } from './components/page-404/page-404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProfileComponent,
-    StoreComponent,
-    Page404Component,
-    MaintenanceComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    CoreModule,
-    // FormsModule,
-    SharedModule,
-  ],
-  providers: [
-    // fakeBackendProvider,
-    // AlertService,
-    Configuration,
-    UserService,
-    SubscribeService,
-    AuthenticationService,
-    OnlyLoggedInUsersGuard,
-    {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: {
-        siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
-      } as RecaptchaSettings,
-    },
-    { provide: HTTP_INTERCEPTORS,
-      useClass: Interceptor,
-      multi: true
-    },
-    RecaptchaLoaderService,
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        ProfileComponent,
+        StoreComponent,
+        Page404Component,
+        MaintenanceComponent,
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        CoreModule,
+        SharedModule,
+    ],
+    providers: [
+        Configuration,
+        UserService,
+        SubscribeService,
+        AuthenticationService,
+        OnlyLoggedInUsersGuard,
+        {
+        provide: RECAPTCHA_SETTINGS,
+        useValue: {
+            siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
+        } as RecaptchaSettings,
+        },
+        { provide: HTTP_INTERCEPTORS,
+        useClass: Interceptor,
+        multi: true
+        },
+        RecaptchaLoaderService,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,12 +12,12 @@ describe('ForgotPasswordComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        ForgotPasswordComponent
+          ForgotPasswordComponent
       ],
       imports: [
-        HttpClientModule,
-        RouterTestingModule,
-        ReactiveFormsModule
+          HttpClientModule,
+          RouterTestingModule,
+          ReactiveFormsModule
       ],
     })
     .compileComponents();
