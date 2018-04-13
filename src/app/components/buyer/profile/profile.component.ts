@@ -11,29 +11,29 @@ import { SigninRequest, UserLocalStorage } from '../../../core/services/user/mod
 })
 export class ProfileComponent implements OnInit {
 
-    /* Mendeklarasikan nama variable*/
-    profile: Profile = new Profile();
-    gender: string;
+  /* Mendeklarasikan nama variable*/
+  profile: Profile = new Profile();
+  gender: string;
 
-    constructor(
-      private router: Router,
-      private userService: UserService
-    ) { }
+  constructor(
+    private router: Router,
+    private userService: UserService
+  ) { }
 
-    ngOnInit() {
-      this.loadData();
-    }
+  ngOnInit() {
+    this.loadData();
+  }
 
   /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
   loadData() {
     this.userService.getProfile().subscribe(data => {
       this.profile = data;
       if (data.gender === 'M') {
-        this.gender = 'Laki-laki';
+          this.gender = 'Laki-laki';
       } if ( data.gender === 'F') {
-        this.gender = 'Perempuan';
+          this.gender = 'Perempuan';
       } else {
-        console.log('a');
+          console.log('a');
       }
     });
   }
