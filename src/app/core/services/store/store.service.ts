@@ -1,6 +1,3 @@
-// import { District } from './models/district';
-// import { City } from './models/city';
-// import { Province } from './models/province';
 import { Observable } from 'rxjs/Observable';
 import { CreateStoreResponse, CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './models/store.model';
 import { Configuration } from './../../config/configuration';
