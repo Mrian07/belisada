@@ -1,3 +1,4 @@
+import { FlagService } from './core/services/flag/flag.service';
 import { AuthenticationService } from './core/services/authentication/authentication.service';
 import { Interceptor } from './core/services/interceptor/interceptor.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -57,6 +58,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         multi: true
         },
         RecaptchaLoaderService,
+        FlagService
     ],
     bootstrap: [AppComponent]
 })

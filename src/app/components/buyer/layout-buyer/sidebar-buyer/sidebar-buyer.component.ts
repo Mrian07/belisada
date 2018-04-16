@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { FlagService } from '../../../../core/services/flag/flag.service';
 
 @Component({
     selector: 'app-sidebar-buyer',
@@ -7,19 +8,35 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
     styleUrls: ['./sidebar-buyer.component.scss']
 })
 export class SidebarBuyerComponent implements OnInit {
+    flag: string;
+    btnJual: boolean;
 
     constructor(
         private router: Router,
+        private flagService: FlagService
     ) { }
 
     ngOnInit() {
-    }
-    goToCreateStore() {
-        this.router.navigateByUrl('/buyer/create-store');
+        this.btnJual = false;
     }
 
-    // profile() {
-    //     this.router.navigateByUrl('/account/profile');
-    // }
+    cekFlag() {
+        this.flagService.currentMessage.subscribe(respon => {
+            this.flag = respon;
+            if (this.flag === 'create-store') {
+                this.btnJual = true;
+            }
+        });
+    }
+
+    goToCreateStore() {
+        this.router.navigateByUrl('/buyer/create-store');
+        this.cekFlag();
+    }
+
+    profile() {
+        this.btnJual = false;
+        this.router.navigateByUrl('/buyer/profile');
+    }
 
 }

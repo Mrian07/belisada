@@ -8,6 +8,7 @@ import { CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './../
 import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
+import { FlagService } from './../../../core/services/flag/flag.service';
 
 @Component({
     selector: 'app-create-store',
@@ -36,9 +37,11 @@ export class CreateStoreComponent implements OnInit {
   villages: Village[];
   private formSumitAttempt: boolean;
 
-  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService) {}
+  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService,
+    private flagService: FlagService) {}
 
   ngOnInit() {
+    this.flagService.changeMessage('create-store');
     this.storeName = new FormControl(null, Validators.required);
 
     this.store = this.fb.group({

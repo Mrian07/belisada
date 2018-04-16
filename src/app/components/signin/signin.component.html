@@ -15,16 +15,17 @@
                 <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>
                     <div class="form-group">
                         <input type="email" class="input-style-text-90" placeholder="Email" formControlName="email">
-                        <div class="form-control-validation"
+                        
+                        <div class="validasi"
                             *ngIf="signinFormGroup.controls.email.errors
                                 && signinFormGroup.controls.email.dirty">
                             <p *ngIf="signinFormGroup.controls.email.errors.required">Email tidak boleh kosong</p>
-                            <p *ngIf="signinFormGroup.controls.email.errors.pattern">Masukan Email Yang Benar</p>
+                            <p *ngIf="signinFormGroup.controls.email.errors.pattern">Masukan Email dengan benar</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <input type="password" class="input-style-text-90" placeholder="Password" formControlName="password">
-                        <div class="form-control-validation"
+                        <div class="validasi"
                             *ngIf="signinFormGroup.controls.password.errors
                                 && signinFormGroup.controls.password.dirty">
                             <p *ngIf="signinFormGroup.controls.password.errors.required">Password tidak boleh kosong</p>
@@ -34,7 +35,7 @@
                         Lupa Password? <a routerLink="/account/forgot-password" class="link-text">Klik</a> Disini
                     </div>
                     <div class="component-center">
-                        <button class="btn btn--orange btn-size-55 text-btn component-center" type="submit">MASUK</button>
+                        <button class="btn btn--orange btn-size-55 text-btn component-center" type="submit" [disabled]="signinFormGroup.invalid || status === 1">MASUK</button>
                     </div>
                 </form>
             </div>
