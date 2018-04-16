@@ -52,7 +52,7 @@
                     </div>
                 </a>
                 <div [ngClass]="isAccountMenu ? 'show-element' : 'hide-element'" class="account-menu__container">
-                    <div>Items</div>
+                    <div (click)="goToProfile()" class="cursor-on-profile">Profile</div>
                     <div>Items</div>
                     <div>Items</div>
                     <div><button class="btn rounded btn--navy" (click)="logout()">Logout</button></div>

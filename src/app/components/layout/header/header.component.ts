@@ -66,4 +66,7 @@ export class HeaderComponent implements OnInit {
       this.isAccountMenu = false;
     }
   }
+  goToProfile() {
+    this.router.navigateByUrl('/buyer/profile');
+  }
 }

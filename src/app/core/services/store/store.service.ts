@@ -1,12 +1,11 @@
-import { District } from './models/district';
-import { City } from './models/city';
-import { Province } from './models/province';
 import { Observable } from 'rxjs/Observable';
 import { CreateStoreResponse, CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './models/store.model';
 import { Configuration } from './../../config/configuration';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Village } from './models/vilage';
+import { City, District, Province } from './models/address';
+
 
 @Injectable()
 export class StoreService {
@@ -33,25 +32,41 @@ export class StoreService {
     // });
     return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as CheckStoreResponse);
   }
-
-  getProvince(id: any): Observable<Province[]> {
+  /*
+  With model Province
+  used by create-store.component.ts
+  */
+  getProvince(id: any): Observable < Province[] > {
     return this.http.get(this.cfg.apiURL + '/location' + '/region/' + id)
-        .map(response => response as Province[]);
+    .map(response => response as Province[]);
   }
 
-  getCity(id: any): Observable<City[]> {
+    /*
+  With model City
+  used by create-store.component.ts
+  */
+
+  getCity(id: any): Observable < City[] > {
     return this.http.get(this.cfg.apiURL + '/location' + '/city/' + id)
-        .map(response => response as City[]);
+    .map(response => response as City[]);
   }
 
-  getDistrict(id: any): Observable<District[]> {
-    return this.http.get(this.cfg.apiURL+ '/location' + '/district/' + id)
-        .map(response => response as District[]);
+      /*
+  With model District
+  used by create-store.component.ts
+  */
+  getDistrict(id: any): Observable < District[] > {
+    return this.http.get(this.cfg.apiURL + '/location' + '/district/' + id)
+    .map(response => response as District[]);
   }
 
-  getVillage(id: any): Observable<Village[]> {
+        /*
+  With model Village
+  used by create-store.component.ts
+  */
+  getVillage(id: any): Observable < Village[] > {
     return this.http.get(this.cfg.apiURL + '/location' + '/village/' + id)
-        .map(response => response as Village[]);
+    .map(response => response as Village[]);
   }
 
 }

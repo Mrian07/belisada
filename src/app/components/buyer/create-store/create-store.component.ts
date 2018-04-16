@@ -5,7 +5,7 @@ import { City } from './../../../core/services/store/models/city';
 import { Province } from './../../../core/services/store/models/province';
 import { StoreService } from './../../../core/services/store/store.service';
 import { CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './../../../core/services/store/models/store.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
 
@@ -14,10 +14,12 @@ import swal from 'sweetalert2';
     templateUrl: './create-store.component.html',
     // styleUrls: ['./create-store.component.scss']
 })
+
 export class CreateStoreComponent implements OnInit {
   fileToUpload: File = null;
   store: FormGroup;
   storeName: FormControl;
+  description: FormControl;
   storePictures: any[] = [];
   nameChecking: Boolean = false;
   pending_submit: Boolean = false;
@@ -32,6 +34,7 @@ export class CreateStoreComponent implements OnInit {
   adr: any = {};
   districts: District[];
   villages: Village[];
+  private formSumitAttempt: boolean;
 
   constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService) {}
 
@@ -41,13 +44,13 @@ export class CreateStoreComponent implements OnInit {
     this.store = this.fb.group({
       name: this.storeName,
       address: new FormControl(null, Validators.required),
-      description: new FormControl(),
+      description: new FormControl(null, Validators.required),
       storePicture: new FormControl(),
       province: new FormControl(),
       city: new FormControl(),
       district: new FormControl(),
       villageId: new FormControl(),
-      postal: new FormControl()
+      postal: new FormControl(null, Validators.required)
 
     });
 
@@ -72,12 +75,10 @@ export class CreateStoreComponent implements OnInit {
     });
     this.store.get('city').valueChanges.subscribe(val => {
       this.getDistrict(val);
-      console.log('val1 : ', val);
     });
 
     this.store.get('district').valueChanges.subscribe(val => {
       this.getVillage(val);
-      console.log('val village : ', val);
     });
   }
   getProvince() {
@@ -88,7 +89,6 @@ export class CreateStoreComponent implements OnInit {
   }
 
   getCity(id) {
-    console.log(id);
     this.storeService.getCity(id).subscribe(data => {
       this.cities = data;
     });
@@ -102,7 +102,6 @@ export class CreateStoreComponent implements OnInit {
   getVillage(id) {
     this.storeService.getVillage(id).subscribe(data => {
       this.villages = data;
-      console.log('vilage : ', this.villages);
     });
   }
 
@@ -187,16 +186,51 @@ export class CreateStoreComponent implements OnInit {
       this.storePictures.splice(index, 1);
     }
   }
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({
+          onlySelf: true
+        });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+  isFieldValid(field: string) {
+    return !this.store.get(field).valid && this.store.get(field).touched;
+  }
   onSent() {
-    if (this.nameChecking) {
-      this.pending_submit = true;
-      return false;
+    if (this.store.valid) {
+      if (this.nameChecking) {
+        this.pending_submit = true;
+        return false;
+      }
+
+      const model = this.store.value;
+      model.storePicture = this.data.picture;
+
+      this.storeService.create(model).subscribe(rsl => {
+        swal({
+          title: 'Auto close in 5 second!',
+          text: 'Selamat Anda Berhasil Membuat Toko',
+          timer: 5000,
+          onOpen: () => {
+            swal.showLoading()
+          }
+        }).then((result) => {
+          if (
+            // Read more about handling dismissals
+            result.dismiss === swal.DismissReason.timer
+          ) {
+            window.location.reload();
+          }
+        })
+      });
+    } else {
+      this.validateAllFormFields(this.store);
     }
-
-    const model = this.store.value;
-    model.storePicture = this.data.picture;
-
-    this.storeService.create(model).subscribe(rsl => {});
 
   }
 }
