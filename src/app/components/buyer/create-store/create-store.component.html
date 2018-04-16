@@ -38,8 +38,8 @@
                             </div>
 
                                 <div class="wrapper2-for-url-toko">
-                                    <div> <input type="text"  class="input-style-text"  disabled placeholder="www.belisada.co.id/"></div>
-                                    <div> <input type="text"  class="input-style-text" placeholder="Url Toko"></div>
+                                    <div> <input type="text"  class="input-style-text-100"  disabled placeholder="www.belisada.co.id/"></div>
+                                    <div> <input type="text"  class="input-style-text-100" placeholder="Url Toko"></div>
                             </div>
 
                     <div>
@@ -50,16 +50,7 @@
                                     </div>
                             </div>
                     </div>
-                    <input type="text" formControlName="name" class="input-style-text" placeholder="Nama Toko">
-                    <!--
-                        <div *ngIf="store.controls.name.dirty && store.controls.name.errors &&  store.controls.name.errors.required" class="alert alert-danger toll tooltip">
-                        <div class="testing">
-                        <app-field-error-display  [displayError]="isFieldValid('name')"  errorMsg="Please inform your name"></app-field-error-display>
-                        <span class="tooltiptext">Nama toko Tidak Boleh Kosong</span>
-                        </div>
-                        </div>
-                    -->
-
+                    <input type="text" formControlName="name" class="input-style-text-100" placeholder="Nama Toko">
                     <div *ngIf="store.controls.name.errors && store.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
                         <div class="testing">
                             <span class="tooltiptext">{{serverMessage}}</span>
@@ -77,36 +68,36 @@
                                     </div>
                             </div>
                     </div>
-                    <textarea rows="4" cols="50" formControlName="address" class="input-style-text" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
+                    <textarea rows="4" cols="50" formControlName="address" class="input-style-text-100" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
                     </textarea>
                     <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko Mu"></app-field-error-display>
-                    <select formControlName="province" required class="input-style-text">
+                    <select formControlName="province" required class="input-style-text-100">
                         <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
                         <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
                             {{ option.regionName }}
                         </option>
 
                     </select>
-                    <select formControlName="city" class="input-style-text">
+                    <select formControlName="city" class="input-style-text-100">
                         <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
                         <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
                         </option>
                     </select>
 
-                    <select formControlName="district" class="input-style-text">
+                    <select formControlName="district" class="input-style-text-100">
                         <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
                         <option *ngFor="let option of districts" [ngValue]="option.districtId">
                             {{ option.districtName }}
                         </option>
                     </select>
 
-                    <select formControlName="villageId" class="input-style-text">
+                    <select formControlName="villageId" class="input-style-text-100">
                         <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
                         <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
                             {{ option.villageName }}
                         </option>
                     </select>
-                    <input type="text" formControlName="postal" class="input-style-text" placeholder="Kode Pos" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                    <input type="text" formControlName="postal" class="input-style-text-100" placeholder="Kode Pos" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
                     <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display>
                     <div>
                             <div  class="wrapper2-for-url-toko3">
@@ -116,7 +107,7 @@
                                     </div>
                             </div>
                     </div>
-                    <input type="text" class="input-style-text" formControlName="description" placeholder="Deskripsi Toko" [ngClass]="{'has-danger': store.controls.description.invalid && store.controls.description.dirty,'has-success': store.controls.description.valid && store.controls.description.dirty}">
+                    <input type="text" class="input-style-text-100" formControlName="description" placeholder="Deskripsi Toko" [ngClass]="{'has-danger': store.controls.description.invalid && store.controls.description.dirty,'has-success': store.controls.description.valid && store.controls.description.dirty}">
                     <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Deskripsi Toko Mu"></app-field-error-display>
 
                     <div class="component-center">
