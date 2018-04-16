@@ -16,7 +16,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 export class ProfileEditComponent implements OnInit {
 
   // ----- Start date picker declaration required
-  now: Date = new Date();
+  today: Date = new Date();
   defaultDateFormat: DateFormatEnum = DateFormatEnum.DDMMYYYY_WITH_SLASH;
 
   myDatePickerOptions: IMyDpOptions = {
@@ -29,9 +29,9 @@ export class ProfileEditComponent implements OnInit {
     inline: false,
     openSelectorOnInputClick: true,
     disableSince: {
-      year: this.now.getFullYear(),
-      month: this.now.getMonth() + 1,
-      day: this.now.getDate()
+      year: this.today.getFullYear() - 7,
+      month: this.today.getMonth() + 1,
+      day: this.today.getDate()
     }
   };
   // ----- End date picker declaration required

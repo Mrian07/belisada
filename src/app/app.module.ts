@@ -18,7 +18,6 @@ import { UserService } from './core/services/user/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Configuration } from './core/config/configuration';
 import { SignUpActivationComponent } from './components/sign-up-activation/sign-up-activation.component';
-import { ProfileComponent } from './components/buyer/profile/profile.component';
 
 import { SubscribeService } from './core/services/subscribe/subscribe.service';
 import { StoreComponent } from './components/seller/store/store.component';
@@ -29,7 +28,6 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
 @NgModule({
     declarations: [
         AppComponent,
-        ProfileComponent,
         StoreComponent,
         Page404Component,
         MaintenanceComponent,
