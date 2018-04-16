@@ -69,6 +69,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  keyLa(event: any) {
+    const pattern = /[a-zA-Z ]+/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+  }
+
   /* Fungsi ini untuk mempersiapkan form untuk diisi dengan data yang diambil dari fungsi getProfile pada service userService */
   fillForms() {
     this.userService.getProfile().subscribe(data => {
@@ -89,7 +98,7 @@ export class ProfileComponent implements OnInit {
       });
     });
   }
-  
+
   /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
   loadData() {
     this.userService.getProfile().subscribe(data => {
@@ -130,6 +139,5 @@ export class ProfileComponent implements OnInit {
   edit() {
     this.isField = true;
     this.isBtnSave = true;
-    //this.router.navigate(['/buyer/profile-edit']);
   }
 }

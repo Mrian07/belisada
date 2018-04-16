@@ -4,40 +4,54 @@
 	<form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
 		<div class="row view-line">
 			<div class="col-2 title-line">Foto Profile</div> 
-			<div class="col-3"><img src="/assets/img/profile-buyer.jpg" alt=""></div>
+			<div class="col-4"><img src="/assets/img/profile-buyer.jpg" alt=""></div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Nama</div> 
-			<div class="col-3" *ngIf="isField==false">{{profile.name}}</div>
-			<div class="col-3" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="name"></div>
+			<div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
+				<div class="validasi" *ngIf="createComForm.controls.name.errors
+				&& createComForm.controls.name.dirty">
+				<p *ngIf="createComForm.controls.name.errors.required">Nama tidak boleh kosong</p>
+				</div>
+				
+			</div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Email</div>
-			<div class="col-3" *ngIf="isField==false">{{profile.email}}</div>
-			<div class="col-3" *ngIf="isField==true"><input type="text" class="input-style-text" disabled  formControlName="email"></div>
+			<div class="col-4" *ngIf="isField==false">{{profile.email}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" disabled  formControlName="email"></div>
 		</div>
 		<div class="row view-line">
-			<div class="col-2 title-line">No.Handphone</div>
-			<div class="col-3" *ngIf="isField==false">{{profile.phone}}</div>
-			<div class="col-3" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone"></div>
+			<div class="col-2 title-line">No. Handphone</div>
+			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="number" class="input-style-text" formControlName="phone">
+				<div class="validasi" *ngIf="createComForm.controls.phone.errors && createComForm.controls.phone.dirty">
+				<p *ngIf="createComForm.controls.phone.errors.required">No. Handphone tidak boleh kosong</p>
+				</div>
+			</div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Tanggal Lahir</div>
-			<div class="col-3" *ngIf="isField==false">{{profile.dateOfBirth}}</div>
-			<div class="col-3" *ngIf="isField==true"> <my-date-picker name="mydate" [options]="myDatePickerOptions"
-                formControlName="dateOfBirth"></my-date-picker></div>
+			<div class="col-4" *ngIf="isField==false">{{profile.dateOfBirth}}</div>
+			<div class="col-3" *ngIf="isField==true"> 
+				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
+				<div class="validasi" *ngIf="createComForm.controls.dateOfBirth.errors && createComForm.controls.dateOfBirth.dirty">
+				<p *ngIf="createComForm.controls.dateOfBirth.errors.required">Tanggal Lahir tidak boleh kosong</p>
+				</div>
+			</div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Jenis Kelamin</div>
-			<div class="col-3" *ngIf="isField==false">{{gender}}</div>
-			<div class="col-3" *ngIf="isField==true"><select class="input-style-text" formControlName="gender">
+			<div class="col-4" *ngIf="isField==false">{{gender}}</div>
+			<div class="col-4" *ngIf="isField==true"><select class="input-style-text" formControlName="gender">
                 <option value="M">Laki-laki</option>
                 <option value="F">Perempuan</option>
             </select></div>
 		</div>
 		<br>
 		<button type="button" class="btn btn--orange component-center" (click)="edit()" *ngIf="isBtnSave==false">Edit Profile</button>
-		<button type="submit" class="btn btn--orange component-center" *ngIf="isBtnSave==true">Save</button>
+		<button type="submit" class="btn btn--orange component-center" *ngIf="isBtnSave==true" [disabled]="createComForm.invalid || status === 1">Save</button>
 	</form>
 </div>
 
