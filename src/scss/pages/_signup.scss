@@ -27,6 +27,15 @@
     text-align: center;
     padding: 5px 9px 6px;
 }
+.testing-with-margin {
+    border-radius: 6px;
+    border: 1px solid;
+    color: red;
+    width: 363px;
+    text-align: center;
+    padding: 5px 9px 6px;
+    margin-bottom: 10px;
+}
 .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
@@ -36,6 +45,25 @@
     position: relative;
     z-index: 1;
 }
+.tooltip-for-password .tooltiptext {
+    visibility: hidden;
+
+    visibility: visible;
+    position: relative;
+    z-index: 1;
+}
+
+.tooltip-for-password .tooltiptext::after {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+}
+
 .tooltip .tooltiptext::after {
     content: "";
     position: absolute;
