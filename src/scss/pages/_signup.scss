@@ -106,12 +106,13 @@
     display: block;
     text-align: center;
 }
+
 .input-style-text {
-    width: 100%;
-    padding: 12px 20px;
+    width: 80%;
+    padding: 10px 20px;
     margin: 8px 0;
     box-sizing: border-box;
-    border: 2px solid #6e6e6e;
+    border: 1px solid #6e6e6e;
     border-radius:5px;
     -webkit-transition: 0.5s;
     transition: 0.5s;
@@ -123,6 +124,7 @@
         border-color: #ccc;
     }
 }
+
 .input-style-text-90 {
     width: 90%;
     padding: 12px 20px;
