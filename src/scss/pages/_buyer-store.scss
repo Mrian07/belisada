@@ -28,6 +28,13 @@
     transition: 0.5s;
     outline: none;
 }
+.wrapper2-for-url-toko3 {
+    display: grid;
+    // color: $color-red;
+    grid-template-columns: 7% 29%;
+    grid-gap: 1em;
+    padding-top: 10px;
+}
 .wrapper-for-store-profile {
     display: grid;
     // color: $color-red;

@@ -28,8 +28,13 @@
                 </div>
                 <div>
                             <div>
-                                    <img class="img-small-store" src="assets/img/shop.png">
-                                    <label>URL Toko Anda</label>
+                                <div  class="wrapper2-for-url-toko3">
+                                        <img class="img-small-store" src="assets/img/shop.png">
+                                        <div>
+                                                <label>URL Toko Anda</label>
+                                        </div>
+                                </div>
+
                             </div>
 
                                 <div class="wrapper2-for-url-toko">
@@ -38,8 +43,12 @@
                             </div>
 
                     <div>
-                        <img class="img-small-store" src="assets/img/shop.png">
-                        <label>Nama Toko</label>
+                            <div  class="wrapper2-for-url-toko3">
+                                    <img class="img-small-store" src="assets/img/shop.png">
+                                    <div>
+                                            <label>Nama Toko</label>
+                                    </div>
+                            </div>
                     </div>
                     <input type="text" formControlName="name" class="input-style-text" placeholder="Nama Toko">
                     <!--
@@ -61,8 +70,12 @@
                     </ng-template>
                     <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
                     <div>
-                        <img class="img-small-store" src="assets/img/map.png">
-                        <label>Alamat Toko</label>
+                            <div  class="wrapper2-for-url-toko3">
+                                    <img class="img-small-store" src="assets/img/map.png">
+                                    <div>
+                                    <label>Alamat Toko</label>
+                                    </div>
+                            </div>
                     </div>
                     <textarea rows="4" cols="50" formControlName="address" class="input-style-text" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
                     </textarea>
@@ -93,11 +106,15 @@
                             {{ option.villageName }}
                         </option>
                     </select>
-                    <input type="text" formControlName="postal" class="input-style-text" placeholder="Postal" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                    <input type="text" formControlName="postal" class="input-style-text" placeholder="Kode Pos" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
                     <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display>
                     <div>
-                        <img class="img-small-store" src="assets/img/edit.png">
-                        <label>Deskripsi Toko</label>
+                            <div  class="wrapper2-for-url-toko3">
+                                    <img class="img-small-store" src="assets/img/edit.png">
+                                    <div>
+                                            <label>Deskripsi Toko</label>
+                                    </div>
+                            </div>
                     </div>
                     <input type="text" class="input-style-text" formControlName="description" placeholder="Deskripsi Toko" [ngClass]="{'has-danger': store.controls.description.invalid && store.controls.description.dirty,'has-success': store.controls.description.valid && store.controls.description.dirty}">
                     <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Deskripsi Toko Mu"></app-field-error-display>
@@ -107,7 +124,7 @@
                     </div>
                 </div>
                 <div>
-                    <label>Dumy</label>
+                    <!-- <label>Dumy</label> -->
                     <br>
                 </div>
             </div>
