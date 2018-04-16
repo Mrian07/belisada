@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../components/buyer/profile/profile.component';
 import { FieldErrorDisplayComponent } from './../components/buyer/create-store/field-error-display/field-error-display.component';
 import { ProfileEditComponent } from './../components/buyer/profile-edit/profile-edit.component';
 import { SidebarBuyerComponent } from './../components/buyer/layout-buyer/sidebar-buyer/sidebar-buyer.component';
@@ -61,7 +62,8 @@ import { ClickOutsideDirective } from '../shared/directives/click-outside.direct
     LayoutSellerComponent,
     CreateStoreComponent,
     ClickOutsideDirective,
-    FieldErrorDisplayComponent
+    FieldErrorDisplayComponent,
+    ProfileComponent
     // HomeComponent
   ],
   // declarations: [],
