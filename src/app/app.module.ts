@@ -24,6 +24,7 @@ import { StoreComponent } from './components/seller/store/store.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
 import { Page404Component } from './components/page-404/page-404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
         AppRoutingModule,
         CoreModule,
         SharedModule,
+        BrowserAnimationsModule
     ],
     providers: [
         Configuration,
