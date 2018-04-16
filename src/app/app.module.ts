@@ -1,3 +1,4 @@
+import { FlagService } from './core/services/flag/flag.service';
 import { AuthenticationService } from './core/services/authentication/authentication.service';
 import { Interceptor } from './core/services/interceptor/interceptor.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -55,6 +56,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
         multi: true
         },
         RecaptchaLoaderService,
+        FlagService
     ],
     bootstrap: [AppComponent]
 })

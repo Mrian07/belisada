@@ -2,8 +2,9 @@
     <div class="row">
         <div class="col-12">
             <span class="title-sidebar">DASHBOARD</span>
-            <div routerLink="/buyer/create-store" class="btn-jualan">Ikut Jualan</div>
-            <a routerLink="/buyer/profile" class="link-text">Profile Anda</a><br/>
+            <div (click)="goToCreateStore()" class="btn-jualan" *ngIf="btnJual==false">Ikut Jualan</div>
+            <div (click)="profile()" class="sidebar-to-cursor">Profile Anda</div>
+            <!-- <a routerLink="/buyer/profile" class="link-text">Profile Anda</a><br/> -->
             <!-- <span (click)="goToCreateStore()" class="sidebar-to-cursor">Buka Toko</span> -->
         </div>
     </div>
