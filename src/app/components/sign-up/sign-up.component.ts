@@ -51,7 +51,9 @@ export class SignUpComponent implements OnInit {
       //   this.checkEmail();
       this.vForValidation = this.fb.group({
           isSubscribe: new FormControl(''),
-          fullname: new FormControl(null, Validators.required),
+          fullname: new FormControl('',
+          [Validators.required
+          ]),
           password: new FormControl('', [
               Validators.required,
               Validators.minLength(7)
@@ -118,6 +120,16 @@ export class SignUpComponent implements OnInit {
                   console.log('error', error);
               });
   }
+
+  keyLa(event: any) {
+    const pattern = /[a-zA-Z]+/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+}
+
   keyPress(event: any) {
       const pattern = /[0-9\+\-\ ]/;
 
