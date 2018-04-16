@@ -1,12 +1,14 @@
-import { District } from './models/district';
-import { City } from './models/city';
-import { Province } from './models/province';
+// import { District } from './models/district';
+// import { City } from './models/city';
+// import { Province } from './models/province';
 import { Observable } from 'rxjs/Observable';
 import { CreateStoreResponse, CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './models/store.model';
 import { Configuration } from './../../config/configuration';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Village } from './models/vilage';
+import { City, District, Province } from './models/address';
+
 
 @Injectable()
 export class StoreService {
