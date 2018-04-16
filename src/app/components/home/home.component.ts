@@ -1,3 +1,5 @@
+import { LocalStorageEnum } from './../../core/enum/local-storage.enum';
+import { UserData } from './../../core/services/user/models/user';
 import { UserService } from './../../core/services/user/user.service';
 import swal from 'sweetalert2';
 import { Province, City, District, Village } from './../../core/services/store/models/address';
@@ -18,10 +20,13 @@ export class HomeComponent implements OnInit {
   serverMessage: String;
   cities: City[];
   districts: District[];
+  userData: UserData = new UserData();
   villages: Village[];
+  isLogin: Boolean = false;
   constructor(private fb: FormBuilder,  private storeService: StoreService, private userS: UserService) { }
 
   ngOnInit() {
+
 
     this.validationOnpopUpCreateStore = this.fb.group({
       nmPemilikToko: new FormControl (null, Validators.required),
@@ -36,6 +41,8 @@ export class HomeComponent implements OnInit {
       postal: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required)
     });
+    this.userData = this.userS.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    if (this.userData) { this.isLogin = true; }
     this.getProvince();
     this.onChanges();
   }
