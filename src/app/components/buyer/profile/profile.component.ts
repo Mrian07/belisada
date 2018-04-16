@@ -32,8 +32,6 @@ export class ProfileComponent implements OnInit {
           this.gender = 'Laki-laki';
       } if ( data.gender === 'F') {
           this.gender = 'Perempuan';
-      } else {
-          console.log('a');
       }
     });
   }
