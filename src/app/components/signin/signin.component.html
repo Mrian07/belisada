@@ -9,33 +9,47 @@
         <div>
             <div class="padding-on-top">
                 <div class="title-page">Login</div>
-                <div *ngIf="alert==true" class="alert-error">
+				<div *ngIf="alert==true" class="alert-error">
                     <p>{{ msg }}</p>
                 </div>
                 <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>
                     <div class="form-group">
-                        <input type="email" class="input-style-text-90" placeholder="Email" formControlName="email">
+                        <input type="email" class="input-style-text-90" placeholder="Email" formControlName="email" (input)="onSearchChange($event.target.value)" email name="email" required [ngClass]="{
+                            'has-danger': (signinFormGroup.controls.email.invalid || status !== 1) && (signinFormGroup.controls.email.dirty),
+                            'has-danger': emailInvalid == 1,
+                            'has-success': signinFormGroup.controls.email.valid && (signinFormGroup.controls.email.dirty && signinFormGroup.controls.email.touched) && emailInvalid !=1
+                            
+                            }">
                         
-                        <div class="validasi"
-                            *ngIf="signinFormGroup.controls.email.errors
-                                && signinFormGroup.controls.email.dirty">
-                            <p *ngIf="signinFormGroup.controls.email.errors.required">Email tidak boleh kosong</p>
-                            <p *ngIf="signinFormGroup.controls.email.errors.pattern">Masukan Email dengan benar</p>
+                        <div *ngIf="signinFormGroup.controls.email.invalid && (signinFormGroup.controls.email.dirty && signinFormGroup.controls.email.touched)" class="alert alert-danger toll tooltip testing">
+                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                        </div>    
+
+                        <div *ngIf="status !== 1">
+                            <div #b *ngIf="signinFormGroup.controls.email.dirty && signinFormGroup.controls.email.valid" class="alert alert-danger toll tooltip">
+                                <fa name="fas fa-ban errspan"></fa>
+                                <div class="testing">
+                                    <span class="tooltiptext">Email tidak terdaftar</span>
+                                </div>
+
+                            </div>
                         </div>
+
                     </div>
                     <div class="form-group">
-                        <input type="password" class="input-style-text-90" placeholder="Password" formControlName="password">
-                        <div class="validasi"
-                            *ngIf="signinFormGroup.controls.password.errors
-                                && signinFormGroup.controls.password.dirty">
-                            <p *ngIf="signinFormGroup.controls.password.errors.required">Password tidak boleh kosong</p>
-                        </div>
+                        <input type="password" class="input-style-text-90" placeholder="Password" formControlName="password" required [ngClass]="{
+                            'has-danger': signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched),
+                            'has-success': signinFormGroup.controls.password.valid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched)
+                            }">
+                        <div *ngIf="signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched)" class="alert alert-danger toll tooltip testing">
+                            <span class="tooltiptext">Password tidak boleh kosong</span>
+                        </div>    
                     </div>
                     <div class="text-registration">
                         Lupa Password? <a routerLink="/account/forgot-password" class="link-text">Klik</a> Disini
                     </div>
                     <div class="component-center">
-                        <button class="btn btn--orange btn-size-55 text-btn component-center" type="submit" [disabled]="signinFormGroup.invalid || status === 1">MASUK</button>
+                        <button class="btn btn--orange btn-size-55 text-btn component-center" type="submit" [disabled]="signinFormGroup.invalid || status !== 1">MASUK</button>
                     </div>
                 </form>
             </div>

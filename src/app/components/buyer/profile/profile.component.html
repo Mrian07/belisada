@@ -10,9 +10,8 @@
 			<div class="col-2 title-line">Nama</div> 
 			<div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
 			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
-				<div class="validasi" *ngIf="createComForm.controls.name.errors
-				&& createComForm.controls.name.dirty">
-				<p *ngIf="createComForm.controls.name.errors.required">Nama tidak boleh kosong</p>
+				<div *ngIf="createComForm.controls.name.invalid && (createComForm.controls.name.dirty && createComForm.controls.name.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Nama tidak boleh kosong</span>
 				</div>
 				
 			</div>
@@ -26,8 +25,8 @@
 			<div class="col-2 title-line">No. Handphone</div>
 			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
 			<div class="col-4" *ngIf="isField==true"><input type="number" class="input-style-text" formControlName="phone">
-				<div class="validasi" *ngIf="createComForm.controls.phone.errors && createComForm.controls.phone.dirty">
-				<p *ngIf="createComForm.controls.phone.errors.required">No. Handphone tidak boleh kosong</p>
+				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
 				</div>
 			</div>
 		</div>
@@ -36,18 +35,21 @@
 			<div class="col-4" *ngIf="isField==false">{{profile.dateOfBirth}}</div>
 			<div class="col-3" *ngIf="isField==true"> 
 				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
-				<div class="validasi" *ngIf="createComForm.controls.dateOfBirth.errors && createComForm.controls.dateOfBirth.dirty">
-				<p *ngIf="createComForm.controls.dateOfBirth.errors.required">Tanggal Lahir tidak boleh kosong</p>
+				<div *ngIf="createComForm.controls.dateOfBirth.invalid && (createComForm.controls.dateOfBirth.dirty && createComForm.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
 				</div>
+
 			</div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Jenis Kelamin</div>
 			<div class="col-4" *ngIf="isField==false">{{gender}}</div>
-			<div class="col-4" *ngIf="isField==true"><select class="input-style-text" formControlName="gender">
-                <option value="M">Laki-laki</option>
-                <option value="F">Perempuan</option>
-            </select></div>
+			<div class="col-4" *ngIf="isField==true">
+				<select class="input-style-text" formControlName="gender">
+					<option value="M">Laki-laki</option>
+					<option value="F">Perempuan</option>
+				</select>
+			</div>
 		</div>
 		<br>
 		<button type="button" class="btn btn--orange component-center" (click)="edit()" *ngIf="isBtnSave==false">Edit Profile</button>
@@ -55,63 +57,3 @@
 	</form>
 </div>
 
-
-<!-- 
-<div class="b-profile">
-	<h1>Informasi Anda</h1>
-	<div *ngIf="isField==false">
-		<div class="row view-line">
-			<div class="col-2 title-line">Foto Profile</div> 
-			<div class="col-3"><img src="/assets/img/profile-buyer.jpg" alt=""></div>
-		</div>
-		<div class="row view-line">
-			<div class="col-2 title-line">Nama</div> 
-			<div class="col-3">{{profile.name}}</div>
-		</div>
-		<div class="row view-line">
-			<div class="col-2 title-line">Email</div>
-			<div class="col-3">{{profile.email}}</div>
-		</div>
-		<div class="row view-line">
-			<div class="col-2 title-line">No.Handphone</div>
-			<div class="col-3">{{profile.phone}}</div>
-		</div>
-		<div class="row view-line">
-			<div class="col-2 title-line">Tanggal Lahir</div>
-			<div class="col-3" >{{profile.dateOfBirth}}</div>
-		</div>
-		<div class="row view-line">
-			<div class="col-2 title-line">Jenis Kelamin</div>
-			<div class="col-3">{{gender}}</div>
-		</div>
-		<br>
-		<button type="button" class="btn btn--orange component-center" (click)="edit()">Edit Profile</button>
-	</div>
-	<div *ngIf="isField==true">
-		<form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
-			<div class="view-line">
-				<div class="title-line">Nama</div> <input type="text" class="input-style-text" formControlName="name">
-			</div>
-			<div class="view-line">
-				<div class="title-line">Email</div> <input type="text" class="input-style-text" disabled  formControlName="email">
-			</div>
-			<div class="view-line">
-				<div class="title-line">No.Handphone</div><input type="text" class="input-style-text" formControlName="phone">  
-			</div>
-			<div class="view-line">
-				<div class="title-line">Tanggal Lahir</div>
-				<my-date-picker name="mydate" [options]="myDatePickerOptions"
-					formControlName="dateOfBirth"></my-date-picker>
-			</div>
-			<div class="view-line">
-				<div class="title-line">Jenis Kelamin</div>
-				<select class="input-style-text" formControlName="gender">
-					<option value="M">Laki-laki</option>
-					<option value="F">Perempuan</option>
-				</select>
-			</div>
-			<br>
-			<button type="submit" class="btn btn--orange component-center">Update</button> <button type="submit" class="btn btn--orange component-center" (click)="cancel()">Cancel</button>
-		</form>
-	</div>
-</div> -->
