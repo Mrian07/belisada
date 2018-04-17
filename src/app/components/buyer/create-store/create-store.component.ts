@@ -1,7 +1,5 @@
-import { Village } from './../../../core/services/store/models/vilage';
 import { District } from './../../../core/services/store/models/district';
 import { UserService } from './../../../core/services/user/user.service';
-import { City } from './../../../core/services/store/models/city';
 import { Province } from './../../../core/services/store/models/province';
 import { StoreService } from './../../../core/services/store/store.service';
 import { CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './../../../core/services/store/models/store.model';
@@ -9,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
 import { FlagService } from './../../../core/services/flag/flag.service';
+import { Village, City } from '../../../core/services/store/models/address';
 
 @Component({
     selector: 'app-create-store',
@@ -49,10 +48,10 @@ export class CreateStoreComponent implements OnInit {
       address: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       storePicture: new FormControl(),
-      province: new FormControl(),
-      city: new FormControl(),
-      district: new FormControl(),
-      villageId: new FormControl(),
+      province: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      district: new FormControl(null, Validators.required),
+      villageId: new FormControl(null, Validators.required),
       postal: new FormControl(null, Validators.required)
 
     });
@@ -72,7 +71,6 @@ export class CreateStoreComponent implements OnInit {
         }, 500);
       }
     });
-
     this.store.get('province').valueChanges.subscribe(val => {
       this.getCity(val);
     });
@@ -82,6 +80,8 @@ export class CreateStoreComponent implements OnInit {
 
     this.store.get('district').valueChanges.subscribe(val => {
       this.getVillage(val);
+    });
+    this.store.get('district').valueChanges.subscribe(val => {
     });
   }
   getProvince() {
@@ -94,17 +94,21 @@ export class CreateStoreComponent implements OnInit {
   getCity(id) {
     this.storeService.getCity(id).subscribe(data => {
       this.cities = data;
+      console.log('data city', data );
     });
   }
   getDistrict(id) {
     this.storeService.getDistrict(id).subscribe(data => {
       this.districts = data;
+      console.log('data district', data);
     });
   }
-
   getVillage(id) {
     this.storeService.getVillage(id).subscribe(data => {
       this.villages = data;
+      const model = this.store.value;
+     const a =  this.store.value.villageId = id.district;
+      console.log('data vilages', data);
     });
   }
 
@@ -133,6 +137,14 @@ export class CreateStoreComponent implements OnInit {
         'server': true
       });
       this.serverMessage = 'opps, please try again';
+    });
+  }
+  setVilage(villageId) {
+    console.log('option', villageId);
+    const postalId: string = this.villages.find(x => x.villageId === villageId).postal;
+    console.log('postalId: ', postalId);
+    this.store.patchValue({
+      postal: postalId
     });
   }
 
@@ -214,26 +226,20 @@ export class CreateStoreComponent implements OnInit {
       const model = this.store.value;
       model.storePicture = this.data.picture;
 
+
       this.storeService.create(model).subscribe(rsl => {
-        swal({
-          title: 'Auto close in 5 second!',
-          text: 'Selamat Anda Berhasil Membuat Toko',
-          timer: 5000,
-          onOpen: () => {
-            swal.showLoading()
-          }
-        }).then((result) => {
-          if (
-            // Read more about handling dismissals
-            result.dismiss === swal.DismissReason.timer
-          ) {
-            window.location.reload();
-          }
-        })
-      });
-    } else {
-      this.validateAllFormFields(this.store);
-    }
+        if (rsl.status === 1) {
+          swal(rsl.message);
+          window.location.reload();
+          // swal
+        } else {
+          swal(rsl.message);
+        }
+        });
+      } else {
+        swal('Ops Silahkan Cek data kamu kembali');
+        this.validateAllFormFields(this.store);
+      }
 
   }
 }

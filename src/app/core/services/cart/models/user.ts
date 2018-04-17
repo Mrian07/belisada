@@ -11,6 +11,8 @@ export class User {
 export class UserSignupGuest {
   email: string;
   name: string;
+  message?: string;
+  status?: number;
   description: string;
   villageId: string;
   address: string;

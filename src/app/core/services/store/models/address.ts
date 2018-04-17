@@ -34,9 +34,10 @@ export class Province {
 }
 export class Village {
 
-  mvillageId: number;
-  kodepos: string;
-  name: string;
+  // mvillageId: number;
+  // kodepos: string;
+  postal: string;
+  // name: string;
   villageId: number;
   villageName: number;
 

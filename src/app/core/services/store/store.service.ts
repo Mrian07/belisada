@@ -3,8 +3,7 @@ import { CreateStoreResponse, CreateStoreRequest, CheckStoreRequest, CheckStoreR
 import { Configuration } from './../../config/configuration';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Village } from './models/vilage';
-import { City, District, Province } from './models/address';
+import { City, District, Province, Village } from './models/address';
 
 
 @Injectable()
@@ -64,9 +63,9 @@ export class StoreService {
   With model Village
   used by create-store.component.ts
   */
-  getVillage(id: any): Observable < Village[] > {
-    return this.http.get(this.cfg.apiURL + '/location' + '/village/' + id)
-    .map(response => response as Village[]);
-  }
+ getVillage(id: any): Observable<Village[]> {
+  return this.http.get(this.cfg.apiURL +  '/location' + '/village/' + id)
+      .map(response => response as Village[]);
+}
 
 }

@@ -18,10 +18,12 @@ export class HomeComponent implements OnInit {
   provinces: Province[];
   nmPemilikToko: FormControl;
   serverMessage: String;
+  fm: any = {};
   cities: City[];
+  curentPostal: any ;
   districts: District[];
   userData: UserData = new UserData();
-  villages: Village[];
+  villages:  Village[];
   isLogin: Boolean = false;
   constructor(private fb: FormBuilder,  private storeService: StoreService, private userS: UserService) { }
 
@@ -32,19 +34,36 @@ export class HomeComponent implements OnInit {
       nmPemilikToko: new FormControl (null, Validators.required),
       name: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
-      email: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
+      email: new FormControl('',
+      [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(7)
+  ]),
       province: new FormControl(null, Validators.required),
       city: new FormControl(null, Validators.required),
       district: new FormControl(null, Validators.required),
-      villageId: new FormControl(null, Validators.required),
-      postal: new FormControl(null, Validators.required),
+      villageId: new FormControl(null,
+        Validators.required,
+      ),
+      postal: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(5)
+
+    ]),
       description: new FormControl(null, Validators.required)
     });
     this.userData = this.userS.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     if (this.userData) { this.isLogin = true; }
     this.getProvince();
     this.onChanges();
+  }
+  testingform(form: NgForm) {
+    console.log(form);
   }
   onChanges() {
 
@@ -58,6 +77,8 @@ export class HomeComponent implements OnInit {
     this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
       this.getVillage(val);
     });
+    this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
+    });
   }
   getProvince() {
     // Country ID harcoded to Indonesia
@@ -69,17 +90,22 @@ export class HomeComponent implements OnInit {
   getCity(id) {
     this.storeService.getCity(id).subscribe(data => {
       this.cities = data;
+      console.log('data city', data );
     });
   }
   getDistrict(id) {
     this.storeService.getDistrict(id).subscribe(data => {
       this.districts = data;
+      console.log('data district', data);
     });
   }
 
   getVillage(id) {
     this.storeService.getVillage(id).subscribe(data => {
       this.villages = data;
+      const model = this.validationOnpopUpCreateStore.value;
+     const a =  this.validationOnpopUpCreateStore.value.villageId = id.district;
+      console.log('data vilages', data);
     });
   }
   validateAllFormFields(formGroup: FormGroup) {
@@ -97,56 +123,44 @@ export class HomeComponent implements OnInit {
   isFieldValid(field: string) {
     return !this.validationOnpopUpCreateStore.get(field).valid && this.validationOnpopUpCreateStore.get(field).touched;
   }
-  onSent(form:NgForm) {
+  onSent() {
     if (this.validationOnpopUpCreateStore.valid) {
 
 
       const model = this.validationOnpopUpCreateStore.value;
 
       this.userS.createFormGuest(model).subscribe(rsl => {
-        swal({
-          title: 'Auto close in 5 second!',
-          text: 'Selamat Anda Berhasil Membuat Toko',
-          timer: 5000,
-          onOpen: () => {
-            swal.showLoading()
-          }
-        }).then((result) => {
-          if (
-            // Read more about handling dismissals
-            result.dismiss === swal.DismissReason.timer
-          ) {
-            window.location.reload();
-          }
-        })
+      if (rsl.status === 1) {
+        swal(rsl.message);
+        // swal
+      } else {
+        swal(rsl.message);
+      }
       });
     } else {
-      console.log('asd')
+      swal('ops maaf ada kesalahan');
       this.validateAllFormFields(this.validationOnpopUpCreateStore);
     }
-  //   if (this.validationOnpopUpCreateStore.valid) {
-  //   const model = this.validationOnpopUpCreateStore.value;
-  //   this.userS.createFormGuest(model).subscribe(rsl => {
-  //     swal({
-  //       title: 'Auto close in 5 second!',
-  //       text: 'Selamat Anda Berhasil Membuat Toko & Account',
-  //       timer: 5000,
-  //       onOpen: () => {
-  //         swal.showLoading()
-  //       }
-  //     }).then((result) => {
-  //       if (
-  //         // Read more about handling dismissals
-  //         result.dismiss === swal.DismissReason.timer
-  //       ) {
-  //         window.location.reload();
-  //       }
-  //     })
-  //   });
-  // }  else {
-  //   this.validateAllFormFields(this.validationOnpopUpCreateStore);
-  // }
-
   }
+
+  setVilage(villageId) {
+    console.log('option', villageId);
+    const postalId: string = this.villages.find(x => x.villageId === villageId).postal;
+    console.log('postalId: ', postalId);
+    this.validationOnpopUpCreateStore.patchValue({
+      postal: postalId
+    });
+  }
+   /*
+    validasi jika tidak ingin menggunakan huruf only angka
+   */
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+}
 
 }

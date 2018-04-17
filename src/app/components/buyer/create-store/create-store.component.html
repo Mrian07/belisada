@@ -72,32 +72,39 @@
                     </textarea>
                     <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko Mu"></app-field-error-display>
                     <select formControlName="province" required class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
-                        <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
-                            {{ option.regionName }}
-                        </option>
-
-                    </select>
-                    <select formControlName="city" class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
-                        <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
-                        </option>
-                    </select>
-
-                    <select formControlName="district" class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
-                        <option *ngFor="let option of districts" [ngValue]="option.districtId">
-                            {{ option.districtName }}
-                        </option>
-                    </select>
-
-                    <select formControlName="villageId" class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
-                        <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
-                            {{ option.villageName }}
-                        </option>
-                    </select>
-                    <input type="text" formControlName="postal" class="input-style-text-100" placeholder="Kode Pos" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                            <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
+                            <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
+                                {{ option.regionName }}
+                            </option>
+                        </select>
+                        <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Silahkan Masukan Provinsi"></app-field-error-display>
+    
+                        <select formControlName="city" class="input-style-text-100">
+                            <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
+                            <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
+                            </option>
+                        </select>
+                        <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Silahkan Masukan Kota"></app-field-error-display>
+    
+                        <select formControlName="district" class="input-style-text-100">
+                            <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
+                            <option *ngFor="let option of districts" [ngValue]="option.districtId">
+                                {{ option.districtName }}
+                            </option>
+                        </select>
+                        <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Silahkan Masukan Kecamatan"></app-field-error-display>
+    
+                        <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(store.value.villageId)">
+                            <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
+                            <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
+                                {{ option.villageName }}
+                            </option>
+                        </select>
+                        
+                        <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Silahkan Masukan Kelurahan"></app-field-error-display>
+    
+                    <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal"  [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                    <!-- <input type="text" formControlName="postal" class="input-style-text-100" placeholder="Kode Pos"> -->
                     <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display>
                     <div>
                             <div  class="wrapper2-for-url-toko3">
