@@ -7,3 +7,13 @@ export class User {
     email: string;
     phone: string;
 }
+
+export class UserSignupGuest {
+  email: string;
+  name: string;
+  description: string;
+  villageId: string;
+  address: string;
+  password: string;
+
+}

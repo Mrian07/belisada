@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
   title = true;
   emailToSuccess: string;
   message: string;
-  status: string;
+  status: number;
   phoneNumber: FormControl;
   password: FormControl;
   email: FormControl;
@@ -92,7 +92,7 @@ export class SignUpComponent implements OnInit {
           this.userservice.checkEmail(this.emailChecking)
           .subscribe(
               data => {
-                  if (data.status !== '1') {
+                  if (data.status !== 1) {
                       this.message = data.message;
                       this.status = data.status;
                   } else {
@@ -109,7 +109,7 @@ export class SignUpComponent implements OnInit {
           this.userservice.checkEmail(this.emailChecking)
           .subscribe(
               data => {
-                  if (data.message !== '1') {
+                  if (data.status !== 1) {
                       this.message = data.message;
                       this.status = data.status;
                   } else {
@@ -122,7 +122,7 @@ export class SignUpComponent implements OnInit {
   }
 
   keyLa(event: any) {
-    const pattern = /[a-zA-Z]+/;
+    const pattern = /[a-zA-Z ]+/;
 
     const inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode !== 8 && !pattern.test(inputChar)) {

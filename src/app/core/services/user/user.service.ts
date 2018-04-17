@@ -1,6 +1,6 @@
 import { LocalStorageEnum } from './../../enum/local-storage.enum';
 import { Configuration } from './../../config/configuration';
-import { User } from './../cart/models/user';
+import { User, UserSignupGuest } from './../cart/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
@@ -113,6 +113,11 @@ export class UserService {
   getProfile() {
       return this.http.get(this.config.apiURL + '/profile/')
         .map(resp => resp as Profile);
+  }
+
+  createFormGuest(data: SignupData): Observable<UserSignupGuest> {
+    return this.http.post(this.config.apiURL + '/store/create', data)
+      .map(response => response as UserSignupGuest);
   }
 
     /*

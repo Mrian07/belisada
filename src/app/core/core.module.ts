@@ -39,6 +39,7 @@ import { DateUtil } from './util/date.util';
 import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
 import { StoreService } from './services/store/store.service';
 import { ClickOutsideDirective } from '../shared/directives/click-outside.directive';
+import { ModelsComponent } from '../shared/components/models/models.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { ClickOutsideDirective } from '../shared/directives/click-outside.direct
     CreateStoreComponent,
     ClickOutsideDirective,
     FieldErrorDisplayComponent,
-    ProfileComponent
+    ProfileComponent,
+    ModelsComponent
     // HomeComponent
   ],
   // declarations: [],

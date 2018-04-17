@@ -1,3 +1,4 @@
+import { FlagService } from './core/services/flag/flag.service';
 import { AuthenticationService } from './core/services/authentication/authentication.service';
 import { Interceptor } from './core/services/interceptor/interceptor.service';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -24,6 +25,7 @@ import { StoreComponent } from './components/seller/store/store.component';
 import { OnlyLoggedInUsersGuard } from './core/services/authentication/authguard';
 import { Page404Component } from './components/page-404/page-404.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -37,6 +39,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
         AppRoutingModule,
         CoreModule,
         SharedModule,
+        BrowserAnimationsModule
     ],
     providers: [
         Configuration,
@@ -55,6 +58,7 @@ import { MaintenanceComponent } from './components/maintenance/maintenance.compo
         multi: true
         },
         RecaptchaLoaderService,
+        FlagService
     ],
     bootstrap: [AppComponent]
 })
