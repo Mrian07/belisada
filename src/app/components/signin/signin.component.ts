@@ -21,6 +21,7 @@ export class SigninComponent implements OnInit {
   emailChecking: EmailChecking = new EmailChecking();
   message: string;
   status: number;
+  emailInvalid: number;
 
   constructor(
     private router: Router,
@@ -80,6 +81,11 @@ export class SigninComponent implements OnInit {
       data => {
         this.message = data.message;
         this.status = data.status;
+        if (data.status === 1) {
+          this.emailInvalid = 0;
+        } else {
+          this.emailInvalid = 1;
+        }
       },
       error => {
           console.log('error', error);

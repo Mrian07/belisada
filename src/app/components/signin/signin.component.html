@@ -9,12 +9,16 @@
         <div>
             <div class="padding-on-top">
                 <div class="title-page">Login</div>
-        
+				<div *ngIf="alert==true" class="alert-error">
+                    <p>{{ msg }}</p>
+                </div>
                 <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>
                     <div class="form-group">
                         <input type="email" class="input-style-text-90" placeholder="Email" formControlName="email" (input)="onSearchChange($event.target.value)" email name="email" required [ngClass]="{
                             'has-danger': (signinFormGroup.controls.email.invalid || status !== 1) && (signinFormGroup.controls.email.dirty),
-                            'has-success': signinFormGroup.controls.email.valid && (signinFormGroup.controls.email.dirty && signinFormGroup.controls.email.touched)
+                            'has-danger': emailInvalid == 1,
+                            'has-success': signinFormGroup.controls.email.valid && (signinFormGroup.controls.email.dirty && signinFormGroup.controls.email.touched) && emailInvalid !=1
+                            
                             }">
                         
                         <div *ngIf="signinFormGroup.controls.email.invalid && (signinFormGroup.controls.email.dirty && signinFormGroup.controls.email.touched)" class="alert alert-danger toll tooltip testing">
