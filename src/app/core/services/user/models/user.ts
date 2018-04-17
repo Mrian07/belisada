@@ -109,6 +109,7 @@ export class Profile {
 
 }
 
+
 export class EditProfileRequest {
 
     name: string;
