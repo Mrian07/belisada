@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { UserService } from '../../core/services/user/user.service';
+import { EmailChecking } from '../../core/services/user/models/user';
 
 import swal from 'sweetalert2';
 
@@ -17,6 +18,9 @@ export class SigninComponent implements OnInit {
   signinFormGroup: FormGroup;
   alert: boolean;
   msg: string;
+  emailChecking: EmailChecking = new EmailChecking();
+  message: string;
+  status: number;
 
   constructor(
     private router: Router,
@@ -43,10 +47,6 @@ export class SigninComponent implements OnInit {
 
   /* Fungsi ini untuk melakukan input data sign in dengan melakukan validasi pengecekan email, password */
   onSubmit() {
-    if (this.signinFormGroup.value.email === '' || this.signinFormGroup.value.password === '') {
-      this.alert = true;
-      this.msg = 'Silakan masukan email dan password Anda.';
-    } else {
       const signinRequest: SigninRequest = this.signinFormGroup.value;
       this.userService.signin(signinRequest).subscribe(
       result => {
@@ -64,12 +64,26 @@ export class SigninComponent implements OnInit {
         swal('belisada.co.id', 'unknown error', 'error');
         }
       );
-    }
   }
 
   /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
   goToSignUp() {
       this.router.navigateByUrl('/account/sign-up');
+  }
+
+  /* Fungsi ini untuk melakukan pengecekan email valid*/
+  onSearchChange(searchValue: string) {
+    const modelz = this.signinFormGroup.value;
+    this.emailChecking.email = modelz.email,
+    this.userService.checkEmail(this.emailChecking)
+    .subscribe(
+      data => {
+        this.message = data.message;
+        this.status = data.status;
+      },
+      error => {
+          console.log('error', error);
+      });
   }
 
 }

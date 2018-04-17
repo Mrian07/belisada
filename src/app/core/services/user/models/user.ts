@@ -22,10 +22,10 @@ export class SignupData {
 
     constructor() {}
 }
-export class EmailChecking {
+export class EmailChecking extends BaseResponseModel {
     email: string;
-    message?: string;
-    status?: string;
+    // message?: string;
+    // status?: string;
 }
 
 export class SignupResponse {
