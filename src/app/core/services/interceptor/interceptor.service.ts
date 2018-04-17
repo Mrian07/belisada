@@ -56,7 +56,7 @@ export class Interceptor implements HttpInterceptor {
           //   //this.routes.navigateByUrl('/404');
           // });
         } else if (err.status === 500) {
-          // swal('Oops!...something wrong...')
+          swal('belisada.co.id', 'Oops!...something wrong... 500', 'error');
           // .then((result) => {
           //  this.routes.navigateByUrl('/maintenance');
          // });
