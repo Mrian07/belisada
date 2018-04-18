@@ -16,7 +16,7 @@ export class SigninComponent implements OnInit {
 
   /* Mendeklarasikan nama variable*/
   signinFormGroup: FormGroup;
-  alert: boolean;
+  formSubmited: Boolean = false;
   msg: string;
   emailChecking: EmailChecking = new EmailChecking();
   message: string;
@@ -36,35 +36,36 @@ export class SigninComponent implements OnInit {
   /* Fungsi untuk membuat nama field pada form */
   createFormControl() {
     this.signinFormGroup = this.fb.group({
-    email: new FormControl('', [
-      Validators.required,
-      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-    ]),
-    password: new FormControl('', [
-      Validators.required,
-    ]),
+      email: ['', [
+        Validators.required,
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
+      password: ['', Validators.required]
     });
   }
 
   /* Fungsi ini untuk melakukan input data sign in dengan melakukan validasi pengecekan email, password */
   onSubmit() {
-      const signinRequest: SigninRequest = this.signinFormGroup.value;
+    const form = this.signinFormGroup;
+    this.formSubmited = true;
+    if (form.valid) {
+      const signinRequest: SigninRequest = form.value;
       this.userService.signin(signinRequest).subscribe(
       result => {
         // Handle result
         if (result.status === 0) {
-          this.alert = true;
           this.msg = result.message;
         } else {
           const token: string = result.token;
           this.userService.setUserToLocalStorage(token);
           this.router.navigate(['/']);
         }
-      },
-      error => {
+      }, error => {
         swal('belisada.co.id', 'unknown error', 'error');
-        }
-      );
+      });
+      this.formSubmited = false;
+      form.reset();
+      form.patchValue({email: signinRequest.email});
+    }
   }
 
   /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
