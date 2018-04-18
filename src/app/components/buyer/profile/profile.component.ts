@@ -61,11 +61,11 @@ export class ProfileComponent implements OnInit {
    /* Fungsi ini untuk membuat nama form */
    createFormControls() {
     this.createComForm = this.fb.group({
-    name: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    phone: new FormControl('', Validators.required),
-    gender: new FormControl('', Validators.required),
-    dateOfBirth: new FormControl('', Validators.required)
+      name: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      gender: ['', Validators.required],
+      dateOfBirth: ['', Validators.required]
     });
   }
 
@@ -74,7 +74,7 @@ export class ProfileComponent implements OnInit {
 
     const inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode !== 8 && !pattern.test(inputChar)) {
-        event.preventDefault();
+      event.preventDefault();
     }
   }
 
@@ -139,5 +139,14 @@ export class ProfileComponent implements OnInit {
   edit() {
     this.isField = true;
     this.isBtnSave = true;
+  }
+
+  phoneCheck(event: any) {
+    const pattern = /[0-9]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
   }
 }
