@@ -97,13 +97,11 @@ export class CreateStoreComponent implements OnInit {
   getCity(id) {
       this.storeService.getCity(id).subscribe(data => {
           this.cities = data;
-          console.log('data city', data);
       });
   }
   getDistrict(id) {
       this.storeService.getDistrict(id).subscribe(data => {
           this.districts = data;
-          console.log('data district', data);
       });
   }
   getVillage(id) {
@@ -111,7 +109,6 @@ export class CreateStoreComponent implements OnInit {
           this.villages = data;
           const model = this.store.value;
           const a = this.store.value.villageId = id.district;
-          console.log('data vilages', data);
       });
   }
 
@@ -143,9 +140,7 @@ export class CreateStoreComponent implements OnInit {
       });
   }
   setVilage(villageId) {
-      console.log('option', villageId);
       const postalId: string = this.villages.find(x => x.villageId === villageId).postal;
-      console.log('postalId: ', postalId);
       this.store.patchValue({
           postal: postalId
       });
@@ -167,7 +162,7 @@ export class CreateStoreComponent implements OnInit {
 
 
   getSelectedFiles(event: any) {
-      let files = [].slice.call(event.target.files);
+      const files = [].slice.call(event.target.files);
       this.readThis(files);
   }
 

@@ -4,8 +4,8 @@ export class City {
   cityName: string;
   createdby: any;
   updatedby: any;
-  regionId:string;
-  mcityId:string;
+  regionId: string;
+  mcityId: string;
   cityId: string;
 
   constructor() {}

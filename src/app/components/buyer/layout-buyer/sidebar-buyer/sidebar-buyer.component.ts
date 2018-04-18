@@ -10,11 +10,14 @@ import { FlagService } from '../../../../core/services/flag/flag.service';
 export class SidebarBuyerComponent implements OnInit {
     flag: string;
     btnJual: boolean;
+    public location = '' ;
 
     constructor(
         private router: Router,
         private flagService: FlagService
-    ) { }
+    ) {
+        this.location = router.url;
+    }
 
     ngOnInit() {
         this.btnJual = false;
