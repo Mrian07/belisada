@@ -227,9 +227,18 @@ export class CreateStoreComponent implements OnInit {
 
           this.storeService.create(model).subscribe(rsl => {
               if (rsl.status === 1) {
-                  swal(rsl.message);
-                  window.location.reload();
-                  // swal
+                swal({
+                  title: 'Pembuatan Toko Berhasil',
+                  text:   rsl.message,
+                  type: 'success',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Ok'
+                }).then((result) => {
+                  if (result.value) {
+                    location.reload();
+                  }
+                });
               } else {
                   swal(rsl.message);
               }
@@ -240,8 +249,9 @@ export class CreateStoreComponent implements OnInit {
       }
 
   }
+ 
   keyPress(event: any) {
-      const pattern = /[0-9\+\-\ ]/;
+      const pattern = /[0-9\+\-]/;
 
       const inputChar = String.fromCharCode(event.charCode);
       if (event.keyCode !== 8 && !pattern.test(inputChar)) {
