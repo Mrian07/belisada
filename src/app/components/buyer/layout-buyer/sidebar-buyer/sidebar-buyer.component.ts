@@ -7,10 +7,11 @@ import { FlagService } from '../../../../core/services/flag/flag.service';
     templateUrl: './sidebar-buyer.component.html',
     styleUrls: ['./sidebar-buyer.component.scss']
 })
+
 export class SidebarBuyerComponent implements OnInit {
     flag: string;
     btnJual: boolean;
-    public location = '' ;
+    public location = '';
 
     constructor(
         private router: Router,
@@ -41,5 +42,4 @@ export class SidebarBuyerComponent implements OnInit {
         this.btnJual = false;
         this.router.navigateByUrl('/buyer/profile');
     }
-
 }
