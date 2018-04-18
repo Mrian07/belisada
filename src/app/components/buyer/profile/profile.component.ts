@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
   profile: Profile = new Profile();
   gender: string;
   isField: boolean;
-  isBtnSave: boolean;
   createComForm: FormGroup;
 
   constructor(
@@ -52,7 +51,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.isField = false;
-    this.isBtnSave = false;
     this.createFormControls();
     this.fillForms();
     this.loadData();
@@ -129,8 +127,6 @@ export class ProfileComponent implements OnInit {
 
       this.loadData();
       this.isField = false;
-      this.isBtnSave = false;
-
     });
 
   }

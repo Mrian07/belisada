@@ -18,3 +18,15 @@
     width:200px;
     display: inline-block;
 }
+
+.on-edit .input-style-text{
+    border: 0px;
+    color: #777777;
+    font-size: 15px;
+    margin-top:-8px;
+    background: transparent;
+     /*for firefox*/
+     -moz-appearance: none;
+     /*for chrome*/
+     -webkit-appearance:none;
+}
