@@ -1,7 +1,7 @@
 
 <div class="b-profile">
 	<h1>Informasi Anda</h1>
-	<form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+	<form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate [ngClass]="{'on-edit':isField}">
 		<div class="row view-line">
 			<div class="col-2 title-line">Foto Profile</div> 
 			<div class="col-4"><img src="/assets/img/profile-buyer.jpg" alt=""></div>
@@ -52,8 +52,8 @@
 			</div>
 		</div>
 		<br>
-		<button type="button" class="btn btn--orange component-center" (click)="edit()" *ngIf="isBtnSave==false">Edit Profile</button>
-		<button type="submit" class="btn btn--orange component-center" *ngIf="isBtnSave==true" [disabled]="createComForm.invalid || status === 1">Save</button>
+		<button type="button" *ngIf="!isField" class="btn btn--orange component-center" (click)="edit()">Edit Profile</button>
+		<button type="submit" class="btn btn--orange component-center" *ngIf="isField" [disabled]="createComForm.invalid || status === 1">Save</button>
 	</form>
 </div>
 

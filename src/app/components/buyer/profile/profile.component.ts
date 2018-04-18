@@ -138,7 +138,6 @@ export class ProfileComponent implements OnInit {
   /* Fungsi ini untuk berpindah halaman ke halaman edit */
   edit() {
     this.isField = true;
-    this.isBtnSave = true;
   }
 
   phoneCheck(event: any) {
