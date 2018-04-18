@@ -52,7 +52,12 @@ export class CreateStoreComponent implements OnInit {
       city: new FormControl(null, Validators.required),
       district: new FormControl(null, Validators.required),
       villageId: new FormControl(null, Validators.required),
-      postal: new FormControl(null, Validators.required)
+      postal: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(5)
+
+    ]),
 
     });
 
@@ -241,5 +246,13 @@ export class CreateStoreComponent implements OnInit {
         this.validateAllFormFields(this.store);
       }
 
+  }
+  keyPress(event: any) {
+    const pattern = /[0-9\+\-\ ]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
   }
 }

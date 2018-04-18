@@ -102,10 +102,20 @@
                         </select>
                         
                         <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Silahkan Masukan Kelurahan"></app-field-error-display>
+                        <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                        <div *ngIf="store.controls.postal.errors?.minlength; else postalOn"  class="alert alert-danger toll tooltip-for-password testing" >
+                            <p class="tooltiptext"> Kode Poss Harus 5 </p>
+                         
+                        </div>
+                        <ng-template #postalOn>
+                                <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Kode Poss">
+                              
+                                    </app-field-error-display>
+                        </ng-template>
     
-                    <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal"  [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                    <!-- <input type="text" formControlName="postal" maxlength="5"  maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal"  [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}"> -->
                     <!-- <input type="text" formControlName="postal" class="input-style-text-100" placeholder="Kode Pos"> -->
-                    <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display>
+                    <!-- <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display> -->
                     <div>
                             <div  class="wrapper2-for-url-toko3">
                                     <img class="img-small-store" src="assets/img/edit.png">

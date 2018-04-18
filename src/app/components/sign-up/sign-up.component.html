@@ -79,24 +79,23 @@
 
                                 </div>
                             </div>
-                            <div class="bottom-center">
-                                <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
-                            </div>
-                            <div *ngIf="vForValidation.invalid || status === 1; else signUp">
-                                <div class="component-center">
+                            <div class="border-btn">
+                                <div class="bottom-center">
+                                    <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
+                                </div>
+                                <div *ngIf="vForValidation.invalid || status === 1; else signUp">
                                     <div class="component-center">
-                                        <button class="btn btn-size-55 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid || status === 1">Daftar</button>
+                                        <div class="component-center">
+                                            <button class="btn btn-size-55 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid || status === 1">DAFTAR</button>
+                                        </div>
                                     </div>
                                 </div>
+                                <ng-template #signUp>
+                                    <div class="component-center">
+                                        <button class="btn btn--orange btn-size-55 text-btn component-center">DAFTAR</button>
+                                    </div>
+                                </ng-template>
                             </div>
-
-
-                            <ng-template #signUp>
-                                <div class="component-center">
-                                    <button class="btn btn--orange btn-size-55 text-btn component-center">Daftar</button>
-                                </div>
-                            </ng-template>
-
                         </div>
                     </form>
                 </div>
