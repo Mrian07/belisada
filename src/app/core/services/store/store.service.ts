@@ -31,6 +31,7 @@ export class StoreService {
     // });
     return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as CheckStoreResponse);
   }
+
   /*
   With model Province
   used by create-store.component.ts
@@ -40,7 +41,7 @@ export class StoreService {
     .map(response => response as Province[]);
   }
 
-    /*
+  /*
   With model City
   used by create-store.component.ts
   */
@@ -50,7 +51,7 @@ export class StoreService {
     .map(response => response as City[]);
   }
 
-      /*
+  /*
   With model District
   used by create-store.component.ts
   */
@@ -59,13 +60,13 @@ export class StoreService {
     .map(response => response as District[]);
   }
 
-        /*
+  /*
   With model Village
   used by create-store.component.ts
   */
- getVillage(id: any): Observable<Village[]> {
-  return this.http.get(this.cfg.apiURL +  '/location' + '/village/' + id)
-      .map(response => response as Village[]);
-}
+  getVillage(id: any): Observable<Village[]> {
+    return this.http.get(this.cfg.apiURL +  '/location' + '/village/' + id)
+    .map(response => response as Village[]);
+  }
 
 }
