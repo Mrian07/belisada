@@ -24,7 +24,7 @@
 		<div class="row view-line">
 			<div class="col-2 title-line">No. Handphone</div>
 			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
-			<div class="col-4" *ngIf="isField==true"><input type="number" class="input-style-text" formControlName="phone">
+			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
 				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
 				</div>
