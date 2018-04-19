@@ -44,7 +44,7 @@
                             <input type="text" class="input-style-text-100" disabled placeholder="www.belisada.co.id/">
                         </div>
                         <div>
-                            <input type="text" class="input-style-text-100" (keypress)="onKey($event)"  formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
+                            <input type="text" class="input-style-text-100" disabled formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
                         </div>
                     </div>
     
@@ -134,7 +134,6 @@
                     <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Deskripsi Toko Mu"></app-field-error-display>
     
                     <div class="component-center">
-                        <button (click)="asd(fs)">asdasd</button>
                         <button class="btn btn-size-30 btn btn--orange component-center">Simpan</button>
                     </div>
                 </div>

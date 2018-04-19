@@ -213,9 +213,6 @@ export class CreateStoreComponent implements OnInit {
   isFieldValid(field: string) {
     return !this.store.get(field).valid && this.store.get(field).touched;
   }
-  asd(Form:NgForm) {
-    console.log('form : ', Form);
-  }
   onSent() {
     if (this.store.valid) {
       if (this.nameChecking) {
