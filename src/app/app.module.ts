@@ -32,7 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         AppComponent,
         StoreComponent,
         Page404Component,
-        MaintenanceComponent,
+        MaintenanceComponent
     ],
     imports: [
         BrowserModule,
