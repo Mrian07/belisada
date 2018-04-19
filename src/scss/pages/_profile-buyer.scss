@@ -30,3 +30,19 @@
      /*for chrome*/
      -webkit-appearance:none;
 }
+
+.on-edit .mydp, .mydp .headertodaybtn{
+    border: 0px;
+}
+
+.on-edit button.btnclear.btnclearenabled{
+    display: none;
+}
+
+.on-edit span.mydpicon.icon-mydpcalendar{
+    display: none;
+}
+
+.on-edit .selectiongroup{
+    padding-left:10px;
+}

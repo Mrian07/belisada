@@ -47,20 +47,20 @@
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Tanggal Lahir</div>
-			<div class="col-4" *ngIf="isField==false">&nbsp;&nbsp;&nbsp;&nbsp;{{profile.dateOfBirth}}</div>
+			<!-- <div class="col-4" *ngIf="isField==false">&nbsp;&nbsp;&nbsp;&nbsp;{{profile.dateOfBirth}}</div>
 			<div class="col-3" *ngIf="isField==true"> 
 				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
 				<div *ngIf="createComForm.controls.dateOfBirth.invalid && (createComForm.controls.dateOfBirth.dirty && createComForm.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
 				</div>
-			</div>
+			</div> -->
 
-			<!-- <div class="col-3"> 
+			<div class="col-3"> 
 				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
 				<div *ngIf="createComForm.controls.dateOfBirth.invalid && (createComForm.controls.dateOfBirth.dirty && createComForm.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
 				</div>
-			</div> -->
+			</div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Jenis Kelamin</div>
