@@ -8,7 +8,7 @@
             </div>
         </div>
         <hr>
-        <form [formGroup]="store" (ngSubmit)="onSent()" novalidate>
+        <form [formGroup]="store" (ngSubmit)="onSent()" #fs="ngForm"  novalidate>
             <div class="wrapper-for-store-profile">
                 <div class="padding-for-photo">
                     <label>Upload Foto Toko Mu disini : </label>
@@ -44,7 +44,7 @@
                             <input type="text" class="input-style-text-100" disabled placeholder="www.belisada.co.id/">
                         </div>
                         <div>
-                            <input type="text" class="input-style-text-100" placeholder="Url Toko">
+                            <input type="text" class="input-style-text-100" disabled  formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
                         </div>
                     </div>
     
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="text" formControlName="name" class="input-style-text-100" placeholder="Nama Toko">
+                    <input type="text" formControlName="name" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Nama Toko" >
                     <div *ngIf="store.controls.name.errors && store.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
                         <div class="testing">
                             <span class="tooltiptext">{{serverMessage}}</span>
@@ -134,6 +134,7 @@
                     <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Deskripsi Toko Mu"></app-field-error-display>
     
                     <div class="component-center">
+                        <button (click)="asd(fs)">asdasd</button>
                         <button class="btn btn-size-30 btn btn--orange component-center">Simpan</button>
                     </div>
                 </div>
