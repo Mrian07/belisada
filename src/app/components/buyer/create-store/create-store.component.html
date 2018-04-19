@@ -44,7 +44,7 @@
                             <input type="text" class="input-style-text-100" disabled placeholder="www.belisada.co.id/">
                         </div>
                         <div>
-                            <input type="text" class="input-style-text-100" disabled  formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
+                            <input type="text" class="input-style-text-100" (keypress)="onKey($event)"  formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
                         </div>
                     </div>
     

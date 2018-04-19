@@ -263,6 +263,15 @@ export class CreateStoreComponent implements OnInit {
     }
   }
 
+  onKey(event: any) {
+    const pattern = /[\\]+/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+  }
+
   onNameKeydown(event: any) {
     const pattern = /[a-zA-Z 0-9\+\- ]+/;
 
