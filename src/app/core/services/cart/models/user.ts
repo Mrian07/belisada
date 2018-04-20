@@ -17,5 +17,7 @@ export class UserSignupGuest {
   villageId: string;
   address: string;
   password: string;
+  city?: string;
+  country?: string;
 
 }

@@ -2,7 +2,7 @@ import { LocalStorageEnum } from './../../enum/local-storage.enum';
 import { Configuration } from './../../config/configuration';
 import { User, UserSignupGuest } from './../cart/models/user';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import {
   SignupResponse, SignupData, SigninRequest, ResetPasswdResponse, SendEmailRequest, SendEmailResponse,
@@ -128,5 +128,17 @@ export class UserService {
       return this.http.put(this.config.apiURL + '/profile/update/', updateData)
         .map(resp => resp as EditProfileResponse);
   }
+
+  getIpAddress(): Observable<UserSignupGuest> {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json'
+  });
+    return this.http
+      .get(this.config.apiURL + '/global/ip')
+      .map(response => response as UserSignupGuest);
+  }
+  private handleError(error: HttpErrorResponse): Observable<any> {
+    console.error('observable error: ', error);
+    return Observable.throw(error);
+ }
 
 }

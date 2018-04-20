@@ -30,9 +30,15 @@ export class HomeComponent implements OnInit {
   storeName: FormControl;
   pending_submit: Boolean = false;
   timer: any;
+  ip: string;
+  country: string;
   constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService) {}
 
   ngOnInit() {
+    this.userS.getIpAddress().subscribe(data => {
+      this.ip = data.city;
+      this.country = data.country;
+    });
 
       this.storeName = new FormControl(null, Validators.required);
 
