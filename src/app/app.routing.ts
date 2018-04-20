@@ -121,7 +121,6 @@ const routes: Routes = [
         component: LayoutSellerComponent,
         canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
-
             {
                 path: 'profile-seller',
                 component: ProfileSellerComponent,
