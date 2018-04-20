@@ -1,3 +1,4 @@
+import { ProfileSellerComponent } from './components/seller/profile-seller/profile-seller.component';
 import { SignInSellerComponent } from './components/sign-in-seller/sign-in-seller.component';
 import { MaintenanceComponent } from './components/maintenance/maintenance.component';
 import { Page404Component } from './components/page-404/page-404.component';
@@ -120,6 +121,15 @@ const routes: Routes = [
         component: LayoutSellerComponent,
         canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
+
+            {
+                path: 'profile-seller',
+                component: ProfileSellerComponent,
+                data: {
+                    title: 'Profile Seller'
+                }
+            },
+
             // {
             //     path: 'store',
             //     component: StoreComponent,

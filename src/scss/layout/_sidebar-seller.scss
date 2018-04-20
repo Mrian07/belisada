@@ -10,11 +10,18 @@
     background-color: #eee;
     // width: 300px;
     margin: 10px;
+    cursor: pointer;
 }
+
+.dummy-backgorund:hover {
+    background-color: #f6f6f6;
+}
+
 .profile-toko-text {
     color: black !important;
     text-transform: uppercase;
 }
+
 .img-small-store-for-sidebar {
     width: 37px;
     padding-left: 11px;
