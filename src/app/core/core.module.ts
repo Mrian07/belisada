@@ -1,3 +1,4 @@
+import { ProfileSellerComponent } from './../components/seller/profile-seller/profile-seller.component';
 import { SignInSellerComponent } from './../components/sign-in-seller/sign-in-seller.component';
 import { ProfileComponent } from './../components/buyer/profile/profile.component';
 import { FieldErrorDisplayComponent } from './../components/buyer/create-store/field-error-display/field-error-display.component';
@@ -67,7 +68,8 @@ import { ModelsComponent } from '../shared/components/models/models.component';
     FieldErrorDisplayComponent,
     ProfileComponent,
     ModelsComponent,
-    SignInSellerComponent
+    SignInSellerComponent,
+    ProfileSellerComponent
     // HomeComponent
   ],
   // declarations: [],
