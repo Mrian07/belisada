@@ -25,19 +25,17 @@
     </div>
     <div class="col-8">
         <div class="row view-line">
-            <div class="row">
-                <div class="col-2">
-                    <label class="switch">
-                        <input type="checkbox"/>
-                        <div class="slider round">
-                            <span class="true">OPEN</span>
-                            <span class="false">CLOSE</span>
-                        </div>
-                    </label>
-                </div>
-                <div class="col-10">
-                    <p>Fiture Buka / Tutup Toko<br>Baca selengkapnya.</p>
-                </div>
+            <div class="open-close-left">
+                <label class="switch">
+                    <input type="checkbox"/>
+                    <div class="slider round">
+                        <span class="true">OPEN</span>
+                        <span class="false">CLOSE</span>
+                    </div>
+                </label>
+            </div>
+            <div class="open-close-right">
+                <p>Fiture Buka / Tutup Toko<br>Baca selengkapnya.</p>
             </div>
         </div>    
         <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate [ngClass]="{'on-edit-store':!isEdit}">
