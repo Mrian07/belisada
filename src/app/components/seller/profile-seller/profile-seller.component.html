@@ -40,6 +40,7 @@
                 </div>
             </div>
         </div>    
+        <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate [ngClass]="{'on-edit-store':!isEdit}">
             <div class="row view-line">
                 <div class="col-3 title-line">URL Toko</div> 
                 <div class="col-9 title-line">www.belisada.id/makmur</div> 
@@ -50,22 +51,28 @@
             </div>
             <div class="row view-line">
                 <div class="col-3 title-line">Alamat Toko</div> 
-                <div class="col-9 title-line">Jl. Asia Afrika</div> 
+                <div class="col-9 title-line"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="address"></div> 
             </div>
             <div class="row view-line">
                 <div class="col-3 title-line">Provinsi</div> 
-                <div class="col-9 title-line">Jawa Barat</div> 
+                <div class="col-9 title-line"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="province"></div> 
             </div>
             <div class="row view-line">
                 <div class="col-3 title-line">Kota/ Kabupaten</div> 
-                <div class="col-9 title-line">Bandung</div> 
+                <div class="col-9 title-line"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="city"></div> 
             </div>
             <div class="row view-line">
                 <div class="col-3 title-line">Kecamatan</div> 
-                <div class="col-9 title-line">Bandung Barat</div> 
+                <div class="col-9 title-line"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="district"></div> 
+            </div>
+            <div class="row view-line">
+                <div class="col-3 title-line">Kelurahan</div> 
+                <div class="col-9 title-line"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="villageId"></div> 
             </div>
             <div class="edit-profile-toko">
-                <button class="btn btn--yellow"><fa name="edit"></fa> Edit</button>
+                <button class="btn btn--yellow" *ngIf="!isEdit" (click)="editStore()"><fa name="edit"></fa> Edit</button>
+                <button type="submit" class="btn btn--yellow" *ngIf="isEdit" [disabled]="createComForm.invalid || status === 1"><fa name="edit"></fa> Save</button>
             </div>
+        </form>    
     </div>
 </div>
