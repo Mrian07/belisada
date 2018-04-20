@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { CreateStoreResponse, CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './models/store.model';
+import * as storeModel from './models/store.model';
 import { Configuration } from './../../config/configuration';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -13,13 +13,13 @@ export class StoreService {
 
   // param: {name: string, address: string, description: string?, picture: string?}
   // used by create-store component
-  create(data: CreateStoreRequest) {
-    return this.http.post(this.cfg.apiURL + '/store/upgrade', data).map(rsl => rsl as CreateStoreResponse);
+  create(data: storeModel.CreateStoreRequest) {
+    return this.http.post(this.cfg.apiURL + '/store/upgrade', data).map(rsl => rsl as storeModel.CreateStoreResponse);
   }
 
   // param: {name: string, address: string, description: string}
   // used by create-store component
-  isExist(data: CheckStoreRequest): Observable<CheckStoreResponse> {
+  isExist(data: storeModel.CheckStoreRequest): Observable<storeModel.CheckStoreResponse> {
     // return new Observable(obs => {
     //   setTimeout(() => {
     //     const res: CheckStoreResponse = new CheckStoreResponse();
@@ -29,7 +29,33 @@ export class StoreService {
     //     obs.complete();
     //   }, 1500);
     // });
-    return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as CheckStoreResponse);
+    return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as storeModel.CheckStoreResponse);
+  }
+
+  // param: {name: string, address: string, description: string}
+  // used by detail-store component
+  detail(data: storeModel.DetailStoreRequest): Observable<storeModel.DetailStoreResponse> {
+    return new Observable(obs => {
+      const respOk: storeModel.DetailStoreResponse = new storeModel.DetailStoreResponse();
+      const respEr: storeModel.DetailStoreResponse = new storeModel.DetailStoreResponse();
+      setTimeout(() => {
+        respOk.status = 1;
+        respOk.data = {
+          name: 'Toko Segala aya',
+          address: 'Jalan kaki selamanya',
+          description: 'Stok ga udah-udah',
+          picture: ''
+        };
+        obs.next(respOk);
+      }, 1500);
+      setTimeout(() => {
+        respEr.status = 0;
+        respEr.message = 'Internal Error';
+        obs.error(respEr);
+        obs.complete();
+      }, 3000);
+    });
+    // return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as DetailStoreResponse);
   }
 
   /*
