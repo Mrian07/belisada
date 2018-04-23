@@ -22,7 +22,9 @@
 }
 
 .barStore{
-    border-right: 3px solid #db9c14;
+    border-right: 3px solid #dddddd;
+    border-bottom: 3px solid #dddddd;
+    padding: 20px;
 }
 
 .conLoginStore{
@@ -37,6 +39,29 @@
 .b-form{
     border:1px solid #292827;
     border-radius: 8px;
-    padding: 30px 10px 30px 10px;
+    padding: 30px;
     box-shadow:  0 8px 6px -6px #8f8d8d;
+}
+
+.input-login-form{
+    border: 1px solid #dddddd;
+    padding: 16px;
+    border-radius: 0px 5px 5px 0px;
+    width: 380px;
+}
+
+.storeIcon{
+    border-top: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    padding: 7px;
+    border-radius: 5px 0px 0px 5px;
+    width: 65px;
+    float: left;
+    background: #dddddd;
+    font-size: 20px;
+}
+
+.text-login{
+    font-size: 20px;
 }
