@@ -69,7 +69,7 @@ export class SignInSellerComponent implements OnInit {
   }
 
   /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
-  goToSignUp() {
+  goHome() {
     this.router.navigateByUrl('/account/sign-up');
   }
 
