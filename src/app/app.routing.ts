@@ -32,20 +32,20 @@ const routes: Routes = [
                 data: {
                     title: 'home'
                 }
-            },
+            }
         ]
+    },
+    {
+        path: 'sign-in-seller',
+        component: SignInSellerComponent,
+        data: {
+            title: 'Sign In Seller'
+        }
     },
     {
         path: 'account',
         component: AuthenticationComponent,
         children: [
-            {
-                path: 'sign-in-seller',
-                component: SignInSellerComponent,
-                data: {
-                    title: 'Sign In Seller'
-                }
-            },
             {
                 path: 'sign-in',
                 component: SigninComponent,

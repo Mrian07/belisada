@@ -69,8 +69,8 @@ export class SignInSellerComponent implements OnInit {
   }
 
   /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
-  goToSignUp() {
-    this.router.navigateByUrl('/account/sign-up');
+  goHome() {
+    this.router.navigateByUrl('/');
   }
 
   /* Fungsi ini untuk melakukan pengecekan email valid*/
