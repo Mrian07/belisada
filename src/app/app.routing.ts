@@ -35,16 +35,16 @@ const routes: Routes = [
             }
         ]
     },
-    {
-        path: '**',
-        component: LayoutComponent,
-        children: [
-            {
-                path: '**',
-                component: Page404Component,
-            }
-        ]
-    },
+    // {
+    //     path: '**',
+    //     component: LayoutComponent,
+    //     children: [
+    //         {
+    //             path: '**',
+    //             component: Page404Component,
+    //         }
+    //     ]
+    // },
     {
         path: 'sign-in-seller',
         component: SignInSellerComponent,
