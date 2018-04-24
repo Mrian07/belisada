@@ -58,6 +58,24 @@ export class StoreService {
     // return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as DetailStoreResponse);
   }
 
+  // param: {name: string, address: string, description: string?, picture: string?}
+  // used by create-store component
+  update(data: storeModel.UpdateStoreRequest) {
+    return this.http.post(this.cfg.apiURL + '/store/upgrade', data).map(rsl => rsl as storeModel.UpdateStoreResponse);
+  }
+
+  openStore(stat: boolean) {
+    return new Observable(obs => {
+      const rsp: storeModel.OpenStoreResponse = new storeModel.OpenStoreResponse();
+      setTimeout(() => {
+        rsp.status = 1;
+        rsp.message = 'sukses buka/tutup toko';
+        obs.next(rsp);
+      }, 1500);
+
+    });
+  }
+
   /*
   With model Province
   used by create-store.component.ts
