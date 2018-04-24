@@ -167,7 +167,9 @@
     $btn-color: btn-color("orange");
     @include btn-theme($btn-color, $btn-text-color-light);
 }
-
+.btn-size-100 {
+    width: 100%;
+}
 .btn-size-80 {
     width: 80%;
 }

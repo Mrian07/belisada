@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-profile-seller',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileSellerComponent implements OnInit {
 
-  constructor() { }
+  isEdit: boolean;
+  createComForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+  ) { }
 
   ngOnInit() {
+    this.isEdit = false;
+    this.createFormControls();
+  }
+
+  /* Fungsi ini untuk membuat nama form */
+  createFormControls() {
+    this.createComForm = this.fb.group({
+      address: ['', Validators.required],
+      province: ['', Validators.required],
+      city: ['', Validators.required],
+      district: ['', Validators.required],
+      villageId: ['', Validators.required]
+    });
+  }
+
+  editStore() {
+    this.isEdit = true;
   }
 
 }

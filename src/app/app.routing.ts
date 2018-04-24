@@ -32,20 +32,20 @@ const routes: Routes = [
                 data: {
                     title: 'home'
                 }
-            },
+            }
         ]
+    },
+    {
+        path: 'sign-in-seller',
+        component: SignInSellerComponent,
+        data: {
+            title: 'Sign In Seller'
+        }
     },
     {
         path: 'account',
         component: AuthenticationComponent,
         children: [
-            {
-                path: 'sign-in-seller',
-                component: SignInSellerComponent,
-                data: {
-                    title: 'Sign In Seller'
-                }
-            },
             {
                 path: 'sign-in',
                 component: SigninComponent,
@@ -121,7 +121,6 @@ const routes: Routes = [
         component: LayoutSellerComponent,
         canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
-
             {
                 path: 'profile-seller',
                 component: ProfileSellerComponent,
@@ -145,8 +144,18 @@ const routes: Routes = [
     },
     {
         path: '**',
-        component: Page404Component,
+        component: LayoutComponent,
+        children: [
+            {
+                path: '**',
+                component: Page404Component,
+            }
+        ]
     },
+    // {
+    //     path: '**',
+    //     component: Page404Component,
+    // },
     {
         path: 'maintenance',
         component: MaintenanceComponent,
