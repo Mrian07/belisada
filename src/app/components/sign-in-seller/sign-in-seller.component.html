@@ -15,7 +15,7 @@
 
             <div class="conLoginStore">
                 <div class="title-store-login">Store Login</div>
-                <div *ngIf="msg!==undefined && signinFormGroup.pristine" class="alert-error">
+                <div *ngIf="msg!==undefined && signinFormGroup.pristine" class="alert-error-store">
                     <p>{{ msg }}</p>
                 </div>
                 <div class="b-form">
@@ -27,7 +27,7 @@
                                 'has-danger': signinFormGroup.controls.email.invalid && (signinFormGroup.controls.email.dirty || formSubmited),
                                 'has-success': signinFormGroup.controls.email.valid}">
                 
-                            
+                                <i class="inverted circular search link icon"></i>
                             <div *ngIf="signinFormGroup.controls.email.invalid && (signinFormGroup.controls.email.dirty || formSubmited)" class="alert alert-danger toll tooltip testing">
                                 <span class="tooltiptext">Format email invalid</span>
                             </div>    
