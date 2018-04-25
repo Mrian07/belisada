@@ -15,10 +15,18 @@ export class AuthenticationService {
     Used by: app.module.ts
     Description: Fungsi ini untuk melakukan pengecekan token dari local storage ke backend.
     */
+
+    token: any;
+
     checkToken() {
-        const token = localStorage.getItem('token');
+        if (localStorage.getItem('isRemember') === 'true') {
+            this.token = localStorage.getItem('token');
+        } else {
+            this.token = sessionStorage.getItem('token');
+        }
+
         const objToken = {
-          token : token
+          token : this.token
         } ;
         return this.http.post(this.configuration.apiURL + '/account/checktoken', objToken)
         .map(resp => resp as Token);
@@ -30,9 +38,13 @@ export class AuthenticationService {
     Description: Fungsi ini mengambil token yang tersimpan pada local storage.
     */
     getToken() {
-        const token = localStorage.getItem('token');
-        if (token) {
-            return token;
+        if (localStorage.getItem('isRemember') === 'true') {
+            this.token = localStorage.getItem('token');
+        } else {
+            this.token = sessionStorage.getItem('token');
+        }
+        if (this.token) {
+            return this.token;
         }
     }
 }

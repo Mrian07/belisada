@@ -22,6 +22,7 @@ export class SignInSellerComponent implements OnInit {
   message: string;
   status: number;
   emailInvalid: number;
+  viewPass: Boolean = false;
 
   constructor(
     private router: Router,
@@ -32,6 +33,14 @@ export class SignInSellerComponent implements OnInit {
   ngOnInit() {
     this.createFormControl();
   }
+
+  // test() {
+  //   const testSes = 'testing';
+  //   sessionStorage.setItem('id', testSes);
+  //   const data = sessionStorage.getItem('id');
+  //   sessionStorage.clear();
+  //   console.log('apa: ', data);
+  // }
 
   /* Fungsi untuk membuat nama field pada form */
   createFormControl() {
@@ -92,6 +101,19 @@ export class SignInSellerComponent implements OnInit {
           console.log('error', error);
       });
   }
+
+
+  togglePass() {
+    this.viewPass = !this.viewPass;
+    const el = (<HTMLInputElement>document.getElementById('password'));
+    if (this.viewPass) {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
+
+  
 
 
 }
