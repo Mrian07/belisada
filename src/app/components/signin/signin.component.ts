@@ -22,6 +22,7 @@ export class SigninComponent implements OnInit {
   message: string;
   status: number;
   emailInvalid: number;
+  viewPass: Boolean = false;
   isRemember: string;
 
   constructor(
@@ -101,6 +102,16 @@ export class SigninComponent implements OnInit {
       error => {
           console.log('error', error);
       });
+  }
+
+  togglePass() {
+    this.viewPass = !this.viewPass;
+    const el = (<HTMLInputElement>document.getElementById('password'));
+    if (this.viewPass) {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
   }
 
 }

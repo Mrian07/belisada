@@ -112,7 +112,6 @@ export class SignInSellerComponent implements OnInit {
       });
   }
 
-
   togglePass() {
     this.viewPass = !this.viewPass;
     const el = (<HTMLInputElement>document.getElementById('password'));
@@ -122,8 +121,5 @@ export class SignInSellerComponent implements OnInit {
       el.type = 'password';
     }
   }
-
-  
-
 
 }
