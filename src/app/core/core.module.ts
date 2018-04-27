@@ -1,3 +1,4 @@
+import { FilterPipe } from './../shared/pipes/filter.pipe';
 import { ProfileSellerComponent } from './../components/seller/profile-seller/profile-seller.component';
 import { SignInSellerComponent } from './../components/sign-in-seller/sign-in-seller.component';
 import { ProfileComponent } from './../components/buyer/profile/profile.component';
@@ -69,7 +70,8 @@ import { ModelsComponent } from '../shared/components/models/models.component';
     ProfileComponent,
     ModelsComponent,
     SignInSellerComponent,
-    ProfileSellerComponent
+    ProfileSellerComponent,
+    FilterPipe
     // HomeComponent
   ],
   // declarations: [],
