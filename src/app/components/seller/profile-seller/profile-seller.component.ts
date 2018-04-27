@@ -1,5 +1,9 @@
+import { NgForm } from '@angular/forms';
+import swal from 'sweetalert2';
+import { UpdateStoreRequest, ProfileStoreResponse } from './../../../core/services/store/models/store.model';
+import { StoreService } from './../../../core/services/store/store.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Village, City, Province, District } from '../../../core/services/store/models/address';
 
 @Component({
   selector: 'app-profile-seller',
@@ -8,31 +12,170 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 })
 export class ProfileSellerComponent implements OnInit {
 
-  isEdit: boolean;
-  createComForm: FormGroup;
+  onViewAddress: Boolean = true;
+  onViewDesc: Boolean = true;
+  store: ProfileStoreResponse = new ProfileStoreResponse();
+  updateAddress: UpdateStoreRequest = new UpdateStoreRequest();
+  updateDesc: UpdateStoreRequest = new UpdateStoreRequest();
+  updateStatus: UpdateStoreRequest = new UpdateStoreRequest();
+  provinces: Province[];
+  serverMessage: String;
+  cities: City[];
+  districts: District[];
+  villages: Village[];
 
   constructor(
-    private fb: FormBuilder,
+    private storeService: StoreService
   ) { }
 
   ngOnInit() {
-    this.isEdit = false;
-    this.createFormControls();
-  }
-
-  /* Fungsi ini untuk membuat nama form */
-  createFormControls() {
-    this.createComForm = this.fb.group({
-      address: ['', Validators.required],
-      province: ['', Validators.required],
-      city: ['', Validators.required],
-      district: ['', Validators.required],
-      villageId: ['', Validators.required]
+    this.storeService.profile().subscribe(data => {
+      this.store = data;
     });
   }
 
-  editStore() {
-    this.isEdit = true;
+  /* address suggestion*/
+  getRegion() {
+    this.storeService.getProvince('209').subscribe(data => {
+      this.provinces = data;
+    });
+  }
+  setRegion(o) {
+    this.store.regionName = o.regionName;
+    this.store.regionId = o.regionId;
+    delete this.store.cityName;
+  }
+  hideRegionSuggest() {
+    setTimeout(() => delete this.provinces, 300);
+  }
+
+  getCity() {
+    this.storeService.getCity(this.store.regionId).subscribe(data => {
+      this.cities = data;
+    });
+  }
+  setCity(o) {
+    this.store.cityName = o.cityName;
+    this.store.cityId = o.cityId;
+    delete this.store.districtName;
+  }
+  hideCitySuggest() {
+    setTimeout(() => delete this.cities, 300);
+  }
+
+  getDistrict() {
+    this.storeService.getDistrict(this.store.cityId).subscribe(data => {
+      this.districts = data;
+    });
+  }
+  setDistrict(o) {
+    this.store.districtName = o.districtName;
+    this.store.districtId = o.districtId;
+    delete this.store.villageName;
+  }
+  hideDistrictSuggest() {
+    setTimeout(() => delete this.districts, 300);
+  }
+
+  getVillage() {
+    this.storeService.getVillage(this.store.districtId).subscribe(data => {
+      this.villages = data;
+    });
+  }
+  setVillage(o) {
+    this.store.villageName = o.villageName;
+    this.store.villageId = o.villageId;
+  }
+  hideVillageSuggest() {
+    setTimeout(() => delete this.villages, 300);
+  }
+
+  /* open|close store */
+  changeStatus(el) {
+    let msg: string;
+    if (this.store.isoffday === false) {
+      msg = 'Yakin akan menutup toko';
+      this.updateStatus.isoffday = true;
+    } else {
+      msg = 'Yakin akan membuka toko';
+      this.updateStatus.isoffday = false;
+    }
+    swal({
+      title: msg,
+      type: 'warning',
+      showCancelButton: true,
+    }).then((result) => {
+      // console.log('stat:', result);
+      if (result.value) {
+        this.storeService.updateStatus(this.updateStatus).subscribe(rsl => {
+          if (rsl.status !== 1) {
+            swal(rsl.message);
+          }
+        });
+      } else {
+        el.checked = !el.checked;
+      }
+    });
+  }
+
+  /* editing store address */
+  editAddress() {
+    this.onViewAddress = false;
+  }
+  saveAddress(form: NgForm) {
+    const data: UpdateStoreRequest = new UpdateStoreRequest();
+    data.address = this.store.address;
+    data.villageId = this.store.villageId;
+
+    if (Object.keys(data).length !== 2) {
+      return swal('Pastikan alamat disi dengan benar');
+    }
+    this.storeService.updateAddress(data).subscribe(rsl => {
+      if (rsl.status === 1) {
+        form.reset();
+        this.onViewAddress = true;
+        Object.assign(this.store, rsl.data);
+        // this.updateAddress = new UpdateStoreRequest();
+      } else {
+        swal(rsl.message);
+      }
+      console.log('updt:', rsl);
+    });
+  }
+  setUpdate(u) {
+    console.log('sua:', u);
+    if (this.store[u.name] === u.model) {
+      this.updateAddress[u.name] = u.model;
+    } else {
+      delete this.updateAddress[u.name];
+    }
+  }
+  needUpdate() {
+    return Object.keys(this.updateAddress).length > 0 ? true : false;
+  }
+
+  /* editing store detail */
+  editDesc() {
+    this.onViewDesc = false;
+  }
+  setUpdateDesc(el) {
+    if (this.store.description === el.model) {
+      delete this.updateDesc[el.name];
+    } else {
+      this.updateDesc[el.name] = el.model;
+    }
+  }
+  saveDesc(fm) {
+    // return console.log('tes',fm);
+    this.storeService.updateDesc(this.updateDesc).subscribe(rsl => {
+      if (rsl.status === 1) {
+        this.onViewDesc = true;
+        this.updateDesc = new UpdateStoreRequest();
+      } else {
+        swal(rsl.message);
+      }
+      console.log('updt:', rsl);
+    });
   }
 
 }

@@ -8,31 +8,31 @@ import { Token } from './models/authentication.model';
 
 @Injectable()
 export class AuthenticationService {
-    constructor(private configuration: Configuration, private http: HttpClient, private routes: Router) { }
+  constructor(private configuration: Configuration, private http: HttpClient, private routes: Router) { }
 
-    /*
-    param:
-    Used by: app.module.ts
-    Description: Fungsi ini untuk melakukan pengecekan token dari local storage ke backend.
-    */
-    checkToken() {
-        const token = localStorage.getItem('token');
-        const objToken = {
-          token : token
-        } ;
-        return this.http.post(this.configuration.apiURL + '/account/checktoken', objToken)
-        .map(resp => resp as Token);
-    }
+  /*
+  param:
+  Used by: app.module.ts
+  Description: Fungsi ini untuk melakukan pengecekan token dari local storage ke backend.
+  */
+  checkToken() {
+    const token = localStorage.getItem('token');
+    const objToken = {
+      token : token
+    };
+    return this.http.post(this.configuration.apiURL + '/account/checktoken', objToken)
+    .map(resp => resp as Token);
+  }
 
-    /*
-    param:
-    Used by: app.module.ts
-    Description: Fungsi ini mengambil token yang tersimpan pada local storage.
-    */
-    getToken() {
-        const token = localStorage.getItem('token');
-        if (token) {
-            return token;
-        }
+  /*
+  param:
+  Used by: app.module.ts
+  Description: Fungsi ini mengambil token yang tersimpan pada local storage.
+  */
+  getToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      return token;
     }
+  }
 }
