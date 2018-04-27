@@ -22,6 +22,8 @@ export class SigninComponent implements OnInit {
   message: string;
   status: number;
   emailInvalid: number;
+  viewPass: Boolean = false;
+  isRemember: string;
 
   constructor(
     private router: Router,
@@ -39,7 +41,8 @@ export class SigninComponent implements OnInit {
       email: ['', [
         Validators.required,
         Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      isRemember: ['']
     });
   }
 
@@ -48,6 +51,7 @@ export class SigninComponent implements OnInit {
     const form = this.signinFormGroup;
     this.formSubmited = true;
     if (form.valid) {
+
       const signinRequest: SigninRequest = form.value;
       this.userService.signin(signinRequest).subscribe(
       result => {
@@ -56,7 +60,14 @@ export class SigninComponent implements OnInit {
           this.msg = result.message;
         } else {
           const token: string = result.token;
-          this.userService.setUserToLocalStorage(token);
+
+          if (form.value.isRemember === 'true') {
+            this.userService.setUserToLocalStorage(token);
+            this.userService.setRemember('true');
+          } else {
+            this.userService.setUserToSessionStorage(token);
+            this.userService.setRemember('false');
+          }
           this.router.navigate(['/']);
         }
       }, error => {
@@ -91,6 +102,16 @@ export class SigninComponent implements OnInit {
       error => {
           console.log('error', error);
       });
+  }
+
+  togglePass() {
+    this.viewPass = !this.viewPass;
+    const el = (<HTMLInputElement>document.getElementById('password'));
+    if (this.viewPass) {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
   }
 
 }

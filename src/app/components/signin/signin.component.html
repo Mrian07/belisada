@@ -23,16 +23,20 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="password" class="input-style-text-90" placeholder="Password" formControlName="password" required [ngClass]="{
+                        <input type="password" class="input-style-text-90" placeholder="Password" id="password" formControlName="password" required [ngClass]="{
                             'has-danger': signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched),
                             'has-success': signinFormGroup.controls.password.valid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched)
                             }">
+
+                            <div class="togglePassBuy" (click)="togglePass()"><fa name="fas fa-eye"></fa></div>
+
                         <div *ngIf="signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty || formSubmited)" class="alert alert-danger toll tooltip testing">
                             <span class="tooltiptext">Password tidak boleh kosong</span>
                         </div>    
                     </div>
                     <div class="border-btn">
                         <div class="text-registration">
+                            <input type="checkbox" formControlName="isRemember" value="true"> Ingatkan<br>
                             Lupa Password? <a routerLink="/account/forgot-password" class="link-text">Klik</a> Disini
                         </div>
                         <div class="component-center">
