@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
-import { SubscribeRequest, SubscribeResponse } from './model/subscribe-m';
-import { Configuration } from '../../config/configuration';
+import { Observable } from 'rxjs/Observable';
+
+import { Configuration } from '@belisada/core/config';
+import { SubscribeResponse, SubscribeRequest } from '@belisada/core/models';
 
 @Injectable()
 export class SubscribeService {

@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { SubscribeService } from './subscribe.service';
+import { SubscribeService } from '@belisada/core/services';
 
 describe('SubscribeService', () => {
   beforeEach(() => {

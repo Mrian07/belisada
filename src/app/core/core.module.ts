@@ -25,23 +25,40 @@ import { SigninComponent } from '../components/signin/signin.component';
 import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from '../components/reset-password/reset-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from './services/user/user.service';
 import { RecaptchaModule, RecaptchaLoaderService, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './config/configuration';
-import { JWTUtil } from './util/jwt.util';
 import { AuthenticationComponent } from '../components/layout/authentication/authentication.component';
 import { LeftComponent } from '../components/layout/authentication/left/left.component';
 import { SignUpActivationComponent } from '../components/sign-up-activation/sign-up-activation.component';
 import { LayoutSellerComponent } from '../components/seller/layout-seller/layout-seller.component';
 import { SidebarLayoutComponent } from '../components/seller/layout-seller/sidebar-layout/sidebar-layout.component';
 import { TopLayoutSellerComponent } from '../components/seller/layout-seller/top-layout-seller/top-layout-seller.component';
-import { DateUtil } from './util/date.util';
 import { CreateStoreComponent } from '../components/buyer/create-store/create-store.component';
-import { StoreService } from './services/store/store.service';
+// import { StoreService } from './services/store/store.service';
 import { ClickOutsideDirective } from '../shared/directives/click-outside.directive';
 import { ModelsComponent } from '../shared/components/models/models.component';
+import { JWTUtil, DateUtil } from '@belisada/util';
+import { UserService, StoreService } from '@belisada/services';
+
+const BELISADA_UTILS = [
+  JWTUtil,
+  DateUtil,
+];
+
+const BELISADA_PROVIDERS = [
+  Configuration,
+  UserService,
+  StoreService,
+  {
+    provide: RECAPTCHA_SETTINGS,
+    useValue: {
+      siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
+    } as RecaptchaSettings,
+  },
+  RecaptchaLoaderService
+];
 
 @NgModule({
   declarations: [
@@ -85,18 +102,8 @@ import { ModelsComponent } from '../shared/components/models/models.component';
     MyDatePickerModule,
   ],
   providers: [
-    Configuration,
-    JWTUtil,
-    DateUtil,
-    UserService,
-    StoreService,
-    {
-      provide: RECAPTCHA_SETTINGS,
-      useValue: {
-        siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
-      } as RecaptchaSettings,
-    },
-    RecaptchaLoaderService
+    ...BELISADA_UTILS,
+    ...BELISADA_PROVIDERS
   ],
 })
 export class CoreModule {

@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed, inject } from '@angular/core/testing';
 
-import { UserService } from './user.service';
+import { UserService } from '@belisada/services';
 
 describe('UserService', () => {
   beforeEach(() => {

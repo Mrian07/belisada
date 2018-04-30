@@ -1,17 +1,20 @@
-import { LocalStorageEnum } from './../../enum/local-storage.enum';
-import { Configuration } from './../../config/configuration';
-import { User, UserSignupGuest } from './../cart/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+
 import {
   SignupResponse, SignupData, SigninRequest, ResetPasswdResponse, SendEmailRequest, SendEmailResponse,
   SigninResponse, ActivationRequest, ActivationResponse, EmailChecking, UserLocalStorage, UserData,
-  ResetPasswdRequest, Profile, EditProfileResponse, EditProfileRequest
-} from './models/user';
+  ResetPasswdRequest, Profile, EditProfileResponse, EditProfileRequest, User, UserSignupGuest
+} from '@belisada/core/models';
 
+import { JWTUtil } from '@belisada/core/util';
+
+import { Configuration } from '@belisada/core/config';
+
+import { LocalStorageEnum } from '@belisada/core/enum';
+
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { JWTUtil } from '../../util/jwt.util';
 
 @Injectable()
 export class UserService {

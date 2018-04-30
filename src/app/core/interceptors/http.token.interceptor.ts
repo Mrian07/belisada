@@ -3,9 +3,9 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpResponse,
   HttpInterceptor,
-  HttpErrorResponse
+  HttpErrorResponse,
+  HttpResponse
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
@@ -14,10 +14,10 @@ import { Observable } from 'rxjs/Observable';
 import swal from 'sweetalert2';
 import 'rxjs/add/operator/do';
 
-import { AuthService } from '@belisada/core/services';
+import { AuthService } from '@belisada/services/auth/auth.service';
 
 @Injectable()
-export class Interceptor implements HttpInterceptor {
+export class HttpTokenInterceptor implements HttpInterceptor {
 
   constructor(private inj: Injector, private routes: Router, private location: Location) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

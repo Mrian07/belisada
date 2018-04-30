@@ -14,6 +14,13 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "baseUrl": "src",
+    "paths": {
+      "@belisada/core/*": ["app/core/*"],
+      "@belisada/features/*": ["app/features/*"],
+      "@belisada/shared/*": ["app/shared/*"],
+      "@env/*": ["environments/*"]
+    }
   }
 }
