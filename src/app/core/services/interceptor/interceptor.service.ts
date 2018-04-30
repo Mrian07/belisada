@@ -47,6 +47,7 @@ export class Interceptor implements HttpInterceptor {
             // });
 
             localStorage.removeItem('token');
+            localStorage.removeItem('isRemember');
             this.routes.navigateByUrl('/account/sign-in');
 
           }

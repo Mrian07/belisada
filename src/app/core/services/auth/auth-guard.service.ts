@@ -13,9 +13,18 @@ export class OnlyLoggedInUsersGuard implements CanActivateChild {
   Description: Fungsi ini untuk melakukan pengecekan apakah token ada pada local storage,
   jika tidak ada maka user akan dialihkan ke halaman sign in.
   */
+
+  user: any;
+
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const user = localStorage.getItem('token');
-    if (!user) {
+    const isRemember = localStorage.getItem('isRemember');
+    if (isRemember === 'true') {
+      this.user = localStorage.getItem('token');
+    } else {
+      this.user = sessionStorage.getItem('token');
+    }
+
+    if (!this.user) {
       this.router.navigateByUrl('/account/sign-in');
       return false;
     } else {

@@ -36,11 +36,41 @@ export class DetailStoreResponse {
   data?: DetailStoreData;
 }
 
-export class UpdateStoreRequest extends DetailStoreData {
-
+export class ProfileStoreResponse {
+  storeId: number;
+  name: string;
+  phone: string;
+  address: string;
+  description: string;
+  rating: number;
+  villageId: number;
+  villageName: string;
+  districtId: number;
+  districtName: string;
+  cityId: number;
+  cityName: string;
+  regionId: number;
+  regionName: string;
+  postal: number;
+  mUserLocationId: number;
+  isoffday: boolean;
+  imageStoreUrl: any;
 }
-export class UpdateStoreResponse extends BaseResponseModel {
+export class UpdateStoreRequest {
+  address: string;
+  villageId: number;
+  description?: string;
+  picture?: string;
+  isoffday: boolean;
+}
 
+export class UpdateDescriptionRequest {
+  description: string;
+  imageStoreUrl: string;
+}
+
+export class UpdateStoreResponse extends BaseResponseModel {
+  data: DetailStoreData;
 }
 
 export class OpenStoreResponse extends BaseResponseModel {

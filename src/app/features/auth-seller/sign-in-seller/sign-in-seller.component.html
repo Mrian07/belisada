@@ -35,10 +35,13 @@
                         </div>
                         <div class="form-group">
                             <div class="storeIcon"><fa name="fas fa-key"></fa></div>
-                            <input type="password" class="input-login-form" placeholder="Password" formControlName="password" required [ngClass]="{
+                            
+                            <input type="password" class="input-login-form" placeholder="Password" id="password" formControlName="password" required [ngClass]="{
                                 'has-danger': signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched),
                                 'has-success': signinFormGroup.controls.password.valid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched)
                                 }">
+
+                                <div class="togel" (click)="togglePass()"><fa name="fas fa-eye"></fa></div>
                             <div *ngIf="signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty || formSubmited)" class="alert alert-danger toll tooltip testing">
                                 <span class="tooltiptext">Password tidak boleh kosong</span>
                             </div>    
@@ -47,6 +50,7 @@
                         <div class="row">
                             <div class="col-6">
                                 <p><a routerLink="/account/forgot-password" class="link-text">Forgot Password?</a></p>
+                                <p><input type="checkbox" formControlName="isRemember" value="true"> Ingatkan</p>
                                 <!-- <label class="container">
                                         <div class="text-box">
                                             <span class="heading-primary-main">Remember me </span>

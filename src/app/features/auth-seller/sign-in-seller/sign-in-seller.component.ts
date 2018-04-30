@@ -21,6 +21,8 @@ export class SignInSellerComponent implements OnInit {
   message: string;
   status: number;
   emailInvalid: number;
+  viewPass: Boolean = false;
+  isRemember: any;
 
   constructor(
     private router: Router,
@@ -32,13 +34,22 @@ export class SignInSellerComponent implements OnInit {
     this.createFormControl();
   }
 
+  // test() {
+  //   const testSes = 'testing';
+  //   sessionStorage.setItem('id', testSes);
+  //   const data = sessionStorage.getItem('id');
+  //   sessionStorage.clear();
+  //   console.log('apa: ', data);
+  // }
+
   /* Fungsi untuk membuat nama field pada form */
   createFormControl() {
     this.signinFormGroup = this.fb.group({
       email: ['', [
         Validators.required,
         Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      isRemember: ['']
     });
   }
 
@@ -55,7 +66,15 @@ export class SignInSellerComponent implements OnInit {
           this.msg = result.message;
         } else {
           const token: string = result.token;
-          this.userService.setUserToLocalStorage(token);
+
+          if (form.value.isRemember === 'true') {
+            this.userService.setUserToLocalStorage(token);
+            this.userService.setRemember('true');
+          } else {
+            this.userService.setUserToSessionStorage(token);
+            this.userService.setRemember('false');
+          }
+
           this.router.navigate(['/seller']);
         }
       }, error => {
@@ -92,5 +111,14 @@ export class SignInSellerComponent implements OnInit {
       });
   }
 
+  togglePass() {
+    this.viewPass = !this.viewPass;
+    const el = (<HTMLInputElement>document.getElementById('password'));
+    if (this.viewPass) {
+      el.type = 'text';
+    } else {
+      el.type = 'password';
+    }
+  }
 
 }

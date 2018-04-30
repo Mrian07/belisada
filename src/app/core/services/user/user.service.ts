@@ -77,6 +77,18 @@ export class UserService {
     localStorage.setItem(LocalStorageEnum.TOKEN_KEY, token);
   }
 
+  setRemember(key) {
+    localStorage.setItem('isRemember', key);
+  }
+
+  /*
+    setUserToSessionStorage is using by SignIn Components for saving User to Session Storage
+  */
+
+  setUserToSessionStorage(token) {
+    sessionStorage.setItem(LocalStorageEnum.TOKEN_KEY, token);
+  }
+
   /*
     getUserData is using by 2 components ( header components and signin components )
     to get user data from localstorage

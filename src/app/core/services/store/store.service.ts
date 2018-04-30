@@ -57,11 +57,27 @@ export class StoreService {
     });
     // return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as DetailStoreResponse);
   }
+  profile() {
+    return this.http.get(this.cfg.apiURL + '/store/profile').map(rsl => rsl as storeModel.ProfileStoreResponse);
+  }
 
-  // param: {name: string, address: string, description: string?, picture: string?}
-  // used by create-store component
-  update(data: storeModel.UpdateStoreRequest) {
-    return this.http.post(this.cfg.apiURL + '/store/upgrade', data).map(rsl => rsl as storeModel.UpdateStoreResponse);
+  // param: {status: string}
+  // used by edit-store component
+  updateStatus(data: storeModel.UpdateStoreRequest) {
+    return this.http.put(this.cfg.apiURL + '/store/update-status', data).map(rsl => rsl as storeModel.UpdateStoreResponse);
+  }
+
+  // param: {description: string?, storeUrl: string, imageStoreUrl: string, phone: string?}
+  // used by edit-store component
+  updateDesc(data: storeModel.UpdateDescriptionRequest) {
+    console.log('isi data: ', data);
+    return this.http.put(this.cfg.apiURL + '/store/update/store', data).map(rsl => rsl as storeModel.UpdateStoreResponse);
+  }
+
+  // param: {addressName: string, address: string, description: string?, vilageId: string?, postal: string?}
+  // used by edit-store component
+  updateAddress(data: storeModel.UpdateStoreRequest) {
+    return this.http.put(this.cfg.apiURL + '/store/update/store-address', data).map(rsl => rsl as storeModel.UpdateStoreResponse);
   }
 
   openStore(stat: boolean) {
