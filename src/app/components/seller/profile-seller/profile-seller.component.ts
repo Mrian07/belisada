@@ -1,6 +1,6 @@
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
-import { UpdateStoreRequest, ProfileStoreResponse } from './../../../core/services/store/models/store.model';
+import { UpdateStoreRequest, ProfileStoreResponse, UpdateDescriptionRequest } from './../../../core/services/store/models/store.model';
 import { StoreService } from './../../../core/services/store/store.service';
 import { Component, OnInit } from '@angular/core';
 import { Village, City, Province, District } from '../../../core/services/store/models/address';
@@ -12,17 +12,23 @@ import { Village, City, Province, District } from '../../../core/services/store/
 })
 export class ProfileSellerComponent implements OnInit {
 
+  userImgAvatar: string;
   onViewAddress: Boolean = true;
   onViewDesc: Boolean = true;
   store: ProfileStoreResponse = new ProfileStoreResponse();
   updateAddress: UpdateStoreRequest = new UpdateStoreRequest();
   updateDesc: UpdateStoreRequest = new UpdateStoreRequest();
   updateStatus: UpdateStoreRequest = new UpdateStoreRequest();
+  updateDescriptionRequest: UpdateDescriptionRequest = new UpdateDescriptionRequest();
   provinces: Province[];
   serverMessage: String;
   cities: City[];
   districts: District[];
   villages: Village[];
+  updateImg: Boolean = false;
+  base64Img: string;
+
+  fm: any = {};
 
   constructor(
     private storeService: StoreService
@@ -31,6 +37,10 @@ export class ProfileSellerComponent implements OnInit {
   ngOnInit() {
     this.storeService.profile().subscribe(data => {
       this.store = data;
+      this.updateDescriptionRequest.description = data.description;
+      this.updateDescriptionRequest.imageStoreUrl = data.imageStoreUrl;
+      console.log('test', data);
+      this.userImgAvatar = data.imageStoreUrl ? data.imageStoreUrl : '/assets/img/store_profile.png';
     });
   }
 
@@ -158,24 +168,45 @@ export class ProfileSellerComponent implements OnInit {
   editDesc() {
     this.onViewDesc = false;
   }
-  setUpdateDesc(el) {
-    if (this.store.description === el.model) {
-      delete this.updateDesc[el.name];
-    } else {
-      this.updateDesc[el.name] = el.model;
-    }
-  }
-  saveDesc(fm) {
-    // return console.log('tes',fm);
-    this.storeService.updateDesc(this.updateDesc).subscribe(rsl => {
+  // setUpdateDesc(el) {
+  //   if (this.store.description === el.model) {
+  //     delete this.updateDesc[el.name];
+  //   } else {
+  //     this.updateDesc[el.name] = el.model;
+  //   }
+  // }
+  // saveDesc(fm) {
+    saveDesc() {
+
+    const data: UpdateDescriptionRequest = new UpdateDescriptionRequest();
+    data.description = this.store.description;
+    data.imageStoreUrl = this.base64Img;
+
+    // this.storeService.updateDesc(data).subscribe(rsl => {
+    this.storeService.updateDesc(data).subscribe(rsl => {
+
       if (rsl.status === 1) {
         this.onViewDesc = true;
-        this.updateDesc = new UpdateStoreRequest();
+        // this.updateDesc = new UpdateStoreRequest();
+        swal(rsl.message);
       } else {
         swal(rsl.message);
       }
-      console.log('updt:', rsl);
     });
+  }
+
+  setUrl(event, img) {
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+    // this.onViewDesc = false;
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      that.base64Img = fr.result;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
   }
 
 }

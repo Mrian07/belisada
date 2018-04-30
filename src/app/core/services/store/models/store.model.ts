@@ -54,6 +54,7 @@ export class ProfileStoreResponse {
   postal: number;
   mUserLocationId: number;
   isoffday: boolean;
+  imageStoreUrl: any;
 }
 export class UpdateStoreRequest {
   address: string;
@@ -62,6 +63,12 @@ export class UpdateStoreRequest {
   picture?: string;
   isoffday: boolean;
 }
+
+export class UpdateDescriptionRequest {
+  description: string;
+  imageStoreUrl: string;
+}
+
 export class UpdateStoreResponse extends BaseResponseModel {
   data: DetailStoreData;
 }
