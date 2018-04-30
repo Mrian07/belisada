@@ -144,12 +144,12 @@ export class ProfileSellerComponent implements OnInit {
       if (rsl.status === 1) {
         form.reset();
         this.onViewAddress = true;
-        Object.assign(this.store, rsl.data);
-        // this.updateAddress = new UpdateStoreRequest();
+        setTimeout(() => {
+          Object.assign(this.store, rsl.data);
+        }, 100);
       } else {
         swal(rsl.message);
       }
-      console.log('updt:', rsl);
     });
   }
   setUpdate(u) {
