@@ -1,0 +1,373 @@
+<div class="column">
+    <div class="wide column">
+        <h1>Tambah Produk </h1>
+        <p>
+            Sebelum menambahkan product, pastikan produk tersebut sudah sesuai dengan <a href="#">syarat dan ketentuan</a> Belisada.co.id.<br/>Semua produk yang melanggar syarat dan ketentuan akan di non aktifkan oleh kami.
+        </p>
+        <!-- <p align="left" style="width: 100%;"><span style="color:black;"></span>*pelajari tentang
+            <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui tiny aligned image" style="cursor:pointer;"></p> -->
+        <div class="ui segment">
+            <p>Apa yang anda jual?</p>
+            <div class="ui form">
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                        Status
+                    </div>
+                    <div class="ten wide field">
+                        <div class="field">
+                            <sui-radio-button value="baru" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification(01)">Baru</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button value="second" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification(02)">Second</sui-radio-button>
+                        </div>
+                        <div class="field">
+                            <sui-radio-button value="refurbish" [(ngModel)]="condition" [isDisabled]="false" (click)="geClassification(03)">Refurbish</sui-radio-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui form">
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                        Nama Product
+                    </div>
+                    <div class="ten wide field">
+
+                        <div class="result-container">
+
+                            <input type="text" list="productname" (keyup)="search($event)" (change)="prodNameChange(selectCats)" [(ngModel)]="selectCats"/>
+                            <div class="result" *ngIf="[results] !== 0">
+                                <div class="result-item" *ngFor="let hasil of results " (click)="productSelected(hasil)" (keyup.enter)="search($event)">{{ hasil.name }}</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="inline twelve fields">
+                    <div class="new-product">{{news}}</div>
+
+                </div>
+                <!-- <small>items: {{sum}}</small> -->
+                <div class="inline twelve fields">
+                    <div class="two wide field">
+                        Brands
+                    </div>
+                    <!-- <ul class="drick-select-list">
+                        <li *ngFor="let i of brands" (click)="sBrand(i)">
+                            {{i.name}}
+                        </li>
+                    </ul> -->
+                    <div class="three wide field">
+                        <!-- <div class="field"> -->
+                            <div class="drick-select-container">
+                                <div class="ui icon input parent">
+                                    <input class="drick-select__text" [ngClass]="{'active':onTextFocus}" type="text" [(ngModel)]="txtSearch"
+                                        (keyup)="searchBrand()"
+                                        (focus)="onTextFocus = true" (focusout)="onFocusOut()" placeholder="Select one">
+                                    <i class="drick-select__icon caret down icon"></i>
+                                </div>
+                                <div class="drick-select-container--toggle" [ngClass]="{'active':onTextFocus}"
+                                    id="drick-scroll-container"
+                                    (scroll)="onScrollDown()">
+                                    <ul class="drick-select-list">
+                                        <li *ngFor="let i of brands" (click)="selectBrand(i)">
+                                            {{i.name}}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- <sui-select class="selection"
+                                id="select-brand"
+                                [(ngModel)]="ctr.brand"
+                                labelField="name"
+                                isSearchable="true"
+                                placeholder="{{ctr.brandname}}"
+                                [options]="brands"
+                                [optionTemplate]="optionTemplate"
+                                #brnds
+                                >
+                                <sui-select-option *ngFor="let option of brnds.filteredOptions" [value]="option" (click)="selectBrands(option.m_productbrand_id)"></sui-select-option>
+                            </sui-select> -->
+                        <!-- </div> -->
+
+                    </div>
+                    <!-- <div class="four wide field" align="left"><div class="new-product">{{news2}}</div></div> -->
+                </div>
+                <div class="inline twelve fields" *ngIf="[results] == 0">
+                        <div class="two wide field">
+                            Category Product
+                        </div>
+                        <div class="six wide field">
+                            <div class="field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="ctr.cat1"
+                                    labelField="option.name"
+                                    isSearchable="true"
+                                    placeholder="{{ctr.cat1name}}"
+                                    [options]="category"
+                                    [optionTemplate]="optionTemplate"
+                                    #cats
+                                    >
+                                        <sui-select-option *ngFor="let option of cats.filteredOptions" [value]="option" value="option.name" (click)="selectCategory(option.mProductCategoryId)">{{option.name}}</sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="ctr.cat2"
+                                    labelField="option.name"
+                                    isSearchable="true"
+                                    placeholder="{{ctr.cat2name}}"
+                                    [options]="subcategory"
+                                    [optionTemplate]="optionTemplate"
+                                    isDisabled="{{disabled}}"
+                                    #subs
+                                    >
+                                        <sui-select-option *ngFor="let option of subs.filteredOptions" [value]="option" (click)="selectSubCategory(option.m_product_category_id)">{{option.name}}</sui-select-option>
+                                </sui-select>
+                            </div>
+                            <div class="field">
+                                <sui-select class="selection"
+                                    [(ngModel)]="ctr.cat3"
+                                    labelField="option.name"
+                                    isSearchable="true"
+                                    placeholder="{{ctr.cat3name}}"
+                                    [options]="subcategories"
+                                    [optionTemplate]="optionTemplate"
+                                    isDisabled="{{disabled}}"
+                                    #subsi
+                                    >
+                                        <sui-select-option *ngFor="let option of subsi.filteredOptions" [value]="option" (click)="selectSubCategories(option.m_product_category_id)">{{option.name}}</sui-select-option>
+                                </sui-select>
+                            </div>
+                        </div>
+                    </div>
+                <div class="inline twelve fields">
+                        <div class="two wide field">
+                                Garansi
+                             </div>
+                         <div class="seven wide field">
+                             <div class="seven wide field">
+                                 <select class="ui dropdown" [(ngModel)]="garansiDays" (input)="garansi($event)">
+                                     <option value="0" selected="selected">Tidak Bergaransi</option>
+                                     <option value="30">1 Bulan</option>
+                                     <option value="90">3 Bulan</option>
+                                     <option value="182">6 Bulan</option>
+                                     <option value="365">1 Tahun</option>
+                                 </select>
+                             </div>
+
+                         </div>
+                         </div>
+                         <!-- <div class="inline twelve fields">
+                            <div class="two wide field">
+                                    Courier
+                                </div>
+                            <div class="five wide field">
+                                <div class="seven wide field">
+                                    <select class="ui dropdown" [(ngModel)]="courier" (input)="couriers($event)">
+                                        <option value="0" selected="selected">Pilih Courier</option>
+                                        <option value="1000002">JNE</option>
+                                        <option value="1000003">Ninja Express</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                        </div> -->
+
+
+
+            <div class="ui segment">
+                <h3>Detail Produk</h3>
+                <div class="garis"></div>
+                <div class="ui form">
+                    <div class="inline twelve fields">
+                        <div class="two wide field">
+                            Harga Rp.
+                        </div>
+                        <div class="five wide field">
+                            <input type="text" name="harga" required placeholder="Harga" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" [(ngModel)]="price" value="{{price}}"/>
+                        </div>
+
+                        <div class="seven wide field small">
+                            Harga Rp tanpa menggunakan koma dan titik. Contoh : 12000 <span *ngIf="price != undefined"> ( preview : Rp. {{ price | number }} )</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui form">
+                    <div class="inline five fields">
+                        <div class="two wide field">
+                            Berat
+                        </div>
+                        <div class="two wide field">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="Berat" [(ngModel)]="weight" value="{{weight}}" [disabled]="false"/>
+                        </div>
+                        <div class="one wide field">
+                            <div class="ui three wide field">
+                                <div class="text">Kg</div>
+                                <!-- <i class="dropdown icon"></i>
+                                <div class="menu" suiDropdownMenu>
+                                    <div class="item">Kg</div>
+                                    <div class="item">Gram</div>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui form">
+                    <div class="inline eight fields">
+                        <div class="two wide field">
+                            Dimensi (cm)
+                        </div>
+                        <div class="two wide field">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="" [(ngModel)]="panjang" value="{{panjang}}"/>
+                        </div>
+                        <div class="one wide field small">
+                            Panjang (cm)
+                        </div>
+                        <div class="two wide field">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="" [(ngModel)]="lebar" value="{{lebar}}"/>
+                        </div>
+                        <div class="one wide field small">
+                            Lebar (cm)
+                        </div>
+                        <div class="two wide field">
+                            <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" placeholder="" [(ngModel)]="tinggi" value="{{tinggi}}"/>
+                        </div>
+                        <div class="one wide field small">
+                            Tinggi (cm)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui form">
+                    <div class="inline five fields">
+                        <div class="two wide field">
+                            Stock
+                        </div>
+                        <div class="two wide field">
+                            <select [(ngModel)]="stok" (input)="onInput($event)" class="ui dropdown">
+                                <option *ngFor="let country of quantity ; let i=index" value= "{{country.id}}" selected="{{country.selected}}">{{country.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ui form">
+                    <div class="inline five fields">
+                        <div class="two wide field">
+                            Part Number
+                        </div>
+                        <div class="eleven wide field">
+                            <input type="text" maxlength="120"  placeholder="" [(ngModel)]="partNumber"/>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="ui form">
+                    <div class="inline five fields">
+                            <div class="two wide field">
+                                Pilih Warna
+                            </div>
+                            <div class="nine wide field">
+                                <div>
+                                    <a *ngFor="let warna of warnanya" class="ui {{ warna }} circular label" (click)="addColor(warna)"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline five fields">
+                                <div class="two wide field">
+                                    Warna yang tersedia
+                                </div>
+                                <div class="nine wide field">
+                                    <div><a *ngFor="let warna of selectedColor" class="ui {{ warna }} circular label" (click)="remColor(warna)"></a></div>
+                                </div>
+                            </div>
+                </div> -->
+
+                <h3>Highlight Produk</h3>
+                <div class="garis"></div>
+                <div class="ui form">
+                    <div class="twelve fields">
+                        <div class="two wide field">
+                            Highlight
+                        </div>
+                        <div>
+                            <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="highlight"></app-ngx-editor>
+                        </div>
+                    </div>
+                </div>
+                <h3>Deskripsi Produk</h3>
+                <div class="garis"></div>
+                <div class="ui form">
+                    <div class="twelve fields">
+                        <div class="two wide field">
+                            Deskripsi
+                        </div>
+                        <div>
+                            <app-ngx-editor [placeholder]="'Enter text here...'" [spellcheck]="true" [(ngModel)]="description"></app-ngx-editor>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui segment">
+                <h3>Gambar Produk</h3>
+                <ul class="add_product_image clearfix" id="image-list">
+                    <li class="u-inline-list-gap" *ngFor="let item of productPictures; let i = index">
+                        <div class="image-preview" [ngStyle]="{'background-image': 'url(' + item + ')'}">
+                            <span class="action-button" (click)="removeImage(i)" *ngIf="isNewProduct">
+                                <i class="trash alternate outline icon"></i>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pikcker-wrapper picker-add-image" *ngIf="(productPictures.length < 5 && isNewProduct)">
+                            <input type="file" multiple="" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
+                        </div>
+                    </li>
+                </ul>
+            <div class="ui centered">
+                <div class="twelve wide fields">
+                    <div class="right floated column">
+                        <div class="ui buttons" *ngIf="editMode == false">
+                    <!-- <button *ngIf="editMode == false" class="positive ui button" (click)="addProducts()">Tambahkan Produk</button> -->
+                        <!-- <button class="ui red button" (click)="addProducts()">Save Product <i class="barcode icon large" style="margin-left:3px;"></i></button>
+                        <div class="or"></div> -->
+                        <button class="ui orange button"  (click)="addProducts()">Save Produk</button>
+                    </div>
+                    <br>
+                    <!-- <p *ngIf="editMode == false"><span style="color:black;">*pelajari tentang</span>
+                        <img (click)="asapPage()" src="https://myacico.co.id/images/general/asap.png" class="ui small aligned image" style="cursor:pointer;"></p> -->
+                    <button *ngIf="editMode == true" class="positive ui button" (click)="updateProducts()">Perbarui Produk</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pops five wide field" align="center" *ngIf="show">
+    <h4>Barang yang akan dikirim ke Gudang Belisada</h4>
+        <select [(ngModel)]="qtyOnHand" (input)="gudang($event)" class="ui dropdown" placeholder="Jumlah">
+                <option value= "0" selected="true">pilih</option>
+                <option value= "1" >1</option>
+                <option value= "2" >2</option>
+                <option value= "3" >3</option>
+                <option value= "4" >4</option>
+                <option value= "5" >5</option>
+                <option value= "6" >6</option>
+                <option value= "7" >7</option>
+                <option value= "8" >8</option>
+                <option value= "9" >9</option>
+                <option value= "10" >10</option>
+        </select>
+        <br><br>
+        <button class="ui green button" (click)="subs()">Okay</button>
+        <button class="ui red button" (click)="cancel()">Cancel</button>
+    </div>
+
+    <sui-dimmer class="page" [(isDimmed)]="isLoading">
+        <div class="ui text loader">Uploading...</div>
+    </sui-dimmer>
