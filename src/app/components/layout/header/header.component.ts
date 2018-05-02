@@ -1,11 +1,14 @@
-import { LocalStorageEnum } from './../../../core/enum/local-storage.enum';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../core/services/user/user.service';
-import { UserData } from '../../../core/services/user/models/user';
 import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
-import { ClickOutsideDirective } from '../../../shared/directives/click-outside.directive';
+
+import { ClickOutsideDirective } from '@belisada/shared/directives';
+
+import { UserData } from '@belisada/core/models';
+import { UserService } from '@belisada/core/services';
+import { LocalStorageEnum } from '@belisada/core/enum';
+
 
 @Component({
   selector: 'app-header',

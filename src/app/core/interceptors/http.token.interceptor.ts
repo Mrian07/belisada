@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/Observable';
 import swal from 'sweetalert2';
 import 'rxjs/add/operator/do';
 
-import { AuthService } from '@belisada/services/auth/auth.service';
+import { AuthService } from '@belisada/core/services';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {

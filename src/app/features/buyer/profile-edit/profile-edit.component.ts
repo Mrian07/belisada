@@ -1,12 +1,12 @@
 import { IMyDpOptions } from 'mydatepicker';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../core/services/user/user.service';
-import { SigninRequest, UserLocalStorage, EditProfileRequest } from '../../../core/services/user/models/user';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
-import { DateUtil } from '../../../core/util/date.util';
-import { DateFormatEnum } from '../../../core/enum/date-format.enum';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { EditProfileRequest } from '@belisada/core/models';
+import { DateFormatEnum } from '@belisada/core/enum';
+import { DateUtil } from '@belisada/core/util';
+import { UserService } from '@belisada/core/services';
 
 @Component({
   selector: 'app-profile-edit',

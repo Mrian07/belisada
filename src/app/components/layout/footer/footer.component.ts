@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { SubscribeService } from '../../../core/services/subscribe/subscribe.service';
 import swal from 'sweetalert2';
-import { SubscribeRequest } from '../../../core/services/subscribe/model/subscribe-m';
+
+import { SubscribeRequest } from '@belisada/core/models';
+import { SubscribeService } from '@belisada/core/services';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',

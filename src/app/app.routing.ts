@@ -1,21 +1,24 @@
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { SaniComponent } from './components/sani/sani.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 
 const routes: Routes = [
-    // {
-    //     path: '',
-    //     component: LayoutComponent,
-    //     children: [
-    //         {
-    //             path: '',
-    //             component: HomeComponent,
-    //             data: {
-    //                 title: 'home'
-    //             }
-    //         }
-    //     ]
-    // },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+        data: {
+          title: 'home'
+        }
+      }
+    ]
+  },
+  { path: '', loadChildren: 'app/features/features.module#FeaturesModule' },
     // {
     //     path: 'sign-in-seller',
     //     component: SignInSellerComponent,

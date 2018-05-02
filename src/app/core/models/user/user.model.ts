@@ -1,5 +1,5 @@
-import { BaseResponseModel } from '@belisada/core/models';
 import { SendEmailTypeEnum } from '@belisada/core/enum';
+import { BaseResponseModel } from '@belisada/core/models';
 
 export class UserLocalStorage {
     token: string;

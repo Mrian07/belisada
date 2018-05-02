@@ -1,9 +1,9 @@
 import { NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
-import { UpdateStoreRequest, ProfileStoreResponse, UpdateDescriptionRequest } from './../../../core/services/store/models/store.model';
-import { StoreService } from './../../../core/services/store/store.service';
 import { Component, OnInit } from '@angular/core';
-import { Village, City, Province, District } from '../../../core/services/store/models/address';
+import { ProfileStoreResponse, UpdateStoreRequest, UpdateDescriptionRequest } from '@belisada/core/models/store/store.model';
+import { Province, City, District, Village } from '@belisada/core/models/store/address';
+import { StoreService } from '@belisada/core/services';
 
 @Component({
   selector: 'app-profile-seller',

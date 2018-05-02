@@ -1,11 +1,9 @@
-import { UserService } from './../../../core/services/user/user.service';
-import { StoreService } from './../../../core/services/store/store.service';
-import { CreateStoreRequest, CheckStoreRequest, CheckStoreResponse } from './../../../core/services/store/models/store.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
-import { FlagService } from './../../../core/services/flag/flag.service';
-import { Village, City, Province, District } from '../../../core/services/store/models/address';
+import { CreateStoreRequest, CheckStoreRequest } from '@belisada/core/models/store/store.model';
+import { Province, City, District, Village } from '@belisada/core/models/store/address';
+import { StoreService, UserService, ShareMessageService } from '@belisada/core/services';
 
 @Component({
 selector: 'app-create-store',
@@ -34,10 +32,10 @@ export class CreateStoreComponent implements OnInit {
   storeUrl: FormControl;
   private formSumitAttempt: boolean;
   constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService,
-    private flagService: FlagService) {}
+    private shareMessageService: ShareMessageService) {}
 
   ngOnInit() {
-    this.flagService.changeMessage('create-store');
+    this.shareMessageService.changeMessage('create-store');
     this.storeName = new FormControl(null, Validators.required);
     this.storeUrl = new FormControl(null, Validators.required);
     this.store = this.fb.group({

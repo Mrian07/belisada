@@ -1,4 +1,4 @@
-import { BaseResponseModel } from '../../../models/base-response.model';
+import { BaseResponseModel } from '@belisada/core/models';
 
 export class CreateStoreRequest {
   name: string;

@@ -1,4 +1,4 @@
-import { BaseResponseModel } from '@belisada/models/base-response.model';
+import { BaseResponseModel } from '@belisada/core/models';
 
 export class SubscribeRequest {
   email: string;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FlagService } from '../../../../core/services/flag/flag.service';
+import { ShareMessageService } from '@belisada/core/services';
 
 @Component({
     selector: 'app-sidebar-buyer',
@@ -15,7 +15,7 @@ export class SidebarBuyerComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private flagService: FlagService
+        private shareMessageService: ShareMessageService
     ) {
         this.location = router.url;
     }
@@ -25,7 +25,7 @@ export class SidebarBuyerComponent implements OnInit {
     }
 
     cekFlag() {
-        this.flagService.currentMessage.subscribe(respon => {
+        this.shareMessageService.currentMessage.subscribe(respon => {
             this.flag = respon;
             if (this.flag === 'create-store') {
                 this.btnJual = true;
