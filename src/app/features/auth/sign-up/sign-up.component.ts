@@ -10,6 +10,11 @@ import { LowerCasePipe } from '@angular/common';
 import { User, SignupData, EmailChecking } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
 import { PasswordValidation } from '@belisada/shared/validators';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/filter';
+import { Store, ActionsSubject } from '@ngrx/store';
+import * as UserAction from '@belisada/core/ngrx/actions/user';
+import * as UserReducer from '@belisada/core/ngrx/reducers/user';
 
 @Component({
   selector: 'app-sign-up',
@@ -36,12 +41,13 @@ export class SignUpComponent implements OnInit {
   public reactiveForm;
   public vForValidation: FormGroup;
   fullname: FormControl;
+  RegStatus: Subscription;
   constructor(
       private router: Router,
       private userservice: UserService,
-      // private alertService: AlertService,
-      private fb: FormBuilder
-      // private alertService: AlertService
+      private fb: FormBuilder,
+      private actionsSubject: ActionsSubject,
+      private ngrx: Store<UserAction.SignUpBuyer>
   ) {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -78,6 +84,26 @@ export class SignUpComponent implements OnInit {
           validator: PasswordValidation.MatchPassword,
           updateOn: 'blur'
       });
+      this.RegStatus = this.actionsSubject.asObservable()
+        .filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS)
+        .subscribe((action: UserAction.SignUpBuyerSuccess) => {
+          // console.log('reg success');
+          this.ngrx.select<any>(UserReducer.SignUpBuyerState).subscribe(
+            response => {
+              console.log(response);
+              // if (response.status === 1) {
+                  this.emailToSuccess = this.signupData.email;
+                  this.loading = false;
+                  this.title = false;
+              // } else {
+              //     swal({
+              //         type: 'error',
+              //         title: 'gagal...',
+              //         text: response.message,
+              //     });
+              // }
+          });
+        });
   }
   changeValue() {
       this.isSubscribe = new FormControl(!this.isSubscribe.value);
@@ -146,28 +172,8 @@ export class SignUpComponent implements OnInit {
       this.signupData.phone = model.phoneNumber;
       this.signupData.password = model.password;
       this.signupData.isSubscribe = model.isSubscribe;
-      this.userservice.signup(this.signupData)
-          .subscribe(
-              (response) => {
-                  if (response.status === 1) {
-                      this.emailToSuccess = this.signupData.email;
-                      this.loading = false;
-                      this.title = false;
-                  } else {
-                      swal({
-                          type: 'error',
-                          title: 'gagal...',
-                          text: response.message,
-                      });
-                  }
-              }, (error) =>
-              swal({
-                  type: 'error',
-                  title: 'Oops...',
-                  text: error,
-              })
-          );
-      console.log(form);
+      this.ngrx.dispatch(new UserAction.SignUpBuyer(this.signupData));
+      // console.log(form);
       this.vForValidation.reset();
   }
 }

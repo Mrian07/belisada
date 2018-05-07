@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
-
 import { SubscribeRequest } from '@belisada/core/models';
 import { SubscribeService } from '@belisada/core/services';
 @Component({

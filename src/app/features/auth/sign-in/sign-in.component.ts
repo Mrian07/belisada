@@ -6,6 +6,11 @@ import swal from 'sweetalert2';
 
 import { EmailChecking, SigninRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
+import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/filter';
+import { Store, ActionsSubject } from '@ngrx/store';
+import * as UserAction from '@belisada/core/ngrx/actions/auth';
+import * as UserReducer from '@belisada/core/ngrx/reducers/auth';
 
 @Component({
   selector: 'app-signin',
@@ -24,15 +29,40 @@ export class SigninComponent implements OnInit {
   emailInvalid: number;
   viewPass: Boolean = false;
   isRemember: string;
-
+  LoginStatus: Subscription;
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private actionsSubject: ActionsSubject,
+    private ngrx: Store<UserAction.Login>
   ) { }
 
   ngOnInit() {
     this.createFormControl();
+    this.LoginStatus = this.actionsSubject.asObservable()
+    .filter(action => action.type === UserAction.LOGINSUCCESS)
+    .subscribe((action: UserAction.LoginSuccess) => {
+      const form = this.signinFormGroup;
+      this.ngrx.select<any>(UserReducer.LoginState).subscribe( result => {
+          // Handle result
+        if (result.status === 0) {
+          this.msg = result.message;
+        } else {
+          const token: string = result.token;
+          if (form.value.isRemember === 'true') {
+            this.userService.setUserToLocalStorage(token);
+            this.userService.setRemember('true');
+          } else {
+            this.userService.setUserToSessionStorage(token);
+            this.userService.setRemember('false');
+          }
+          this.router.navigate(['/']);
+        }
+      }, error => {
+        swal('belisada.co.id', 'unknown error', 'error');
+      });
+    });
   }
 
   /* Fungsi untuk membuat nama field pada form */
@@ -53,26 +83,7 @@ export class SigninComponent implements OnInit {
     if (form.valid) {
 
       const signinRequest: SigninRequest = form.value;
-      this.userService.signin(signinRequest).subscribe(
-      result => {
-        // Handle result
-        if (result.status === 0) {
-          this.msg = result.message;
-        } else {
-          const token: string = result.token;
-
-          if (form.value.isRemember === 'true') {
-            this.userService.setUserToLocalStorage(token);
-            this.userService.setRemember('true');
-          } else {
-            this.userService.setUserToSessionStorage(token);
-            this.userService.setRemember('false');
-          }
-          this.router.navigate(['/']);
-        }
-      }, error => {
-        swal('belisada.co.id', 'unknown error', 'error');
-      });
+      this.ngrx.dispatch(new UserAction.TryLogin(signinRequest));
       this.formSubmited = false;
       form.reset();
       form.patchValue({email: signinRequest.email});

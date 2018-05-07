@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -7,6 +7,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaLoaderService } from 'ng-recaptcha';
+
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing';
@@ -25,7 +29,13 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelsComponent } from '@belisada/shared/components/models/models.component';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
-import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
+import { AuthInfoComponent } from '@belisada/features/auth';
+import { StoreEffects } from '@belisada/core/ngrx/effects';
+import { ProvinceReducer, CityReducer } from '@belisada/core/ngrx/reducers/store';
+import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
+  ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
+
+
 
 @NgModule({
   declarations: [
@@ -34,8 +44,13 @@ import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
     MaintenanceComponent,
 
     // Should move into themes
-    AuthComponent,
-    AuthInfoComponent,
+    // AuthComponent,
+    // AuthInfoComponent,
+    // SigninComponent,
+    // SignUpComponent,
+    // SignUpActivationComponent,
+    // ForgotPasswordComponent,
+    // ResetPasswordComponent,
     LayoutComponent,
     HeaderComponent,
     FooterComponent,
@@ -52,6 +67,12 @@ import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
+    StoreModule.forRoot({}),
+    StoreModule.forRoot({'province' : ProvinceReducer, 'city' : CityReducer}),
+    EffectsModule.forRoot([StoreEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    }),
   ],
   providers: [
     {
@@ -77,6 +98,6 @@ import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
       // RecaptchaLoaderService,
       // FlagService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

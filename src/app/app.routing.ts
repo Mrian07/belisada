@@ -3,22 +3,52 @@ import { NgModule } from '@angular/core';
 import { SaniComponent } from './components/sani/sani.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
+import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
+import { AuthModule } from '@belisada/features/auth/auth.module';
+import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
+  ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
+
+
 
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: LayoutComponent,
     children: [
-      {
+        {
         path: '',
         component: HomeComponent,
         data: {
-          title: 'home'
+          title: 'Home'
         }
       }
     ]
   },
-  { path: '', loadChildren: 'app/features/features.module#FeaturesModule' },
+  { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
+  {
+    path: 'maintenance',
+    component: MaintenanceComponent,
+  },
+  {
+    path: '**',
+    component: Page404Component,
+  },
+  {
+    path: '',
+    redirectTo: '',
+    pathMatch: 'full'
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+
+ // { path: '', loadChildren: 'app/features/features.module#FeaturesModule' },
     // {
     //     path: 'sign-in-seller',
     //     component: SignInSellerComponent,
@@ -149,11 +179,4 @@ const routes: Routes = [
     //     path: 'maintenance',
     //     component: MaintenanceComponent,
     // },
-];
-
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+// ];
