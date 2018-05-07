@@ -1,13 +1,13 @@
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { SaniComponent } from './components/sani/sani.component';
-import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
+import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
+    component: LandingPageComponent,
     children: [
       {
         path: '',

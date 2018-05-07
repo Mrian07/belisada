@@ -18,14 +18,13 @@ import { SharedModule } from '@belisada/shared/shared.module';
 
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy } from '@angular/common';
-import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
-import { HeaderComponent } from './components/layout/header/header.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelsComponent } from '@belisada/shared/components/models/models.component';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
 import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
+import { ThemeModule } from './theme/theme.module';
+import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -36,11 +35,9 @@ import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
     // Should move into themes
     AuthComponent,
     AuthInfoComponent,
-    LayoutComponent,
-    HeaderComponent,
-    FooterComponent,
     ModelsComponent,
     FieldErrorDisplayComponent,
+    LandingPageComponent,
     HomeComponent
   ],
   imports: [
@@ -48,6 +45,7 @@ import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    ThemeModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
