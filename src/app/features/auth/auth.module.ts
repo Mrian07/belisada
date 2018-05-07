@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import {
@@ -7,13 +6,22 @@ import {
   SignUpActivationComponent, ForgotPasswordComponent,
   ResetPasswordComponent
 } from '@belisada/features/auth';
+import { ThemeModule } from '../../theme/theme.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
     CommonModule,
-    AuthRoutingModule
+    FormsModule,
+    ReactiveFormsModule,
+    ThemeModule,
+    AuthRoutingModule,
+    AngularFontAwesomeModule
   ],
   declarations: [
+    AuthComponent,
     SigninComponent,
     SignUpComponent,
     SignUpActivationComponent,

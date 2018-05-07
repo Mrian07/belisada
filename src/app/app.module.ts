@@ -22,7 +22,6 @@ import { HomeComponent } from '@belisada/features/landing-page/home/home.compone
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelsComponent } from '@belisada/shared/components/models/models.component';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
-import { AuthComponent, AuthInfoComponent } from '@belisada/features/auth';
 import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
@@ -33,8 +32,6 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
     MaintenanceComponent,
 
     // Should move into themes
-    AuthComponent,
-    AuthInfoComponent,
     ModelsComponent,
     FieldErrorDisplayComponent,
     LandingPageComponent,

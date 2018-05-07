@@ -18,7 +18,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '', loadChildren: 'app/features/features.module#FeaturesModule' },
+  { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
     // {
     //     path: 'sign-in-seller',
     //     component: SignInSellerComponent,
