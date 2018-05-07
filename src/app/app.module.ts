@@ -22,20 +22,18 @@ import { SharedModule } from '@belisada/shared/shared.module';
 
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy } from '@angular/common';
-import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
-import { HeaderComponent } from './components/layout/header/header.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelsComponent } from '@belisada/shared/components/models/models.component';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
-import { AuthInfoComponent } from '@belisada/features/auth';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
 import { ProvinceReducer, CityReducer } from '@belisada/core/ngrx/reducers/store';
-import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
+import { AuthComponent, AuthInfoComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
   ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
 
 
+import { ThemeModule } from './theme/theme.module';
+import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
 @NgModule({
   declarations: [
@@ -46,16 +44,16 @@ import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationCompon
     // Should move into themes
     // AuthComponent,
     // AuthInfoComponent,
-    // SigninComponent,
+    SigninComponent,
     // SignUpComponent,
     // SignUpActivationComponent,
     // ForgotPasswordComponent,
     // ResetPasswordComponent,
-    LayoutComponent,
-    HeaderComponent,
-    FooterComponent,
+    AuthComponent,
+    AuthInfoComponent,
     ModelsComponent,
     FieldErrorDisplayComponent,
+    LandingPageComponent,
     HomeComponent
   ],
   imports: [
@@ -63,6 +61,7 @@ import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationCompon
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    ThemeModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

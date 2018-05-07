@@ -1,7 +1,6 @@
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { SaniComponent } from './components/sani/sani.component';
-import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 import { AuthModule } from '@belisada/features/auth/auth.module';
@@ -9,12 +8,13 @@ import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationCompon
   ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
 
 
+import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: LayoutComponent,
+    component: LandingPageComponent,
     children: [
         {
         path: '',
@@ -22,9 +22,22 @@ const routes: Routes = [
         data: {
           title: 'Home'
         }
-      }
+      },
     ]
   },
+  // {
+  //   path: 'account',
+  //   component: LandingPageComponent,
+  //   children: [
+  //     {
+  //       path: 'sign-in',
+  //       component: SigninComponent,
+  //       data: {
+  //         title: 'Sign In'
+  //       }
+  //     },
+  //   ]
+  //   },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   {
     path: 'maintenance',
