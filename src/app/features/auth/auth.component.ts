@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.scss']
+  template: `
+    <bs-auth-layout>
+      <router-outlet></router-outlet>
+    </bs-auth-layout>`
 })
 export class AuthComponent implements OnInit {
   href: string;

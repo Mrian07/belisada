@@ -1,39 +1,39 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
 
 import { AuthRoutingModule } from './auth-routing.module';
-import {
-  AuthComponent, SigninComponent
-} from '@belisada/features/auth';
+import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { LoginReducer, SignUpBuyerReducer } from '@belisada/core/ngrx/reducers';
-import { RouterModule } from '@angular/router';
+import {
+  AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent, ForgotPasswordComponent, ResetPasswordComponent
+} from '@belisada/features/auth';
+import { ThemeModule } from '../../theme/theme.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginReducer, SignUpBuyerReducer } from '@belisada/core/ngrx/reducers';
 import { AuthEffects } from '@belisada/core/ngrx/effects';
-
 
 
 @NgModule({
   imports: [
     CommonModule,
-    AuthRoutingModule
-    // FormsModule,
-    // ReactiveFormsModule,
-    // AngularFontAwesomeModule,
-    // StoreModule.forFeature('login', LoginReducer),
-    // StoreModule.forFeature('signup', SignUpBuyerReducer),
-    // EffectsModule.forFeature([AuthEffects]),
+    FormsModule,
+    ReactiveFormsModule,
+    ThemeModule,
+    AuthRoutingModule,
+    AngularFontAwesomeModule,
+    StoreModule.forFeature('login', LoginReducer),
+    StoreModule.forFeature('signup', SignUpBuyerReducer),
+    EffectsModule.forFeature([AuthEffects]),
   ],
   declarations: [
+    AuthComponent,
     SigninComponent,
-    AuthComponent
-    // SignUpComponent,
-    // SignUpActivationComponent,
-    // ForgotPasswordComponent,
-    // ResetPasswordComponent,
-    // LandingPageComponent
+    AuthComponent,
+    SignUpComponent,
+    SignUpActivationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   // schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

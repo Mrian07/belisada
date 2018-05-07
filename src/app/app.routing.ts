@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SaniComponent } from './components/sani/sani.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
-import { AuthModule } from '@belisada/features/auth/auth.module';
+// import { AuthModule } from '@belisada/features/auth/auth.module';
 import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
   ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
 
@@ -25,19 +25,6 @@ const routes: Routes = [
       },
     ]
   },
-  // {
-  //   path: 'account',
-  //   component: LandingPageComponent,
-  //   children: [
-  //     {
-  //       path: 'sign-in',
-  //       component: SigninComponent,
-  //       data: {
-  //         title: 'Sign In'
-  //       }
-  //     },
-  //   ]
-  //   },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   {
     path: 'maintenance',

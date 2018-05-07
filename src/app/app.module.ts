@@ -28,10 +28,11 @@ import { ModelsComponent } from '@belisada/shared/components/models/models.compo
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
 import { ProvinceReducer, CityReducer } from '@belisada/core/ngrx/reducers/store';
-import { AuthComponent, AuthInfoComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
+import { SigninComponent, SignUpComponent, SignUpActivationComponent,
   ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
 
 
+// import { AuthComponent } from '@belisada/features/auth';
 import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
@@ -40,17 +41,6 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
     AppComponent,
     Page404Component,
     MaintenanceComponent,
-
-    // Should move into themes
-    // AuthComponent,
-    // AuthInfoComponent,
-    SigninComponent,
-    // SignUpComponent,
-    // SignUpActivationComponent,
-    // ForgotPasswordComponent,
-    // ResetPasswordComponent,
-    AuthComponent,
-    AuthInfoComponent,
     ModelsComponent,
     FieldErrorDisplayComponent,
     LandingPageComponent,

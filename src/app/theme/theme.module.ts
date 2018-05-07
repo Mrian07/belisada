@@ -5,19 +5,24 @@ import { MainLayoutComponent } from './layout/main/main-layout.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LocationStrategy, PathLocationStrategy, CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SideAuthComponent } from './components/side-auth/side-auth.component';
+import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
 
 const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
+  SideAuthComponent,
+
   MainLayoutComponent,
+  AuthLayoutComponent
 ];
 
 @NgModule({
   imports: [
     AngularFontAwesomeModule,
-    BrowserModule,
+    CommonModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule
