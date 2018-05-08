@@ -154,6 +154,6 @@ export class UserService {
   private handleError(error: HttpErrorResponse): Observable<any> {
     console.error('observable error: ', error);
     return Observable.throw(error);
- }
+  }
 
 }

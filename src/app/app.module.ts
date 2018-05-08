@@ -57,7 +57,6 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
     StoreModule.forRoot({}),
-    StoreModule.forRoot({'province' : ProvinceReducer, 'city' : CityReducer}),
     EffectsModule.forRoot([StoreEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

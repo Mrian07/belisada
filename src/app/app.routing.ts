@@ -3,9 +3,6 @@ import { NgModule } from '@angular/core';
 import { SaniComponent } from './components/sani/sani.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
-// import { AuthModule } from '@belisada/features/auth/auth.module';
-import { AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
-  ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
 
 
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
@@ -26,6 +23,7 @@ const routes: Routes = [
     ]
   },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
+  { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
   {
     path: 'maintenance',
     component: MaintenanceComponent,
@@ -34,11 +32,6 @@ const routes: Routes = [
     path: '**',
     component: Page404Component,
   },
-  {
-    path: '',
-    redirectTo: '',
-    pathMatch: 'full'
-  }
 ];
 
 @NgModule({
