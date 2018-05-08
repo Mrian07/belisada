@@ -24,6 +24,7 @@ const routes: Routes = [
   },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
+  { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },
   {
     path: 'maintenance',
     component: MaintenanceComponent,
@@ -48,80 +49,6 @@ export class AppRoutingModule { }
     //     data: {
     //         title: 'Sign In Seller'
     //     }
-    // },
-    // {
-    //     path: 'account',
-    //     component: AuthenticationComponent,
-    //     children: [
-    //         {
-    //             path: 'sign-in',
-    //             component: SigninComponent,
-    //             data: {
-    //                 title: 'Sign In'
-    //             }
-    //         },
-    //         {
-    //             path: 'sign-up',
-    //             component: SignUpComponent,
-    //             data: {
-    //                 title: 'Sign Up'
-    //             }
-    //         },
-    //         {
-    //             path: 'activation',
-    //             component: SignUpActivationComponent
-    //         },
-    //         {
-    //             path: 'forgot-password',
-    //             component: ForgotPasswordComponent,
-    //             data: {
-    //                 title: 'Lose Password'
-    //             }
-    //         },
-    //         {
-    //             path: 'reset-password',
-    //             component: ResetPasswordComponent,
-    //             data: {
-    //                 title: 'Reset Password'
-    //             }
-    //         },
-    //     ]
-    // },
-
-    // {
-    //     path: 'buyer',
-    //     component: LayoutBuyerComponent,
-    //     canActivateChild: [OnlyLoggedInUsersGuard],
-    //     children: [
-    //         {
-    //             path: '',
-    //             component: ProfileComponent,
-    //             data: {
-    //                 title: 'Profile'
-    //             }
-    //         },
-    //         {
-    //             path: 'profile',
-    //             component: ProfileComponent,
-    //             data: {
-    //                 title: 'Profile'
-    //             }
-    //         },
-    //         {
-    //             path: 'profile-edit',
-    //             component: ProfileEditComponent,
-    //             data: {
-    //                 title: 'Edit Profile'
-    //             }
-    //         },
-    //         {
-    //             path: 'create-store',
-    //             component: CreateStoreComponent,
-    //             data: {
-    //                 title: 'Store'
-    //             }
-    //         }
-    //     ]
     // },
 
     // {
