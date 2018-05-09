@@ -2,25 +2,21 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/cor
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SellerRoutingModule } from './seller-routing.module';
-import { LayoutSellerComponent, ProfileSellerComponent, StoreComponent,
-  TopLayoutSellerComponent, SidebarLayoutComponent } from '@belisada/features/seller';
-
-
-
+import { ProfileSellerComponent, StoreComponent } from '@belisada/features/seller';
+import { SellerComponent } from '@belisada/features/seller/seller.component';
+import { ThemeModule } from '../../theme/theme.module';
 
 @NgModule({
   imports: [
     CommonModule,
     SellerRoutingModule,
     FormsModule,
+    ThemeModule,
     ReactiveFormsModule,
   ],
   declarations: [
-    LayoutSellerComponent,
+    SellerComponent,
     StoreComponent,
-    TopLayoutSellerComponent,
-    SidebarLayoutComponent,
-
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

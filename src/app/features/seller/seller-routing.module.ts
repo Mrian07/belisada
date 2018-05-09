@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LayoutSellerComponent, ProfileSellerComponent, StoreComponent } from '@belisada/features/seller';
+import { ProfileSellerComponent, StoreComponent } from '@belisada/features/seller';
+import { SellerComponent } from '@belisada/features/seller/seller.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: LayoutSellerComponent,
+        component: SellerComponent,
         // canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
             // {

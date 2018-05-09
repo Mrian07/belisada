@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
-    selector: 'app-sidebar-layout',
-    templateUrl: './sidebar-layout.component.html',
-    styleUrls: ['./sidebar-layout.component.scss']
+    selector: 'bs-sidebar-seller',
+    templateUrl: './sidebar-seller.component.html',
+    styleUrls: ['./sidebar-seller.component.scss']
 })
-export class SidebarLayoutComponent implements OnInit {
+export class SidebarSellerComponent implements OnInit {
 
     constructor(
         private router: Router,
