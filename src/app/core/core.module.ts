@@ -15,7 +15,7 @@ import { FilterPipe } from '@belisada/shared/pipes';
 
 import { JWTUtil, DateUtil } from '@belisada/core/util';
 
-import { UserService, StoreService, SubscribeService } from '@belisada/core/services';
+import { UserService, StoreService, SubscribeService, AuthService, ShareMessageService } from '@belisada/core/services';
 
 const BELISADA_UTILS = [
   JWTUtil,
@@ -23,10 +23,12 @@ const BELISADA_UTILS = [
 ];
 
 const BELISADA_PROVIDERS = [
+  AuthService,
   Configuration,
   UserService,
   StoreService,
   SubscribeService,
+  ShareMessageService,
   {
     provide: RECAPTCHA_SETTINGS,
     useValue: {

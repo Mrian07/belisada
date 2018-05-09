@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { ShareMessageService } from '@belisada/core/services';
 
 @Component({
-    selector: 'app-sidebar-buyer',
+    selector: 'bs-sidebar-buyer',
     templateUrl: './sidebar-buyer.component.html',
     styleUrls: ['./sidebar-buyer.component.scss']
 })

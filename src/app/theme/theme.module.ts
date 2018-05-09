@@ -9,14 +9,18 @@ import { LocationStrategy, PathLocationStrategy, CommonModule } from '@angular/c
 import { RouterModule } from '@angular/router';
 import { SideAuthComponent } from './components/side-auth/side-auth.component';
 import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
+import { BuyerLayoutComponent } from './layout/buyer/buyer-layout.component';
+import { SidebarBuyerComponent } from './components/sidebar-buyer/sidebar-buyer.component';
 
 const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
   SideAuthComponent,
+  SidebarBuyerComponent,
 
   MainLayoutComponent,
-  AuthLayoutComponent
+  AuthLayoutComponent,
+  BuyerLayoutComponent
 ];
 
 @NgModule({

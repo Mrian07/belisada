@@ -35,6 +35,7 @@ import { SigninComponent, SignUpComponent, SignUpActivationComponent,
 // import { AuthComponent } from '@belisada/features/auth';
 import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
+import { HttpTokenInterceptor } from '@belisada/core/interceptors';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,11 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
       useClass: PathLocationStrategy,
     },
     { provide: APP_BASE_HREF, useValue: '/' },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpTokenInterceptor,
+      multi: true
+    },
       // Configuration,
       // UserService,
       // SubscribeService,
@@ -78,10 +84,6 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
       // useValue: {
       //     siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
       // } as RecaptchaSettings,
-      // },
-      // { provide: HTTP_INTERCEPTORS,
-      // useClass: Interceptor,
-      // multi: true
       // },
       // RecaptchaLoaderService,
       // FlagService
