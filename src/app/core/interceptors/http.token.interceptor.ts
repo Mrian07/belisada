@@ -30,7 +30,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           token: `${auth.getToken()}`
-         },
+        },
       });
 
     return next.handle(request).do((event: HttpEvent<any>) => {
@@ -60,12 +60,12 @@ export class HttpTokenInterceptor implements HttpInterceptor {
           swal('belisada.co.id', 'Oops!...something wrong... 500', 'error');
           // .then((result) => {
           //  this.routes.navigateByUrl('/maintenance');
-         // });
+        // });
         } else {
           // swal('Oops!...something wrong...')
           // .then((result) => {
           //  this.routes.navigateByUrl('/maintenance');
-         // });
+        // });
         }
       }
     });

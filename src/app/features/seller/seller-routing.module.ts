@@ -15,7 +15,6 @@ const routes: Routes = [
             //         title: 'Profile Seller'
             //     }
             // },
-
             {
                 path: 'store',
                 component: StoreComponent,

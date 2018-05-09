@@ -6,8 +6,6 @@ import { LayoutSellerComponent, ProfileSellerComponent, StoreComponent,
   TopLayoutSellerComponent, SidebarLayoutComponent } from '@belisada/features/seller';
 
 
-
-
 @NgModule({
   imports: [
     CommonModule,

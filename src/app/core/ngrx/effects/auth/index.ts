@@ -18,10 +18,10 @@ export class AuthEffects {
     .map((action: Action.Login) => action.status)
     .switchMap((req) =>
       this.storeService.signin(req)
-        .switchMap( (status: any) => {
-          return [
-            new Action.LoginSuccess(status)
-          ];
+      .switchMap( (status: any) => {
+        return [
+          new Action.LoginSuccess(status)
+        ];
       }
     )
   );
@@ -31,9 +31,9 @@ export class AuthEffects {
     .switchMap((req) =>
       this.storeService.signup(req)
         .switchMap( (status: any) => {
-          return [
-            new Action.SignUpBuyerSuccess(status)
-          ];
+        return [
+          new Action.SignUpBuyerSuccess(status)
+        ];
       }
     )
   );
