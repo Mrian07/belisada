@@ -11,16 +11,22 @@ import { SideAuthComponent } from './components/side-auth/side-auth.component';
 import { AuthLayoutComponent } from './layout/auth/auth-layout.component';
 import { BuyerLayoutComponent } from './layout/buyer/buyer-layout.component';
 import { SidebarBuyerComponent } from './components/sidebar-buyer/sidebar-buyer.component';
+import { SellerLayoutComponent } from './layout/seller/seller-layout.component';
+import { SidebarSellerComponent } from './components/sidebar-seller/sidebar-seller.component';
+import { HeadingSellerComponent } from './components/heading-seller/heading-seller.component';
 
 const COMPONENTS = [
   HeaderComponent,
   FooterComponent,
   SideAuthComponent,
   SidebarBuyerComponent,
+  SidebarSellerComponent,
+  HeadingSellerComponent,
 
   MainLayoutComponent,
   AuthLayoutComponent,
-  BuyerLayoutComponent
+  BuyerLayoutComponent,
+  SellerLayoutComponent
 ];
 
 @NgModule({
