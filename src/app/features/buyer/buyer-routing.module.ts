@@ -4,12 +4,13 @@ import { ProfileComponent } from '@belisada/features/buyer/profile/profile.compo
 import { ProfileEditComponent } from '@belisada/features/buyer/profile-edit/profile-edit.component';
 import { CreateStoreComponent } from '@belisada/features/buyer/create-store/create-store.component';
 import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
+import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
 
 const routes: Routes = [
   {
     path: '',
     component: BuyerComponent,
-    // canActivateChild: [OnlyLoggedInUsersGuard],
+    canActivateChild: [OnlyLoggedInUsersGuard],
     children: [
       // {
       //     path: '',

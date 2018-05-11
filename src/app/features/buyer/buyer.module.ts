@@ -8,6 +8,7 @@ import { CreateStoreComponent } from '@belisada/features/buyer/create-store/crea
 import { BuyerRoutingModule } from '@belisada/features/buyer/buyer-routing.module';
 import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { ThemeModule } from '../../theme/theme.module';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 
 
@@ -20,6 +21,7 @@ import { ThemeModule } from '../../theme/theme.module';
     ReactiveFormsModule,
     MyDatePickerModule,
     BuyerRoutingModule,
+    AngularFontAwesomeModule
   ],
   declarations: [
     BuyerComponent,

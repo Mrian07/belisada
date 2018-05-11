@@ -14,6 +14,7 @@ import { SidebarBuyerComponent } from './components/sidebar-buyer/sidebar-buyer.
 import { SellerLayoutComponent } from './layout/seller/seller-layout.component';
 import { SidebarSellerComponent } from './components/sidebar-seller/sidebar-seller.component';
 import { HeadingSellerComponent } from './components/heading-seller/heading-seller.component';
+import { FilterPipe } from '@belisada/shared/pipes';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -29,6 +30,10 @@ const COMPONENTS = [
   SellerLayoutComponent
 ];
 
+const PIPES = [
+  FilterPipe
+];
+
 @NgModule({
   imports: [
     AngularFontAwesomeModule,
@@ -37,8 +42,8 @@ const COMPONENTS = [
     RouterModule,
     ReactiveFormsModule
   ],
-  exports: [...COMPONENTS],
-  declarations: [...COMPONENTS]
+  exports: [...PIPES, ...COMPONENTS],
+  declarations: [...PIPES, ...COMPONENTS]
 })
 export class ThemeModule {
 

@@ -17,6 +17,7 @@ import { ThemeModule } from '../../theme/theme.module';
   declarations: [
     SellerComponent,
     StoreComponent,
+    ProfileSellerComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })

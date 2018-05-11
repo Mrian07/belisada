@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileSellerComponent, StoreComponent } from '@belisada/features/seller';
 import { SellerComponent } from '@belisada/features/seller/seller.component';
+import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
 
 const routes: Routes = [
     {
         path: '',
         component: SellerComponent,
-        // canActivateChild: [OnlyLoggedInUsersGuard],
+        canActivateChild: [OnlyLoggedInUsersGuard],
         children: [
-            // {
-            //     path: 'profile-seller',
-            //     component: ProfileSellerComponent,
-            //     data: {
-            //         title: 'Profile Seller'
-            //     }
-            // },
+            {
+                path: 'profile-seller',
+                component: ProfileSellerComponent,
+                data: {
+                    title: 'Profile Seller'
+                }
+            },
+
             {
                 path: 'store',
                 component: StoreComponent,

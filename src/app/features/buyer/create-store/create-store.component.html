@@ -1,147 +1,144 @@
-
-
 <div class="border-store">
-        <div class="padding-for-top-store">
-            <div class="row">
-                <div class="col-1"> <img class="img-small-store" src="assets/img/store_icon.png"></div>
-                <div class="col-11 left-col"> <span class="text-profil-toko">Profil Toko</span></div>
+    <div class="padding-for-top-store">
+        <div class="row">
+            <div class="col-1"> <img class="img-small-store" src="assets/img/store_icon.png"></div>
+            <div class="col-11 left-col"> <span class="text-profil-toko">Profil Toko</span></div>
+        </div>
+    </div>
+    <hr>
+    <form [formGroup]="store" (ngSubmit)="onSent()" #fs="ngForm"  novalidate>
+        <div class="wrapper-for-store-profile">
+            <div class="padding-for-photo">
+                <label>Upload Foto Toko Mu disini : </label>
+                <ul class="add_product_image clearfix" id="image-list">
+                    <li class="u-inline-list-gap">
+                        <div *ngIf="data.picture" class="image-preview" [ngStyle]="{'background-image': 'url(' + data.picture + ')'}">
+                            <span class="action-button" (click)="removeImage(i)">
+                                <fa name="trash"></fa>
+                            </span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="pikcker-wrapper picker-add-image" *ngIf="data.picture === undefined">
+                            <input type="file" formControlName="storePicture" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div>
+                    <div class="wrapper2-for-url-toko3">
+                        <img class="img-small-store" src="assets/img/img_1447.png">
+                        <div>
+                            <label>URL Toko Anda</label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="wrapper2-for-url-toko">
+                    <div>
+                        <input type="text" class="input-style-text-100" disabled placeholder="www.belisada.co.id/">
+                    </div>
+                    <div>
+                        <input type="text" class="input-style-text-100" readonly formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
+                        <span class="size-font-small">* Space akan otomatis teconvert menggunakan (_)</span>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="wrapper2-for-url-toko3">
+                        <img class="img-small-store" src="assets/img/shop.png">
+                        <div>
+                            <label>Nama Toko</label>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" formControlName="name" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Nama Toko" >
+                <div *ngIf="store.controls.name.errors && store.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
+                    <div class="testing">
+                        <span class="tooltiptext">{{serverMessage}}</span>
+                    </div>
+                </div>
+                <ng-template #nameCheckingTemplate>
+                    <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Silahkan Masukan Nama Toko Kamu"></app-field-error-display>
+                </ng-template>
+                <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
+                <div>
+                    <div class="wrapper2-for-url-toko3">
+                        <img class="img-small-store" src="assets/img/map.png">
+                        <div>
+                            <label>Alamat Toko</label>
+                        </div>
+                    </div>
+                </div>
+                <textarea rows="4" cols="50" formControlName="address" class="input-style-text-100" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
+                </textarea>
+                <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko Mu"></app-field-error-display>
+                <select formControlName="province" required class="input-style-text-100">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
+                    <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
+                        {{ option.regionName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Silahkan Masukan Provinsi"></app-field-error-display>
+
+                <select formControlName="city" class="input-style-text-100">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
+                    <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Silahkan Masukan Kota"></app-field-error-display>
+
+                <select formControlName="district" class="input-style-text-100">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
+                    <option *ngFor="let option of districts" [ngValue]="option.districtId">
+                        {{ option.districtName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Silahkan Masukan Kecamatan"></app-field-error-display>
+
+                <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(store.value.villageId)">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
+                    <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
+                        {{ option.villageName }}
+                    </option>
+                </select>
+
+                <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Silahkan Masukan Kelurahan"></app-field-error-display>
+                <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
+                <div *ngIf="store.controls.postal.errors?.minlength; else postalOn" class="alert alert-danger toll tooltip-for-password testing">
+                    <p class="tooltiptext"> Kode Poss Harus 5 </p>
+
+                </div>
+                <ng-template #postalOn>
+                    <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Kode Poss">
+
+                    </app-field-error-display>
+                </ng-template>
+
+                <!-- <input type="text" formControlName="postal" maxlength="5"  maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal"  [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}"> -->
+                <!-- <input type="text" formControlName="postal" class="input-style-text-100" placeholder="Kode Pos"> -->
+                <!-- <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display> -->
+                <div>
+                    <div class="wrapper2-for-url-toko3">
+                        <img class="img-small-store" src="assets/img/edit.png">
+                        <div>
+                            <label>Deskripsi Toko</label>
+                        </div>
+                    </div>
+                </div>
+                <input type="text" class="input-style-text-100" formControlName="description" placeholder="Deskripsi Toko" [ngClass]="{'has-danger': store.controls.description.invalid && store.controls.description.dirty,'has-success': store.controls.description.valid && store.controls.description.dirty}">
+                <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Deskripsi Toko Mu"></app-field-error-display>
+
+                <div class="component-center">
+                    <button class="btn btn-size-30 btn btn--orange component-center">Simpan</button>
+                </div>
+            </div>
+            <div>
+                <!-- <label>Dumy</label> -->
+                <br>
             </div>
         </div>
-        <hr>
-        <form [formGroup]="store" (ngSubmit)="onSent()" #fs="ngForm"  novalidate>
-            <div class="wrapper-for-store-profile">
-                <div class="padding-for-photo">
-                    <label>Upload Foto Toko Mu disini : </label>
-                    <ul class="add_product_image clearfix" id="image-list">
-                        <li class="u-inline-list-gap">
-                            <div *ngIf="data.picture" class="image-preview" [ngStyle]="{'background-image': 'url(' + data.picture + ')'}">
-                                <span class="action-button" (click)="removeImage(i)">
-                                <i class="trash alternate outline icon"></i>
-                                </span>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="pikcker-wrapper picker-add-image" *ngIf="data.picture === undefined">
-                                <input type="file" formControlName="storePicture" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
-    
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <div>
-                        <div class="wrapper2-for-url-toko3">
-                            <img class="img-small-store" src="assets/img/img_1447.png">
-                            <div>
-                                <label>URL Toko Anda</label>
-                            </div>
-                        </div>
-    
-                    </div>
-    
-                    <div class="wrapper2-for-url-toko">
-                        <div>
-                            <input type="text" class="input-style-text-100" disabled placeholder="www.belisada.co.id/">
-                        </div>
-                        <div>
-                            <input type="text" class="input-style-text-100" readonly formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" /> 
-                            <span class="size-font-small">* Space akan otomatis teconvert menggunakan (_)</span>
-                        </div>
-                    </div>
-    
-                    <div>
-                        <div class="wrapper2-for-url-toko3">
-                            <img class="img-small-store" src="assets/img/shop.png">
-                            <div>
-                                <label>Nama Toko</label>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="text" formControlName="name" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Nama Toko" >
-                    <div *ngIf="store.controls.name.errors && store.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
-                        <div class="testing">
-                            <span class="tooltiptext">{{serverMessage}}</span>
-                        </div>
-                    </div>
-                    <ng-template #nameCheckingTemplate>
-                        <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Silahkan Masukan Nama Toko Kamu"></app-field-error-display>
-                    </ng-template>
-                    <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
-                    <div>
-                        <div class="wrapper2-for-url-toko3">
-                            <img class="img-small-store" src="assets/img/map.png">
-                            <div>
-                                <label>Alamat Toko</label>
-                            </div>
-                        </div>
-                    </div>
-                    <textarea rows="4" cols="50" formControlName="address" class="input-style-text-100" placeholder="Alamat Toko" [ngClass]="{'has-danger': store.controls.address.invalid && store.controls.address.dirty,'has-success': store.controls.address.valid && store.controls.address.dirty}">
-                    </textarea>
-                    <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko Mu"></app-field-error-display>
-                    <select formControlName="province" required class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
-                        <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
-                            {{ option.regionName }}
-                        </option>
-                    </select>
-                    <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Silahkan Masukan Provinsi"></app-field-error-display>
-    
-                    <select formControlName="city" class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
-                        <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
-                        </option>
-                    </select>
-                    <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Silahkan Masukan Kota"></app-field-error-display>
-    
-                    <select formControlName="district" class="input-style-text-100">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
-                        <option *ngFor="let option of districts" [ngValue]="option.districtId">
-                            {{ option.districtName }}
-                        </option>
-                    </select>
-                    <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Silahkan Masukan Kecamatan"></app-field-error-display>
-    
-                    <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(store.value.villageId)">
-                        <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
-                        <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
-                            {{ option.villageName }}
-                        </option>
-                    </select>
-    
-                    <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Silahkan Masukan Kelurahan"></app-field-error-display>
-                    <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal" [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}">
-                    <div *ngIf="store.controls.postal.errors?.minlength; else postalOn" class="alert alert-danger toll tooltip-for-password testing">
-                        <p class="tooltiptext"> Kode Poss Harus 5 </p>
-    
-                    </div>
-                    <ng-template #postalOn>
-                        <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Kode Poss">
-    
-                        </app-field-error-display>
-                    </ng-template>
-    
-                    <!-- <input type="text" formControlName="postal" maxlength="5"  maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal"  [ngClass]="{'has-danger': store.controls.postal.invalid && store.controls.postal.dirty,'has-success': store.controls.postal.valid && store.controls.postal.dirty}"> -->
-                    <!-- <input type="text" formControlName="postal" class="input-style-text-100" placeholder="Kode Pos"> -->
-                    <!-- <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Postal Mu"></app-field-error-display> -->
-                    <div>
-                        <div class="wrapper2-for-url-toko3">
-                            <img class="img-small-store" src="assets/img/edit.png">
-                            <div>
-                                <label>Deskripsi Toko</label>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="text" class="input-style-text-100" formControlName="description" placeholder="Deskripsi Toko" [ngClass]="{'has-danger': store.controls.description.invalid && store.controls.description.dirty,'has-success': store.controls.description.valid && store.controls.description.dirty}">
-                    <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Deskripsi Toko Mu"></app-field-error-display>
-    
-                    <div class="component-center">
-                        <button class="btn btn-size-30 btn btn--orange component-center">Simpan</button>
-                    </div>
-                </div>
-                <div>
-                    <!-- <label>Dumy</label> -->
-                    <br>
-                </div>
-            </div>
-        </form>
-    </div>
+    </form>
+</div>
