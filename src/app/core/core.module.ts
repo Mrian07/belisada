@@ -11,11 +11,14 @@ import { Configuration } from './config/configuration';
 
 import { throwIfAlreadyLoaded } from '@belisada/core/module-import.guard';
 
-import { FilterPipe } from '@belisada/shared/pipes';
+// import { FilterPipe } from '@belisada/shared/pipes';
 
 import { JWTUtil, DateUtil } from '@belisada/core/util';
 
-import { UserService, StoreService, SubscribeService, AuthService, ShareMessageService } from '@belisada/core/services';
+import {
+  UserService, StoreService, SubscribeService,
+  AuthService, ShareMessageService, OnlyLoggedInUsersGuard
+} from '@belisada/core/services';
 
 const BELISADA_UTILS = [
   JWTUtil,
@@ -29,6 +32,7 @@ const BELISADA_PROVIDERS = [
   StoreService,
   SubscribeService,
   ShareMessageService,
+  OnlyLoggedInUsersGuard,
   {
     provide: RECAPTCHA_SETTINGS,
     useValue: {
@@ -40,7 +44,7 @@ const BELISADA_PROVIDERS = [
 
 @NgModule({
   declarations: [
-    FilterPipe
+    // FilterPipe
   ],
   imports: [
     CommonModule,
