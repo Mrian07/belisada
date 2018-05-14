@@ -57,7 +57,8 @@ export class SigninComponent implements OnInit {
             this.userService.setUserToSessionStorage(token);
             this.userService.setRemember('false');
           }
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/');
+          location.reload();
         }
       }, error => {
         swal('belisada.co.id', 'unknown error', 'error');

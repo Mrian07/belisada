@@ -42,11 +42,11 @@ export class GetProvinceSuccess implements Action {
 }
 export class GetCity implements Action {
   readonly type = GETCITY;
-  constructor(public city: any) { console.log(city); }
+  constructor(public city: any) { }
 }
 export class GetCitySuccess implements Action {
   readonly type = GETCITYSUCCESS;
-  constructor(public city: any) { console.log(city); }
+  constructor(public city: any) { }
 }
 export class GetDistrict implements Action {
   readonly type = GETDISTRICT;

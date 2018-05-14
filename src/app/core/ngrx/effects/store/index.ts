@@ -19,9 +19,9 @@ export class StoreEffects {
     .switchMap((id) =>
       this.storeService.getProvince(id)
         .switchMap( (province: any) => {
-          return [
-            new Action.GetProvinceSuccess(province)
-          ];
+        return [
+          new Action.GetProvinceSuccess(province)
+        ];
         }
       )
     );
@@ -31,10 +31,9 @@ export class StoreEffects {
     .switchMap((id) =>
       this.storeService.getCity(id)
         .switchMap( (city: any) => {
-          console.log(city);
-          return [
-            new Action.GetCitySuccess(city)
-          ];
+        return [
+          new Action.GetCitySuccess(city)
+        ];
         }
       )
     );
