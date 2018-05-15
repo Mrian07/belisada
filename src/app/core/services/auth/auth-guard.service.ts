@@ -3,7 +3,9 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { CanActivateChild } from '@angular/router/src/interfaces';
 import { Router } from '@angular/router';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class OnlyLoggedInUsersGuard implements CanActivateChild {
   constructor(private router: Router) { }
 

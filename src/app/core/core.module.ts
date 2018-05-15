@@ -19,21 +19,6 @@ import {
   AuthService, ShareMessageService, OnlyLoggedInUsersGuard
 } from '@belisada/core/services';
 
-const BELISADA_UTILS = [
-  JWTUtil,
-  DateUtil,
-];
-
-const BELISADA_PROVIDERS = [
-  AuthService,
-  Configuration,
-  UserService,
-  StoreService,
-  SubscribeService,
-  ShareMessageService,
-  OnlyLoggedInUsersGuard,
-];
-
 @NgModule({
   declarations: [
     // FilterPipe
@@ -42,11 +27,7 @@ const BELISADA_PROVIDERS = [
     CommonModule,
     HttpClientModule,
     MyDatePickerModule,
-  ],
-  providers: [
-    ...BELISADA_UTILS,
-    ...BELISADA_PROVIDERS
-  ],
+  ]
 })
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {

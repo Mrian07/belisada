@@ -6,7 +6,9 @@ import { map } from 'rxjs/operators';
 import { Configuration } from '@belisada/core/config';
 import { SubscribeResponse, SubscribeRequest } from '@belisada/core/models';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SubscribeService {
 
   constructor(private http: HttpClient, private configuration: Configuration) { }

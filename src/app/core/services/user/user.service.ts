@@ -18,7 +18,9 @@ import { LocalStorageEnum } from '@belisada/core/enum';
 import { map } from 'rxjs/operators';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class UserService {
 
   constructor(

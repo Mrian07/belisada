@@ -12,7 +12,9 @@ import {
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class StoreService {
 
   constructor(private cfg: Configuration, private http: HttpClient) { }

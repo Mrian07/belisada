@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 import { Token } from '@belisada/core/models';
 import { Configuration } from '@belisada/core/config';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   constructor(private configuration: Configuration, private http: HttpClient, private routes: Router) { }
 
