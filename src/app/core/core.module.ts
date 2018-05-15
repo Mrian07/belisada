@@ -4,8 +4,7 @@ import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { MyDatePickerModule } from 'mydatepicker';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RecaptchaModule, RecaptchaLoaderService, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 import { Configuration } from './config/configuration';
 
@@ -33,13 +32,6 @@ const BELISADA_PROVIDERS = [
   SubscribeService,
   ShareMessageService,
   OnlyLoggedInUsersGuard,
-  {
-    provide: RECAPTCHA_SETTINGS,
-    useValue: {
-      siteKey: '6Ld2TUwUAAAAAFo9u34dxrn7ocWjqRa42mr2kWJ1',
-    } as RecaptchaSettings,
-  },
-  RecaptchaLoaderService
 ];
 
 @NgModule({
@@ -49,8 +41,6 @@ const BELISADA_PROVIDERS = [
   imports: [
     CommonModule,
     HttpClientModule,
-    RecaptchaModule,
-    RecaptchaFormsModule,
     MyDatePickerModule,
   ],
   providers: [

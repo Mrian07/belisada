@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { Observable ,  BehaviorSubject ,  Subscription } from 'rxjs';
-import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { LowerCasePipe } from '@angular/common';
@@ -83,7 +82,7 @@ export class SignUpComponent implements OnInit {
           updateOn: 'blur'
       });
       this.RegStatus = this.actionsSubject.asObservable()
-        .filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS)
+        .pipe(filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS))
         .subscribe((action: UserAction.SignUpBuyerSuccess) => {
           // console.log('reg success');
           this.ngrx.select<any>(UserReducer.SignUpBuyerState).subscribe(

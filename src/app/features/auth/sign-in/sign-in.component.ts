@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 import swal from 'sweetalert2';
+import { filter } from 'rxjs/operators';
 
 import { EmailChecking, SigninRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
@@ -41,7 +42,7 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
     this.createFormControl();
     this.LoginStatus = this.actionsSubject.asObservable()
-    .filter(action => action.type === UserAction.LOGINSUCCESS)
+    .pipe(filter(action => action.type === UserAction.LOGINSUCCESS))
     .subscribe((action: UserAction.LoginSuccess) => {
       const form = this.signinFormGroup;
       this.ngrx.select<any>(UserReducer.LoginState).subscribe( result => {
