@@ -55,6 +55,7 @@ export class ProfileStoreResponse {
   mUserLocationId: number;
   isoffday: boolean;
   imageStoreUrl: any;
+  url: string;
 }
 export class UpdateStoreRequest {
   address: string;

@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12">
             <span class="title-sidebar">DASHBOARD</span>
-            <div *ngIf="router.url == '/buyer/profile'">
+            <div *ngIf="location == '/buyer/profile'">
                 <div (click)="goToCreateStore()" class="btn-jualan">Ikut Jualan</div>
             </div>
             <div (click)="profile()" class="sidebar-to-cursor">Profile Anda</div>

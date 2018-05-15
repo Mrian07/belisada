@@ -2,18 +2,25 @@
     <h3>Ubah Gambar Produk</h3>
     <p>Geser gambar untuk mengubah susunan. Minimal gambar 2 dan maksimal gambar produk 5, geser untuk menyusun foto</p>
 
-    <ul class="add_product_image clearfix" id="image-list">
-        <li class="u-inline-list-gap">
-            <div *ngIf="data.picture" class="image-preview" [ngStyle]="{'background-image': 'url(' + data.picture + ')'}">
-                <span class="action-button" (click)="removeImage(i)">
-                    <fa name="trash"></fa>
-                </span>
-            </div>
-        </li>
-        <li>
-            <div class="pikcker-wrapper picker-add-image" *ngIf="data.picture === undefined">
-                <input type="file" formControlName="storePicture" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
-            </div>
-        </li>
-    </ul>
+    <div class="add-product-form-wrapper">
+        <ul class="add_product_image clearfix" id="image-list">
+            <!-- <li class="u-inline-list-gap">
+                <div class="image-preview" [ngStyle]="{'background-image': 'url()'}">
+                    <span class="action-button">
+                        <fa name="trash"></fa>
+                    </span>
+                </div>
+            </li> -->
+            <li>
+                <div class="pikcker-wrapper picker-add-image">
+                    <input type="file" accept="image/jpeg,.jpeg,.jpg,image/png,.png">
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <h3>Informasi Product</h3>
+    <div class="add-product-form-wrapper">
+
+    </div>
 </div>

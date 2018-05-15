@@ -1,6 +1,5 @@
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { SaniComponent } from './components/sani/sani.component';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 

@@ -1,5 +1,5 @@
 <div class="row">
-    <form class="col-4" #descForm="ngForm" (ngSubmit)="saveDesc(descForm)">
+    <form class="col-4" #descForm="ngForm" (ngSubmit)="saveDesc()">
     <!-- <form class="col-4" (ngSubmit)="saveDesc()"> -->
         <h2>Informasi Toko</h2>
         <div class="border-foto-toko">
@@ -18,7 +18,7 @@
             <!-- <input type="file" name="myfile" (change)="setUrl($event, avaImg)" *ngIf="!onViewDesc" class="btn btn--yellow component-center btn-size-100">Ubah Foto Toko -->
         </div>
         <!-- <textarea [(ngModel)]="store.description" [disabled]="onViewDesc" name="description" #description="ngModel" class="border-ket-toko" title="klik untuk mengubah" style="resize:none;"></textarea> -->
-        <textarea [(ngModel)]="store.description" [disabled]="onViewDesc" name="description" #description="ngModel" class="border-ket-toko" title="klik untuk mengubah" style="resize:none;" (ngModelChange)="setUpdateDesc(description)"></textarea>
+        <textarea [(ngModel)]="store.description" [disabled]="onViewDesc" name="description" #description="ngModel" class="border-ket-toko" title="klik untuk mengubah" style="resize:none;"></textarea>
         <div class="edit-ket-toko">
             <button type="button" *ngIf="onViewDesc" class="btn btn--yellow" (click)="editDesc()"><fa name="edit"></fa> Edit</button>
             <!-- <button type="submit" *ngIf="updateDesc.description" class="btn btn--yellow"><fa name="save"></fa> Save</button> -->

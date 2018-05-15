@@ -11,7 +11,7 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
     CommonModule,
     ThemeModule,
     LandingPageRoutingModule
-],
-  declarations: [HomeComponent, LandingPageComponent]
+  ],
+  declarations: []
 })
 export class LandingPageModule { }
