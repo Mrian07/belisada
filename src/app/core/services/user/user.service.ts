@@ -1,3 +1,5 @@
+
+import {throwError as observableThrowError,  Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 
@@ -13,8 +15,8 @@ import { Configuration } from '@belisada/core/config';
 
 import { LocalStorageEnum } from '@belisada/core/enum';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
+
 
 @Injectable()
 export class UserService {
@@ -36,7 +38,9 @@ export class UserService {
   */
   checkEmail(data: EmailChecking): Observable<EmailChecking> {
     return this.http.post(this.config.apiURL + '/account/checkemail', data)
-      .map(resp => resp as EmailChecking);
+      .pipe(
+        map(resp => resp as EmailChecking)
+      );
   }
 
   /*
@@ -46,7 +50,9 @@ export class UserService {
 
   signup(data: SignupData): Observable<SignupResponse> {
     return this.http.post(this.config.apiURL + '/account/create', data)
-      .map(response => response as SignupResponse);
+      .pipe(
+        map(response => response as SignupResponse)
+      );
   }
 
   /*
@@ -56,7 +62,9 @@ export class UserService {
 
   signin(request: SigninRequest): Observable<SigninResponse> {
     return this.http.post(this.config.apiURL + '/account/login', request)
-      .map(response => response as SigninResponse);
+      .pipe(
+        map(response => response as SigninResponse)
+      );
   }
 
   /*
@@ -66,7 +74,9 @@ export class UserService {
 
   activation(request: ActivationRequest): Observable<ActivationResponse> {
     return this.http.post(this.config.apiURL + '/account/activation', request)
-      .map(response => response as ActivationResponse);
+      .pipe(
+        map(response => response as ActivationResponse)
+      );
   }
 
   /*
@@ -106,7 +116,9 @@ export class UserService {
 
   sendEmail(data: SendEmailRequest) {
     return this.http.post(this.config.apiURL + '/account/sendemail', data)
-      .map(res => res as SendEmailResponse);
+      .pipe(
+        map(res => res as SendEmailResponse)
+      );
   }
 
   /*
@@ -117,7 +129,9 @@ export class UserService {
 
   resetPasswd(data) {
     return this.http.post(this.config.apiURL + '/account/resetpassword', data)
-      .map(res => res as ResetPasswdResponse);
+      .pipe(
+        map(res => res as ResetPasswdResponse)
+      );
   }
 
   /*
@@ -127,12 +141,16 @@ export class UserService {
 
   getProfile() {
       return this.http.get(this.config.apiURL + '/profile/')
-        .map(resp => resp as Profile);
+        .pipe(
+          map(resp => resp as Profile)
+        );
   }
 
   createFormGuest(data: SignupData): Observable<UserSignupGuest> {
     return this.http.post(this.config.apiURL + '/store/create', data)
-      .map(response => response as UserSignupGuest);
+      .pipe(
+        map(response => response as UserSignupGuest)
+      );
   }
 
     /*
@@ -141,7 +159,9 @@ export class UserService {
 
   updateProfile(updateData: EditProfileRequest) {
       return this.http.put(this.config.apiURL + '/profile/update/', updateData)
-        .map(resp => resp as EditProfileResponse);
+        .pipe(
+          map(resp => resp as EditProfileResponse)
+        );
   }
 
   getIpAddress(): Observable<UserSignupGuest> {
@@ -149,11 +169,13 @@ export class UserService {
   });
     return this.http
       .get(this.config.apiURL + '/global/ip')
-      .map(response => response as UserSignupGuest);
+        .pipe(
+          map(response => response as UserSignupGuest)
+        );
   }
   private handleError(error: HttpErrorResponse): Observable<any> {
     console.error('observable error: ', error);
-    return Observable.throw(error);
+    return observableThrowError(error);
   }
 
 }

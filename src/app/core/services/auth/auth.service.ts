@@ -1,6 +1,7 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http/src/headers';
 import { Router } from '@angular/router';
 import { Token } from '@belisada/core/models';
@@ -29,7 +30,9 @@ export class AuthService {
       token : this.token
     };
     return this.http.post(this.configuration.apiURL + '/account/checktoken', objToken)
-      .map(resp => resp as Token);
+      .pipe(
+        map(resp => resp as Token)
+      );
   }
 
   /*

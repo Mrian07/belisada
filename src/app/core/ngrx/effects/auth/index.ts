@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import {Actions, Effect} from '@ngrx/effects';
 import { UserService } from '@belisada/core/services';
 import * as Action from '../../actions';
-import 'rxjs/add/operator/switchMap';
+
 
 
 @Injectable()

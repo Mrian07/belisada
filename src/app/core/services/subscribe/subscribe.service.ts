@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
 import { SubscribeResponse, SubscribeRequest } from '@belisada/core/models';
@@ -14,6 +15,8 @@ export class SubscribeService {
   // used by layout/footer component
   newsLetter(data: SubscribeRequest): Observable<SubscribeResponse> {
     return this.http.post(this.configuration.apiURL + '/subscribe/create', data)
-      .map(response => response as SubscribeResponse);
+      .pipe(
+        map(response => response as SubscribeResponse)
+      );
   }
 }

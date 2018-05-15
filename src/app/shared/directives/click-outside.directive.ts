@@ -1,9 +1,5 @@
 import {Directive, OnInit, OnDestroy, Output, EventEmitter, ElementRef} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
-import 'rxjs/add/observable/fromEvent';
-import 'rxjs/add/operator/delay';
-import 'rxjs/add/operator/do';
-import { Subscription } from 'rxjs/Subscription';
+import {Observable,  Subscription } from 'rxjs';
 
 @Directive({
   selector: '[clickOutside]'

@@ -6,8 +6,8 @@ import swal from 'sweetalert2';
 
 import { EmailChecking, SigninRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
+import { Subscription } from 'rxjs';
+
 import { Store, ActionsSubject } from '@ngrx/store';
 import * as UserAction from '@belisada/core/ngrx/actions/auth';
 import * as UserReducer from '@belisada/core/ngrx/reducers/auth';

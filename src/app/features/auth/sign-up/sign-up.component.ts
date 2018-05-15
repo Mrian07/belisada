@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable ,  BehaviorSubject ,  Subscription } from 'rxjs';
 import { RecaptchaModule, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
 import { Router } from '@angular/router';
@@ -10,8 +9,7 @@ import { LowerCasePipe } from '@angular/common';
 import { User, SignupData, EmailChecking } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
 import { PasswordValidation } from '@belisada/shared/validators';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
+
 import { Store, ActionsSubject } from '@ngrx/store';
 import * as UserAction from '@belisada/core/ngrx/actions/user';
 import * as UserReducer from '@belisada/core/ngrx/reducers/user';

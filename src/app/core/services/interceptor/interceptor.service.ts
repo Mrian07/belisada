@@ -1,3 +1,4 @@
+import { tap } from 'rxjs/operators';
 import { Injectable, Injector } from '@angular/core';
 import {
   HttpRequest,
@@ -9,10 +10,10 @@ import {
 } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import swal from 'sweetalert2';
-import 'rxjs/add/operator/do';
+
 
 import { AuthService } from '@belisada/core/services';
 
@@ -33,43 +34,46 @@ export class Interceptor implements HttpInterceptor {
          },
       });
 
-    return next.handle(request).do((event: HttpEvent<any>) => {
-      if (event instanceof HttpResponse) {
-      }
-    }, (err: any) => {
-      if (err instanceof HttpErrorResponse) {
-        if (err.status === 401) {
-          if (token) {
-            // swal('Anda belum Login atau Session Anda Expired, Anda Harus Login ulang')
-            // .then((result) => {
-            //   localStorage.removeItem('token');
-            //   this.routes.navigateByUrl('/account/sign-in');
-            // });
-
-            localStorage.removeItem('token');
-            localStorage.removeItem('isRemember');
-            this.routes.navigateByUrl('/account/sign-in');
-
+    return next.handle(request)
+      .pipe(
+        tap((event: HttpEvent<any>) => {
+          if (event instanceof HttpResponse) {
           }
-        } else if (err.status === 404) {
-        } else if (err.status === 400) {
-          // swal('Oops!...something wrong...')
-          // .then((result) => {
-          //   //this.routes.navigateByUrl('/404');
-          // });
-        } else if (err.status === 500) {
-          swal('belisada.co.id', 'Oops!...something wrong... 500', 'error');
-          // .then((result) => {
-          //  this.routes.navigateByUrl('/maintenance');
-         // });
-        } else {
-          // swal('Oops!...something wrong...')
-          // .then((result) => {
-          //  this.routes.navigateByUrl('/maintenance');
-         // });
-        }
-      }
-    });
+        }, (err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              if (token) {
+                // swal('Anda belum Login atau Session Anda Expired, Anda Harus Login ulang')
+                // .then((result) => {
+                //   localStorage.removeItem('token');
+                //   this.routes.navigateByUrl('/account/sign-in');
+                // });
 
+                localStorage.removeItem('token');
+                localStorage.removeItem('isRemember');
+                this.routes.navigateByUrl('/account/sign-in');
+
+              }
+            } else if (err.status === 404) {
+            } else if (err.status === 400) {
+              // swal('Oops!...something wrong...')
+              // .then((result) => {
+              //   //this.routes.navigateByUrl('/404');
+              // });
+            } else if (err.status === 500) {
+              swal('belisada.co.id', 'Oops!...something wrong... 500', 'error');
+              // .then((result) => {
+              //  this.routes.navigateByUrl('/maintenance');
+            // });
+            } else {
+              // swal('Oops!...something wrong...')
+              // .then((result) => {
+              //  this.routes.navigateByUrl('/maintenance');
+            // });
+            }
+          }
+        }
+      )
+    );
   }
 }

@@ -1,4 +1,5 @@
-import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Configuration } from '@belisada/core/config';
@@ -19,7 +20,10 @@ export class StoreService {
   // param: {name: string, address: string, description: string?, picture: string?}
   // used by create-store component
   create(data: CreateStoreRequest) {
-    return this.http.post(this.cfg.apiURL + '/store/upgrade', data).map(rsl => rsl as CreateStoreResponse);
+    return this.http.post(this.cfg.apiURL + '/store/upgrade', data)
+      .pipe(
+        map(rsl => rsl as CreateStoreResponse)
+      );
   }
 
   // param: {name: string, address: string, description: string}
@@ -34,7 +38,10 @@ export class StoreService {
     //     obs.complete();
     //   }, 1500);
     // });
-    return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as CheckStoreResponse);
+    return this.http.post(this.cfg.apiURL + '/store/check', data)
+      .pipe(
+        map(rsl => rsl as CheckStoreResponse)
+      );
   }
 
   // param: {name: string, address: string, description: string}
@@ -63,26 +70,38 @@ export class StoreService {
     // return this.http.post(this.cfg.apiURL + '/store/check', data).map(rsl => rsl as DetailStoreResponse);
   }
   profile() {
-    return this.http.get(this.cfg.apiURL + '/store/profile').map(rsl => rsl as ProfileStoreResponse);
+    return this.http.get(this.cfg.apiURL + '/store/profile')
+      .pipe(
+        map(rsl => rsl as ProfileStoreResponse)
+      );
   }
 
   // param: {status: string}
   // used by edit-store component
   updateStatus(data: UpdateStoreRequest) {
-    return this.http.put(this.cfg.apiURL + '/store/update-status', data).map(rsl => rsl as UpdateStoreResponse);
+    return this.http.put(this.cfg.apiURL + '/store/update-status', data)
+      .pipe(
+        map(rsl => rsl as UpdateStoreResponse)
+      );
   }
 
   // param: {description: string?, storeUrl: string, imageStoreUrl: string, phone: string?}
   // used by edit-store component
   updateDesc(data: UpdateDescriptionRequest) {
     console.log('isi data: ', data);
-    return this.http.put(this.cfg.apiURL + '/store/update/store', data).map(rsl => rsl as UpdateStoreResponse);
+    return this.http.put(this.cfg.apiURL + '/store/update/store', data)
+      .pipe(
+        map(rsl => rsl as UpdateStoreResponse)
+      );
   }
 
   // param: {addressName: string, address: string, description: string?, vilageId: string?, postal: string?}
   // used by edit-store component
   updateAddress(data: UpdateStoreRequest) {
-    return this.http.put(this.cfg.apiURL + '/store/update/store-address', data).map(rsl => rsl as UpdateStoreResponse);
+    return this.http.put(this.cfg.apiURL + '/store/update/store-address', data)
+      .pipe(
+        map(rsl => rsl as UpdateStoreResponse)
+      );
   }
 
   openStore(stat: boolean) {
@@ -93,7 +112,6 @@ export class StoreService {
         rsp.message = 'sukses buka/tutup toko';
         obs.next(rsp);
       }, 1500);
-
     });
   }
 
@@ -103,7 +121,9 @@ export class StoreService {
   */
   getProvince(id: any): Observable <Province[]> {
     return this.http.get(this.cfg.apiURL + '/location' + '/region/' + id)
-    .map(response => response as Province[]);
+      .pipe(
+        map(response => response as Province[])
+      );
   }
 
   /*
@@ -113,7 +133,9 @@ export class StoreService {
 
   getCity(id: any): Observable <City[]> {
     return this.http.get(this.cfg.apiURL + '/location' + '/city/' + id)
-    .map(response => response as City[]);
+      .pipe(
+        map(response => response as City[])
+      );
   }
 
   /*
@@ -122,7 +144,9 @@ export class StoreService {
   */
   getDistrict(id: any): Observable <District[]> {
     return this.http.get(this.cfg.apiURL + '/location' + '/district/' + id)
-    .map(response => response as District[]);
+      .pipe(
+        map(response => response as District[])
+      );
   }
 
   /*
@@ -131,7 +155,9 @@ export class StoreService {
   */
   getVillage(id: any): Observable<Village[]> {
     return this.http.get(this.cfg.apiURL +  '/location' + '/village/' + id)
-    .map(response => response as Village[]);
+      .pipe(
+        map(response => response as Village[])
+      );
   }
 
 }
