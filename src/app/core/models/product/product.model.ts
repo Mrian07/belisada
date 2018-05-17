@@ -2,7 +2,7 @@ import { PriceAndStock } from '@belisada/core/models/product/price-and-strock.mo
 import { Delivery } from '@belisada/core/models/product/delivery.model';
 
 export class Product {
-    pictures: string[];
+    pictures: string[] = [];
     name: string;
     brand: string;
     category: string;
