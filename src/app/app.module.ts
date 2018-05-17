@@ -47,7 +47,7 @@ import { HttpTokenInterceptor } from '@belisada/core/interceptors';
     HomeComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     CoreModule,
     SharedModule,

@@ -6,12 +6,15 @@ import { HttpHeaders } from '@angular/common/http/src/headers';
 import { Router } from '@angular/router';
 import { Token } from '@belisada/core/models';
 import { Configuration } from '@belisada/core/config';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private configuration: Configuration, private http: HttpClient, private routes: Router) { }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private configuration: Configuration, 
+  private http: HttpClient, private routes: Router) { }
 
   /*
   param:
@@ -25,7 +28,9 @@ export class AuthService {
     if (localStorage.getItem('isRemember') === 'true') {
       this.token = localStorage.getItem('token');
     } else {
-      this.token = sessionStorage.getItem('token');
+      if (isPlatformBrowser(this.platformId)) {
+        this.token = sessionStorage.getItem('token');
+      }
     }
 
     const objToken = {
@@ -46,7 +51,9 @@ export class AuthService {
     if (localStorage.getItem('isRemember') === 'true') {
       this.token = localStorage.getItem('token');
     } else {
+      if (isPlatformBrowser(this.platformId)) {
       this.token = sessionStorage.getItem('token');
+      }
     }
     if (this.token) {
       return this.token;
