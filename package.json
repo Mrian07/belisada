@@ -5,13 +5,18 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod && ng build:server",
+    "build:universal": "ng build --prod && ng run myacico-smp:server",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compile:sass": "./node_modules/.bin/node-sass --output-style compressed src/scss/styles.scss > src/assets/css/styles.css",
     "styleguide": "./node_modules/.bin/nucleus --config config.nucleus.json",
-    "generate:styleguide": "concurrently --kill-others-on-fail \"npm run compile:sass\" \"npm run styleguide\""
+    "generate:styleguide": "concurrently --kill-others-on-fail \"npm run compile:sass\" \"npm run styleguide\"",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:ssr": "node dist/server",
+    "build:client-and-server-bundles": "ng build --prod && ng run myacico-smp:server",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,
   "dependencies": {
@@ -23,21 +28,26 @@
     "@angular/http": "^6.0.1",
     "@angular/platform-browser": "^6.0.1",
     "@angular/platform-browser-dynamic": "^6.0.1",
+    "@angular/platform-server": "^6.0.2",
     "@angular/router": "^6.0.1",
     "@ngrx/effects": "^6.0.0-beta.1",
     "@ngrx/entity": "^6.0.0-beta.1",
     "@ngrx/router-store": "^6.0.0-beta.1",
     "@ngrx/store": "^6.0.0-beta.1",
     "@ngrx/store-devtools": "^6.0.0-beta.1",
+    "@nguniversal/express-engine": "^6.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "angular-font-awesome": "^3.1.2",
     "core-js": "^2.5.6",
     "font-awesome": "^4.7.0",
     "mydatepicker": "^2.6.3",
     "rxjs": "^6.1.0",
     "sweetalert2": "^7.19.3",
+    "ts-loader": "^4.3.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "~0.6.1",
     "@angular/cli": "^6.0.1",
     "@angular/compiler-cli": "^6.0.1",
     "@angular/language-service": "^6.0.1",
@@ -53,12 +63,13 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "^1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "localstorage-polyfill": "^1.0.1",
     "node-sass": "^4.9.0",
     "nucleus-styleguide": "^1.1.1",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
     "typescript": "~2.7.2",
-    "@angular-devkit/build-angular": "~0.6.1"
+    "webpack-cli": "^2.1.3"
   }
 }

@@ -1,8 +1,8 @@
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
-import { RecaptchaModule, RecaptchaLoaderService } from 'ng-recaptcha';
+// import { RecaptchaFormsModule } from 'ng-recaptcha/forms';
+// import { RecaptchaModule, RecaptchaLoaderService } from 'ng-recaptcha';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SignUpComponent } from './sign-up.component';
@@ -18,12 +18,10 @@ describe('SignUpComponent', () => {
         imports: [
             HttpClientModule,
             RouterTestingModule,
-            ReactiveFormsModule,
-            RecaptchaModule,
-            RecaptchaFormsModule ],
+            ReactiveFormsModule ],
         providers: [
             UserService,
-            RecaptchaLoaderService
+            // RecaptchaLoaderService
         ]
         })
         .compileComponents();

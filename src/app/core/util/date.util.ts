@@ -39,7 +39,8 @@ export class DateUtil {
   }
 
   public fromDDMMYYYYtoMMDDYYY(date: string, separator: string = '/') {
-    const arrDate = date.split(separator);
-    return [ arrDate[1], arrDate[0], arrDate[2] ].join('/');
+    const arrDate = date.replace(separator, '/');
+    return arrDate;
+    // return [ arrDate[1], arrDate[0], arrDate[2] ].join('/');
   }
 }

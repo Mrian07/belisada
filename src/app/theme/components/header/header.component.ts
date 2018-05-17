@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
@@ -8,6 +9,7 @@ import { ClickOutsideDirective } from '@belisada/shared/directives';
 import { UserData } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
+
 
 
 @Component({
@@ -24,6 +26,7 @@ export class HeaderComponent implements OnInit {
   isAccountMenu: Boolean = false;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private userService: UserService
   ) { }
@@ -32,7 +35,11 @@ export class HeaderComponent implements OnInit {
     if (localStorage.getItem('isRemember') === 'true') {
       this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     } else {
-      this.userData = this.userService.getUserData(sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    console.log('userData : ', this.userData);
+      if (isPlatformBrowser(this.platformId)) {
+        const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
+        this.userData = this.userService.getUserData(sess);
+      }
     }
     if (this.userData) { this.isLogin = true; }
     console.log('userData : ', this.userData);
