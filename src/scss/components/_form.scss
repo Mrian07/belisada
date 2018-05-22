@@ -100,3 +100,53 @@ input::placeholder {
         }
     }
 }
+
+/** ------------------------ START */
+.f-group {
+
+    margin-bottom: 1rem!important;
+}
+
+.f-control {
+
+    width: 100%;
+    padding: 1.4rem 1.4rem 1.3rem;
+    font-size: 1.4rem;
+    font-family: 'Lato', sans-serif;
+    border-radius: .3rem;
+    border: 1px solid $color--grey;
+    color: $color--dark-grey;
+    transition: all .25s;
+
+    &::placeholder {
+        color: $color--grey;
+    }
+    
+    &:focus,
+    &:active {
+        border: 1px solid $color--dark-grey;
+    }
+}
+
+[type='checkbox'] + label[for],
+[type='radio'] + label[for] {
+    cursor: pointer;
+}
+
+[type='checkbox'] + label,
+[type='radio'] + label {
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: 0.5rem;
+    margin-right: 1rem;
+    margin-bottom: 0;
+}
+
+label {
+    font-size: 1.4rem;
+    margin: 0;
+
+    &.middle {
+        padding: 1.4rem 0 0;
+    }
+}

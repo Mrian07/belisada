@@ -6,30 +6,39 @@
     input {
         display:none;
     }
+
+    &.small {
+        @include size(6rem, 3.4rem);
+
+        input:checked + .slider:before {
+            @include prefix((transform: translateX(2.6rem)), webkit moz ms o);
+        
+        }
+    }
 }
 
 .slider {
     @include position(absolute, top 0 left 0 right 0 bottom 0);
     @include prefix((transition: .4s), webkit moz ms o);
     cursor: pointer;
-    color: $color-white;
-    background-color: $color-grey;
-    border: 1px solid $color-grey;
+    color: $color--proteus-green;
+    background-color: $color--ash;
+    // border: 1px solid $color--ash;
 
     &:before {
-        @include position(absolute, left .3rem bottom .3rem);
+        @include position(absolute, left .4rem bottom .4rem);
         @include prefix((transition: .4s), webkit moz ms o);
         @include size(2.6rem);
         z-index: z('default');
         content: "";
-        background-color: btn-color('green');
+        background-color: $color--white;
     }
 }
 
 input:checked + .slider {
-    background-color: $color-white;
-    color: $color-grey;
-    border: .1rem solid $color-grey;
+    background-color: $color--proteus-green;
+    color: $color--ash;
+    // border: .1rem solid $color--ash;
 }
 
 input:checked + .slider:before {

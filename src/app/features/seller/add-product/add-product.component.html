@@ -1,83 +1,204 @@
 <div>
-    <h2 class="test">Ubah Gambar Produk</h2>
-    <p>Geser gambar untuk mengubah susunan. Minimal gambar 2 dan maksimal gambar produk 5, geser untuk menyusun foto</p>
+    <form>
+        <h2 class="test">Ubah Gambar Produk</h2>
+        <p>Geser gambar untuk mengubah susunan. Minimal gambar 2 dan maksimal gambar produk 5, geser untuk menyusun foto</p>
 
-    <div class="add-product-form-wrapper">
-        <ul class="add_product_image clearfix" id="image-list">
-            <li class="u-inline-list-gap" *ngFor="let item of product.pictures; let i = index">
-                <div class="image-preview" [ngStyle]="{'background-image': 'url(' + item + ')'}">
-                    <span class="action-button" (click)="removeImage(i)">
-                        <fa name="trash"></fa>
-                    </span>
+        <div class="add-product-form-wrapper">
+            <ul class="add_product_image clearfix" id="image-list">
+                <li class="u-inline-list-gap" *ngFor="let item of productPictures; let i = index">
+                    <div class="image-preview" [ngStyle]="{'background-image': 'url(' + item + ')'}">
+                        <span class="action-button" (click)="removeImage(i)">
+                            <fa name="trash"></fa>
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pikcker-wrapper picker-add-image" *ngIf="(productPictures.length < 5)">
+                        <input type="file" accept="image/jpeg,.jpeg,.jpg,image/png,.png" (change)="getSelectedFiles($event)">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
+        <h2>Informasi Produk</h2>
+        <div class="add-product-form-wrapper">
+            <div class="row f-group">
+                <label for="staticEmail" class="col-3 middle">Nama Produk</label>
+                <div class="col-9">
+                    <input type="text" class="f-control" placeholder="Nama Produk">
                 </div>
-            </li>
-            <li>
-                <div class="pikcker-wrapper picker-add-image" *ngIf="(product.pictures.length < 5)">
-                    <input type="file" accept="image/jpeg,.jpeg,.jpg,image/png,.png">
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <h2>Informasi Produk</h2>
-    <div class="add-product-form-wrapper">
-        <div class="form-group row">
-            <label for="staticEmail" class="col-3">Nama Produk</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Nama Produk">
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-3">Merek</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Merek">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-3">Kategori Produk</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Kategori Produk">
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-3">Deskripsi</label>
-            <div class="col-9">
-                <textarea placeholder="Deskripsi" rows="4"></textarea>
-            </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-3">Spesifikasi Produk</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Spesifikasi Produk">
-            </div>
-        </div>
-    </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Merek</label>
+                <div class="col-9">
+                    <!-- <input type="text" class="f-control" placeholder="Merek"> -->
 
-    <h2>Harga dan Stok</h2>
-    <div class="add-product-form-wrapper">
-        <div class="form-group row">
-            <label for="staticEmail" class="col-3">Kondisi Barang</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Kondisi Barang">
+                    <div class="drick-select-container">
+                        <div class="ui icon input parent">
+                            <input class="f-control drick-select__text" [ngClass]="{'active':onBrandFocus}" type="text" [(ngModel)]="brandName"
+                                (keyup)="searchBrand()" [ngModelOptions]="{standalone: true}"
+                                (focus)="onBrandFocus = true" (focusout)="onBrandBlur()" placeholder="Select one">
+                            <i class="drick-select__icon caret down icon"></i>
+                        </div>
+                        <div class="drick-select-container--toggle" [ngClass]="{'active':onBrandFocus}"
+                            id="drick-scroll-container--brand"
+                            (scroll)="onBrandScrollDown()">
+                            <ul class="drick-select-list">
+                                <li *ngFor="let i of brandList.data" (click)="selectBrand(i)">
+                                    {{i.name}}
+                                </li>
+                                <li *ngIf="(brandList.data.length === 0)">
+                                    Brand tidak ditemukan
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Kategori Produk</label>
+                <div class="col-9">
+                    <!-- <input type="text" class="f-control" placeholder="Kategori Produk"> -->
+
+                    <div class="drick-select-container">
+                        <div class="ui icon input parent">
+                            <input class="f-control drick-select__text" [ngClass]="{'active':onCategoryFocus}" type="text" [(ngModel)]="categoryName"
+                                (keyup)="searchCategory()" [ngModelOptions]="{standalone: true}"
+                                (focus)="onCategoryFocus = true" (focusout)="onCategoryBlur()" placeholder="Select one">
+                            <i class="drick-select__icon caret down icon"></i>
+                        </div>
+                        <div class="drick-select-container--toggle" [ngClass]="{'active':onCategoryFocus}"
+                            id="drick-scroll-container--category"
+                            (scroll)="onCategoryScrollDown()">
+                            <ul class="drick-select-list">
+                                <li *ngFor="let i of categoryList.data" (click)="selectCategory(i)">
+                                    {{i.name}}
+                                </li>
+                                <li *ngIf="(categoryList.data.length === 0)">
+                                    Category tidak ditemukan
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Deskripsi</label>
+                <div class="col-9">
+                    <textarea placeholder="Deskripsi" class="f-control" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Spesifikasi Produk</label>
+                <div class="col-3">
+                    <input type="text" class="f-control" placeholder="Spesifikasi Produk">
+                </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-3">Harga</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Harga">
+
+        <h2>Harga dan Stok</h2>
+        <div class="add-product-form-wrapper">
+            <div class="row f-group">
+                <label class="col-3">Kondisi Barang</label>
+                <div class="col-9">
+                    <input id="checkbox1" type="checkbox"><label for="checkbox1">Barang Baru</label>
+                    <input id="checkbox2" type="checkbox"><label for="checkbox2">Barang Second</label>
+                    <input id="checkbox3" type="checkbox"><label for="checkbox3">Refurbished</label>
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Harga</label>
+                <div class="col-3">
+                    <input type="text" class="f-control" placeholder="Harga">
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Stok</label>
+                <div class="col-3">
+                    <input type="text" class="f-control" placeholder="Stok">
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Garansi</label>
+                <div class="col-3">
+                    <input type="text" class="f-control" placeholder="Garansi">
+                </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-3">Stok</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Stok">
+
+        <h2>Pengiriman</h2>
+        <div class="add-product-form-wrapper">
+            <div class="row f-group">
+                <label class="col-3 middle">Berat</label>
+                <div class="col-6">
+                    <input type="text" class="f-control" placeholder="Berat">
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Dimensi</label>
+                <div class="col-2">
+                    <input type="text" class="f-control" placeholder="P">
+                </div>
+                <div class="col-2">
+                    <input type="text" class="f-control" placeholder="L">
+                </div>
+                <div class="col-2">
+                    <input type="text" class="f-control" placeholder="T">
+                </div>
+            </div>
+            <div class="row f-group">
+                <label class="col-3 middle">Delivery Service</label>
+                <div class="col-6">
+                    <div class="cardlist">
+                        <table class="table">
+                            <tr>
+                                <td>Instant Delivery</td>
+                                <td>i</td>
+                                <td class="right">
+                                    <label class="switch small">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Same Day Delivery</td>
+                                <td>i</td>
+                                <td class="right">
+                                    <label class="switch small">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Next Day Delivery</td>
+                                <td>i</td>
+                                <td class="right">
+                                    <label class="switch small">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Reguler Delivery</td>
+                                <td>i</td>
+                                <td class="right">
+                                    <label class="switch small">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="form-group row">
-            <label class="col-3">Garansi</label>
-            <div class="col-9">
-                <input type="text" class="form-control" placeholder="Garansi">
-            </div>
+        <div class="right">
+            <input type="submit" class="btn btn--yellow" value="Simpan">
+            <input type="button" class="btn" value="Batal">
         </div>
-    </div>
+    </form>
 </div>
