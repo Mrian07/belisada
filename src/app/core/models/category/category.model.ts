@@ -1,3 +1,5 @@
+import { AttributeValue } from '@belisada/core/models/attribute/attribute.model';
+
 export class CategoryList {
   dataCount: number;
   pageCount: number;
@@ -16,4 +18,13 @@ export class Category {
   imageUrl5: string;
   parentId: number;
   iconUrl: string;
+}
+
+export class CategoryAttribute {
+  attributeId: number;
+  name: string;
+  description: string;
+  isMandatory: boolean;
+  isInstanceAttribute: boolean;
+  data: AttributeValue[];
 }
