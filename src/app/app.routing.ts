@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
   { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },
+  { path: 'search-result', loadChildren: 'app/features/search-result/search-result.module#SearchResultModule' },
   {
     path: 'maintenance',
     component: MaintenanceComponent,
