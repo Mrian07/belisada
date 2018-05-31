@@ -8,10 +8,17 @@
     border: 1px solid #dddddd;
     background: #ffffff;
     padding: 3px;
+    text-align: center;
+    box-shadow: 0 0 10px #dddddd;
 }
 
 .b-part{
     border-top: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
     padding:5px 5px 0px 0px;
+}
+
+.price{
+    font-size: 15px;
+    color: #c9e958
 }
