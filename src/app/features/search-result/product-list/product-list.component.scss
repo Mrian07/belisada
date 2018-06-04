@@ -1,7 +1,7 @@
 .b-sr{
     border: 1px solid #d6d6d6;
     padding:20px;
-    margin-top:40px;
+    margin-top:50px;
 }
 
 .b-product-list{
@@ -10,6 +10,8 @@
     padding: 3px;
     text-align: center;
     box-shadow: 0 0 10px #dddddd;
+    color: #8b8b8b;
+    font-weight: bold;
 }
 
 .b-part{
@@ -19,6 +21,52 @@
 }
 
 .price{
+    font-size: 30px;
+    color: #f7ca00;
+    display: block;
+}
+
+.price-slash{
     font-size: 15px;
-    color: #c9e958
+    color: #8b8b8b;
+    display: block;
+}
+
+.item{
+    margin: 0px auto;
+    width:80%;
+}
+
+.title-search{
+    font-weight: bold;
+}
+
+a.link-search{
+    color: #6c6dd9;
+    text-decoration: none;
+}
+
+a.link-search:hover{
+    color: #bdbefb;
+    text-decoration: none;
+}
+
+.icon-left{
+    text-align: left;
+    padding:6px;
+}
+
+.icon-right{
+    text-align: right;
+    margin-top:-5px;
+}
+
+.btn-down{
+    margin-left:10px;
+    background: #fdfdfd;
+    border: 1px solid #aeacac;
+    padding:5px;
+    border-radius:5px;
+    font-size: 15px;
+
 }
