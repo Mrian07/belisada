@@ -5,3 +5,4 @@ export * from './share-message/share-message.service';
 export * from './store/store.service';
 export * from './subscribe/subscribe.service';
 export * from './user/user.service';
+export * from './filter/filter-s.service';

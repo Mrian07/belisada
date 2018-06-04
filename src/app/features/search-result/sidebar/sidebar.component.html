@@ -1,0 +1,60 @@
+<div class="wrapper">
+  
+  
+  <div class="half">
+      <div class="wrapper-for-filter-top">
+          <div>
+              <img class="img--see" src="/assets/img/package.png" alt="">
+              <span>Produk</span>
+          </div>
+          <div>
+              <img class="img--see" src="/assets/img/shop.png" alt="">
+              <span>Toko</span>
+          </div>
+          <div>
+              <img class="img--see" src="/assets/img/confetti.png" alt="">
+              <span>Event</span>
+          </div>
+         
+        </div>
+        <hr>
+        <br>
+      <p>Filters</p>
+    <div class="tab">
+      <input id="tab-one" type="checkbox" name="tabs">
+      <label for="tab-one">Category</label>
+      <div class="tab-content">
+       <ul class="margin--ul">
+         <li>1</li>
+       </ul>
+      </div>
+    </div>
+    <div class="tab">
+      <input id="tab-two" type="checkbox" name="tabs">
+      <label for="tab-two">Brand</label>
+      <div class="tab-content">
+        <!-- <div *ngFor="let item of userlist">
+          <p>{{item.filterName}}</p>
+        </div> -->
+          <!-- <div *ngFor="let user of userlist">
+             <p *ngFor="let item of user.data">
+               {{item.filterName}}
+             </p>
+         </div> -->
+          <ul class="margin--ul" *ngFor="let item of userlist">
+              <li>  {{item.filterName}}</li>
+            </ul>
+      </div>
+    </div>
+    <div class="tab">
+      <input id="tab-three" type="checkbox" name="tabs">
+      <label for="tab-three">Kondisi</label>
+      <div class="tab-content">
+          <div *ngFor="let item of userlistClass">
+              <p>{{item.filterName}}</p>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
