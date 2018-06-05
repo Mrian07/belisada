@@ -11,37 +11,38 @@ export class SidebarComponent implements OnInit {
   testing: FilterM = new FilterM();
   userlist: any;
   userlistClass: any;
+  userlistCourier: any;
   a;
   en;
   constructor( private filterService: FilterSService, ) { }
 
   ngOnInit() {
-    this.getUser();
+    // this.getUser();
   //   this.filterService.getFilter().subscribe(response => {
   //  this.testing = response;
   //  console.log(response);
   //   });
   }
-  public getUser() {
-    this.filterService.getFilter().subscribe(
-      user => {
-        this.userlist = user;
-        console.log('ini', user);
-        for (this.en of  this.userlist) {
-          this.a = this.en.filter;
-          const b = this.en;
-          console.log('diluar', this.en.filter);
+  // public getUser() {
+  //   this.filterService.getFilter().subscribe(
+  //     user => {
+  //       this.userlist = user;
+  //       for (this.en of  this.userlist) {
+  //         this.a = this.en.filter;
+  //         const b = this.en;
 
-          if (this.a === 'Brand') {
-            this.userlist = b.data;
-          }
-          if (this.a === 'Classification') {
-            this.userlistClass = b.data;
-            console.log('oke',  this.userlistClass );
-          }
-      }
-      },
-    );
-  }
+  //         if (this.a === 'Brand') {
+  //           this.userlist = b.data;
+  //         }
+  //         if (this.a === 'Classification') {
+  //           this.userlistClass = b.data;
+  //         }
+  //         if (this.a === 'Courier') {
+  //           this.userlistCourier = b.data;
+  //         }
+  //     }
+  //     },
+  //   );
+  // }
 
 }

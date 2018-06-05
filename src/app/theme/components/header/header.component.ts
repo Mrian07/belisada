@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
 import { ClickOutsideDirective } from '@belisada/shared/directives';
 
 import { UserData } from '@belisada/core/models';
-import { UserService } from '@belisada/core/services';
+import { UserService, SearchBarService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 
 
@@ -24,11 +24,15 @@ export class HeaderComponent implements OnInit {
   userData: UserData = new UserData();
   isLogin: Boolean = false;
   isAccountMenu: Boolean = false;
+  results = [];
+  queryParams: any = {};
+  selectedSearchCategory: any;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private search: SearchBarService
   ) { }
 
   ngOnInit() {
@@ -43,6 +47,27 @@ export class HeaderComponent implements OnInit {
     }
     if (this.userData) { this.isLogin = true; }
     console.log('userData : ', this.userData);
+  }
+
+  searchK(event) {
+    const key = event.target.value;
+    if (key === '' || event.key === 'Enter') {
+      this.results = [];
+    } else {
+      this.search.search(key).subscribe(data => {
+        console.log(data);
+      });
+    }
+  }
+  searchEnter(searchKey, searchCategory) {
+    this.queryParams = { q: searchKey };
+    if (typeof searchCategory !== 'undefined') {
+      this.queryParams['parent'] = 1;
+      this.queryParams['id'] = searchCategory.mProductCategoryId;
+    }
+    this.router.navigate(['/search-result/product-list'], { queryParams: this.queryParams });
+    this.selectedSearchCategory = '';
+    this.results = [];
   }
 
   logout() {
