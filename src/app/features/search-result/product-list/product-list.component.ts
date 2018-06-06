@@ -1,7 +1,9 @@
+import { ProductService } from './../../../core/services/product/product.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { FilterM } from '@belisada/core/models/filter/filter-m';
 import { FilterSService } from '@belisada/core/services';
+import { ProductSearch } from '../../../core/models/product/product.model';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +11,14 @@ import { FilterSService } from '@belisada/core/services';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+  list: ProductSearch = new ProductSearch();
+  currentPage: number;
+  lastPage: number;
+  pages: any = [];
+
+  sortUrut: string;
+  sortName: string;
+
   cat;
   brand;
   keys: string;
@@ -18,10 +28,11 @@ export class ProductListComponent implements OnInit {
   userlistCourier: any;
   a;
   en;
-  constructor(private activatedRoute: ActivatedRoute, private filterService: FilterSService) { }
+  constructor(private activatedRoute: ActivatedRoute, private filterService: FilterSService,
+  private productService: ProductService) { }
 
   ngOnInit() {
-
+    console.log()
     this.getUser();
     this.activatedRoute.queryParams
       .subscribe(params => {
@@ -55,7 +66,39 @@ export class ProductListComponent implements OnInit {
         );
 
     });
+
+    this.loadData();
   }
+
+  loadData() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.pages = [];
+      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+      
+      const queryParams = {
+        st: 'product',
+        q: params.q,
+        page: this.currentPage,
+        itemperpage: 10,
+        ob: this.sortName,
+        ot: this.sortUrut,
+      }
+
+      this.productService.listProductSearch(queryParams).subscribe(response => {
+
+        console.log('hasil', response);
+
+        this.list = response;
+        this.lastPage = this.list.totalPages;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.list.totalPages) {
+            this.pages.push(r);
+          }
+        }
+      });
+    });
+  }
+
 
   public getUser() {
 console.log(this.keys);

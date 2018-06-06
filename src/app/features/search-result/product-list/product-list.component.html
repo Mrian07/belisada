@@ -88,146 +88,34 @@
       </div>
       <div class="b-part">
 
-          <div class="row">
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
+    
+
+        <div class="row">
+          <div class="col-3" *ngFor="let item of list.content">
+            <div class="b-product-list">
+              <div class="row">
+                <div class="col-6 icon-left">
+                  <img src='assets/img/wishlist.png'>
                 </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
+                <div class="col-6 icon-right">
+                  <img src='assets/img/discount.png'>
+                </div>
               </div>
-            </div>
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
+              <img src='{{ item.imageUrl }}' border="0" height="200"><br>
+              <div class="item">{{ item.name }}</div>
+              <img src='assets/img/dummy-star.jpg'><br>
+              <div *ngIf="item.discount>0">
+                  <span class="price">Rp {{ item.discount | number}}</span>
+                  <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
               </div>
-            </div>
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
+              <div *ngIf="item.discount<=0">
+                  <span class="price">Rp {{ item.pricelist | number}}</span>
               </div>
             </div>
           </div>
 
-        <div class="row">
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
-              </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
-              </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
-              </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
-              </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
+
+          
         </div>
       </div>
     </div>

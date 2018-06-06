@@ -55,3 +55,43 @@ export class ProductSpecification {
   attributeValueId: number;
   value: string;
 }
+
+
+export class ProductSearch {
+  content: ProductContent[];
+  totalPages: number;
+  totalElements: number;
+  sort: ProductSort[];
+  first: boolean;
+  numberOfElements: number;
+  size: number;
+  number: number;
+}
+
+export class ProductContent {
+  productId: number;
+  name: string;
+  sku: string;
+  brandId: number;
+  brandName: string;
+  storeId: string;
+  storeName: string;
+  storeUrl: string;
+  pricelist: number;
+  discount: number;
+  rate: number;
+  review: number;
+  imageUrl: string;
+  locationId: number;
+  locationName: string;
+  id: any;
+}
+
+export class ProductSort {
+  direction: string;
+  property: string;
+  ignoreCase: boolean;
+  nullHandling: string;
+  ascending: boolean;
+  descending: boolean;
+}
