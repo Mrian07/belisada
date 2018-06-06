@@ -6,6 +6,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SearchResultRoutingModule } from './search-result-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { StoreListComponent } from './store-list/store-list.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   declarations: [
     SearchResultComponent,
     ProductListComponent,
-    SidebarComponent
+    SidebarComponent,
+    StoreListComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
