@@ -3,7 +3,77 @@
 
   <div class="row">
     <div class="col-2">
-      <app-sidebar></app-sidebar>
+        <div class="wrapper">
+  
+  
+            <div class="half">
+                <div class="wrapper-for-filter-top">
+                    <div>
+                        <img class="img--see" src="/assets/img/package.png" alt="">
+                        <span>Produk</span>
+                    </div>
+                    <div>
+                        <img class="img--see" src="/assets/img/shop.png" alt="">
+                        <span>Toko</span>
+                    </div>
+                    <div>
+                        <img class="img--see" src="/assets/img/confetti.png" alt="">
+                        <span>Event</span>
+                    </div>
+                   
+                  </div>
+                  <hr>
+                  <br>
+                <p>Filters</p>
+              <div class="tab">
+                <input id="tab-one" type="checkbox" name="tabs">
+                <label for="tab-one">Category</label>
+                <div class="tab-content wrapper-with-grid">
+                  <div>
+                      <ul class="margin--ul">
+                          <li>1</li>
+                        </ul>
+                  </div>
+                 <div>
+                   
+                 </div>
+                 <div>
+                    <input type="checkbox" class="checkBox-opacity" name="vehicle" value="Bike">
+                 </div>
+               
+                </div>
+              </div>
+              <div class="tab">
+                <input id="tab-two" type="checkbox" name="tabs">
+                <label for="tab-two">Brand</label>
+                <div class="tab-content">
+                    <ul class="margin--ul" *ngFor="let item of userlist">
+                        <li>  {{item.filterName}}</li>
+                      </ul>
+                </div>
+              </div>
+              <div class="tab">
+                <input id="tab-three" type="checkbox" name="tabs">
+                <label for="tab-three">Kondisi</label>
+                <div class="tab-content">
+                    <ul class="margin--ul" *ngFor="let item of userlistClass">
+                        <li>  {{item.filterName}}</li>
+                      </ul>
+                </div>
+              </div>
+              <hr>
+              <div class="tab">
+                  <input id="tab-four" type="checkbox" name="tabs">
+                  <label for="tab-four">Shipping options</label>
+                  <div class="tab-content">
+                      <ul class="margin--ul" *ngFor="let item of userlistCourier">
+                          <li>  {{item.filterName}}</li>
+                        </ul>
+                   
+                  </div>
+                </div>
+            </div>
+          </div>
     </div>
     <div class="col-8">
       <div class="row">
