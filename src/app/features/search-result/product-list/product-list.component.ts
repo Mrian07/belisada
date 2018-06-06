@@ -1,6 +1,6 @@
 import { ProductService } from './../../../core/services/product/product.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FilterM } from '@belisada/core/models/filter/filter-m';
 import { FilterSService } from '@belisada/core/services';
 import { ProductSearch } from '../../../core/models/product/product.model';
@@ -28,11 +28,13 @@ export class ProductListComponent implements OnInit {
   userlistCourier: any;
   a;
   en;
-  constructor(private activatedRoute: ActivatedRoute, private filterService: FilterSService,
-  private productService: ProductService) { }
+  constructor(private activatedRoute: ActivatedRoute,
+    private filterService: FilterSService,
+    private router: Router,
+    private productService: ProductService) { }
 
   ngOnInit() {
-    console.log()
+
     this.getUser();
     this.activatedRoute.queryParams
       .subscribe(params => {
@@ -74,7 +76,7 @@ export class ProductListComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.pages = [];
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
-      
+
       const queryParams = {
         st: 'product',
         q: params.q,
@@ -99,6 +101,13 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
+    if (page < 1 || page > this.list.totalPages) { return false; }
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate(['/search-result/product-list'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    window.scrollTo(0, 0);
+  }
 
   public getUser() {
 console.log(this.keys);
