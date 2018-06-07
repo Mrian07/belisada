@@ -1,5 +1,4 @@
 import { SearchService } from './../../../core/services/search/search.service';
-// import { ProductService } from './../../../core/services/product/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FilterM } from '@belisada/core/models/filter/filter-m';
@@ -32,7 +31,6 @@ export class ProductListComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
     private router: Router,
-    // private productService: ProductService,
     private searchService: SearchService,
   ) { }
 
