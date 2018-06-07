@@ -1,9 +1,10 @@
-import { ProductService } from './../../../core/services/product/product.service';
+import { SearchService } from './../../../core/services/search/search.service';
+// import { ProductService } from './../../../core/services/product/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FilterM } from '@belisada/core/models/filter/filter-m';
 import { FilterSService } from '@belisada/core/services';
-import { ProductSearch } from '../../../core/models/product/product.model';
+import { ListSearch } from '../../../core/models/search/search.model';
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +12,7 @@ import { ProductSearch } from '../../../core/models/product/product.model';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  list: ProductSearch = new ProductSearch();
+  list: ListSearch = new ListSearch();
   currentPage: number;
   lastPage: number;
   pages: any = [];
@@ -31,7 +32,9 @@ export class ProductListComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
     private router: Router,
-    private productService: ProductService) { }
+    // private productService: ProductService,
+    private searchService: SearchService,
+  ) { }
 
   ngOnInit() {
 
@@ -86,7 +89,7 @@ export class ProductListComponent implements OnInit {
         ot: this.sortUrut,
       }
 
-      this.productService.listProductSearch(queryParams).subscribe(response => {
+      this.searchService.getList(queryParams).subscribe(response => {
 
         console.log('hasil', response);
 
