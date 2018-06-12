@@ -24,6 +24,7 @@ export class StoreListComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+   this.loadData();
   }
 
   loadData() {
@@ -52,6 +53,7 @@ export class StoreListComponent implements OnInit {
           }
         }
       });
+
     });
   }
 
@@ -62,5 +64,6 @@ export class StoreListComponent implements OnInit {
     this.router.navigate(['/search-result/product-list'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
+
 
 }
