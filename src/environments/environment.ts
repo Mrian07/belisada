@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://43.243.141.117:8080/belisada',
+  apiUrl: 'https://api0.belisada.id/belisada',
   apiUrl2: 'https://api0.belisada.id/belisada-mongo'
 };
