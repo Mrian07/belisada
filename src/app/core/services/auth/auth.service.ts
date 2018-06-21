@@ -13,7 +13,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private configuration: Configuration, 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object, private configuration: Configuration,
   private http: HttpClient, private routes: Router) { }
 
   /*
