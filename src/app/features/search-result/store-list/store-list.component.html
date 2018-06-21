@@ -1,0 +1,73 @@
+<div class="containPage has-header">
+  <div class="b-sr">
+
+    <div class="row">
+      <div class="col-2">
+        <app-sidebar></app-sidebar>
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-12">
+            <span class="title-search">HASIL PENCARIAN TOKO "Cream" (1-6 dari 39)</span>
+          </div>
+        </div>
+        <div class="b-part">
+
+            <div class="row">
+              <div class="col-4 list-border" *ngFor="let item of list.content">
+                <div class="b-store-list">
+                  
+                  <div class="row">
+                    <div class="col-4">
+                      <div class='icon-store'><img src='assets/img/shop.png'></div>
+                    </div>
+                    <div class="col-8">
+                      <span class='city-store'>{{item.locationName}}</span>
+                      <span class='ket-store'>Menjual Cream Kecantikan</span>
+                      <span class='info-store'><img src='assets/img/profile.png' width='12'> Bergabung {{item.joinFrom}}</span>
+                      <span class='info-store'><img src='assets/img/delivery-packages-on-a-trolley.png' width='15'> Lama Proses: 2 hari</span>
+                      <span class='info-store'><img src='assets/img/stopwatch.png' width='15'> Respond Chat: {{item.respondChat}} menit</span>
+                      <span class='info-store'><img src='assets/img/followers.png' width='15'> {{item.follower}} Followers</span>
+                    </div>
+                  </div>
+  
+                  <div class="row up-store">
+                    <div class="col-4">
+                      <div class="nm-store">{{item.storeName}}</div>
+                    </div>
+                    <div class="col-8">
+                        <div class="row">
+                          <div class="col-3" *ngFor="let p of item.products">
+                            <img src='{{p.imageUrl}}' width='100'>
+                          </div>
+                          <div class="col-3 more-store">
+                            <a href='#' class="view-more">View More</a>
+                          </div>
+                        </div>
+
+                    </div>
+                  </div>
+                  <div class='visit-store'><img src='assets/img/eye-with-eyelash.png' width='15'> {{item.visitor}} Kunjungan</div>
+                  <div class="frame-btn-store">
+                      <button class="btn-store">Kunjungi</button> <button class="btn-store">Ikut</button>
+              
+                  </div>
+
+                </div>
+              </div>
+              
+              
+            </div>
+            <div class="line-store"></div>
+            
+
+        </div>
+      </div>
+      <div class="col-2">
+        <img src='assets/img/dummy-banner.jpg'><br>
+        <img src='assets/img/dummy-banner.jpg'><br>
+      </div>
+    </div>    
+  
+  </div>
+</div>

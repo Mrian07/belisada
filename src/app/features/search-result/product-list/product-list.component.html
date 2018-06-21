@@ -3,77 +3,7 @@
 
   <div class="row">
     <div class="col-2">
-        <div class="wrapper">
-  
-  
-            <div class="half">
-                <div class="wrapper-for-filter-top">
-                    <div>
-                        <img class="img--see" src="/assets/img/package.png" alt="">
-                        <span>Produk</span>
-                    </div>
-                    <div>
-                        <img class="img--see" src="/assets/img/shop.png" alt="">
-                        <span>Toko</span>
-                    </div>
-                    <div>
-                        <img class="img--see" src="/assets/img/confetti.png" alt="">
-                        <span>Event</span>
-                    </div>
-                   
-                  </div>
-                  <hr>
-                  <br>
-                <p>Filters</p>
-              <div class="tab">
-                <input id="tab-one" type="checkbox" name="tabs">
-                <label for="tab-one">Category</label>
-                <div class="tab-content wrapper-with-grid">
-                  <div>
-                      <ul class="margin--ul">
-                          <li>1</li>
-                        </ul>
-                  </div>
-                 <div>
-                   
-                 </div>
-                 <div>
-                    <input type="checkbox" class="checkBox-opacity" name="vehicle" value="Bike">
-                 </div>
-               
-                </div>
-              </div>
-              <div class="tab">
-                <input id="tab-two" type="checkbox" name="tabs">
-                <label for="tab-two">Brand</label>
-                <div class="tab-content">
-                    <ul class="margin--ul" *ngFor="let item of userlist">
-                        <li>  {{item.filterName}}</li>
-                      </ul>
-                </div>
-              </div>
-              <div class="tab">
-                <input id="tab-three" type="checkbox" name="tabs">
-                <label for="tab-three">Kondisi</label>
-                <div class="tab-content">
-                    <ul class="margin--ul" *ngFor="let item of userlistClass">
-                        <li>  {{item.filterName}}</li>
-                      </ul>
-                </div>
-              </div>
-              <hr>
-              <div class="tab">
-                  <input id="tab-four" type="checkbox" name="tabs">
-                  <label for="tab-four">Shipping options</label>
-                  <div class="tab-content">
-                      <ul class="margin--ul" *ngFor="let item of userlistCourier">
-                          <li>  {{item.filterName}}</li>
-                        </ul>
-                   
-                  </div>
-                </div>
-            </div>
-          </div>
+       <app-sidebar></app-sidebar>
     </div>
     <div class="col-8">
       <div class="row">
@@ -88,79 +18,10 @@
       </div>
       <div class="b-part">
 
-          <div class="row">
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
-              </div>
-            </div>
-            <div class="col-3">
-              <div class="b-product-list">
-                <div class="row">
-                  <div class="col-6 icon-left">
-                    <img src='assets/img/wishlist.png'>
-                  </div>
-                  <div class="col-6 icon-right">
-                    <img src='assets/img/discount.png'>
-                  </div>
-                </div>
-                <img src='assets/img/dummy-product.jpg'><br>
-                <div class="item">Innisfree Green Tea Balancing Cream.</div>
-                <img src='assets/img/dummy-star.jpg'><br>
-                <span class="price">Rp 15.000</span>
-                <span class="price-slash"><s>Rp 150.000</s></span>
-              </div>
-            </div>
-          </div>
+    
 
         <div class="row">
-          <div class="col-3">
+          <div class="col-3" *ngFor="let item of list.content">
             <div class="b-product-list">
               <div class="row">
                 <div class="col-6 icon-left">
@@ -170,66 +31,45 @@
                   <img src='assets/img/discount.png'>
                 </div>
               </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
+              <img src='{{ item.imageUrl }}' border="0" height="200"><br>
+              <div class="item">{{ item.name }}</div>
               <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
+              <div *ngIf="item.discount>0">
+                  <span class="price">Rp {{ item.discount | number}}</span>
+                  <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
               </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
+              <div *ngIf="item.discount<=0">
+                  <span class="price">Rp {{ item.pricelist | number}}</span>
               </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
-            </div>
-          </div>
-          <div class="col-3">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
-              </div>
-              <img src='assets/img/dummy-product.jpg'><br>
-              <div class="item">Innisfree Green Tea Balancing Cream.</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <span class="price">Rp 15.000</span>
-              <span class="price-slash"><s>Rp 150.000</s></span>
             </div>
           </div>
         </div>
+
+
+
       </div>
+
+
+      <div class="paging">
+        <ul>
+          <li>
+              <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+          </li>
+          <li>
+              <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+          </li>
+          <li *ngFor="let p of pages">
+              <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+          </li>
+          <li>
+              <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+          </li>
+          <li>
+              <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+          </li>
+        </ul>
+      </div>
+
     </div>
     <div class="col-2">
       <img src='assets/img/dummy-banner.jpg'><br>

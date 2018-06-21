@@ -55,3 +55,4 @@ export class ProductSpecification {
   attributeValueId: number;
   value: string;
 }
+
