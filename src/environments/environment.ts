@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   apiUrl: 'https://api0.belisada.id/belisada',
-  apiUrl2: 'https://api0.belisada.id/belisada-mongo'
+  apiUrl2: 'https://api0.belisada.id/belisada-mongo',
+  apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
 };
