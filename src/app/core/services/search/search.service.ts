@@ -18,7 +18,7 @@ export class SearchService {
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
-    return this.http.get(this.configuration.apiURL2 + '/search', {params: params})
+    return this.http.get(this.configuration.apiUrlMongo + '/search', {params: params})
     .pipe(
       map(response => response as ListSearch)
     );

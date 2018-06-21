@@ -10,6 +10,6 @@ export class SearchBarService {
 
   constructor(private cfg: Configuration, private http: HttpClient) { }
   search(key: string) {
-    return this.http.get(this.cfg.apiURL2 + '/search?st=product&q=' + key);
+    return this.http.get(this.cfg.apiUrlMongo + '/search?st=product&q=' + key);
   }
 }
