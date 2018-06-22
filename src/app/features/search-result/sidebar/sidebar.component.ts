@@ -39,9 +39,10 @@ export class SidebarComponent implements OnInit, OnDestroy {
   yogya = '139';
 
   Ajne = 'jne';
+  
+  active: boolean = true;
 
   sma;
- 
 
   city: FilterCity = new FilterCity();
   currentPgBrand: number;
@@ -131,8 +132,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
       brand : e
     };
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
-
-  
+    const emailFormArray1 = < FormArray > this.myForm.controls.tulisan;
+    if (isChecked) {
+      emailFormArray1.push(new FormControl(e));
+    } else {
+      const index = emailFormArray1.controls.findIndex(x => x.value == e);
+      console.log('asdasdasd', e);
+      emailFormArray1.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      e = isChecked;
+    }
   }
   getFilId(e) {
     const queryParams = {
@@ -392,6 +401,9 @@ export class SidebarComponent implements OnInit, OnDestroy {
        this.check = this.myForm.controls.value = email;
     }
 
+  }
+  oke() {
+    console.log('asd');
   }
   ngOnDestroy() {
     this.dataLoad();

@@ -47,8 +47,8 @@
               Oops. No brand was found
           </div>
           <ng-template #lengOnBrand> <ul class="margin--ul" *ngFor="let item of userlist" >
-            
-              <li (click)="asd(item.filterId,$event.target.checked)"  [ngClass]="{'active': item.filterId === brandOPT}">  {{item.filterName}}</li>
+                <!-- <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li> -->
+                 <li  (click)="asd(item.filterId,$event.target.checked)"  [ngClass]="{'active': item.filterId === brandOPT}">  <input  [checked]="brandOPT === item.filterId"  type="checkbox">   {{item.filterName}}</li>
                 <li *ngIf="(leng === 0)">
                     No Brand was found
               </li>
