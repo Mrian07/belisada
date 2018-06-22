@@ -28,8 +28,27 @@
                 </div>
             </div>
             <div class="input-group icon-right with-select-box">
-                <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="input" placeholder="Temukan produk idaman anda"/>
-                <fa name="search"></fa>
+                <!-- <div class=""> -->
+                    <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="input" placeholder="Temukan produk idaman anda"/>
+                    <fa name="search"></fa>
+                <!-- </div> -->
+
+                <div class="list-suggestion" *ngIf="keyword !== '' && keyword">
+                    <div class="product-suggestion">
+                        <ul>
+                            <li><span class="highlight">{{ keyword }}</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="product-suggestion" *ngIf="searchBarResults.length > 0">
+                        <div class="suggestion-block">
+                            <span class="suggestion-label">Kategori</span>
+                        </div>
+                        <ul>
+                            <li (click)="clickSearch(keyword, item.categoryId)" *ngFor="let item of searchBarResults; let i = index"><span class="highlight">{{ keyword }}</span> di {{ item.categoryName }}</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
