@@ -18,10 +18,13 @@ export class ProductListComponent implements OnInit {
 
   sortUrut: string;
   sortName: string;
-
   cat;
+  shippingOpt;
   brand;
+  brandOPT;
+  classificationOpt;
   keys: string;
+  keyST: string;
   testing: FilterM = new FilterM();
   userlist: any;
   userlistClass: any;
@@ -35,40 +38,7 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.getUser();
-    this.activatedRoute.queryParams
-      .subscribe(params => {
-        this.cat = params.cat === undefined ? [] : params.cat.substr(1).slice(0, -1).split(',');
-        this.brand = params.brand === undefined ? [] : params.brand.substr(1).slice(0, -1).split(',');
-        this.keys = params.q;
-        if (params.page) {
-          // this.currentPage = params.page;
-        }
-        const paramFix = {
-          q: params.q,
-          st: 'product'
-        };
-        this.filterService.getFilter(paramFix).subscribe(
-          user => {
-            this.userlist = user;
-            for (this.en of  this.userlist) {
-              this.a = this.en.filter;
-              const b = this.en;
-              if (this.a === 'Brand') {
-                this.userlist = b.data;
-              }
-              if (this.a === 'Classification') {
-                this.userlistClass = b.data;
-              }
-              if (this.a === 'Courier') {
-                this.userlistCourier = b.data;
-              }
-          }
-          },
-        );
-
-    });
 
     this.loadData();
   }
@@ -77,18 +47,28 @@ export class ProductListComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.pages = [];
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+      this.cat = params.location === undefined ? [] : params.location;
+      this.shippingOpt = params.shipping === undefined ? [] : params.shipping;
+      this.classificationOpt = params.classification === undefined ? [] : params.classification;
+      this.keys = params.q;
+      this.keyST = params.st;
+      this.brandOPT = params.brand === undefined ? [] : params.brand;
 
       const queryParams = {
-        st: 'product',
-        q: params.q,
         page: this.currentPage,
         itemperpage: 10,
         ob: this.sortName,
         ot: this.sortUrut,
-      }
+        q: params.q,
+        st: params.st,
+        location: this.cat,
+        shipping: this.shippingOpt,
+        classification: this.classificationOpt,
+        brand: this.brandOPT
+      };
 
       this.searchService.getList(queryParams).subscribe(response => {
-
+        console.log('kokokoko');
         console.log('hasil', response);
 
         this.list = response;

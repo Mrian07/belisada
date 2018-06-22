@@ -25,6 +25,7 @@ const routes: Routes = [
   { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
   { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },
   { path: 'search-result', loadChildren: 'app/features/search-result/search-result.module#SearchResultModule' },
+  { path: 'product', loadChildren: 'app/features/product/product.module#ProductModule' },
   {
     path: 'maintenance',
     component: MaintenanceComponent,

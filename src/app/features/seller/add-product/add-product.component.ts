@@ -43,6 +43,7 @@ export class AddProductComponent implements OnInit {
   stock: Reference[];
   warranty: Reference[];
   couriers: Courier[];
+  txtSearch: string;
 
   constructor(
     private brandService: BrandService,

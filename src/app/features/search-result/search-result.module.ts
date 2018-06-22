@@ -6,6 +6,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { SearchResultRoutingModule } from './search-result-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { FormsModule } from '@angular/forms';
 import { StoreListComponent } from './store-list/store-list.component';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { StoreListComponent } from './store-list/store-list.component';
     CommonModule,
     SearchResultRoutingModule,
     ThemeModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule
   ],
   declarations: [
     SearchResultComponent,

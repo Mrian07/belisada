@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
     });
   }
   searchEnter(searchKey, searchCategory) {
-    this.queryParams = { q: searchKey };
+    this.queryParams = { st: 'product', q: searchKey };
     if (typeof searchCategory !== 'undefined') {
       this.queryParams['parent'] = 1;
       this.queryParams['id'] = searchCategory.mProductCategoryId;
