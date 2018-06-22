@@ -4,18 +4,15 @@ import { Router } from '@angular/router';
 
 import swal from 'sweetalert2';
 
-import { ClickOutsideDirective } from '@belisada/shared/directives';
-
 import { UserData } from '@belisada/core/models';
 import { UserService, SearchBarService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
-
-
+import { SearchService } from '@belisada/core/services/search/search.service';
+import { SearchBarResponse } from '@belisada/core/models/search/search.model';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  // directives: [ClickOutsideDirective],
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
@@ -26,14 +23,19 @@ export class HeaderComponent implements OnInit {
   isAccountMenu: Boolean = false;
   results = [];
   queryParams: any = {};
-  selectedSearchCategory: any;
+  // selectedSearchCategory: any;
+  searchBarResults: SearchBarResponse[];
+  keyword: string;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private userService: UserService,
-    private search: SearchBarService
-  ) { }
+    private search: SearchBarService,
+    private searchService: SearchService
+  ) {
+    this.searchBarResults = [];
+  }
 
   ngOnInit() {
     if (localStorage.getItem('isRemember') === 'true') {
@@ -51,23 +53,30 @@ export class HeaderComponent implements OnInit {
 
   searchK(event) {
     const key = event.target.value;
-    if (key === '' || event.key === 'Enter') {
-      this.results = [];
-    } else {
-      this.search.search(key).subscribe(data => {
-        console.log(data);
-      });
-    }
+    // console.log('event: ', event);
+    console.log('key: ', key);
+    console.log('this.keyword: ', this.keyword);
+    this.keyword = key;
+    const queryParams = {
+      q: key
+    };
+    this.searchService.getSearchBar(queryParams).subscribe(result => {
+      this.searchBarResults = result;
+    });
   }
-  searchEnter(searchKey, searchCategory) {
-    this.queryParams = { q: searchKey };
-    if (typeof searchCategory !== 'undefined') {
-      this.queryParams['parent'] = 1;
-      this.queryParams['id'] = searchCategory.mProductCategoryId;
-    }
+  searchEnter(event) {
+    const key = event.target.value;
+    this.queryParams = { st: 'product', q: key };
     this.router.navigate(['/search-result/product-list'], { queryParams: this.queryParams });
-    this.selectedSearchCategory = '';
     this.results = [];
+  }
+  clickSearch(key, catID) {
+    const queryParams = {
+      st: 'product',
+      q: key,
+      category: [catID]
+    };
+    this.router.navigate(['/search-result/product-list'], { queryParams: queryParams });
   }
 
   logout() {

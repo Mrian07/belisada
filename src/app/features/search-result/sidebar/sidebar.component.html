@@ -1,71 +1,123 @@
 <div class="wrapper">
   
   
-  <div class="half">
-      <div class="wrapper-for-filter-top">
-          <div class="m-tab">
-              <img class="img--see" src="/assets/img/package.png" alt="">
-              <span>Produk</span>
+    <div class="half">
+        <div class="wrapper-for-filter-top">
+            <div>
+                <img class="img--see" src="/assets/img/package.png" alt="">
+                <span>Produk</span>
+            </div>
+            <div>
+                <img class="img--see" src="/assets/img/shop.png" alt="">
+                <span>Toko</span>
+            </div>
+            <div>
+                <img class="img--see" src="/assets/img/confetti.png" alt="">
+                <span>Event</span>
+            </div>
+           
           </div>
-          <div class="m-tab">
-              <img class="img--see" src="/assets/img/shop.png" alt="">
-              <span>Toko</span>
-          </div>
-          <div class="m-tab">
-              <img class="img--see" src="/assets/img/confetti.png" alt="">
-              <span>Event</span>
-          </div>
-         
-        </div>
-        <hr>
-        <br>
-      <p>Filters</p>
-    <div class="tab">
-      <input id="tab-one" type="checkbox" name="tabs">
-      <label for="tab-one">Category</label>
-      <div class="tab-content wrapper-with-grid">
-        <div>
-            <ul class="margin--ul">
-                <li>1</li>
+          <hr>
+          <br>
+        <p>Filters</p>
+      <div class="tab">
+        <input class="opac" id="tab-one" type="checkbox" name="tabs">
+        <label for="tab-one">Category</label>
+        <div class="tab-content wrapper-with-grid">
+          <div>
+            <ul class="margin--ul" *ngFor="let item of userCate">
+            
+                <li>  {{item.categoryName}}</li>
               </ul>
+          </div>
+         <div>
+           
+         </div>
+         <div>
+          
+         </div>
+       
         </div>
-       <div>
-         
-       </div>
-       <div>
-          <input type="checkbox" class="checkBox-opacity" name="vehicle" value="Bike">
-       </div>
-     
       </div>
-    </div>
-    <div class="tab">
-      <input id="tab-two" type="checkbox" name="tabs">
-      <label for="tab-two">Brand</label>
-      <div class="tab-content">
-          <ul class="margin--ul" *ngFor="let item of userlist">
-              <li>  {{item.filterName}}</li>
-            </ul>
-      </div>
-    </div>
-    <div class="tab">
-      <input id="tab-three" type="checkbox" name="tabs">
-      <label for="tab-three">Kondisi</label>
-      <div class="tab-content">
-          <ul class="margin--ul" *ngFor="let item of userlistClass">
-              <li>  {{item.filterName}}</li>
-            </ul>
-      </div>
-    </div>
-    <hr>
-    <div class="tab">
-        <input id="tab-four" type="checkbox" name="tabs">
-        <label for="tab-four">Shipping options</label>
+      <div class="tab">
+        <input class="opac" id="tab-two" type="checkbox" name="tabs">
+        <label for="tab-two">Brand</label>
         <div class="tab-content">
-            <ul class="margin--ul" *ngFor="let item of userlistCourier">
-                <li>  {{item.filterName}}</li>
-              </ul>
-         
+          <div *ngIf="leng === 0; else lengOnBrand">
+              Oops. No brand was found
+          </div>
+          <ng-template #lengOnBrand> <ul class="margin--ul" *ngFor="let item of userlist" >
+            
+              <li (click)="asd(item.filterId,$event.target.checked)"  [ngClass]="{'active': item.filterId === brandOPT}">  {{item.filterName}}</li>
+                <li *ngIf="(leng === 0)">
+                    No Brand was found
+              </li>
+              </ul></ng-template>
+           
+           
         </div>
       </div>
+      <div class="tab">
+        <input class="opac" id="tab-three" type="checkbox" name="tabs">
+        <label for="tab-three">Kondisi</label>
+        <div class="tab-content">
+            <ul class="margin--ul" *ngFor="let item of userlistClass">
+            
+                <li (click)="getFilId(item.filterId)">  {{item.filterName}}</li>
+              </ul>
+        </div>
+      </div>
+      <hr>
+        <div class="tab">
+          <input class="opac" id="tab-five" type="checkbox" name="tabs">
+          <label for="tab-five">Location</label>
+          <div class="tab-content">
+              <div class="drick-select-container">
+                  <div class="ui icon input parent">
+                      <input class="drick-select__text" [ngClass]="{'active':onCityFocus}" type="text" [(ngModel)]="brandName"
+                          (keyup)="searchBrand()"
+                          (focus)="onCityFocus = true" (focusout)="onBrandBlur()" placeholder="Select one">
+                      <i class="drick-select__icon caret down icon"></i>
+                      <p  (click)="jabod1e()">JABODETABEK</p>
+                      <p (click)="bandung()"> Bandung </p>
+                      <p (click)="cSurabaya()"> SURABAYA </p>
+                      <p (click)="cMedan()"> MEDAN </p>
+                      <p (click)="cJogja()"> DIY Jogja </p>
+                  </div>
+                  <div class="drick-select-container--toggle" [ngClass]="{'active':onCityFocus}"
+                      id="drick-scroll-container"
+                      (scroll)="onScrollDown()">
+                      <ul class="drick-select-list">
+                          <li *ngFor="let i of city.data" (click)="selectBrand(i)">
+                              {{i.cityName}}
+                          </li>
+                          <!-- <li *ngIf="(city.data.length === 0)">
+                              Kota tidak ditemukan
+                          </li> -->
+                      </ul>
+                  </div>
+                
+              </div>
+             
+          </div>
+         
+        </div>
+        <div class="tab">
+          <input class="opac" id="tab-four" type="checkbox" name="tabs">
+          <label for="tab-four">Shipping options</label>
+          <div class="tab-content">
+              <ul class="margin--ul" *ngFor="let item of userlistCourier">
+                    <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li>
+                   
+                </ul>
+               
+                <!-- <li *ngIf="(shippingOpt === 'jne')">
+                        <input [checked]=true type="checkbox">   {{shippingOpt}}
+                  </li> -->
+                <!-- <input [checked]=false  type="checkbox" (change)="onChange($event.target.checked)">  asdasdadasd -->
+           
+          </div>
+        </div>
+    </div>
+    
   </div>
-</div>

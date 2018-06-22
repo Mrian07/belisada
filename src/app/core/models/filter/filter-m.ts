@@ -8,3 +8,14 @@ export class FilterData {
     filterName: string;
     filterId: string;
 }
+
+export class FilterCity {
+    dataCount: number;
+    pageCount: number;
+    data: FilterCityData[];
+}
+
+export class FilterCityData {
+    cityId: number;
+    cityName: string;
+}
