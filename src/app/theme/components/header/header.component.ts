@@ -23,7 +23,7 @@ export class HeaderComponent implements OnInit {
   isAccountMenu: Boolean = false;
   results = [];
   queryParams: any = {};
-  selectedSearchCategory: any;
+  // selectedSearchCategory: any;
   searchBarResults: SearchBarResponse[];
   keyword: string;
 
@@ -64,18 +64,15 @@ export class HeaderComponent implements OnInit {
       this.searchBarResults = result;
     });
   }
-  searchEnter(searchKey, searchCategory) {
-    this.queryParams = { st: 'product', q: searchKey };
-    if (typeof searchCategory !== 'undefined') {
-      this.queryParams['parent'] = 1;
-      this.queryParams['id'] = searchCategory.mProductCategoryId;
-    }
+  searchEnter(event) {
+    const key = event.target.value;
+    this.queryParams = { st: 'product', q: key };
     this.router.navigate(['/search-result/product-list'], { queryParams: this.queryParams });
-    this.selectedSearchCategory = '';
     this.results = [];
   }
   clickSearch(key, catID) {
     const queryParams = {
+      st: 'product',
       q: key,
       category: [catID]
     };
