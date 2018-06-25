@@ -29,7 +29,7 @@
             </div>
             <div class="input-group icon-right with-select-box">
                 <!-- <div class=""> -->
-                    <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter(selectedSearchCategory, selectedCategory)" [(ngModel)]="selectedSearchCategory" class="input" placeholder="Temukan produk idaman anda"/>
+                    <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter($event)" class="input" placeholder="Temukan produk idaman anda"/>
                     <fa name="search"></fa>
                 <!-- </div> -->
 

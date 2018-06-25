@@ -28,7 +28,7 @@ export class FilterSService {
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
-    return this.http.get(this.cfg.apiURL2 + '/location/city', {params: params})
+    return this.http.get(this.cfg.apiUrlMongo + '/location/city', {params: params})
       .pipe(
         map(response => response as FilterCity)
       );
