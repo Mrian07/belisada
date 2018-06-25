@@ -26,8 +26,7 @@
         <div class="tab-content wrapper-with-grid">
           <div>
             <ul class="margin--ul" *ngFor="let item of userCate">
-            
-                <li>  {{item.categoryName}}</li>
+                    <li  (click)="cCategory(item.categoryId,$event.target.checked)"  [ngClass]="{'active1': item.categoryId === category}"> {{item.categoryName}}</li>
               </ul>
           </div>
          <div>
@@ -48,7 +47,7 @@
           </div>
           <ng-template #lengOnBrand> <ul class="margin--ul" *ngFor="let item of userlist" >
                 <!-- <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li> -->
-                 <li  (click)="asd(item.filterId,$event.target.checked)"  [ngClass]="{'active': item.filterId === brandOPT}">  <input  [checked]="brandOPT === item.filterId"  type="checkbox">   {{item.filterName}}</li>
+                 <li  (click)="asd(item.filterId,$event.target.checked)"  [ngClass]="{'active1': item.filterId === brandOPT}"> {{item.filterName}}</li>
                 <li *ngIf="(leng === 0)">
                     No Brand was found
               </li>
@@ -63,7 +62,7 @@
         <div class="tab-content">
             <ul class="margin--ul" *ngFor="let item of userlistClass">
             
-                <li (click)="getFilId(item.filterId)">  {{item.filterName}}</li>
+                <li> <input [checked]="classificationOpt === item.filterId" type="checkbox" (change)="getFilId(item.filterId, $event.target.checked)">   {{item.filterName}}</li>
               </ul>
         </div>
       </div>
@@ -77,12 +76,25 @@
                       <input class="drick-select__text" [ngClass]="{'active':onCityFocus}" type="text" [(ngModel)]="brandName"
                           (keyup)="searchBrand()"
                           (focus)="onCityFocus = true" (focusout)="onBrandBlur()" placeholder="Select one">
-                      <i class="drick-select__icon caret down icon"></i>
-                      <p  (click)="jabod1e()">JABODETABEK</p>
-                      <p (click)="bandung()"> Bandung </p>
-                      <p (click)="cSurabaya()"> SURABAYA </p>
-                      <p (click)="cMedan()"> MEDAN </p>
-                      <p (click)="cJogja()"> DIY Jogja </p>
+                      <i class="drick-select__icon caret down icon fa fa-caret-down"></i>
+                      <div class="wrapper--2col">
+                          <div>
+                                <input class="okOce" [checked]="cat === jabode" type="checkbox" (change)="jabod1e(jabode,$event.target.checked)"> <span> JABODETABEK</span>
+                          </div>
+                          <div>
+                                <input class="okOce" [checked]="cat === bandung12" type="checkbox" (change)="bandung(bandung12,$event.target.checked)">  <span> Bandung </span>
+                          </div>
+                          <div>
+                                <input class="okOce" [checked]="cat === surabaya" type="checkbox" (change)="cSurabaya(surabaya,$event.target.checked)">  <span> SURABAYA </span>
+                          </div>
+                          <div>
+                                <input class="okOce" [checked]="cat === medan" type="checkbox" (change)="cMedan(medan,$event.target.checked)">  <span> MEDAN </span>
+                          </div>
+                          <div>
+                                <input class="okOce" [checked]="cat === yogya" type="checkbox" (change)="cJogja(yogya,$event.target.checked)">  <span> DIY Jogja </span>
+                          </div>
+                      </div>
+                     
                   </div>
                   <div class="drick-select-container--toggle" [ngClass]="{'active':onCityFocus}"
                       id="drick-scroll-container"
@@ -91,9 +103,9 @@
                           <li *ngFor="let i of city.data" (click)="selectBrand(i)">
                               {{i.cityName}}
                           </li>
-                          <!-- <li *ngIf="(city.data.length === 0)">
-                              Kota tidak ditemukan
-                          </li> -->
+                          <li *ngIf="(lengOnCity === 0)">
+                                No City was found
+                          </li>
                       </ul>
                   </div>
                 

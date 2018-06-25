@@ -15,6 +15,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   brand;
   brandOPT;
   classificationOpt;
+  category;
   keys: string;
   keyST: string;
   testing: FilterM = new FilterM();
@@ -26,6 +27,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   en;
   leng;
   check;
+  lengOnCity;
   myForm: FormGroup;
 
   jabode = '140,141,142,143,144,169,170,176,122,123,124,167,168'
@@ -39,8 +41,6 @@ export class SidebarComponent implements OnInit, OnDestroy {
   yogya = '139';
 
   Ajne = 'jne';
-  
-  active: boolean = true;
 
   sma;
 
@@ -61,7 +61,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.dataLoad();
     this.myForm = this.fb.group({
       useremail: this.fb.array([]),
-      tulisan: this.fb.array([])
+      tulisan: this.fb.array([]),
+      kondisi: this.fb.array([]),
+      city: this.fb.array([]),
+      bandungF: this.fb.array([]),
+      surabayaF: this.fb.array([]),
+      medanF: this.fb.array([]),
+      yogyaF: this.fb.array([]),
     });
   }
 
@@ -69,6 +75,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams
       .subscribe(params => {
         this.cat = params.location === undefined ? [] : params.location;
+        this.category = params.category === undefined ? [] :  params.category.substr(1).slice(0, -1).split(',');
         this.shippingOpt = params.shipping === undefined ? [] : params.shipping;
         this.classificationOpt = params.classification === undefined ? [] : params.classification;
         this.keys = params.q;
@@ -89,6 +96,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
             const b = this.en;
             if (this.a === 'Category') {
               this.userCate = b.data;
+              console.log(b.data);
             }
             if (this.a === 'Brand') {
               this.userlist = b.data;
@@ -102,6 +110,43 @@ export class SidebarComponent implements OnInit, OnDestroy {
           }
         });
       });
+  }
+
+  cCategory(e, isChecked: boolean) {
+    const queryParams = {
+      page: this.currentPgBrand = 1,
+      itemperpage: this.limitBrand,
+      q: this.keys === undefined ? [] : this.keys,
+      st:  this.keyST,
+      location : this.cat === undefined ? [] : this.cat,
+      classification: this.classificationOpt,
+      shipping: this.shippingOpt === undefined ? [] : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? [] : this.brandOPT,
+      category: e
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      location: this.cat,
+      shipping: this.shippingOpt === undefined ? [] : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? [] : this.brandOPT,
+    };
+    const queryParams23 = {
+      q: this.keys,
+      page: this.currentPgBrand = 1,
+      itemperpage: this.limitBrand,
+      st:  this.keyST,
+      location : this.cat === undefined ? '' : this.cat,
+      classification: this.classificationOpt,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand: this.brandOPT === undefined ? '' : this.brandOPT,
+      category: e
+    };
+    this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
+    if (e === this.brandOPT) {
+      console.log('asdasd', this.brandOPT)
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+    }
   }
 
   asd(e, isChecked: boolean) {
@@ -126,24 +171,18 @@ export class SidebarComponent implements OnInit, OnDestroy {
       page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
       st:  this.keyST,
-      location : this.cat === undefined ? '' : this.cat,
+      location : this.cat === undefined ? [] : this.cat,
       classification: this.classificationOpt,
-      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      shipping: this.shippingOpt === undefined ? [] : this.shippingOpt,
       brand : e
     };
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
-    const emailFormArray1 = < FormArray > this.myForm.controls.tulisan;
-    if (isChecked) {
-      emailFormArray1.push(new FormControl(e));
-    } else {
-      const index = emailFormArray1.controls.findIndex(x => x.value == e);
-      console.log('asdasdasd', e);
-      emailFormArray1.removeAt(index);
+    if (e === this.brandOPT) {
+      console.log('asdasd', this.brandOPT)
       this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
-      e = isChecked;
     }
   }
-  getFilId(e) {
+  getFilId(e, isChecked: boolean) {
     const queryParams = {
       page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
@@ -151,6 +190,13 @@ export class SidebarComponent implements OnInit, OnDestroy {
       st:  this.keyST,
       location : this.cat === undefined ? '' : this.cat,
       classification: e,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      location: this.cat,
       shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
     };
@@ -164,9 +210,16 @@ export class SidebarComponent implements OnInit, OnDestroy {
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt === undefined ? '' : this.shippingOpt
     };
+    const emailFormArray2 = < FormArray > this.myForm.controls.kondisi;
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
-    this.filterService.getFilter(queryParams).subscribe(response => {
-    });
+    if (isChecked) {
+      emailFormArray2.push(new FormControl(e));
+    } else {
+      const index = emailFormArray2.controls.findIndex(x => x.value === e);
+      emailFormArray2.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      e = isChecked;
+    }
   }
 
   getCityINit() {
@@ -206,6 +259,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     };
     this.filterService.getDataCity(queryParams).subscribe(response => {
       this.city = response;
+      this.lengOnCity = response.dataCount;
     });
   }
   selectBrand(brand) {
@@ -231,7 +285,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
   }
 
-  jabod1e() {
+  jabod1e(jabodetabek, isChecked: any) {
+    console.log('jabode', jabodetabek);
     const queryParams = {
       page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
@@ -240,6 +295,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
       location : this.jabode,
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
     };
     const queryParams23 = {
       q: this.keys,
@@ -250,10 +311,23 @@ export class SidebarComponent implements OnInit, OnDestroy {
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt
     };
+    const emailFormArray2 = < FormArray > this.myForm.controls.kondisi;
+    console.log(this.myForm.controls.kondisi);
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
+    if (isChecked) {
+      emailFormArray2.push(new FormControl(jabodetabek));
+    } else {
+      const index = emailFormArray2.controls.findIndex(x => x.value === jabodetabek);
+      emailFormArray2.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      console.log('asdasdsad');
+      jabodetabek = isChecked;
+    }
+    // this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
   }
 
-  bandung() {
+  bandung(bandun, isChecked: any) {
+    console.log(bandun);
     const query = {
      page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
@@ -262,6 +336,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
       location : this.bandung12,
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
     };
     const queryParams23 = {
     q: this.keys,
@@ -273,10 +353,21 @@ export class SidebarComponent implements OnInit, OnDestroy {
       shipping: this.shippingOpt
     };
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
+    const emailFormArray3 = < FormArray > this.myForm.controls.bandungF;
+    console.log(this.myForm.controls.bandungF);
+    if (isChecked) {
+      emailFormArray3.push(new FormControl(bandun));
+    } else {
+      const index = emailFormArray3.controls.findIndex(x => x.value === bandun);
+      emailFormArray3.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      console.log('asdasdsad');
+      bandun = isChecked;
+    }
 
   }
 
-  cSurabaya() {
+  cSurabaya(sby, isChecked: any) {
     const query = {
       page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
@@ -285,6 +376,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
       location : this.surabaya,
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
     };
     const queryParams23 = {
       q: this.keys,
@@ -296,8 +393,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
       shipping: this.shippingOpt
     };
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
+    const emailFormArray4 = < FormArray > this.myForm.controls.surabayaF;
+    if (isChecked) {
+      emailFormArray4.push(new FormControl(sby));
+    } else {
+      const index = emailFormArray4.controls.findIndex(x => x.value === sby);
+      emailFormArray4.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      sby = isChecked;
+    }
   }
-  cMedan() {
+  cMedan(medan, isChecked: any) {
     const query = {
       page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
@@ -306,6 +412,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
       location : this.medan,
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
     };
     const queryParams23 = {
       q: this.keys,
@@ -320,8 +432,17 @@ export class SidebarComponent implements OnInit, OnDestroy {
     } else {
     }
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
+    const emailFormArray5 = < FormArray > this.myForm.controls.medanF;
+    if (isChecked) {
+      emailFormArray5.push(new FormControl(medan));
+    } else {
+      const index = emailFormArray5.controls.findIndex(x => x.value === medan);
+      emailFormArray5.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      medan = isChecked;
+    }
   }
-  cJogja() {
+  cJogja(yogya, isChecked: any) {
     const query = {
       page: this.currentPgBrand = 1,
       itemperpage: this.limitBrand,
@@ -330,6 +451,12 @@ export class SidebarComponent implements OnInit, OnDestroy {
       location : this.yogya,
       brand:   this.brandOPT === undefined ? '' : this.brandOPT,
       shipping: this.shippingOpt
+    };
+    const paramFix = {
+      q: this.keys,
+      st: this.keyST,
+      shipping: this.shippingOpt === undefined ? '' : this.shippingOpt,
+      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
     };
     const queryParams23 = {
       q: this.keys,
@@ -344,6 +471,15 @@ export class SidebarComponent implements OnInit, OnDestroy {
     } else {
     }
     this.router.navigate(['/search-result/product-list'], { queryParams: queryParams23 });
+    const emailFormArray6 = < FormArray > this.myForm.controls.yogyaF;
+    if (isChecked) {
+      emailFormArray6.push(new FormControl(yogya));
+    } else {
+      const index = emailFormArray6.controls.findIndex(x => x.value === yogya);
+      emailFormArray6.removeAt(index);
+      this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
+      yogya = isChecked;
+    }
 
   }
   // cCourier(e) {
@@ -369,6 +505,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
   // }
 
   onChange(email: any, isChecked: boolean) {
+    console.log('this.myForm.controls.useremail:', this.myForm.controls.useremail.value)
     this.shippingOpt = email;
     const queryParams23 = {
       q: this.keys,
@@ -391,7 +528,7 @@ export class SidebarComponent implements OnInit, OnDestroy {
     if (isChecked) {
       emailFormArray.push(new FormControl(email));
     } else {
-      const index = emailFormArray.controls.findIndex(x => x.value == email);
+      const index = emailFormArray.controls.findIndex(x => x.value === email);
       emailFormArray.removeAt(index);
       this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
       email = isChecked;
