@@ -56,3 +56,80 @@ export class ProductSpecification {
   value: string;
 }
 
+export class ProductDetail {
+  status: number;
+  message: string;
+  data: ProductDetailList;
+}
+
+export class ProductDetailList {
+  status: number;
+  message: string;
+  productId: number;
+  name: string;
+  nameEn: string;
+  highlight: string;
+  highlightEn: string;
+  description: string;
+  descriptionEn: string;
+  sku: string;
+  brandId: number;
+  brandName: string;
+  createdDate: string;
+  storeId: number;
+  storeName: string;
+  storeUrl: string;
+  weight: number;
+  volume: number;
+  dimensionsWidth: number;
+  dimensionslength: number;
+  dimensionsheight: number;
+  isactive: string;
+  classification: number;
+  classificationValue: string;
+  qty: number;
+  categoryOneId: number;
+  categoryOneName: string;
+  categoryTwoId: number;
+  categoryTwoName: string;
+  categoryThreeId: number;
+  categoryThreeName: string;
+  imageUrl: string[];
+  pricelist: number;
+  couriers: Couriers;
+
+  isGuarantee: boolean;
+  guaranteeType: string;
+  guaranteeTypeValue: string;
+  guaranteeTime: string;
+  guaranteeTimeValue: string;
+  pricelistlast: number;
+
+  specification: string[];
+  seen: number;
+  sold: number;
+  rate: number;
+  review: number;
+  discount: number;
+  isPublished: boolean;
+  locationId: number;
+  locationName: string;
+  id: string;
+  moreInformation: MoreInformation;
+}
+
+export class Couriers {
+  courierId: number;
+  name: string;
+  code: string;
+}
+
+export class MoreInformation {
+  lastOnline: string;
+  productSold: number;
+  productQuantity: number;
+  transactionSuccess: number;
+  storeImageUrl: string;
+}
+
+

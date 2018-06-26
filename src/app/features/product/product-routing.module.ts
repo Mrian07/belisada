@@ -8,7 +8,7 @@ const routes: Routes = [
     component: ProductComponent,
     children: [
       {
-        path: 'product-detail',
+        path: 'product-detail/:id/:name',
         component: ProductDetailComponent,
         data: {
             title: 'Product Detail'

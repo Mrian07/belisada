@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
-import { AddProductRequest, AddProductResponse } from '@belisada/core/models/product/product.model';
+import { AddProductRequest, AddProductResponse, ProductDetail } from '@belisada/core/models/product/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,13 @@ export class ProductService {
       .pipe(
         map(response => response as AddProductResponse)
       );
+  }
+
+  detailProduct(id: Object): Observable<ProductDetail> {
+    return this.http.get(this.configuration.apiUrlMongo + '/product/detail/' + id)
+    .pipe(
+      map(response => response as ProductDetail)
+    );
   }
 
 }
