@@ -18,6 +18,17 @@ export class StoreListComponent implements OnInit {
   sortUrut: string;
   sortName: string;
 
+
+  cat;
+  shippingOpt;
+  brand;
+  brandOPT;
+  categoryOPT;
+  category;
+  classificationOpt;
+  keys: string;
+  keyST: string;
+
   constructor(
     private activatedRoute: ActivatedRoute, private router: Router,
     private searchService: SearchService
@@ -31,15 +42,26 @@ export class StoreListComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       this.pages = [];
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+      this.cat = params.location === undefined ? [] : params.location;
+      this.shippingOpt = params.shipping === undefined ? [] : params.shipping;
+      this.categoryOPT = params.category === undefined ? [] :  params.category;
+      this.classificationOpt = params.classification === undefined ? [] : params.classification;
+      this.keys = params.q;
+      this.brandOPT = params.brand === undefined ? [] : params.brand;
 
       const queryParams = {
         st: 'store',
-        q: params.q,
         page: this.currentPage,
         itemperpage: 10,
-        ob: this.sortName,
-        ot: this.sortUrut,
-      }
+        // ob: this.sortName,
+        // ot: this.sortUrut,
+        q: params.q,
+        location: this.cat,
+        shipping: this.shippingOpt,
+        classification: this.classificationOpt,
+        brand: this.brandOPT,
+        category: this.categoryOPT
+      };
 
       this.searchService.getList(queryParams).subscribe(response => {
 
@@ -61,7 +83,7 @@ export class StoreListComponent implements OnInit {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.list.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/search-result/product-list'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/search-result/product-list'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
 

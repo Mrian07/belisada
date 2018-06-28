@@ -4,12 +4,27 @@
     <div class="half">
         <div class="wrapper-for-filter-top">
             <div>
-                <img class="img--see" src="/assets/img/package.png" alt="">
-                <span>Produk</span>
+                    <div *ngIf="keyST === 'product'; else product">
+                            <img (click)="goToProduct()" class="img--see change--cursor" src="/assets/img/colour_package.png" alt="">
+                            <span (click)="goToProduct()" class="change--cursor">Produk</span>
+                        </div>
+                        <ng-template #product>
+                                <img (click)="goToProduct()"  class="img--see change--cursor" src="/assets/img/package.png" alt="">
+                                <span (click)="goToProduct()" class="change--cursor">Produk</span>
+                        </ng-template>
+              
+              
             </div>
             <div>
-                <img class="img--see" src="/assets/img/shop.png" alt="">
-                <span (click)="goToToko()">Toko</span>
+                    <div *ngIf="keyST === 'store'; else store">
+                            <img (click)="goToToko()" class="img--see change--cursor" src="/assets/img/colour_shop.png" alt="">
+                            <span (click)="goToToko()" class="change--cursor">Toko</span>
+                        </div>
+                        <ng-template #store>
+                                <img (click)="goToToko()"  class="img--see change--cursor" src="/assets/img/shop.png" alt="">
+                                <span (click)="goToToko()" class="change--cursor">Toko</span>
+                        </ng-template>
+               
             </div>
             <div>
                 <img class="img--see" src="/assets/img/confetti.png" alt="">
