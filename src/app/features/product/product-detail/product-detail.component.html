@@ -1,7 +1,7 @@
 <div class="containPage has-header">
   <div class="containPageCenter">
     <span class='product-bc'>
-      Home/ Kecantikan/ <strong>Perawatan Wajah/ Sabun Muka</strong>
+      Home/ {{productDetail.categoryOneName}}/ <strong>{{productDetail.categoryTwoName}}/ {{productDetail.categoryThreeName}}</strong>
     </span>
     <div class="row">
       <div class="col-5">
@@ -11,10 +11,10 @@
           <span class="product-review">21 Reviews</span>
 
           <div class='product-title'>
-            Missha All Around Safe Block Sebum Zero Sun
+            {{productDetail.name}}
           </div>
           <div>
-            <span class="product-real-price">Rp 21.000 </span><span class="product-discont"><s>Rp 25.000</s></span>
+            <span class="product-real-price">{{productDetail.pricelistlast | currency:'Rp '}}</span><span class="product-discont"><s>Rp 25.000</s></span>
           </div>
           <div class="product-info">
             <span class="strong-text">Dikirim Dari: Jakarta Ke</span> DKI Jakarta, Kota Jakarta Barat, <span class="btn-small">Ganti Destinasi</span> <span class="btn-flag"><fa name="exclamation"></fa></span>
@@ -43,12 +43,12 @@
       </div>
       <div class="col-4">
           <div class="show-image">
-            <img src='assets/img/dummy-product-detail.jpg' height="400">
+            <img src='{{productDetail.moreInformation.storeImageUrl}}' height="400">
           </div>
           <div class="show-image">
-            <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span>
-            <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span>
-            <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span>
+            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl"><img src='{{item}}' height="50"></span>
+            <!-- <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span>
+            <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span> -->
           </div>
           <div class="row">
             <div class="col-6">
@@ -66,15 +66,15 @@
         <div class="sidebar-conten">
           <div class="sidebar-info">
             <img src='assets/img/shop.png'>
-            <span class="shop-title">Toko Samuel</span>
-            <span class="shop-city">Banda Aceh</span>
+            <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
+            <span class="shop-city">{{productDetail.locationName}}</span>
             <span class="shop-btn">Buka Toko <fa name="plus-circle"></fa></span>
             <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>            
           </div>
-          <span class="shop-text"><strong>Terakhir Online:</strong> 41 menit yang lalu</span>
-          <span class="shop-text"><strong>Produk Terjual:</strong> 178 produk terjual</span>
-          <span class="shop-text"><strong>Jumlah Produk:</strong> 15 Produk</span>
-          <span class="shop-text"><strong>Transaksi Sukses:</strong> 35 Transaksi</span>
+          <span class="shop-text"><strong>Terakhir Online:</strong> {{productDetail.moreInformation.lastOnline}}</span>
+          <span class="shop-text"><strong>Produk Terjual:</strong> {{productDetail.moreInformation.productSold}} produk terjual</span>
+          <span class="shop-text"><strong>Jumlah Produk:</strong> {{productDetail.moreInformation.productQuantity}} Produk</span>
+          <span class="shop-text"><strong>Transaksi Sukses:</strong> {{productDetail.moreInformation.transactionSuccess}} Transaksi</span>
        </div>
 
         <div class="sidebar-title">
@@ -132,8 +132,8 @@
       </div>
     </div>
     <div class="product-spec-conten">
-        <p><strong>Missha All Around Safe Block Sebum Zero Sun [50ml]</strong></p>
-        <p>Missha All Around Safe Block Sebum Zero Sun [50ml] adalah Sunblock untuk berjemur.</p>
+        <p><strong>{{productDetail.specification}}</strong></p>
+        <p>{{productDetail.description}}</p>
     </div>
 
   </div>

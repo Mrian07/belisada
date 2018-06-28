@@ -166,6 +166,7 @@
     padding: 10px;
     display: inline-block;
     cursor: pointer;
+    margin-bottom:8px;
 }
 
 .show-image-small:hover{
@@ -202,6 +203,11 @@
 .shop-title{
     display: block;
     font-weight: bold;
+    cursor: pointer;
+}
+
+.shop-title:hover{
+    color: #dddddd;
 }
 
 .shop-city{
