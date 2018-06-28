@@ -115,25 +115,26 @@
       </span>
     </div>
 
-    <div class="product-spec-title">
-      <div class="row">
-        <div class="col-3">
+    <div class="">
+      <div class="row product-spec-title">
+        <div [ngClass]="activeSpesifikasi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="spesifikasi()">
           Spesifikasi
         </div>
-        <div class="col-3">
-          <span class="product-spec-line">Deskripsi</span>
+        <div [ngClass]="activeDiskripsi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'"  (click)="deskripsi()">
+          Deskripsi
         </div>
-        <div class="col-3">
+        <div [ngClass]="activeDiskusi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="diskusi()">
           Diskusi Produk
         </div>
-        <div class="col-3">
+        <div [ngClass]="activeUlasan == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="ulasan()">
           Ulasan Produk
         </div>
       </div>
     </div>
     <div class="product-spec-conten">
-        <p><strong>{{productDetail.specification}}</strong></p>
-        <p>{{productDetail.description}}</p>
+        <!-- <p><strong>{{productDetail.specification}}</strong></p>
+        <p>{{productDetail.description}}</p> -->
+        {{tabVal}}
     </div>
 
   </div>
