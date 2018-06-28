@@ -9,7 +9,7 @@
             </div>
             <div>
                 <img class="img--see" src="/assets/img/shop.png" alt="">
-                <span>Toko</span>
+                <span (click)="goToToko()">Toko</span>
             </div>
             <div>
                 <img class="img--see" src="/assets/img/confetti.png" alt="">
@@ -23,10 +23,12 @@
       <div class="tab">
         <input class="opac" id="tab-one" type="checkbox" name="tabs">
         <label for="tab-one">Category</label>
-        <div class="tab-content wrapper-with-grid">
+     
+        <div class="tab-content">
           <div>
             <ul class="margin--ul" *ngFor="let item of userCate">
-                    <li  (click)="cCategory(item.categoryId,$event.target.checked)"  [ngClass]="{'active1': item.categoryId === category}"> {{item.categoryName}}</li>
+                    <li  (click)="cCategory(item.categoryId)" class="change--cursor"  [ngClass]="{'active1': item.categoryId == categoryOPT}"> {{item.categoryName}}</li>
+                    
               </ul>
           </div>
          <div>
@@ -47,7 +49,7 @@
           </div>
           <ng-template #lengOnBrand> <ul class="margin--ul" *ngFor="let item of userlist" >
                 <!-- <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li> -->
-                 <li  (click)="asd(item.filterId,$event.target.checked)"  [ngClass]="{'active1': item.filterId === brandOPT}"> {{item.filterName}}</li>
+                 <li  (click)="asd(item.filterId,$event.target.checked)" class="change--cursor"  [ngClass]="{'active1': item.filterId === brandOPT}"> {{item.filterName}}</li>
                 <li *ngIf="(leng === 0)">
                     No Brand was found
               </li>

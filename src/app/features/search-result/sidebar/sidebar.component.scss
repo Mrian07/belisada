@@ -145,11 +145,11 @@ height: 31px;
   left: 148px;
 }
 .parent {
-height: 150px;
+height: 177px;
 }
 
 .drick-select-container--toggle {
-width: 100%;
+width: 83%;
 max-height: 200px;
 border: 1px solid rgba(34,36,38,.15);
 border-top: 0;
@@ -217,4 +217,8 @@ li {
   grid-gap: 1em;
   font-size: 12px;
   padding-top: 12px;
+}
+
+.change--cursor {
+  cursor: pointer;
 }
