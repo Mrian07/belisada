@@ -89,6 +89,7 @@ export class SigninComponent implements OnInit {
       this.formSubmited = false;
       form.reset();
       form.patchValue({email: signinRequest.email});
+      this.router.navigateByUrl('/');
     }
   }
 
