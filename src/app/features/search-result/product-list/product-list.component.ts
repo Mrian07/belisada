@@ -22,6 +22,8 @@ export class ProductListComponent implements OnInit {
   shippingOpt;
   brand;
   brandOPT;
+  categoryOPT;
+  category;
   classificationOpt;
   keys: string;
   keyST: string;
@@ -49,9 +51,10 @@ export class ProductListComponent implements OnInit {
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
       this.cat = params.location === undefined ? [] : params.location;
       this.shippingOpt = params.shipping === undefined ? [] : params.shipping;
+      this.categoryOPT = params.category === undefined ? [] :  params.category;
       this.classificationOpt = params.classification === undefined ? [] : params.classification;
       this.keys = params.q;
-      this.keyST = params.st;
+      this.keyST = 'product';
       this.brandOPT = params.brand === undefined ? [] : params.brand;
 
       const queryParams = {
@@ -64,7 +67,8 @@ export class ProductListComponent implements OnInit {
         location: this.cat,
         shipping: this.shippingOpt,
         classification: this.classificationOpt,
-        brand: this.brandOPT
+        brand: this.brandOPT,
+        category: this.categoryOPT
       };
 
       this.searchService.getList(queryParams).subscribe(response => {
