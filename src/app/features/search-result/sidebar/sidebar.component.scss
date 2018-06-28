@@ -128,8 +128,9 @@ position: relative;
 }
 
 .drick-select__text {
-width: 100%;
+width: 83%;
 opacity: 1;
+height: 31px;
 
 &.active {
     border-bottom-left-radius: 0 !important;
@@ -138,15 +139,17 @@ opacity: 1;
 }
 }
 
-// .drick-select__icon {
-
-// }
+.drick-select__icon {
+  position: absolute;
+  top: 6px;
+  left: 148px;
+}
 .parent {
-height: 250px;
+height: 177px;
 }
 
 .drick-select-container--toggle {
-width: 100%;
+width: 83%;
 max-height: 200px;
 border: 1px solid rgba(34,36,38,.15);
 border-top: 0;
@@ -197,6 +200,25 @@ li {
   border: 1px solid #eeedec;
   background: #f4f3f2;
 }
-.active {
+.active1 {
   color:red;
+}
+
+.okOce{
+  -webkit-appearance: radio; /* Chrome, Safari, Opera */
+  -moz-appearance: radio;    /* Firefox */
+  -ms-appearance: radio;     /* not currently supported */
+}
+
+.wrapper--2col {
+  display: grid;
+  // color: $color-red;
+  grid-template-columns: 50% 50%;
+  grid-gap: 1em;
+  font-size: 12px;
+  padding-top: 12px;
+}
+
+.change--cursor {
+  cursor: pointer;
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { FormGroup, FormControl, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import { ResetPasswdRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
+import { PasswordValidation } from '@belisada/shared/validators';
 
 @Component({
   selector: 'app-reset-password',
@@ -18,6 +19,7 @@ export class ResetPasswordComponent implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private fb: FormBuilder,
     private userService: UserService
   ) { }
 
@@ -29,21 +31,34 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   createForm() {
-    this.rstForm = new FormGroup({
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(7)
-    ]),
-    password_repeat: new FormControl('', [
-      Validators.required
-    ]),
-    }, (fg: FormGroup) => {
-      return fg.get('password').value === fg.get('password_repeat').value ? null : {'mismatch': true};
-    });
+    this.rstForm = this.fb.group({
+      password: new FormControl('', [
+          Validators.required,
+          Validators.minLength(7)
+      ]),
+      confirmPassword: new FormControl('', [
+          Validators.required
+      ]),
+  }, {
+      validator: PasswordValidation.MatchPassword,
+      updateOn: 'blur'
+  });
+    // this.rstForm = this.fb.group({
+    //   password: new FormControl('', [
+    //   Validators.required,
+    //   Validators.minLength(7)
+    // ]),
+    // password_repeat: new FormControl('', [
+    //   Validators.required
+    // ]),
+    // }, (fg: FormGroup) => {
+    //   return fg.get('password').value === fg.get('password_repeat').value ? null : {'mismatch': true};
+    // });
   }
 
   /*Fungsi ini untuk melakukan proses reset password*/
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    console.log(form);
     if (this.rstForm.valid) {
       this.data.newPassword = this.rstForm.value.password;
       this.userService.resetPasswd(this.data).subscribe(rsl => {
