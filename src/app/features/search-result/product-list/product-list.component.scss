@@ -38,12 +38,20 @@
 .b-product-list{
     border: 1px solid #dddddd;
     background: #ffffff;
-    padding: 3px;
+    // padding: 3px;
     text-align: center;
     box-shadow: 0 0 10px #dddddd;
     color: #8b8b8b;
     font-weight: bold;
+    position: relative;
     font-family: 'Roboto', sans-serif;
+}
+
+.icon-bar-group {
+  margin-bottom: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 .b-part{
@@ -67,6 +75,8 @@
 .item{
     margin: 0px auto;
     width:80%;
+    height: 6rem;
+    overflow: hidden;
 }
 
 .title-search{
@@ -91,7 +101,8 @@ a.link-search:hover{
 
 .icon-right{
     text-align: right;
-    margin-top:-5px;
+    padding-right: 5px;
+    margin-top: -2px;
 }
 
 .btn-down{

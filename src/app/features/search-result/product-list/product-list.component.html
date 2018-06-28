@@ -1,84 +1,73 @@
 <div class="containPage has-header">
-  <div class="b-sr">
-
-  <div class="row">
-    <div class="col-2">
-       <app-sidebar></app-sidebar>
-    </div>
-    <div class="col-8">
-      <div class="row">
-        <div class="col-9">
-          <span class="title-search">HASIL PENCARIAN UNTUK Cream</span><br>
-          BRAND: <a href='#' class='link-search'>ALL BRANDS</a>
-        </div>
-        <div class="col-3">
-          <span class="title-search">Showing 60 of 392</span><br>
-          SORT: <a href='#' class='link-search'>BY POPULARITY</a> <button class="btn-down"><fa name="fas fa-angle-down"></fa></button>
-        </div>
-      </div>
-      <div class="b-part">
-
-    
+    <div class="b-sr">
 
         <div class="row">
-          <div class="col-3" *ngFor="let item of list.content">
-            <div class="b-product-list">
-              <div class="row">
-                <div class="col-6 icon-left">
-                  <img src='assets/img/wishlist.png'>
-                </div>
-                <div class="col-6 icon-right">
-                  <img src='assets/img/discount.png'>
-                </div>
-              </div>
-              <img src='{{ item.imageUrl }}' border="0" height="200"><br>
-              <div class="item">{{ item.name }}</div>
-              <img src='assets/img/dummy-star.jpg'><br>
-              <div *ngIf="item.discount>0">
-                  <span class="price">Rp {{ item.discount | number}}</span>
-                  <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
-              </div>
-              <div *ngIf="item.discount<=0">
-                  <span class="price">Rp {{ item.pricelist | number}}</span>
-              </div>
+            <div class="col-2">
+                <app-sidebar></app-sidebar>
             </div>
-          </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col-9">
+                        <span class="title-search">HASIL PENCARIAN UNTUK Cream</span><br>
+                        BRAND: <a href='#' class='link-search'>ALL BRANDS</a>
+                    </div>
+                    <div class="col-3">
+                        <span class="title-search">Showing 60 of 392</span><br>
+                        SORT: <a href='#' class='link-search'>BY POPULARITY</a> <button class="btn-down"><fa name="fas fa-angle-down"></fa></button>
+                    </div>
+                </div>
+
+                <div class="b-part">
+                    <div class="row">
+                        <div class="col-3 u-margin-bottom-3" [ngClass]="{'u-margin-right-0': (i + 1) % 4 === 0 }" *ngFor="let item of list.content; let i = index">
+                            <div class="b-product-list">
+                                <div class="row icon-bar-group">
+                                    <div class="col-6 icon-left">
+                                        <img src='assets/img/wishlist.png'>
+                                    </div>
+                                    <div class="col-6 icon-right">
+                                        <img src='assets/img/discount.png'>
+                                    </div>
+                                </div>
+                                <img src='{{ item.imageUrl }}' border="0" height="200"><br>
+                                <div class="item">{{ item.name }}</div>
+                                <img src='assets/img/dummy-star.jpg'><br>
+                                <div *ngIf="item.discount>0">
+                                    <span class="price">Rp {{ item.discount | number}}</span>
+                                    <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
+                                </div>
+                                <div *ngIf="item.discount<=0">
+                                    <span class="price">Rp {{ item.pricelist | number}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="paging">
+                    <ul>
+                        <li>
+                            <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+                        </li>
+                        <li>
+                            <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+                        </li>
+                        <li *ngFor="let p of pages">
+                            <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+                        </li>
+                        <li>
+                            <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+                        </li>
+                        <li>
+                            <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-2">
+                <img src='assets/img/dummy-banner.jpg'><br>
+                <img src='assets/img/dummy-banner.jpg'><br>
+            </div>
         </div>
-
-
-
-      </div>
-
-
-      <div class="paging">
-        <ul>
-          <li>
-              <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
-          </li>
-          <li>
-              <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
-          </li>
-          <li *ngFor="let p of pages">
-              <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
-          </li>
-          <li>
-              <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
-          </li>
-          <li>
-              <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
-          </li>
-        </ul>
-      </div>
-
     </div>
-    <div class="col-2">
-      <img src='assets/img/dummy-banner.jpg'><br>
-      <img src='assets/img/dummy-banner.jpg'><br>
-    </div>
-  </div>    
-  
-   
-    
-  
-  </div>
 </div>

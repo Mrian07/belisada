@@ -276,7 +276,6 @@
     background: #f8992e;
     color:#ffffff;
     text-align: center;
-    padding: 10px;
     box-shadow: 2px 2px 4px #c9c9c9;
 }
 
@@ -288,6 +287,15 @@
     border-right: 1px solid #c1c1c1;
 }
 
-.product-spec-line{
-    border-bottom: 2px solid #ffffff;
+.tab-hover{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tab-hover:hover{
+    background: #f2b066;
+}
+
+.tab-active{
+    background: #f2b066;
 }
