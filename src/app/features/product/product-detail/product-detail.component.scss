@@ -160,6 +160,14 @@
     margin-bottom:30px;
 }
 
+.show-image_child{
+    text-align: center;
+    margin-bottom:30px;
+    overflow: scroll;
+    width: 300px;
+    height: 100px;
+}
+
 .show-image-small{
     border: 1px solid #dddddd;
     margin-left:10px;
@@ -309,3 +317,39 @@
 .row .col-3{
     width: calc((100% / 4) - (0rem * 9 / 12));
 }
+
+.frame-image{
+    width: 350px;
+    overflow: hidden;
+    overflow-x: scroll;
+    margin-bottom:10px;
+}
+
+.con-image{
+    width: 500px;
+}
+
+ul, li {
+    display:inline-block;
+}
+
+
+#menu-outer {
+	height: 84px;
+}
+
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+ul#horizontal-list {
+    min-width: 696px;
+    list-style: none;
+    // padding-top: 20px;
+}
+ul#horizontal-list li {
+    // display: inline;
+    // padding:10px;
+}
+
