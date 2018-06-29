@@ -294,8 +294,18 @@
 
 .tab-hover:hover{
     background: #f2b066;
+    border-bottom: 2px solid #e46833;
 }
 
 .tab-active{
     background: #f2b066;
+    border-bottom: 2px solid #e46833;
+}
+
+.row [class^="col-"]:not(:last-child){
+    margin-right: 0rem;
+}
+
+.row .col-3{
+    width: calc((100% / 4) - (0rem * 9 / 12));
 }

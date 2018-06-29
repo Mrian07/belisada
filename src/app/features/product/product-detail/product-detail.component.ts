@@ -25,6 +25,8 @@ export class ProductDetailComponent implements OnInit {
   activeDiskusi: boolean;
   activeUlasan: boolean;
 
+  imgIndex: string;
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -41,6 +43,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.tabVal = this.productDetail.specification;
+        this.imgIndex = this.productDetail.moreInformation.storeImageUrl;
       });
     });
   }
@@ -54,6 +57,16 @@ export class ProductDetailComponent implements OnInit {
 
   goStore(id) {
     alert(id);
+  }
+
+  selectImg(img) {
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.productService.detailProduct(params['id']).subscribe(res => {
+        this.productDetail = res.data;
+        this.tabVal = this.productDetail.specification;
+        this.imgIndex = img;
+      });
+    });
   }
 
   spesifikasi() {

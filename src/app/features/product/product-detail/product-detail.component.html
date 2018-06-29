@@ -43,10 +43,10 @@
       </div>
       <div class="col-4">
           <div class="show-image">
-            <img src='{{productDetail.moreInformation.storeImageUrl}}' height="400">
+            <img src='{{imgIndex}}' height="400">
           </div>
           <div class="show-image">
-            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl"><img src='{{item}}' height="50"></span>
+            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
             <!-- <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span>
             <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span> -->
           </div>
