@@ -39,6 +39,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   loadData() {
+    this.active();
+    this.activeSpesifikasi = true;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
