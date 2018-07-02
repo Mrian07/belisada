@@ -72,9 +72,7 @@ export class ProductListComponent implements OnInit {
       };
 
       this.searchService.getList(queryParams).subscribe(response => {
-        console.log('kokokoko');
-        console.log('hasil', response);
-
+console.log('datanya', response);
         this.list = response;
         this.lastPage = this.list.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
@@ -91,6 +89,11 @@ export class ProductListComponent implements OnInit {
     if (page < 1 || page > this.list.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/search-result/product-list'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    window.scrollTo(0, 0);
+  }
+
+  goDetail(id, nama) {
+    this.router.navigate(['/product/product-detail/' + id + '/' + nama]);
     window.scrollTo(0, 0);
   }
 

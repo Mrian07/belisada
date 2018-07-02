@@ -72,11 +72,17 @@
     display: block;
 }
 
+.img-item{
+  margin-bottom:10xp;
+  cursor: pointer;
+}
+
 .item{
     margin: 0px auto;
     width:80%;
     height: 6rem;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .title-search{
@@ -238,3 +244,4 @@ h1 {
 .checkBox-opacity {
   opacity: 1;
 }
+
