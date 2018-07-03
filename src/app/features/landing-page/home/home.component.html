@@ -1,5 +1,69 @@
 <div class="containPage has-header">
 
+    You Are In Here :  {{ ip }} <br/>
+
+    Your Country : {{ country }}
+    <div *ngIf="isLogin === false">
+        <button (click)="showDialog = !showDialog" class="btn">Buka Toko</button>
+
+        <app-models [(visible)]="showDialog" class="frameDialog">
+            <div class="modal-body">
+
+                <div *ngIf="regForm==true">    
+
+                    <div class="title">Buka Toko</div>
+                    <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
+                        <input type="hidden" class="input-style-text-100" formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" />
+                        <input type="text" formControlName="nameOwner" class="input-style-text-100" placeholder="Masukan nama pemilik toko">
+                        <app-field-error-display [displayError]="isFieldValid('nameOwner')" errorMsg="Nama pemilik toko tidak boleh kosong"></app-field-error-display>
+                        <input type="text" formControlName="name" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Masukan nama toko">
+                        <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
+                            <div class="testing">
+                                <span class="tooltiptext">{{serverMessage}}</span>
+                            </div>
+                        </div>
+                        <ng-template #nameCheckingTemplate>
+                            <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Nama toko tidak boleh kosong"></app-field-error-display>
+                        </ng-template>
+                        <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama Toko <img src="assets/img/wait.gif"></div>
+    
+    
+                        <input type="text" formControlName="email" class="input-style-text-100" placeholder="Masukan email">
+                        <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
+                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                        </div>
+                        <ng-template #emailOn>
+                            <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Email tidak boleh kosong"></app-field-error-display>
+                        </ng-template>
+
+                        <input type="password" formControlName="password" class="input-style-text-100" placeholder="Masukan password">
+                        <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
+                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password tidak boleh kosong</p>
+    
+                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Minimal panjang password 7 karakter. </p>
+                        </div>
+
+                        <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
+                        <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
+                        <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
+                    </form>
+                
+                </div>
+                <div *ngIf="regSuccess==true" class="regSuccess">
+                    <div class="title">Pendaftaran Berhasil</div>    
+                    <div class="text-success">Selamat Toko Anda Berhasil Didaftarkan</div>
+                </div>
+            </div>
+
+        </app-models>
+    </div>
+
+</div>
+
+
+
+<!-- <div class="containPage has-header">
+
        You Are In Here :  {{ ip }} <br/>
 
        Your Country : {{ country }}
@@ -13,8 +77,8 @@
 
                         <div class="title">Buka Toko</div>
                         <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
-                            <input type="text" formControlName="nmPemilikToko" class="input-style-text-100" placeholder="nama pemilik toko">
-                            <app-field-error-display [displayError]="isFieldValid('nmPemilikToko')" errorMsg="Silahkan Masukan Nama Pemilik Toko"></app-field-error-display>
+                            <input type="text" formControlName="nameOwner" class="input-style-text-100" placeholder="nama pemilik toko">
+                            <app-field-error-display [displayError]="isFieldValid('nameOwner')" errorMsg="Silahkan Masukan Nama Pemilik Toko"></app-field-error-display>
         
                             <input type="text" formControlName="name" class="input-style-text-100" placeholder="Nama Toko">
                             <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
@@ -105,4 +169,4 @@
             </app-models>
         </div>
     
-    </div>
+    </div> -->

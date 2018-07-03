@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   public validationOnpopUpCreateStore: FormGroup;
   provinces: Province[];
-  nmPemilikToko: FormControl;
+  nameOwner: FormControl;
   serverMessage: String;
   fm: any = {};
   cities: City[];
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   timer: any;
   ip: string;
   country: string;
-
+  storeUrl: FormControl;
   regForm: boolean;
   regSuccess: boolean;
 
@@ -47,11 +47,12 @@ export class HomeComponent implements OnInit {
     });
 
       this.storeName = new FormControl(null, Validators.required);
-
+      this.storeUrl = new FormControl(null, Validators.required);
       this.validationOnpopUpCreateStore = this.fb.group({
-          nmPemilikToko: new FormControl(null, Validators.required),
-          name: this.storeName,
-          address: new FormControl(null, Validators.required),
+          nameOwner: new FormControl(null, Validators.required),
+          name: new FormControl(null, Validators.required),
+          storeUrl: this.storeUrl,
+        //   address: new FormControl(null, Validators.required),
           email: new FormControl('', [
               Validators.required,
               Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
@@ -60,19 +61,19 @@ export class HomeComponent implements OnInit {
               Validators.required,
               Validators.minLength(7)
           ]),
-          province: new FormControl(null, Validators.required),
-          city: new FormControl(null, Validators.required),
-          district: new FormControl(null, Validators.required),
-          villageId: new FormControl(null,
-              Validators.required,
-          ),
-          postal: new FormControl('', [
-              Validators.required,
-              Validators.minLength(5),
-              Validators.maxLength(5)
+        //   province: new FormControl(null, Validators.required),
+        //   city: new FormControl(null, Validators.required),
+        //   district: new FormControl(null, Validators.required),
+        //   villageId: new FormControl(null,
+        //       Validators.required,
+        //   ),
+        //   postal: new FormControl('', [
+        //       Validators.required,
+        //       Validators.minLength(5),
+        //       Validators.maxLength(5)
 
-          ]),
-          description: new FormControl(null, Validators.required)
+        //   ]),
+        //   description: new FormControl(null, Validators.required)
       });
       this.userData = this.userS.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
       if (this.userData) {
@@ -173,7 +174,7 @@ export class HomeComponent implements OnInit {
           this.storeName.setErrors({
               'server': true
           });
-          this.serverMessage = 'opps, please try again';
+        //   this.serverMessage = 'opps, please try again';
       });
   }
   isFieldValid(field: string) {
@@ -181,8 +182,6 @@ export class HomeComponent implements OnInit {
   }
   onSent() {
       if (this.validationOnpopUpCreateStore.valid) {
-
-
           const model = this.validationOnpopUpCreateStore.value;
 
           this.userS.createFormGuest(model).subscribe(rsl => {
@@ -218,6 +217,21 @@ export class HomeComponent implements OnInit {
       if (event.keyCode !== 8 && !pattern.test(inputChar)) {
           event.preventDefault();
       }
+  }
+
+  onNameKeydown(event: any) {
+    const pattern = /[a-zA-Z 0-9\+\- ]+/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+    this.validationOnpopUpCreateStore.get('name').valueChanges.subscribe(val => {
+      val = val.replace(/\s+/g, '_').toLowerCase();
+      this.validationOnpopUpCreateStore.patchValue({
+        storeUrl: val
+      });
+    });
   }
 
 }
