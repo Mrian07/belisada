@@ -196,7 +196,7 @@ export class HomeComponent implements OnInit {
               }
           });
       } else {
-          swal('ops maaf ada kesalahan');
+        //   swal('ops maaf ada kesalahan');
           this.validateAllFormFields(this.validationOnpopUpCreateStore);
       }
   }
