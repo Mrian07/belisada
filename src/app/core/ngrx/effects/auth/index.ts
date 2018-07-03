@@ -4,6 +4,7 @@ import { map, switchMap } from 'rxjs/operators';
 import {Actions, Effect} from '@ngrx/effects';
 import { UserService } from '@belisada/core/services';
 import * as Action from '../../actions';
+import swal from 'sweetalert2';
 
 
 
@@ -20,6 +21,10 @@ export class AuthEffects {
     .pipe(switchMap((req) =>
       this.storeService.signin(req)
       .pipe(switchMap( (status: any) => {
+        // console.log('status: ', status);
+        // if (status.status === 0) {
+        //   swal('warning', status.message);
+        // }
         return [
           new Action.LoginSuccess(status)
         ];
