@@ -1,4 +1,5 @@
 import swal from 'sweetalert2';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserData } from '@belisada/core/models';
@@ -31,9 +32,15 @@ export class HomeComponent implements OnInit {
   timer: any;
   ip: string;
   country: string;
-  constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService) {}
+
+  regForm: boolean;
+  regSuccess: boolean;
+
+  constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router) {}
 
   ngOnInit() {
+      this.flagStatus();
+      this.regForm = true;
     this.userS.getIpAddress().subscribe(data => {
       this.ip = data.city;
       this.country = data.country;
@@ -74,6 +81,12 @@ export class HomeComponent implements OnInit {
       this.getProvince();
       this.onChanges();
   }
+
+  flagStatus() {
+    this.regForm = false;
+    this.regSuccess = false;
+  }
+ 
   testingform(form: NgForm) {
       console.log(form);
   }
@@ -174,10 +187,13 @@ export class HomeComponent implements OnInit {
 
           this.userS.createFormGuest(model).subscribe(rsl => {
               if (rsl.status === 1) {
-                  swal(rsl.message);
-                  // swal
+                    //   swal(rsl.message);
+                    // swal('Pembuatan Toko Berhasil');
+                    // swal
+                    this.flagStatus();
+                    this.regSuccess = true;
               } else {
-                  swal(rsl.message);
+                    swal(rsl.message);
               }
           });
       } else {
@@ -187,9 +203,7 @@ export class HomeComponent implements OnInit {
   }
 
   setVilage(villageId) {
-      console.log('option', villageId);
       const postalId: string = this.villages.find(x => x.villageId === villageId).postal;
-      console.log('postalId: ', postalId);
       this.validationOnpopUpCreateStore.patchValue({
           postal: postalId
       });

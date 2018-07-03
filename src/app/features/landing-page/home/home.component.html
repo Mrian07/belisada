@@ -4,94 +4,102 @@
 
        Your Country : {{ country }}
         <div *ngIf="isLogin === false">
-            <button (click)="showDialog = !showDialog" class="btn">Daftar Buyer</button>
+            <button (click)="showDialog = !showDialog" class="btn">Buka Toko</button>
     
-            <app-models [(visible)]="showDialog">
+            <app-models [(visible)]="showDialog" class="frameDialog">
                 <div class="modal-body">
-                    <h1 class="h1-center">create store</h1>
-                    <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
-                        <input type="text" formControlName="nmPemilikToko" class="input-style-text-100" placeholder="nama pemilik toko">
-                        <app-field-error-display [displayError]="isFieldValid('nmPemilikToko')" errorMsg="Silahkan Masukan Nama Pemilik Toko"></app-field-error-display>
-    
-                        <input type="text" formControlName="name" class="input-style-text-100" placeholder="Nama Toko">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
-                            <div class="testing">
-                                <span class="tooltiptext">{{serverMessage}}</span>
+
+                    <div *ngIf="regForm==true">    
+
+                        <div class="title">Buka Toko</div>
+                        <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
+                            <input type="text" formControlName="nmPemilikToko" class="input-style-text-100" placeholder="nama pemilik toko">
+                            <app-field-error-display [displayError]="isFieldValid('nmPemilikToko')" errorMsg="Silahkan Masukan Nama Pemilik Toko"></app-field-error-display>
+        
+                            <input type="text" formControlName="name" class="input-style-text-100" placeholder="Nama Toko">
+                            <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
+                                <div class="testing">
+                                    <span class="tooltiptext">{{serverMessage}}</span>
+                                </div>
                             </div>
-                        </div>
-                        <ng-template #nameCheckingTemplate>
-                            <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Silahkan Masukan Nama Toko Kamu"></app-field-error-display>
-                        </ng-template>
-                        <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
-    
-                        <input type="text" formControlName="description" class="input-style-text-100" placeholder="description">
-    
-                        <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Description Toko"></app-field-error-display>
-    
-                        <textarea rows="4" cols="50" formControlName="address" class="input-style-text-100" placeholder="Alamat Toko">
-                        </textarea>
-                        <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko"></app-field-error-display>
-                        <select formControlName="province" required class="input-style-text-100" >
-                            <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
-                            <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
-                                {{ option.regionName }}
-                            </option>
-                        </select>
-                        <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Silahkan Masukan Provinsi"></app-field-error-display>
-    
-                        <select formControlName="city" class="input-style-text-100">
-                            <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
-                            <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
-                            </option>
-                        </select>
-                        <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Silahkan Masukan Kota"></app-field-error-display>
-    
-                        <select formControlName="district" class="input-style-text-100">
-                            <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
-                            <option *ngFor="let option of districts" [ngValue]="option.districtId">
-                                {{ option.districtName }}
-                            </option>
-                        </select>
-                        <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Silahkan Masukan Kecamatan"></app-field-error-display>
-    
-                        <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(validationOnpopUpCreateStore.value.villageId)">
-                            <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
-                            <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
-                                {{ option.villageName }}
-                            </option>
-                        </select>
-    
-                        <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Silahkan Masukan Kelurahan"></app-field-error-display>
-    
-                        <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.postal.errors?.minlength; else postalOn">
-                            <p class="tooltiptext"> Kode Poss Harus 5 </p>
-    
-                        </div>
-                        <ng-template #postalOn>
-                            <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Kode Poss">
-    
-                            </app-field-error-display>
-                        </ng-template>
-    
-                        <input type="text" formControlName="email" class="input-style-text-100" placeholder="email">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
-                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                        </div>
-                        <ng-template #emailOn>
-                            <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Silahkan Masukan email"></app-field-error-display>
-                        </ng-template>
-                        <input type="password" formControlName="password" class="input-style-text-100" placeholder="password">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
-                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password is required</p>
-    
-                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Password must be 7 characters long. </p>
-                        </div>
-                        <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
-                        <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
-                        <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
-                    </form>
-    
+                            <ng-template #nameCheckingTemplate>
+                                <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Silahkan Masukan Nama Toko Kamu"></app-field-error-display>
+                            </ng-template>
+                            <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama toko <img src="assets/img/wait.gif"></div>
+        
+                            <input type="text" formControlName="description" class="input-style-text-100" placeholder="description">
+        
+                            <app-field-error-display [displayError]="isFieldValid('description')" errorMsg="Silahkan Masukan Description Toko"></app-field-error-display>
+        
+                            <textarea rows="4" cols="50" formControlName="address" class="input-style-text-100" placeholder="Alamat Toko">
+                            </textarea>
+                            <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko"></app-field-error-display>
+                            <select formControlName="province" required class="input-style-text-100" >
+                                <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
+                                <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
+                                    {{ option.regionName }}
+                                </option>
+                            </select>
+                            <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Silahkan Masukan Provinsi"></app-field-error-display>
+        
+                            <select formControlName="city" class="input-style-text-100">
+                                <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
+                                <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
+                                </option>
+                            </select>
+                            <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Silahkan Masukan Kota"></app-field-error-display>
+        
+                            <select formControlName="district" class="input-style-text-100">
+                                <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
+                                <option *ngFor="let option of districts" [ngValue]="option.districtId">
+                                    {{ option.districtName }}
+                                </option>
+                            </select>
+                            <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Silahkan Masukan Kecamatan"></app-field-error-display>
+        
+                            <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(validationOnpopUpCreateStore.value.villageId)">
+                                <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
+                                <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
+                                    {{ option.villageName }}
+                                </option>
+                            </select>
+        
+                            <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Silahkan Masukan Kelurahan"></app-field-error-display>
+        
+                            <input type="text" formControlName="postal" maxlength="5" (keypress)="keyPress($event)" class="input-style-text-100" placeholder="postal">
+                            <div *ngIf="validationOnpopUpCreateStore.controls.postal.errors?.minlength; else postalOn">
+                                <p class="tooltiptext"> Kode Poss Harus 5 </p>
+        
+                            </div>
+                            <ng-template #postalOn>
+                                <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Kode Poss">
+        
+                                </app-field-error-display>
+                            </ng-template>
+        
+                            <input type="text" formControlName="email" class="input-style-text-100" placeholder="email">
+                            <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
+                                <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                            </div>
+                            <ng-template #emailOn>
+                                <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Silahkan Masukan email"></app-field-error-display>
+                            </ng-template>
+                            <input type="password" formControlName="password" class="input-style-text-100" placeholder="password">
+                            <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
+                                <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password is required</p>
+        
+                                <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Password must be 7 characters long. </p>
+                            </div>
+                            <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
+                            <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
+                            <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
+                        </form>
+                    
+                    </div>
+                    <div *ngIf="regSuccess==true" class="regSuccess">
+                        <div class="title">Pendaftaran Berhasil</div>    
+                        <div class="text-success">Selamat Toko Anda Berhasil Didaftarkan</div>
+                    </div>
                 </div>
     
             </app-models>
