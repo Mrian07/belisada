@@ -70,6 +70,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/search-result/product-list'], { queryParams: this.queryParams });
     this.results = [];
   }
+
   clickSearch(key, catID) {
     const queryParams = {
       st: 'product',
