@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
       this.flagStatus();
-      this.regForm = true;
+      this.regSuccess = true;
     this.userS.getIpAddress().subscribe(data => {
       this.ip = data.city;
       this.country = data.country;
