@@ -1,5 +1,10 @@
 @import "styles";
 
+.profile-wrapper {
+    max-width: 60px;
+    overflow: hidden;
+}
+
 .list-suggestion {
     position: absolute;
     z-index: 15;

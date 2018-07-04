@@ -1,4 +1,5 @@
 import swal from 'sweetalert2';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserData } from '@belisada/core/models';
@@ -16,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   public validationOnpopUpCreateStore: FormGroup;
   provinces: Province[];
-  nmPemilikToko: FormControl;
+  nameOwner: FormControl;
   serverMessage: String;
   fm: any = {};
   cities: City[];
@@ -31,20 +32,27 @@ export class HomeComponent implements OnInit {
   timer: any;
   ip: string;
   country: string;
-  constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService) {}
+  storeUrl: FormControl;
+  regForm: boolean;
+  regSuccess: boolean;
+
+  constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router) {}
 
   ngOnInit() {
+      this.flagStatus();
+      this.regForm = true;
     this.userS.getIpAddress().subscribe(data => {
       this.ip = data.city;
       this.country = data.country;
     });
 
       this.storeName = new FormControl(null, Validators.required);
-
+      this.storeUrl = new FormControl(null, Validators.required);
       this.validationOnpopUpCreateStore = this.fb.group({
-          nmPemilikToko: new FormControl(null, Validators.required),
-          name: this.storeName,
-          address: new FormControl(null, Validators.required),
+          nameOwner: new FormControl(null, Validators.required),
+          name: new FormControl(null, Validators.required),
+          storeUrl: this.storeUrl,
+        //   address: new FormControl(null, Validators.required),
           email: new FormControl('', [
               Validators.required,
               Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
@@ -53,19 +61,19 @@ export class HomeComponent implements OnInit {
               Validators.required,
               Validators.minLength(7)
           ]),
-          province: new FormControl(null, Validators.required),
-          city: new FormControl(null, Validators.required),
-          district: new FormControl(null, Validators.required),
-          villageId: new FormControl(null,
-              Validators.required,
-          ),
-          postal: new FormControl('', [
-              Validators.required,
-              Validators.minLength(5),
-              Validators.maxLength(5)
+        //   province: new FormControl(null, Validators.required),
+        //   city: new FormControl(null, Validators.required),
+        //   district: new FormControl(null, Validators.required),
+        //   villageId: new FormControl(null,
+        //       Validators.required,
+        //   ),
+        //   postal: new FormControl('', [
+        //       Validators.required,
+        //       Validators.minLength(5),
+        //       Validators.maxLength(5)
 
-          ]),
-          description: new FormControl(null, Validators.required)
+        //   ]),
+        //   description: new FormControl(null, Validators.required)
       });
       this.userData = this.userS.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
       if (this.userData) {
@@ -74,6 +82,12 @@ export class HomeComponent implements OnInit {
       this.getProvince();
       this.onChanges();
   }
+
+  flagStatus() {
+    this.regForm = false;
+    this.regSuccess = false;
+  }
+
   testingform(form: NgForm) {
       console.log(form);
   }
@@ -88,17 +102,17 @@ export class HomeComponent implements OnInit {
           }
       });
 
-      this.validationOnpopUpCreateStore.get('province').valueChanges.subscribe(val => {
-          this.getCity(val);
-      });
-      this.validationOnpopUpCreateStore.get('city').valueChanges.subscribe(val => {
-          this.getDistrict(val);
-      });
+    //   this.validationOnpopUpCreateStore.get('province').valueChanges.subscribe(val => {
+    //       this.getCity(val);
+    //   });
+    //   this.validationOnpopUpCreateStore.get('city').valueChanges.subscribe(val => {
+    //       this.getDistrict(val);
+    //   });
 
-      this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
-          this.getVillage(val);
-      });
-      this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {});
+    //   this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
+    //       this.getVillage(val);
+    //   });
+    //   this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {});
   }
   getProvince() {
       // Country ID harcoded to Indonesia
@@ -160,7 +174,7 @@ export class HomeComponent implements OnInit {
           this.storeName.setErrors({
               'server': true
           });
-          this.serverMessage = 'opps, please try again';
+        //   this.serverMessage = 'opps, please try again';
       });
   }
   isFieldValid(field: string) {
@@ -168,28 +182,27 @@ export class HomeComponent implements OnInit {
   }
   onSent() {
       if (this.validationOnpopUpCreateStore.valid) {
-
-
           const model = this.validationOnpopUpCreateStore.value;
 
           this.userS.createFormGuest(model).subscribe(rsl => {
               if (rsl.status === 1) {
-                  swal(rsl.message);
-                  // swal
+                    //   swal(rsl.message);
+                    // swal('Pembuatan Toko Berhasil');
+                    // swal
+                    this.flagStatus();
+                    this.regSuccess = true;
               } else {
-                  swal(rsl.message);
+                    swal(rsl.message);
               }
           });
       } else {
-          swal('ops maaf ada kesalahan');
+        //   swal('ops maaf ada kesalahan');
           this.validateAllFormFields(this.validationOnpopUpCreateStore);
       }
   }
 
   setVilage(villageId) {
-      console.log('option', villageId);
       const postalId: string = this.villages.find(x => x.villageId === villageId).postal;
-      console.log('postalId: ', postalId);
       this.validationOnpopUpCreateStore.patchValue({
           postal: postalId
       });
@@ -204,6 +217,21 @@ export class HomeComponent implements OnInit {
       if (event.keyCode !== 8 && !pattern.test(inputChar)) {
           event.preventDefault();
       }
+  }
+
+  onNameKeydown(event: any) {
+    const pattern = /[a-zA-Z 0-9\+\- ]+/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+    this.validationOnpopUpCreateStore.get('name').valueChanges.subscribe(val => {
+      val = val.replace(/\s+/g, '_').toLowerCase();
+      this.validationOnpopUpCreateStore.patchValue({
+        storeUrl: val
+      });
+    });
   }
 
 }

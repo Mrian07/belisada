@@ -9,7 +9,7 @@
         <div>
             <div class="padding-on-top">
                 <div class="title-page">Login</div>
-				<div *ngIf="msg!==undefined && signinFormGroup.pristine" class="alert-error">
+				<div *ngIf="msg !== undefined && signinFormGroup.dirty" class="alert-error">
                     <p>{{ msg }}</p>
                 </div>
                 <form class="ui form" [formGroup]="signinFormGroup" (ngSubmit)="onSubmit()" novalidate>

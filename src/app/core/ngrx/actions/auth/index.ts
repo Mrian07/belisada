@@ -3,6 +3,7 @@ import { Action } from '@ngrx/store';
 export const TRYLOGIN = 'TRYLOGIN';
 export const LOGIN = 'LOGIN';
 export const LOGINSUCCESS = 'LOGINSUCCESS';
+export const LOGINFAILED = 'LOGINFAILED';
 export const CHECKEMAIL = 'CHECKEMAIL';
 export const ACTIVATION = 'ACTIVATION';
 export const SENDEMAIL = 'SENDEMAIL';
@@ -19,6 +20,10 @@ export class Login implements Action {
   constructor(public status: any) { }
 }
 export class LoginSuccess implements Action {
+  readonly type = LOGINSUCCESS;
+  constructor(public status: any) { }
+}
+export class LoginFailed implements Action {
   readonly type = LOGINSUCCESS;
   constructor(public status: any) { }
 }
@@ -48,6 +53,7 @@ export type AuthAction = CheckEmail
 | TryLogin
 | Login
 | LoginSuccess
+| LoginFailed
 | Activation
 | SendEmail
 | CheckToken

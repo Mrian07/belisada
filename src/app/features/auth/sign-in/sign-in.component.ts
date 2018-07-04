@@ -31,6 +31,8 @@ export class SigninComponent implements OnInit {
   viewPass: Boolean = false;
   isRemember: string;
   LoginStatus: Subscription;
+  // subscription: Subscription;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -45,9 +47,10 @@ export class SigninComponent implements OnInit {
     .pipe(filter(action => action.type === UserAction.LOGINSUCCESS))
     .subscribe((action: UserAction.LoginSuccess) => {
       const form = this.signinFormGroup;
-      this.ngrx.select<any>(UserReducer.LoginState).subscribe( result => {
-          // Handle result
+      const x = this.ngrx.select<any>(UserReducer.LoginState).subscribe( result => {
+        // Handle result
         if (result.status === 0) {
+          swal('Perhatian!', result.message, 'warning');
           this.msg = result.message;
         } else {
           const token: string = result.token;
@@ -64,6 +67,7 @@ export class SigninComponent implements OnInit {
       }, error => {
         swal('belisada.co.id', 'unknown error', 'error');
       });
+      x.unsubscribe();
     });
   }
 
@@ -91,6 +95,7 @@ export class SigninComponent implements OnInit {
       form.patchValue({email: signinRequest.email});
       // this.router.navigateByUrl('/');
     }
+    this.LoginStatus.unsubscribe();
   }
 
   /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/

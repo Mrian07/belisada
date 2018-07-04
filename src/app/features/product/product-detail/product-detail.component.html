@@ -13,8 +13,11 @@
           <div class='product-title'>
             {{productDetail.name}}
           </div>
-          <div>
-            <span class="product-real-price">{{productDetail.pricelistlast | currency:'Rp '}}</span><span class="product-discont"><s>Rp 25.000</s></span>
+          <div *ngIf="productDetail.pricelistlast>=0">
+            <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span><span class="product-discont"><s>{{productDetail.pricelistlast | currency:'Rp '}}</s></span>
+          </div>
+          <div *ngIf="productDetail.pricelistlast==0">
+            <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
           </div>
           <div class="product-info">
             <span class="strong-text">Dikirim Dari: Jakarta Ke</span> DKI Jakarta, Kota Jakarta Barat, <span class="btn-small">Ganti Destinasi</span> <span class="btn-flag"><fa name="exclamation"></fa></span>
@@ -43,13 +46,39 @@
       </div>
       <div class="col-4">
           <div class="show-image">
-            <img src='{{productDetail.moreInformation.storeImageUrl}}' height="400">
+            <img src='{{imgIndex}}' height="400">
           </div>
-          <div class="show-image">
-            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl"><img src='{{item}}' height="50"></span>
-            <!-- <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span>
-            <span class="show-image-small"><img src='assets/img/dummy-product-detail.jpg' height="50"></span> -->
+          <!-- <div id="lasteventimg">
+          <ul>
+            <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
+          </ul>
+          </div>   -->
+          <!-- <div class="show-image">
+            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
+          </div> -->
+
+
+          
+
+          <div class="frame-image">
+              <!-- <div class="con-image">
+                  <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
+              </div> -->
+
+
+              <div id="menu-outer">
+                  <div class="table">
+                    <ul id="horizontal-list">
+                      <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
+                    </ul>
+                </div>
+              </div>  
+
           </div>
+
+          
+
+
           <div class="row">
             <div class="col-6">
               <span class="show-small-text"><fa name="heart"></fa> Tabahkan Ke Wishlist </span> 
@@ -71,10 +100,10 @@
             <span class="shop-btn">Buka Toko <fa name="plus-circle"></fa></span>
             <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>            
           </div>
-          <span class="shop-text"><strong>Terakhir Online:</strong> {{productDetail.moreInformation.lastOnline}}</span>
-          <span class="shop-text"><strong>Produk Terjual:</strong> {{productDetail.moreInformation.productSold}} produk terjual</span>
-          <span class="shop-text"><strong>Jumlah Produk:</strong> {{productDetail.moreInformation.productQuantity}} Produk</span>
-          <span class="shop-text"><strong>Transaksi Sukses:</strong> {{productDetail.moreInformation.transactionSuccess}} Transaksi</span>
+          <span class="shop-text"><strong>Terakhir Online:</strong> {{moreInformation.lastOnline}}</span>
+          <span class="shop-text"><strong>Produk Terjual:</strong> {{moreInformation.productSold}} produk terjual</span>
+          <span class="shop-text"><strong>Jumlah Produk:</strong> {{moreInformation.productQuantity}} Produk</span>
+          <span class="shop-text"><strong>Transaksi Sukses:</strong> {{moreInformation.transactionSuccess}} Transaksi</span>
        </div>
 
         <div class="sidebar-title">

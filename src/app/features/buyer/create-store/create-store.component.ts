@@ -228,7 +228,7 @@ export class CreateStoreComponent implements OnInit {
         if (rsl.status === 1) {
           swal({
             title: 'Pembuatan Toko Berhasil',
-            text: rsl.message,
+            // text: rsl.message,
             type: 'success',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
