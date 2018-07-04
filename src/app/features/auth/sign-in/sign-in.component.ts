@@ -59,7 +59,7 @@ export class SigninComponent implements OnInit {
             this.userService.setRemember('false');
           }
           this.router.navigateByUrl('/');
-          location.reload();
+          // location.reload();
         }
       }, error => {
         swal('belisada.co.id', 'unknown error', 'error');
@@ -89,7 +89,7 @@ export class SigninComponent implements OnInit {
       this.formSubmited = false;
       form.reset();
       form.patchValue({email: signinRequest.email});
-      this.router.navigateByUrl('/');
+      // this.router.navigateByUrl('/');
     }
   }
 

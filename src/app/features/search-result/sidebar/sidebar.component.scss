@@ -215,10 +215,32 @@ li {
   // color: $color-red;
   grid-template-columns: 50% 50%;
   grid-gap: 1em;
-  font-size: 12px;
+  font-size: 11px;
+  -moz-font-size: 11px;
   padding-top: 12px;
 }
 
 .change--cursor {
   cursor: pointer;
 }
+
+@media screen and (max-width: 3840px) {
+  .half {
+    float: left;
+    width: 100%;
+    border: 1px solid #eee;
+    box-shadow: -4px 11px #eee;
+    // padding: 0 1em;
+  }
+}
+
+// @media screen and (max-width: 1200px) {
+//   .half {
+//     float: left;
+//     width: 100%;
+//     border: 1px solid #eee;
+//     box-shadow: -4px 11px #eee;
+//     // padding: 0 1em;
+//     background: red;
+//   }
+// }

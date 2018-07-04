@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
 import swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DateFormatEnum } from '@belisada/core/enum';
@@ -110,7 +110,8 @@ export class ProfileComponent implements OnInit {
 
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    console.log('asd', form);
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     editProfileRequest.name = this.createComForm.controls['name'].value;
     editProfileRequest.phone = this.createComForm.controls['phone'].value;

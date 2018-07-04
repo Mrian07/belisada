@@ -145,9 +145,10 @@ export class SignUpComponent implements OnInit {
 
   keyLa(event: any) {
     const pattern = /[a-zA-Z ]+/;
+    console.log(event);
 
     const inputChar = String.fromCharCode(event.charCode);
-    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+    if (event.keyCode !== 8 && event.keyCode !== 9   && !pattern.test(inputChar)) {
         event.preventDefault();
     }
 }
