@@ -13,14 +13,22 @@
                             'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty),
                             'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty)
                             }">
-                        <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip testing">
-                            <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
+
+                            <div class="form-control-feedback" *ngIf="vForValidation.controls.fullname.errors && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip-for-password testing">
+                                <p *ngIf="vForValidation.controls.fullname.errors.required" class="tooltiptext">Nama Tidak Boleh Kosong</p>
                         </div>
+                        <!-- <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip testing">
+                            <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
+                           
+                        </div> -->
+                        
                         <div *ngIf="status === 1; else register">
                             <input type="text" placeholder="Email" formControlName="email" class="input-style-text-90" (input)="onSearchChange($event.target.value)" email name="email" (change)="checkEmail()" required [ngClass]="{
                             'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
                             'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
                             }">
+                         
+                           
                             <div #b *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
                                 <fa name="fas fa-ban errspan"></fa>
                                 <div class="testing">
@@ -33,11 +41,15 @@
                             <input type="text" placeholder="Email" formControlName="email" class="input-style-text-90" email name="email" (change)="checkEmail()" required [ngClass]="{
                             'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
                             'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-                            }">{{email | lowercase}}
+                            }">
+                            <div class="form-control-feedback" *ngIf="vForValidation.controls.email.errors && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip-for-password testing">
+                                <span *ngIf="vForValidation.controls.email.invalid" class="tooltiptext">Harap masukan format email dengan benar</span>
+                        </div>
 
-                            <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip testing">
-                                <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                            </div>
+                            
+                            <!-- <div *ngIf="vForValidation.controls.email.invalid  && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip testing">
+                                <span *ngIf="vForValidation.controls.email.invalid  && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="tooltiptext">Harap masukan format email dengan benar</span>
+                            </div> -->
                         </ng-template>
 
                         <div>
@@ -47,15 +59,13 @@
 
                                     <p *ngIf="vForValidation.controls.password.errors.minlength" class="tooltiptext">Password must be 7 characters long. </p>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <input type="password" formControlName="confirmPassword" placeholder="Ketik Ulang Password" class="input-style-text-90" required>
                                 <div class="form-control-feedback" *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)"  class="alert alert-danger toll tooltip-for-password">
-                                  <!-- <div class="testing-with-margin"> -->
-                                        <!-- <p *ngIf="vForValidation.controls.confirmPassword.errors.required" class="tooltiptext">Password is required</p> -->
+                                  
                                     <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch" class="tooltiptext testing-with-margin">Password Harus Sama !</p>
-                                  <!-- </div> -->
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="wrapper2">
                                 <!-- <div>
                                     <re-captcha formControlName="recaptchaReactive"></re-captcha>
@@ -86,7 +96,7 @@
                                 <div *ngIf="vForValidation.invalid || status === 1; else signUp">
                                     <div class="component-center">
                                         <div class="component-center">
-                                            <button class="btn btn-size-55 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid || status === 1">DAFTAR</button>
+                                            <button class="btn btn-size-55 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">DAFTAR</button>
                                         </div>
                                     </div>
                                 </div>

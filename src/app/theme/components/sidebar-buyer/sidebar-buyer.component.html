@@ -2,9 +2,15 @@
     <div class="row">
         <div class="col-12">
             <span class="title-sidebar">DASHBOARD</span>
-            <div *ngIf="location == '/buyer/profile'">
+            <!-- <div *ngIf="location === '/buyer/profile'">
                 <div (click)="goToCreateStore()" class="btn-jualan">Ikut Jualan</div>
+            </div> -->
+
+            <div *ngIf="pemisah != 2; else cold">
+                <div (click)="goToSeller()" class="btn-jualan">Ikut Jualan</div>
             </div>
+            <ng-template #cold> <div (click)="goToCreateStore()" class="btn-jualan">Ikut Jualan</div></ng-template>
+            
             <div (click)="profile()" class="sidebar-to-cursor">Profile Anda</div>
             <!-- <a routerLink="/buyer/profile" class="link-text">Profile Anda</a><br/> -->
             <!-- <span (click)="goToCreateStore()" class="sidebar-to-cursor">Buka Toko</span> -->

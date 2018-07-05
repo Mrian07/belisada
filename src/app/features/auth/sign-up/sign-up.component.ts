@@ -60,9 +60,9 @@ export class SignUpComponent implements OnInit {
               Validators.required,
               Validators.minLength(7)
           ]),
-          confirmPassword: new FormControl('', [
-              Validators.required
-          ]),
+        // password match validation dokumentasi  confirmPassword: new FormControl('', [
+        //     //   Validators.required
+        //   ]),
           email: new FormControl('', [
               Validators.required,
               Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
@@ -78,8 +78,8 @@ export class SignUpComponent implements OnInit {
           */
 
       }, {
-          validator: PasswordValidation.MatchPassword,
-          updateOn: 'blur'
+        // password matchvalidation dokumentasi  validator: PasswordValidation.MatchPassword,
+        //   updateOn: 'blur'
       });
       this.RegStatus = this.actionsSubject.asObservable()
         .pipe(filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS))
@@ -145,7 +145,7 @@ export class SignUpComponent implements OnInit {
 
   keyLa(event: any) {
     const pattern = /[a-zA-Z ]+/;
-    console.log(event);
+    console.log('aaaaaa',event);
 
     const inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode !== 8 && event.keyCode !== 9   && !pattern.test(inputChar)) {

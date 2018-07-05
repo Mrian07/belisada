@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { ShareMessageService } from '@belisada/core/services';
+import { ShareMessageService, UserService } from '@belisada/core/services';
+import { UserData } from '@belisada/core/models';
+import { LocalStorageEnum } from '@belisada/core/enum';
 
+import { isPlatformBrowser } from '@angular/common';
 @Component({
     selector: 'bs-sidebar-buyer',
     templateUrl: './sidebar-buyer.component.html',
@@ -11,17 +14,37 @@ import { ShareMessageService } from '@belisada/core/services';
 export class SidebarBuyerComponent implements OnInit {
     flag: string;
     btnJual: boolean;
+    userData: UserData = new UserData();
+    isLogin: Boolean = false;
+    pemisah: any;
     public location = '';
 
     constructor(
+        @Inject(PLATFORM_ID) private platformId: Object,
         private router: Router,
-        private shareMessageService: ShareMessageService
+        private shareMessageService: ShareMessageService,
+        private userService: UserService,
     ) {
         this.location = router.url;
     }
 
     ngOnInit() {
+        console.log('location', this.location);
         this.btnJual = false;
+        this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+        if (localStorage.getItem('isRemember') === 'true') {
+            this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+          } else {
+          console.log('userData : ', this.userData);
+            if (isPlatformBrowser(this.platformId)) {
+              const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
+              this.userData = this.userService.getUserData(sess);
+            }
+          }
+          if (this.userData) { this.isLogin = true; }
+          console.log('userData : ', this.userData);
+            this.pemisah = this.userData.role;
+          console.log('ini nih', this.userData.role);
     }
 
     cekFlag() {
@@ -36,6 +59,10 @@ export class SidebarBuyerComponent implements OnInit {
     goToCreateStore() {
         this.router.navigateByUrl('/buyer/create-store');
         this.cekFlag();
+    }
+
+    goToSeller() {
+        window.location.href = 'https://seller0.belisada.id/auth/sign-in';
     }
 
     profile() {

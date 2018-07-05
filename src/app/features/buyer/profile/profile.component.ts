@@ -60,7 +60,7 @@ export class ProfileComponent implements OnInit {
     this.createComForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      phone: ['', Validators.required],
+      phone: new FormControl(null, Validators.required),
       gender: ['', Validators.required],
       dateOfBirth: ['', Validators.required]
     });
@@ -95,7 +95,9 @@ export class ProfileComponent implements OnInit {
       });
     });
   }
-
+  isFieldValid(field: string) {
+    return !this.createComForm.get(field).valid && this.createComForm.get(field).touched;
+}
   /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
   loadData() {
     this.userService.getProfile().subscribe(data => {
@@ -108,28 +110,49 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+            control.markAsTouched({
+                onlySelf: true
+            });
+        } else if (control instanceof FormGroup) {
+            this.validateAllFormFields(control);
+        }
+    });
+}
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
-    console.log('asd', form);
-    const editProfileRequest: EditProfileRequest = new EditProfileRequest();
-    editProfileRequest.name = this.createComForm.controls['name'].value;
-    editProfileRequest.phone = this.createComForm.controls['phone'].value;
-    editProfileRequest.gender = this.createComForm.controls['gender'].value;
-    editProfileRequest.dateOfBirth =
-    this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
-    this.userService.updateProfile(editProfileRequest).subscribe(data => {
-      swal(
-        'Sukses',
-        'Ubah data profile berhasil.',
-        'success'
-      );
 
-      this.loadData();
-      this.isField = false;
-    });
+    if (this.createComForm.valid) {
+      const model = this.createComForm.value;
+      console.log('asd', form);
+      const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+      editProfileRequest.name = this.createComForm.controls['name'].value;
+      editProfileRequest.phone = this.createComForm.controls['phone'].value;
+      editProfileRequest.gender = this.createComForm.controls['gender'].value;
+      editProfileRequest.dateOfBirth =
+      this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+      this.userService.updateProfile(editProfileRequest).subscribe(data => {
+        swal(
+          'Sukses',
+          'Ubah data profile berhasil.',
+          'success'
+        );
+  
+        this.loadData();
+        this.isField = false;
+      });
+  } else {
+    //   swal('ops maaf ada kesalahan');
+      this.validateAllFormFields(this.createComForm);
+      console.log('asdasdsad');
+  }
 
   }
+
+  
 
   /* Fungsi ini untuk berpindah halaman ke halaman edit */
   edit() {
