@@ -9,6 +9,7 @@ import { UserService, SearchBarService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { SearchBarResponse } from '@belisada/core/models/search/search.model';
+import { ShareMessageService } from '@belisada/core/services';
 
 @Component({
   selector: 'app-header',
@@ -29,18 +30,24 @@ export class HeaderComponent implements OnInit {
   showSearch: Boolean = false;
 
   avatar: string;
-
+  
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private userService: UserService,
     private search: SearchBarService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private shareMessageService: ShareMessageService
   ) {
     this.searchBarResults = [];
   }
 
   ngOnInit() {
+    this.getData();
+    this.cekFlag();
+  }
+
+  getData() {
     this.avatar = 'assets/img/profile.png';
     if (localStorage.getItem('isRemember') === 'true') {
       this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
@@ -53,6 +60,14 @@ export class HeaderComponent implements OnInit {
       }
     }
     if (this.userData) { this.isLogin = true; }
+  }
+
+  cekFlag() {
+    this.shareMessageService.currentMessage.subscribe(respon => {
+        if (respon === 'update-profile') {
+          this.getData();
+        }
+    });
   }
 
   onSearchFocusOut() {

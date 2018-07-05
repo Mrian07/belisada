@@ -7,7 +7,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { Profile, EditProfileRequest } from '@belisada/core/models';
 import { DateUtil } from '@belisada/core/util';
-import { UserService } from '@belisada/core/services';
+import { UserService, ShareMessageService } from '@belisada/core/services';
 
 import { UserData } from '@belisada/core/models';
 import { LocalStorageEnum } from '@belisada/core/enum';
@@ -58,6 +58,7 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private router: Router,
+    private shareMessageService: ShareMessageService,
   ) { }
 
   ngOnInit() {
@@ -153,6 +154,7 @@ export class ProfileComponent implements OnInit {
           );
           this.loadData();
           this.isField = false;
+          this.shareMessageService.changeMessage('update-profile');
         }
       });
     });
