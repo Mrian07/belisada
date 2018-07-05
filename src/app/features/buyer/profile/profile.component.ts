@@ -140,7 +140,12 @@ export class ProfileComponent implements OnInit {
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
       this.authService.refreshToken().subscribe(respon => {
         if (respon.status === 1) {
-          this.userService.setUserToLocalStorage(respon.token);
+          if (localStorage.getItem('isRemember') === 'true') {
+            this.userService.setUserToLocalStorage(respon.token);
+          } else {
+            this.userService.setUserToSessionStorage(respon.token);
+          }
+
           swal(
             'Sukses',
             'Ubah data profile berhasil.',

@@ -53,8 +53,6 @@ export class HeaderComponent implements OnInit {
       }
     }
     if (this.userData) { this.isLogin = true; }
-    // console.log('userData2 : ', this.userData);
-    // this.avatar = this.userData;
   }
 
   onSearchFocusOut() {
@@ -65,9 +63,9 @@ export class HeaderComponent implements OnInit {
 
   searchK(event) {
     const key = event.target.value;
-    console.log('event: ', event.keyCode);
-    console.log('key: ', key);
-    console.log('this.keyword: ', this.keyword);
+    // console.log('event: ', event.keyCode);
+    // console.log('key: ', key);
+    // console.log('this.keyword: ', this.keyword);
     if (event.keyCode !== 13) {
       this.showSearch = true;
     }
