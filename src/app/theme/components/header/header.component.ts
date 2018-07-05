@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
   // selectedSearchCategory: any;
   searchBarResults: SearchBarResponse[];
   keyword: string;
+  showSearch: Boolean = false;
 
   avatar: string;
 
@@ -56,11 +57,20 @@ export class HeaderComponent implements OnInit {
     // this.avatar = this.userData;
   }
 
+  onSearchFocusOut() {
+    setTimeout(() => {
+      this.showSearch = false;
+    }, 100);
+  }
+
   searchK(event) {
     const key = event.target.value;
-    // console.log('event: ', event);
+    console.log('event: ', event.keyCode);
     console.log('key: ', key);
     console.log('this.keyword: ', this.keyword);
+    if (event.keyCode !== 13) {
+      this.showSearch = true;
+    }
     this.keyword = key;
     const queryParams = {
       q: key
@@ -72,8 +82,8 @@ export class HeaderComponent implements OnInit {
   searchEnter(event) {
     const key = event.target.value;
     this.queryParams = { st: 'product', q: key };
+    this.showSearch = false;
     this.router.navigate(['/search-result/product-list'], { queryParams: this.queryParams });
-    this.results = [];
   }
 
   clickSearch(key, catID) {

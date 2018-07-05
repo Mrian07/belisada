@@ -43,5 +43,5 @@ a.link-text:hover{
 
 .right { text-align:right; }
 
-.show-element { display: block; }
-.hide-element { display: none; }
+.show-element { display: block!important; }
+.hide-element { display: none!important; }

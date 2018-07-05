@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
     this.regForm = false;
     this.regSuccess = false;
   }
- 
+
   testingform(form: NgForm) {
       console.log(form);
   }
@@ -102,17 +102,17 @@ export class HomeComponent implements OnInit {
           }
       });
 
-      this.validationOnpopUpCreateStore.get('province').valueChanges.subscribe(val => {
-          this.getCity(val);
-      });
-      this.validationOnpopUpCreateStore.get('city').valueChanges.subscribe(val => {
-          this.getDistrict(val);
-      });
+    //   this.validationOnpopUpCreateStore.get('province').valueChanges.subscribe(val => {
+    //       this.getCity(val);
+    //   });
+    //   this.validationOnpopUpCreateStore.get('city').valueChanges.subscribe(val => {
+    //       this.getDistrict(val);
+    //   });
 
-      this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
-          this.getVillage(val);
-      });
-      this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {});
+    //   this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
+    //       this.getVillage(val);
+    //   });
+    //   this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {});
   }
   getProvince() {
       // Country ID harcoded to Indonesia

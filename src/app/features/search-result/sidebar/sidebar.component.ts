@@ -417,18 +417,8 @@ export class SidebarComponent implements OnInit, OnDestroy {
         sby = isChecked;
       }
     }
-    
   }
   cMedan(medan, isChecked: any) {
-    const query = {
-      page: this.currentPgBrand = 1,
-      itemperpage: this.limitBrand,
-      q: this.keys === undefined ? '' : this.keys,
-      st:  this.keyST,
-      location : this.medan,
-      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
-      shipping: this.shippingOpt
-    };
     const paramFix = {
       q: this.keys,
       st: this.keyST,
@@ -459,17 +449,21 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
       medan = isChecked;
     }
+
+    if (this.keyST === 'store') {
+      const storeArray = < FormArray > this.myForm.controls.kondisi;
+      this.router.navigate(['/search-result/store-list'], { queryParams: queryParams23 });
+      if (isChecked) {
+        storeArray.push(new FormControl(medan));
+      } else {
+        const index = storeArray.controls.findIndex(x => x.value === medan);
+        storeArray.removeAt(index);
+        this.router.navigate(['/search-result/store-list'], { queryParams: paramFix });
+        medan = isChecked;
+      }
+    }
   }
   cJogja(yogya, isChecked: any) {
-    const query = {
-      page: this.currentPgBrand = 1,
-      itemperpage: this.limitBrand,
-      q: this.keys === undefined ? '' : this.keys,
-      st:  this.keyST,
-      location : this.yogya,
-      brand:   this.brandOPT === undefined ? '' : this.brandOPT,
-      shipping: this.shippingOpt
-    };
     const paramFix = {
       q: this.keys,
       st: this.keyST,
@@ -500,9 +494,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
       this.router.navigate(['/search-result/product-list'], { queryParams: paramFix });
       yogya = isChecked;
     }
+    if (this.keyST === 'store') {
+      const storeArray = < FormArray > this.myForm.controls.kondisi;
+      this.router.navigate(['/search-result/store-list'], { queryParams: queryParams23 });
+      if (isChecked) {
+        storeArray.push(new FormControl(yogya));
+      } else {
+        const index = storeArray.controls.findIndex(x => x.value === yogya);
+        storeArray.removeAt(index);
+        this.router.navigate(['/search-result/store-list'], { queryParams: paramFix });
+        yogya = isChecked;
+      }
+    }
 
   }
-  
   onChange(email: any, isChecked: boolean) {
     this.shippingOpt = email;
     const queryParams23 = {
@@ -536,6 +541,19 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
     if (email === this.shippingOpt) {
        this.check = this.myForm.controls.value = email;
+    }
+
+    if (this.keyST === 'store') {
+      const storeArray = < FormArray > this.myForm.controls.kondisi;
+      this.router.navigate(['/search-result/store-list'], { queryParams: queryParams23 });
+      if (isChecked) {
+        storeArray.push(new FormControl(email));
+      } else {
+        const index = storeArray.controls.findIndex(x => x.value === email);
+        storeArray.removeAt(index);
+        this.router.navigate(['/search-result/store-list'], { queryParams: paramFix });
+        email = isChecked;
+      }
     }
 
   }
