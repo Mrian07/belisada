@@ -62,7 +62,7 @@ export class SigninComponent implements OnInit {
             this.userService.setUserToSessionStorage(token);
             this.userService.setRemember('false');
           }
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/buyer/profile');
           // location.reload();
         }
       }, error => {

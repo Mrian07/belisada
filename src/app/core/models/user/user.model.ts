@@ -96,7 +96,7 @@ export class Profile {
     districtId: number;
     districtName: string;
     idcard: string;
-    imageAvatar: string;
+    // imageAvatar: string;
     imageIDCard: string;
     imageNPWP: string;
     mBpartnerId: number;
@@ -104,16 +104,21 @@ export class Profile {
     regionName: string;
     villageId: number;
     villageName: string;
+
+    imageAvatarUrl: string;
 }
 
 
 export class EditProfileRequest {
 
+    imageAvatarUrl: string;
     name: string;
     email: string;
     phone: string;
     gender: string;
     dateOfBirth: string;
+    token: string;
+    oldToken;
 }
 
 export class EditProfileResponse extends BaseResponseModel {

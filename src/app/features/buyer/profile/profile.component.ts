@@ -140,7 +140,6 @@ export class ProfileComponent implements OnInit {
           'Ubah data profile berhasil.',
           'success'
         );
-  
         this.loadData();
         this.isField = false;
       });
@@ -151,8 +150,6 @@ export class ProfileComponent implements OnInit {
   }
 
   }
-
-  
 
   /* Fungsi ini untuk berpindah halaman ke halaman edit */
   edit() {
