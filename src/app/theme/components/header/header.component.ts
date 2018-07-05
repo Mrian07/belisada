@@ -9,6 +9,7 @@ import { UserService, SearchBarService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { SearchBarResponse } from '@belisada/core/models/search/search.model';
+import { ShareMessageService } from '@belisada/core/services';
 
 @Component({
   selector: 'app-header',
@@ -28,29 +29,45 @@ export class HeaderComponent implements OnInit {
   keyword: string;
   showSearch: Boolean = false;
 
+  avatar: string;
+  
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
     private userService: UserService,
     private search: SearchBarService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private shareMessageService: ShareMessageService
   ) {
     this.searchBarResults = [];
   }
 
   ngOnInit() {
-    console.log('this.showSearch: ', this.showSearch);
+    this.getData();
+    this.cekFlag();
+  }
+
+  getData() {
+    this.avatar = 'assets/img/profile.png';
     if (localStorage.getItem('isRemember') === 'true') {
       this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     } else {
-    console.log('userData : ', this.userData);
+    // console.log('userData : ', this.userData);
       if (isPlatformBrowser(this.platformId)) {
         const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
         this.userData = this.userService.getUserData(sess);
+        this.avatar = this.userData.avatar;
       }
     }
     if (this.userData) { this.isLogin = true; }
-    console.log('userData : ', this.userData);
+  }
+
+  cekFlag() {
+    this.shareMessageService.currentMessage.subscribe(respon => {
+        if (respon === 'update-profile') {
+          this.getData();
+        }
+    });
   }
 
   onSearchFocusOut() {
@@ -61,9 +78,9 @@ export class HeaderComponent implements OnInit {
 
   searchK(event) {
     const key = event.target.value;
-    console.log('event: ', event.keyCode);
-    console.log('key: ', key);
-    console.log('this.keyword: ', this.keyword);
+    // console.log('event: ', event.keyCode);
+    // console.log('key: ', key);
+    // console.log('this.keyword: ', this.keyword);
     if (event.keyCode !== 13) {
       this.showSearch = true;
     }
