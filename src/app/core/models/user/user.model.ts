@@ -117,6 +117,8 @@ export class EditProfileRequest {
     phone: string;
     gender: string;
     dateOfBirth: string;
+    token: string;
+    oldToken;
 }
 
 export class EditProfileResponse extends BaseResponseModel {

@@ -16,76 +16,77 @@
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Nama</div> 
-			<!-- <div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
+			<div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
 			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
 				<div *ngIf="createComForm.controls.name.invalid && (createComForm.controls.name.dirty && createComForm.controls.name.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Nama tidak boleh kosong</span>
 				</div>
 				
-			</div> -->
+			</div>
 
-			<div class="col-4"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
+			<!-- <div class="col-4"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
 				<div *ngIf="createComForm.controls.name.invalid && (createComForm.controls.name.dirty && createComForm.controls.name.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Nama tidak boleh kosong</span>
 				</div>
-			</div>
+			</div> -->
 
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Email</div>
-			<!-- <div class="col-4" *ngIf="isField==false">{{profile.email}}</div>
-			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" disabled  formControlName="email"></div> -->
-			<div class="col-4"><input type="text" class="input-style-text" readonly  formControlName="email"></div>
+			<div class="col-4" *ngIf="isField==false">{{profile.email}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" disabled  formControlName="email"></div>
+
+			<!-- <div class="col-4"><input type="text" class="input-style-text" readonly  formControlName="email"></div> -->
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">No. Handphone</div>
-			<!-- <div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
+			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
 			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
-				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
-					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
-				</div>
-			</div> -->
-
-			<div class="col-4"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
 				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
 				</div>
 			</div>
 
+			<!-- <div class="col-4"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
+				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
+				</div>
+			</div> -->
+
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Tanggal Lahir</div>
-			<!-- <div class="col-4" *ngIf="isField==false">&nbsp;&nbsp;&nbsp;&nbsp;{{profile.dateOfBirth}}</div>
+			<div class="col-4" *ngIf="isField==false">{{profile.dateOfBirth}}</div>
 			<div class="col-3" *ngIf="isField==true"> 
 				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
 				<div *ngIf="createComForm.controls.dateOfBirth.invalid && (createComForm.controls.dateOfBirth.dirty && createComForm.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
 				</div>
-			</div> -->
+			</div>
 
-			<div class="col-3"> 
+			<!-- <div class="col-3"> 
 				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
 				<div *ngIf="createComForm.controls.dateOfBirth.invalid && (createComForm.controls.dateOfBirth.dirty && createComForm.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Jenis Kelamin {{status}}</div>
-			<!-- <div class="col-4" *ngIf="isField==false">{{gender}}</div>
+			<div class="col-4" *ngIf="isField==false">{{gender}}</div>
 			<div class="col-4" *ngIf="isField==true">
 				<select class="input-style-text" formControlName="gender">
 					<option value="M">Laki-laki</option>
 					<option value="F">Perempuan</option>
 				</select>
-			</div> -->
+			</div>
 
-			<div class="col-4">
+			<!-- <div class="col-4">
 				<select class="input-style-text" formControlName="gender">
 					<option value="M">Laki-laki</option>
 					<option value="F">Perempuan</option>
 				</select>
-			</div>
+			</div> -->
 			
 
 		</div>

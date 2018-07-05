@@ -53,7 +53,7 @@ export class HeaderComponent implements OnInit {
       }
     }
     if (this.userData) { this.isLogin = true; }
-    console.log('userData2 : ', this.userData);
+    // console.log('userData2 : ', this.userData);
     // this.avatar = this.userData;
   }
 

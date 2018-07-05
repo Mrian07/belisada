@@ -1,3 +1,4 @@
+import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
@@ -7,6 +8,9 @@ import { DateFormatEnum } from '@belisada/core/enum';
 import { Profile, EditProfileRequest } from '@belisada/core/models';
 import { DateUtil } from '@belisada/core/util';
 import { UserService } from '@belisada/core/services';
+
+import { UserData } from '@belisada/core/models';
+import { LocalStorageEnum } from '@belisada/core/enum';
 
 @Component({
   selector: 'app-profile',
@@ -45,14 +49,19 @@ export class ProfileComponent implements OnInit {
   base64Img: string;
   imageUrl: string;
 
+  userData: UserData = new UserData();
+  token: string;
+
   constructor(
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
   ngOnInit() {
+    this.token = localStorage.getItem(LocalStorageEnum.TOKEN_KEY);
     this.isField = false;
     this.createFormControls();
     this.fillForms();
@@ -121,24 +130,26 @@ export class ProfileComponent implements OnInit {
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
-    console.log('asd', form);
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
-    editProfileRequest.imageAvatarUrl = this.base64Img;
+    if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
     editProfileRequest.name = this.createComForm.controls['name'].value;
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
     editProfileRequest.gender = this.createComForm.controls['gender'].value;
     editProfileRequest.dateOfBirth =
     this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
-
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
-      swal(
-        'Sukses',
-        'Ubah data profile berhasil.',
-        'success'
-      );
-
-      this.loadData();
-      this.isField = false;
+      this.authService.refreshToken().subscribe(respon => {
+        if (respon.status === 1) {
+          this.userService.setUserToLocalStorage(respon.token);
+          swal(
+            'Sukses',
+            'Ubah data profile berhasil.',
+            'success'
+          );
+          this.loadData();
+          this.isField = false;
+        }
+      });
     });
 
   }
