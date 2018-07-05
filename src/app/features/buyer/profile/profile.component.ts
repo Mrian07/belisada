@@ -176,6 +176,7 @@ export class ProfileComponent implements OnInit {
   }
 
   setUrl(event, img) {
+    // consol
     const fr = new FileReader();
     const f = event.target.files[0];
     const that = this;
