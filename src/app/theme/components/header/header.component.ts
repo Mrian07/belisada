@@ -27,6 +27,8 @@ export class HeaderComponent implements OnInit {
   searchBarResults: SearchBarResponse[];
   keyword: string;
 
+  avatar: string;
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -38,17 +40,20 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.avatar = 'assets/img/profile.png';
     if (localStorage.getItem('isRemember') === 'true') {
       this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     } else {
-    console.log('userData : ', this.userData);
+    // console.log('userData : ', this.userData);
       if (isPlatformBrowser(this.platformId)) {
         const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
         this.userData = this.userService.getUserData(sess);
+        this.avatar = this.userData.avatar;
       }
     }
     if (this.userData) { this.isLogin = true; }
-    console.log('userData : ', this.userData);
+    console.log('userData2 : ', this.userData);
+    // this.avatar = this.userData;
   }
 
   searchK(event) {

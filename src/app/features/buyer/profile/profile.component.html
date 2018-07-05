@@ -4,7 +4,15 @@
 	<form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate [ngClass]="{'on-edit':!isField}">
 		<div class="row view-line">
 			<div class="col-2 title-line">Foto Profile</div> 
-			<div class="col-4"><img src="/assets/img/profile-buyer.jpg" alt=""></div>
+			<div class="col-4">
+				<img src="{{ imageUrl }}" border="0" width="200" #avaImg class="img-upload"><br>
+				<div class="upload-btn-wrapper">
+					<!-- <img src="/assets/img/profile-buyer.jpg" alt="" #avaImg class="img-upload"><br> -->
+					
+					<button type="button" class="btn btn-default btn-tn btn-color" *ngIf="isField==true" (click)="edit()">Cari gambar</button>
+					<input type="file" name="imageUrl" (change)="setUrl($event, avaImg)"/>
+				</div>
+			</div>
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">Nama</div> 

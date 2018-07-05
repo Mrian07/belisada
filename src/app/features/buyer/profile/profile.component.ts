@@ -41,6 +41,10 @@ export class ProfileComponent implements OnInit {
   isField: boolean;
   createComForm: FormGroup;
 
+  updateImg: Boolean = false;
+  base64Img: string;
+  imageUrl: string;
+
   constructor(
     private fb: FormBuilder,
     private dateUtil: DateUtil,
@@ -79,6 +83,12 @@ export class ProfileComponent implements OnInit {
   fillForms() {
     this.userService.getProfile().subscribe(data => {
     const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
+    if (data.imageAvatarUrl) {
+      this.imageUrl = data.imageAvatarUrl;
+    } else {
+      this.imageUrl = 'assets/img/profile-buyer.jpg';
+    }
+
     this.createComForm.patchValue(
       {
         name: data.name,
@@ -112,11 +122,13 @@ export class ProfileComponent implements OnInit {
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit() {
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+    editProfileRequest.imageAvatarUrl = this.base64Img;
     editProfileRequest.name = this.createComForm.controls['name'].value;
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
     editProfileRequest.gender = this.createComForm.controls['gender'].value;
     editProfileRequest.dateOfBirth =
     this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
       swal(
         'Sukses',
@@ -143,4 +155,19 @@ export class ProfileComponent implements OnInit {
         event.preventDefault();
     }
   }
+
+  setUrl(event, img) {
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+    // this.onViewDesc = false;
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      that.base64Img = fr.result;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
+  }
+
 }
