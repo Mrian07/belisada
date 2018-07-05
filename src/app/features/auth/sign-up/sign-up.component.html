@@ -13,14 +13,8 @@
                             'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched),
                             'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)
                             }">
-<<<<<<< HEAD
-
-                            <div class="form-control-feedback" *ngIf="vForValidation.controls.fullname.errors && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip-for-password testing">
-                                <p *ngIf="vForValidation.controls.fullname.errors.required" class="tooltiptext">Nama Tidak Boleh Kosong</p>
-=======
                         <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip testing">
                             <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
->>>>>>> 295efb86c3889a8c8ee768704dc01855309116fc
                         </div>
                         <!-- <div *ngIf="vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty && vForValidation.controls.fullname.touched)" class="alert alert-danger toll tooltip testing">
                             <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
@@ -29,17 +23,9 @@
                         
                         <div *ngIf="status === 1; else register">
                             <input type="text" placeholder="Email" formControlName="email" class="input-style-text-90" (input)="onSearchChange($event.target.value)" email name="email" (change)="checkEmail()" required [ngClass]="{
-<<<<<<< HEAD
-                            'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
-                            'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-                            }">
-                         
-                           
-=======
                                 'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched),
                                 'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)
                                 }">
->>>>>>> 295efb86c3889a8c8ee768704dc01855309116fc
                             <div #b *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
                                 <fa name="fas fa-ban errspan"></fa>
                                 <div class="testing">
@@ -50,19 +36,6 @@
                         </div>
                         <ng-template #register>
                             <input type="text" placeholder="Email" formControlName="email" class="input-style-text-90" email name="email" (change)="checkEmail()" required [ngClass]="{
-<<<<<<< HEAD
-                            'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched),
-                            'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)
-                            }">
-                            <div class="form-control-feedback" *ngIf="vForValidation.controls.email.errors && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip-for-password testing">
-                                <span *ngIf="vForValidation.controls.email.invalid" class="tooltiptext">Harap masukan format email dengan benar</span>
-                        </div>
-
-                            
-                            <!-- <div *ngIf="vForValidation.controls.email.invalid  && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip testing">
-                                <span *ngIf="vForValidation.controls.email.invalid  && (vForValidation.controls.email.dirty && vForValidation.controls.email.touched)" class="tooltiptext">Harap masukan format email dengan benar</span>
-                            </div> -->
-=======
                             'has-danger': vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched),
                             'has-success': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)
                             }">{{email | lowercase}}
@@ -70,7 +43,6 @@
                             <div *ngIf="vForValidation.controls.email.invalid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)" class="alert alert-danger toll tooltip testing">
                                 <span class="tooltiptext">Harap masukan format email dengan benar</span>
                             </div>
->>>>>>> 295efb86c3889a8c8ee768704dc01855309116fc
                         </ng-template>
 
                         <div>
@@ -85,10 +57,6 @@
                             <!-- <div>
                                 <input type="password" formControlName="confirmPassword" placeholder="Ketik Ulang Password" class="input-style-text-90" required>
                                 <div class="form-control-feedback" *ngIf="vForValidation.controls.confirmPassword.errors && (vForValidation.controls.confirmPassword.dirty || vForValidation.controls.confirmPassword.touched)"  class="alert alert-danger toll tooltip-for-password">
-<<<<<<< HEAD
-                                  
-=======
->>>>>>> 295efb86c3889a8c8ee768704dc01855309116fc
                                     <p *ngIf="vForValidation.controls.confirmPassword.errors.mismatch" class="tooltiptext testing-with-margin">Password Harus Sama !</p>
                                 </div>
                             </div> -->

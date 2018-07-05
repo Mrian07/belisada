@@ -40,12 +40,18 @@
 		</div>
 		<div class="row view-line">
 			<div class="col-2 title-line">No. Handphone</div>
-		
-			
-
-			<div class="col-4"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
-				<app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="phone toko tidak boleh kosong"></app-field-error-display>
+			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
+				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
+				</div>
 			</div>
+
+			<!-- <div class="col-4"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
+				<div *ngIf="createComForm.controls.phone.invalid && (createComForm.controls.phone.dirty && createComForm.controls.phone.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
+				</div>
+			</div> -->
 
 		</div>
 		<div class="row view-line">
@@ -86,7 +92,7 @@
 		</div>
 		<br>
 		<button type="button" *ngIf="!isField" class="btn btn--orange component-center" (click)="edit()">Edit Profile</button>
-		<button type="submit" class="btn btn--orange component-center" *ngIf="isField" >Save</button>
+		<button type="submit" class="btn btn--orange component-center" *ngIf="isField" [disabled]="createComForm.invalid || status === 1">Save</button>
 	</form>
 </div>
 

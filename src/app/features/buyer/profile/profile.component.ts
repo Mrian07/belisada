@@ -1,3 +1,4 @@
+import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
@@ -6,7 +7,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { Profile, EditProfileRequest } from '@belisada/core/models';
 import { DateUtil } from '@belisada/core/util';
-import { UserService } from '@belisada/core/services';
+import { UserService, ShareMessageService } from '@belisada/core/services';
+
+import { UserData } from '@belisada/core/models';
+import { LocalStorageEnum } from '@belisada/core/enum';
 
 @Component({
   selector: 'app-profile',
@@ -41,14 +45,24 @@ export class ProfileComponent implements OnInit {
   isField: boolean;
   createComForm: FormGroup;
 
+  updateImg: Boolean = false;
+  base64Img: string;
+  imageUrl: string;
+
+  userData: UserData = new UserData();
+  token: string;
+
   constructor(
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
+    private shareMessageService: ShareMessageService,
   ) { }
 
   ngOnInit() {
+    this.token = localStorage.getItem(LocalStorageEnum.TOKEN_KEY);
     this.isField = false;
     this.createFormControls();
     this.fillForms();
@@ -60,7 +74,7 @@ export class ProfileComponent implements OnInit {
     this.createComForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', Validators.required],
-      phone: new FormControl(null, Validators.required),
+      phone: ['', Validators.required],
       gender: ['', Validators.required],
       dateOfBirth: ['', Validators.required]
     });
@@ -79,6 +93,12 @@ export class ProfileComponent implements OnInit {
   fillForms() {
     this.userService.getProfile().subscribe(data => {
     const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
+    if (data.imageAvatarUrl) {
+      this.imageUrl = data.imageAvatarUrl;
+    } else {
+      this.imageUrl = 'assets/img/profile-buyer.jpg';
+    }
+
     this.createComForm.patchValue(
       {
         name: data.name,
@@ -95,9 +115,7 @@ export class ProfileComponent implements OnInit {
       });
     });
   }
-  isFieldValid(field: string) {
-    return !this.createComForm.get(field).valid && this.createComForm.get(field).touched;
-}
+
   /* Fungsi ini untuk melakukan penarikan data melalui fungsi getProfile() yang berada pada userService */
   loadData() {
     this.userService.getProfile().subscribe(data => {
@@ -110,44 +128,36 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-        const control = formGroup.get(field);
-        if (control instanceof FormControl) {
-            control.markAsTouched({
-                onlySelf: true
-            });
-        } else if (control instanceof FormGroup) {
-            this.validateAllFormFields(control);
-        }
-    });
-}
+
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
+    const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+    if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
+    editProfileRequest.name = this.createComForm.controls['name'].value;
+    editProfileRequest.phone = this.createComForm.controls['phone'].value;
+    editProfileRequest.gender = this.createComForm.controls['gender'].value;
+    editProfileRequest.dateOfBirth =
+    this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+    this.userService.updateProfile(editProfileRequest).subscribe(data => {
+      this.authService.refreshToken().subscribe(respon => {
+        if (respon.status === 1) {
+          if (localStorage.getItem('isRemember') === 'true') {
+            this.userService.setUserToLocalStorage(respon.token);
+          } else {
+            this.userService.setUserToSessionStorage(respon.token);
+          }
 
-    if (this.createComForm.valid) {
-      const model = this.createComForm.value;
-      console.log('asd', form);
-      const editProfileRequest: EditProfileRequest = new EditProfileRequest();
-      editProfileRequest.name = this.createComForm.controls['name'].value;
-      editProfileRequest.phone = this.createComForm.controls['phone'].value;
-      editProfileRequest.gender = this.createComForm.controls['gender'].value;
-      editProfileRequest.dateOfBirth =
-      this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
-      this.userService.updateProfile(editProfileRequest).subscribe(data => {
-        swal(
-          'Sukses',
-          'Ubah data profile berhasil.',
-          'success'
-        );
-        this.loadData();
-        this.isField = false;
+          swal(
+            'Sukses',
+            'Ubah data profile berhasil.',
+            'success'
+          );
+          this.loadData();
+          this.isField = false;
+          this.shareMessageService.changeMessage('update-profile');
+        }
       });
-  } else {
-    //   swal('ops maaf ada kesalahan');
-      this.validateAllFormFields(this.createComForm);
-      console.log('asdasdsad');
-  }
+    });
 
   }
 
@@ -164,4 +174,20 @@ export class ProfileComponent implements OnInit {
         event.preventDefault();
     }
   }
+
+  setUrl(event, img) {
+    // consol
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+    // this.onViewDesc = false;
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      that.base64Img = fr.result;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
+  }
+
 }
