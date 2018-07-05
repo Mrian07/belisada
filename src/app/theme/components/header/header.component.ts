@@ -48,6 +48,7 @@ export class HeaderComponent implements OnInit {
   }
 
   getData() {
+    // console.log('ssss');
     this.avatar = 'assets/img/profile.png';
     if (localStorage.getItem('isRemember') === 'true') {
       this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
