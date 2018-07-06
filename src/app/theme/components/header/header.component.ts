@@ -54,7 +54,9 @@ export class HeaderComponent implements OnInit {
       if (isPlatformBrowser(this.platformId)) {
         const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
         this.userData = this.userService.getUserData(sess);
-        if (this.userData.avatar) { this.avatar = this.userData.avatar; } else {
+        if (this.userData) {
+          this.avatar = this.userData.avatar;
+        } else {
           this.avatar = 'assets/img/profile.png';
         }
       }
