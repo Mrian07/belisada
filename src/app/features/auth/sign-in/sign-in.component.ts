@@ -27,6 +27,7 @@ export class SigninComponent implements OnInit {
   emailChecking: EmailChecking = new EmailChecking();
   message: string;
   status: number;
+  penampung: any;
   emailInvalid: number;
   viewPass: Boolean = false;
   isRemember: string;
@@ -131,6 +132,14 @@ export class SigninComponent implements OnInit {
     } else {
       el.type = 'password';
     }
+  }
+
+  onKey(event: any) { // without type info
+    console.log('ok',event);
+    this.penampung = event.keyCode === 9;
+    if (event.keyCode === 9) {
+      console.log('ini tab');
+  }
   }
 
 }
