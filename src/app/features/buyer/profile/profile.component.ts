@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
     firstDayOfWeek: 'mo',
     sunHighlight: true,
     inline: false,
+    maxYear: this.now.getFullYear() - 12,
     minYear: this.now.getFullYear() - 90,
     disableSince: {
       year: this.now.getFullYear() - 12,
