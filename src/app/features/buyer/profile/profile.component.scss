@@ -19,3 +19,16 @@
 .btn-color{
     color: #000000;
 }
+
+.btn-browse{
+    border: 1px solid #ed7425;
+    border-radius:5px;
+    color: #111111;
+    background: #ffffff;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.btn-browse:hover{
+    background: #f18f0d;
+}

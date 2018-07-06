@@ -5,11 +5,11 @@
 		<div class="row view-line">
 			<div class="col-2 title-line">Foto Profile</div> 
 			<div class="col-4">
-				<img src="{{ imageUrl }}" border="0" width="200" #avaImg class="img-upload"><br>
+				<img src="{{ imageUrl }}" border="0" width="150" #avaImg class="img-upload"><br>
 				<div class="upload-btn-wrapper">
 					<!-- <img src="/assets/img/profile-buyer.jpg" alt="" #avaImg class="img-upload"><br> -->
 					
-					<button type="button" class="btn btn-default btn-tn btn-color" *ngIf="isField==true" (click)="edit()">Cari gambar</button>
+					<button type="button" class="btn btn--dark-grey" *ngIf="isField==true" (click)="edit()">Cari gambar</button>
 					<input type="file" name="imageUrl" (change)="setUrl($event, avaImg)"/>
 				</div>
 			</div>
@@ -17,7 +17,7 @@
 		<div class="row view-line">
 			<div class="col-2 title-line">Nama</div> 
 			<div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
-			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
+			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name" maxlength="30">
 				<div *ngIf="createComForm.controls.name.invalid && (createComForm.controls.name.dirty && createComForm.controls.name.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Nama tidak boleh kosong</span>
 				</div>
