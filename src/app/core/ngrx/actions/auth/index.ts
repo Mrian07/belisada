@@ -24,7 +24,7 @@ export class LoginSuccess implements Action {
   constructor(public status: any) { }
 }
 export class LoginFailed implements Action {
-  readonly type = LOGINSUCCESS;
+  readonly type = LOGINFAILED;
   constructor(public status: any) { }
 }
 export class CheckEmail implements Action {

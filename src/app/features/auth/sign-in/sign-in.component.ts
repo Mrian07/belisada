@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, OnDestroy, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -18,7 +18,7 @@ import * as UserReducer from '@belisada/core/ngrx/reducers/auth';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SigninComponent implements OnInit {
+export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /* Mendeklarasikan nama variable*/
   signinFormGroup: FormGroup;
@@ -31,6 +31,7 @@ export class SigninComponent implements OnInit {
   viewPass: Boolean = false;
   isRemember: string;
   LoginStatus: Subscription;
+  test: any;
   // subscription: Subscription;
 
   constructor(
@@ -42,18 +43,20 @@ export class SigninComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.test = '';
     this.createFormControl();
+  }
+
+  ngAfterViewInit() {
     this.LoginStatus = this.actionsSubject.asObservable()
     .pipe(filter(action => action.type === UserAction.LOGINSUCCESS))
     .subscribe((action: UserAction.LoginSuccess) => {
       const form = this.signinFormGroup;
       const x = this.ngrx.select<any>(UserReducer.LoginState).subscribe( result => {
         // Handle result
-        if (result.status === 0) {
-          swal('Perhatian!', result.message, 'warning');
-          this.msg = result.message;
-        } else {
-          const token: string = result.token;
+        this.test = result;
+
+          const token: string = this.test.token;
           if (form.value.isRemember === 'true') {
             this.userService.setUserToLocalStorage(token);
             this.userService.setRemember('true');
@@ -63,11 +66,11 @@ export class SigninComponent implements OnInit {
           }
           this.router.navigateByUrl('/');
           // location.reload();
-        }
+
       }, error => {
         swal('belisada.co.id', 'unknown error', 'error');
       });
-      x.unsubscribe();
+
     });
   }
 
@@ -133,4 +136,9 @@ export class SigninComponent implements OnInit {
     }
   }
 
+ ngOnDestroy(): void {
+   this.test = '';
+   //Called once, before the instance is destroyed.
+   //Add 'implements OnDestroy' to the class.
+ }
 }
