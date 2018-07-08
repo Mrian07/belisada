@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, OnDestroy, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -18,7 +18,7 @@ import * as UserReducer from '@belisada/core/ngrx/reducers/auth';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
+export class SigninComponent implements OnInit, AfterViewInit {
 
   /* Mendeklarasikan nama variable*/
   signinFormGroup: FormGroup;
@@ -27,6 +27,7 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
   emailChecking: EmailChecking = new EmailChecking();
   message: string;
   status: number;
+  penampung: any;
   emailInvalid: number;
   viewPass: Boolean = false;
   isRemember: string;
@@ -64,7 +65,7 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
             this.userService.setUserToSessionStorage(token);
             this.userService.setRemember('false');
           }
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/buyer/profile');
           // location.reload();
 
       }, error => {
@@ -136,9 +137,12 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
- ngOnDestroy(): void {
-   this.test = '';
-   //Called once, before the instance is destroyed.
-   //Add 'implements OnDestroy' to the class.
- }
+  onKey(event: any) { // without type info
+    console.log('ok', event);
+    this.penampung = event.keyCode === 9;
+    if (event.keyCode === 9) {
+      console.log('ini tab');
+  }
+  }
+
 }

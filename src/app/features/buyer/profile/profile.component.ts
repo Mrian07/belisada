@@ -1,3 +1,4 @@
+import { AuthService } from './../../../core/services/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { IMyDpOptions } from 'mydatepicker';
 import { FormGroup, FormControl, Validators, FormBuilder, NgForm } from '@angular/forms';
@@ -6,7 +7,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { Profile, EditProfileRequest } from '@belisada/core/models';
 import { DateUtil } from '@belisada/core/util';
-import { UserService } from '@belisada/core/services';
+import { UserService, ShareMessageService } from '@belisada/core/services';
+
+import { UserData } from '@belisada/core/models';
+import { LocalStorageEnum } from '@belisada/core/enum';
 
 @Component({
   selector: 'app-profile',
@@ -27,10 +31,12 @@ export class ProfileComponent implements OnInit {
     firstDayOfWeek: 'mo',
     sunHighlight: true,
     inline: false,
+    maxYear: this.now.getFullYear() - 12,
+    minYear: this.now.getFullYear() - 90,
     disableSince: {
-    year: this.now.getFullYear(),
-    month: this.now.getMonth() + 1,
-    day: this.now.getDate()
+      year: this.now.getFullYear() - 12,
+      month: this.now.getMonth() + 1,
+      day: this.now.getDate()
     }
   };
   // ----- End date picker declaration required
@@ -41,14 +47,24 @@ export class ProfileComponent implements OnInit {
   isField: boolean;
   createComForm: FormGroup;
 
+  updateImg: Boolean = false;
+  base64Img: string;
+  imageUrl: string;
+
+  userData: UserData = new UserData();
+  token: string;
+
   constructor(
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private userService: UserService,
+    private authService: AuthService,
     private router: Router,
+    private shareMessageService: ShareMessageService,
   ) { }
 
   ngOnInit() {
+    this.token = localStorage.getItem(LocalStorageEnum.TOKEN_KEY);
     this.isField = false;
     this.createFormControls();
     this.fillForms();
@@ -79,6 +95,12 @@ export class ProfileComponent implements OnInit {
   fillForms() {
     this.userService.getProfile().subscribe(data => {
     const dob = new Date(this.dateUtil.fromDDMMYYYYtoMMDDYYY(data.dateOfBirth));
+    if (data.imageAvatarUrl) {
+      this.imageUrl = data.imageAvatarUrl;
+    } else {
+      this.imageUrl = 'assets/img/profile-buyer.jpg';
+    }
+
     this.createComForm.patchValue(
       {
         name: data.name,
@@ -111,22 +133,32 @@ export class ProfileComponent implements OnInit {
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
-    console.log('asd', form);
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+    if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
     editProfileRequest.name = this.createComForm.controls['name'].value;
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
     editProfileRequest.gender = this.createComForm.controls['gender'].value;
     editProfileRequest.dateOfBirth =
     this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
-      swal(
-        'Sukses',
-        'Ubah data profile berhasil.',
-        'success'
-      );
+      this.authService.refreshToken().subscribe(respon => {
+        if (respon.status === 1) {
+          if (localStorage.getItem('isRemember') === 'true') {
+            this.userService.setUserToLocalStorage(respon.token);
+          } else {
+            this.userService.setUserToSessionStorage(respon.token);
+          }
 
-      this.loadData();
-      this.isField = false;
+          swal(
+            'Sukses',
+            'Ubah data profile berhasil.',
+            'success'
+          );
+          this.loadData();
+          this.isField = false;
+          this.shareMessageService.changeMessage('update-profile');
+        }
+      });
     });
 
   }
@@ -144,4 +176,20 @@ export class ProfileComponent implements OnInit {
         event.preventDefault();
     }
   }
+
+  setUrl(event, img) {
+    // consol
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+    // this.onViewDesc = false;
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      that.base64Img = fr.result;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
+  }
+
 }

@@ -191,10 +191,14 @@ export class CreateStoreComponent implements OnInit {
     fr.readAsDataURL(f);
   }
 
-  removeImage(index: number) {
-    if (index > -1) {
-      this.storePictures.splice(index, 1);
-    }
+  removeImage() {
+    this.data.picture = undefined;
+    this.store.patchValue({
+      storePicture: ''
+    });
+    // if (index > -1) {
+    //   this.storePictures.splice(index, 1);
+    // }
   }
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {

@@ -4,10 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http/src/headers';
 import { Router } from '@angular/router';
-import { Token } from '@belisada/core/models';
+import { Token, RefreshToken } from '@belisada/core/models';
 import { Configuration } from '@belisada/core/config';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
+
+import { Http, Headers, Response } from '@angular/http'
 
 @Injectable({
   providedIn: 'root',
@@ -58,5 +60,13 @@ export class AuthService {
     if (this.token) {
       return this.token;
     }
+  }
+
+  refreshToken(): Observable<Token> {
+
+    return this.http.get(this.configuration.apiURL + '/account/refreshtoken')
+      .pipe(
+        map(response => response as Token)
+      );
   }
 }
