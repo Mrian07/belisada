@@ -1,18 +1,19 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, NgForm, FormBuilder } from '@angular/forms';
 import swal from 'sweetalert2';
-import { CreateStoreRequest, CheckStoreRequest } from '@belisada/core/models/store/store.model';
+import { CreateStoreRequest, CheckStoreRequest, ProfileStoreResponse } from '@belisada/core/models/store/store.model';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService, UserService, ShareMessageService } from '@belisada/core/services';
 
 @Component({
 selector: 'app-create-store',
 templateUrl: './create-store.component.html',
-// styleUrls: ['./create-store.component.scss']
+styleUrls: ['./create-store.component.scss']
 })
 export class CreateStoreComponent implements OnInit {
   fileToUpload: File = null;
   store: FormGroup;
+  store1: ProfileStoreResponse = new ProfileStoreResponse();
   storeName: FormControl;
   description: FormControl;
   storePictures: any[] = [];
@@ -31,7 +32,15 @@ export class CreateStoreComponent implements OnInit {
   villages: Village[];
   storeUrl: FormControl;
   private formSumitAttempt: boolean;
-  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService,
+
+
+
+  onCityFocus: Boolean = false;
+  currentPgBrand: number;
+
+  limitBrand: Number = 100;
+  brandName: string;
+  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService, private el: ElementRef,
     private shareMessageService: ShareMessageService) {}
 
   ngOnInit() {
@@ -44,21 +53,12 @@ export class CreateStoreComponent implements OnInit {
       storeUrl: this.storeUrl,
       description: new FormControl(null, Validators.required),
       storePicture: new FormControl(),
-      province: new FormControl(null, Validators.required),
-      city: new FormControl(null, Validators.required),
-      district: new FormControl(null, Validators.required),
-      villageId: new FormControl(null, Validators.required),
-      postal: new FormControl('', [
-        Validators.required,
-        Validators.minLength(5),
-        Validators.maxLength(5)
-
-      ]),
+     
 
     });
 
-    this.getProvince();
-    this.onChanges();
+    // this.getProvince();
+    // this.onChanges();
     // this.getCity();
   }
 
@@ -74,14 +74,14 @@ export class CreateStoreComponent implements OnInit {
       }
     });
     this.store.get('province').valueChanges.subscribe(val => {
-      this.getCity(val);
+      // this.getCity(val);
     });
     this.store.get('city').valueChanges.subscribe(val => {
-      this.getDistrict(val);
+      // this.getDistrict(val);
     });
 
     this.store.get('district').valueChanges.subscribe(val => {
-      this.getVillage(val);
+      // this.getVillage(val);
     });
     this.store.get('district').valueChanges.subscribe(val => {});
   }
@@ -92,27 +92,23 @@ export class CreateStoreComponent implements OnInit {
     });
   }
 
-  getCity(id) {
-    this.storeService.getCity(id).subscribe(data => {
-      this.cities = data;
-    });
-  }
-  getDistrict(id) {
-    this.storeService.getDistrict(id).subscribe(data => {
-      this.districts = data;
-    });
-  }
-  getVillage(id) {
-    this.storeService.getVillage(id).subscribe(data => {
-      this.villages = data;
-      const model = this.store.value;
-      const a = this.store.value.villageId = id.district;
-    });
-  }
-
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-  }
+  // getCity(id) {
+  //   this.storeService.getCity(id).subscribe(data => {
+  //     this.cities = data;
+  //   });
+  // }
+  // getDistrict(id) {
+  //   this.storeService.getDistrict(id).subscribe(data => {
+  //     this.districts = data;
+  //   });
+  // }
+  // getVillage(id) {
+  //   this.storeService.getVillage(id).subscribe(data => {
+  //     this.villages = data;
+  //     const model = this.store.value;
+  //     const a = this.store.value.villageId = id.district;
+  //   });
+  // }
 
   checkStoreName() {
     const check_data: CheckStoreRequest = new CheckStoreRequest;
@@ -126,7 +122,7 @@ export class CreateStoreComponent implements OnInit {
       }
       this.nameChecking = false;
       if (this.pending_submit) {
-        this.onSent();
+        // this.onSent();
         this.pending_submit = false;
       }
     }, err => {
@@ -211,7 +207,8 @@ export class CreateStoreComponent implements OnInit {
   isFieldValid(field: string) {
     return !this.store.get(field).valid && this.store.get(field).touched;
   }
-  onSent() {
+  onSent(form: NgForm) {
+    console.log(form);
     if (this.store.valid) {
       if (this.nameChecking) {
         this.pending_submit = true;
@@ -219,12 +216,26 @@ export class CreateStoreComponent implements OnInit {
       }
 
       const model = this.store.value;
+      const a = {
+        // model.storePicture = this.data.picture,
+        storePicture: this.data.picture,
+        address: this.store.value.address,
+        description: this.store.value.description,
+        name: this.store.value.name,
+        city : this.store1.cityId,
+        district: this.store1.districtId,
+        province: this.store1.regionId,
+        villageId:  this.store1.villageId,
+        postal:  this.store1.postal,
+        storeUrl: this.store.value.storeUrl,
+        // model
+      };
+
+      console.log(a);
       model.storePicture = this.data.picture;
       // model.storeUrl = this.asd;
       // console.log('storeUrl : ', this.asd);
-
-
-      this.storeService.create(model).subscribe(rsl => {
+      this.storeService.create(a).subscribe(rsl => {
         if (rsl.status === 1) {
           swal({
             title: 'Pembuatan Toko Berhasil',
@@ -246,6 +257,26 @@ export class CreateStoreComponent implements OnInit {
       swal('Ops Silahkan Cek data kamu kembali');
       this.validateAllFormFields(this.store);
     }
+
+
+      // this.storeService.create(a).subscribe(rsl => {
+      //   if (rsl.status === 1) {
+      //     swal({
+      //       title: 'Pembuatan Toko Berhasil',
+      //       // text: rsl.message,
+      //       type: 'success',
+      //       confirmButtonColor: '#3085d6',
+      //       cancelButtonColor: '#d33',
+      //       confirmButtonText: 'Ok'
+      //     }).then((result) => {
+      //       if (result.value) {
+      //         location.reload();
+      //       }
+      //     });
+      //   } else {
+      //     swal(rsl.message);
+      //   }
+      // });
 
   }
 
@@ -281,4 +312,72 @@ export class CreateStoreComponent implements OnInit {
       });
     });
   }
+
+/* dibawah kodingan new untuk get region DKK */
+
+  getRegion() {
+    this.storeService.getProvince('209').subscribe(data => {
+      this.provinces = data;
+    });
+  }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
+  setRegion(o) {
+    console.log(o);
+    this.store1.regionName = o.regionName;
+    this.store1.regionId = o.regionId;
+    delete this.store1.cityName;
+  }
+  hideRegionSuggest() {
+    setTimeout(() => delete this.provinces, 300);
+  }
+
+  getCity() {
+    this.storeService.getCity(this.store1.regionId).subscribe(data => {
+      this.cities = data;
+      console.log(data);
+    });
+  }
+  setCity(o) {
+    this.store1.cityName = o.cityName;
+    this.store1.cityId = o.cityId;
+    delete this.store1.districtName;
+  }
+  hideCitySuggest() {
+    setTimeout(() => delete this.cities, 300);
+  }
+
+  getDistrict() {
+    this.storeService.getDistrict(this.store1.cityId).subscribe(data => {
+      this.districts = data;
+    });
+  }
+  setDistrict(o) {
+    console.log('asd', o);
+    this.store1.districtName = o.districtName;
+    this.store1.districtId = o.districtId;
+    delete this.store1.villageName;
+  }
+  hideDistrictSuggest() {
+    setTimeout(() => delete this.districts, 300);
+  }
+
+
+  getVillage() {
+    this.storeService.getVillage(this.store1.districtId).subscribe(data => {
+      this.villages = data;
+    });
+  }
+  setVillage(o) {
+    console.log('ini', o);
+    this.store1.villageName = o.villageName;
+    this.store1.villageId = o.villageId;
+    this.store1.postal = o.postal;
+  }
+  hideVillageSuggest() {
+    setTimeout(() => delete this.villages, 300);
+  }
+
 }
+
