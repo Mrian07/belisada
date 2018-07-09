@@ -8,6 +8,7 @@ import { AttributeValue } from '@belisada/core/models/attribute/attribute.model'
 @Injectable({
   providedIn: 'root',
 })
+
 export class AttributeService {
 
   constructor(private configuration: Configuration, private http: HttpClient) { }

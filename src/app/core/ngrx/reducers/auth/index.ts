@@ -43,6 +43,9 @@ export function LoginReducer(
     case actions.LOGINSUCCESS : {
         return action.status;
     }
+    case actions.LOGINFAILED : {
+      return action.status;
+  }
     default: return [];
   }
 }

@@ -12,22 +12,24 @@ import swal from 'sweetalert2';
 export class AuthEffects {
   constructor(
     private actions$: Actions,
-    private storeService: UserService
+    private userService: UserService
 ) {}
 
   @Effect()
     Login$: Observable<any> = this.actions$.ofType(Action.TRYLOGIN)
     .pipe(map((action: Action.Login) => action.status))
     .pipe(switchMap((req) =>
-      this.storeService.signin(req)
+      this.userService.signin(req)
       .pipe(switchMap( (status: any) => {
-        // console.log('status: ', status);
-        // if (status.status === 0) {
-        //   swal('warning', status.message);
-        // }
-        return [
-          new Action.LoginSuccess(status)
-        ];
+        // console.log('status: ', status.);
+        if (status.status === 0) {
+          swal('warning', status.message);
+          return [];
+        } else {
+          return [
+            new Action.LoginSuccess(status)
+          ];
+        }
       }
     )))
   );
@@ -35,7 +37,7 @@ export class AuthEffects {
     Signup$: Observable<any> = this.actions$.ofType(Action.SIGNUPBUYER)
     .pipe(map((action: Action.SignUpBuyer) => action.status))
     .pipe(switchMap((req) =>
-      this.storeService.signup(req)
+      this.userService.signup(req)
         .pipe(switchMap( (status: any) => {
         return [
           new Action.SignUpBuyerSuccess(status)

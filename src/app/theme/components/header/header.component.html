@@ -61,13 +61,13 @@
                 <a *ngIf="isLogin === false" routerLink="/account/sign-in">
                     <div class="profile-wrapper">
                         <img class="u-display-block centered-block-element img-circle" src="/assets/img/profile.png" alt="">
-                        <span class="u-display-block text-profile">Masuk</span>
+                        <!-- <span class="u-display-block text-profile">Masuk</span> -->
                     </div>
                 </a>
                 <a *ngIf="isLogin === true" class="account-menu--trigger" (click)="toggleAccountMenu()" clickOutside (clickOutside)="onClickOutside($event)">
                     <div class="profile-wrapper">
                         <img class="u-display-block centered-block-element img-circle" src="{{avatar}}" alt="">
-                        <span class="u-display-block text-profile">{{ userData.name.split(' ')[0] }}</span>
+                        <!-- <span class="u-display-block text-profile">{{ userData.name.split(' ')[0] }}</span> -->
                     </div>
                 </a>
                 <div [ngClass]="isAccountMenu ? 'show-element' : 'hide-element'" class="account-menu__container">

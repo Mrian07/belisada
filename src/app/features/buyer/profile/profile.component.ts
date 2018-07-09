@@ -31,10 +31,12 @@ export class ProfileComponent implements OnInit {
     firstDayOfWeek: 'mo',
     sunHighlight: true,
     inline: false,
+    maxYear: this.now.getFullYear() - 12,
+    minYear: this.now.getFullYear() - 90,
     disableSince: {
-    year: this.now.getFullYear(),
-    month: this.now.getMonth() + 1,
-    day: this.now.getDate()
+      year: this.now.getFullYear() - 12,
+      month: this.now.getMonth() + 1,
+      day: this.now.getDate()
     }
   };
   // ----- End date picker declaration required

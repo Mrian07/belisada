@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
   showSearch: Boolean = false;
 
   avatar: string;
-  
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -48,8 +47,6 @@ export class HeaderComponent implements OnInit {
   }
 
   getData() {
-    // console.log('ssss');
-    this.avatar = 'assets/img/profile.png';
     if (localStorage.getItem('isRemember') === 'true') {
       this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     } else {
@@ -57,7 +54,11 @@ export class HeaderComponent implements OnInit {
       if (isPlatformBrowser(this.platformId)) {
         const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
         this.userData = this.userService.getUserData(sess);
-        this.avatar = this.userData.avatar;
+        if (this.userData) {
+          this.avatar = this.userData.avatar;
+        } else {
+          this.avatar = 'assets/img/profile.png';
+        }
       }
     }
     if (this.userData) { this.isLogin = true; }
