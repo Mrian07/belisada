@@ -45,11 +45,17 @@ export class ProfileComponent implements OnInit {
   profile: Profile = new Profile();
   gender: string;
   isField: boolean;
-  createComForm: FormGroup;
+  public validationOnpopUpCreateStore: FormGroup;
 
   updateImg: Boolean = false;
   base64Img: string;
   imageUrl: string;
+
+  name: FormControl;
+  email: FormControl;
+  phone: FormControl;
+  Fcgender: FormControl;
+  dateOfBirth: FormControl;
 
   userData: UserData = new UserData();
   token: string;
@@ -66,21 +72,19 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.token = localStorage.getItem(LocalStorageEnum.TOKEN_KEY);
     this.isField = false;
-    this.createFormControls();
+  this.validationOnpopUpCreateStore = this.fb.group({
+    name: [null, Validators.required],
+    email: [null, [Validators.required, Validators.email]],
+    phone: [null, [Validators.required]],
+    gender: [null, [Validators.required]],
+    dateOfBirth: new FormControl(null, Validators.required)
+  });
+
     this.fillForms();
     this.loadData();
   }
 
    /* Fungsi ini untuk membuat nama form */
-   createFormControls() {
-    this.createComForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      gender: ['', Validators.required],
-      dateOfBirth: ['', Validators.required]
-    });
-  }
 
   keyLa(event: any) {
     const pattern = /[a-zA-Z ]+/;
@@ -101,7 +105,7 @@ export class ProfileComponent implements OnInit {
       this.imageUrl = 'assets/img/profile-buyer.jpg';
     }
 
-    this.createComForm.patchValue(
+    this.validationOnpopUpCreateStore.patchValue(
       {
         name: data.name,
         email: data.email,
@@ -130,18 +134,37 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+validateAllFormFields(formGroup: FormGroup) {
+  Object.keys(formGroup.controls).forEach(field => {
+    const control = formGroup.get(field);
+    if (control instanceof FormControl) {
+        control.markAsTouched({
+            onlySelf: true
+        });
+    } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+    }
+});
+  }
+  isFieldValid(field: string) {
+      return !this.validationOnpopUpCreateStore.get(field).valid && this.validationOnpopUpCreateStore.get(field).touched;
+  }
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
-    const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+       if (this.validationOnpopUpCreateStore.valid) {
+          const model = this.validationOnpopUpCreateStore.value;
+           const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
-    editProfileRequest.name = this.createComForm.controls['name'].value;
-    editProfileRequest.phone = this.createComForm.controls['phone'].value;
-    editProfileRequest.gender = this.createComForm.controls['gender'].value;
+    editProfileRequest.name = this.validationOnpopUpCreateStore.controls['name'].value;
+    editProfileRequest.phone = this.validationOnpopUpCreateStore.controls['phone'].value;
+    editProfileRequest.gender = this.validationOnpopUpCreateStore.controls['gender'].value;
     editProfileRequest.dateOfBirth =
-    this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
-    this.userService.updateProfile(editProfileRequest).subscribe(data => {
+    this.dateUtil.formatMyDate(this.validationOnpopUpCreateStore.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+
+         this.userService.updateProfile(editProfileRequest).subscribe(data => {
       this.authService.refreshToken().subscribe(respon => {
+        console.log('status', respon.status)
         if (respon.status === 1) {
           if (localStorage.getItem('isRemember') === 'true') {
             this.userService.setUserToLocalStorage(respon.token);
@@ -160,6 +183,11 @@ export class ProfileComponent implements OnInit {
         }
       });
     });
+      } else {
+        console.log(this.validationOnpopUpCreateStore.valid);
+          // swal('ops maaf ada kesalahan silahkan cek data kamu');
+          this.validateAllFormFields(this.validationOnpopUpCreateStore);
+      }
 
   }
 
@@ -193,3 +221,4 @@ export class ProfileComponent implements OnInit {
   }
 
 }
+

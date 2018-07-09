@@ -222,7 +222,7 @@ export class CreateStoreComponent implements OnInit {
       const model = this.store.value;
       const a = {
         // model.storePicture = this.data.picture,
-        storePicture: this.data.picture,
+        imageStoreUrl: this.data.picture,
         address: this.store.value.address,
         description: this.store.value.description,
         name: this.store.value.name,

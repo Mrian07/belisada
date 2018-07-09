@@ -15,6 +15,7 @@ import { SellerLayoutComponent } from './layout/seller/seller-layout.component';
 import { SidebarSellerComponent } from './components/sidebar-seller/sidebar-seller.component';
 import { HeadingSellerComponent } from './components/heading-seller/heading-seller.component';
 import { FilterPipe } from '@belisada/shared/pipes';
+import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
 
 const COMPONENTS = [
   HeaderComponent,
@@ -27,7 +28,8 @@ const COMPONENTS = [
   MainLayoutComponent,
   AuthLayoutComponent,
   BuyerLayoutComponent,
-  SellerLayoutComponent
+  SellerLayoutComponent,
+  FieldErrorDisplayComponent
 ];
 
 const PIPES = [

@@ -27,7 +27,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     BuyerComponent,
     ProfileComponent,
     ProfileEditComponent,
-    CreateStoreComponent
+    CreateStoreComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
