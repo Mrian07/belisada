@@ -87,7 +87,7 @@
                                 <div *ngIf="vForValidation.invalid || status === 1; else signUp">
                                     <div class="component-center">
                                         <div class="component-center">
-                                            <button class="btn btn-size-55 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid">DAFTAR</button>
+                                            <button class="btn btn-size-55 text-btn  btn-orange-disabled component-center" [disabled]="vForValidation.invalid || status === 1">DAFTAR</button>
                                         </div>
                                     </div>
                                 </div>
