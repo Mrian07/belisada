@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Globals } from '@belisada/core/services';
 
 @Component({
   selector: 'bs-main-layout',
@@ -6,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private globals: Globals) {
+  }
 
   ngOnInit() {
   }

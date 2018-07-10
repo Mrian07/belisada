@@ -54,8 +54,60 @@
     </div>
     <div class="bs-header__account-box">
         <ul>
-            <li>
+            <li class="shopping-cart" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
                 <img src="/assets/img/cart.png" alt="">
+
+                <div class="cart__container">
+                    <div class="arrow-up"></div>
+                    <div class="cart__header">
+                        <div class="cart__header--left">
+                            <img class="icon" src="/assets/img/cart.png" alt="">
+                            <span class="counter">3</span>
+                        </div>
+                        <div class="cart__header--right">
+                            Total: <span class="total-price">Rp 38.000.000</span>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="cart__content">
+                        <ul>
+                            <li>
+                                <div class="cart__content--left-side">
+                                    <img class="product--image" src="https://cdn.shopify.com/s/files/1/0259/7733/products/adidas_moves_pulse_large.jpg?v=1423689600" alt="">
+                                </div>
+                                <div class="cart__content--right-side">
+                                    <a [routerLink]="" class="product--title">Adidas orange parfum</a>
+                                    <span class="product--price">Rp 13.000.000</span><span class="product--qty">Qty 1</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="cart__content--left-side">
+                                    <img class="product--image" src="https://cdn.shopify.com/s/files/1/0259/7733/products/adidas_moves_pulse_large.jpg?v=1423689600" alt="">
+                                </div>
+                                <div class="cart__content--right-side">
+                                    <a [routerLink]="" class="product--title">Adidas orange parfume</a>
+                                    <span class="product--price">Rp 13.000.000</span><span class="product--qty">Qty 1</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="cart__content--left-side">
+                                    <img class="product--image" src="https://cdn.shopify.com/s/files/1/0259/7733/products/adidas_moves_pulse_large.jpg?v=1423689600" alt="">
+                                </div>
+                                <div class="cart__content--right-side">
+                                    <a [routerLink]="" class="product--title">Adidas orange parfume 300ml</a>
+                                    <span class="product--price">Rp 13.000.000</span><span class="product--qty">Qty 1</span>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cart__footer">
+                        <a [routerLink]="" class="button--goto-cart">Lihat Keranjang</a>
+                    </div>
+                </div>
+                <span class="cart__counter">3</span>
             </li>
             <li>
                 <a *ngIf="isLogin === false" routerLink="/account/sign-in">
