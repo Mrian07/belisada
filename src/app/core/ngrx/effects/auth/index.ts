@@ -23,7 +23,7 @@ export class AuthEffects {
       .pipe(switchMap( (status: any) => {
         // console.log('status: ', status.);
         if (status.status === 0) {
-          swal('warning', status.message);
+          swal('belisada.co.id', status.message, 'warning');
           return [];
         } else {
           return [

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { UserData } from '@belisada/core/models';
-import { UserService, SearchBarService } from '@belisada/core/services';
+import { UserService, SearchBarService, Globals } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { SearchBarResponse } from '@belisada/core/models/search/search.model';
@@ -36,7 +36,8 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private search: SearchBarService,
     private searchService: SearchService,
-    private shareMessageService: ShareMessageService
+    private shareMessageService: ShareMessageService,
+    private globals: Globals
   ) {
     this.searchBarResults = [];
   }
