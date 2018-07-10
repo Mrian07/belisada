@@ -2,8 +2,6 @@ import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
-
-
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
 const routes: Routes = [
@@ -26,6 +24,7 @@ const routes: Routes = [
   { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },
   { path: 'search-result', loadChildren: 'app/features/search-result/search-result.module#SearchResultModule' },
   { path: 'product', loadChildren: 'app/features/product/product.module#ProductModule' },
+  { path: 'transaction', loadChildren: 'app/features/transaction/transaction.module#TransactionModule' },
   {
     path: 'maintenance',
     component: MaintenanceComponent,

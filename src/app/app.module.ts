@@ -24,7 +24,6 @@ import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy } from '@angular/
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModelsComponent } from '@belisada/shared/components/models/models.component';
-import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
 import { ProvinceReducer, CityReducer } from '@belisada/core/ngrx/reducers/store';
 import { SigninComponent, SignUpComponent, SignUpActivationComponent,
@@ -42,7 +41,6 @@ import { HttpTokenInterceptor } from '@belisada/core/interceptors';
     Page404Component,
     MaintenanceComponent,
     ModelsComponent,
-    FieldErrorDisplayComponent,
     LandingPageComponent,
     HomeComponent
   ],
