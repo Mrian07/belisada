@@ -6,7 +6,8 @@ import { TransactionComponent } from '@belisada/features/transaction/transaction
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-
+import { TerimakasihPageComponent } from './terimakasih-page/terimakasih-page.component';
+import { CountdownTimerModule } from 'ngx-countdown-timer';
 @NgModule({
   imports: [
     CommonModule,
@@ -14,11 +15,13 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    CountdownTimerModule.forRoot()
   ],
   declarations: [
     TransactionComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    TerimakasihPageComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

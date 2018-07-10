@@ -2,6 +2,7 @@ import { TransactionComponent } from './transaction.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { TerimakasihPageComponent } from '@belisada/features/transaction/terimakasih-page/terimakasih-page.component';
 
 //const routes: Routes = [];
 
@@ -14,6 +15,13 @@ const routes: Routes = [
       {
         path: 'checkout',
         component: CheckoutComponent,
+        data: {
+          title: 'Chekout'
+        }
+      },
+      {
+        path: 'terimakasih',
+        component: TerimakasihPageComponent,
         data: {
           title: 'Chekout'
         }
