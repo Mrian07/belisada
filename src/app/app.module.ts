@@ -40,7 +40,6 @@ import { HttpTokenInterceptor } from '@belisada/core/interceptors';
     AppComponent,
     Page404Component,
     MaintenanceComponent,
-    ModelsComponent,
     LandingPageComponent,
     HomeComponent
   ],
