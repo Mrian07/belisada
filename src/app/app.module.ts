@@ -40,7 +40,6 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
     AppComponent,
     Page404Component,
     MaintenanceComponent,
-    ModelsComponent,
     LandingPageComponent,
     HomeComponent
   ],

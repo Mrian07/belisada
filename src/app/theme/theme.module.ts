@@ -1,3 +1,4 @@
+import { ModelsComponent } from '@belisada/shared/components/models/models.component';
 import { NgModule } from '@angular/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -18,6 +19,7 @@ import { FilterPipe } from '@belisada/shared/pipes';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
 
 const COMPONENTS = [
+  ModelsComponent,
   HeaderComponent,
   FooterComponent,
   SideAuthComponent,
