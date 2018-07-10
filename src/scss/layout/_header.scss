@@ -41,10 +41,10 @@
     &__account-box {
         width: 25rem;
 
-        ul {
+        > ul {
             list-style-type: none;
 
-            li {
+            > li {
                 float: left;
                 padding: 1.5rem;
                 height: 6rem;

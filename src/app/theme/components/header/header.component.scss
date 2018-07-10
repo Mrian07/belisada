@@ -68,3 +68,171 @@
         color: $color--belisada;
     }
 }
+
+.shopping-cart {
+
+    &:hover {
+        cursor: pointer;
+
+        .cart__container {
+            display: block;
+            cursor: default;
+        }
+    }
+}
+
+.cart {
+
+    &__counter {
+        display: inline-block;
+        position: absolute;
+        top: 1rem;
+        left: 3.5rem;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        text-align: center;
+        font-size: 1.2rem;
+        color: $color--white;
+        background-color: $color--belisada;
+    }
+
+    &__container {
+        display: none;
+        position: absolute;
+        top: 6rem;
+        right: 0;
+        width: 30rem;
+
+        transition: all 0.5s ease;
+        -moz-transition: all 0.5s ease; /* Firefox 4 */
+        -webkit-transition: all 0.5s ease; /* Safari and Chrome */
+        -o-transition: all 0.5s ease; /* Opera */
+        -ms-transition: all 0.5s ease; /* Explorer 10 */
+
+        .arrow-up {
+            position: relative;
+            float: right;
+            top: 0;
+            right: 1.9rem;
+
+            width: 0;
+            height: 0;
+
+            border-left: 1rem solid transparent;
+            border-right: 1rem solid transparent;
+            
+            border-bottom: 1rem solid $color--white;
+        }
+    }
+
+    &__header {
+        display: table;
+        width: 100%;
+        background-color: #fff;
+        border-bottom: 1px solid rgba(0, 0, 0, .30);
+        padding: 1rem;
+
+        &--left {
+            display: table-cell;
+
+            .icon {
+                max-height: 2.5rem;
+                vertical-align: middle;
+            }
+            .counter {
+                display: inline-block;
+                vertical-align: middle;
+                height: 2rem;
+                width: 2rem;
+                font-weight: 700;
+                border-radius: 50%;
+                text-align: center;
+                color: #ffffff;
+                background-color: #ED7425;
+                font-size: 1.2rem;
+                margin-left: .3rem;
+            }
+        }
+
+        &--right {
+            display: table-cell;
+            text-align: right;
+            font-size: 1.4rem;
+
+            .total-price {
+                color: #333;
+            }
+        }
+    }
+
+    &__content {
+        padding: 1rem;
+        background-color: #fff;
+
+        ul {
+            list-style: none;
+
+            li {
+                display: table;
+                width: 100%;
+                margin-bottom: .75rem;
+            }
+        }
+
+        &--left-side {
+            display: table-cell;
+            width: 7.5rem;
+            
+            .product--image {
+                width: 7.5rem;
+                vertical-align: middle;
+            }
+        }
+
+        &--right-side {
+            display: table-cell;
+            vertical-align: middle;
+            padding-left: 1rem;
+
+            .product {
+                &--title {
+                    display: block;
+                    font-size: 1.4rem;
+                    font-weight: 700;
+                    text-decoration: none;
+                    color: $color--dark-grey;
+                    
+                    &:hover {
+                        color: $color--grey;
+                    }
+                }
+                &--price {
+                    float: left;
+                    font-size: 1.4rem;
+                    color: $color--link-blue;
+                }
+                &--qty {
+                    float: right;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+
+    &__footer {
+        background-color: $color--white;
+
+        .button--goto-cart {
+            width: 100%;
+            display: block;
+            text-align: center;
+            border: 0;
+            padding: .5rem;
+            font-size: 2rem;
+            text-decoration: none;
+            color: $color--white;
+            background-color: $color--belisada;
+        }
+    }
+}
