@@ -34,7 +34,7 @@ import { SigninComponent, SignUpComponent, SignUpActivationComponent,
 import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 import { HttpTokenInterceptor } from '@belisada/core/interceptors';
-
+import { CountdownTimerModule } from 'ngx-countdown-timer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +54,7 @@ import { HttpTokenInterceptor } from '@belisada/core/interceptors';
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
     StoreModule.forRoot({}),
+    CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
