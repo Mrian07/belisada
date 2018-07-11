@@ -63,7 +63,7 @@
 .item-note{
     border: 1px solid #737373;
     border-radius:5px;
-    padding:5px;
+    padding:0px 5px;
     width:250px;
     color: #009dff;
 }
@@ -393,4 +393,9 @@
 #btn-drop .content li:last-of-type {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+}
+
+
+.btn-green{
+    background:#dcfcd5;
 }
