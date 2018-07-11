@@ -22,7 +22,7 @@ export class AddressService {
   getShipping() {
     return this.http.get(this.configuration.apiURL + '/address/shipping')
       .pipe(
-        map(rsl => rsl as GetShippingResponse)
+        map(rsl => rsl as GetShippingResponse[])
       );
   }
 }

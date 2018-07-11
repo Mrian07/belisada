@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   kodepos: FormControl;
   alamat: FormControl;
 
-  listShip: GetShippingResponse = new GetShippingResponse();
+  listShip: GetShippingResponse[];
 
   constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService) { }
 
@@ -37,7 +37,7 @@ export class CheckoutComponent implements OnInit {
   dataShipping() {
     this.addressService.getShipping().subscribe(respon => {
       this.listShip = respon;
-      console.log('apa:', this.listShip);
+      console.log('data list:', this.listShip);
       // if (respon.status === 1) {
       //   this.showDialogPilihAlamat = false;
       // } else {
@@ -60,6 +60,10 @@ export class CheckoutComponent implements OnInit {
         ),
         alamat: new FormControl(null, Validators.required),
     });
+  }
+
+  isFieldValid(field: string) {
+    return !this.formAddCrtl.get(field).valid && this.formAddCrtl.get(field).touched;
   }
 
   onSent() {
@@ -92,12 +96,20 @@ export class CheckoutComponent implements OnInit {
 
     this.formAddCrtl.get('district').valueChanges.subscribe(val => {
         this.getVillage(val);
+        // this.getVillage(val);
     });
-    this.formAddCrtl.get('district').valueChanges.subscribe(val => {});
+
+    this.formAddCrtl.get('villageId').valueChanges.subscribe(val => {
+      console.log('apa ini:', val);
+      const postalCode = this.villages.find(x => x.villageId === val).postal;
+      this.formAddCrtl.patchValue(
+        {
+          kodepos: postalCode,
+        });
+    });
   }
 
   getProvince() {
-    // Country ID harcoded to Indonesia
     this.storeService.getProvince('209').subscribe(data => {
         this.provinces = data;
     });
@@ -106,13 +118,11 @@ export class CheckoutComponent implements OnInit {
   getCity(id) {
       this.storeService.getCity(id).subscribe(data => {
           this.cities = data;
-          console.log('data city', data);
       });
   }
   getDistrict(id) {
       this.storeService.getDistrict(id).subscribe(data => {
           this.districts = data;
-          console.log('data district', data);
       });
   }
 
@@ -121,9 +131,9 @@ export class CheckoutComponent implements OnInit {
           this.villages = data;
           const model = this.formAddCrtl.value;
           const a = this.formAddCrtl.value.villageId = id.district;
-          console.log('data vilages', data);
+          console.log('apa', data);
+
       });
   }
-
 
 }
