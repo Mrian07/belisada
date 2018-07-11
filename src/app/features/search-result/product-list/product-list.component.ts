@@ -92,9 +92,11 @@ console.log('datanya', response);
     window.scrollTo(0, 0);
   }
 
-  goDetail(id, nama) {
-    this.router.navigate(['/product/product-detail/' + id + '/' + nama]);
-    window.scrollTo(0, 0);
+  goDetail(id, name) {
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    console.log(r);
+    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+   window.scrollTo(0, 0);
   }
 
   public getUser() {

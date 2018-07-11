@@ -10,6 +10,6 @@ export class TerimakasihPageComponent implements OnInit {
 
   ngOnInit() {
 
-    this._trialEndsAt = '2018-07-11 00:00:00';
+    this._trialEndsAt = '2018-07-12 00:00:00';
   }
 }

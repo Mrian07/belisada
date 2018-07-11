@@ -9,7 +9,7 @@
                 </div>
                 <div *ngIf="title === true;">
                     <form [formGroup]="vForValidation" (ngSubmit)="submit(fs)" #fs="ngForm" novalidate>
-                        <input type="text" formControlName="fullname"  (keypress)="keyLa($event)" placeholder="Nama Lengkap" class="input-style-text-90" required [ngClass]="{
+                        <input type="text" formControlName="fullname" maxlength="30" (keypress)="keyLa($event)" placeholder="Nama Lengkap" class="input-style-text-90" required [ngClass]="{
                             'has-danger': vForValidation.controls.fullname.invalid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched),
                             'has-success': vForValidation.controls.fullname.valid && (vForValidation.controls.fullname.dirty || vForValidation.controls.fullname.touched)
                             }">

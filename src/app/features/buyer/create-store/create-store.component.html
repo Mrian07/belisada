@@ -54,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-                <input type="text" formControlName="name" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Nama Toko" >
+                <input type="text" formControlName="name"  maxlength="30" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Nama Toko" >
                 <div *ngIf="store.controls.name.errors && store.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
                     <div class="testing">
                         <span class="tooltiptext">{{serverMessage}}</span>
