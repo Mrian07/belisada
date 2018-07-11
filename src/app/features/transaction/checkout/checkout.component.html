@@ -30,10 +30,8 @@
                           <div class="wrapper-drop">
                               <div class="content">
                                   <ul>
-                                      <a href="#"><li>Rumah</li></a>
-                                      <a href="#"><li>Pacar</li></a>
-                                      <a href="#"><li>Kosan</li></a>
-                                      <li (click)="showDialogPilihAlamat = !showDialogPilihAlamat">Tambah</li>
+                                      <a href="#"><li *ngFor="let itemShip of listShip">{{itemShip.addressName}}</li></a>
+                                      <li (click)="showDialogPilihAlamat = !showDialogPilihAlamat" class="btn-green"><b>Tambah</b></li>
                                   </ul>
                               </div>
                               <div class="parent">Pilih Alamat</div>
@@ -58,8 +56,6 @@
                   </table>
                 </div>
               </div>
-              
-              
 
             </td>
           </tr>
@@ -232,41 +228,60 @@
             <div class="row">
               <div class="col-6">
                 <label>Simpan sebagai alamat:</label>
-                <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
+                <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" maxlength="20" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
               </div>
               <div class="col-6">
                 <label>Nama Penerima:</label>
-                <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima">
+                <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima" maxlength="30">
               </div>
             </div>
             <div class="row">  
               <div class="col-6">
                 <label>No. Handphone:</label>
-                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone">
+                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" maxlength="15">
               </div>
               <div class="col-6">
                 <label>Kodepos:</label>
-                <input type="text" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos">
+                <input type="text" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos" maxlength="7">
               </div>
             </div>
             <div class="row">  
               <div class="col-6">
                 <label>Provinsi:</label>
-                <input type="text" formControlName="provinsi" class="input-style-text-100" placeholder="Masukan kodepos">
+                <select formControlName="province" required class="input-style-text-100" >
+                  <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
+                  <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
+                      {{ option.regionName }}
+                  </option>
+                </select>
               </div>
               <div class="col-6">
                 <label>Kota / Kabupaten:</label>
-                <input type="text" formControlName="kota" class="input-style-text-100" placeholder="Masukan kodepos">
+                <select formControlName="city" class="input-style-text-100">
+                  <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
+                  <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
+                  </option>
+                </select>
               </div>
             </div>
             <div class="row">  
               <div class="col-6">
                 <label>Kecamatan:</label>
-                <input type="text" formControlName="kecamatan" class="input-style-text-100" placeholder="Masukan kodepos">
+                <select formControlName="district" class="input-style-text-100">
+                  <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
+                  <option *ngFor="let option of districts" [ngValue]="option.districtId">
+                      {{ option.districtName }}
+                  </option>
+                </select>
               </div>
               <div class="col-6">
                 <label>Kelurahan:</label>
-                <input type="text" formControlName="kelurahan" class="input-style-text-100" placeholder="Masukan kodepos">
+                <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(validationOnpopUpCreateStore.value.villageId)">
+                  <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
+                  <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
+                      {{ option.villageName }}
+                  </option>
+                </select>
               </div>
             </div>
             <div class="row">  
@@ -277,7 +292,7 @@
             </div>
             <div class="row">  
               <div class="col-12">
-                <button class="btn btn--orange component-center center-for-button">Tambah Alamat</button>
+                <button class="btn btn--orange component-center center-for-button btn-size-100">Tambah Alamat</button>
               </div>
             </div>
           
