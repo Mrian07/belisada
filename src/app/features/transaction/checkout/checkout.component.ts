@@ -75,6 +75,7 @@ export class CheckoutComponent implements OnInit {
     this.addressService.addShipping(data).subscribe(respon => {
       if (respon.status === 1) {
         this.showDialogPilihAlamat = false;
+        this.dataShipping();
       } else {
 
       }

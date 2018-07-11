@@ -31,8 +31,6 @@
                               <div class="content">
                                   <ul>
                                       <a href="#"><li *ngFor="let itemShip of listShip">{{itemShip.addressName}}</li></a>
-                                      <a href="#"><li>Pacar</li></a>
-                                      <a href="#"><li>Kosan</li></a>
                                       <li (click)="showDialogPilihAlamat = !showDialogPilihAlamat" class="btn-green"><b>Tambah</b></li>
                                   </ul>
                               </div>
@@ -230,21 +228,21 @@
             <div class="row">
               <div class="col-6">
                 <label>Simpan sebagai alamat:</label>
-                <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
+                <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" maxlength="20" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
               </div>
               <div class="col-6">
                 <label>Nama Penerima:</label>
-                <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima">
+                <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima" maxlength="30">
               </div>
             </div>
             <div class="row">  
               <div class="col-6">
                 <label>No. Handphone:</label>
-                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone">
+                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" maxlength="15">
               </div>
               <div class="col-6">
                 <label>Kodepos:</label>
-                <input type="text" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos">
+                <input type="text" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos" maxlength="7">
               </div>
             </div>
             <div class="row">  
@@ -294,7 +292,7 @@
             </div>
             <div class="row">  
               <div class="col-12">
-                <button class="btn btn--orange component-center center-for-button">Tambah Alamat</button>
+                <button class="btn btn--orange component-center center-for-button btn-size-100">Tambah Alamat</button>
               </div>
             </div>
           
