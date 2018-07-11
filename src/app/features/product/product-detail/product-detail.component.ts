@@ -61,7 +61,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   goStore(id) {
-    alert(id);
   }
 
   selectImg(img) {

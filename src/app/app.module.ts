@@ -35,6 +35,7 @@ import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 import { HttpTokenInterceptor } from '@belisada/core/interceptors';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { ADirective } from '@belisada/shared/directives';
 @NgModule({
   declarations: [
     AppComponent,

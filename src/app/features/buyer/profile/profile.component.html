@@ -41,7 +41,7 @@
 			                    <div class="col-2 title-line">No. Handphone</div>
 			                    <div class="col-4" *ngIf="isField==false">{{profile.phone}}
 			                </div> 
-			                     <div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
+			                     <div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12" appA>
 			                        <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="Phone tidak boleh kosong"></app-field-error-display>
 			                        <div *ngIf="validationOnpopUpCreateStore.controls.phone.valid && (validationOnpopUpCreateStore.controls.phone.dirty && validationOnpopUpCreateStore.controls.phone.touched)">
 			<!--                                 <span class="tooltiptext"></span> -->

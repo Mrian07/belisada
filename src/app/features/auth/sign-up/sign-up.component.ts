@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
       this.vForValidation = this.fb.group({
           isSubscribe: new FormControl(''),
           fullname: new FormControl('',
-          [Validators.required
+          [Validators.required,
           ]),
           password: new FormControl('', [
               Validators.required,
