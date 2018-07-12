@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService } from '@belisada/core/services';
+import { PaymentService } from './../../../core/services/payment/payment.service';
+import { Payment, PaymentList } from '@belisada/core/models/payment/payment.model';
 
 @Component({
   selector: 'app-checkout',
@@ -24,14 +26,48 @@ export class CheckoutComponent implements OnInit {
   alamat: FormControl;
 
   listShip: GetShippingResponse[];
+  listPayment: PaymentList[];
+  payment: Payment[];
 
-  constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService) { }
+  isPayment: boolean;
+
+  constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService,
+    private paymentService: PaymentService) { }
 
   ngOnInit() {
+    this.isPayment = false;
     this.formAdd();
     this.getProvince();
     this.onChanges();
     this.dataShipping();
+    this.allPayment();
+  }
+
+  allPayment() {
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[0].data;
+    });
+  }
+
+  byTransfer() {
+    this.isPayment = true;
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[0].data;
+    });
+  }
+
+  byCart() {
+    this.isPayment = true;
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[1].data;
+    });
+  }
+
+  byInstan() {
+    this.isPayment = true;
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[2].data;
+  });
   }
 
   dataShipping() {

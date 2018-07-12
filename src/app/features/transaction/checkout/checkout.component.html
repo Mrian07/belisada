@@ -144,14 +144,14 @@
             
           <div class="row">
             <div class="col-4">
-              <div class='btn-pilih-metode-active'>Bank Transfer</div>
-              <div class='btn-arrow'><img src="assets/img/arrow-green.png"></div>
+              <div class='btn-pilih-metode-active' (click)="byTransfer()">Bank Transfer</div>
+              <div class='btn-arrow' *ngIf="isPayment==true"><img src="assets/img/arrow-green.png"></div>
             </div>
             <div class="col-4">
-              <div class='btn-pilih-metode'>Kartu Kredit</div>
+              <div class='btn-pilih-metode' (click)="byTransfer()">Kartu Kredit</div>
             </div>
             <div class="col-4">
-              <div class='btn-pilih-metode'>Pembayaran Instan</div>  
+              <div class='btn-pilih-metode' (click)="byTransfer()">Pembayaran Instan</div>  
             </div>
           </div>   
 
@@ -161,9 +161,14 @@
         </div>
       </div>
 
-      <div class='list-metode'>
+      <div class='list-metode' *ngIf="isPayment==true">
         <div class="row">
-          <div class="col-3">
+          <div class="col-3" *ngFor="let item of listPayment">
+            <div class="img-pay"><img src="{{imageUrl}}" class="img-icon"></div>
+            {{item.accountNumber}}<br>On<br>{{item.accountName}}
+          </div>
+
+          <!-- <div class="col-3">
             <div class="img-pay"><img src="assets/img/bank_bca.png" class="img-icon"></div>
             675765765775<br>On<br>PT Belisada Global Indonesia
           </div>
@@ -177,7 +182,7 @@
           </div>
           <div class="col-3">
             675765765775<br>On<br>PT Belisada Global Indonesia
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row">
