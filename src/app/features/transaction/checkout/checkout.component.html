@@ -225,7 +225,7 @@
 
           <form [formGroup]="formAddCrtl" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
 
-            <div class="row">
+            <div class="row row-atur">
               <div class="col-6">
                 <label>Simpan sebagai alamat:</label>
                 <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" maxlength="20" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
@@ -237,7 +237,7 @@
                 <app-field-error-display [displayError]="isFieldValid('penerima')" errorMsg="Penerima tidak boleh kosong"></app-field-error-display>
               </div>
             </div>
-            <div class="row">  
+            <div class="row row-atur">  
               <div class="col-4">
                 <label>No. Handphone:</label>
                 <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" maxlength="15">
@@ -251,6 +251,7 @@
                       {{ option.regionName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Provinsi tidak boleh kosong"></app-field-error-display>
               </div>
               <div class="col-4">
                 <label>Kota / Kabupaten:</label>
@@ -259,9 +260,10 @@
                   <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Kota tidak boleh kosong"></app-field-error-display>
               </div>
             </div>
-            <div class="row"> 
+            <div class="row row-atur"> 
 
               <div class="col-4">
                 <label>Kecamatan:</label>
@@ -271,6 +273,7 @@
                       {{ option.districtName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Kecamatan tidak boleh kosong"></app-field-error-display>
               </div>
               <div class="col-4">
                 <label>Kelurahan:</label>
@@ -280,6 +283,7 @@
                       {{ option.villageName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Kelurahan tidak boleh kosong"></app-field-error-display>
               </div>
               <div class="col-4">
                 <label>Kodepos:</label>
@@ -293,7 +297,7 @@
                 </ng-template>
               </div>              
             </div>
-            <div class="row">  
+            <div class="row row-atur">  
               <div class="col-12">
                 <label>Alamat:</label>
                 <textarea formControlName="alamat" class="input-style-text-100"></textarea>
