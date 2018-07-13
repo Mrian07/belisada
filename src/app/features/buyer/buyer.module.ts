@@ -10,6 +10,9 @@ import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { ThemeModule } from '../../theme/theme.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ADirective } from '@belisada/shared/directives';
+import { OrderComponent } from './order/order.component';
+import { OrderStatusComponent } from './order-status/order-status.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 
 
@@ -29,7 +32,10 @@ import { ADirective } from '@belisada/shared/directives';
     ProfileComponent,
     ProfileEditComponent,
     CreateStoreComponent,
-    ADirective
+    ADirective,
+    OrderComponent,
+    OrderStatusComponent,
+    OrderHistoryComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

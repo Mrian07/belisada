@@ -1,0 +1,9 @@
+<div class="contain-order">
+
+  <span class="btn-tab__active" (click)="orderStatus()">Status Pesanan</span> <span class="btn-tab__noActive" (click)="orderHistory()">Riwayat Pesanan</span>
+  <div class="frame-order">
+    <app-order-status *ngIf="tabOrderStatus==true"></app-order-status>
+    <app-order-history *ngIf="tabOrderHistory==true"></app-order-history>
+  </div>
+
+</div>
