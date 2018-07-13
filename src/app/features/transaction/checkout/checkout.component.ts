@@ -30,11 +30,13 @@ export class CheckoutComponent implements OnInit {
   payment: Payment[];
 
   isPayment: boolean;
+  isNote: boolean;
 
   constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService,
     private paymentService: PaymentService) { }
 
   ngOnInit() {
+    this.isNote = false;
     this.isPayment = false;
     this.formAdd();
     this.getProvince();
@@ -108,7 +110,7 @@ export class CheckoutComponent implements OnInit {
       data.phone = this.formAddCrtl.value.hp;
       data.postal = this.formAddCrtl.value.kodepos;
       data.villageId = this.formAddCrtl.value.villageId;
-  
+
       this.addressService.addShipping(data).subscribe(respon => {
         if (respon.status === 1) {
           this.showDialogPilihAlamat = false;
@@ -180,4 +182,11 @@ export class CheckoutComponent implements OnInit {
       });
   }
 
+  note() {
+    this.isNote = true;
+  }
+
+  cancelNote() {
+    this.isNote = false;
+  }
 }

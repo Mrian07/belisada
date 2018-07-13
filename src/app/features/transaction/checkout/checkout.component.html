@@ -91,8 +91,11 @@
             <td></td>
             <td colspan="6">
 
-              <div class="item-note">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div>
-        
+              <div class="item-note" (click)="note()" *ngIf="isNote==false">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div>
+              <div *ngIf="isNote==true"><textarea rows="10%" cols="100%"></textarea></div>
+              <div *ngIf="isNote==true" (click)="cancelNote()"><span class="btn-update">Update</span> <span class="btn-cancel">Cancel</span></div>
+              
+
             </td>
           </tr>
         </tbody>
