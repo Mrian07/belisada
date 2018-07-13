@@ -50,3 +50,20 @@
     color: #e81923;
     width: 50%;
 }
+
+.bs-btn {
+    padding: 10px 15px;
+    border: 0;
+}
+
+.bs-btn.btn-modal-view-cart {
+    margin-right: .5rem;
+    background-color: $color--belisada;
+    color: $color--white;
+}
+
+.bs-btn.btn-modal-contionue-shopping {
+    margin-left: .5rem;
+    background-color: #232f3d;
+    color: $color--white;
+}
