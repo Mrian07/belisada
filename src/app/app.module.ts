@@ -34,6 +34,7 @@ import { SigninComponent, SignUpComponent, SignUpActivationComponent,
 import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 import { HttpTokenInterceptor } from '@belisada/core/interceptors';
+import { StorageService, LocalStorageServie } from '@belisada/core/services/local-storage/storage.service';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { HttpTokenInterceptor } from '@belisada/core/interceptors';
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
+    { provide: StorageService, useClass: LocalStorageServie },
     { provide: APP_BASE_HREF, useValue: '/' },
     {
       provide: HTTP_INTERCEPTORS,
