@@ -9,6 +9,7 @@ import { BuyerRoutingModule } from '@belisada/features/buyer/buyer-routing.modul
 import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { ThemeModule } from '../../theme/theme.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { ADirective } from '@belisada/shared/directives';
 
 
 
@@ -28,6 +29,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     ProfileComponent,
     ProfileEditComponent,
     CreateStoreComponent,
+    ADirective
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

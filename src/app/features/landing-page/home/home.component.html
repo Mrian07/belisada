@@ -3,7 +3,8 @@
     You Are In Here :  {{ ip }} <br/>
 
     Your Country : {{ country }}
-    <div *ngIf="isLogin === false">
+    
+    <div *ngIf="isLogin === true">
         <button (click)="showDialog = !showDialog" class="btn">Buka Toko</button>
 
         <app-models [(visible)]="showDialog" class="frameDialog">

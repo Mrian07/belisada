@@ -36,12 +36,13 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
 import { HttpTokenInterceptor } from '@belisada/core/interceptors';
 import { StorageService, LocalStorageServie } from '@belisada/core/services/local-storage/storage.service';
 
+import { CountdownTimerModule } from 'ngx-countdown-timer';
+import { ADirective } from '@belisada/shared/directives';
 @NgModule({
   declarations: [
     AppComponent,
     Page404Component,
     MaintenanceComponent,
-    ModelsComponent,
     LandingPageComponent,
     HomeComponent
   ],
@@ -56,6 +57,7 @@ import { StorageService, LocalStorageServie } from '@belisada/core/services/loca
     BrowserAnimationsModule,
     AngularFontAwesomeModule,
     StoreModule.forRoot({}),
+    CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

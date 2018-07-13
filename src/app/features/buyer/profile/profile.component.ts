@@ -112,11 +112,11 @@ export class ProfileComponent implements OnInit {
         phone: data.phone,
         gender: data.gender,
         dateOfBirth: (dob instanceof Date && !isNaN(dob.valueOf())) ? {
-        date: {
+          date: {
             year: dob.getFullYear(),
             month: dob.getMonth() + 1,
             day: dob.getDate()
-            }
+          }
         } : null
       });
     });

@@ -46,7 +46,6 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
-        console.log('Produk', res);
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
         this.tabVal = this.productDetail.specification;
@@ -63,7 +62,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   goStore(id) {
-    alert(id);
   }
 
   selectImg(img) {

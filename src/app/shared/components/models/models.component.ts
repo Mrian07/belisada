@@ -20,6 +20,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class ModelsComponent implements OnInit {
   @Input() closable = true;
   @Input() visible: boolean;
+  @Input() maxwidth: number;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
