@@ -70,6 +70,12 @@
     padding:0px 5px;
     width:250px;
     color: #009dff;
+    cursor: pointer;
+    text-align: center;
+}
+
+.item-note:hover{
+    background: #f7f4f4;
 }
 
 .plus-minus{
@@ -279,6 +285,37 @@
 
 .btn-bayar:hover{
     background:#fcaf59;
+}
+
+.btn-update{
+    color:#ffffff;
+    background:#279215;
+    padding:10px;
+    text-align: center;
+    border-radius:5px;
+    margin-top:20px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-right:5px;
+}
+
+.btn-update:hover{
+    background:#6ce758;
+}
+
+.btn-cancel{
+    color:#ffffff;
+    background:#ef1e1e;
+    padding:10px;
+    text-align: center;
+    border-radius:5px;
+    margin-top:20px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.btn-cancel:hover{
+    background:#f44545;
 }
 
 .p-penerima{
