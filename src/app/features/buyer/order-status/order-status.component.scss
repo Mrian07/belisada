@@ -1,0 +1,110 @@
+.os-head{
+    padding:10px;
+    background: #f5f5f5;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+}
+
+.os-head:hover{
+    background: #ffffff;
+}
+
+.os-footer{
+    padding:10px;
+    background: #ffffff;
+    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); 
+}
+
+.text-order{
+    font-weight: bold;
+}
+
+.text-rek{
+    color: #4dc2f7;
+    font-weight: bold;
+}
+
+.text-payid{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text-payinfo{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#text-tunggu{
+    color: #fd9c3b;
+}
+
+.text-progress{
+    color: #fd9c3b;
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.text-finish{
+    color: #3c9505;
+    text-align: right;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.os-body{
+    border: 1px solid #dcdcdc;
+    padding: 20px;
+    margin-bottom:20px;
+}
+
+.row-atur{
+    margin-bottom:0px;
+    
+}
+
+.img-item{
+    background: #ebebeb;
+    height: 100px;
+    text-align: center;
+    padding: 10px;
+}
+
+.item-colom{
+    margin-bottom:5px;
+    padding:5px;
+    font-size: 12px;
+}
+
+.item-colom-border{
+    border:1px solid #ebebeb;
+    margin-bottom:5px;
+    padding:5px;
+    font-size: 12px;
+    border-radius:5px;
+}
+
+
+.btn-konfirm{
+    background: #fca500;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.btn-konfirm:hover{
+    background: #f9b025;    
+}
+
+.btn-invoice{
+    color: #2591fd;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-invoice:hover{
+    color: #54a5f7;
+}

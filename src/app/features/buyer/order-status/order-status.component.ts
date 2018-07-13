@@ -12,4 +12,8 @@ export class OrderStatusComponent implements OnInit {
   ngOnInit() {
   }
 
+  openOS() {
+
+  }
+
 }
