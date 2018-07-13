@@ -23,7 +23,7 @@
 
 <div *ngIf="activationResponse.status === 1">
     <!-- <h2>{{ activationResponse.message }}</h2> -->
-    <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p>
+    <p>Selamat {{name}}, akun belisada Anda sudah aktif silahkan <a routerLink="/account/sign-in">klik disini</a> untuk login.</p>
 </div> 
 
 <div *ngIf="activationResponse.status === 2">
