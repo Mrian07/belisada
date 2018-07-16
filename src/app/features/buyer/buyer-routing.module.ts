@@ -1,3 +1,4 @@
+import { OrderComponent } from './order/order.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProfileComponent } from '@belisada/features/buyer/profile/profile.component';
@@ -19,6 +20,13 @@ const routes: Routes = [
       //         title: 'Profile'
       //     }
       // },
+      {
+        path: 'order',
+        component: OrderComponent,
+        data: {
+          title: 'Order'
+        }
+      },
       {
         path: 'profile',
         component: ProfileComponent,

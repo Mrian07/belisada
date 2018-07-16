@@ -54,7 +54,7 @@ export class ProductDetailComponent implements OnInit {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
         this.tabVal = this.productDetail.specification;
-        this.imgIndex = this.moreInformation.storeImageUrl;
+        this.imgIndex = this.productDetail.imageUrl[0];
       });
     });
   }

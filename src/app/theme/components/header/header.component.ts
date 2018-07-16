@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { UserData } from '@belisada/core/models';
-import { UserService, SearchBarService, Globals, AuthService } from '@belisada/core/services';
+import { UserService, SearchBarService, Globals, AuthService, StoreService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { SearchBarResponse } from '@belisada/core/models/search/search.model';
@@ -21,6 +21,10 @@ interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
   totalCost: number;
 }
+
+import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
+import { Province, District, Village, City } from '@belisada/core/models/store/address';
+import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +53,30 @@ export class HeaderComponent implements OnInit {
   public itemCount: number;
   private cartSubscription: Subscription;
 
+
+  /*
+    dibawah buat popUp
+  */
+ public validationOnpopUpCreateStore: FormGroup;
+ provinces: Province[];
+ nameOwner: FormControl;
+ serverMessage: String;
+ fm: any = {};
+ cities: City[];
+ curentPostal: any;
+ districts: District[];
+ villages: Village[];
+ nameChecking: Boolean = false;
+ storeName: FormControl;
+ pending_submit: Boolean = false;
+ timer: any;
+ ip: string;
+ country: string;
+ storeUrl: FormControl;
+ regForm: boolean;
+ regSuccess: boolean;
+
+ role: number;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -59,36 +87,80 @@ export class HeaderComponent implements OnInit {
     private globals: Globals,
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private fb: FormBuilder, private storeService: StoreService, private userS: UserService
   ) {
     this.searchBarResults = [];
   }
 
   ngOnInit() {
+    this.storeName = new FormControl(null, Validators.required);
+    this.storeUrl = new FormControl(null, Validators.required);
+    this.validationOnpopUpCreateStore = this.fb.group({
+        nameOwner: new FormControl(null, Validators.required),
+        name: new FormControl(null, Validators.required),
+        storeUrl: this.storeUrl,
+      //   address: new FormControl(null, Validators.required),
+        email: new FormControl('', [
+            Validators.required,
+            Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+        ]),
+        password: new FormControl('', [
+            Validators.required,
+            Validators.minLength(7)
+        ]),
+      //   province: new FormControl(null, Validators.required),
+      //   city: new FormControl(null, Validators.required),
+      //   district: new FormControl(null, Validators.required),
+      //   villageId: new FormControl(null,
+      //       Validators.required,
+      //   ),
+      //   postal: new FormControl('', [
+      //       Validators.required,
+      //       Validators.minLength(5),
+      //       Validators.maxLength(5)
+
+      //   ]),
+      //   description: new FormControl(null, Validators.required)
+    });
     this.getData();
     this.cekFlag();
     this.shoppingCart();
   }
 
   getData() {
-    // if (localStorage.getItem('isRemember') === 'true') {
-      this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
-      if (this.userData) {
-        this.avatar = this.userData.avatar;
-      }
-    // } else {
-    // // console.log('userData : ', this.userData);
-    //   if (isPlatformBrowser(this.platformId)) {
-    //     const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
-    //     this.userData = this.userService.getUserData(sess);
-    //     if (this.userData) {
-    //       this.avatar = this.userData.avatar;
-    //     } else {
-    //       this.avatar = 'assets/img/profile.png';
-    //     }
-    //   }
-    // }
+    this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    this.avatar = this.userData.avatar;
+    this.role = this.userData.role;
     if (this.userData) { this.isLogin = true; }
+  }
+
+  goToSeller() {
+    window.location.href = 'https://seller0.belisada.id/auth/sign-in';
+  }
+
+  navigateToIkutJualan() {
+    this.router.navigate(['/buyer/create-store']);
+  }
+
+
+onNameKeydown(event: any) {
+  const pattern = /[a-zA-Z 0-9\+\- ]+/;
+
+  const inputChar = String.fromCharCode(event.charCode);
+  if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+      event.preventDefault();
+  }
+  this.validationOnpopUpCreateStore.get('name').valueChanges.subscribe(val => {
+    val = val.replace(/\s+/g, '_').toLowerCase();
+    this.validationOnpopUpCreateStore.patchValue({
+      storeUrl: val
+    });
+  });
+}
+
+  mulaiBerjualan() {
+    console.log('asdasdasd');
   }
 
   cekFlag() {
@@ -127,6 +199,67 @@ export class HeaderComponent implements OnInit {
     this.showSearch = false;
     this.router.navigate(['/search-result/product-list'], { queryParams: this.queryParams });
   }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+            control.markAsTouched({
+                onlySelf: true
+            });
+        } else if (control instanceof FormGroup) {
+            this.validateAllFormFields(control);
+        }
+    });
+}
+checkStoreName() {
+    const check_data: CheckStoreRequest = new CheckStoreRequest;
+    check_data.name = this.storeName.value;
+    this.storeService.isExist(check_data).subscribe(rsl => {
+        if (rsl.status !== 1) {
+            this.storeName.setErrors({
+                'server': true
+            });
+            this.serverMessage = rsl.message;
+        }
+        this.nameChecking = false;
+        if (this.pending_submit) {
+            this.onSent();
+            this.pending_submit = false;
+        }
+    }, err => {
+        this.nameChecking = false;
+        this.storeName.setErrors({
+            'server': true
+        });
+      //   this.serverMessage = 'opps, please try again';
+    });
+}
+isFieldValid(field: string) {
+    return !this.validationOnpopUpCreateStore.get(field).valid && this.validationOnpopUpCreateStore.get(field).touched;
+}
+
+onSent() {
+  console.log('oke oce', this.validationOnpopUpCreateStore.value);
+  if (this.validationOnpopUpCreateStore.valid) {
+      const model = this.validationOnpopUpCreateStore.value;
+
+      this.userS.createFormGuest(model).subscribe(rsl => {
+          if (rsl.status === 1) {
+                //   swal(rsl.message);
+                // swal('Pembuatan Toko Berhasil');
+                // swal
+                // this.flagStatus();
+                this.regSuccess = true;
+          } else {
+                swal(rsl.message);
+          }
+      });
+  } else {
+      swal('ops maaf ada kesalahan');
+      this.validateAllFormFields(this.validationOnpopUpCreateStore);
+  }
+}
 
   clickSearch(key, catID) {
     const queryParams = {

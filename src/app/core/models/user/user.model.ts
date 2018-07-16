@@ -64,7 +64,7 @@ export class SendEmailRequest {
 }
 
 export class SendEmailResponse extends BaseResponseModel {
-
+    name: string;
 }
 
 export class ResetPasswdRequest {

@@ -16,6 +16,7 @@ export class SignUpActivationComponent implements OnInit {
 
   key: string;
   emailFC: FormControl;
+  name: string;
   activationData;
   activationResponse: ActivationResponse = new ActivationResponse();
 
@@ -65,6 +66,7 @@ export class SignUpActivationComponent implements OnInit {
       (result.status === 0) ? 'error' : 'success'
       );
       this.emailFC.reset();
+      this.name = result.name;
     },
     error => {
       swal(
