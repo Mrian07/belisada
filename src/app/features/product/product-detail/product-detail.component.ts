@@ -119,7 +119,6 @@ export class ProductDetailComponent implements OnInit {
   }
 
   addToCart(id) {
-    console.log('id: ', id);
     this.shoppingCartService.addItem(id, 1);
   }
 
