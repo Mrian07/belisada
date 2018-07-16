@@ -3,14 +3,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TerimakasihPageComponent } from '@belisada/features/transaction/terimakasih-page/terimakasih-page.component';
+import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
 
-//const routes: Routes = [];
+// const routes: Routes = [];
 
 const routes: Routes = [
   {
     path: '',
     component: TransactionComponent,
-    // canActivateChild: [OnlyLoggedInUsersGuard],
+    canActivateChild: [OnlyLoggedInUsersGuard],
     children: [
       {
         path: 'checkout',

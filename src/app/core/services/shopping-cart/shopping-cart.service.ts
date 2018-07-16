@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
-import { ShoppingCart } from '@belisada/core/models/shopping-cart/shopping-cart.model';
+import {
+    ShoppingCart, AddToCartRequest, AddToCartResponse,
+    CartItemResponse
+  } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { DeliveryOption } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { StorageService } from '@belisada/core/services/local-storage/storage.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { Router } from '@angular/router';
 
+import { HttpClient } from '@angular/common/http';
+import { Configuration } from '@belisada/core/config';
+import { map } from 'rxjs/operators';
 import swal from 'sweetalert2';
+import { BaseResponseModel } from '@belisada/core/models';
+import { AuthService } from '@belisada/core/services/auth/auth.service';
 
 const CART_KEY = 'cart';
+const CART_POST_KEY = 'cart-post';
 
 @Injectable({
   providedIn: 'root'
@@ -18,23 +27,24 @@ export class ShoppingCartService {
   private storage: Storage;
   private subscriptionObservable: Observable<ShoppingCart>;
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
-  // private product: ProductDetailSimple[];
-  // private deliveryOptions: DeliveryOption[];
 
-  public constructor(private storageService: StorageService,
-                     private productService: ProductService,
-                     private routes: Router) {
-    this.storage = this.storageService.get();
-    // this.productService.all().subscribe((products) => this.products = products);
-    // this.deliveryOptionsService.all().subscribe((options) => this.deliveryOptions = options);
+  public constructor(
+    private http: HttpClient,
+    private configuration: Configuration,
+    private storageService: StorageService,
+    private productService: ProductService,
+    private routes: Router,
+    private authService: AuthService) {
 
-    this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
-      this.subscribers.push(observer);
-      observer.next(this.retrieve());
-      return () => {
-        this.subscribers = this.subscribers.filter((obs) => obs !== observer);
-      };
-    });
+      this.storage = this.storageService.get();
+
+      this.subscriptionObservable = new Observable<ShoppingCart>((observer: Observer<ShoppingCart>) => {
+        this.subscribers.push(observer);
+        observer.next(this.retrieve());
+        return () => {
+          this.subscribers = this.subscribers.filter((obs) => obs !== observer);
+        };
+      });
   }
 
   public get(): Observable<ShoppingCart> {
@@ -71,6 +81,10 @@ export class ShoppingCartService {
 
   public empty(): void {
     const newCart = new ShoppingCart();
+
+    this.storage.setItem(CART_KEY, JSON.stringify(newCart));
+    this.storage.setItem(CART_POST_KEY, JSON.stringify(newCart));
+
     this.save(newCart);
     this.dispatch(newCart);
   }
@@ -106,14 +120,6 @@ export class ShoppingCartService {
         }
       });
     });
-
-    // cart.itemsTotal = cart.items
-    //                       .map((item) => item.quantity * this.products.find((p) => p.id === item.productId).price)
-    //                       .reduce((previous, current) => previous + current, 0);
-    // cart.deliveryTotal = cart.deliveryOptionId ?
-    //                       this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price :
-    //                       0;
-    // cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
   }
 
   private retrieve(): ShoppingCart {
@@ -128,7 +134,6 @@ export class ShoppingCartService {
 
   private popupSuccess(prod) {
     swal({
-      // title: prod.name,
       html:
         `<div class="add-to-card-info">
           <div class="">
@@ -153,18 +158,14 @@ export class ShoppingCartService {
       cancelButtonText:
         `Continue to Shop`,
     }).then((result) => {
-      console.log('result: ', result);
-      // if (result === 'cancel') {
-
-      // } else {
-      //   this.routes.navigateByUrl('/cart');
-      // }
-
+      if (result.value) {
+        this.routes.navigateByUrl('/transaction/checkout');
+      }
     });
   }
 
   private save(cart: ShoppingCart): void {
-    this.storage.setItem(CART_KEY, JSON.stringify(cart));
+    this.storage.setItem((this.authService.getToken()) ? CART_POST_KEY : CART_KEY, JSON.stringify(cart));
   }
 
   private dispatch(cart: ShoppingCart): void {
@@ -176,5 +177,50 @@ export class ShoppingCartService {
             // we want all subscribers to get the update even if one errors.
           }
         });
+  }
+
+  public retrievePostLogin(cbSuccess) {
+    const cart = new ShoppingCart();
+    this.getSingleResult().subscribe(response => {
+      cart.grossTotal = response.grossTotal;
+      cart.deliveryTotal = response.deliveryTotal;
+      cart.itemsTotal = response.itemsTotal;
+
+      response.items.forEach((item, index) => {
+        const cartItem = new CartItem();
+        cartItem.productId = item.productId;
+        cartItem.quantity = item.quantity;
+        cart.items.push(cartItem);
+        // console.log('cart_loop: ', cart);
+        if (index === (response.items.length - 1)) {
+          return cbSuccess(cart);
+        } else {
+          return;
+        }
+      });
+    });
+  }
+
+  // !------ SHOPPING CART HIT API ------
+  getSingleResult(): Observable<CartItemResponse> {
+    return this.http.get(this.configuration.apiURL + '/buyer/cart/simple')
+      .pipe(
+        map(response => response as CartItemResponse)
+      );
+  }
+
+  create(data: AddToCartRequest): Observable<AddToCartResponse> {
+    console.log('data: ', data);
+    return this.http.post(this.configuration.apiURL + '/buyer/cart/create', data)
+      .pipe(
+        map(response => response as AddToCartResponse)
+      );
+  }
+
+  delete(id: number): Observable<BaseResponseModel> {
+    return this.http.delete(this.configuration.apiURL + '/delete/' + id)
+      .pipe(
+        map(response => response as BaseResponseModel)
+      );
   }
 }

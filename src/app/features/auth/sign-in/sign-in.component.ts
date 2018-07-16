@@ -12,6 +12,9 @@ import { Subscription } from 'rxjs';
 import { Store, ActionsSubject } from '@ngrx/store';
 import * as UserAction from '@belisada/core/ngrx/actions/auth';
 import * as UserReducer from '@belisada/core/ngrx/reducers/auth';
+import { ShoppingCart } from '@belisada/core/models/shopping-cart/shopping-cart.model';
+import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
+import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-signin',
@@ -40,7 +43,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private userService: UserService,
     private actionsSubject: ActionsSubject,
-    private ngrx: Store<UserAction.Login>
+    private ngrx: Store<UserAction.Login>,
+    private shoppingCartService: ShoppingCartService
   ) { }
 
   ngOnInit() {
@@ -58,13 +62,13 @@ export class SigninComponent implements OnInit, AfterViewInit {
         this.test = result;
 
           const token: string = this.test.token;
-          if (form.value.isRemember === 'true') {
+          // if (form.value.isRemember === 'true') {
             this.userService.setUserToLocalStorage(token);
-            this.userService.setRemember('true');
-          } else {
-            this.userService.setUserToSessionStorage(token);
-            this.userService.setRemember('false');
-          }
+            // this.userService.setRemember('true');
+          // } else {
+          //   this.userService.setUserToSessionStorage(token);
+          //   this.userService.setRemember('false');
+          // }
           this.router.navigateByUrl('/buyer/profile');
           // location.reload();
 
@@ -97,6 +101,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
       this.formSubmited = false;
       form.reset();
       form.patchValue({email: signinRequest.email});
+      this.setCartToLocalStorage();
       // this.router.navigateByUrl('/');
     }
     this.LoginStatus.unsubscribe();
@@ -142,7 +147,24 @@ export class SigninComponent implements OnInit, AfterViewInit {
     this.penampung = event.keyCode === 9;
     if (event.keyCode === 9) {
       console.log('ini tab');
+    }
   }
+
+  setCartToLocalStorage() {
+    console.log('setCartToLocalStorage');
+    const cart = new ShoppingCart();
+    this.shoppingCartService.getSingleResult().subscribe(response => {
+      cart.grossTotal = response.grossTotal;
+      cart.deliveryTotal = response.deliveryTotal;
+      cart.itemsTotal = response.itemsTotal;
+
+      response.items.forEach((item, index) => {
+        const cartItem = new CartItem();
+        cartItem.productId = item.productId;
+        cartItem.quantity = item.quantity;
+        cart.items.push(cartItem);
+      });
+    });
   }
 
 }

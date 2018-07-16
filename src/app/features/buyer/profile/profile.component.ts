@@ -164,13 +164,13 @@ validateAllFormFields(formGroup: FormGroup) {
 
          this.userService.updateProfile(editProfileRequest).subscribe(data => {
       this.authService.refreshToken().subscribe(respon => {
-        console.log('status', respon.status)
+        console.log('status', respon.status);
         if (respon.status === 1) {
-          if (localStorage.getItem('isRemember') === 'true') {
+          // if (localStorage.getItem('isRemember') === 'true') {
             this.userService.setUserToLocalStorage(respon.token);
-          } else {
-            this.userService.setUserToSessionStorage(respon.token);
-          }
+          // } else {
+          //   this.userService.setUserToSessionStorage(respon.token);
+          // }
 
           swal(
             'Sukses',
