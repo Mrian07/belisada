@@ -330,9 +330,14 @@
 
 
 .w-In-Role2 {
-padding-right: 3%;
-padding-left: 3%;
-width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 161px;
+}
+
+.padding--for--text {
+    padding-top: 8px;
+    text-align: center;
 }
 
 /*
@@ -391,5 +396,12 @@ width: 100%;
     .bs-header__account-box-edited--wahyu {
         position: absolute;
         left: 59%;
+    }
+}
+
+@media screen and (width: 1920px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 78%;
     }
 }

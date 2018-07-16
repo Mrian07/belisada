@@ -140,11 +140,13 @@
             </li>
                     <li *ngIf="role === 0" class="padding__button right-14">
                         <div (click)="showDialog = !showDialog" class="colx2 btn btn--orange btn--size--80 w--forbutton">
-                            <div><p>Mulai Berjualan Di belisada</p>
+                            <div>
+                                
+                                <p class="padding--for--text">Mulai Berjualan</p>
                             <!-- <p>belisada</p> -->
                             </div>
                             <div>
-                                <img src="/assets/img/store_icon.png">
+                                <img  class="padding--for--text" src="/assets/img/store_icon.png">
                             </div>
         
                         </div>
@@ -154,10 +156,10 @@
                             <div (click)="goToSeller()" class="colx2 btn btn--orange btn--size--80 w--forbutto">
 
                                 <div>
-                                        <p>Mulai Berjualan Di belisada</p>
+                                        <p class="padding--for--text">Belisada Seller</p>
                                 </div>
                                 <div>
-                                    <img src="/assets/img/store_icon.png">
+                                    <img class="padding--for--text" src="/assets/img/store_icon.png">
                                 </div>
             
                             </div>
@@ -166,11 +168,12 @@
                             <li *ngIf="role === 2" class="padding__button right-14">
                                     <div (click)="navigateToIkutJualan()" class="colx2 btn btn--orange btn--size--80 w-In-Role2">
         
-                                        <div><p>Pergi Ke</p>
-                                        <p>Belisada Seller</p>
+                                        <div>
+                                            <p class="padding--for--text">Mulai Berjualan</p>
+                                           
                                         </div>
                                         <div>
-                                            <img src="/assets/img/store_icon.png">
+                                            <img class="padding--for--text" src="/assets/img/store_icon.png">
                                         </div>
                     
                                     </div>
