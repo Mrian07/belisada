@@ -9,8 +9,6 @@ import { Configuration } from '@belisada/core/config';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { Http, Headers, Response } from '@angular/http'
-
 @Injectable({
   providedIn: 'root',
 })
@@ -27,13 +25,13 @@ export class AuthService {
   token: any;
 
   checkToken() {
-    if (localStorage.getItem('isRemember') === 'true') {
+    // if (localStorage.getItem('isRemember') === 'true') {
       this.token = localStorage.getItem('token');
-    } else {
-      if (isPlatformBrowser(this.platformId)) {
-        this.token = sessionStorage.getItem('token');
-      }
-    }
+    // } else {
+    //   if (isPlatformBrowser(this.platformId)) {
+    //     this.token = sessionStorage.getItem('token');
+    //   }
+    // }
 
     const objToken = {
       token : this.token
@@ -50,13 +48,13 @@ export class AuthService {
   Description: Fungsi ini mengambil token yang tersimpan pada local storage.
   */
   getToken() {
-    if (localStorage.getItem('isRemember') === 'true') {
+    // if (localStorage.getItem('isRemember') === 'true') {
       this.token = localStorage.getItem('token');
-    } else {
-      if (isPlatformBrowser(this.platformId)) {
-      this.token = sessionStorage.getItem('token');
-      }
-    }
+    // } else {
+    //   if (isPlatformBrowser(this.platformId)) {
+    //   this.token = sessionStorage.getItem('token');
+    //   }
+    // }
     if (this.token) {
       return this.token;
     }

@@ -32,12 +32,7 @@ export class SidebarBuyerComponent implements OnInit {
     console.log('location', this.location);
     this.btnJual = false;
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
-      console.log('userData : ', this.userData);
-      this.pemisah = this.userData.role;
-      if (isPlatformBrowser(this.platformId)) {
-        const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
-        this.userData = this.userService.getUserData(sess);
-      }
+    this.pemisah = this.userData.role;
     if (this.userData) { this.isLogin = true; }
   }
 

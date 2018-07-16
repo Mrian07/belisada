@@ -10,6 +10,7 @@ export class UserData {
     email: string;
     name: string;
     role: number;
+    storeId: number;
 }
 
 export class SignupData {
@@ -86,7 +87,6 @@ export class Profile {
     status?: string;
     message?: string;
 
-
     regionId?: any;
     address: string;
     mcityId: number;
@@ -96,7 +96,7 @@ export class Profile {
     districtId: number;
     districtName: string;
     idcard: string;
-    // imageAvatar: string;
+
     imageIDCard: string;
     imageNPWP: string;
     mBpartnerId: number;

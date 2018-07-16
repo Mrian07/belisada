@@ -5,11 +5,22 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 
 import { UserData } from '@belisada/core/models';
-import { UserService, SearchBarService, Globals, StoreService } from '@belisada/core/services';
+import { UserService, SearchBarService, Globals, AuthService, StoreService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { SearchBarResponse } from '@belisada/core/models/search/search.model';
 import { ShareMessageService } from '@belisada/core/services';
+import { Observable, Subscription } from 'rxjs';
+import { ShoppingCart } from '@belisada/core/models/shopping-cart/shopping-cart.model';
+import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
+import { ProductDetailSimple } from '@belisada/core/models/product/product-detail-simple';
+import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
+import { ProductService } from '@belisada/core/services/product/product.service';
+
+interface ICartItemWithProduct extends CartItem {
+  product: ProductDetailSimple;
+  totalCost: number;
+}
 
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Province, District, Village, City } from '@belisada/core/models/store/address';
@@ -33,7 +44,14 @@ export class HeaderComponent implements OnInit {
   keyword: string;
   showSearch: Boolean = false;
 
-  avatar: string;
+  avatar = 'assets/img/profile.png';
+
+  itemsTotal: number;
+
+  public cart: Observable<ShoppingCart>;
+  public cartItems: ICartItemWithProduct[] = [];
+  public itemCount: number;
+  private cartSubscription: Subscription;
 
 
   /*
@@ -57,8 +75,8 @@ export class HeaderComponent implements OnInit {
  storeUrl: FormControl;
  regForm: boolean;
  regSuccess: boolean;
+ role = 0;
 
- role: number;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -67,6 +85,9 @@ export class HeaderComponent implements OnInit {
     private searchService: SearchService,
     private shareMessageService: ShareMessageService,
     private globals: Globals,
+    private shoppingCartService: ShoppingCartService,
+    private productService: ProductService,
+    private authService: AuthService,
     private fb: FormBuilder, private storeService: StoreService, private userS: UserService
   ) {
     this.searchBarResults = [];
@@ -104,30 +125,16 @@ export class HeaderComponent implements OnInit {
     });
     this.getData();
     this.cekFlag();
+    this.shoppingCart();
   }
 
   getData() {
-    if (localStorage.getItem('isRemember') === 'true') {
-      this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
-      console.log('userData : ', this.userData);
-    } else {
-    console.log('userData : ', this.userData);
-      if (isPlatformBrowser(this.platformId)) {
-        const sess = sessionStorage.getItem(LocalStorageEnum.TOKEN_KEY);
-        this.userData = this.userService.getUserData(sess);
-        if (this.userData) {
-          this.avatar = this.userData.avatar;
-          this.role = this.userData.role;
-          console.log(this.role);
-        } else {
-
-          this.role = 0;
-          console.log(this.role);
-          this.avatar = 'assets/img/profile.png';
-        }
-      }
+    this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    if (this.userData) {
+      this.avatar = this.userData.avatar;
+      this.role = this.userData.role;
+      this.isLogin = true;
     }
-    if (this.userData) { this.isLogin = true; }
   }
 
   goToSeller() {
@@ -278,12 +285,13 @@ onSent() {
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        if (localStorage.getItem('isRemember') === 'true') {
+        // if (localStorage.getItem('isRemember') === 'true') {
           localStorage.removeItem(LocalStorageEnum.TOKEN_KEY);
-        } else {
-          sessionStorage.clear();
-          localStorage.removeItem('isRemember');
-        }
+        // } else {
+        //   sessionStorage.clear();
+        //   localStorage.removeItem('isRemember');
+        // }
+        this.shoppingCartService.empty();
         this.isAccountMenu = false;
         swal(
           'Success!',
@@ -308,6 +316,56 @@ onSent() {
   }
   goToProfile() {
     this.router.navigateByUrl('/buyer/profile');
+  }
+
+  shoppingCart() {
+    this.cart = this.shoppingCartService.get();
+    this.cartSubscription = this.cart.subscribe((cart) => {
+      this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
+      this.itemsTotal = cart.itemsTotal;
+      this.cartItems = [];
+      cart.items.forEach(item => {
+        this.productService.get(item.productId).subscribe(result => {
+          const product = result.data;
+          this.cartItems.push({
+            ...item,
+            product,
+            totalCost: product.pricelist * item.quantity });
+        });
+      });
+    });
+  }
+
+  public removeProductFromCart(productId: number, quantity: number, itemCartId: number): void {
+    swal({
+      title: 'Belisada.co.id',
+      text: 'Apakah item tersebut akan dihapus?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Tidak'
+    }).then((result) => {
+      if (result.value) {
+        if (this.authService.getToken()) {
+          this.shoppingCartService.delete(itemCartId).subscribe(response => {
+            if (response.status === 1) {
+              this.shoppingCartService.addItem(productId, -quantity);
+              swal(
+                'Sukses',
+                'Item yang Anda pilih berhasil dihapus',
+                'success'
+              );
+            } else {
+              swal(response.message);
+            }
+          });
+        } else {
+          this.shoppingCartService.addItem(productId, -quantity);
+        }
+      }
+    });
   }
 
 }
