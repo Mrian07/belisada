@@ -44,7 +44,7 @@ export class HeaderComponent implements OnInit {
   keyword: string;
   showSearch: Boolean = false;
 
-  avatar: string;
+  avatar = 'assets/img/profile.png';
 
   itemsTotal: number;
 
@@ -75,8 +75,8 @@ export class HeaderComponent implements OnInit {
  storeUrl: FormControl;
  regForm: boolean;
  regSuccess: boolean;
+ role = 0;
 
- role: number;
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -130,9 +130,11 @@ export class HeaderComponent implements OnInit {
 
   getData() {
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
-    this.avatar = this.userData.avatar;
-    this.role = this.userData.role;
-    if (this.userData) { this.isLogin = true; }
+    if (this.userData) {
+      this.avatar = this.userData.avatar;
+      this.role = this.userData.role;
+      this.isLogin = true;
+    }
   }
 
   goToSeller() {

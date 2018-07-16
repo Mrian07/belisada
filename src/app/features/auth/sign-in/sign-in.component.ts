@@ -64,6 +64,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
           const token: string = this.test.token;
           // if (form.value.isRemember === 'true') {
             this.userService.setUserToLocalStorage(token);
+            this.setCartToLocalStorage();
             // this.userService.setRemember('true');
           // } else {
           //   this.userService.setUserToSessionStorage(token);
@@ -101,7 +102,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
       this.formSubmited = false;
       form.reset();
       form.patchValue({email: signinRequest.email});
-      this.setCartToLocalStorage();
       // this.router.navigateByUrl('/');
     }
     this.LoginStatus.unsubscribe();
