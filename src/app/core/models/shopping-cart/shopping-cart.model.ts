@@ -24,12 +24,12 @@ export class AddToCartRequest {
 }
 
 export class AddToCartResponse extends BaseResponseModel {
-
+  itemCartId: number;
 }
 
 export class CartItemResponse {
   items: CartItemDetailResponse[] = new Array<CartItemDetailResponse>();
-  grossTotal = 0;
+  grandTotal = 0;
   deliveryTotal = 0;
   itemsTotal = 0;
 

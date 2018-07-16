@@ -18,7 +18,7 @@ import { BaseResponseModel } from '@belisada/core/models';
 import { AuthService } from '@belisada/core/services/auth/auth.service';
 
 const CART_KEY = 'cart';
-const CART_POST_KEY = 'cart-post';
+const CART_POST_KEY = 'cartpost';
 
 @Injectable({
   providedIn: 'root'
@@ -51,28 +51,30 @@ export class ShoppingCartService {
     return this.subscriptionObservable;
   }
 
-  public addItem(productId: number, quantity: number): void {
+  public addItem(productId: number, quantity: number, itemCartId?: number): void {
     const cart = this.retrieve();
     let item = cart.items.find((p) => p.productId === productId);
     if (item === undefined) {
       item = new CartItem();
       item.productId = productId;
+      if (itemCartId) {
+        item.itemCartId = itemCartId;
+      }
       cart.items.push(item);
     }
 
     item.quantity += quantity;
     cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
     if (cart.items.length === 0) {
-      // cart.deliveryOptionId = undefined;
+      cart.freightRate = undefined;
+      this.empty();
     }
 
     this.calculateCart(cart, (modifiedCart, prod) => {
       this.save(modifiedCart);
       this.dispatch(modifiedCart);
 
-      console.log('prod: ', prod);
-      console.log(prod + ' ---- ' + productId);
-
+      console.log(prod.productId + ' ----- ' + productId);
       if (prod.productId === productId) {
         this.popupSuccess(prod);
       }
@@ -91,7 +93,6 @@ export class ShoppingCartService {
 
   public setDeliveryOption(deliveryOption: DeliveryOption): void {
     const cart = this.retrieve();
-    // cart.deliveryOptionId = deliveryOption.id;
     this.calculateCart(cart, (modifiedCart) => {
       this.save(modifiedCart);
       this.dispatch(modifiedCart);
@@ -101,20 +102,17 @@ export class ShoppingCartService {
   private calculateCart(cart: ShoppingCart, calculateCartCb): void {
     cart.itemsTotal = 0;
     cart.deliveryTotal = 0;
-    cart.grossTotal = 0;
-
     cart.items.forEach((item, index) => {
       this.productService.get(item.productId)
-      .subscribe(productResponse => {
-        const product = productResponse.data;
-        product.weight = (product.weight === 0) ? 1 : product.weight;
-        // console.log('product.weight: ', product.weight);
-        cart.itemsTotal += item.quantity * product.pricelist;
+      .subscribe(product => {
+        const prod = product.data;
+        prod.weight = (prod.weight === 0) ? 1 : prod.weight;
+        cart.itemsTotal += item.quantity * prod.pricelist;
         cart.deliveryTotal +=
-          (cart.freightRate === undefined) ? 0 : cart.freightRate.amount * item.quantity * product.weight;
+          (cart.freightRate === undefined) ? 0 : cart.freightRate.amount * item.quantity * prod.weight;
         cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
         if (index === (cart.items.length - 1)) {
-          return calculateCartCb(cart, product);
+          return calculateCartCb(cart, prod);
         } else {
           return;
         }
@@ -124,7 +122,7 @@ export class ShoppingCartService {
 
   private retrieve(): ShoppingCart {
     const cart = new ShoppingCart();
-    const storedCart = this.storage.getItem(CART_KEY);
+    const storedCart = this.storage.getItem((this.authService.getToken()) ? CART_POST_KEY : CART_KEY);
     if (storedCart) {
       cart.updateFrom(JSON.parse(storedCart));
     }
@@ -168,7 +166,7 @@ export class ShoppingCartService {
     this.storage.setItem((this.authService.getToken()) ? CART_POST_KEY : CART_KEY, JSON.stringify(cart));
   }
 
-  private dispatch(cart: ShoppingCart): void {
+  public dispatch(cart: ShoppingCart): void {
     this.subscribers
         .forEach((sub) => {
           try {
@@ -182,9 +180,10 @@ export class ShoppingCartService {
   public retrievePostLogin(cbSuccess) {
     const cart = new ShoppingCart();
     this.getSingleResult().subscribe(response => {
-      cart.grossTotal = response.grossTotal;
+      console.log('response--retrievePostLogin: ', response);
+      cart.grossTotal = response.grandTotal;
       cart.deliveryTotal = response.deliveryTotal;
-      cart.itemsTotal = response.itemsTotal;
+      cart.itemsTotal = response.grandTotal;
 
       response.items.forEach((item, index) => {
         const cartItem = new CartItem();

@@ -1,4 +1,5 @@
 export class ProductDetailSimple {
+    productId: number;
     name: string;
     brandName: string;
     storeId: number;

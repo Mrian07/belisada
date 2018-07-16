@@ -324,7 +324,6 @@ onSent() {
       this.itemCount = cart.items.map((x) => x.quantity).reduce((p, n) => p + n, 0);
       this.itemsTotal = cart.itemsTotal;
       this.cartItems = [];
-      console.log('cart: ', cart);
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe(result => {
           const product = result.data;
@@ -332,8 +331,6 @@ onSent() {
             ...item,
             product,
             totalCost: product.pricelist * item.quantity });
-
-            console.log('this.cartItems: ', this.cartItems);
         });
       });
     });

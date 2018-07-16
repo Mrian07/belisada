@@ -145,11 +145,13 @@ export class ProductDetailComponent implements OnInit {
             quantity: quantity
           };
 
-          this.shoppingCartService.create(addToCartRequest).subscribe(result => {
-            if (result.status === 1) {
-              this.shoppingCartService.addItem(productId, +quantity);
+          this.shoppingCartService.create(addToCartRequest).subscribe(response => {
+            console.log('response: ', response);
+            if (response.status === 1) {
+              // this.shoppingCartService.addItem(productId, +quantity);
+              this.shoppingCartService.addItem(productId, +quantity, +response.itemCartId);
             } else {
-              swal('belisada.id', result.message, 'error');
+              swal('belisada.id', response.message, 'error');
             }
           });
         }
