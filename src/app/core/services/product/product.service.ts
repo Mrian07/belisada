@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
 import { AddProductRequest, AddProductResponse, ProductDetail } from '@belisada/core/models/product/product.model';
+import { ProductDetailSimple, ProductSimple } from '@belisada/core/models/product/product-detail-simple';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,21 @@ import { AddProductRequest, AddProductResponse, ProductDetail } from '@belisada/
 export class ProductService {
 
   constructor(private http: HttpClient, private configuration: Configuration) { }
+
+  get(id): Observable<ProductSimple> {
+    const queryParams = {
+      productId: id
+    };
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    params.set('productId', id);
+    return this.http.get(this.configuration.apiURL + '/product/detail', {params: params})
+      .pipe(
+        map(response => response as ProductSimple)
+      );
+  }
 
   addProduct(data: AddProductRequest): Observable<AddProductResponse> {
     return this.http.post(this.configuration.apiURL + '/seller/product/create', data)
@@ -22,9 +38,8 @@ export class ProductService {
 
   detailProduct(id: Object): Observable<ProductDetail> {
     return this.http.get(this.configuration.apiUrlMongo + '/product/detail/' + id)
-    .pipe(
-      map(response => response as ProductDetail)
-    );
+      .pipe(
+        map(response => response as ProductDetail)
+      );
   }
-
 }

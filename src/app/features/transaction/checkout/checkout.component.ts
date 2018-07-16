@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService } from '@belisada/core/services';
+import { PaymentService } from './../../../core/services/payment/payment.service';
+import { Payment, PaymentList } from '@belisada/core/models/payment/payment.model';
 
 @Component({
   selector: 'app-checkout',
@@ -23,26 +25,56 @@ export class CheckoutComponent implements OnInit {
   kodepos: FormControl;
   alamat: FormControl;
 
-  listShip: GetShippingResponse = new GetShippingResponse();
+  listShip: GetShippingResponse[];
+  listPayment: PaymentList[];
+  payment: Payment[];
 
-  constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService) { }
+  isPayment: boolean;
+  isNote: boolean;
+
+  constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService,
+    private paymentService: PaymentService) { }
 
   ngOnInit() {
+    this.isNote = false;
+    this.isPayment = false;
     this.formAdd();
     this.getProvince();
     this.onChanges();
     this.dataShipping();
+    this.allPayment();
+  }
+
+  allPayment() {
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[0].data;
+    });
+  }
+
+  byTransfer() {
+    this.isPayment = true;
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[0].data;
+    });
+  }
+
+  byCart() {
+    this.isPayment = true;
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[1].data;
+    });
+  }
+
+  byInstan() {
+    this.isPayment = true;
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[2].data;
+  });
   }
 
   dataShipping() {
     this.addressService.getShipping().subscribe(respon => {
       this.listShip = respon;
-      console.log('apa:', this.listShip);
-      // if (respon.status === 1) {
-      //   this.showDialogPilihAlamat = false;
-      // } else {
-
-      // }
     });
   }
 
@@ -51,7 +83,8 @@ export class CheckoutComponent implements OnInit {
         simpan_sebagai: new FormControl(null, Validators.required),
         penerima: new FormControl(null, Validators.required),
         hp: new FormControl(null, Validators.required),
-        kodepos: new FormControl(null, Validators.required),
+        kodepos: new FormControl(null, [Validators.required, Validators.minLength(5)]
+        ),
         province: new FormControl(null, Validators.required),
         city: new FormControl(null, Validators.required),
         district: new FormControl(null, Validators.required),
@@ -62,25 +95,46 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  onSent() {
-    const data = new AddShippingRequest();
-    data.address = this.formAddCrtl.value.alamat;
-    data.addressName = this.formAddCrtl.value.simpan_sebagai;
-    data.isDefault = false;
-    data.name = this.formAddCrtl.value.penerima;
-    data.phone = this.formAddCrtl.value.hp;
-    data.postal = this.formAddCrtl.value.kodepos;
-    data.villageId = this.formAddCrtl.value.villageId;
-
-    this.addressService.addShipping(data).subscribe(respon => {
-      if (respon.status === 1) {
-        this.showDialogPilihAlamat = false;
-        this.dataShipping();
-      } else {
-
-      }
-    });
+  isFieldValid(field: string) {
+    return !this.formAddCrtl.get(field).valid && this.formAddCrtl.get(field).touched;
   }
+
+  onSent() {
+
+    if (this.formAddCrtl.valid) {
+      const data = new AddShippingRequest();
+      data.address = this.formAddCrtl.value.alamat;
+      data.addressName = this.formAddCrtl.value.simpan_sebagai;
+      data.isDefault = false;
+      data.name = this.formAddCrtl.value.penerima;
+      data.phone = this.formAddCrtl.value.hp;
+      data.postal = this.formAddCrtl.value.kodepos;
+      data.villageId = this.formAddCrtl.value.villageId;
+
+      this.addressService.addShipping(data).subscribe(respon => {
+        if (respon.status === 1) {
+          this.showDialogPilihAlamat = false;
+          this.dataShipping();
+        } 
+      });
+    } else {
+      this.validateAllFormFields(this.formAddCrtl);
+    }
+
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+            control.markAsTouched({
+                onlySelf: true
+            });
+        } else if (control instanceof FormGroup) {
+            this.validateAllFormFields(control);
+        }
+    });
+}
 
   onChanges() {
     this.formAddCrtl.get('province').valueChanges.subscribe(val => {
@@ -93,11 +147,17 @@ export class CheckoutComponent implements OnInit {
     this.formAddCrtl.get('district').valueChanges.subscribe(val => {
         this.getVillage(val);
     });
-    this.formAddCrtl.get('district').valueChanges.subscribe(val => {});
+
+    this.formAddCrtl.get('villageId').valueChanges.subscribe(val => {
+      const postalCode = this.villages.find(x => x.villageId === val).postal;
+      this.formAddCrtl.patchValue(
+        {
+          kodepos: postalCode,
+        });
+    });
   }
 
   getProvince() {
-    // Country ID harcoded to Indonesia
     this.storeService.getProvince('209').subscribe(data => {
         this.provinces = data;
     });
@@ -106,13 +166,11 @@ export class CheckoutComponent implements OnInit {
   getCity(id) {
       this.storeService.getCity(id).subscribe(data => {
           this.cities = data;
-          console.log('data city', data);
       });
   }
   getDistrict(id) {
       this.storeService.getDistrict(id).subscribe(data => {
           this.districts = data;
-          console.log('data district', data);
       });
   }
 
@@ -121,9 +179,14 @@ export class CheckoutComponent implements OnInit {
           this.villages = data;
           const model = this.formAddCrtl.value;
           const a = this.formAddCrtl.value.villageId = id.district;
-          console.log('data vilages', data);
       });
   }
 
+  note() {
+    this.isNote = true;
+  }
 
+  cancelNote() {
+    this.isNote = false;
+  }
 }

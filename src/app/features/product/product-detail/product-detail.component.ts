@@ -2,6 +2,7 @@ import { ProductDetailList, MoreInformation } from '@belisada/core/models/produc
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from './../../../core/services/product/product.service';
+import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -31,7 +32,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private shoppingCartService: ShoppingCartService
   ) { }
 
   ngOnInit() {
@@ -44,11 +46,11 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
-        console.log('Produk', res);
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
         this.tabVal = this.productDetail.specification;
-        this.imgIndex = this.moreInformation.storeImageUrl;
+        // this.imgIndex = this.moreInformation.storeImageUrl;
+        this.imgIndex = this.productDetail.imageUrl[0];
       });
     });
   }
@@ -115,6 +117,11 @@ export class ProductDetailComponent implements OnInit {
         this.tabVal = 'Coming soon 2...';
       });
     });
+  }
+
+  addToCart(id) {
+    console.log('id: ', id);
+    this.shoppingCartService.addItem(id, 1);
   }
 
 }

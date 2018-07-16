@@ -19,10 +19,10 @@
             <td></td>
             <td colspan="6">
               <div class="row item-order">
-                <div class="col-8">
-                  <span class="no-order">Order No:#34534534</span> <span class="nm-store">Nama Toko: <span class="link-store">Kelontong Samuel</span></span>                      
+                <div class="col-9">
+                  <span class="nm-store">Nama Toko: <span class="link-store">Kelontong Samuel</span></span>                      
                 </div>
-                <div class="col-4 item-order-right">
+                <div class="col-3 item-order-right">
                   <table width="100%" border="0">
                     <tr>
                       <td>
@@ -66,7 +66,15 @@
             <div><span class="item-delete">Hapus Barang</span> <span class="item-trash"><fa name="trash"></fa></span></div>
             </td>
             <td class="table-val"><span class="item-price">Rp. 1.000.000</span></td>
-            <td class="table-val"><span class="plus-minus"> <fa name="minus"></fa> </span> <span class="item-qty">5</span> <span class="plus-minus"> <fa name="plus"></fa> </span></td>
+            <td class="table-val">
+              <div class="item-center">
+                <span class="plus-minus"> <fa name="minus"></fa> </span> <span class="item-qty">5</span> <span class="plus-minus"> <fa name="plus"></fa> </span>
+              </div>
+              <div class="item-center">
+                <span class="item-size">( 1 Kg )</span>
+              </div>
+              
+            </td>
             <td class="table-val">
               <table border="0">
                 <tr>
@@ -83,8 +91,11 @@
             <td></td>
             <td colspan="6">
 
-              <div class="item-note">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div>
-        
+              <div class="item-note" (click)="note()" *ngIf="isNote==false">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div>
+              <div *ngIf="isNote==true"><textarea rows="10%" cols="100%"></textarea></div>
+              <div *ngIf="isNote==true" (click)="cancelNote()"><span class="btn-update">Update</span> <span class="btn-cancel">Cancel</span></div>
+              
+
             </td>
           </tr>
         </tbody>
@@ -144,14 +155,14 @@
             
           <div class="row">
             <div class="col-4">
-              <div class='btn-pilih-metode-active'>Bank Transfer</div>
-              <div class='btn-arrow'><img src="assets/img/arrow-green.png"></div>
+              <div class='btn-pilih-metode-active' (click)="byTransfer()">Bank Transfer</div>
+              <div class='btn-arrow' *ngIf="isPayment==true"><img src="assets/img/arrow-green.png"></div>
             </div>
             <div class="col-4">
-              <div class='btn-pilih-metode'>Kartu Kredit</div>
+              <div class='btn-pilih-metode' (click)="byTransfer()">Kartu Kredit</div>
             </div>
             <div class="col-4">
-              <div class='btn-pilih-metode'>Pembayaran Instan</div>  
+              <div class='btn-pilih-metode' (click)="byTransfer()">Pembayaran Instan</div>  
             </div>
           </div>   
 
@@ -161,9 +172,14 @@
         </div>
       </div>
 
-      <div class='list-metode'>
+      <div class='list-metode' *ngIf="isPayment==true">
         <div class="row">
-          <div class="col-3">
+          <div class="col-3" *ngFor="let item of listPayment">
+            <div class="img-pay"><img src="{{imageUrl}}" class="img-icon"></div>
+            {{item.accountNumber}}<br>On<br>{{item.accountName}}
+          </div>
+
+          <!-- <div class="col-3">
             <div class="img-pay"><img src="assets/img/bank_bca.png" class="img-icon"></div>
             675765765775<br>On<br>PT Belisada Global Indonesia
           </div>
@@ -177,7 +193,7 @@
           </div>
           <div class="col-3">
             675765765775<br>On<br>PT Belisada Global Indonesia
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="row">
@@ -220,33 +236,30 @@
       </div>
       <br>
 
-      <app-models [(visible)]="showDialogPilihAlamat" class="frameDialog">
+      <app-models [(visible)]="showDialogPilihAlamat" maxwidth="1200" class="frameDialog">
         <div class="modal-body">
 
           <form [formGroup]="formAddCrtl" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
 
-            <div class="row">
+            <div class="row row-atur">
               <div class="col-6">
                 <label>Simpan sebagai alamat:</label>
                 <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" maxlength="20" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
+                <app-field-error-display [displayError]="isFieldValid('simpan_sebagai')" errorMsg="Simpan sebagai tidak boleh kosong"></app-field-error-display>
               </div>
               <div class="col-6">
                 <label>Nama Penerima:</label>
                 <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima" maxlength="30">
+                <app-field-error-display [displayError]="isFieldValid('penerima')" errorMsg="Penerima tidak boleh kosong"></app-field-error-display>
               </div>
             </div>
-            <div class="row">  
-              <div class="col-6">
+            <div class="row row-atur">  
+              <div class="col-4">
                 <label>No. Handphone:</label>
                 <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" maxlength="15">
+                <app-field-error-display [displayError]="isFieldValid('hp')" errorMsg="Handphone tidak boleh kosong"></app-field-error-display>
               </div>
-              <div class="col-6">
-                <label>Kodepos:</label>
-                <input type="text" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos" maxlength="7">
-              </div>
-            </div>
-            <div class="row">  
-              <div class="col-6">
+              <div class="col-4">
                 <label>Provinsi:</label>
                 <select formControlName="province" required class="input-style-text-100" >
                   <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
@@ -254,18 +267,21 @@
                       {{ option.regionName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Provinsi tidak boleh kosong"></app-field-error-display>
               </div>
-              <div class="col-6">
+              <div class="col-4">
                 <label>Kota / Kabupaten:</label>
                 <select formControlName="city" class="input-style-text-100">
                   <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
                   <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Kota tidak boleh kosong"></app-field-error-display>
               </div>
             </div>
-            <div class="row">  
-              <div class="col-6">
+            <div class="row row-atur"> 
+
+              <div class="col-4">
                 <label>Kecamatan:</label>
                 <select formControlName="district" class="input-style-text-100">
                   <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
@@ -273,26 +289,40 @@
                       {{ option.districtName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Kecamatan tidak boleh kosong"></app-field-error-display>
               </div>
-              <div class="col-6">
+              <div class="col-4">
                 <label>Kelurahan:</label>
-                <select formControlName="villageId" class="input-style-text-100" (change)="setVilage(validationOnpopUpCreateStore.value.villageId)">
+                <select formControlName="villageId" class="input-style-text-100">
                   <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
                   <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
                       {{ option.villageName }}
                   </option>
                 </select>
+                <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Kelurahan tidak boleh kosong"></app-field-error-display>
               </div>
+              <div class="col-4">
+                <label>Kodepos:</label>
+                <input type="text" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos" maxlength="5" readonly>
+                <div *ngIf="formAddCrtl.controls.kodepos.errors?.minlength; else postalOn">
+                  <p class="tooltiptext"> Kode Poss Harus 5 </p>
+                </div>
+                <ng-template #postalOn>
+                    <!-- Silahkan Masukan Kode Poss -->
+                  <app-field-error-display [displayError]="isFieldValid('kodepos')" errorMsg="Silahkan Masukan Kode Poss"></app-field-error-display>
+                </ng-template>
+              </div>              
             </div>
-            <div class="row">  
+            <div class="row row-atur">  
               <div class="col-12">
                 <label>Alamat:</label>
                 <textarea formControlName="alamat" class="input-style-text-100"></textarea>
+                <app-field-error-display [displayError]="isFieldValid('alamat')" errorMsg="Alamat tidak boleh kosong"></app-field-error-display>
               </div>
             </div>
             <div class="row">  
               <div class="col-12">
-                <button class="btn btn--orange component-center center-for-button btn-size-100">Tambah Alamat</button>
+                <button class="btn btn--orange component-center center-for-button btn-size-100">Tambah</button>
               </div>
             </div>
           

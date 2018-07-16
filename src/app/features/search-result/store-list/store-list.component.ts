@@ -62,7 +62,7 @@ export class StoreListComponent implements OnInit {
         brand: this.brandOPT,
         category: this.categoryOPT
       };
-
+      console.log('apa ini lah', queryParams);
       this.searchService.getList(queryParams).subscribe(response => {
 
         console.log('hasil', response);

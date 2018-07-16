@@ -17,16 +17,16 @@
 </div>
 
 <div *ngIf="activationResponse.status === 3">
-    <h2>{{ activationResponse.message }}</h2>
+    <!-- <h2>{{ activationResponse.message }}</h2> -->
     <p>Maaf, kami baru saja mengirimkan email aktivasi yang baru karena sudah habis masa berlaku, silahkan cek kotak masuk email anda</p>
 </div>
 
 <div *ngIf="activationResponse.status === 1">
-    <h2>{{ activationResponse.message }}</h2>
-    <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p>
+    <!-- <h2>{{ activationResponse.message }}</h2> -->
+    <p>Selamat {{name}}, akun belisada Anda sudah aktif silahkan <a routerLink="/account/sign-in">klik disini</a> untuk login.</p>
 </div> 
 
 <div *ngIf="activationResponse.status === 2">
-    <h2>{{ activationResponse.message }}</h2>
+    <!-- <h2>{{ activationResponse.message }}</h2> -->
     <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p>
 </div> 
