@@ -10,6 +10,8 @@
     cursor: pointer;
     border-top-left-radius: .5rem;
     border-bottom-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    border-bottom-right-radius: .5rem;
     
     fa {
         @include position(absolute, top 0 right 0);
