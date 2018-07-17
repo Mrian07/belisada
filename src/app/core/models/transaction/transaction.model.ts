@@ -32,3 +32,8 @@ export class Destinations {
     name: string;
     shippingAddressId: number;
 }
+
+export class UploadImgTransfer {
+    imageUrl: string;
+    transactionId: number;
+}
