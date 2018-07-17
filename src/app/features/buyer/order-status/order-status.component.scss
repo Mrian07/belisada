@@ -83,6 +83,22 @@
     border-radius:5px;
 }
 
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    margin-top:10px;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
 
 .btn-konfirm{
     background: #fca500;
@@ -98,6 +114,24 @@
     background: #f9b025;    
 }
 
+.btn-upload{
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    cursor: pointer;
+    background: #15af2a;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.btn-upload:hover{
+    background: #20c736;    
+}
+
 .btn-invoice{
     color: #2591fd;
     font-weight: bold;
@@ -107,3 +141,34 @@
 .btn-invoice:hover{
     color: #54a5f7;
 }
+
+.modal-body{
+    background: #f7f5f5;
+    padding:10px;
+    margin: 10px;
+    border-radius:5px;
+    text-align: center;
+}
+
+.title-modal{
+    text-align: center;
+    font-family: arial;
+    font-size: 20px;
+    margin-bottom:20px;
+}
+
+// .dialog {
+//     z-index: 1000;
+//     position: fixed;
+//     right: 0;
+//     left: 0;
+//     top: 20px;
+//     margin-right: auto;
+//     margin-left: auto;
+//     min-height: 200px;
+//     width: 90%;
+//     max-width: 520px;
+//     background-color: #111;
+//     padding: 12px;
+//     box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+//   }
