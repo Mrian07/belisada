@@ -4,18 +4,19 @@ import {
     ShoppingCart, AddToCartRequest, AddToCartResponse,
     CartItemResponse
   } from '@belisada/core/models/shopping-cart/shopping-cart.model';
-import { DeliveryOption } from '@belisada/core/models/shopping-cart/delivery-option.model';
+import { DeliveryOption, ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { StorageService } from '@belisada/core/services/local-storage/storage.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { Router } from '@angular/router';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Configuration } from '@belisada/core/config';
 import { map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { BaseResponseModel } from '@belisada/core/models';
 import { AuthService } from '@belisada/core/services/auth/auth.service';
+import { CheckoutTrx, UpdateShippingReq, UpdateShippingRes } from '@belisada/core/models/checkout/checkout-cart';
 
 const CART_KEY = 'cart';
 const CART_POST_KEY = 'cartpost';
@@ -220,6 +221,31 @@ export class ShoppingCartService {
     return this.http.delete(this.configuration.apiURL + '/delete/' + id)
       .pipe(
         map(response => response as BaseResponseModel)
+      );
+  }
+
+  getShippingRates(queryParams: Object): Observable<ShippingRate[]> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiURL + '/rates/v2', { params: params })
+      .pipe(
+        map(response => response as ShippingRate[])
+      );
+  }
+
+  getCartV2(): Observable<CheckoutTrx> {
+    return this.http.get(this.configuration.apiURL + '/buyer/cart/v2')
+      .pipe(
+        map(response => response as CheckoutTrx)
+      );
+  }
+
+  updateShipping(data: UpdateShippingReq): Observable<UpdateShippingRes> {
+    return this.http.post(this.configuration.apiURL + '/buyer/cart/shipping/update', data)
+      .pipe(
+        map(response => response as UpdateShippingRes)
       );
   }
 }
