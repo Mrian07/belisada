@@ -67,13 +67,13 @@ export class SignInSellerComponent implements OnInit {
         } else {
           const token: string = result.token;
 
-          if (form.value.isRemember === 'true') {
+          // if (form.value.isRemember === 'true') {
             this.userService.setUserToLocalStorage(token);
-            this.userService.setRemember('true');
-          } else {
-            this.userService.setUserToSessionStorage(token);
-            this.userService.setRemember('false');
-          }
+          //   this.userService.setRemember('true');
+          // } else {
+          //   this.userService.setUserToSessionStorage(token);
+          //   this.userService.setRemember('false');
+          // }
 
           this.router.navigate(['/seller']);
         }

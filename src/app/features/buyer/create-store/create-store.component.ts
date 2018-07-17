@@ -53,8 +53,6 @@ export class CreateStoreComponent implements OnInit {
       storeUrl: this.storeUrl,
       description: new FormControl(null, Validators.required),
       storePicture: new FormControl(),
-     
-
     });
 
     // this.getProvince();

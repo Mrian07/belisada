@@ -62,52 +62,32 @@
                     <div class="cart__header">
                         <div class="cart__header--left">
                             <img class="icon" src="/assets/img/cart.png" alt="">
-                            <span class="counter">3</span>
+                            <span class="counter">{{ itemCount }}</span>
                         </div>
                         <div class="cart__header--right">
-                            Total: <span class="total-price">Rp 38.000.000</span>
+                            Total: <span class="total-price">Rp {{itemsTotal | number}}</span>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div class="cart__content">
                         <ul>
-                            <li>
+                            <li *ngFor="let item of cartItems">
                                 <div class="cart__content--left-side">
-                                    <img class="product--image" src="https://cdn.shopify.com/s/files/1/0259/7733/products/adidas_moves_pulse_large.jpg?v=1423689600" alt="">
+                                    <img class="product--image" [src]="item.product.imageUrl" alt="">
                                 </div>
                                 <div class="cart__content--right-side">
-                                    <a [routerLink]="" class="product--title">Adidas orange parfum</a>
-                                    <span class="product--price">Rp 13.000.000</span><span class="product--qty">Qty 1</span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cart__content--left-side">
-                                    <img class="product--image" src="https://cdn.shopify.com/s/files/1/0259/7733/products/adidas_moves_pulse_large.jpg?v=1423689600" alt="">
-                                </div>
-                                <div class="cart__content--right-side">
-                                    <a [routerLink]="" class="product--title">Adidas orange parfume</a>
-                                    <span class="product--price">Rp 13.000.000</span><span class="product--qty">Qty 1</span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="cart__content--left-side">
-                                    <img class="product--image" src="https://cdn.shopify.com/s/files/1/0259/7733/products/adidas_moves_pulse_large.jpg?v=1423689600" alt="">
-                                </div>
-                                <div class="cart__content--right-side">
-                                    <a [routerLink]="" class="product--title">Adidas orange parfume 300ml</a>
-                                    <span class="product--price">Rp 13.000.000</span><span class="product--qty">Qty 1</span>
+                                    <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
+                                    <span class="product--price">Rp {{ item.product.pricelist | number }}</span><span class="product--qty">Qty {{ item.quantity }}</span>
                                     <div class="clearfix"></div>
                                 </div>
                             </li>
                         </ul>
                     </div>
                     <div class="cart__footer">
-                        <a [routerLink]="" class="button--goto-cart">Lihat Keranjang</a>
+                        <a [routerLink]="['/transaction/checkout']" (click)="globals.isBackdropActive = false" class="button--goto-cart">Lihat Keranjang</a>
                     </div>
                 </div>
-                <span class="cart__counter">3</span>
+                <span class="cart__counter">{{ itemCount }}</span>
             </li>
             <li class="right--12px">
                 <a *ngIf="isLogin === false" routerLink="/account/sign-in">
@@ -133,8 +113,6 @@
                 </a>
                 <div [ngClass]="isAccountMenu ? 'show-element' : 'hide-element'" class="account-menu__container">
                     <div (click)="goToProfile()" class="cursor-on-profile">Profile</div>
-                    <div>Items</div>
-                    <div>Items</div>
                     <div><button class="btn rounded btn--navy" (click)="logout()">Logout</button></div>
                 </div>
             </li>

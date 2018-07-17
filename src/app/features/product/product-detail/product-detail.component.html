@@ -37,7 +37,7 @@
             <span class="strong-text">Qty:</span> <span class="plus-minus"> <fa name="minus"></fa> </span> <span class="plus-minus-number"> 1 </span> <span class="plus-minus"> <fa name="plus"></fa> </span>
           </div>
           <div class="product-btn">
-            <span class="btn-add" (click)="addToCart(productDetail.productId)">Add To Cart <span class="btn-add-cart"><fa name="cart-arrow-down"></fa></span></span>
+            <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa name="cart-arrow-down"></fa></span></span>
             <span class="btn-chat">Chat Seller <span class="btn-add-cart"><fa name="comments"></fa></span></span>
           </div>
         </div>
@@ -81,7 +81,7 @@
 
           <div class="row">
             <div class="col-6">
-              <span class="show-small-text"><fa name="heart"></fa> Tabahkan Ke Wishlist </span> 
+              <span class="show-small-text"><fa name="heart"></fa> Tambahkan ke Wishlist </span> 
             </div>
             <div class="col-6">
               <span class="show-small-text">Share</span> <img src='assets/img/dummy-sosmed.jpg'>
