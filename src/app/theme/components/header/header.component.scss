@@ -8,7 +8,7 @@
 .list-suggestion {
     position: absolute;
     z-index: 15;
-    left: 0;
+    left: 3rem;
     background-color: #fff;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.14);
     border: solid 1px #ddd;
@@ -392,6 +392,13 @@
     }
 }
 
+@media screen and (width: 1400px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 70%;
+    }
+}
+
 @media screen and (max-width: 1120px) {
     .bs-header__account-box-edited--wahyu {
         position: absolute;
@@ -405,3 +412,39 @@
         left: 78%;
     }
 }
+
+@media screen and (max-width: 2000px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 78%;
+    }
+}
+
+@media screen and (max-width: 2560px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 85%;
+    }
+}
+
+@media screen and (max-width: 2048px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 78%;
+    }
+}
+
+@media screen and (max-width: 1440px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 70%;
+    }
+}
+
+@media screen and (width: 3840px) {
+    .bs-header__account-box-edited--wahyu {
+        position: absolute;
+        left: 88%;
+    }
+}
+

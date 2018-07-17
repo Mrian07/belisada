@@ -43,3 +43,99 @@
     padding: 12px;
     box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
   }
+
+
+  .column-for__slideshow {
+    display: grid;
+    // color: $color-red;
+    grid-template-columns: 79% 20%;
+    grid-gap: 1em;
+    // height: 700px;
+}
+
+.column-for_image {
+    // border: 1px solid red;
+}
+
+
+.wrapper9 {
+    display: grid;
+grid-gap: 10px;
+    grid-template-columns: 69% 30%;
+}
+.header--home {
+    padding-top: 5em;
+}
+
+.flash--sale--column {
+    background-color: #ffc247;
+
+    .flash--sale--text{
+        color: white;
+        padding-left: 1em;
+        font-size: 19px;
+    font-weight: 600;
+    }
+
+    .flash--sale--timer {
+        padding-left: 26%;
+        font-size: 22px;
+    }
+}
+
+.image--wreaper {
+    display: grid;
+    // color: $color-red;
+    grid-template-columns: 28% 59%;
+    grid-gap: 1em;
+
+    .flash--sale--text--for--toko {
+        display: block;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+    color: black;
+    }
+    .flash--sale--city {
+        display: block;
+    }
+
+    .flash--sale--rating {
+        color: #ffd756;
+        display: block;
+    }
+    .flash--sale--image {
+        width: 180px;
+        height: 198px;
+    }
+    
+
+    
+   
+}
+
+.flash--sale--button {
+    display: grid;
+    // color: $color-red;
+    grid-template-columns: 64% 20%;
+    grid-gap: 1em;
+    background: #ed7128;
+    width: 93%;
+    border-radius: 5px;
+    .flash--sale--text--button {
+        text-align: center;
+    color: white;
+    padding-top: 2rem;
+    }
+
+    .flash--sale--button--image {
+        margin-bottom: 1rem;
+    margin-left: 5px;
+    padding-top: 7px;
+    width: 37px;
+    }
+}
+
+.flash--sale--image {
+    height: 100%;
+}

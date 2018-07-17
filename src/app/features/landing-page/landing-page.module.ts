@@ -10,7 +10,7 @@ import { LandingPageComponent } from '@belisada/features/landing-page/landing-pa
   imports: [
     CommonModule,
     ThemeModule,
-    LandingPageRoutingModule
+    LandingPageRoutingModule,
   ],
   declarations: []
 })

@@ -17,6 +17,8 @@ export class SidebarBuyerComponent implements OnInit {
   userData: UserData = new UserData();
   isLogin: Boolean = false;
   pemisah: any;
+
+  zzzz;
   public location = '';
 
   constructor(
@@ -62,7 +64,7 @@ export class SidebarBuyerComponent implements OnInit {
   }
 
   goToSeller() {
-    window.location.href = 'https://seller0.belisada.id/auth/sign-in';
+    this.zzzz = 'https://seller0.belisada.id/auth/sign-in';
   }
 
   profile() {
