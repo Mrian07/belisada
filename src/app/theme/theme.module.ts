@@ -17,6 +17,7 @@ import { SidebarSellerComponent } from './components/sidebar-seller/sidebar-sell
 import { HeadingSellerComponent } from './components/heading-seller/heading-seller.component';
 import { FilterPipe } from '@belisada/shared/pipes';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
+import { CountdownTimerModule } from 'ngx-countdown-timer';
 
 const COMPONENTS = [
   ModelsComponent,
@@ -31,7 +32,7 @@ const COMPONENTS = [
   AuthLayoutComponent,
   BuyerLayoutComponent,
   SellerLayoutComponent,
-  FieldErrorDisplayComponent
+  FieldErrorDisplayComponent,
 ];
 
 const PIPES = [
@@ -44,7 +45,8 @@ const PIPES = [
     CommonModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CountdownTimerModule.forRoot()
   ],
   exports: [...PIPES, ...COMPONENTS],
   declarations: [...PIPES, ...COMPONENTS]

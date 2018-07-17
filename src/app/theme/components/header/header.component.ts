@@ -94,6 +94,8 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.flagStatus();
+    this.regForm = true;
     this.storeName = new FormControl(null, Validators.required);
     this.storeUrl = new FormControl(null, Validators.required);
     this.validationOnpopUpCreateStore = this.fb.group({
@@ -241,6 +243,11 @@ isFieldValid(field: string) {
     return !this.validationOnpopUpCreateStore.get(field).valid && this.validationOnpopUpCreateStore.get(field).touched;
 }
 
+flagStatus() {
+  this.regForm = false;
+  this.regSuccess = false;
+}
+
 onSent() {
   console.log('oke oce', this.validationOnpopUpCreateStore.value);
   if (this.validationOnpopUpCreateStore.valid) {
@@ -248,10 +255,8 @@ onSent() {
 
       this.userS.createFormGuest(model).subscribe(rsl => {
           if (rsl.status === 1) {
-                //   swal(rsl.message);
-                // swal('Pembuatan Toko Berhasil');
-                // swal
-                // this.flagStatus();
+                  // swal(rsl.message);
+                this.flagStatus();
                 this.regSuccess = true;
           } else {
                 swal(rsl.message);

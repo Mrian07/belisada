@@ -1,65 +1,227 @@
-<div class="containPage has-header">
+<div class="containPage has-header header--home">
 
-    You Are In Here :  {{ ip }} <br/>
-
-    Your Country : {{ country }}
-    
-    <div *ngIf="isLogin === true">
-        <button (click)="showDialog = !showDialog" class="btn">Buka Toko</button>
-
-        <app-models [(visible)]="showDialog" class="frameDialog">
-            <div class="modal-body">
-
-                <div *ngIf="regForm==true">    
-
-                    <div class="title">Buka Toko</div>
-                    <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
-                        <input type="hidden" class="input-style-text-100" formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" />
-                        <input type="text" formControlName="nameOwner" class="input-style-text-100" placeholder="Masukan nama pemilik toko">
-                        <app-field-error-display [displayError]="isFieldValid('nameOwner')" errorMsg="Nama pemilik toko tidak boleh kosong"></app-field-error-display>
-                        <input type="text" formControlName="name" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Masukan nama toko">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
-                            <div class="testing">
-                                <span class="tooltiptext">{{serverMessage}}</span>
+        <div class="row">
+                    <div class="col-9">
+                            <div class="box">
+                                    <img class="flash--sale--image" src="assets/img/banner.png">
                             </div>
-                        </div>
-                        <ng-template #nameCheckingTemplate>
-                            <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Nama toko tidak boleh kosong"></app-field-error-display>
-                        </ng-template>
-                        <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama Toko <img src="assets/img/wait.gif"></div>
-    
-    
-                        <input type="text" formControlName="email" class="input-style-text-100" placeholder="Masukan email">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
-                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                        </div>
-                        <ng-template #emailOn>
-                            <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Email tidak boleh kosong"></app-field-error-display>
-                        </ng-template>
+                    </div>
+                    <div class="col-3">
+                            <div class="flash--sale--column">
+                                    <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-18 00:00:00'"></countdown-timer>
+                            </div>
 
-                        <input type="password" formControlName="password" class="input-style-text-100" placeholder="Masukan password">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
-                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password tidak boleh kosong</p>
-    
-                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Minimal panjang password 7 karakter. </p>
+                            <div class="row">
+                                    <div class="col-6">
+                                            <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+                                    </div>
+                                    <div class="col-6">
+                                            <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                            <span class="flash--sale--city">DKI JAKARTA</span>
+                                            <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
+                                            <span>Rp.6.500.000</span>
+                                            <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+                                        </div>
+                                </div>
+                                <div class="row">
+                                        <div class="col-6">
+                                                <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+                                        </div>
+                                        <div class="col-6">
+                                                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                                <span class="flash--sale--city">DKI JAKARTA</span>
+                                                <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
+                                                <span>Rp.6.500.000</span>
+                                                <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col-6">
+                                                    <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+                                            </div>
+                                            <div class="col-6">
+                                                    <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                                    <span class="flash--sale--city">DKI JAKARTA</span>
+                                                    <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
+                                                    <span>Rp.6.500.000</span>
+                                                    <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+                                                </div>
+                                        </div>
                         </div>
-
-                        <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
-                        <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
-                        <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
-                    </form>
-                
+        </div>
+                    <div class="row wrapper--for--middle">
+                        <div class="col-12">
+                                <span class="text--new--product">Product Terbaru</span>
+                                <div class="section group">
+                                        <div class="col span_1_of_10 border--new--product" *ngFor="let item of productNew">
+                                                <div class="section group">
+                                                        <div class="col span_11_of_2">
+                                                                <img class="img--toko" src="{{ item.storeImageUrl }}">
+                                                        </div>
+                                                        <div class="col span_11_of_2">
+                                                                <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                                <span>{{ item.locationName }}</span>
+            
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-12 image--center">
+                                                                        <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" src="assets/img/dummy-product-detail.jpg">
+                                                                </div>
+                                                                <div class="col-12 image--center">
+                                                                        <span>Rp. {{ item.pricelist | number }}</span>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        
+                                                    </div>
+                                        </div>
+                                      
+                                    </div>
+                        </div>
+                           
+                    </div>
+                    <div class="col-12">
+                        <span>222</span>
+                    </div>
+                    
                 </div>
-                <div *ngIf="regSuccess==true" class="regSuccess">
-                    <div class="title">Pendaftaran Berhasil</div>    
-                    <div class="text-success">Selamat toko Anda berhasil didaftarkan, untuk selanjutnya silakan cek email Anda dan lakukan aktifasi untuk dapat login ke halaman seller.</div>
+
+               
+                            
+       
+        <!-- <div class="wrapper9">
+                <div class="box">
+                        <img class="flash--sale--image" src="assets/img/banner.png">
+                </div>
+                
+                <div class="box">
+                        <div class="flash--sale--column">
+                                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-17 00:00:00'"></countdown-timer>
+                        </div>
+                         <div class="image--wreaper">
+                                <img src="assets/img/dummy-product-detail.jpg">
+                             <div>
+                                
+                                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                <span class="flash--sale--city">DKI JAKARTA</span>
+                                <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                                <span>Rp.6.500.000</span>
+                                <div class="flash--sale--button">
+                                    <p class="flash--sale--text--button">Masuk keranjang </p>
+                                    <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                                </div>
+                </div>
+              </div>
+              <div class="image--wreaper">
+                    <img src="assets/img/dummy-product-detail.jpg">
+                 <div>
+                    
+                    <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                    <span class="flash--sale--city">DKI JAKARTA</span>
+                    <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                    <span>Rp.6.500.000</span>
+                    <div class="flash--sale--button">
+                        <p class="flash--sale--text--button">Masuk keranjang </p>
+                        <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                    </div>
+    </div>
+  </div>
+  <div class="image--wreaper">
+        <img src="assets/img/dummy-product-detail.jpg">
+     <div>
+        
+        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+        <span class="flash--sale--city">DKI JAKARTA</span>
+        <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+        <span>Rp.6.500.000</span>
+        <div class="flash--sale--button">
+            <p class="flash--sale--text--button">Masuk keranjang </p>
+            <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+        </div>
+</div>
+</div>
+<div class="image--wreaper">
+                                <img src="assets/img/dummy-product-detail.jpg">
+                             <div>
+                                
+                                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                <span class="flash--sale--city">DKI JAKARTA</span>
+                                <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                                <span>Rp.6.500.000</span>
+                                <div class="flash--sale--button">
+                                    <p class="flash--sale--text--button">Masuk keranjang </p>
+                                    <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                                </div>
+                </div>
+              </div> -->
+    <!-- <div class="column-for__slideshow">
+        <div class="column-for_image">
+                <img class="flash--sale--image" src="assets/img/bbbb.jpeg">
+        </div>
+        <div>
+            <div class="flash--sale--column">
+                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-17 00:00:00'"></countdown-timer>
+        </div>
+        <div class="image--wreaper">
+                <img class="flash--sale--image" src="assets/img/dummy-product-detail.jpg">
+        <div>
+                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                <span class="flash--sale--city">DKI JAKARTA</span>
+                <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                <span>Rp.6.500.000</span>
+                <div class="flash--sale--button">
+                    <p class="flash--sale--text--button">Masuk keranjang </p>
+                    <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                </div>
                 </div>
             </div>
+            <div class="image--wreaper">
+                    <img class="flash--sale--image" src="assets/img/dummy-product-detail.jpg">
+            <div>
+                    <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                    <span class="flash--sale--city">DKI JAKARTA</span>
+                    <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                    <span>Rp.6.500.000</span>
+                    <div class="flash--sale--button">
+                        <p class="flash--sale--text--button">Masuk keranjang </p>
+                        <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                    </div>
+                    </div>
+                </div>
+                <div class="image--wreaper">
+                        <img class="flash--sale--image" src="assets/img/dummy-product-detail.jpg">
+                <div>
+                        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                        <span class="flash--sale--city">DKI JAKARTA</span>
+                        <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                        <span>Rp.6.500.000</span>
+                        <div class="flash--sale--button">
+                            <p class="flash--sale--text--button">Masuk keranjang </p>
+                            <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                        </div>
+                        </div>
+                        
+                    </div>
+                    <div class="image--wreaper">
+                            <img class="flash--sale--image" src="assets/img/dummy-product-detail.jpg">
+                    <div>
+                            <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                            <span class="flash--sale--city">DKI JAKARTA</span>
+                            <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>  
+                            <span>Rp.6.500.000</span>
+                            <div class="flash--sale--button">
+                                <p class="flash--sale--text--button">Masuk keranjang </p>
+                                <img class="flash--sale--button--image"  src="assets/img/addtocartButton.png">  
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+        </div>  -->
+<!-- </div> -->
 
-        </app-models>
-    </div>
 
-</div>
 
 
 

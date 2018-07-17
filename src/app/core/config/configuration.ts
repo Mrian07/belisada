@@ -7,4 +7,5 @@ import { Injectable } from '@angular/core';
 export class Configuration {
   apiURL: string = environment.apiUrl;
   apiUrlMongo: string = environment.apiUrlMongo;
+  imgUrl163x179: string = environment.imgUrl163x179;
 }

@@ -8,3 +8,4 @@ export * from './user/user.service';
 export * from './filter/filter-s.service';
 export * from './searchBar/search-bar.service';
 export * from './globals/globals';
+export * from './home/home-s.service';

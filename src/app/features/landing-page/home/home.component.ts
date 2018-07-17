@@ -2,8 +2,8 @@ import swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { UserData } from '@belisada/core/models';
-import { StoreService, UserService } from '@belisada/core/services';
+import { UserData, Home } from '@belisada/core/models';
+import { StoreService, UserService, HomeSService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
@@ -36,14 +36,19 @@ export class HomeComponent implements OnInit {
   regForm: boolean;
   regSuccess: boolean;
 
-  constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router) {}
+  productNew: Home[] = [];
+  productImageUrl;
+  constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router,
+    private homeS: HomeSService) {}
 
   ngOnInit() {
+      
       this.flagStatus();
       this.regForm = true;
     this.userS.getIpAddress().subscribe(data => {
       this.ip = data.city;
       this.country = data.country;
+      console.log(data);
     });
 
       this.storeName = new FormControl(null, Validators.required);
@@ -81,7 +86,24 @@ export class HomeComponent implements OnInit {
       }
       this.getProvince();
       this.onChanges();
+      this.getDataForNew();
   }
+
+  getDataForNew() {
+    this.homeS.getHomeNew().subscribe(res => {
+        this.productNew = res;
+        // this.productNew.forEach(item => {
+        // this.productImageUrl = item.storeImageUrl;
+        //    console.log('item cuys',  this.productImageUrl);
+        //    this.homeS.getProduct(item.storeImageUrl).subscribe(a =>{
+        // console.log('a',a);
+        //    });
+        //   });
+
+        console.log('ii res', this.productNew);
+        });
+  }
+
 
   flagStatus() {
     this.regForm = false;
@@ -119,6 +141,19 @@ export class HomeComponent implements OnInit {
       this.storeService.getProvince('209').subscribe(data => {
           this.provinces = data;
       });
+  }
+
+  goToDetail(id, name) {
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    console.log(r);
+    if (r === ' ') {
+        this.router.navigate(['/product/product-detail/' + id + '/' + 'yourItem']);
+    } else {
+        this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+    }
+
+   
+   window.scrollTo(0, 0);
   }
 
   getCity(id) {

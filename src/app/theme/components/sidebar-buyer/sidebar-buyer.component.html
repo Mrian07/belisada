@@ -7,8 +7,14 @@
             </div> -->
 
             <div *ngIf="pemisah != 2; else cold">
-                <div (click)="goToSeller()" class="btn-jualan">Ikut Jualan</div>
+                <div class="btn-jualan">
+
+                        <a href="https://seller0.belisada.id/auth/sign-in" target="blank">Ikut Jualan </a>
+                </div>
+               
             </div>
+
+
             <ng-template #cold> <div (click)="goToCreateStore()" class="btn-jualan">Ikut Jualan</div></ng-template>
             <div (click)="myOrder()" class="sidebar-to-cursor">Pesananku</div>
             <div (click)="profile()" class="sidebar-to-cursor">Profile Anda</div>
