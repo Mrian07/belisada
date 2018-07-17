@@ -143,6 +143,19 @@ export class HomeComponent implements OnInit {
       });
   }
 
+  goToDetail(id, name) {
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    console.log(r);
+    if (r === ' ') {
+        this.router.navigate(['/product/product-detail/' + id + '/' + 'yourItem']);
+    } else {
+        this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+    }
+
+   
+   window.scrollTo(0, 0);
+  }
+
   getCity(id) {
       this.storeService.getCity(id).subscribe(data => {
           this.cities = data;

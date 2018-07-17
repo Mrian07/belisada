@@ -65,7 +65,7 @@
                                                         </div>
                                                         <div class="row">
                                                                 <div class="col-12 image--center">
-                                                                        <img class="product--image--store" src="assets/img/dummy-product-detail.jpg">
+                                                                        <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" src="assets/img/dummy-product-detail.jpg">
                                                                 </div>
                                                                 <div class="col-12 image--center">
                                                                         <span>Rp. {{ item.pricelist | number }}</span>
@@ -80,7 +80,9 @@
                         </div>
                            
                     </div>
-                    
+                    <div class="col-12">
+                        <span>222</span>
+                    </div>
                     
                 </div>
 
