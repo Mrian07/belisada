@@ -17,6 +17,8 @@ export class SidebarBuyerComponent implements OnInit {
   userData: UserData = new UserData();
   isLogin: Boolean = false;
   pemisah: any;
+
+  zzzz;
   public location = '';
 
   constructor(
@@ -34,6 +36,9 @@ export class SidebarBuyerComponent implements OnInit {
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     this.pemisah = this.userData.role;
     if (this.userData) { this.isLogin = true; }
+    console.log('userData : ', this.userData);
+    this.pemisah = this.userData.role;
+    console.log('ini nih', this.userData.role);
   }
 
   cekFlag() {
@@ -51,16 +56,11 @@ export class SidebarBuyerComponent implements OnInit {
   }
 
   goToSeller() {
-    window.location.href = 'https://seller0.belisada.id/auth/sign-in';
+    this.zzzz = 'https://seller0.belisada.id/auth/sign-in';
   }
 
   profile() {
     this.btnJual = false;
     this.router.navigateByUrl('/buyer/profile');
-  }
-
-  myOrder() {
-    this.btnJual = false;
-    this.router.navigateByUrl('/buyer/order');
   }
 }
