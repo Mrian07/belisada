@@ -29,7 +29,7 @@
                             <div #b *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
                                 <fa name="fas fa-ban errspan"></fa>
                                 <div class="testing">
-                                    <span class="tooltiptext">Email ini sudah teregistrasi</span>
+                                    <span class="tooltiptext">{{ message }}</span>
                                 </div>
 
                             </div>

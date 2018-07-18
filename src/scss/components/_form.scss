@@ -84,7 +84,7 @@ input::placeholder {
     }
 
     &.with-select-box {
-        width: calc(100% - #{$select-box-width});
+        width: calc(100% - (#{$select-box-width} + 2rem));
 
         input {
             $select-box-color: select-box-color("orange");
