@@ -1,6 +1,14 @@
+<div *ngIf="isLoading==true">
+    <div class="load-wrapp">
+        <div class="load-4">
+            <p>Loading...</p>
+            <div class="ring-1"></div>
+        </div>
+    </div>
+</div>
 
 <div *ngFor="let item of list">
-  <div  class="os-head" (click)="openOS(openDetail)">
+  <div  class="os-head" (click)="openOS(openDetail, item.transactionId)">
       <div class="row row-atur">
         <div class="col-3">
             <div class="text-order">{{item.expiredTime}}</div>
@@ -17,34 +25,6 @@
             <div class="text-payid">Payment ID: {{item.paymentNumber}}</div>
         </div>
         <div class="col-7">
-<!-- 
-            <div class="row row-atur">
-                <div class="col-6 text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}}) </div>
-                <div class="col-6">
-                  <table>
-                    <tr>
-                      <td>
-                        <div class="upload-btn-wrapper">
-                            <div class="btn-konfirm">Unggah Bukti Transfer</div>
-                            <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-                        </div>  
-                      </td>
-        
-                    </tr>
-                  </table> -->
-                    
-                  
-                  <!-- <span class="upload-btn-wrappe btn-konfirm">Unggah Bukti Transfer</span>-->
-                  
-                  <!-- </div>
-
-            </div> -->
-            
-
-            <!-- <div class="upload-btn-wrapper">
-                <button class="btn btn-hero-primary">Ubah Avatar</button>
-                <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-            </div> -->
 
             <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}}) 
               <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span>
@@ -55,7 +35,7 @@
         </div>
       </div>
   </div>
-  <div *ngIf="openDetail==true" class="os-body">
+  <div *ngIf="openDetail==true && transactionId==item.transactionId" class="os-body">
     
     <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
       <tr *ngFor="let itemList of itemCart.cart">

@@ -1,29 +1,66 @@
 export class OrderStatus {
+    expiredTime: string;
+    imageUrl: string;
+    paymentMethod: string;
+    paymentMethodCode: string;
+    paymentNumber: string;
+    status: string;
+    statusCode: string;
+    transaction: Transaction[];
+    transactionId: number;
+}
+
+export class Transaction {
+    cart: Cart[];
+    grandTotal: number;
+}
+
+export class Cart {
+    alamatPenerima: string;
+    alamatSebagai: string;
     asuransi: number;
+    cartItems: CartItems[];
     courierCode: string;
-    courierPrice: string;
+
+    courierPrice: number;
     courierService: string;
-    description: string;
+    destinationId: number;
+    destinations: Destinations[];
+    invoiceNumber: string;
+    itemCartIds: number;
+    namaPenerima: string;
+    noResi: string;
+    orderNumbere: string;
+    originId: number;
+    paymentNumber: string;
+    phonePenerima: string;
+    productIds: number;
+    shipNumber: string;
+    shippingAddressId: number;
+    statusTracking: string;
+    storeId: number;
+    storeName: string;
+    storeUrl: string;
+    subTotal: number;
+    totalWeight: number;
+    useAsuransi: boolean;
+}
 
-    destinations: Destinations;
-
+export class CartItems {
+    courierCode: string;
+    courierPrice: number;
+    courierService: string;
     imageUrl: string;
     itemCartId: number;
     name: string;
     note: string;
-    originId: number;
     priceList: number;
     productId: number;
     quantity: number;
-    shippingAddressId: number;
     specialPrice: number;
-    storeId: number;
-    storeName: string;
-    storeUrl: string;
     subtotal: number;
     total: number;
     totalWeight: number;
-    useAsuransi: boolean;
     weightPerItem: number;
 }
 

@@ -12,8 +12,8 @@ export class TransactionService {
 
   constructor(private configuration: Configuration, private http: HttpClient) { }
 
-    getOrder() {
-      return this.http.get(this.configuration.apiURL + '/buyer/transaction/history?transaction_status=PENDING')
+    getOrder(data) {
+      return this.http.get(this.configuration.apiURL + '/buyer/transaction/history?transaction_status=' + data)
       .pipe(
         map(response => response as OrderStatus)
       );
