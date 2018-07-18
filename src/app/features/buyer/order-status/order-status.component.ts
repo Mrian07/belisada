@@ -10,6 +10,8 @@ import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transactio
 })
 export class OrderStatusComponent implements OnInit {
   list: OrderStatus = new OrderStatus();
+  // list: any[];
+  status: string;
   base64Img: string;
   openDetail: boolean;
   updateImg: Boolean = false;
@@ -21,6 +23,7 @@ export class OrderStatusComponent implements OnInit {
   showDialog: Boolean = false;
   isPilih: boolean;
   isSent: boolean;
+  isLoading: boolean;
 
   transactionId: number;
 
@@ -30,6 +33,7 @@ export class OrderStatusComponent implements OnInit {
 
   ngOnInit() {
     this.imgBuktiTransfer = 'assets/img/add-product.png';
+    this.isLoading = true;
     this.statusFlag();
     this.isForm = true;
     this.isPilih = true;
@@ -45,16 +49,20 @@ export class OrderStatusComponent implements OnInit {
   }
 
   pendingOrder() {
-    this.transactionService.getOrder().subscribe(respon => {
+    this.status = 'PENDING';
+    this.transactionService.getOrder(this.status).subscribe(respon => {
       console.log('detail order:', respon);
+      this.isLoading = false;
       this.list = respon;
     });
   }
 
-  openOS(status) {
+  openOS(status, transactionId) {
     if (status === true) {
+      this.transactionId = transactionId;
       this.openDetail = false;
     } else {
+      this.transactionId = transactionId;
       this.openDetail = true;
     }
   }

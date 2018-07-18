@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Globals } from '@belisada/core/services';
 
 @Component({
   selector: 'bs-buyer-layout',
@@ -6,5 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuyerLayoutComponent {
 
-  constructor() { }
+  constructor(private globals: Globals) {
+  }
 }

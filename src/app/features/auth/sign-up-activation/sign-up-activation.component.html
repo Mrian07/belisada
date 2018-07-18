@@ -1,32 +1,34 @@
-<div *ngIf="activationResponse.status === 0">
-    <h2>{{ activationResponse.message }}</h2>
-    <p>Maaf, silahkan isi alamat email anda, kami akan mengirimkan email aktivasi yang baru, kemudian cek kotak masuk email anda.</p>
-    <form (ngSubmit)="onSubmit()" novalidate>
-        <div class="sn-form-group has-right-button">
-            <input [formControl]="emailFC" type="email" name="" id="" class="sn-input sn-input-text" placeholder="Ketikan email anda"/>
-            <button class="action-btn" type="submit" [disabled]="emailFC.invalid">Kirim</button>
+<div class="activation__container">
+    <div class="u-display-table-cell makeit--center" *ngIf="activationResponse.status === 0">
+        <h2>{{ activationResponse.message }}</h2>
+        <p>Maaf, silahkan isi alamat email anda, kami akan mengirimkan email aktivasi yang baru, kemudian cek kotak masuk email anda.</p>
+        <form (ngSubmit)="onSubmit()" novalidate>
+            <div class="sn-form-group has-right-button">
+                <input [formControl]="emailFC" type="email" name="" id="" class="sn-input sn-input-text" placeholder="Ketikan email anda"/>
+                <button class="action-btn" type="submit" [disabled]="emailFC.invalid">Kirim</button>
 
-            <div class="form-control-validation"
-                *ngIf="emailFC.errors
-                    && emailFC.dirty">
-                <p *ngIf="emailFC.errors.required">Email tidak boleh kosong</p>
-                <p *ngIf="emailFC.errors.pattern">Masukan Email Yang Benar</p>
+                <div class="form-control-validation"
+                    *ngIf="emailFC.errors
+                        && emailFC.dirty">
+                    <p *ngIf="emailFC.errors.required">Email tidak boleh kosong</p>
+                    <p *ngIf="emailFC.errors.pattern">Masukan Email Yang Benar</p>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
+
+    <div class="u-display-table-cell makeit--center" *ngIf="activationResponse.status === 3">
+        <!-- <h2>{{ activationResponse.message }}</h2> -->
+        <p>Maaf, kami baru saja mengirimkan email aktivasi yang baru karena sudah habis masa berlaku, silahkan cek kotak masuk email anda</p>
+    </div>
+
+    <div class="u-display-table-cell makeit--center" *ngIf="activationResponse.status === 1">
+        <!-- <h2>{{ activationResponse.message }}</h2> -->
+        <p>Selamat {{name}}, akun belisada Anda sudah aktif silahkan <a routerLink="/account/sign-in">klik disini</a> untuk login.</p>
+    </div> 
+
+    <div class="u-display-table-cell makeit--center" *ngIf="activationResponse.status === 2">
+        <!-- <h2>{{ activationResponse.message }}</h2> -->
+        <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p>
+    </div>
 </div>
-
-<div *ngIf="activationResponse.status === 3">
-    <!-- <h2>{{ activationResponse.message }}</h2> -->
-    <p>Maaf, kami baru saja mengirimkan email aktivasi yang baru karena sudah habis masa berlaku, silahkan cek kotak masuk email anda</p>
-</div>
-
-<div *ngIf="activationResponse.status === 1">
-    <!-- <h2>{{ activationResponse.message }}</h2> -->
-    <p>Selamat {{name}}, akun belisada Anda sudah aktif silahkan <a routerLink="/account/sign-in">klik disini</a> untuk login.</p>
-</div> 
-
-<div *ngIf="activationResponse.status === 2">
-    <!-- <h2>{{ activationResponse.message }}</h2> -->
-    <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p>
-</div> 

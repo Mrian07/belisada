@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
@@ -12,7 +12,7 @@ import { SendEmailTypeEnum } from '@belisada/core/enum';
   templateUrl: './sign-up-activation.component.html',
   styleUrls: ['./sign-up-activation.component.scss']
 })
-export class SignUpActivationComponent implements OnInit {
+export class SignUpActivationComponent implements OnInit, OnDestroy {
 
   key: string;
   emailFC: FormControl;
@@ -52,6 +52,10 @@ export class SignUpActivationComponent implements OnInit {
     },
     error => {
     });
+  }
+
+  ngOnDestroy(): void {
+    location.reload();
   }
 
   onSubmit() {
