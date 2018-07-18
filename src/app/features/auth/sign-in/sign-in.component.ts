@@ -6,7 +6,7 @@ import swal from 'sweetalert2';
 import { filter } from 'rxjs/operators';
 
 import { EmailChecking, SigninRequest } from '@belisada/core/models';
-import { UserService } from '@belisada/core/services';
+import { UserService, AuthService } from '@belisada/core/services';
 import { Subscription } from 'rxjs';
 
 import { Store, ActionsSubject } from '@ngrx/store';
@@ -52,7 +52,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private ngrx: Store<UserAction.Login>,
     private shoppingCartService: ShoppingCartService,
     private storageService: StorageService,
-    private productService: ProductService
+    private productService: ProductService,
+    private authService: AuthService
   ) {
     this.storage = this.storageService.get();
   }
@@ -60,6 +61,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.test = '';
     this.createFormControl();
+    this.checkIsLogin();
   }
 
   ngAfterViewInit() {
@@ -88,6 +90,12 @@ export class SigninComponent implements OnInit, AfterViewInit {
       });
 
     });
+  }
+
+  checkIsLogin() {
+    if (this.authService.getToken()) {
+      this.router.navigateByUrl('/buyer/profile');
+    }
   }
 
   /* Fungsi untuk membuat nama field pada form */

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 import { LowerCasePipe } from '@angular/common';
 import { User, SignupData, EmailChecking } from '@belisada/core/models';
-import { UserService } from '@belisada/core/services';
+import { UserService, AuthService } from '@belisada/core/services';
 import { PasswordValidation } from '@belisada/shared/validators';
 
 import { Store, ActionsSubject } from '@ngrx/store';
@@ -44,12 +44,14 @@ export class SignUpComponent implements OnInit {
     private userservice: UserService,
     private fb: FormBuilder,
     private actionsSubject: ActionsSubject,
-    private ngrx: Store<UserAction.SignUpBuyer>
+    private ngrx: Store<UserAction.SignUpBuyer>,
+    private authService: AuthService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
+    this.checkIsLogin();
     //   this.checkEmail();
     this.vForValidation = this.fb.group({
         isSubscribe: new FormControl(false),
@@ -101,6 +103,11 @@ export class SignUpComponent implements OnInit {
               // }
           });
         });
+  }
+  checkIsLogin() {
+    if (this.authService.getToken()) {
+      this.router.navigateByUrl('/buyer/profile');
+    }
   }
   changeValue() {
       this.isSubscribe = new FormControl(!this.isSubscribe.value);

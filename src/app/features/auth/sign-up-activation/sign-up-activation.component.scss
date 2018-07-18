@@ -1,0 +1,13 @@
+.activation {
+
+    &__container {
+        display: table;
+        height: 100%;
+        width: 100%;
+
+        .makeit--center {
+            vertical-align: middle;
+            text-align: center;
+        }
+    }
+}
