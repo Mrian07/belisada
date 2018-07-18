@@ -26,12 +26,10 @@
         </div>
         <div class="col-7">
 
-            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}}) 
-              <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span>
-            </div> 
+            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})</div> 
         </div>
         <div class="col-2">
-          <div class="text-progress">On Progress</div>
+          <div class="text-progress">Finish</div>
         </div>
       </div>
   </div>
@@ -83,36 +81,10 @@
           </div>
         </td>
         <td width="40%">
-          <span class="btn-konfirm">Konfirmasi Barang</span> <span class="btn-invoice"><u>Lihat Invoice</u></span>
+          <span class="btn-invoice"><u>Lihat Invoice</u></span>
         </td>
       </tr>
     </table>
   </div>
 </div>
 
-
-<app-models [(visible)]="showDialog" class="frameDialog">
-    <div class="modal-body">
-
-        <div *ngIf="isForm==true">    
-
-            <div class="title-modal">Upload Bukti Transfer Anda</div>
-
-            <div class="image">
-              <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
-            </div> 
-
-            <div class="upload-btn-wrapper" *ngIf="isPilih == true">
-                <div class="btn-konfirm">Pilih Bukti Transfer</div>                
-                <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-            </div>  
-            <div class="btn-upload" *ngIf="isSent == true" (click)="uploadBuktiTransfer()">Klik disini untuk unggah bukti transfer</div>
-        
-        </div>
-        <div *ngIf="regSuccess==true" class="isSuccess">
-            <div class="title-modal">Upload Bukti Transfer Berhasil</div>    
-            <div class="text-success">berhasil.</div>
-        </div>
-    </div>
-
-</app-models>
