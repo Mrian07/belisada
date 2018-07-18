@@ -8,7 +8,7 @@
 .list-suggestion {
     position: absolute;
     z-index: 15;
-    left: 3rem;
+    left: 0;
     background-color: #fff;
     box-shadow: 0 2px 8px 0 rgba(0,0,0,.14);
     border: solid 1px #ddd;
@@ -284,17 +284,15 @@
     color: #111;
 }
 
-
-.right--12px {
-    right: 16%
+.w--text--name {
+    max-width: 11rem;
+    overflow: hidden; 
 }
 
-.right-14 {
-    right: 14%;
+.w--select--box {
+    margin-right: 2rem;
 }
-.right-13 {
-    right: 13%;
-}
+
 
 .w-edit-for-margin {
     margin-right: 34px;
@@ -353,107 +351,3 @@
     media query 
 
 */
-
-@media screen and (max-width: 920px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 70%;
-    }
-}
-@media screen and (max-width: 1200px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 70%;
-    }
-}
-
-@media screen and (max-width: 1300px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 70%;
-    }
-}
-@media screen and (max-width: 1350px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 65%;
-    }
-}
-
-@media screen and (min-width: 2000px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 65%;
-    }
-}
-
-@media screen and (max-width: 1250px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 65%;
-    }
-}
-
-@media screen and (max-width: 1235px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 62%;
-    }
-}
-
-@media screen and (width: 1400px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 70%;
-    }
-}
-
-@media screen and (max-width: 1120px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 59%;
-    }
-}
-
-@media screen and (width: 1920px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 78%;
-    }
-}
-
-@media screen and (max-width: 2000px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 78%;
-    }
-}
-
-@media screen and (max-width: 2560px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 85%;
-    }
-}
-
-@media screen and (max-width: 2048px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 78%;
-    }
-}
-
-@media screen and (max-width: 1440px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 70%;
-    }
-}
-
-@media screen and (width: 3840px) {
-    .bs-header__account-box-edited--wahyu {
-        position: absolute;
-        left: 88%;
-    }
-}
-

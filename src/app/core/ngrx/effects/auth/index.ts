@@ -39,10 +39,16 @@ export class AuthEffects {
     .pipe(switchMap((req) =>
       this.userService.signup(req)
         .pipe(switchMap( (status: any) => {
-        return [
-          new Action.SignUpBuyerSuccess(status)
-        ];
-      }
+
+          if (status.status === 0) {
+            swal('belisada.co.id', status.message, 'warning');
+            return [];
+          } else {
+            return [
+              new Action.SignUpBuyerSuccess(status)
+            ];
+          }
+        }
     )))
   );
 }

@@ -69,7 +69,7 @@ export class CheckoutComponent implements OnInit {
     this.formAdd();
     this.getProvince();
     this.onChanges();
-    this.dataShipping();
+    // this.dataShipping();
     this.allPayment();
   }
 
@@ -121,11 +121,11 @@ export class CheckoutComponent implements OnInit {
   });
   }
 
-  dataShipping() {
-    this.addressService.getShipping().subscribe(respon => {
-      this.listShip = respon;
-    });
-  }
+  // dataShipping() {
+  //   this.addressService.getShipping().subscribe(respon => {
+  //     this.listShip = respon;
+  //   });
+  // }
 
   formAdd() {
       this.formAddCrtl = this.fb.group({
@@ -163,7 +163,7 @@ export class CheckoutComponent implements OnInit {
       this.addressService.addShipping(data).subscribe(respon => {
         if (respon.status === 1) {
           this.showDialogPilihAlamat = false;
-          this.dataShipping();
+          this.getCartCheckout();
         }
       });
     } else {
