@@ -40,49 +40,49 @@ export class SignUpComponent implements OnInit {
   fullname: FormControl;
   RegStatus: Subscription;
   constructor(
-      private router: Router,
-      private userservice: UserService,
-      private fb: FormBuilder,
-      private actionsSubject: ActionsSubject,
-      private ngrx: Store<UserAction.SignUpBuyer>
+    private router: Router,
+    private userservice: UserService,
+    private fb: FormBuilder,
+    private actionsSubject: ActionsSubject,
+    private ngrx: Store<UserAction.SignUpBuyer>
   ) {
-      this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
-      //   this.checkEmail();
-      this.vForValidation = this.fb.group({
-          isSubscribe: new FormControl(''),
-          fullname: new FormControl('',
-          [Validators.required,
-          ]),
-          password: new FormControl('', [
-              Validators.required,
-              Validators.minLength(7)
-          ]),
-        // password match validation dokumentasi  confirmPassword: new FormControl('', [
-        //     //   Validators.required
+    //   this.checkEmail();
+    this.vForValidation = this.fb.group({
+        isSubscribe: new FormControl(false),
+        fullname: new FormControl('',
+        [Validators.required,
+        ]),
+        password: new FormControl('', [
+            Validators.required,
+            Validators.minLength(7)
+        ]),
+      // password match validation dokumentasi  confirmPassword: new FormControl('', [
+      //     //   Validators.required
+      //   ]),
+        email: new FormControl('', [
+            Validators.required,
+            Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+        ]),
+
+        /*
+        berguna untuk dokumentasi recaptcha dan phone number
+        dokumentasi
+        //   phoneNumber: new FormControl('', [
+        //       Validators.pattern('[0-9]+')
         //   ]),
-          email: new FormControl('', [
-              Validators.required,
-              Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
-          ]),
+        //   recaptchaReactive: new FormControl(null, Validators.required)
+        */
 
-          /*
-          berguna untuk dokumentasi recaptcha dan phone number
-          dokumentasi
-          //   phoneNumber: new FormControl('', [
-          //       Validators.pattern('[0-9]+')
-          //   ]),
-          //   recaptchaReactive: new FormControl(null, Validators.required)
-          */
-
-      }, {
-        // password matchvalidation dokumentasi  validator: PasswordValidation.MatchPassword,
-        //   updateOn: 'blur'
-      });
-      this.RegStatus = this.actionsSubject.asObservable()
-        .pipe(filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS))
+    }, {
+      // password matchvalidation dokumentasi  validator: PasswordValidation.MatchPassword,
+      //   updateOn: 'blur'
+    });
+    this.RegStatus = this.actionsSubject.asObservable()
+      .pipe(filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS))
         .subscribe((action: UserAction.SignUpBuyerSuccess) => {
           // console.log('reg success');
           this.ngrx.select<any>(UserReducer.SignUpBuyerState).subscribe(
