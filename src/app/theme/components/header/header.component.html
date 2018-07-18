@@ -4,9 +4,9 @@
             <img src="/assets/img/logo.png" alt="">
         </a>
     </div>
-    <div class="bs-header__search-box edited--wahyu">
+    <div class="bs-header__search-box">
         <div class="search-by-category-wrapper">
-            <div class="select-box-container">
+            <div class="select-box-container w--select--box">
                 <div class="select-box select-box-orange" (click)="isSelectBoxActive = !isSelectBoxActive">
                     <span>All Category</span>
                     <fa name="caret-down"></fa>
@@ -30,7 +30,7 @@
             <div class="input-group icon-right with-select-box">
                 <!-- <div class=""> -->
                 <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter($event)"
-                    (focus)="showSearch = true" (focusout)="onSearchFocusOut()" class="input input-wahyu--edited" placeholder="Temukan produk idaman anda"/>
+                    (focus)="showSearch = true" (focusout)="onSearchFocusOut()" class="input" placeholder="Temukan produk idaman anda"/>
                 <div class="list-suggestion" [ngClass]="{'show-element': showSearch === true, 'hide-element': showSearch === false}">
                     <div class="product-suggestion">
                         <ul>
@@ -52,9 +52,9 @@
             </div>
         </div>
     </div>
-    <div class="bs-header__account-box bs-header__account-box-edited--wahyu">
+    <div class="bs-header__account-box">
         <ul>
-            <li class="shopping-cart right-9px" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
+            <li class="shopping-cart" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
                 <img src="/assets/img/cart.png" alt="">
 
                 <div class="cart__container">
@@ -89,7 +89,7 @@
                 </div>
                 <span class="cart__counter">{{ itemCount }}</span>
             </li>
-            <li class="right--12px">
+            <li>
                 <a *ngIf="isLogin === false" routerLink="/account/sign-in">
                     <img class="country-flag" src="/assets/img/profile.png" alt="">
                 <span class="text-language">
@@ -101,13 +101,11 @@
                     </div> -->
                 </a>
                 <a *ngIf="isLogin === true" class="account-menu--trigger" (click)="toggleAccountMenu()" clickOutside (clickOutside)="onClickOutside($event)">
-                   
                         <img class="country-flag  img-circle" src="{{avatar}}" alt="">
-                        <span class="text-language">
+                        <span class="text-language w--text--name">
                                 {{ userData.name.split(' ')[0]  }}
                             
                         </span>
-                   
                     <!-- <div class="profile-wrapper">
                         <img class="u-display-block centered-block-element img-circle" src="{{avatar}}" alt="">
                         <span class="u-display-block text-profile">{{ userData.name.split(' ')[0] }}</span>
@@ -120,7 +118,7 @@
                     <div><button class="btn rounded btn--navy" (click)="logout()">Logout</button></div>
                 </div>
             </li>
-                    <li *ngIf="role === 0" class="padding__button right-14">
+                    <li *ngIf="role === 0" class="padding__button">
                         <div (click)="showDialog = !showDialog" class="colx2 btn btn--orange btn--size--80 w--forbutton">
                             <div>
                                 
@@ -134,7 +132,7 @@
                         </div>
                         </li>
 
-                        <li *ngIf="role !== 2 && role != 0" class="padding__button right-14">
+                        <li *ngIf="role !== 2 && role != 0" class="padding__button">
                             <div (click)="goToSeller()" class="colx2 btn btn--orange btn--size--80 w--forbutto">
 
                                 <div>
@@ -147,7 +145,7 @@
                             </div>
                             </li>
 
-                            <li *ngIf="role === 2" class="padding__button right-14">
+                            <li *ngIf="role === 2" class="padding__button">
                                     <div (click)="navigateToIkutJualan()" class="colx2 btn btn--orange btn--size--80 w-In-Role2">
         
                                         <div>
@@ -213,7 +211,7 @@
         </div>
 
     </app-models>
-            <li class="right-13">
+            <li>
                 <img class="country-flag" src="/assets/img/id_flag.png" alt="">
                 <span class="text-language">
                     ID<br>

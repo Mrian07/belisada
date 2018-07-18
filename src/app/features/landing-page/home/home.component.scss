@@ -2,6 +2,10 @@
     border-radius:5px;
 }
 
+.w--box--for--slider {
+    width: calc(100% - 25rem);
+}
+
 .title{
     text-align: center;
     font-family: arial;
@@ -342,6 +346,12 @@ border-radius: 6px;
 	}
 }
 
+@media only screen and (max-width: 2560px) {
+	.flash--sale--image {
+        width: 100%;
+        height: 100%;
+    }
+}
 @media only screen and (max-width: 480px) {
 	.span_22_of_2, .span_11_of_2 { width: 100%; }
 }
@@ -349,4 +359,49 @@ border-radius: 6px;
 .image--center {
     text-align: center;
 }
+.flash--sale--harga {
+    display: block;
+}
 
+
+
+
+///
+
+
+
+$columns: 12;
+$gutter: 5%;
+
+@function grid-width($cols, $has-gutter:false) {
+  
+    @if $has-gutter {
+      @return calc(((100% / #{$columns}) * #{$cols}) - #{$gutter});  
+    }
+    @else {
+      @return calc((100% / #{$columns}) * #{$cols});
+    }
+  
+}
+
+
+header {
+  width: grid-width(12);
+}
+  
+main {
+  width: grid-width(8, true);
+  background: tomato;
+  float: left;
+}
+
+aside {
+  width: grid-width(4);
+  float: right;
+  background: teal;
+}
+
+footer {
+  clear: both;
+  width: grid-width(12);
+}

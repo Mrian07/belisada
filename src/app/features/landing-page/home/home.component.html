@@ -1,6 +1,34 @@
 <div class="containPage has-header header--home">
-
-        <div class="row">
+        <!-- <div class="container">
+  
+                <header>
+                  <h1>CSS grid with calc()</h1>
+                </header>
+                
+                <main>
+                  <p>
+                  Cupcake icing liquorice chupa chups sugar plum pastry.
+                  Sesame snaps faworki cupcake candy. Faworki macaroon sweet roll
+                  gingerbread sweet donut gummi bears candy bear claw. Cheesecake
+                  muffin pudding dessert dragée jujubes sugar plum. Chocolate jelly
+                  beans jujubes jelly beans halvah.
+                  </p>
+                </main>
+              
+                <aside>
+                  <p>
+                  Cupcake icing liquorice chupa chups sugar plum pastry.
+                  Sesame snaps faworki cupcake candy. Faworki macaroon sweet roll
+                  gingerbread sweet donut gummi bears candy bear claw. Cheesecake
+                  muffin pudding dessert dragée jujubes sugar plum. Chocolate jelly
+                  beans jujubes jelly beans halvah.
+                  </p>
+                </aside>
+                <footer>
+                  Made with Sass, by <a href="https://twitter.com/seb_ekstrom">seb_ekstrom</a>
+                </footer>
+              </div> -->
+         <div class="row">
                     <div class="col-9">
                             <div class="box">
                                     <img class="flash--sale--image" src="assets/img/banner.png">
@@ -19,7 +47,7 @@
                                             <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
                                             <span class="flash--sale--city">DKI JAKARTA</span>
                                             <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
-                                            <span>Rp.6.500.000</span>
+                                            <span class="flash--sale--harga">Rp.6.500.000</span>
                                             <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
                                         </div>
                                 </div>
@@ -31,7 +59,7 @@
                                                 <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
                                                 <span class="flash--sale--city">DKI JAKARTA</span>
                                                 <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
-                                                <span>Rp.6.500.000</span>
+                                                <span class="flash--sale--harga">Rp.6.500.000</span>
                                                 <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
                                             </div>
                                     </div>
@@ -43,7 +71,7 @@
                                                     <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
                                                     <span class="flash--sale--city">DKI JAKARTA</span>
                                                     <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
-                                                    <span>Rp.6.500.000</span>
+                                                    <span class="flash--sale--harga">Rp.6.500.000</span>
                                                     <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
                                                 </div>
                                         </div>
@@ -56,7 +84,7 @@
                                         <div class="col span_1_of_10 border--new--product" *ngFor="let item of productNew">
                                                 <div class="section group">
                                                         <div class="col span_11_of_2">
-                                                                <img class="img--toko" src="{{ item.storeImageUrl }}">
+                                                                <img class="img--toko" [src]="productImageUrl + item.storeImageUrl">
                                                         </div>
                                                         <div class="col span_11_of_2">
                                                                 <span class="product--name--store--name">{{ item.storeName }}</span>
@@ -65,30 +93,23 @@
                                                         </div>
                                                         <div class="row">
                                                                 <div class="col-12 image--center">
-                                                                        <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" src="assets/img/dummy-product-detail.jpg">
+                                                                        <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrlEdit + item.imageUrl">
                                                                 </div>
                                                                 <div class="col-12 image--center">
                                                                         <span>Rp. {{ item.pricelist | number }}</span>
+                                                                        {{length}}
                                                                 </div>
                                                                 
                                                             </div>
                                                         
                                                     </div>
                                         </div>
-                                      
                                     </div>
                         </div>
-                           
                     </div>
                     <div class="col-12">
-                        <span>222</span>
                     </div>
-                    
                 </div>
-
-               
-                            
-       
         <!-- <div class="wrapper9">
                 <div class="box">
                         <img class="flash--sale--image" src="assets/img/banner.png">

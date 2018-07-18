@@ -38,18 +38,16 @@ export class HomeComponent implements OnInit {
 
   productNew: Home[] = [];
   productImageUrl;
+  productImageUrlEdit;
   constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router,
-    private homeS: HomeSService) {}
+    private homeS: HomeSService) {
+        this.productImageUrl = 'http://image.belisada.id:8888/unsafe/163x179/';
+        this.productImageUrlEdit = 'http://image.belisada.id:8888/unsafe/163x179/';
+    }
 
   ngOnInit() {
-      
       this.flagStatus();
       this.regForm = true;
-    this.userS.getIpAddress().subscribe(data => {
-      this.ip = data.city;
-      this.country = data.country;
-      console.log(data);
-    });
 
       this.storeName = new FormControl(null, Validators.required);
       this.storeUrl = new FormControl(null, Validators.required);
@@ -84,23 +82,18 @@ export class HomeComponent implements OnInit {
       if (this.userData) {
           this.isLogin = true;
       }
-      this.getProvince();
-      this.onChanges();
       this.getDataForNew();
   }
 
   getDataForNew() {
     this.homeS.getHomeNew().subscribe(res => {
         this.productNew = res;
+        // console.log('res', res.storeImageUrl)
         // this.productNew.forEach(item => {
-        // this.productImageUrl = item.storeImageUrl;
-        //    console.log('item cuys',  this.productImageUrl);
-        //    this.homeS.getProduct(item.storeImageUrl).subscribe(a =>{
-        // console.log('a',a);
-        //    });
+        // console.log(' this.productImageUrl:',  this.productImageUrl)
         //   });
 
-        console.log('ii res', this.productNew);
+        console.log('ii res', res.length);
         });
   }
 
