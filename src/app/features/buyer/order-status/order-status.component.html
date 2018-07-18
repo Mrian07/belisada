@@ -60,13 +60,13 @@
     <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
       <tr *ngFor="let itemList of itemCart.cart">
         <td valign="top" width="20%">
+          <span class="order-id">ORDER ID: {{itemList.orderNumbere}}</span>
           <table border="0" width="100%">
             <tr *ngFor="let itemListProduct of itemList.cartItems">
               <td valign="top" width="40%">
                   <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
               </td>
               <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.productId}}</div> 
                   <div class="item-colom">{{itemListProduct.name}}</div> 
                   <div class="item-colom">{{itemListProduct.priceList | currency:'Rp '}}</div> 
               </td>
@@ -121,7 +121,6 @@
             <div class="image">
               <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
             </div> 
-
 
             <div class="upload-btn-wrapper" *ngIf="isPilih == true">
                 <div class="btn-konfirm">Pilih Bukti Transfer</div>                

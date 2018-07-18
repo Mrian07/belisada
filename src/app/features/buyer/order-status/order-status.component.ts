@@ -78,7 +78,6 @@ export class OrderStatusComponent implements OnInit {
 
   }
 
-
   setUrl(event, img) {
     const fr = new FileReader();
     const f = event.target.files[0];
