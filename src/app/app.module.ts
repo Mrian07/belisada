@@ -38,6 +38,7 @@ import { StorageService, LocalStorageServie } from '@belisada/core/services/loca
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { ADirective } from '@belisada/shared/directives';
+import 'angular2-navigate-with-data';
 @NgModule({
   declarations: [
     AppComponent,

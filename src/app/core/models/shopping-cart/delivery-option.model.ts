@@ -11,3 +11,13 @@ export class DeliveryOption {
     this.price = src.price;
   }
 }
+
+export class ShippingRate {
+  name: string;
+  courierService: string;
+  description: string;
+  courierCode: string;
+  courierPrice: number;
+  estimationDay: string;
+  nameCapital: string;
+}

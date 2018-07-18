@@ -6,6 +6,14 @@ import { Province, City, District, Village } from '@belisada/core/models/store/a
 import { StoreService } from '@belisada/core/services';
 import { PaymentService } from './../../../core/services/payment/payment.service';
 import { Payment, PaymentList } from '@belisada/core/models/payment/payment.model';
+import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
+import { CheckoutTrx, UpdateShippingReq } from '@belisada/core/models/checkout/checkout-cart';
+import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
+import { CheckoutService } from '@belisada/core/services/checkout/checkout.service';
+import { CheckoutReq } from '@belisada/core/models/checkout/checkout-transaction';
+import { Router } from '@angular/router';
+import swal from 'sweetalert2';
+// import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
 
 @Component({
   selector: 'app-checkout',
@@ -13,6 +21,14 @@ import { Payment, PaymentList } from '@belisada/core/models/payment/payment.mode
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
+
+  // ![(ngModel)]
+  checkoutAddress: any = '';
+  rates = [];
+  shippingAddressDatas = [];
+  shippingRates: ShippingRate[];
+  itemCartIds: number[];
+
   public formAddCrtl: FormGroup;
   provinces: Province[];
   cities: City[];
@@ -32,17 +48,50 @@ export class CheckoutComponent implements OnInit {
   isPayment: boolean;
   isNote: boolean;
 
-  constructor(private fb: FormBuilder, private storeService: StoreService, private addressService: AddressService,
-    private paymentService: PaymentService) { }
+  checkoutTrx: CheckoutTrx = new CheckoutTrx;
+
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private storeService: StoreService,
+    private addressService: AddressService,
+    private paymentService: PaymentService,
+    private shoppingCartService: ShoppingCartService,
+    private checkoutService: CheckoutService
+  ) {
+    this.itemCartIds = [];
+  }
 
   ngOnInit() {
     this.isNote = false;
     this.isPayment = false;
+    this.getCartCheckout();
     this.formAdd();
     this.getProvince();
     this.onChanges();
-    this.dataShipping();
+    // this.dataShipping();
     this.allPayment();
+  }
+
+  getCartCheckout() {
+    this.shoppingCartService.getCartV2().subscribe(response => {
+      console.log('response: ', response);
+      this.checkoutTrx = response;
+
+      response.cart.forEach((cart, index) => {
+        cart.itemCartIds.forEach((item) => {
+          if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
+        });
+        this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
+        const queryParam = {
+          itemCartIds: cart.itemCartIds,
+          originId: cart.originId,
+          destinationId: cart.destinationId,
+          weight: cart.totalWeight
+        };
+        this.getShippingRates(queryParam, index);
+      });
+    });
   }
 
   allPayment() {
@@ -54,7 +103,7 @@ export class CheckoutComponent implements OnInit {
   byTransfer() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[0].data;
+      this.listPayment = respon[0].data;
     });
   }
 
@@ -72,11 +121,11 @@ export class CheckoutComponent implements OnInit {
   });
   }
 
-  dataShipping() {
-    this.addressService.getShipping().subscribe(respon => {
-      this.listShip = respon;
-    });
-  }
+  // dataShipping() {
+  //   this.addressService.getShipping().subscribe(respon => {
+  //     this.listShip = respon;
+  //   });
+  // }
 
   formAdd() {
       this.formAddCrtl = this.fb.group({
@@ -114,8 +163,8 @@ export class CheckoutComponent implements OnInit {
       this.addressService.addShipping(data).subscribe(respon => {
         if (respon.status === 1) {
           this.showDialogPilihAlamat = false;
-          this.dataShipping();
-        } 
+          this.getCartCheckout();
+        }
       });
     } else {
       this.validateAllFormFields(this.formAddCrtl);
@@ -188,5 +237,67 @@ export class CheckoutComponent implements OnInit {
 
   cancelNote() {
     this.isNote = false;
+  }
+
+  addressChange(event, itemCartIds, originId, weight, destinations, index) {
+    const val = event.target.value;
+    console.log('destinations: ', destinations);
+    if (val === 'tambah') {
+      this.showDialogPilihAlamat = !this.showDialogPilihAlamat;
+    } else {
+      this.shippingAddressDatas[index] = destinations.find(x => x.shippingAddressId === +val);
+      const queryParam = {
+        itemCartIds: itemCartIds,
+        originId: originId,
+        destinationId: this.shippingAddressDatas[index].destinationId,
+        weight: weight
+      };
+      this.getShippingRates(queryParam, index);
+    }
+    console.log('event: ', event.target.value);
+  }
+
+  shippingChange(event, itemCartIds, index) {
+    const val = event.target.value;
+    console.log('index: ', index);
+    const data: UpdateShippingReq = new UpdateShippingReq();
+    data.courierCode = val.split('~')[0];
+    data.courierService = val.split('~')[1];
+    data.itemCartIds = itemCartIds;
+    data.shippingAddressId = this.shippingAddressDatas[index].shippingAddressId;
+    this.shoppingCartService.updateShipping(data).subscribe(response => {
+      console.log('response: ', response);
+      if (response.status === 1) {
+        this.getCartCheckout();
+      }
+    });
+  }
+
+  getShippingRates(queryParam, index) {
+    console.log('queryParam: ', queryParam);
+    this.shoppingCartService.getShippingRates(queryParam).subscribe(response => {
+      this.rates[index] = response;
+      console.log('this.rates: ', this.rates);
+    });
+  }
+
+  doCheckout() {
+    console.log('this.itemCartIds: ', this.itemCartIds);
+    const data: CheckoutReq = new CheckoutReq();
+    data.itemCartIds = this.itemCartIds;
+    data.paymentMethodCode = 'BT';
+    this.checkoutService.doCheckout(data).subscribe(response => {
+      console.log('response: ', response);
+      if (response.status === 1) {
+        this.shoppingCartService.empty();
+        this.router.navigateByData({
+          url: ['/transaction/terimakasih'],
+          data: response.data,
+        });
+        // this.router.navigateByUrl('/transaction/terimakasih');
+      } else {
+        swal('belisada.id', response.message, 'error');
+      }
+    });
   }
 }

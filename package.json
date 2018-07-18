@@ -38,6 +38,7 @@
     "@nguniversal/express-engine": "^6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "^6.0.0",
     "angular-font-awesome": "^3.1.2",
+    "angular2-navigate-with-data": "^1.1.11",
     "core-js": "^2.5.6",
     "font-awesome": "^4.7.0",
     "mydatepicker": "^2.6.3",
