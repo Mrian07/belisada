@@ -36,3 +36,7 @@ export class GetShippingResponse {
     villageName: string;
 }
 
+export class SetDefault {
+    addressId: number;
+}
+
