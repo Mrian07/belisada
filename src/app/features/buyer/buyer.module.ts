@@ -13,6 +13,8 @@ import { ADirective } from '@belisada/shared/directives';
 import { OrderComponent } from './order/order.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { ProfileInformationComponent } from './profile-information/profile-information.component';
+import { ShippingAddressComponent } from './shipping-address/shipping-address.component';
 
 
 
@@ -35,7 +37,9 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     ADirective,
     OrderComponent,
     OrderStatusComponent,
-    OrderHistoryComponent
+    OrderHistoryComponent,
+    ProfileInformationComponent,
+    ShippingAddressComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
