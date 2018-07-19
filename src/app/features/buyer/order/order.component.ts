@@ -9,33 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class OrderComponent implements OnInit {
 
   tabOrder: string;
-  tabOrderStatus: boolean;
-  tabOrderHistory: boolean;
   constructor() { }
 
   ngOnInit() {
-    this.statusTab();
     this.tabOrder = 'tabStatus';
-    this.tabOrderStatus = true;
-  }
-
-  statusTab() {
-    this.tabOrderStatus = false;
-    this.tabOrderHistory = false;
   }
 
   tab($data) {
     this.tabOrder = $data;
-  }
-
-  orderStatus() {
-    this.statusTab();
-    this.tabOrderStatus = true;
-  }
-
-  orderHistory() {
-    this.statusTab();
-    this.tabOrderHistory = true;
   }
 
 }

@@ -121,6 +121,7 @@ export class OrderStatusComponent implements OnInit {
       this.showDialog = false;
       this.isForm = true;
       this.isPilih = true;
+      this.pendingOrder();
     });
 
   }

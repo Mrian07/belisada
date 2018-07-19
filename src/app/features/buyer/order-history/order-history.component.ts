@@ -49,7 +49,7 @@ export class OrderHistoryComponent implements OnInit {
   pendingOrder() {
     this.status = 'HISTORY';
     this.transactionService.getOrder(this.status).subscribe(respon => {
-      console.log('detail order:', respon);
+      console.log('detail history:', respon);
       this.isLoading = false;
       this.list = respon;
     });
