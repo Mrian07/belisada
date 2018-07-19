@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angula
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService } from '@belisada/core/services';
 import { AddressService } from './../../../core/services/address/address.service';
-import { AddShippingRequest, SetDefault } from '@belisada/core/models/address/address.model';
+import { AddShippingRequest, SetDefault, GetShippingResponse, EditShippingRequest } from '@belisada/core/models/address/address.model';
 import swal from 'sweetalert2';
 
 @Component({
@@ -13,21 +13,23 @@ import swal from 'sweetalert2';
 })
 export class ShippingAddressComponent implements OnInit {
 
-  list: any[];
+  list: GetShippingResponse[];
   public formAddCrtl: FormGroup;
   provinces: Province[];
   cities: City[];
   districts: District[];
   villages: Village[];
-  showDialogPilihAlamat: Boolean = false;
+
   simpan_sebagai: FormControl;
   penerima: FormControl;
   hp: FormControl;
   kodepos: FormControl;
   alamat: FormControl;
+  addId: number;
 
   isList: boolean;
   isAdd: boolean;
+  isEdit: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -38,15 +40,13 @@ export class ShippingAddressComponent implements OnInit {
   ngOnInit() {
     this.statusFlag();
     this.isList = true;
-    this.getForm();
-    this.getProvince();
-    this.onChanges();
     this.listShipping();
   }
 
   statusFlag() {
     this.isList = false;
     this.isAdd = false;
+    this.isEdit = false;
   }
 
   setDefault(id) {
@@ -78,6 +78,34 @@ export class ShippingAddressComponent implements OnInit {
 
   }
 
+  editShipping(id) {
+    const data = this.list.find(x => x.addressId === id);
+
+    this.formAddCrtl = this.fb.group({
+      addId: new FormControl(data.addressId, Validators.required),
+      simpan_sebagai: new FormControl(data.addressName, Validators.required),
+      penerima: new FormControl(data.name, Validators.required),
+      hp: new FormControl(data.phone, Validators.required),
+      kodepos: new FormControl(data.postal, [Validators.required, Validators.minLength(5)]
+      ),
+      province: new FormControl(data.regionId, Validators.required),
+      city: new FormControl(data.cityId, Validators.required),
+      district: new FormControl(data.districtId, Validators.required),
+      villageId: new FormControl(data.villageId,
+          Validators.required,
+      ),
+      alamat: new FormControl(data.address, Validators.required),
+    });
+
+    this.statusFlag();
+    this.isAdd = true;
+    this.isEdit = true;
+    this.getProvince();
+    this.onChanges();
+    console.log('a: ', data);
+    // this.list = data;
+  }
+
   listShipping() {
     this.addressService.getShipping().subscribe(respon => {
       this.list = respon;
@@ -87,10 +115,19 @@ export class ShippingAddressComponent implements OnInit {
   add() {
     this.statusFlag();
     this.isAdd = true;
+    this.getForm();
+    this.getProvince();
+    this.onChanges();
+  }
+
+  back() {
+    this.statusFlag();
+    this.isList = true;
   }
 
   getForm() {
     this.formAddCrtl = this.fb.group({
+      addId: new FormControl(null),
       simpan_sebagai: new FormControl(null, Validators.required),
       penerima: new FormControl(null, Validators.required),
       hp: new FormControl(null, Validators.required),
@@ -113,22 +150,44 @@ export class ShippingAddressComponent implements OnInit {
   onSent() {
 
     if (this.formAddCrtl.valid) {
-      const data = new AddShippingRequest();
-      data.address = this.formAddCrtl.value.alamat;
-      data.addressName = this.formAddCrtl.value.simpan_sebagai;
-      data.isDefault = false;
-      data.name = this.formAddCrtl.value.penerima;
-      data.phone = this.formAddCrtl.value.hp;
-      data.postal = this.formAddCrtl.value.kodepos;
-      data.villageId = this.formAddCrtl.value.villageId;
 
-      this.addressService.addShipping(data).subscribe(respon => {
-        if (respon.status === 1) {
-          this.showDialogPilihAlamat = false;
-          this.statusFlag();
-          this.isList = true;
-        }
-      });
+      if (this.formAddCrtl.value.addId) {
+        const data = new EditShippingRequest();
+        data.addressId = this.formAddCrtl.value.addId;
+        data.address = this.formAddCrtl.value.alamat;
+        data.addressName = this.formAddCrtl.value.simpan_sebagai;
+        data.isDefault = false;
+        data.name = this.formAddCrtl.value.penerima;
+        data.phone = this.formAddCrtl.value.hp;
+        data.postal = this.formAddCrtl.value.kodepos;
+        data.villageId = this.formAddCrtl.value.villageId;
+
+        this.addressService.editShipping(data).subscribe(respon => {
+          if (respon.status === 1) {
+            this.statusFlag();
+            this.listShipping();
+            this.isList = true;
+          }
+        });
+      } else {
+        const data = new AddShippingRequest();
+        data.address = this.formAddCrtl.value.alamat;
+        data.addressName = this.formAddCrtl.value.simpan_sebagai;
+        data.isDefault = false;
+        data.name = this.formAddCrtl.value.penerima;
+        data.phone = this.formAddCrtl.value.hp;
+        data.postal = this.formAddCrtl.value.kodepos;
+        data.villageId = this.formAddCrtl.value.villageId;
+
+        this.addressService.addShipping(data).subscribe(respon => {
+          if (respon.status === 1) {
+            this.statusFlag();
+            this.listShipping();
+            this.isList = true;
+          }
+        });
+      }
+
     } else {
       this.validateAllFormFields(this.formAddCrtl);
     }

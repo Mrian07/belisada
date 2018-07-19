@@ -4,7 +4,7 @@
 
   <div *ngFor="let item of list">
     <div class="menu-top">
-      <span class="link-top">Ubah</span> <span class="link-top" (click)="deleteShipping(item.addressId)">Hapus</span>
+      <span class="link-top" (click)="editShipping(item.addressId)">Ubah</span> <span class="link-top" (click)="deleteShipping(item.addressId)">Hapus</span>
     </div>
     <div class="contain-box" [ngClass]="(item.isDefault==true)?'contain-box-active':'contain-box'">
       <div class="row">
@@ -53,9 +53,11 @@
 </div>
 
 <div *ngIf="isAdd==true">
-  
+    <div class='page-back'>
+        <span class="btn-add" (click)="back()">Kembali</span>
+    </div>
     <form [formGroup]="formAddCrtl" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
-        
+        <input type="hidden" formControlName="addId">
         <div class="row row-atur">
             <div class="col-6">
                 <label>Simpan sebagai alamat:</label>
@@ -136,8 +138,9 @@
             </div>
         </div>
         <div class="row">  
-            <div class="col-12">
-                <button class="btn btn--orange component-center">Tambah</button>
+            <div class="col-12">{{addId}}
+                <button class="btn btn--orange component-center" *ngIf="isEdit==false">Tambah</button> 
+                <button class="btn btn--orange component-center" *ngIf="isEdit==true">Update</button> 
             </div>
         </div>
         

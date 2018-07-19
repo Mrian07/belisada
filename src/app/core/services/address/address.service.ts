@@ -19,6 +19,13 @@ export class AddressService {
       );
   }
 
+  editShipping(data: AddShippingRequest) {
+    return this.http.put(this.configuration.apiURL + '/address/shipping/update', data)
+      .pipe(
+        map(rsl => rsl as AddShippingResponse)
+      );
+  }
+
   getShipping() {
     return this.http.get(this.configuration.apiURL + '/address/shipping')
       .pipe(

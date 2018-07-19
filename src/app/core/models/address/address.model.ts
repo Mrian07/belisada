@@ -9,6 +9,18 @@ export class AddShippingRequest {
     villageId: number;
 }
 
+export class EditShippingRequest {
+    addressId: number;
+    address: string;
+    addressName: string;
+    description: string;
+    isDefault: boolean;
+    name: string;
+    phone: string;
+    postal: string;
+    villageId: number;
+}
+
 export class AddShippingResponse {
     message: string;
     status: number;
