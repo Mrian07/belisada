@@ -9,6 +9,18 @@ export class AddShippingRequest {
     villageId: number;
 }
 
+export class EditShippingRequest {
+    addressId: number;
+    address: string;
+    addressName: string;
+    description: string;
+    isDefault: boolean;
+    name: string;
+    phone: string;
+    postal: string;
+    villageId: number;
+}
+
 export class AddShippingResponse {
     message: string;
     status: number;
@@ -34,5 +46,9 @@ export class GetShippingResponse {
     regionName: string;
     villageId: number;
     villageName: string;
+}
+
+export class SetDefault {
+    addressId: number;
 }
 

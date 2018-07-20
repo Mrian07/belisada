@@ -11,30 +11,40 @@
                         <th class="th4 table-title">Price</th>
                         <th class="th5 table-title">QTY</th>
                         <th class="th6 table-title">Sub Total</th>
-                        <th class="th7 table-title">Total</th>
+                        <!-- <th class="th7 table-title">Total</th> -->
                     </tr>
                 </thead>
                 <tbody *ngFor="let cartCheckout of checkoutTrx.cart; let in = index">
                     <tr>
                         <td></td>
-                        <td colspan="6">
+                        <td colspan="5">
                             <div class="row item-order">
                                 <div class="col-6">
                                     <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>                      
                                 </div>
                                 <div class="col-6 item-order-right">
-                                    <select (change)="addressChange($event, cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)">
+                                    <select (change)="addressChange($event, cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
+                                        class="u-margin-right-1">
                                         <option disabled value="">Pilih Alamat</option>
                                         <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId"
                                             [selected]="cartCheckout.shippingAddressId === destination.shippingAddressId">{{ destination.name }}</option>
                                         <option value="tambah">Tambah</option>
                                     </select>
 
-                                    <select (change)="shippingChange($event, cartCheckout.itemCartIds, in)">
+                                    <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
+                                        class="u-margin-right-1">
+                                        <option disabled value="">Pilih Pengiriman</option>
+                                        <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                                    </select>
+
+                                    <!-- <select [(ngModel)]="shippingRates[in]" (change)="shippingChange($event, cartCheckout.itemCartIds, in)"
+                                        class="u-margin-right-1">
                                         <option disabled value="">Pilih Pengiriman</option>
                                         <option *ngFor="let rate of rates[in]" value="{{ rate.courierCode }}~{{ rate.courierService }}"
                                             [selected]='(cartCheckout.courierCode+"~"+cartCheckout.courierService) === (rate.courierCode+"~"+rate.courierService)'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
-                                    </select>
+                                    </select> -->
+
+                                    <span class="item-price" *ngIf="cartCheckout.courierPrice !== 0">Rp {{ cartCheckout.courierPrice | number }}</span>
                                 </div>
                             </div>
                         </td>
@@ -55,15 +65,16 @@
                             </div>
                         </td>
                         <td class="table-val right"><span class="item-price">Rp {{ cartItem.subtotal | number }}</span></td>
-                        <td class="table-val right"><span class="item-price">Rp {{ cartItem.total | number }}</span></td>
+                        <!-- <td class="table-val right"><span class="item-price">Rp {{ cartItem.total | number }}</span></td> -->
                     </tr>
                     <tr>
                         <td></td>
-                        <td colspan="6">
+                        <td colspan="4">
                             <div class="item-note" (click)="note()" *ngIf="isNote==false">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div>
                             <div *ngIf="isNote==true"><textarea rows="10%" cols="100%"></textarea></div>
                             <div *ngIf="isNote==true" (click)="cancelNote()"><span class="btn-update">Update</span> <span class="btn-cancel">Cancel</span></div>
                         </td>
+                        <td class="right">Subtotal: <span class="item-price">Rp {{ cartCheckout.subTotal | number }}</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -124,10 +135,10 @@
                             <div class='btn-arrow'><img src="assets/img/arrow-green.png"></div>
                         </div>
                         <div class="col-4">
-                            <div class='btn-pilih-metode'>Kartu Kredit</div>
+                            <div class='btn-pilih-metode disabled'>Kartu Kredit</div>
                         </div>
                         <div class="col-4">
-                            <div class='btn-pilih-metode'>Pembayaran Instan</div>  
+                            <div class='btn-pilih-metode disabled'>Pembayaran Instan</div>  
                         </div>
                     </div>   
 

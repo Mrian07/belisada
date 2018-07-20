@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CheckoutReq, CheckoutRes } from '@belisada/core/models/checkout/checkout-transaction';
+import { CheckoutReq, CheckoutRes, CheckoutShippingAddress } from '@belisada/core/models/checkout/checkout-transaction';
 import { Configuration } from '@belisada/core/config';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -11,6 +11,13 @@ import { Observable } from 'rxjs';
 export class CheckoutService {
 
   constructor(private configuration: Configuration, private http: HttpClient) { }
+
+  getShippingAddress(): Observable<CheckoutShippingAddress[]> {
+    return this.http.get(this.configuration.apiURL + '/buyer/cart/shippingaddress')
+      .pipe(
+        map(response => response as CheckoutShippingAddress[])
+      );
+  }
 
   doCheckout(data: CheckoutReq): Observable<CheckoutRes> {
 
