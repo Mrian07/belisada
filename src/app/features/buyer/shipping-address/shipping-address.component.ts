@@ -110,8 +110,9 @@ export class ShippingAddressComponent implements OnInit {
     this.isEdit = true;
     this.getProvince();
     this.onChanges();
-    // console.log('a: ', data);
-    // this.list = data;
+    this.getCity(data.regionId);
+    this.getDistrict(data.cityId);
+    this.getVillage(data.districtId);
   }
 
   listShipping() {
