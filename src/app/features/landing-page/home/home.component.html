@@ -14,7 +14,7 @@
 
                 <aside>
                         <div class="flash--sale--column">
-                                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-19 00:00:00'"></countdown-timer>
+                                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-21 00:00:00'"></countdown-timer>
                         </div>
                         <div class="rowz">
                                 <div class="columnz">
@@ -48,7 +48,7 @@
                                         <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
                                 </div>
                                 
-                            </div>
+                        </div>
                         
                         
                         
@@ -57,57 +57,120 @@
                 <div class="row wrapper--for--middle" *ngIf="lnght !== 0" >
                         <div class="col-12">
                                 <span class="text--new--product">Product Terbaru</span>
-                                <!-- <div class="containerz">
-                                        <div class="itemz" *ngFor="let item of productNew">
+                                <div class="containerz">
+                                        <div class="itemz" *ngFor="let item of productNew | slice:0:6">
                                         <div class="containerz-dalem" >
-                                            <div>
-                                                    <img [src]="productImageUrl + item.storeImageUrl">
-                                            </div>
-                                            <div>
-                                                    <span class="product--name--store--name">{{ item.storeName }}</span>
-                                                    <span>{{ item.locationName }}</span>
-                                            </div>
-                                             
-                                        
+                                        <div>
+                                                <img [src]="productStoreUrl + item.storeImageUrl">
                                         </div>
-                                    <div class="row">
+                                        <div>
+                                                <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                <span>{{ item.locationName }}</span>
+                                        </div>
+                                        </div>
+                                <div class="row">
                                         <div class="col-12">
-                                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrlEdit + item.imageUrl">
+                                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                                         </div>
-                                    </div>
-                                    
-                                    
-                                    </div>
-                                  
-                                    </div> --> <div class="section group">
-                                            <!-- <ul>
-                                                    <li>123</li>
-                                                    <li>123</li>
-                                            </ul> -->
-                                        <!-- <div class="col span_1_of_10 border--new--product" *ngFor="let item of productNew">
-                                                <div class="section group">
-                                                        <div class="col span_11_of_2">
-                                                                <img class="img--toko" [src]="productImageUrl + item.storeImageUrl">
+                                        <div class="col-12 image--center">
+                                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
+                                        <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
+                                        </div>
+                                </div>
+                                        </div>
+                                </div> 
+                                <div class="row">
+                                        <div class="col-12">
+                                                <div class="aasdsad">
+                                                        <div class="flex-wrapper">
+                                                                <div class="text--pop--searc">Popular Search</div>
+                                                        <div class="item">
+                                                        <button class="b"> Kaos Marvel </button>
                                                         </div>
-                                                        <div class="col span_11_of_2">
-                                                                <span class="product--name--store--name">{{ item.storeName }}</span>
-                                                                <span>{{ item.locationName }}</span>
-            
+                                                        <div class="item">
+                                                        <button class="b"> OPPO A37 </button>
                                                         </div>
+                                                        <div class="item">
+                                                        <button class="b"> Iphone X </button>
+                                                        </div>
+                                                        <div class="item">
+                                                        <button class="b"> Whey Protein </button>
+                                                        </div>
+                                                        <div class="item">
+                                                        <button class="b"> AC </button>
+                                                        </div>
+                                                        <div class="item">
+                                                        <button class="b"> AC </button>
+                                                        </div>
+                                                                <div class="item">
+                                                                        <button class="b"> AC </button>
+                                                                </div>
+                                                                        <div class="item">
+                                                                        <button class="b"> AC </button>
+                                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                        
+                                        </div>
+                                </div> 
+                                <!-- <div class="aasdsad"> -->
+                                                <span class="text--new--product">Product Popular</span>
+                                                <div class="containerz">
+                                                                
+                                                                <div class="itemz" *ngFor="let item of productPop | slice:0:6">
+                                                                <div class="containerz-dalem" >
+                                                                <div>
+                                                                        <img [src]="productStoreUrl + item.storeImageUrl">
+                                                                </div>
+                                                                <div>
+                                                                        <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                                        <span>{{ item.locationName }}</span>
+                                                                </div>
+                                                                </div>
                                                         <div class="row">
-                                                                <div class="col-12 image--center">
+                                                                <div class="col-12">
                                                                         <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                                                                 </div>
                                                                 <div class="col-12 image--center">
-                                                                        <span>Rp. {{ item.pricelist | number }}</span>
-                                                                        {{lnght}}
+                                                                        <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
+                                                                <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
                                                                 </div>
+                                                        </div>
+                                                                </div>
+                                                        </div> 
+                                                        <div class="row">
+                                                                <div class="col-12">
+                                                                                <span class="text--new--product">Official Product</span>
+                                                                </div>
+                                                        </div>
+  
+                                                <!-- <div class="aasdsad">
+  
+                                                                <div class="flex-wrapper3" >
+                                                                <div class="item" *ngFor="let item of productPop">
+                                                                <div class="card">
+                                                                                        <div class="out " >
+                                                                                        <div class="card-header">
+                                                                                                                        <img [src]="productStoreUrl + item.storeImageUrl">
+                                                                                                                                <span class="product--name--store--name">{{ item.storeName}}</span>
+                                                                                                                                <span>{{ item.locationName }}</span>
+                                                                                        </div>
+                                                                                        <div class="card-body">
+                                                                                                hai hai ahhajsdkkas;lkd asasd
+                                                                                                
+                                                                                        </div>
+                                                                                        </div>
+                                                                                
+                                                                                </div>
+                                                                </div>
+                                                               
+                                                                  
+                                                                  
+                                                                  </div>
+                                                                </div> -->
                                                                 
-                                                            </div>
-                                                        
-                                                    </div>
-                                        </div> -->
-                                    </div> 
+                                                <!-- </div> -->
+                                                
                         </div>
                     </div>
                 <footer>

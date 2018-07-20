@@ -42,6 +42,7 @@ export class HomeComponent implements OnInit {
   regSuccess: boolean;
 
   productNew: Home[] = [];
+  productPop: Home[] = [];
   productImageUrl;
   productStoreUrl;
   lnght;
@@ -91,19 +92,22 @@ export class HomeComponent implements OnInit {
           this.isLogin = true;
       }
       this.getDataForNew();
+      this.getDataForPop();
   }
 
   getDataForNew() {
     this.homeS.getHomeNew().subscribe(res => {
         this.productNew = res;
         this.lnght = res.length;
-        // console.log('res', res.storeImageUrl)
-        // this.productNew.forEach(item => {
-        // console.log(' this.productImageUrl:',  this.productImageUrl)
-        //   });
-
-        console.log('ii res', this.lnght);
         });
+  }
+
+  getDataForPop() {
+      this.homeS.getHomePopular().subscribe(res => {
+          this.productPop = res;
+          
+          console.log('apa ini', res);
+      })
   }
 
 

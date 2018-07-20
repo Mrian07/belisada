@@ -19,6 +19,13 @@ export class HomeSService {
       );
   }
 
+  getHomePopular(): Observable<Home[]> {
+    return this.http.get(this.cfg.apiURL + '/home/popular/')
+      .pipe(
+        map(response => response as Home[])
+      );
+  }
+
   getProduct(url) {
     return this.http.get(this.cfg.imgUrl163x179 + '/' + url);
   }
