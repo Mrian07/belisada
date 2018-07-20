@@ -14,6 +14,11 @@ import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+    imageUrls = [
+         'https://cdn.vox-cdn.com/uploads/chorus_image/image/56748793/dbohn_170625_1801_0018.0.0.jpg',
+         'https://cdn.vox-cdn.com/uploads/chorus_asset/file/9278671/jbareham_170917_2000_0124.jpg' ,
+         'https://cdn.vox-cdn.com/uploads/chorus_image/image/56789263/akrales_170919_1976_0104.0.jpg'
+      ];
 
   public validationOnpopUpCreateStore: FormGroup;
   provinces: Province[];
@@ -38,11 +43,14 @@ export class HomeComponent implements OnInit {
 
   productNew: Home[] = [];
   productImageUrl;
-  productImageUrlEdit;
+  productStoreUrl;
+  lnght;
+  imageUrlArray;
+  
   constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router,
     private homeS: HomeSService) {
         this.productImageUrl = 'http://image.belisada.id:8888/unsafe/163x179/';
-        this.productImageUrlEdit = 'http://image.belisada.id:8888/unsafe/163x179/';
+        this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/60x60/';
     }
 
   ngOnInit() {
@@ -88,12 +96,13 @@ export class HomeComponent implements OnInit {
   getDataForNew() {
     this.homeS.getHomeNew().subscribe(res => {
         this.productNew = res;
+        this.lnght = res.length;
         // console.log('res', res.storeImageUrl)
         // this.productNew.forEach(item => {
         // console.log(' this.productImageUrl:',  this.productImageUrl)
         //   });
 
-        console.log('ii res', res.length);
+        console.log('ii res', this.lnght);
         });
   }
 

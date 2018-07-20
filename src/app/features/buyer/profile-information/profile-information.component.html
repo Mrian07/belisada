@@ -1,0 +1,95 @@
+<h1>Informasi Anda</h1>
+	<form class="ui form" [formGroup]="validationOnpopUpCreateStore" (ngSubmit)="onSubmit()" novalidate [ngClass]="{'on-edit':!isField}">
+		<div class="row view-line">
+			<div class="col-2 title-line">Foto Profile</div> 
+			<div class="col-4">
+				<img src="{{ imageUrl }}" border="0" width="150" #avaImg class="img-upload"><br>
+				<div class="upload-btn-wrapper">
+					<!-- <img src="/assets/img/profile-buyer.jpg" alt="" #avaImg class="img-upload"><br> -->
+					
+					<button type="button" class="btn btn--dark-grey" *ngIf="isField==true" (click)="edit()">Cari gambar</button>
+					<input type="file" name="imageUrl" (change)="setUrl($event, avaImg)"/>
+				</div>
+			</div>
+		</div>
+		<div class="row view-line">
+			<div class="col-2 title-line">Nama</div> 
+			<div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name" maxlength="30" appA>
+				<div *ngIf="validationOnpopUpCreateStore.controls.name.invalid && (validationOnpopUpCreateStore.controls.name.dirty && validationOnpopUpCreateStore.controls.name.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Nama tidak boleh kosong</span>
+				</div>
+				
+			</div>
+
+			<!-- <div class="col-4"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name">
+				<div *ngIf="validationOnpopUpCreateStore.controls.name.invalid && (validationOnpopUpCreateStore.controls.name.dirty && validationOnpopUpCreateStore.controls.name.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Nama tidak boleh kosong</span>
+				</div>
+			</div> -->
+
+		</div>
+		<div class="row view-line">
+			<div class="col-2 title-line">Email</div>
+			<div class="col-4" *ngIf="isField==false">{{profile.email}}</div>
+			<div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" disabled  formControlName="email"></div>
+
+			<!-- <div class="col-4"><input type="text" class="input-style-text" readonly  formControlName="email"></div> -->
+		</div>
+
+		<div class="row view-line">
+				<div class="col-2 title-line">No. Handphone</div>
+				<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div> 
+				                     <div class="col-4" *ngIf="isField==true"><input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12" appA>
+				                        <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="Phone tidak boleh kosong"></app-field-error-display>
+				                        <div *ngIf="validationOnpopUpCreateStore.controls.phone.valid && (validationOnpopUpCreateStore.controls.phone.dirty && validationOnpopUpCreateStore.controls.phone.touched)">
+											<!--  <span class="tooltiptext"></span> -->
+				                        </div>
+				                    </div>
+	
+				<!-- <div class="col-4"><input type="text" class="input-style-text" readonly  formControlName="email"></div> -->
+			</div>
+
+
+		<div class="row view-line">
+			<div class="col-2 title-line">Tanggal Lahir</div>
+			<div class="col-4" *ngIf="isField==false">{{profile.dateOfBirth}}</div>
+			<div class="col-3" *ngIf="isField==true"> 
+				<my-date-picker class="frame-date" name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
+				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
+				</div>
+				 <app-field-error-display [displayError]="isFieldValid('dateOfBirth')" errorMsg="Tanggal Lahir tidak boleh kosong"></app-field-error-display>
+			</div>
+
+			<!-- <div class="col-3"> 
+				<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
+				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
+				</div>
+			</div> -->
+		</div>
+		<div class="row view-line">
+			<div class="col-2 title-line">Jenis Kelamin {{status}}</div>
+			<div class="col-4" *ngIf="isField==false">{{gender}}</div>
+			<div class="col-4" *ngIf="isField==true">
+				<select class="input-style-text" formControlName="gender">
+					<option value="M">Laki-laki</option>
+					<option value="F">Perempuan</option>
+				</select>
+				<app-field-error-display [displayError]="isFieldValid('gender')" errorMsg="Gender tidak boleh kosong"></app-field-error-display>
+			</div>
+
+			<!-- <div class="col-4">
+				<select class="input-style-text" formControlName="gender">
+					<option value="M">Laki-laki</option>
+					<option value="F">Perempuan</option>
+				</select>
+			</div> -->
+			
+
+		</div>
+		<br>
+		<button type="button" *ngIf="!isField" class="btn btn--orange component-center" (click)="edit()">Edit Profile</button>
+		<button type="submit" class="btn btn--orange component-center" *ngIf="isField" >Save</button>
+	</form>

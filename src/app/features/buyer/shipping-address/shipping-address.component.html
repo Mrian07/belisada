@@ -1,0 +1,154 @@
+<div *ngIf="isEmpty==true">
+    Saat ini belum ada alamat pengiriman.
+</div>
+
+<div *ngIf="isList==true">
+  <span class="btn-add" (click)="add()">Tambah Alamat</span>
+
+  <div *ngFor="let item of list">
+    <div class="menu-top">
+      <span class="link-top" (click)="editShipping(item.addressId)">Ubah</span> <span class="link-top" (click)="deleteShipping(item.addressId)">Hapus</span>
+    </div>
+    <div class="contain-box" [ngClass]="(item.isDefault==true)?'contain-box-active':'contain-box'">
+      <div class="row">
+        <div class="col-9">
+          <div class="row row-atur">
+            <div class="col-3">
+              Nama Alamat
+            </div>
+            <div class="col-9">
+              <label>{{item.addressName}}</label>
+            </div>
+          </div>
+          <div class="row row-atur">
+            <div class="col-3">
+              Nama Penerima
+            </div>
+            <div class="col-9">
+              <label>{{item.name}}</label>
+            </div>
+          </div>
+          <div class="row row-atur">
+            <div class="col-3">
+              No. Handphone
+            </div>
+            <div class="col-9">
+              <label>{{item.phone}}</label>
+            </div>
+          </div>
+          <div class="row row-atur">
+            <div class="col-3">
+              Alamat
+            </div>
+            <div class="col-9">
+              <label>{{item.address}}</label>
+            </div>
+          </div>
+          
+        </div>
+        <div class="col-3 al-center">
+          <div *ngIf="item.isDefault==true" class="btn-utama-default">Alamat Utama</div>
+          <div *ngIf="item.isDefault==false" class="btn-utama" (click)="setDefault(item.addressId)">Jadikan Utama</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isAdd==true">
+    <div class='page-back'>
+        <span class="btn-add" (click)="back()">Kembali</span>
+    </div>
+    <form [formGroup]="formAddCrtl" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
+        <input type="hidden" formControlName="addId">
+        <div class="row row-atur">
+            <div class="col-6">
+                <label>Simpan sebagai alamat:</label>
+                <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" maxlength="20" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
+                <app-field-error-display [displayError]="isFieldValid('simpan_sebagai')" errorMsg="Simpan sebagai tidak boleh kosong"></app-field-error-display>
+            </div>
+            <div class="col-6">
+                <label>Nama Penerima:</label>
+                <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima" maxlength="30">
+                <app-field-error-display [displayError]="isFieldValid('penerima')" errorMsg="Penerima tidak boleh kosong"></app-field-error-display>
+            </div>
+        </div>
+        <div class="row row-atur">  
+            <div class="col-4">
+                <label>No. Handphone:</label>
+                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" (keypress)="phoneCheck($event)" maxlength="15">
+                <app-field-error-display [displayError]="isFieldValid('hp')" errorMsg="Handphone tidak boleh kosong"></app-field-error-display>
+            </div>
+            <div class="col-4">
+                <label>Provinsi:</label>
+                <select formControlName="province" required class="input-style-text-100" >
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
+                    <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">
+                            {{ option.regionName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Provinsi tidak boleh kosong"></app-field-error-display>
+            </div>
+            <div class="col-4">
+                <label>Kota / Kabupaten:</label>
+                <select formControlName="city" class="input-style-text-100">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Kota</option>
+                    <option *ngFor="let option of cities" [ngValue]="option.cityId" placeholder="Pilih kota">{{ option.cityName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Kota tidak boleh kosong"></app-field-error-display>
+            </div>
+        </div>
+        <div class="row row-atur"> 
+
+            <div class="col-4">
+                <label>Kecamatan:</label>
+                <select formControlName="district" class="input-style-text-100">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Kecamatan</option>
+                    <option *ngFor="let option of districts" [ngValue]="option.districtId">
+                            {{ option.districtName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Kecamatan tidak boleh kosong"></app-field-error-display>
+            </div>
+            <div class="col-4">
+                <label>Kelurahan:</label>
+                <select formControlName="villageId" class="input-style-text-100">
+                    <option [ngValue]="null" disabled selected>Silahkan Pilih Kelurahan</option>
+                    <option *ngFor="let option of villages" placeholder="Pilih kota" [ngValue]="option.villageId">
+                            {{ option.villageName }}
+                    </option>
+                </select>
+                <app-field-error-display [displayError]="isFieldValid('villageId')" errorMsg="Kelurahan tidak boleh kosong"></app-field-error-display>
+            </div>
+            <div class="col-4">
+                <label>Kodepos:</label>
+                <input type="number" formControlName="kodepos" class="input-style-text-100" placeholder="Masukan kodepos" maxlength="5" readonly>
+                <div *ngIf="formAddCrtl.controls.kodepos.errors?.minlength; else postalOn">
+                    <p class="tooltiptext"> Kode Poss Harus 5 </p>
+                </div>
+                <ng-template #postalOn>
+                        <!-- Silahkan Masukan Kode Poss -->
+                    <app-field-error-display [displayError]="isFieldValid('kodepos')" errorMsg="Silahkan Masukan Kode Poss"></app-field-error-display>
+                </ng-template>
+            </div>              
+        </div>
+        <div class="row row-atur">  
+            <div class="col-12">
+                <label>Alamat:</label>
+                <textarea formControlName="alamat" class="input-style-text-100"></textarea>
+                <app-field-error-display [displayError]="isFieldValid('alamat')" errorMsg="Alamat tidak boleh kosong"></app-field-error-display>
+            </div>
+        </div>
+        <div class="row">  
+            <div class="col-12">{{addId}}
+                <button class="btn btn--orange component-center" *ngIf="isEdit==false">Tambah</button> 
+                <button class="btn btn--orange component-center" *ngIf="isEdit==true">Update</button> 
+            </div>
+        </div>
+        
+    </form>
+        
+
+</div>
+

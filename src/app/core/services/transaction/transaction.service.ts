@@ -15,7 +15,7 @@ export class TransactionService {
     getOrder(data) {
       return this.http.get(this.configuration.apiURL + '/buyer/transaction/history?transaction_status=' + data)
       .pipe(
-        map(response => response as OrderStatus)
+        map(response => response as OrderStatus[])
       );
     }
 

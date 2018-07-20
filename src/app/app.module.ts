@@ -39,6 +39,8 @@ import { StorageService, LocalStorageServie } from '@belisada/core/services/loca
 import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { ADirective } from '@belisada/shared/directives';
 import 'angular2-navigate-with-data';
+import {SlideshowModule} from 'ng-simple-slideshow';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +54,7 @@ import 'angular2-navigate-with-data';
     AppRoutingModule,
     CoreModule,
     SharedModule,
+    SlideshowModule,
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,

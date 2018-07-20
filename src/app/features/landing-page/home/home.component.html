@@ -1,34 +1,120 @@
 <div class="containPage has-header header--home">
-        <!-- <div class="container">
-  
-                <header>
-                  <h1>CSS grid with calc()</h1>
-                </header>
-                
+        <div class="container">
+            
                 <main>
-                  <p>
-                  Cupcake icing liquorice chupa chups sugar plum pastry.
-                  Sesame snaps faworki cupcake candy. Faworki macaroon sweet roll
-                  gingerbread sweet donut gummi bears candy bear claw. Cheesecake
-                  muffin pudding dessert dragée jujubes sugar plum. Chocolate jelly
-                  beans jujubes jelly beans halvah.
-                  </p>
+                        <slideshow #slideshow
+                        [imageUrls]="imageUrls"
+                        [minHeight]="'525px'"
+                        [showArrows]="false"
+                        [autoPlay]="true"
+                        [showDots]="true"
+                        [showCaptions]="true">
+             </slideshow>
                 </main>
-              
+
                 <aside>
-                  <p>
-                  Cupcake icing liquorice chupa chups sugar plum pastry.
-                  Sesame snaps faworki cupcake candy. Faworki macaroon sweet roll
-                  gingerbread sweet donut gummi bears candy bear claw. Cheesecake
-                  muffin pudding dessert dragée jujubes sugar plum. Chocolate jelly
-                  beans jujubes jelly beans halvah.
-                  </p>
+                        <div class="flash--sale--column">
+                                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-19 00:00:00'"></countdown-timer>
+                        </div>
+                        <div class="rowz">
+                                <div class="columnz">
+                                        <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+                                </div>
+                                <div class="columnz">
+                                        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                        <span class="flash--sale--city">DKI JAKARTA</span>
+                                        <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
+                                        <span class="flash--sale--harga">Rp.6.500.000</span>
+                                        <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+                                </div>
+                                <div class="columnz">
+                                        <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+                                </div>
+                                <div class="columnz">
+                                        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                        <span class="flash--sale--city">DKI JAKARTA</span>
+                                        <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
+                                        <span class="flash--sale--harga">Rp.6.500.000</span>
+                                        <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+                                </div>
+                                <div class="columnz">
+                                        <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+                                </div>
+                                <div class="columnz">
+                                        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+                                        <span class="flash--sale--city">DKI JAKARTA</span>
+                                        <span class="flash--sale--rating"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span> 
+                                        <span class="flash--sale--harga">Rp.6.500.000</span>
+                                        <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+                                </div>
+                                
+                            </div>
+                        
+                        
+                        
+
                 </aside>
+                <div class="row wrapper--for--middle" *ngIf="lnght !== 0" >
+                        <div class="col-12">
+                                <span class="text--new--product">Product Terbaru</span>
+                                <!-- <div class="containerz">
+                                        <div class="itemz" *ngFor="let item of productNew">
+                                        <div class="containerz-dalem" >
+                                            <div>
+                                                    <img [src]="productImageUrl + item.storeImageUrl">
+                                            </div>
+                                            <div>
+                                                    <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                    <span>{{ item.locationName }}</span>
+                                            </div>
+                                             
+                                        
+                                        </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrlEdit + item.imageUrl">
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    </div>
+                                  
+                                    </div> --> <div class="section group">
+                                            <!-- <ul>
+                                                    <li>123</li>
+                                                    <li>123</li>
+                                            </ul> -->
+                                        <!-- <div class="col span_1_of_10 border--new--product" *ngFor="let item of productNew">
+                                                <div class="section group">
+                                                        <div class="col span_11_of_2">
+                                                                <img class="img--toko" [src]="productImageUrl + item.storeImageUrl">
+                                                        </div>
+                                                        <div class="col span_11_of_2">
+                                                                <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                                <span>{{ item.locationName }}</span>
+            
+                                                        </div>
+                                                        <div class="row">
+                                                                <div class="col-12 image--center">
+                                                                        <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
+                                                                </div>
+                                                                <div class="col-12 image--center">
+                                                                        <span>Rp. {{ item.pricelist | number }}</span>
+                                                                        {{lnght}}
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        
+                                                    </div>
+                                        </div> -->
+                                    </div> 
+                        </div>
+                    </div>
                 <footer>
-                  Made with Sass, by <a href="https://twitter.com/seb_ekstrom">seb_ekstrom</a>
+                
                 </footer>
-              </div> -->
-         <div class="row">
+            </div> 
+        <!-- <div class="row">
                     <div class="col-9">
                             <div class="box">
                                     <img class="flash--sale--image" src="assets/img/banner.png">
@@ -109,7 +195,7 @@
                     </div>
                     <div class="col-12">
                     </div>
-                </div>
+                </div> -->
         <!-- <div class="wrapper9">
                 <div class="box">
                         <img class="flash--sale--image" src="assets/img/banner.png">
