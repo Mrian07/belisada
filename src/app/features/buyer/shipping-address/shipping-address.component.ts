@@ -78,13 +78,22 @@ export class ShippingAddressComponent implements OnInit {
 
   }
 
+  phoneCheck(event: any) {
+    const pattern = /[0-9]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+  }
+
   editShipping(id) {
     const data = this.list.find(x => x.addressId === id);
     this.formAddCrtl = this.fb.group({
       addId: new FormControl(data.addressId, Validators.required),
       simpan_sebagai: new FormControl(data.addressName, Validators.required),
       penerima: new FormControl(data.name, Validators.required),
-      hp: new FormControl(data.phone, Validators.required),
+      hp: new FormControl(data.phone, [Validators.required, Validators.maxLength(15)]),
       kodepos: new FormControl(data.postal, [Validators.required, Validators.minLength(5)]
       ),
       province: new FormControl(data.regionId, Validators.required),
