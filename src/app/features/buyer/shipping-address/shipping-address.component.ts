@@ -80,7 +80,6 @@ export class ShippingAddressComponent implements OnInit {
 
   editShipping(id) {
     const data = this.list.find(x => x.addressId === id);
-
     this.formAddCrtl = this.fb.group({
       addId: new FormControl(data.addressId, Validators.required),
       simpan_sebagai: new FormControl(data.addressName, Validators.required),
@@ -102,7 +101,7 @@ export class ShippingAddressComponent implements OnInit {
     this.isEdit = true;
     this.getProvince();
     this.onChanges();
-    console.log('a: ', data);
+    // console.log('a: ', data);
     // this.list = data;
   }
 
