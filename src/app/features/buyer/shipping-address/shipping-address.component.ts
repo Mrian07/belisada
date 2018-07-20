@@ -26,7 +26,7 @@ export class ShippingAddressComponent implements OnInit {
   kodepos: FormControl;
   alamat: FormControl;
   addId: number;
-
+  isEmpty: boolean;
   isList: boolean;
   isAdd: boolean;
   isEdit: boolean;
@@ -47,6 +47,7 @@ export class ShippingAddressComponent implements OnInit {
     this.isList = false;
     this.isAdd = false;
     this.isEdit = false;
+    this.isEmpty = false;
   }
 
   setDefault(id) {
@@ -117,6 +118,9 @@ export class ShippingAddressComponent implements OnInit {
 
   listShipping() {
     this.addressService.getShipping().subscribe(respon => {
+      if (respon.length === 0) {
+        this.isEmpty = true;
+      }
       this.list = respon;
     });
   }

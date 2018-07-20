@@ -9,8 +9,7 @@ import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transactio
 })
 export class OrderHistoryComponent implements OnInit {
 
-  list: OrderStatus = new OrderStatus();
-  // list: any[];
+  list: OrderStatus[];
   status: string;
   base64Img: string;
   openDetail: boolean;
@@ -24,10 +23,13 @@ export class OrderHistoryComponent implements OnInit {
   isPilih: boolean;
   isSent: boolean;
   isLoading: boolean;
+  isEmpty: boolean;
 
   transactionId: number;
 
-  constructor(private transactionService: TransactionService,) { }
+  constructor(private transactionService: TransactionService) {
+    this.list = [];
+  }
 
   ngOnInit() {
     this.imgBuktiTransfer = 'assets/img/add-product.png';
@@ -44,12 +46,16 @@ export class OrderHistoryComponent implements OnInit {
     this.isSuccess = false;
     this.isPilih = false;
     this.isSent = false;
+    this.isEmpty = false;
   }
 
   pendingOrder() {
     this.status = 'HISTORY';
     this.transactionService.getOrder(this.status).subscribe(respon => {
-      console.log('detail history:', respon);
+      if (respon.length === 0 ) {
+        this.isEmpty = true;
+      }
+
       this.isLoading = false;
       this.list = respon;
     });

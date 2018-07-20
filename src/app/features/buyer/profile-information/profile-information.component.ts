@@ -72,7 +72,7 @@ export class ProfileInformationComponent implements OnInit {
   ngOnInit() {
     this.token = localStorage.getItem(LocalStorageEnum.TOKEN_KEY);
     this.isField = false;
-  this.validationOnpopUpCreateStore = this.fb.group({
+    this.validationOnpopUpCreateStore = this.fb.group({
     name: [null, Validators.required],
     email: [null, [Validators.required, Validators.email]],
     phone: [null, [Validators.required]],
@@ -152,9 +152,9 @@ validateAllFormFields(formGroup: FormGroup) {
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
-       if (this.validationOnpopUpCreateStore.valid) {
-          const model = this.validationOnpopUpCreateStore.value;
-           const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+    if (this.validationOnpopUpCreateStore.valid) {
+      const model = this.validationOnpopUpCreateStore.value;
+        const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
     editProfileRequest.name = this.validationOnpopUpCreateStore.controls['name'].value;
     editProfileRequest.phone = this.validationOnpopUpCreateStore.controls['phone'].value;
