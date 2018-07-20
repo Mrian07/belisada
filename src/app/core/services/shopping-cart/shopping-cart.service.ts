@@ -132,6 +132,7 @@ export class ShoppingCartService {
   }
 
   private popupSuccess(prod) {
+    console.log('popupSuccess--prod: ', prod);
     swal({
       html:
         `<div class="add-to-card-info">

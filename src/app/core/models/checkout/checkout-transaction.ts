@@ -23,6 +23,28 @@ export class CheckoutResData {
   // transaction: []
 }
 
+export class CheckoutShippingAddress {
+  name: string;
+  address: string;
+  addressName: string;
+  addressId: number;
+  postal: number;
+  countryId: number;
+  regionId: number;
+  cityId: number;
+  districtId: number;
+  villageId: number;
+  countryName: string;
+  regionName: string;
+  cityName: string;
+  districtName: string;
+  villageName: string;
+  isDefault: Boolean;
+  phone: string;
+  rajaOngkirId: number;
+  orderNumber: number;
+}
+
 // export class CheckoutModel {
 //   itemCartIds: number[];
 //   paymentMethodCode: string;

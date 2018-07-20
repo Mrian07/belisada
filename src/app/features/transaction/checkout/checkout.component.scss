@@ -209,6 +209,12 @@
     cursor: pointer;
 }
 
+.btn-pilih-metode.disabled {
+    background-color: #b5b5b5!important;
+    border: 1px solid #b5b5b5!important;
+    cursor: not-allowed;
+}
+
 .btn-pilih-metode:hover{
     border: 1px solid #26a700;
     background: #26a700;
