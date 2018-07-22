@@ -32,6 +32,7 @@ export class ProductDetailComponent implements OnInit {
 
   imgIndex: string;
 
+  storeImageUrl;
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -39,7 +40,9 @@ export class ProductDetailComponent implements OnInit {
     private userService: UserService,
     private productService: ProductService,
     private shoppingCartService: ShoppingCartService
-  ) { }
+  ) {
+  this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
+   }
 
   ngOnInit() {
     this.active();

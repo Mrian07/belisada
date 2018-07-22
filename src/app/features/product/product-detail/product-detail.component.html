@@ -94,7 +94,7 @@
         </div>
         <div class="sidebar-conten">
           <div class="sidebar-info">
-            <img src='assets/img/shop.png'>
+            <img [src]='storeImageUrl + productDetail.storeImageUrl'>
             <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
             <span class="shop-city">{{productDetail.locationName}}</span>
             <span class="shop-btn">Lihat Toko <fa name="plus-circle"></fa></span>
