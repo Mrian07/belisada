@@ -53,3 +53,7 @@ export class CartItemDetailResponse {
   userId: number;
   weightPerItem: number;
 }
+
+export class DeleteCartResponse extends BaseResponseModel {
+
+}

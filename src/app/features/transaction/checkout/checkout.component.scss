@@ -54,9 +54,13 @@
     color:#f68941;
 }
 
-.item-delete{
+.item-delete {
     color: #009dff;
     font-size: 11px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .item-trash{

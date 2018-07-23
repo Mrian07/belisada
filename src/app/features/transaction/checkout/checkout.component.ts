@@ -317,4 +317,69 @@ export class CheckoutComponent implements OnInit {
       console.log('response: ', response);
     });
   }
+
+  deleteCart(id, prodId, quantity) {
+    swal({
+      title: 'belisada.co.id',
+      text: 'Apakah anda ingin menghapus item ini?',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        this.shoppingCartService.deleteCart(id).subscribe(response => {
+          console.log('deleteCart response: ', response);
+          if (response.status === 1) {
+            swal(
+              'Success!',
+              'Item berhasil di hapus.',
+              'success'
+            );
+            this.shoppingCartService.addItem(prodId, -quantity);
+            this.getCartCheckout();
+          } else {
+            swal(
+              'Error!',
+              response.message,
+              'error'
+            );
+          }
+        });
+      }
+    });
+  }
+
+  decreaseQty(cartItem) {
+    if (cartItem.quantity > 1) {
+      const data = {
+        itemCartId: cartItem.itemCartId,
+        note: '',
+        quantity: --cartItem.quantity
+      };
+      this.shoppingCartService.updateCart(data).subscribe(response => {
+        if (response.status === 1) {
+          this.shoppingCartService.updateQuantity(cartItem.productId, -1);
+          this.getCartCheckout();
+        }
+      });
+    }
+  }
+
+  increaseQty(cartItem) {
+    const data = {
+      itemCartId: cartItem.itemCartId,
+      note: '',
+      quantity: ++cartItem.quantity
+    };
+    this.shoppingCartService.updateCart(data).subscribe(response => {
+      if (response.status === 1) {
+        this.shoppingCartService.updateQuantity(cartItem.productId, +1);
+        this.getCartCheckout();
+      }
+    });
+  }
 }

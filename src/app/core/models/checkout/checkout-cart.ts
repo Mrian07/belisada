@@ -47,6 +47,16 @@ export class DestinationCheckout {
 
 // ---------------------------------
 
+export class UpdateCartReq {
+  itemCartId: number;
+  note: string;
+  quantity: number;
+}
+
+export class UpdateCartRes extends BaseResponseModel {
+
+}
+
 export class UpdateShippingReq {
   courierCode: string;
   courierService: string;
