@@ -14,7 +14,7 @@
 
                 <aside>
                         <div class="flash--sale--column">
-                                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-21 00:00:00'"></countdown-timer>
+                                <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-24 00:00:00'"></countdown-timer>
                         </div>
                         <div class="rowz">
                                 <div class="columnz">
@@ -58,7 +58,7 @@
                         <div class="col-12">
                                 <span class="text--new--product">Product Terbaru</span>
                                 <div class="containerz">
-                                        <div class="itemz" *ngFor="let item of productNew | slice:0:6">
+                                        <div class="itemz" *ngFor="let item of productNew | slice:0:16">
                                         <div class="containerz-dalem" >
                                         <div>
                                                 <img [src]="productStoreUrl + item.storeImageUrl">
@@ -73,8 +73,8 @@
                                                 <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                                         </div>
                                         <div class="col-12 image--center">
-                                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
-                                        <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
+                                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number }}</span>
+                                        <span class="text__center__name">{{ item.name }}</span>
                                         </div>
                                 </div>
                                         </div>
@@ -117,7 +117,7 @@
                                                 <span class="text--new--product">Product Popular</span>
                                                 <div class="containerz">
                                                                 
-                                                                <div class="itemz" *ngFor="let item of productPop | slice:0:6">
+                                                                <div class="itemz" *ngFor="let item of productPop | slice:0:8">
                                                                 <div class="containerz-dalem" >
                                                                 <div>
                                                                         <img [src]="productStoreUrl + item.storeImageUrl">
@@ -140,7 +140,7 @@
                                                         </div> 
                                                         <div class="row">
                                                                 <div class="col-12">
-                                                                                <span class="text--new--product">Official Product</span>
+                                                                                <!-- <span class="text--new--product">Official Store</span> -->
                                                                 </div>
                                                         </div>
   
