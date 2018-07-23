@@ -174,23 +174,23 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <span class="p-penerima p-active">Pacar</span> 
-                    <span class="p-penerima">Mertu</span> 
-                    <span class="p-penerima">Rumah</span>
-                    <div class="b-abu-left">            
+                    <span *ngFor="let item of checkoutShippingAddress" class="p-penerima" (click)="tabShipping(item)"
+                        [ngClass]="{'p-active': selectedShippingAddress.addressId === item.addressId}">{{ item.addressName }}</span> 
+
+                    <div class="b-abu-left">
                         <div class="row">
                             <div class="col-6">
-                                Nama Penerima:<br><b>Samuel</b>
+                                Nama Penerima:<br><b>{{ selectedShippingAddress.name }}</b>
                             </div>
                             <div class="col-6">
                                 <!-- Order No:<br><b>#412151</b> -->
                             </div>
                         </div>
-                        Alamat: Pacar<br>
-                        <b>Jl. Hayam Wuruk No.77 Kec. Tanjung Benoa Kepulauan Seribu RT.03 RW.07</b>
+                        Alamat: {{ selectedShippingAddress.addressName }}<br>
+                        <b>{{ selectedShippingAddress.address }}</b>
                         <br><br>
                         No Handphone:<br>
-                        <b>08187986776</b>
+                        <b>{{ selectedShippingAddress.phone }}</b>
                     </div>
                 </div>
                 <div class="col-6">

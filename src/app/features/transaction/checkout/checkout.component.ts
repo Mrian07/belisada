@@ -10,7 +10,7 @@ import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopp
 import { CheckoutTrx, UpdateShippingReq } from '@belisada/core/models/checkout/checkout-cart';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { CheckoutService } from '@belisada/core/services/checkout/checkout.service';
-import { CheckoutReq } from '@belisada/core/models/checkout/checkout-transaction';
+import { CheckoutReq, CheckoutShippingAddress } from '@belisada/core/models/checkout/checkout-transaction';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
 // import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
@@ -45,6 +45,9 @@ export class CheckoutComponent implements OnInit {
   listPayment: PaymentList[];
   payment: Payment[];
 
+  selectedShippingAddress: CheckoutShippingAddress = new CheckoutShippingAddress();
+  checkoutShippingAddress: CheckoutShippingAddress[];
+
   isPayment: boolean;
   isNote: boolean;
 
@@ -61,6 +64,7 @@ export class CheckoutComponent implements OnInit {
   ) {
     this.itemCartIds = [];
     this.shippingRates = [];
+    this.checkoutShippingAddress = [];
   }
 
   ngOnInit() {
@@ -315,7 +319,16 @@ export class CheckoutComponent implements OnInit {
   dataShipping() {
     this.checkoutService.getShippingAddress().subscribe(response => {
       console.log('response: ', response);
+      this.checkoutShippingAddress = response;
+      if (this.checkoutShippingAddress.length !== 0) {
+        this.selectedShippingAddress = this.checkoutShippingAddress[0];
+        console.log('this.selectedShippingAddress: ', this.selectedShippingAddress);
+      }
     });
+  }
+
+  tabShipping(shippingAddress) {
+    this.selectedShippingAddress = shippingAddress;
   }
 
   deleteCart(id, prodId, quantity) {
