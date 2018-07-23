@@ -246,6 +246,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   addressChange(event, itemCartIds, originId, weight, destinations, index) {
+    console.log('addressChange--event: ', event);
     const val = event.target.value;
     if (val === 'tambah') {
       this.showDialogPilihAlamat = !this.showDialogPilihAlamat;

@@ -23,7 +23,7 @@
                                     <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>                      
                                 </div>
                                 <div class="col-6 item-order-right">
-                                    <select (change)="addressChange($event, cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
+                                    <select (click)="addressChange($event, cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
                                         class="u-margin-right-1">
                                         <option disabled value="">Pilih Alamat</option>
                                         <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId"
@@ -31,7 +31,7 @@
                                         <option value="tambah">Tambah</option>
                                     </select>
 
-                                    <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
+                                    <select [(ngModel)]="shippingRates[in]" (click)="shippingChange(cartCheckout.itemCartIds, in)"
                                         class="u-margin-right-1">
                                         <option disabled value="">Pilih Pengiriman</option>
                                         <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
@@ -177,7 +177,7 @@
                     <span *ngFor="let item of checkoutShippingAddress" class="p-penerima" (click)="tabShipping(item)"
                         [ngClass]="{'p-active': selectedShippingAddress.addressId === item.addressId}">{{ item.addressName }}</span> 
 
-                    <div class="b-abu-left">
+                    <div class="b-abu-left" *ngIf="checkoutShippingAddress.length !== 0">
                         <div class="row">
                             <div class="col-6">
                                 Nama Penerima:<br><b>{{ selectedShippingAddress.name }}</b>
