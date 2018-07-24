@@ -173,9 +173,20 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <span *ngFor="let item of checkoutShippingAddress" class="p-penerima" (click)="tabShipping(item)"
-                        [ngClass]="{'p-active': selectedShippingAddress.addressId === item.addressId}">{{ item.addressName }}</span> 
+                    <div class="frame-tab">
+                        <table border='0' cellspadding='0' cellspacing='0'>
+                            <tr>
+                                <td *ngFor="let item of checkoutShippingAddress" class="p-penerima" [ngClass]="{'p-active': selectedShippingAddress.addressId === item.addressId}" (click)="tabShipping(item)">{{ item.addressName }}</td>
+                          </tr>
+                        </table>
+                            <!-- <div class="row" >
+                                <div class="col-6" >
+                                        
+                                </div>
+                            </div> -->
 
+                        
+                    </div>
                     <div class="b-abu-left" *ngIf="checkoutShippingAddress.length !== 0">
                         <div class="row">
                             <div class="col-6">
