@@ -57,25 +57,25 @@ export class HeaderComponent implements OnInit {
   /*
     dibawah buat popUp
   */
- public validationOnpopUpCreateStore: FormGroup;
- provinces: Province[];
- nameOwner: FormControl;
- serverMessage: String;
- fm: any = {};
- cities: City[];
- curentPostal: any;
- districts: District[];
- villages: Village[];
- nameChecking: Boolean = false;
- storeName: FormControl;
- pending_submit: Boolean = false;
- timer: any;
- ip: string;
- country: string;
- storeUrl: FormControl;
- regForm: boolean;
- regSuccess: boolean;
- role = 0;
+  public validationOnpopUpCreateStore: FormGroup;
+  provinces: Province[];
+  nameOwner: FormControl;
+  serverMessage: String;
+  fm: any = {};
+  cities: City[];
+  curentPostal: any;
+  districts: District[];
+  villages: Village[];
+  nameChecking: Boolean = false;
+  storeName: FormControl;
+  pending_submit: Boolean = false;
+  timer: any;
+  ip: string;
+  country: string;
+  storeUrl: FormControl;
+  regForm: boolean;
+  regSuccess: boolean;
+  role = 0;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,

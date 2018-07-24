@@ -23,15 +23,14 @@
                                     <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>                      
                                 </div>
                                 <div class="col-6 item-order-right">
-                                    <select (change)="addressChange($event, cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
+                                    <select [(ngModel)]="shippingAddresses[in]" (click)="addressChange(cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
                                         class="u-margin-right-1">
-                                        <option disabled value="">Pilih Alamat</option>
-                                        <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId"
-                                            [selected]="cartCheckout.shippingAddressId === destination.shippingAddressId">{{ destination.name }}</option>
+                                        <option disabled value="0">Pilih Alamat</option>
+                                        <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId">{{ destination.name }}</option>
                                         <option value="tambah">Tambah</option>
                                     </select>
 
-                                    <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
+                                    <select [(ngModel)]="shippingRates[in]" (click)="shippingChange(cartCheckout.itemCartIds, in)"
                                         class="u-margin-right-1">
                                         <option disabled value="">Pilih Pengiriman</option>
                                         <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
@@ -53,12 +52,12 @@
                         <td><input name="checkbox" type="checkbox"></td>
                         <td class="table-val"><img [src]="cartItem.imageUrl" size="20"></td>
                         <td class="table-val"><span class="item-name">{{ cartItem.name }}</span> <span class="item-size"> ( {{ cartItem.weightPerItem }} g )</span>
-                        <div><span class="item-delete">Hapus Barang</span> <span class="item-trash"><fa name="trash"></fa></span></div>
+                        <div><span class="item-delete" (click)="deleteCart(cartItem.itemCartId, cartItem.productId, cartItem.quantity)">Hapus Barang <fa class="item-trash" name="trash"></fa></span></div>
                         </td>
                         <td class="table-val right"><span class="item-price">Rp {{ cartItem.priceList | number }}</span></td>
                         <td class="table-val">
                             <div class="item-center">
-                                <span class="plus-minus"> <fa name="minus"></fa> </span> <span class="item-qty">{{ cartItem.quantity }}</span> <span class="plus-minus"> <fa name="plus"></fa> </span>
+                                <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa name="minus"></fa> </span> <span class="item-qty">{{ cartItem.quantity }}</span> <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa name="plus"></fa> </span>
                             </div>
                             <div class="item-center">
                                 <span class="item-size">( {{ cartItem.totalWeight }} g )</span>
@@ -174,23 +173,23 @@
             </div>
             <div class="row">
                 <div class="col-6">
-                    <span class="p-penerima p-active">Pacar</span> 
-                    <span class="p-penerima">Mertu</span> 
-                    <span class="p-penerima">Rumah</span>
-                    <div class="b-abu-left">            
+                    <span *ngFor="let item of checkoutShippingAddress" class="p-penerima" (click)="tabShipping(item)"
+                        [ngClass]="{'p-active': selectedShippingAddress.addressId === item.addressId}">{{ item.addressName }}</span> 
+
+                    <div class="b-abu-left" *ngIf="checkoutShippingAddress.length !== 0">
                         <div class="row">
                             <div class="col-6">
-                                Nama Penerima:<br><b>Samuel</b>
+                                Nama Penerima:<br><b>{{ selectedShippingAddress.name }}</b>
                             </div>
                             <div class="col-6">
                                 <!-- Order No:<br><b>#412151</b> -->
                             </div>
                         </div>
-                        Alamat: Pacar<br>
-                        <b>Jl. Hayam Wuruk No.77 Kec. Tanjung Benoa Kepulauan Seribu RT.03 RW.07</b>
+                        Alamat: {{ selectedShippingAddress.addressName }}<br>
+                        <b>{{ selectedShippingAddress.address }}</b>
                         <br><br>
                         No Handphone:<br>
-                        <b>08187986776</b>
+                        <b>{{ selectedShippingAddress.phone }}</b>
                     </div>
                 </div>
                 <div class="col-6">

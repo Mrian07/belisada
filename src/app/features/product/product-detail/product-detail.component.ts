@@ -18,10 +18,10 @@ export class ProductDetailComponent implements OnInit {
   // id: number;
   // name: string;
 
-
-
   productDetail: ProductDetailList = new ProductDetailList();
   moreInformation: MoreInformation = new MoreInformation();
+
+  qty = 1;
   // currentPage: number;
   // pages: any = [];
 
@@ -138,10 +138,10 @@ export class ProductDetailComponent implements OnInit {
     const r = name.replace(new RegExp('/', 'g'), ' ');
     console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
-   window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
-  addToCart(productId, storeId, quantity = 1) {
+  addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
     console.log('userData: ', userData);
 
@@ -152,7 +152,7 @@ export class ProductDetailComponent implements OnInit {
             'Product ini berasal dari Toko Anda'
           );
       } else {
-        if (quantity === undefined) {
+        if (this.qty === undefined) {
           swal(
             'belisada.id',
             'Jumlah harus di pilih!'
@@ -160,14 +160,14 @@ export class ProductDetailComponent implements OnInit {
         } else {
           const addToCartRequest: AddToCartRequest = {
             productId: productId,
-            quantity: quantity
+            quantity: this.qty
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
             console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
-              this.shoppingCartService.addItem(productId, +quantity, +response.itemCartId);
+              this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
             } else {
               swal('belisada.id', response.message, 'error');
             }
@@ -175,7 +175,15 @@ export class ProductDetailComponent implements OnInit {
         }
       }
     } else {
-      this.shoppingCartService.addItem(productId, +quantity);
+      this.shoppingCartService.addItem(productId, +this.qty);
     }
+  }
+
+  increaseQty() {
+    this.qty += 1;
+  }
+
+  decreaseQty() {
+    if (this.qty > 1) { this.qty -= 1; }
   }
 }

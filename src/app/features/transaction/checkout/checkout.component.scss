@@ -54,9 +54,13 @@
     color:#f68941;
 }
 
-.item-delete{
+.item-delete {
     color: #009dff;
     font-size: 11px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .item-trash{
@@ -325,13 +329,17 @@
     background:#f44545;
 }
 
-.p-penerima{
+.p-penerima {
     background: #efefef;
     border-top: 1px solid #c9c9c9;
     border-left: 1px solid #c9c9c9;
     border-right: 1px solid #c9c9c9;
     padding:10px;
     border-radius:5px 5px 0px 0px;
+
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .p-active{

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import {
     ShoppingCart, AddToCartRequest, AddToCartResponse,
-    CartItemResponse
+    CartItemResponse,
+    DeleteCartResponse
   } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { DeliveryOption, ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { StorageService } from '@belisada/core/services/local-storage/storage.service';
@@ -16,7 +17,7 @@ import { map } from 'rxjs/operators';
 import swal from 'sweetalert2';
 import { BaseResponseModel } from '@belisada/core/models';
 import { AuthService } from '@belisada/core/services/auth/auth.service';
-import { CheckoutTrx, UpdateShippingReq, UpdateShippingRes } from '@belisada/core/models/checkout/checkout-cart';
+import { CheckoutTrx, UpdateShippingReq, UpdateShippingRes, UpdateCartReq } from '@belisada/core/models/checkout/checkout-cart';
 
 const CART_KEY = 'cart';
 const CART_POST_KEY = 'cartpost';
@@ -79,6 +80,28 @@ export class ShoppingCartService {
       if (prod.productId === productId) {
         this.popupSuccess(prod);
       }
+    });
+  }
+
+  public updateQuantity(productId: number, quantity: number) {
+    const cart = this.retrieve();
+    // console.log(cart);
+    let item = cart.items.find((p) => p.productId === productId);
+    if (item === undefined) {
+      item = new CartItem();
+      item.productId = productId;
+      cart.items.push(item);
+    }
+
+    item.quantity += quantity;
+    cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
+    if (cart.items.length === 0) {
+      cart.freightRate = undefined;
+    }
+
+    this.calculateCart(cart, (modifiedCart) => {
+      this.save(modifiedCart);
+      this.dispatch(modifiedCart);
     });
   }
 
@@ -243,10 +266,24 @@ export class ShoppingCartService {
       );
   }
 
+  updateCart(data: UpdateCartReq): Observable<UpdateShippingRes> {
+    return this.http.post(this.configuration.apiURL + '/buyer/cart/itemcart/update', data)
+      .pipe(
+        map(response => response as UpdateShippingRes)
+      );
+  }
+
   updateShipping(data: UpdateShippingReq): Observable<UpdateShippingRes> {
     return this.http.post(this.configuration.apiURL + '/buyer/cart/shipping/update', data)
       .pipe(
         map(response => response as UpdateShippingRes)
+      );
+  }
+
+  deleteCart(id: number): Observable<DeleteCartResponse> {
+    return this.http.delete(this.configuration.apiURL + '/buyer/cart/delete/' + id)
+      .pipe(
+        map(response => response as DeleteCartResponse)
       );
   }
 }
