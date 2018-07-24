@@ -4,8 +4,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from './../../../core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
-import { UserService, AuthService } from '@belisada/core/services';
+import { UserService, AuthService, HomeSService } from '@belisada/core/services';
 import swal from 'sweetalert2';
+import { Home } from '@belisada/core/models';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,10 +18,10 @@ export class ProductDetailComponent implements OnInit {
   // id: number;
   // name: string;
 
-
-
   productDetail: ProductDetailList = new ProductDetailList();
   moreInformation: MoreInformation = new MoreInformation();
+
+  qty = 1;
   // currentPage: number;
   // pages: any = [];
 
@@ -33,12 +34,14 @@ export class ProductDetailComponent implements OnInit {
   imgIndex: string;
 
   storeImageUrl;
+  productNewatProdDetail: Home[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private productService: ProductService,
+    private homeS: HomeSService,
     private shoppingCartService: ShoppingCartService
   ) {
   this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
@@ -52,10 +55,15 @@ export class ProductDetailComponent implements OnInit {
   loadData() {
     this.active();
     this.activeSpesifikasi = true;
+    this.homeS.getHomeNew().subscribe(res => {
+      this.productNewatProdDetail = res;
+    console.log('ini res: ',res);
+    });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
+        console.log('res: ', res.data);
         this.tabVal = this.productDetail.specification;
         this.imgIndex = this.productDetail.imageUrl[0];
       });
@@ -126,7 +134,14 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
-  addToCart(productId, storeId, quantity = 1) {
+  gotTodetailPart(id, name) {
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    console.log(r);
+    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+    window.scrollTo(0, 0);
+  }
+
+  addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
     console.log('userData: ', userData);
 
@@ -137,7 +152,7 @@ export class ProductDetailComponent implements OnInit {
             'Product ini berasal dari Toko Anda'
           );
       } else {
-        if (quantity === undefined) {
+        if (this.qty === undefined) {
           swal(
             'belisada.id',
             'Jumlah harus di pilih!'
@@ -145,14 +160,14 @@ export class ProductDetailComponent implements OnInit {
         } else {
           const addToCartRequest: AddToCartRequest = {
             productId: productId,
-            quantity: quantity
+            quantity: this.qty
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
             console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
-              this.shoppingCartService.addItem(productId, +quantity, +response.itemCartId);
+              this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
             } else {
               swal('belisada.id', response.message, 'error');
             }
@@ -160,7 +175,15 @@ export class ProductDetailComponent implements OnInit {
         }
       }
     } else {
-      this.shoppingCartService.addItem(productId, +quantity);
+      this.shoppingCartService.addItem(productId, +this.qty);
     }
+  }
+
+  increaseQty() {
+    this.qty += 1;
+  }
+
+  decreaseQty() {
+    if (this.qty > 1) { this.qty -= 1; }
   }
 }
