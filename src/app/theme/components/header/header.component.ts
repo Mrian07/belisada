@@ -1,3 +1,7 @@
+import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
+import { ShoppingCart } from '@belisada/core/models/shopping-cart/shopping-cart.model';
+import { ProductDetailSimple } from '@belisada/core/models/product/product-detail-simple';
+import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
@@ -11,11 +15,9 @@ import { SearchService } from '@belisada/core/services/search/search.service';
 import { SearchBarResponse } from '@belisada/core/models/search/search.model';
 import { ShareMessageService } from '@belisada/core/services';
 import { Observable, Subscription } from 'rxjs';
-import { ShoppingCart } from '@belisada/core/models/shopping-cart/shopping-cart.model';
-import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
-import { ProductDetailSimple } from '@belisada/core/models/product/product-detail-simple';
-import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
+import { CategoryService } from '@belisada/core/services/category/category.service';
+import { Category } from '@belisada/core/models/category/category.model';
 
 interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
@@ -33,6 +35,8 @@ import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 })
 export class HeaderComponent implements OnInit {
 
+  menuCategory: Category[];
+  subMenuCategory: Category[];
   isSelectBoxActive: Boolean = false;
   userData: UserData = new UserData();
   isLogin: Boolean = false;
@@ -48,6 +52,8 @@ export class HeaderComponent implements OnInit {
 
   itemsTotal: number;
 
+  isMenu: Boolean = false;
+
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
@@ -57,25 +63,25 @@ export class HeaderComponent implements OnInit {
   /*
     dibawah buat popUp
   */
-  public validationOnpopUpCreateStore: FormGroup;
-  provinces: Province[];
-  nameOwner: FormControl;
-  serverMessage: String;
-  fm: any = {};
-  cities: City[];
-  curentPostal: any;
-  districts: District[];
-  villages: Village[];
-  nameChecking: Boolean = false;
-  storeName: FormControl;
-  pending_submit: Boolean = false;
-  timer: any;
-  ip: string;
-  country: string;
-  storeUrl: FormControl;
-  regForm: boolean;
-  regSuccess: boolean;
-  role = 0;
+ public validationOnpopUpCreateStore: FormGroup;
+ provinces: Province[];
+ nameOwner: FormControl;
+ serverMessage: String;
+ fm: any = {};
+ cities: City[];
+ curentPostal: any;
+ districts: District[];
+ villages: Village[];
+ nameChecking: Boolean = false;
+ storeName: FormControl;
+ pending_submit: Boolean = false;
+ timer: any;
+ ip: string;
+ country: string;
+ storeUrl: FormControl;
+ regForm: boolean;
+ regSuccess: boolean;
+ role = 0;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -88,13 +94,14 @@ export class HeaderComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private authService: AuthService,
-    private fb: FormBuilder, private storeService: StoreService, private userS: UserService
+    private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private categoryService: CategoryService
   ) {
     this.searchBarResults = [];
   }
 
   ngOnInit() {
     this.flagStatus();
+    this.allCategory();
     this.regForm = true;
     this.storeName = new FormControl(null, Validators.required);
     this.storeUrl = new FormControl(null, Validators.required);
@@ -171,6 +178,11 @@ export class HeaderComponent implements OnInit {
     this.shareMessageService.currentMessage.subscribe(respon => {
         if (respon === 'update-profile') {
           this.getData();
+        } else if (respon === 'close-menu-category') {
+          // if (this.isMenu === true) {
+            this.isMenu = false;
+          //   console.log(this.isMenu);
+          // }
         }
     });
   }
@@ -376,4 +388,41 @@ onSent() {
     });
   }
 
+  closeAllCategory() {
+    this.isMenu = false;
+  }
+
+  menuAllCategory(data) {
+    if (data === true) {
+      this.isMenu = false;
+      this.shareMessageService.changeMessage('close-menu-category');
+    } else {
+      this.isMenu = true;
+      this.shareMessageService.changeMessage('open-menu-category');
+    }
+
+  }
+
+  allCategory() {
+    const queryParams = {
+      ob: 'name',
+      ot: 'asc',
+    };
+    this.categoryService.getAllCategory(queryParams).subscribe(response => {
+      this.menuCategory = response;
+      // console.log('category', response);
+    });
+  }
+
+  subMenu(id) {
+    const queryParams = {
+      ob: 'name',
+      ot: 'asc',
+      parentid: id,
+    };
+    this.categoryService.getAllCategory(queryParams).subscribe(response => {
+      this.subMenuCategory = response;
+       console.log('sub category', response);
+    });
+  }
 }
