@@ -4,8 +4,9 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from './../../../core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
-import { UserService, AuthService } from '@belisada/core/services';
+import { UserService, AuthService, HomeSService } from '@belisada/core/services';
 import swal from 'sweetalert2';
+import { Home } from '@belisada/core/models';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,12 +34,14 @@ export class ProductDetailComponent implements OnInit {
   imgIndex: string;
 
   storeImageUrl;
+  productNewatProdDetail: Home[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
     private userService: UserService,
     private productService: ProductService,
+    private homeS: HomeSService,
     private shoppingCartService: ShoppingCartService
   ) {
   this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
@@ -52,10 +55,15 @@ export class ProductDetailComponent implements OnInit {
   loadData() {
     this.active();
     this.activeSpesifikasi = true;
+    this.homeS.getHomeNew().subscribe(res => {
+      this.productNewatProdDetail = res;
+    console.log('ini res: ',res);
+    });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
+        console.log('res: ', res.data);
         this.tabVal = this.productDetail.specification;
         this.imgIndex = this.productDetail.imageUrl[0];
       });
@@ -124,6 +132,13 @@ export class ProductDetailComponent implements OnInit {
         this.tabVal = 'Coming soon 2...';
       });
     });
+  }
+
+  gotTodetailPart(id, name) {
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    console.log(r);
+    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+   window.scrollTo(0, 0);
   }
 
   addToCart(productId, storeId, quantity = 1) {
