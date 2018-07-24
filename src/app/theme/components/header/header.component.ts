@@ -16,6 +16,8 @@ import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { ProductDetailSimple } from '@belisada/core/models/product/product-detail-simple';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
+import { CategoryService } from '@belisada/core/services/category/category.service';
+import { Category } from '@belisada/core/models/category/category.model';
 
 interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
@@ -33,6 +35,8 @@ import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 })
 export class HeaderComponent implements OnInit {
 
+  menuCategory: Category[];
+  subMenuCategory: Category[];
   isSelectBoxActive: Boolean = false;
   userData: UserData = new UserData();
   isLogin: Boolean = false;
@@ -47,6 +51,8 @@ export class HeaderComponent implements OnInit {
   avatar = 'assets/img/profile.png';
 
   itemsTotal: number;
+
+  isMenu: Boolean = false;
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
@@ -88,13 +94,14 @@ export class HeaderComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private authService: AuthService,
-    private fb: FormBuilder, private storeService: StoreService, private userS: UserService
+    private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private categoryService: CategoryService
   ) {
     this.searchBarResults = [];
   }
 
   ngOnInit() {
     this.flagStatus();
+    this.allCategory();
     this.regForm = true;
     this.storeName = new FormControl(null, Validators.required);
     this.storeUrl = new FormControl(null, Validators.required);
@@ -171,6 +178,11 @@ onNameKeydown(event: any) {
     this.shareMessageService.currentMessage.subscribe(respon => {
         if (respon === 'update-profile') {
           this.getData();
+        } else if (respon === 'close-menu-category') {
+          // if (this.isMenu === true) {
+            this.isMenu = false;
+          //   console.log(this.isMenu);
+          // }
         }
     });
   }
@@ -370,6 +382,44 @@ onSent() {
           this.shoppingCartService.addItem(productId, -quantity);
         }
       }
+    });
+  }
+
+  closeAllCategory() {
+    this.isMenu = false;
+  }
+
+  menuAllCategory(data) {
+    if (data === true) {
+      this.isMenu = false;
+      this.shareMessageService.changeMessage('close-menu-category');
+    } else {
+      this.isMenu = true;
+      this.shareMessageService.changeMessage('open-menu-category');
+    }
+
+  }
+
+  allCategory() {
+    const queryParams = {
+      ob: 'name',
+      ot: 'asc',
+    };
+    this.categoryService.getAllCategory(queryParams).subscribe(response => {
+      this.menuCategory = response;
+      // console.log('category', response);
+    });
+  }
+
+  subMenu(id) {
+    const queryParams = {
+      ob: 'name',
+      ot: 'asc',
+      parentid: id,
+    };
+    this.categoryService.getAllCategory(queryParams).subscribe(response => {
+      this.subMenuCategory = response;
+       console.log('sub category', response);
     });
   }
 
