@@ -148,20 +148,20 @@ export class HeaderComponent implements OnInit {
   }
 
 
-onNameKeydown(event: any) {
-  const pattern = /[a-zA-Z 0-9\+\- ]+/;
+  onNameKeydown(event: any) {
+    const pattern = /[a-zA-Z 0-9\+\- ]+/;
 
-  const inputChar = String.fromCharCode(event.charCode);
-  if (event.keyCode !== 8 && !pattern.test(inputChar)) {
-      event.preventDefault();
-  }
-  this.validationOnpopUpCreateStore.get('name').valueChanges.subscribe(val => {
-    val = val.replace(/\s+/g, '_').toLowerCase();
-    this.validationOnpopUpCreateStore.patchValue({
-      storeUrl: val
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+    this.validationOnpopUpCreateStore.get('name').valueChanges.subscribe(val => {
+      val = val.replace(/\s+/g, '_').toLowerCase();
+      this.validationOnpopUpCreateStore.patchValue({
+        storeUrl: val
+      });
     });
-  });
-}
+  }
 
   mulaiBerjualan() {
     console.log('asdasdasd');
@@ -321,6 +321,9 @@ onSent() {
   }
   goToProfile() {
     this.router.navigateByUrl('/buyer/profile');
+  }
+  goToTrxHistory() {
+    this.router.navigateByUrl('/buyer/order');
   }
 
   shoppingCart() {
