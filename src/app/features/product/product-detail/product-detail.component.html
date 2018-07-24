@@ -1,174 +1,178 @@
 <div class="containPage has-header">
-  <div class="containPageCenter">
-    <span class='product-bc'>
-      Home/ {{productDetail.categoryOneName}}/ <strong>{{productDetail.categoryTwoName}}/ {{productDetail.categoryThreeName}}</strong>
-    </span>
-    <div class="row">
-      <div class="col-5">
-        <div class="b1-detail">
-          <span class="product-brand">Brand : {{ productDetail.brandName }}</span> 
-          <!-- <span class="product-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>
-          <span class="product-review">21 Reviews</span> -->
-
-          <div class='product-title'>
-            {{productDetail.name}}
+    <div class="containPageCenter">
+      <span class='product-bc'>
+        Home/ {{productDetail.categoryOneName}}/ <strong>{{productDetail.categoryTwoName}}/ {{productDetail.categoryThreeName}}</strong>
+      </span>
+      <div class="row">
+        <div class="col-5">
+          <div class="b1-detail">
+            <span class="product-brand">Brand : {{ productDetail.brandName }}</span> 
+            <!-- <span class="product-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>
+            <span class="product-review">21 Reviews</span> -->
+  
+            <div class='product-title'>
+              {{productDetail.name | slice:0:21}}
+            </div>
+            <div *ngIf="productDetail.pricelistlast>=0">
+              <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
+              <!-- <span class="product-discont"><s>{{productDetail.pricelistlast | currency:'Rp '}}</s></span> -->
+            </div>
+            <!-- <div *ngIf="productDetail.pricelistlast==0">
+              <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
+            </div> -->
+            <div class="product-info">
+              <span class="strong-text">Dikirim Dari: Jakarta Ke</span> DKI Jakarta, Kota Jakarta Barat, <span class="btn-small">Ganti Destinasi</span> <span class="btn-flag"><fa name="exclamation"></fa></span>
+            </div>
+            <div class="product-info">
+              <span class="strong-text">Metode Pengiriman: <span class="btn-small">Ganti Pengiriman</span> <span class="btn-flag"><fa name="exclamation"></fa></span></span>
+              <span class="metode-price">Rp 15.000 Ke Jakarta</span>
+              <span class="metode-price">Rp 15.000 Ke Jakarta</span>
+            </div>
+            <!-- <div class="product-info">
+              <span class="strong-text">Kebijakan Pengembalian:</span> Mendukung 7 hari pengembalian dana tanpa syarat
+            </div> -->
+            <!-- <div class="product-info">
+              <span class="strong-text">Variant:</span> <span class="v1">50 ml</span> <span class="v2">100 ml</span> <span class="v2">200 ml</span>
+            </div> -->
+            <div class="product-info">
+              <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa name="minus"></fa> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa name="plus"></fa> </span>
+            </div>
+            <div class="product-btn">
+              <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa name="cart-arrow-down"></fa></span></span>
+              <!-- <span class="btn-chat">Chat Seller <span class="btn-add-cart"><fa name="comments"></fa></span></span> -->
+            </div>
           </div>
-          <div *ngIf="productDetail.pricelistlast>=0">
-            <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
-            <!-- <span class="product-discont"><s>{{productDetail.pricelistlast | currency:'Rp '}}</s></span> -->
-          </div>
-          <!-- <div *ngIf="productDetail.pricelistlast==0">
-            <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
-          </div> -->
-          <div class="product-info">
-            <span class="strong-text">Dikirim Dari: Jakarta Ke</span> DKI Jakarta, Kota Jakarta Barat, <span class="btn-small">Ganti Destinasi</span> <span class="btn-flag"><fa name="exclamation"></fa></span>
-          </div>
-          <div class="product-info">
-            <span class="strong-text">Metode Pengiriman: <span class="btn-small">Ganti Pengiriman</span> <span class="btn-flag"><fa name="exclamation"></fa></span></span>
-            <span class="metode-price">Rp 15.000 Ke Jakarta</span>
-            <span class="metode-price">Rp 15.000 Ke Jakarta</span>
-          </div>
-          <!-- <div class="product-info">
-            <span class="strong-text">Kebijakan Pengembalian:</span> Mendukung 7 hari pengembalian dana tanpa syarat
-          </div> -->
-          <!-- <div class="product-info">
-            <span class="strong-text">Variant:</span> <span class="v1">50 ml</span> <span class="v2">100 ml</span> <span class="v2">200 ml</span>
-          </div> -->
-          <div class="product-info">
-            <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa name="minus"></fa> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa name="plus"></fa> </span>
-          </div>
-          <div class="product-btn">
-            <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa name="cart-arrow-down"></fa></span></span>
-            <!-- <span class="btn-chat">Chat Seller <span class="btn-add-cart"><fa name="comments"></fa></span></span> -->
-          </div>
-        </div>
-        
-
-      </div>
-      <div class="col-5">
-          <div class="show-image">
-            <img src='{{imgIndex}}' height="400">
-          </div>
-          <!-- <div id="lasteventimg">
-          <ul>
-            <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
-          </ul>
-          </div>   -->
-          <!-- <div class="show-image">
-            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
-          </div> -->
-
-
           
-
-          <!-- <div class="frame-image"> -->
-              <div class="con-image">
-                  <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
-              </div>
-
-
-              <!-- <div id="menu-outer">
-                  <div class="table">
-                    <ul id="horizontal-list">
-                      <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
-                    </ul>
+  
+        </div>
+        <div class="col-5">
+            <div class="show-image">
+              <img [src]="productImageUrl + imgIndex"  height="400">
+            </div>
+            <!-- <div id="lasteventimg">
+            <ul>
+              <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
+            </ul>
+            </div>   -->
+            <!-- <div class="show-image">
+              <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
+            </div> -->
+  
+  
+            
+  
+            <!-- <div class="frame-image"> -->
+                <div class="con-image">
+                    <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
                 </div>
-              </div>  
-
-          </div> -->
-
-          
-
-
-          <div class="row">
-            <div class="col-6">
-              <!-- <span class="show-small-text"><fa name="heart"></fa> Tambahkan ke Wishlist </span>  -->
-            </div>
-            <div class="col-6">
-              <!-- <span class="show-small-text">Share</span> <img src='assets/img/dummy-sosmed.jpg'> -->
-            </div>
-          </div>    
-      </div>
-      <div class="col-2">
-        <div class="sidebar-title">
-           Informasi Penjual 
+  
+  
+                <!-- <div id="menu-outer">
+                    <div class="table">
+                      <ul id="horizontal-list">
+                        <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
+                      </ul>
+                  </div>
+                </div>  
+  
+            </div> -->
+  
+            
+  
+  
+            <div class="row">
+              <div class="col-6">
+                <!-- <span class="show-small-text"><fa name="heart"></fa> Tambahkan ke Wishlist </span>  -->
+              </div>
+              <div class="col-6">
+                <!-- <span class="show-small-text">Share</span> <img src='assets/img/dummy-sosmed.jpg'> -->
+              </div>
+            </div>    
         </div>
-        <div class="sidebar-conten">
-          <div class="sidebar-info">
-            <img [src]='storeImageUrl + productDetail.storeImageUrl'>
-            <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
-            <span class="shop-city">{{productDetail.locationName}}</span>
-            <span class="shop-btn">Lihat Toko <fa name="plus-circle"></fa></span>
-            <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->
+        <div class="col-2">
+          <div class="sidebar-title">
+             Informasi Penjual 
           </div>
-          <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
-          <span class="shop-text"><strong>Produk Terjual:</strong> Coming Soon </span>
-          <span class="shop-text"><strong>Jumlah Produk:</strong> Coming Soon </span>
-          <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
-       </div>
-
-        <!-- <div class="sidebar-title">
-          Dukungan Pengiriman
-        </div>
-        <div class="sidebar-conten">
-          Segera....
-        </div> -->
-      </div>
-    </div>
-
-    <div class="product-other-title">Produk Merk Lainnya</div>
-    <div class="product-other-conten">
-      <span class="item-list" *ngFor="let item of productNewatProdDetail | slice:0:5">
-        <img (click)="gotTodetailPart(item.productId, item.name)" src='{{item.imageUrl}}' height="200">
-        <span class="item-list-title"> {{ item.storeName }}</span>
-        <span class="item-list-price">Rp {{ item.pricelist | number }}</span>
-      </span>
-      <!-- <span class="item-list">
-        <img src='assets/img/dummy-product-detail.jpg' height="200">
-        <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
-        <span class="item-list-price">Rp 21.000</span>
-      </span>
-      <span class="item-list">
-        <img src='assets/img/dummy-product-detail.jpg' height="200">
-        <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
-        <span class="item-list-price">Rp 21.000</span>
-      </span>
-      <span class="item-list">
-        <img src='assets/img/dummy-product-detail.jpg' height="200">
-        <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
-        <span class="item-list-price">Rp 21.000</span>
-      </span>
-      <span class="item-list">
-        <img src='assets/img/dummy-product-detail.jpg' height="200">
-        <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
-        <span class="item-list-price">Rp 21.000</span>
-      </span> -->
-    </div>
-
-    <div class="">
-      <div class="row product-spec-title">
-        <div [ngClass]="activeSpesifikasi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="spesifikasi()">
-          Spesifikasi
-        </div>
-        <div [ngClass]="activeDiskripsi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'"  (click)="deskripsi()">
-          Deskripsi
-        </div>
-        <div [ngClass]="activeDiskusi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="diskusi()">
-          Diskusi Produk
-        </div>
-        <div [ngClass]="activeUlasan == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="ulasan()">
-          Ulasan Produk
+          <div class="sidebar-conten">
+            <div class="sidebar-info">
+              <img [src]='storeImageUrl + productDetail.storeImageUrl'>
+              <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
+              <span class="shop-city">{{productDetail.locationName}}</span>
+              <span class="shop-btn">Lihat Toko <fa name="plus-circle"></fa></span>
+              <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->
+            </div>
+            <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
+            <span class="shop-text"><strong>Produk Terjual:</strong> Coming Soon </span>
+            <span class="shop-text"><strong>Jumlah Produk:</strong> Coming Soon </span>
+            <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
+         </div>
+  
+          <!-- <div class="sidebar-title">
+            Dukungan Pengiriman
+          </div>
+          <div class="sidebar-conten">
+            Segera....
+          </div> -->
         </div>
       </div>
+  
+      <div class="product-other-title">Produk Merk Lainnya</div>
+      <div class="product-other-conten">
+        <span class="item-list" *ngFor="let item of productNewatProdDetail | slice:0:5">
+          <img (click)="gotTodetailPart(item.productId, item.name)" [src]="productImageUrl + item.imageUrl" height="200">
+          <span class="item-list-title"> {{ item.storeName }}</span>
+          <span class="item-list-price">Rp {{ item.pricelist | number }}</span>
+        </span>
+        <!-- <span class="item-list">
+          <img src='assets/img/dummy-product-detail.jpg' height="200">
+          <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
+          <span class="item-list-price">Rp 21.000</span>
+        </span>
+        <span class="item-list">
+          <img src='assets/img/dummy-product-detail.jpg' height="200">
+          <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
+          <span class="item-list-price">Rp 21.000</span>
+        </span>
+        <span class="item-list">
+          <img src='assets/img/dummy-product-detail.jpg' height="200">
+          <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
+          <span class="item-list-price">Rp 21.000</span>
+        </span>
+        <span class="item-list">
+          <img src='assets/img/dummy-product-detail.jpg' height="200">
+          <span class="item-list-title">Missha All Around Safe Block Sebum Zero Sun</span>
+          <span class="item-list-price">Rp 21.000</span>
+        </span> -->
+      </div>
+  
+      <div class="">
+        <div class="row product-spec-title">
+          <div [ngClass]="activeSpesifikasi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="spesifikasi()">
+            Spesifikasi
+          </div>
+          <div [ngClass]="activeDiskripsi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'"  (click)="deskripsi()">
+            Deskripsi
+          </div>
+          <div [ngClass]="activeDiskusi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="diskusi()">
+            Diskusi Produk
+          </div>
+          <div [ngClass]="activeUlasan == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'" (click)="ulasan()">
+            Ulasan Produk
+          </div>
+        </div>
+      </div>
+      <div class="product-spec-conten">
+        <!-- <p>12312312312</p> -->
+        <table></table>
+        
+          <!-- <p><strong>{{productDetail.specification}}</strong></p> -->
+          <!-- {{tabVal.name}} -->
+          <!-- <p *ngFor="let item of tabVal">{{item.name}}</p> -->
+      </div>
+  
     </div>
-    <div class="product-spec-conten">
-      <!-- <p>12312312312</p> -->
-        <!-- <p><strong>{{productDetail.specification}}</strong></p>
-        <p>{{productDetail.description}}</p> -->
-        <!-- {{tabVal}} -->
-    </div>
-
+    
   </div>
   
-</div>
-
+  
+  

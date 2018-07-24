@@ -376,12 +376,14 @@ border-radius: 6px;
     text-align: center;
     .text__center__name {
         display: block;
-        color: #1881e6
+        color: #1881e6;
+        word-wrap: break-word;
         
     }
     .text__center__pricelist {
         font-size: 22px;
         display: block;
+        word-wrap: break-word;
 
     }
 }
