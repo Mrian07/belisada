@@ -23,11 +23,10 @@
                                     <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>                      
                                 </div>
                                 <div class="col-6 item-order-right">
-                                    <select (click)="addressChange($event, cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
+                                    <select [(ngModel)]="shippingAddresses[in]" (click)="addressChange(cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
                                         class="u-margin-right-1">
-                                        <option disabled value="">Pilih Alamat</option>
-                                        <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId"
-                                            [selected]="cartCheckout.shippingAddressId === destination.shippingAddressId">{{ destination.name }}</option>
+                                        <option disabled value="0">Pilih Alamat</option>
+                                        <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId">{{ destination.name }}</option>
                                         <option value="tambah">Tambah</option>
                                     </select>
 

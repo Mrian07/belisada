@@ -28,6 +28,7 @@ export class CheckoutComponent implements OnInit {
   shippingAddressDatas = [];
   shippingRates: string[];
   itemCartIds: number[];
+  shippingAddresses: any[];
 
   public formAddCrtl: FormGroup;
   provinces: Province[];
@@ -64,6 +65,7 @@ export class CheckoutComponent implements OnInit {
   ) {
     this.itemCartIds = [];
     this.shippingRates = [];
+    this.shippingAddresses = [];
     this.checkoutShippingAddress = [];
   }
 
@@ -86,8 +88,13 @@ export class CheckoutComponent implements OnInit {
         cart.itemCartIds.forEach((item) => {
           if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
         });
-        this.shippingRates[index] = (cart.courierCode === '') ? '' : cart.courierCode + '~' + cart.courierService;
-        console.log(this.shippingRates);
+        this.shippingAddresses[index] =
+          (cart.shippingAddressId === 0) ? 0 :
+            (cart.destinations.some(x => x.shippingAddressId === cart.shippingAddressId)) ? cart.shippingAddressId : 0;
+        this.shippingRates[index] = (cart.courierCode === '') ? '' :
+          (this.rates.some(
+            x => x.courierCode + '~' + cart.courierService === cart.courierCode + '~' + cart.courierService))
+              ? cart.courierCode + '~' + cart.courierService : '';
         this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
         const queryParam = {
           itemCartIds: cart.itemCartIds,
@@ -245,9 +252,9 @@ export class CheckoutComponent implements OnInit {
     this.isNote = false;
   }
 
-  addressChange(event, itemCartIds, originId, weight, destinations, index) {
-    console.log('addressChange--event: ', event);
-    const val = event.target.value;
+  addressChange(itemCartIds, originId, weight, destinations, index) {
+    // console.log('addressChange--event: ', event);
+    const val = this.shippingAddresses[index];
     if (val === 'tambah') {
       this.showDialogPilihAlamat = !this.showDialogPilihAlamat;
     } else {
@@ -259,8 +266,6 @@ export class CheckoutComponent implements OnInit {
         weight: weight
       };
       this.getShippingRates(queryParam, index, (rates) => {
-        console.log('rate: ', rates);
-        console.log(rates.courierCode + '~' + rates.courierService + '--------' + this.shippingRates[index]);
         const isShipFound = rates.some(x => x.courierCode + '~' + x.courierService === this.shippingRates[index]);
         if (isShipFound) {
           this.updateShipping(itemCartIds, index);
