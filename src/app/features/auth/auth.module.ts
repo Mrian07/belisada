@@ -29,7 +29,6 @@ import { AuthEffects } from '@belisada/core/ngrx/effects';
   declarations: [
     AuthComponent,
     SigninComponent,
-    AuthComponent,
     SignUpComponent,
     SignUpActivationComponent,
     ForgotPasswordComponent,

@@ -26,4 +26,11 @@ export class TransactionService {
         );
     }
 
+    getInvoice(data) {
+      return this.http.get(this.configuration.apiURL + '/buyer/transaction/invoicenumber?orderNumber=' + data)
+      .pipe(
+        map(response => response as OrderStatus[])
+      );
+    }
+
 }
