@@ -34,6 +34,7 @@ export class ProductDetailComponent implements OnInit {
   imgIndex: string;
 
   storeImageUrl;
+  productImageUrl;
   productNewatProdDetail: Home[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -45,6 +46,7 @@ export class ProductDetailComponent implements OnInit {
     private shoppingCartService: ShoppingCartService
   ) {
   this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
+  this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
    }
 
   ngOnInit() {
@@ -65,6 +67,7 @@ export class ProductDetailComponent implements OnInit {
         this.moreInformation = res.data.moreInformation;
         console.log('res: ', res.data);
         this.tabVal = this.productDetail.specification;
+        // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
       });
     });
@@ -97,6 +100,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.tabVal = this.productDetail.specification;
+        console.log(this.tabVal);
       });
     });
   }
@@ -104,6 +108,7 @@ export class ProductDetailComponent implements OnInit {
   deskripsi() {
     this.active();
     this.activeDiskripsi = true;
+    this.activeSpesifikasi = false;
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
@@ -115,6 +120,7 @@ export class ProductDetailComponent implements OnInit {
   diskusi() {
     this.active();
     this.activeDiskusi = true;
+    this.tabVal = 'Coming soon 1...';
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
@@ -126,6 +132,7 @@ export class ProductDetailComponent implements OnInit {
   ulasan() {
     this.active();
     this.activeUlasan = true;
+    this.tabVal = 'Coming soon 2...';
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
@@ -187,3 +194,4 @@ export class ProductDetailComponent implements OnInit {
     if (this.qty > 1) { this.qty -= 1; }
   }
 }
+

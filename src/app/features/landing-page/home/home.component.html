@@ -73,13 +73,13 @@
                                                 <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                                         </div>
                                         <div class="col-12 image--center">
-                                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:6 }}</span>
-                                        <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
+                                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number  }}</span>
+                                        <span class="text__center__name">{{ item.name | slice:0:30 }}</span>
                                         </div>
                                 </div>
                                         </div>
                                 </div> 
-                                <div class="row">
+                                <!-- <div class="row">
                                         <div class="col-12">
                                                 <div class="aasdsad">
                                                         <div class="flex-wrapper">
@@ -112,7 +112,7 @@
                                                         </div>
                                                         
                                         </div>
-                                </div> 
+                                </div>  -->
                                 <!-- <div class="aasdsad"> -->
                                                 <span class="text--new--product">Product Popular</span>
                                                 <div class="containerz">
