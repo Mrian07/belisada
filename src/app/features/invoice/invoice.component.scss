@@ -1,6 +1,6 @@
 .f-head{
     background: #ff9236;
-    padding:10px;
+    padding:10px 10px 0px 10px;
     font-size: 40px;
     font-weight: bold;
     color: #ffffff;
@@ -9,6 +9,18 @@
     margin-top: 20px;
     text-align: center;
     border-radius:5px 5px 0px 0px;
+}
+
+.f-head-icon{
+    float: left;
+    width: 250px;
+    text-align: left;
+    padding-top:5px;
+}
+
+.f-head-title{
+    float: left;
+    padding-top:5px;
 }
 
 .f-body{
@@ -71,4 +83,8 @@
 .i-logo{
     margin-top:20px;
     text-align: center;
+}
+
+.i-kg{
+    margin-top:20px;
 }
