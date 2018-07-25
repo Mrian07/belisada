@@ -45,9 +45,21 @@ export class CheckoutShippingAddress {
   orderNumber: number;
 }
 
-// export class CheckoutModel {
-//   itemCartIds: number[];
-//   paymentMethodCode: string;
-//   voucherCode: string;
-//   voucherValue: number;
-// }
+export class SuccessTransactionRes extends BaseResponseModel {
+  data: SuccessTransactionData;
+}
+
+export class SuccessTransactionData {
+  transactionId: number;
+  paymentNumber: string;
+  status: string;
+  statusCode: string;
+  paymentMethodCode: string;
+  paymentMethod: string;
+  expiredTime: string;
+  createdTime: string;
+  imageUrl: string;
+  transaction: any[];
+  buyerName: string;
+  buyerEmail: string;
+}

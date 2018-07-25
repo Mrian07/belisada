@@ -15,7 +15,7 @@ export class PaymentService {
   getPayment() {
     return this.http.get(this.configuration.apiURL + '/payment')
       .pipe(
-        map(response => response as Payment)
+        map(response => response as Payment[])
       );
   }
 }

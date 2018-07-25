@@ -1,31 +1,30 @@
 <div class="containPage has-header">
-  <!-- <app-terimakasih-page inputDate="July 11, 2018 12:00:00"></app-terimakasih-page> -->
+	<!-- <app-terimakasih-page inputDate="July 11, 2018 12:00:00"></app-terimakasih-page> -->
 
-  <img class="img--center--thx" src="/assets/img/logo.png">
-  <p class="text--center cusstome--font">Anda Memiliki waktu 1x24 Jam Sampai</p>
-  <p class="text--center">Tanggal 19 October 2019, untuk melakukan</p>
-  <p class="text--center">pembayaran</p>
- <p class="text--center custome--timer"> <countdown-timer [end]="_trialEndsAt"></countdown-timer> </p> 
- <img class="img--center--dino" src="/assets/img/Asset_3400.png">
+	<img class="img--center--thx" src="/assets/img/logo.png">
+	<p class="text--center cusstome--font">Anda memiliki waktu 2x24 jam</p>
+	<p class="text--center">untuk melakukan pembayaran</p>
+	<!-- <p class="text--center"></p> -->
+	<p class="text--center custome--timer"> <countdown-timer [end]="_trialEndsAt"></countdown-timer> </p> 
+	<img class="img--center--dino" src="/assets/img/Asset_3400.png">
 
- <div class='list-metode'>
-    <div class="row">
-      <div class="col-3">
-        <div class="img-pay"><img src="assets/img/bank_bca.png" class="img-icon"></div>
-        675765765775<br>On<br>PT Belisada Global Indonesia
-      </div>
-      <div class="col-3">
-        <div class="img-pay"><img src="assets/img/bank_mandiri.png"class="img-icon"></div>
-        675765765775<br>On<br>PT Belisada Global Indonesia
-      </div>
-      <div class="col-3">
-        <div class="img-pay"><img src="assets/img/bank_bni.png" class="img-icon"></div>
-        675765765775<br>On<br>PT Belisada Global Indonesia
-      </div>
-      <div class="col-3">
-        675765765775<br>On<br>PT Belisada Global Indonesia
-      </div>
-    </div>
-  </div>
-  
+	<div class='list-metode'>
+		<div class="row">
+			<div class="col-3" *ngFor="let item of listPayment">
+				<div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+				{{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
+			</div>
+			<!-- <div class="col-3">
+				<div class="img-pay"><img src="assets/img/bank_mandiri.png"class="img-icon"></div>
+				675765765775<br>On<br>PT Belisada Global Indonesia
+			</div>
+			<div class="col-3">
+				<div class="img-pay"><img src="assets/img/bank_bni.png" class="img-icon"></div>
+				675765765775<br>On<br>PT Belisada Global Indonesia
+			</div>
+			<div class="col-3">
+				675765765775<br>On<br>PT Belisada Global Indonesia
+			</div> -->
+		</div>
+	</div>
 </div>

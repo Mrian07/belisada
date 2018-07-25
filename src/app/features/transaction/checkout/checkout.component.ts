@@ -331,11 +331,7 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.doCheckout(data).subscribe(response => {
       if (response.status === 1) {
         this.shoppingCartService.empty();
-        this.router.navigateByData({
-          url: ['/transaction/terimakasih'],
-          data: response.data,
-        });
-        // this.router.navigateByUrl('/transaction/terimakasih');
+        this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
       } else {
         swal('belisada.id', response.message, 'error');
       }
@@ -371,7 +367,6 @@ export class CheckoutComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.shoppingCartService.deleteCart(id).subscribe(response => {
-          // console.log('deleteCart response: ', response);
           if (response.status === 1) {
             swal(
               'Success!',

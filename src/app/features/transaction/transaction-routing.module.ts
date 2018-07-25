@@ -21,7 +21,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'terimakasih',
+        path: 'terimakasih/:id',
         component: TerimakasihPageComponent,
         data: {
           title: 'Chekout'
