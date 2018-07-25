@@ -1,3 +1,4 @@
+import { InvoiceComponent } from './features/invoice/invoice.component';
 import { RouterModule, PreloadAllModules, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
@@ -19,6 +20,7 @@ const routes: Routes = [
       },
     ]
   },
+  { path: 'invoice/:id', component: InvoiceComponent, },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
   { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },

@@ -74,3 +74,17 @@ export class UploadImgTransfer {
     imageUrl: string;
     transactionId: number;
 }
+
+
+export class Invoice{
+    createdTime: string;
+    expiredTime: string;
+    grandTotal: number;
+    imageUrl: string;
+    invoiceNumber: string;
+    paymentMethod: string;
+    paymentMethodCode: string;
+    paymentNumber: string;
+    status: string;
+    statusCode: string;
+}

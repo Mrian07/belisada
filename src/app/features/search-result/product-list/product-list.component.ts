@@ -94,13 +94,12 @@ console.log('datanya', response);
 
   goDetail(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
    window.scrollTo(0, 0);
   }
 
   public getUser() {
-console.log(this.keys);
+// console.log(this.keys);
   }
 
 }
