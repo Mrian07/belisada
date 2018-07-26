@@ -68,7 +68,7 @@
         <td>{{item.name}}</td>
         <td>x {{item.quantity}}</td>
         <td>{{item.weightPerItem}}kg</td>
-        <td><span class="i-price">{{item.subtotal}}</span></td>
+        <td><span class="i-price">{{item.subtotal | currency:'Rp '}}</span></td>
       </tr>
     </table>
   </div>
@@ -86,14 +86,14 @@
               <span class="i-title">{{info.totalWeight}}kg</span>
           </div>
           <div class="col-4">
-              <span class="i-price">{{info.courierPrice}}</span>
+              <span class="i-price">{{info.courierPrice | currency:'Rp '}}</span>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div class="i-total i-right">
-    TOTAL: <span class="i-price">{{info.total}}</span>
+    TOTAL: <span class="i-price">{{info.total | currency:'Rp '}}</span>
   </div>
   <div class="i-logo">
     <img src="assets/img/logo.png" border="0" width="200">
