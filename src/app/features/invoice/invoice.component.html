@@ -45,7 +45,7 @@
     </div>
     <div class="col-4">
         <span class="i-title">Pembeli</span><br>
-        Wahyu
+        {{info.buyerName}}
     </div>
   </div>
   <div class="i-address">
@@ -61,9 +61,6 @@
         <th>Berat</th>
         <th>Price</th>
       </tr>
-      <!-- <tr>
-        <td colspan="4"><hr size="1"></td>
-      </tr> -->
       <tr>
           <td colspan="4"><div class="i-line">&nbsp;</div></td>
         </tr>
@@ -81,12 +78,12 @@
       <div class="col-6">
           <span class="i-title">Metode Pengiriman</span><br>
           {{info.courierCode}}<br>
-          <span class="i-title">Asuransi:</span> TIDAK
+          <span class="i-title">Asuransi:</span> <span *ngIf="info.useAsuransi == false">Tidak</span> <span *ngIf="info.useAsuransi == true">Iya</span>
       </div>
       <div class="col-6">
         <div class="row i-kg">
           <div class="col-4">
-              <span class="i-title">4kg</span>
+              <span class="i-title">{{info.totalWeight}}kg</span>
           </div>
           <div class="col-4">
               <span class="i-price">{{info.courierPrice}}</span>
@@ -96,7 +93,7 @@
     </div>
   </div>
   <div class="i-total i-right">
-    TOTAL: <span class="i-price"> Rp.60.20.000</span>
+    TOTAL: <span class="i-price">{{info.total}}</span>
   </div>
   <div class="i-logo">
     <img src="assets/img/logo.png" border="0" width="200">
