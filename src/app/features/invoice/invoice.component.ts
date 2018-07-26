@@ -1,26 +1,32 @@
 import { Component, OnInit } from '@angular/core';
-// import { TransactionService } from './../../../core/services/transaction/transaction.service';
+import { TransactionService } from './../../core/services/transaction/transaction.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
-  // selector: 'bs-invoice',
-  // template: `
-  //   <bs-main-layout>
-  //       <router-outlet></router-outlet>
-  //   </bs-main-layout>
-  // `
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private transactionService: TransactionService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
-    // this.transactionService.getInvoice(id).subscribe(respon => {
-    //  console.log('apa ini', respon);
-    // });
-
+    this.loadData();
   }
 
+  loadData() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      console.log('id:', params['id']);
+    });
+
+  // getDetail(){
+  //       this.transactionService.getInvoice(id).subscribe(respon => {
+  //    console.log('apa ini', respon);
+  //   });
+  // }
 }
