@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CheckoutReq, CheckoutRes, CheckoutShippingAddress } from '@belisada/core/models/checkout/checkout-transaction';
+import { CheckoutReq, CheckoutRes, CheckoutShippingAddress, SuccessTransactionRes } from '@belisada/core/models/checkout/checkout-transaction';
 import { Configuration } from '@belisada/core/config';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -24,6 +24,15 @@ export class CheckoutService {
     return this.http.post(this.configuration.apiURL + '/buyer/transaction/checkout', data)
       .pipe(
         map(response => response as CheckoutRes)
+      );
+  }
+
+  getSuccessTransaction(paymentNumber): Observable<SuccessTransactionRes> {
+    let params = new HttpParams();
+    params = params.append('paymentNumber', paymentNumber);
+    return this.http.get(this.configuration.apiURL + '/buyer/transaction/thankyoupage', {params: params})
+      .pipe(
+        map(response => response as SuccessTransactionRes)
       );
   }
 }
