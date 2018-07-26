@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.flagStatus();
-    this.allCategory();
+    this.getCategory();
     this.regForm = true;
     this.storeName = new FormControl(null, Validators.required);
     this.storeUrl = new FormControl(null, Validators.required);
@@ -393,24 +393,29 @@ onSent() {
   }
 
   menuAllCategory(data) {
+    console.log('click',  data);
     if (data === true) {
       this.isMenu = false;
       this.shareMessageService.changeMessage('close-menu-category');
     } else {
       this.isMenu = true;
       this.shareMessageService.changeMessage('open-menu-category');
+      this.getCategory();
     }
-
   }
 
-  allCategory() {
+  getCategory(id?: number) {
     const queryParams = {
       ob: 'name',
       ot: 'asc',
     };
+    // if (id) { queryParams['parentid'] = id; }
+    console.log('queryParams: ', queryParams);
     this.categoryService.getAllCategory(queryParams).subscribe(response => {
-      this.menuCategory = response;
-      // console.log('category', response);
+      this.menuCategory = response.data;
+      this.subMenuCategory = [];
+      // if (id) { this.subMenuCategory = response.data; }
+      console.log('category', this.menuCategory);
     });
   }
 
@@ -421,8 +426,8 @@ onSent() {
       parentid: id,
     };
     this.categoryService.getAllCategory(queryParams).subscribe(response => {
-      this.subMenuCategory = response;
-       console.log('sub category', response);
+      this.subMenuCategory = response.data;
+      console.log('sub category', response);
     });
   }
 }

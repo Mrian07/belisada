@@ -1,16 +1,17 @@
 import { AttributeValue } from '@belisada/core/models/attribute/attribute.model';
 
 export class CategoryList {
-  dataCount: number;
-  pageCount: number;
   data: Category[];
 }
 
-export class Category {
+export class BaseCategoryModel {
   categoryId: number;
   name: string;
   nameEn: string;
   type: string;
+}
+
+export class Category extends BaseCategoryModel {
   imageUrl: string;
   imageUrl2: string;
   imageUrl3: string;
@@ -18,6 +19,7 @@ export class Category {
   imageUrl5: string;
   parentId: number;
   iconUrl: string;
+  childs: BaseCategoryModel[];
 }
 
 export class CategoryAttribute {
