@@ -77,14 +77,26 @@ export class UploadImgTransfer {
 
 
 export class Invoice{
-    createdTime: string;
-    expiredTime: string;
-    grandTotal: number;
-    imageUrl: string;
-    invoiceNumber: string;
-    paymentMethod: string;
-    paymentMethodCode: string;
-    paymentNumber: string;
     status: string;
-    statusCode: string;
+    message: string;
+    data: InvoiceData[];
+}
+
+export class InvoiceData{
+    alamatPenerima: string;
+    alamatSebagai: string;
+    asuransi: number;
+    courierCode: string;
+    courierPrice: string;
+    courierService: string;
+    createdOrder: string;
+    destinationId: number;
+    invoiceNumber: string;
+    namaPenerima: string;
+    paymentNumber: string;
+    cartItems: InvoiceCart[];
+}
+
+export class InvoiceCart{
+
 }

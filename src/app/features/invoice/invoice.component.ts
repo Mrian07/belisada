@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../core/services/transaction/transaction.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { InvoiceData } from '@belisada/core/models/transaction/transaction.model';
 
 @Component({
   selector: 'app-invoice',
@@ -8,7 +9,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-
+  info : InvoiceData[];
   constructor(
     private transactionService: TransactionService,
     private activatedRoute: ActivatedRoute,
@@ -20,8 +21,11 @@ export class InvoiceComponent implements OnInit {
   }
 
   loadData() {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      console.log('id:', params['i+d']);
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.transactionService.getInvoice(params['id']).subscribe(respon => {
+        this.info = respon.data;
+        console.log('apa ini', respon.data);
+      });
     });
   }
   // getDetail(){
