@@ -72,7 +72,6 @@ export class ProductListComponent implements OnInit {
       };
 
       this.searchService.getList(queryParams).subscribe(response => {
-console.log('datanya', response);
         this.list = response;
         this.lastPage = this.list.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
@@ -94,13 +93,12 @@ console.log('datanya', response);
 
   goDetail(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
    window.scrollTo(0, 0);
   }
 
   public getUser() {
-console.log(this.keys);
+// console.log(this.keys);
   }
 
 }

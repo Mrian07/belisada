@@ -7,5 +7,6 @@ export const environment = {
   production: false,
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
-  imgUrl163x179: 'http://image.belisada.id:8888/unsafe/163x179',
+  thumborUrl: 'http://image.belisada.id:8888/',
+  // imgUrl163x179: 'http://image.belisada.id:8888/unsafe/163x179',
 };

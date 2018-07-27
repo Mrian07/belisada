@@ -5,7 +5,7 @@
             <table class="table table-striped table-checkout">
                 <thead>
                     <tr>
-                        <th class="th1">Checkout Sebagian</th>
+                        <!-- <th class="th1">Checkout Sebagian</th> -->
                         <th class="th2 table-title">ITEM</th>
                         <th class="th3 table-title">DESCRIPTION</th>
                         <th class="th4 table-title">Price</th>
@@ -16,21 +16,21 @@
                 </thead>
                 <tbody *ngFor="let cartCheckout of checkoutTrx.cart; let in = index">
                     <tr>
-                        <td></td>
+                        <!-- <td></td> -->
                         <td colspan="5">
                             <div class="row item-order">
                                 <div class="col-6">
                                     <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>                      
                                 </div>
                                 <div class="col-6 item-order-right">
-                                    <select [(ngModel)]="shippingAddresses[in]" (click)="addressChange(cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
+                                    <select [(ngModel)]="shippingAddresses[in]" (change)="addressChange(cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
                                         class="u-margin-right-1">
                                         <option disabled value="0">Pilih Alamat</option>
                                         <option *ngFor="let destination of cartCheckout.destinations" [value]="destination.shippingAddressId">{{ destination.name }}</option>
                                         <option value="tambah">Tambah</option>
                                     </select>
 
-                                    <select [(ngModel)]="shippingRates[in]" (click)="shippingChange(cartCheckout.itemCartIds, in)"
+                                    <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
                                         class="u-margin-right-1">
                                         <option disabled value="">Pilih Pengiriman</option>
                                         <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
@@ -49,7 +49,7 @@
                         </td>
                     </tr>
                     <tr *ngFor="let cartItem of cartCheckout.cartItems">
-                        <td><input name="checkbox" type="checkbox"></td>
+                        <!-- <td><input name="checkbox" type="checkbox"></td> -->
                         <td class="table-val"><img [src]="cartItem.imageUrl" size="20"></td>
                         <td class="table-val"><span class="item-name">{{ cartItem.name }}</span> <span class="item-size"> ( {{ cartItem.weightPerItem }} g )</span>
                         <div><span class="item-delete" (click)="deleteCart(cartItem.itemCartId, cartItem.productId, cartItem.quantity)">Hapus Barang <fa class="item-trash" name="trash"></fa></span></div>
@@ -67,11 +67,11 @@
                         <!-- <td class="table-val right"><span class="item-price">Rp {{ cartItem.total | number }}</span></td> -->
                     </tr>
                     <tr>
-                        <td></td>
+                        <!-- <td></td> -->
                         <td colspan="4">
-                            <div class="item-note" (click)="note()" *ngIf="isNote==false">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div>
-                            <div *ngIf="isNote==true"><textarea rows="10%" cols="100%"></textarea></div>
-                            <div *ngIf="isNote==true" (click)="cancelNote()"><span class="btn-update">Update</span> <span class="btn-cancel">Cancel</span></div>
+                            <!-- <div class="item-note" (click)="note()" *ngIf="isNote==false">Catatan Untuk Penjual <span class="icon-note"><fa name="far fa-edit"></fa></span></div> -->
+                            <!-- <div *ngIf="isNote==true"><textarea rows="10%" cols="100%"></textarea></div>
+                            <div *ngIf="isNote==true" (click)="cancelNote()"><span class="btn-update">Update</span> <span class="btn-cancel">Cancel</span></div> -->
                         </td>
                         <td class="right">Subtotal: <span class="item-price">Rp {{ cartCheckout.subTotal | number }}</span></td>
                     </tr>
@@ -129,21 +129,21 @@
                 <div class="col-8">
                         
                     <div class="row">
-                        <div class="col-4">
+                        <div class="col-12">
                             <div class='btn-pilih-metode-active' (click)="byTransfer()">Bank Transfer</div>
                             <div class='btn-arrow'><img src="assets/img/arrow-green.png"></div>
                         </div>
-                        <div class="col-4">
+                        <!-- <div class="col-4">
                             <div class='btn-pilih-metode disabled'>Kartu Kredit</div>
                         </div>
                         <div class="col-4">
                             <div class='btn-pilih-metode disabled'>Pembayaran Instan</div>  
-                        </div>
+                        </div> -->
                     </div>   
 
                 </div>
                 <div class="col-2">
-                        &nbsp;
+                    &nbsp;
                 </div>
             </div>
 
@@ -246,7 +246,7 @@
                         <div class="row row-atur">  
                             <div class="col-4">
                                 <label>No. Handphone:</label>
-                                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" maxlength="15">
+                                <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" (keypress)="phoneCheck($event)" maxlength="15">
                                 <app-field-error-display [displayError]="isFieldValid('hp')" errorMsg="Handphone tidak boleh kosong"></app-field-error-display>
                             </div>
                             <div class="col-4">

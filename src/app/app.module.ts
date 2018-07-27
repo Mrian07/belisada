@@ -1,3 +1,4 @@
+import { InvoiceComponent } from './features/invoice/invoice.component';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,7 +48,8 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     Page404Component,
     MaintenanceComponent,
     LandingPageComponent,
-    HomeComponent
+    HomeComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

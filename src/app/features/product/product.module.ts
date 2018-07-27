@@ -7,10 +7,12 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 
 import { ThemeModule } from '../../theme/theme.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     ProductRoutingModule,
     ThemeModule,
     AngularFontAwesomeModule

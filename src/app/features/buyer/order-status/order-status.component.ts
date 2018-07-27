@@ -2,6 +2,7 @@ import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../../core/services/transaction/transaction.service';
 import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-order-status',
@@ -29,6 +30,7 @@ export class OrderStatusComponent implements OnInit {
 
   constructor(
     private transactionService: TransactionService,
+    private router: Router,
   ) { this.list = []; }
 
   ngOnInit() {
@@ -127,6 +129,10 @@ export class OrderStatusComponent implements OnInit {
       this.pendingOrder();
     });
 
+  }
+
+  detailInvoice(id) {
+    this.router.navigate(['/invoice/' + id ]);
   }
 
 }

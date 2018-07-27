@@ -6,12 +6,16 @@
     </div>
     <div class="bs-header__search-box">
         <div class="search-by-category-wrapper">
-            <div class="select-box-container w--select--box">
-                <div class="category-menu">
-                    <div class="select-box select-box-orange" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false" (click)="menuAllCategory(isMenu)">
+            <div class="select-box-container w--select--box" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
+                <div class="category-menu" (click)="menuAllCategory(isMenu)">
+
+                    <div  class="select-box select-box-orange"><span>All Category</span>
+                        <fa name="caret-down"></fa></div>
+
+                    <!-- <div class="select-box select-box-orange">
                         <span>All Category</span>
                         <fa name="caret-down"></fa>
-                        <input type="hidden" name="">
+                        <input type="hidden" name=""> -->
 
                         <!-- <div class="menu__container">
                             <div class="menu__container--title" *ngFor="let menu of menuCategory.data">
@@ -30,25 +34,16 @@
 
 
                         
-                    </div>
+                    <!-- </div> -->
                 </div>
         
                 <div class="menu__container" *ngIf="isMenu == true">
-                    <div class="menu__container--title" *ngFor="let menu of menuCategory.data" (mouseenter)="subMenu(menu.categoryId)">
-                        {{menu.name}} 
-                        <!-- <div class="menu__value2">
-                            <div class="menu__value--tile">Smart Phone</div>
-                            <div>
-                                Asus
-                            </div>
-                            <div>
-                                HP
-                            </div>
-                        </div> -->
+                    <div class="menu__container--title" *ngFor="let menu of menuCategory" (mouseenter)="subMenu(menu.categoryId)">
+                        {{menu.name}}
                     </div>
                     <div class="menu_frame_child">
                         <div class="menu__container--child">
-                            <div *ngFor="let subMenu of subMenuCategory.data" class="menuColom">
+                            <div *ngFor="let subMenu of subMenuCategory" class="menuColom">
                                 <div class="menuColom__title">{{subMenu.name}}</div>
                                 <div *ngFor="let childSubMenu of subMenu.childs">
                                     {{childSubMenu.name}}

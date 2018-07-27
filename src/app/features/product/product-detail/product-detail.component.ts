@@ -7,6 +7,8 @@ import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-c
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
 import swal from 'sweetalert2';
 import { Home } from '@belisada/core/models';
+import { AddressService } from '@belisada/core/services/address/address.service';
+import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -18,8 +20,12 @@ export class ProductDetailComponent implements OnInit {
   // id: number;
   // name: string;
 
+  shippingAddress: number;
+
   productDetail: ProductDetailList = new ProductDetailList();
   moreInformation: MoreInformation = new MoreInformation();
+
+  shippingAddressList: GetShippingResponse[];
 
   qty = 1;
   // currentPage: number;
@@ -43,15 +49,18 @@ export class ProductDetailComponent implements OnInit {
     private userService: UserService,
     private productService: ProductService,
     private homeS: HomeSService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private addressService: AddressService
   ) {
-  this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
-  this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
-   }
+    this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
+    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
+    this.shippingAddressList = [];
+  }
 
   ngOnInit() {
     this.active();
     this.loadData();
+    this.listShipping();
   }
 
   loadData() {
@@ -59,7 +68,7 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.homeS.getHomeNew().subscribe(res => {
       this.productNewatProdDetail = res;
-    console.log('ini res: ',res);
+    console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.detailProduct(params['id']).subscribe(res => {
@@ -91,6 +100,13 @@ export class ProductDetailComponent implements OnInit {
         this.tabVal = this.productDetail.specification;
         this.imgIndex = img;
       });
+    });
+  }
+
+  listShipping() {
+    this.addressService.getShipping().subscribe(respon => {
+      this.shippingAddressList = respon;
+      console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
 

@@ -13,6 +13,9 @@ import { CheckoutService } from '@belisada/core/services/checkout/checkout.servi
 import { CheckoutReq, CheckoutShippingAddress } from '@belisada/core/models/checkout/checkout-transaction';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
+import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
+import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 // import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
 
 @Component({
@@ -61,7 +64,8 @@ export class CheckoutComponent implements OnInit {
     private addressService: AddressService,
     private paymentService: PaymentService,
     private shoppingCartService: ShoppingCartService,
-    private checkoutService: CheckoutService
+    private checkoutService: CheckoutService,
+    private thumborService: ThumborService
   ) {
     this.itemCartIds = [];
     this.shippingRates = [];
@@ -85,24 +89,40 @@ export class CheckoutComponent implements OnInit {
       this.checkoutTrx = response;
 
       response.cart.forEach((cart, index) => {
+
+        cart.cartItems.forEach((item, i) => {
+          const option = {
+            width: 150,
+            height: 150,
+            fitting: ThumborSizingEnum.FIT_IN,
+            filter: {
+              fill: 'fff'
+            }
+          };
+          const newImgUrl = this.thumborService.process(item.imageUrl, option);
+          this.checkoutTrx.cart[index].cartItems[i].imageUrl = newImgUrl;
+        });
+
         cart.itemCartIds.forEach((item) => {
           if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
         });
         this.shippingAddresses[index] =
           (cart.shippingAddressId === 0) ? 0 :
             (cart.destinations.some(x => x.shippingAddressId === cart.shippingAddressId)) ? cart.shippingAddressId : 0;
-        this.shippingRates[index] = (cart.courierCode === '') ? '' :
-          (this.rates.some(
-            x => x.courierCode + '~' + cart.courierService === cart.courierCode + '~' + cart.courierService))
-              ? cart.courierCode + '~' + cart.courierService : '';
-        this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
+
         const queryParam = {
           itemCartIds: cart.itemCartIds,
           originId: cart.originId,
           destinationId: cart.destinationId,
           weight: cart.totalWeight
         };
-        this.getShippingRates(queryParam, index, () => {});
+        this.getShippingRates(queryParam, index, () => {
+          this.shippingRates[index] = (cart.courierCode === '') ? '' :
+            (this.rates[index].some(
+              x => x.courierCode + '~' + x.courierService === cart.courierCode + '~' + cart.courierService))
+                ? cart.courierCode + '~' + cart.courierService : '';
+          this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
+        });
       });
     });
   }
@@ -283,7 +303,7 @@ export class CheckoutComponent implements OnInit {
 
   updateShipping(itemCartIds, index) {
     const data: UpdateShippingReq = new UpdateShippingReq();
-    console.log('this.shippingRates[index]: ', this.shippingRates[index]);
+    // console.log('this.shippingRates[index]: ', this.shippingRates[index]);
     data.courierCode = this.shippingRates[index].split('~')[0];
     data.courierService = this.shippingRates[index].split('~')[1];
     data.itemCartIds = itemCartIds;
@@ -299,7 +319,7 @@ export class CheckoutComponent implements OnInit {
   getShippingRates(queryParam, index, callbackSc) {
     this.shoppingCartService.getShippingRates(queryParam).subscribe(response => {
       this.rates[index] = response;
-      console.log('this.rates: ', this.rates);
+      // console.log('this.rates: ', this.rates);
       return callbackSc(response);
     });
   }
@@ -311,11 +331,7 @@ export class CheckoutComponent implements OnInit {
     this.checkoutService.doCheckout(data).subscribe(response => {
       if (response.status === 1) {
         this.shoppingCartService.empty();
-        this.router.navigateByData({
-          url: ['/transaction/terimakasih'],
-          data: response.data,
-        });
-        // this.router.navigateByUrl('/transaction/terimakasih');
+        this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
       } else {
         swal('belisada.id', response.message, 'error');
       }
@@ -324,11 +340,11 @@ export class CheckoutComponent implements OnInit {
 
   dataShipping() {
     this.checkoutService.getShippingAddress().subscribe(response => {
-      console.log('response: ', response);
+      // console.log('response: ', response);
       this.checkoutShippingAddress = response;
       if (this.checkoutShippingAddress.length !== 0) {
         this.selectedShippingAddress = this.checkoutShippingAddress[0];
-        console.log('this.selectedShippingAddress: ', this.selectedShippingAddress);
+        // console.log('this.selectedShippingAddress: ', this.selectedShippingAddress);
       }
     });
   }
@@ -351,7 +367,6 @@ export class CheckoutComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.shoppingCartService.deleteCart(id).subscribe(response => {
-          console.log('deleteCart response: ', response);
           if (response.status === 1) {
             swal(
               'Success!',
@@ -400,5 +415,14 @@ export class CheckoutComponent implements OnInit {
         this.getCartCheckout();
       }
     });
+  }
+
+  phoneCheck(event: any) {
+    const pattern = /[0-9]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
   }
 }

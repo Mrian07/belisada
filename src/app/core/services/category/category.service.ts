@@ -12,14 +12,14 @@ export class CategoryService {
 
   constructor(private configuration: Configuration, private http: HttpClient) { }
 
-  getAllCategory(queryParams): Observable<Category[]> {
+  getAllCategory(queryParams): Observable<CategoryList> {
     let params = new HttpParams();
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
     return this.http.get(this.configuration.apiURL + '/category/home', {params: params})
     .pipe(
-      map(response => response as Category[])
+      map(response => response as CategoryList)
     );
   }
 
