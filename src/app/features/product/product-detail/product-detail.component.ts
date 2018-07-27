@@ -21,6 +21,7 @@ export class ProductDetailComponent implements OnInit {
   // id: number;
   // name: string;
 
+  isLogin: Boolean = false;
   shippingRates: any;
 
   shippingAddress: GetShippingResponse = new GetShippingResponse();
@@ -64,6 +65,10 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    const token = this.authService.getToken();
+    if (token) {
+      this.isLogin = true;
+    }
     console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
@@ -83,18 +88,21 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.homeS.getHomeNew().subscribe(res => {
       this.productNewatProdDetail = res;
-      console.log('ini res: ', res);
+      // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        console.log('res: ', res.data);
+        // console.log('res: ', res.data);
         this.tabVal = this.productDetail.specification;
         // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
-        this.listShipping();
+
+        if (this.isLogin) {
+          this.listShipping();
+        }
       });
     });
   }
@@ -215,7 +223,10 @@ export class ProductDetailComponent implements OnInit {
         } else {
           const addToCartRequest: AddToCartRequest = {
             productId: productId,
-            quantity: this.qty
+            quantity: this.qty,
+            courierCode: this.shippingRates.courierCode,
+            courierService: this.shippingRates.courierService,
+            shippingAddressId: this.shippingAddress.addressId
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {

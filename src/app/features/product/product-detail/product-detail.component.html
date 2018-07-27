@@ -20,7 +20,7 @@
                     <!-- <div *ngIf="productDetail.pricelistlast==0">
                         <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
                     </div> -->
-                    <div class="product-info">
+                    <div class="product-info" *ngIf="isLogin">
                         <span class="strong-text">Dikirim Dari:</span> {{ productDetail.locationName }}
                         <br>Ke {{ shippingAddress.regionName }}, {{ shippingAddress.cityName }}, 
                         
@@ -34,7 +34,7 @@
                         <!-- <span class="btn-small">Ganti Destinasi</span>  -->
                         <span class="btn-flag"><fa name="exclamation"></fa></span>
                     </div>
-                    <div class="product-info">
+                    <div class="product-info" *ngIf="isLogin">
                         <span class="strong-text">Metode Pengiriman: 
                         <select [(ngModel)]="shippingRates"
                             class="u-margin-right-1">

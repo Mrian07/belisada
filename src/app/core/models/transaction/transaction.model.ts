@@ -76,13 +76,13 @@ export class UploadImgTransfer {
 }
 
 
-export class Invoice{
+export class Invoice {
     status: string;
     message: string;
     data: InvoiceData[];
 }
 
-export class InvoiceData{
+export class InvoiceData {
     alamatPenerima: string;
     alamatSebagai: string;
     asuransi: number;
@@ -97,6 +97,6 @@ export class InvoiceData{
     cartItems: InvoiceCart[];
 }
 
-export class InvoiceCart{
+export class InvoiceCart {
 
 }

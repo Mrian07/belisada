@@ -174,7 +174,7 @@ export class HeaderComponent implements OnInit {
   }
 
   mulaiBerjualan() {
-    console.log('asdasdasd');
+    // console.log('asdasdasd');
   }
 
   cekFlag() {
@@ -361,7 +361,7 @@ onSent() {
           const newImgUrl = this.thumborService.process(product.imageUrl, option);
           product.imageUrl = newImgUrl;
 
-          console.log('product: ', product);
+          // console.log('product: ', product);
 
           this.cartItems.push({
             ...item,
@@ -409,7 +409,7 @@ onSent() {
   }
 
   menuAllCategory(data) {
-    console.log('click',  data);
+    // console.log('click',  data);
     if (data === true) {
       this.isMenu = false;
       this.shareMessageService.changeMessage('close-menu-category');
@@ -426,12 +426,12 @@ onSent() {
       ot: 'asc',
     };
     // if (id) { queryParams['parentid'] = id; }
-    console.log('queryParams: ', queryParams);
+    // console.log('queryParams: ', queryParams);
     this.categoryService.getAllCategory(queryParams).subscribe(response => {
       this.menuCategory = response.data;
       this.subMenuCategory = [];
       // if (id) { this.subMenuCategory = response.data; }
-      console.log('category', this.menuCategory);
+      // console.log('category', this.menuCategory);
     });
   }
 
@@ -443,7 +443,7 @@ onSent() {
     };
     this.categoryService.getAllCategory(queryParams).subscribe(response => {
       this.subMenuCategory = response.data;
-      console.log('sub category', response);
+      // console.log('sub category', response);
     });
   }
 }
