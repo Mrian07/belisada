@@ -27,6 +27,8 @@ interface ICartItemWithProduct extends CartItem {
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Province, District, Village, City } from '@belisada/core/models/store/address';
 import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
+import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
+import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 
 @Component({
   selector: 'app-header',
@@ -94,6 +96,7 @@ export class HeaderComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private authService: AuthService,
+    private thumborService: ThumborService,
     private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private categoryService: CategoryService
   ) {
     this.searchBarResults = [];
@@ -347,6 +350,19 @@ onSent() {
       cart.items.forEach(item => {
         this.productService.get(item.productId).subscribe(result => {
           const product = result.data;
+          const option = {
+            width: 150,
+            height: 150,
+            fitting: ThumborSizingEnum.FIT_IN,
+            filter: {
+              fill: 'fff'
+            }
+          };
+          const newImgUrl = this.thumborService.process(product.imageUrl, option);
+          product.imageUrl = newImgUrl;
+
+          console.log('product: ', product);
+
           this.cartItems.push({
             ...item,
             product,
