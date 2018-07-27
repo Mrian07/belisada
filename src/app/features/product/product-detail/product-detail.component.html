@@ -161,14 +161,24 @@
           </div>
         </div>
       </div>
-      <div class="product-spec-conten">
-        <!-- <p>12312312312</p> -->
-        <table></table>
-        
-          <!-- <p><strong>{{productDetail.specification}}</strong></p> -->
-          <!-- {{tabVal.name}} -->
-          <!-- <p *ngFor="let item of tabVal">{{item.name}}</p> -->
+      <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
+        <div class="row">
+          <div class="col-12">
+              <span class="w__fontsize--prodName"> {{ productDetail.name }} </span> 
+          </div>
+        </div>
+      
+<table id="customers">
+
+    <tr *ngFor="let item of productDetail.specification">
+      <td>{{item.name}} :</td>
+      <td>{{ item. value }}</td>
+    </tr>
+  </table>
+
       </div>
+      <!-- <div class="product-spec-conten">
+      </div> -->
   
     </div>
     
