@@ -20,6 +20,25 @@
     font-size: 12px;
     margin-right:10px;
 }
+#customers {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+.w__fontsize--prodName {
+    font-size: 19px;
+    font-weight: bold;
+    display: block;
+}
 
 .product-star{
     color: #ff5a00;
