@@ -1,0 +1,40 @@
+.w-container__head {
+    display: grid;
+    grid-template-columns: 10% 23% 66%;
+    padding-top: 3%;
+    padding-left: 15%;
+    .w-text__store-name {
+        font-size: 18px;
+    }
+    .w-text__store-open-or-close {
+        text-transform: uppercase;
+        color: #ff9900;
+    }
+    .w-text__store-city {
+        text-transform: uppercase;
+    }
+    .w-text__store-online {
+        color: #42a313;
+        text-transform: capitalize;
+    }
+    .w-container__right {
+        background: #f6f6f6;
+        padding: 1rem;
+        .w-image__in-right {
+            width: 2rem;
+            margin: 0 auto;
+            margin-top: 4px;
+        }
+        .w-margin__in-container {
+            margin-bottom: 2rem;
+        }
+        .w-text__in-right {
+            color:#ffa108;
+        }
+        .w-container__three-row {
+            display: grid;
+            grid-template-columns: 5% 44% 5% 44%;
+        }
+
+    }
+}
