@@ -7,10 +7,10 @@
     &__active{
         text-align: center;
         border: 1px solid #f27138;
-        color: #222222;
+        color: #ffffff;
+        background: #f27138;
         padding:10px;
         margin-right:5px;
-        background: #ffffff;
         cursor: pointer;
     }
 
@@ -18,18 +18,17 @@
         text-align: center;
         border: 1px solid #f27138;
         color: #222222;
+        background: #ffffff;
         padding:10px;
         margin-right:5px;
-        background: #f27138;
         cursor: pointer;
-        color: #ffffff;
     }
     
 }
 
 .btn-tab__noActive:hover{
-    background: #ffffff;
-    color:#222222;
+    background: #f27138;
+    color:#ffffff;
 }
 
 

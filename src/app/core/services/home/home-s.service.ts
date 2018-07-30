@@ -25,8 +25,4 @@ export class HomeSService {
         map(response => response as Home[])
       );
   }
-
-  getProduct(url) {
-    return this.http.get(this.cfg.imgUrl163x179 + '/' + url);
-  }
 }

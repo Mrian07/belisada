@@ -9,6 +9,7 @@ import swal from 'sweetalert2';
 import { Home } from '@belisada/core/models';
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
+import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,7 +21,12 @@ export class ProductDetailComponent implements OnInit {
   // id: number;
   // name: string;
 
-  shippingAddress: number;
+  isLogin: Boolean = false;
+  shippingRates: any;
+
+  shippingAddress: GetShippingResponse = new GetShippingResponse();
+  rates: ShippingRate[];
+  // selectedShippingAddress: GetShippingResponse;
 
   productDetail: ProductDetailList = new ProductDetailList();
   moreInformation: MoreInformation = new MoreInformation();
@@ -55,12 +61,26 @@ export class ProductDetailComponent implements OnInit {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
     this.shippingAddressList = [];
+    this.shippingRates = '';
   }
 
   ngOnInit() {
+    const token = this.authService.getToken();
+    if (token) {
+      this.isLogin = true;
+    }
+    console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
-    this.listShipping();
+  }
+
+  addressChange() {
+    const queryParam = {
+      productId: this.productDetail.productId,
+      destinationId: this.shippingAddress.rajaOngkirId,
+      weight: this.productDetail.weight
+    };
+    this.getShippingRates(queryParam);
   }
 
   loadData() {
@@ -68,16 +88,22 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.homeS.getHomeNew().subscribe(res => {
       this.productNewatProdDetail = res;
-    console.log('ini res: ', res);
+      // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
+
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        console.log('res: ', res.data);
+        // console.log('res: ', res.data);
         this.tabVal = this.productDetail.specification;
+
         // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
+
+        if (this.isLogin) {
+          this.listShipping();
+        }
       });
     });
   }
@@ -105,6 +131,17 @@ export class ProductDetailComponent implements OnInit {
   listShipping() {
     this.addressService.getShipping().subscribe(respon => {
       this.shippingAddressList = respon;
+      if (respon.length > 0) {
+        this.shippingAddress = respon[0];
+        const queryParam = {
+          productId: this.productDetail.productId,
+          destinationId: this.shippingAddress.rajaOngkirId,
+          weight: this.productDetail.weight
+        };
+        this.getShippingRates(queryParam);
+      }
+
+      console.log('this.shippingAddress: ', this.shippingAddress);
       console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
@@ -164,6 +201,10 @@ export class ProductDetailComponent implements OnInit {
     window.scrollTo(0, 0);
   }
 
+  shippingChange() {
+    console.log('aaaa');
+  }
+
   addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
     console.log('userData: ', userData);
@@ -183,7 +224,10 @@ export class ProductDetailComponent implements OnInit {
         } else {
           const addToCartRequest: AddToCartRequest = {
             productId: productId,
-            quantity: this.qty
+            quantity: this.qty,
+            courierCode: this.shippingRates.courierCode,
+            courierService: this.shippingRates.courierService,
+            shippingAddressId: this.shippingAddress.addressId
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
@@ -200,6 +244,12 @@ export class ProductDetailComponent implements OnInit {
     } else {
       this.shoppingCartService.addItem(productId, +this.qty);
     }
+  }
+
+  getShippingRates(queryParam) {
+    this.shoppingCartService.getShippingRates(queryParam).subscribe(response => {
+      this.rates = response;
+    });
   }
 
   increaseQty() {

@@ -19,8 +19,11 @@ export class ShoppingCart {
 }
 
 export class AddToCartRequest {
+  courierCode?: string;
+  courierService?: string;
   productId: number;
   quantity: number;
+  shippingAddressId?: number;
 }
 
 export class AddToCartResponse extends BaseResponseModel {
