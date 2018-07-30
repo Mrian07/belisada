@@ -76,8 +76,8 @@ export class ShoppingCartService {
       this.save(modifiedCart);
       this.dispatch(modifiedCart);
 
-      console.log(prod.productId + ' ----- ' + productId);
-      if (prod.productId === productId) {
+      console.log('quantity: ', quantity);
+      if (quantity > 0) {
         this.popupSuccess(prod);
       }
     });
