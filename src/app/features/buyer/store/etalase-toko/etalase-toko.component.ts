@@ -36,10 +36,8 @@ productImageUrl: any;
     this.route.params.subscribe( params =>
       this.aaaa = params.urls
     );
-    this.route.params.subscribe( params => console.log('aa', params.urls));
     this.storeS.getEtalase(this.aaaa).subscribe(response => {
       this.proddetail = response.data;
-      console.log('asasdasdsa', this.proddetail.storeId);
 
       const queryParams = {
         store: this.proddetail.storeId
@@ -47,7 +45,6 @@ productImageUrl: any;
       console.log(queryParams);
     this.prodS.getList(queryParams).subscribe(responseList => {
       this.list  = responseList;
-      console.log('List nich', responseList.content);
     });
       });
   }

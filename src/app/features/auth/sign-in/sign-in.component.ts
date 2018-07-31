@@ -161,10 +161,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
   }
 
   onKey(event: any) { // without type info
-    console.log('ok', event);
     this.penampung = event.keyCode === 9;
     if (event.keyCode === 9) {
-      console.log('ini tab');
     }
   }
 

@@ -90,7 +90,6 @@ export class StoreService {
   // param: {description: string?, storeUrl: string, imageStoreUrl: string, phone: string?}
   // used by edit-store component
   updateDesc(data: UpdateDescriptionRequest) {
-    console.log('isi data: ', data);
     return this.http.put(this.cfg.apiURL + '/store/update/store', data)
       .pipe(
         map(rsl => rsl as UpdateStoreResponse)

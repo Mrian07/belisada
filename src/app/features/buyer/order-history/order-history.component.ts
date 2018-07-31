@@ -101,7 +101,6 @@ export class OrderHistoryComponent implements OnInit {
       that.updateImg = true;
       img.src = fr.result;
       that.imageDataUrl = fr.result;
-      console.log('apa', fr.result);
     };
     fr.readAsDataURL(f);
     this.statusFlag();
