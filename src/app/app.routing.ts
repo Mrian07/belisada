@@ -18,11 +18,23 @@ const routes: Routes = [
         data: {
           title: 'Home'
         }
-      },
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LandingPageComponent,
+    children: [
+      {
+        path: 'etalase-toko/:urls',
+        component: EtalaseTokoComponent,
+        data: {
+            title: 'Product Detail'
+        }
+      }
     ]
   },
   { path: 'invoice/:id', component: InvoiceComponent, },
-  { path: 'etalase-toko', component: EtalaseTokoComponent, },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
   { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },

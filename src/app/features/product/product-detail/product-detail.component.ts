@@ -95,7 +95,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        // console.log('res: ', res.data);
+        console.log('res: ', res.data);
         this.tabVal = this.productDetail.specification;
 
         // console.log('ini tabval', this.tabVal);
@@ -115,7 +115,9 @@ export class ProductDetailComponent implements OnInit {
     this.activeUlasan = false;
   }
 
-  goStore(id) {
+  goStore(url) {
+    this.router.navigate(['/etalase-toko/' + url]);
+    console.log(url);
   }
 
   selectImg(img) {
