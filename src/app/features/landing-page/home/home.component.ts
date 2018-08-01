@@ -146,6 +146,10 @@ export class HomeComponent implements OnInit {
           this.provinces = data;
       });
   }
+  goStore(url) {
+    this.router.navigate(['/etalase-toko/' + url]);
+    console.log(url);
+  }
 
   goToDetail(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
