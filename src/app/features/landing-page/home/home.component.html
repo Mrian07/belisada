@@ -56,10 +56,10 @@
                     <div class="containerz">
                             <div class="itemz" *ngFor="let item of productNew | slice:0:16">
                         <div class="containerz-dalem" >
-                        <div>
+                        <div style="height: 50px;">
                                 <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                             </div>
-                            <div>
+                            <div style="height: 10px;">
                             <span class="product--name--store--name" (click)="goStore(item.storeUrl)">{{ item.storeName }}</span>
                             <span>{{ item.locationName }}</span>
                             </div>
@@ -115,16 +115,16 @@
                                                     
                                                     <div class="itemz" *ngFor="let item of productPop | slice:0:8">
                                                     <div class="containerz-dalem" >
-                                                    <div>
+                                                    <div style="height: 50px;">
                                                             <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                                                     </div>
-                                                    <div>
+                                                    <div style="height: 10px;">
                                                             <span (click)="goStore(productDetail.storeUrl)" class="product--name--store--name">{{ item.storeName }}</span>
                                                             <span>{{ item.locationName }}</span>
                                                     </div>
                                                     </div>
                                             <div class="row">
-                                                    <div class="col-12">
+                                                    <div class="col-12" style="height: 200px;">
                                                             <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                                                     </div>
                                                     <div class="col-12 image--center">
