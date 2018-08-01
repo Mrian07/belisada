@@ -11,6 +11,7 @@ import { UserService, ShareMessageService } from '@belisada/core/services';
 
 import { UserData } from '@belisada/core/models';
 import { LocalStorageEnum } from '@belisada/core/enum';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-profile-information',
@@ -67,6 +68,7 @@ export class ProfileInformationComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private shareMessageService: ShareMessageService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -152,42 +154,44 @@ validateAllFormFields(formGroup: FormGroup) {
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit(form: NgForm) {
+    this.loadingService.show();
     if (this.validationOnpopUpCreateStore.valid) {
       const model = this.validationOnpopUpCreateStore.value;
         const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
-    editProfileRequest.name = this.validationOnpopUpCreateStore.controls['name'].value;
-    editProfileRequest.phone = this.validationOnpopUpCreateStore.controls['phone'].value;
-    editProfileRequest.gender = this.validationOnpopUpCreateStore.controls['gender'].value;
-    editProfileRequest.dateOfBirth =
-    this.dateUtil.formatMyDate(this.validationOnpopUpCreateStore.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+      editProfileRequest.name = this.validationOnpopUpCreateStore.controls['name'].value;
+      editProfileRequest.phone = this.validationOnpopUpCreateStore.controls['phone'].value;
+      editProfileRequest.gender = this.validationOnpopUpCreateStore.controls['gender'].value;
+      editProfileRequest.dateOfBirth =
+      this.dateUtil.formatMyDate(this.validationOnpopUpCreateStore.controls['dateOfBirth'].value.date, this.defaultDateFormat);
 
-         this.userService.updateProfile(editProfileRequest).subscribe(data => {
-      this.authService.refreshToken().subscribe(respon => {
-        console.log('status', respon.status);
-        if (respon.status === 1) {
-          // if (localStorage.getItem('isRemember') === 'true') {
-            this.userService.setUserToLocalStorage(respon.token);
-          // } else {
-          //   this.userService.setUserToSessionStorage(respon.token);
-          // }
+      this.userService.updateProfile(editProfileRequest).subscribe(data => {
+        this.authService.refreshToken().subscribe(respon => {
+          this.loadingService.hide();
+          console.log('status', respon.status);
+          if (respon.status === 1) {
+            // if (localStorage.getItem('isRemember') === 'true') {
+              this.userService.setUserToLocalStorage(respon.token);
+            // } else {
+            //   this.userService.setUserToSessionStorage(respon.token);
+            // }
 
-          swal(
-            'Sukses',
-            'Ubah data profile berhasil.',
-            'success'
-          );
-          this.loadData();
-          this.isField = false;
-          this.shareMessageService.changeMessage('update-profile');
-        }
+            swal(
+              'Sukses',
+              'Ubah data profile berhasil.',
+              'success'
+            );
+            this.loadData();
+            this.isField = false;
+            this.shareMessageService.changeMessage('update-profile');
+          }
+        });
       });
-    });
-      } else {
-        console.log(this.validationOnpopUpCreateStore.valid);
-          // swal('ops maaf ada kesalahan silahkan cek data kamu');
-          this.validateAllFormFields(this.validationOnpopUpCreateStore);
-      }
+    } else {
+      console.log(this.validationOnpopUpCreateStore.valid);
+        // swal('ops maaf ada kesalahan silahkan cek data kamu');
+        this.validateAllFormFields(this.validationOnpopUpCreateStore);
+    }
 
   }
 

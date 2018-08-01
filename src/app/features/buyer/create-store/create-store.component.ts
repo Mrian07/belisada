@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import { CreateStoreRequest, CheckStoreRequest, ProfileStoreResponse } from '@belisada/core/models/store/store.model';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService, UserService, ShareMessageService } from '@belisada/core/services';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
 selector: 'app-create-store',
@@ -40,8 +41,11 @@ export class CreateStoreComponent implements OnInit {
 
   limitBrand: Number = 100;
   brandName: string;
-  constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService, private el: ElementRef,
-    private shareMessageService: ShareMessageService) {}
+  constructor(
+    private fb: FormBuilder, private storeService: StoreService, private profileS: UserService, private el: ElementRef,
+    private shareMessageService: ShareMessageService,
+    private loadingService: LoadingService
+  ) {}
 
   ngOnInit() {
     this.shareMessageService.changeMessage('create-store');
@@ -210,6 +214,7 @@ export class CreateStoreComponent implements OnInit {
     return !this.store.get(field).valid && this.store.get(field).touched;
   }
   onSent(form: NgForm) {
+    this.loadingService.show();
     console.log(form);
     if (this.store.valid) {
       if (this.nameChecking) {
@@ -238,6 +243,7 @@ export class CreateStoreComponent implements OnInit {
       // model.storeUrl = this.asd;
       // console.log('storeUrl : ', this.asd);
       this.storeService.create(a).subscribe(rsl => {
+        this.loadingService.hide();
         if (rsl.status === 1) {
           swal({
             title: 'Pembuatan Toko Berhasil',
