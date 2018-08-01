@@ -11,7 +11,7 @@
                     <span class="product-review">21 Reviews</span> -->
 
                     <div class='product-title'>
-                        {{productDetail.name | slice:0:21}}
+                        {{productDetail.name}}
                     </div>
                     <div *ngIf="productDetail.pricelistlast>=0">
                         <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
@@ -115,7 +115,7 @@
                 <div class="sidebar-conten">
                     <div class="sidebar-info">
                         <img [src]='storeImageUrl + productDetail.storeImageUrl'>
-                        <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
+                        <span class="shop-title" (click)="goStore(productDetail.storeUrl)">{{productDetail.storeName}}</span>
                         <span class="shop-city">{{productDetail.locationName}}</span>
                         <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa name="plus-circle"></fa></span>
                         <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->

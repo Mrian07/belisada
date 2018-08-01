@@ -55,3 +55,8 @@ a.link-text:hover{
 
 .show-element { display: block!important; }
 .hide-element { display: none!important; }
+
+.invisible-fluid-container { 
+    width: 100%;
+    min-height: 1px
+}

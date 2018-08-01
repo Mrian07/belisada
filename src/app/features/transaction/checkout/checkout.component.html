@@ -173,11 +173,12 @@
             </div>
             <div class="row">
                 <div class="col-6">
+                    <div class="invisible-fluid-container"></div>
                     <div class="frame-tab">
                         <table border='0' cellspadding='0' cellspacing='0'>
                             <tr>
                                 <td *ngFor="let item of checkoutShippingAddress" class="p-penerima" [ngClass]="{'p-active': selectedShippingAddress.addressId === item.addressId}" (click)="tabShipping(item)">{{ item.addressName }}</td>
-                          </tr>
+                            </tr>
                         </table>
                             <!-- <div class="row" >
                                 <div class="col-6" >

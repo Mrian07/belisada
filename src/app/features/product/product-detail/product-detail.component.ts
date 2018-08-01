@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   isLogin: Boolean = false;
   shippingRates: any;
 
-  shippingAddress: GetShippingResponse = new GetShippingResponse();
+  shippingAddress: any;
   rates: ShippingRate[];
   // selectedShippingAddress: GetShippingResponse;
 
@@ -62,6 +62,7 @@ export class ProductDetailComponent implements OnInit {
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
+    this.shippingAddress = '';
   }
 
   ngOnInit() {
