@@ -88,6 +88,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
         // location.reload();
 
       }, error => {
+        this.loadingService.hide();
         swal('belisada.co.id', 'unknown error', 'error');
       });
 
