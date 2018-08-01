@@ -105,9 +105,7 @@ export class HomeComponent implements OnInit {
   getDataForPop() {
       this.homeS.getHomePopular().subscribe(res => {
           this.productPop = res;
-          
-          console.log('apa ini', res);
-      })
+      });
   }
 
 

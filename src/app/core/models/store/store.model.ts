@@ -77,3 +77,22 @@ export class UpdateStoreResponse extends BaseResponseModel {
 export class OpenStoreResponse extends BaseResponseModel {
 
 }
+
+
+export class EtalaseStore {
+  status: number;
+  message: string;
+  data: EtalaseStoreData;
+}
+
+export class EtalaseStoreData {
+  productSold: number;
+  storeImageUrl: string;
+  joinFrom: string;
+  storeName: string;
+  storeUrl: string;
+  locationName: string;
+  description: string;
+  storeId: number;
+}
+

@@ -39,7 +39,6 @@ export class ProfileSellerComponent implements OnInit {
       this.store = data;
       this.updateDescriptionRequest.description = data.description;
       this.updateDescriptionRequest.imageStoreUrl = data.imageStoreUrl;
-      console.log('test', data);
       this.userImgAvatar = data.imageStoreUrl ? data.imageStoreUrl : '/assets/img/store_profile.png';
     });
   }
@@ -153,7 +152,6 @@ export class ProfileSellerComponent implements OnInit {
     });
   }
   setUpdate(u) {
-    console.log('sua:', u);
     if (this.store[u.name] === u.model) {
       this.updateAddress[u.name] = u.model;
     } else {

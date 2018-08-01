@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
+import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,20 @@ const routes: Routes = [
         data: {
           title: 'Home'
         }
-      },
+      }
+    ]
+  },
+  {
+    path: '',
+    component: LandingPageComponent,
+    children: [
+      {
+        path: 'etalase-toko/:urls',
+        component: EtalaseTokoComponent,
+        data: {
+            title: 'Product Detail'
+        }
+      }
     ]
   },
   { path: 'invoice/:id', component: InvoiceComponent, },

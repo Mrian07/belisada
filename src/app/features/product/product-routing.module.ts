@@ -2,6 +2,7 @@ import { ProductComponent } from './product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 const routes: Routes = [
   {
     path: '',
@@ -13,7 +14,7 @@ const routes: Routes = [
         data: {
             title: 'Product Detail'
         }
-      }
+      },
 
     ]
   },

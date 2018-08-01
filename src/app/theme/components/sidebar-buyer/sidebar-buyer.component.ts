@@ -31,14 +31,11 @@ export class SidebarBuyerComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('location', this.location);
     this.btnJual = false;
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     this.pemisah = this.userData.role;
     if (this.userData) { this.isLogin = true; }
-    console.log('userData : ', this.userData);
     this.pemisah = this.userData.role;
-    console.log('ini nih', this.userData.role);
   }
 
   cekFlag() {

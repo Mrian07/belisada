@@ -357,7 +357,6 @@ export class CreateStoreComponent implements OnInit {
   }
 
   setDistrict(o) {
-    console.log('asd', o);
     this.store1.districtName = o.districtName;
     this.store1.districtId = o.districtId;
     delete this.store1.villageName;
@@ -374,7 +373,6 @@ export class CreateStoreComponent implements OnInit {
   }
 
   setVillage(o) {
-    console.log('ini', o);
     this.store1.villageName = o.villageName;
     this.store1.villageId = o.villageId;
     this.store1.postal = o.postal;

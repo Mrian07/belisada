@@ -111,7 +111,7 @@
                         <img [src]='storeImageUrl + productDetail.storeImageUrl'>
                         <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
                         <span class="shop-city">{{productDetail.locationName}}</span>
-                        <span class="shop-btn">Lihat Toko <fa name="plus-circle"></fa></span>
+                        <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa name="plus-circle"></fa></span>
                         <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->
                     </div>
                     <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
@@ -210,21 +210,23 @@
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> comming soon </span> 
+                  <span class="w__fontsize--prodName"> coming soon </span> 
               </div>
             </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> comming soon </span> 
+                  <span class="w__fontsize--prodName"> coming soon </span> 
               </div>
             </div>
         </div>
 
     </div>
     
+<div class="w__paddingin"></div>
 </div>
+
     
     
     
