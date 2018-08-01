@@ -117,7 +117,11 @@ export class SigninComponent implements OnInit, AfterViewInit {
     this.loadingService.show();
     const form = this.signinFormGroup;
     this.formSubmited = true;
-    if (form.valid) {
+    if (!form.valid) {
+      this.loadingService.hide();
+      return;
+    }
+    // if (form.valid) {
 
       const signinRequest: SigninRequest = form.value;
       this.ngrx.dispatch(new UserAction.TryLogin(signinRequest));
@@ -125,7 +129,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
       form.reset();
       form.patchValue({email: signinRequest.email});
       // this.router.navigateByUrl('/');
-    }
+    // }
     this.LoginStatus.unsubscribe();
   }
 

@@ -87,6 +87,10 @@ export class ProfileEditComponent implements OnInit {
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit() {
     this.loadingService.show();
+    if (!this.createComForm.valid) {
+      this.loadingService.hide();
+      return;
+    }
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     editProfileRequest.name = this.createComForm.controls['name'].value;
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
