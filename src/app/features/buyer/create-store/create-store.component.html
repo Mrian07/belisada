@@ -90,7 +90,6 @@
                 <ul class="input-suges" *ngIf="villages" #citySug><li *ngFor="let v of villages | filter: store1.villageName:'villageName'" (click)="setVillage(v)">{{v.villageName}}</li></ul>
 
                 <p></p>
-               
                 <!-- <select formControlName="province" required class="input-style-text-100">
                     <option [ngValue]="null" disabled selected>Silahkan Pilih Provinsi</option>
                     <option *ngFor="let option of provinces" [ngValue]="option.regionId" placeholder="Pilih kota">

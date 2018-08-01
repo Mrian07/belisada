@@ -55,12 +55,12 @@
                     <span class="text--new--product">Product Terbaru</span>
                     <div class="containerz">
                             <div class="itemz" *ngFor="let item of productNew | slice:0:16">
-                            <div class="containerz-dalem" >
-                            <div>
-                                    <img [src]="productStoreUrl + item.storeImageUrl">
+                        <div class="containerz-dalem" >
+                        <div>
+                                <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                             </div>
                             <div>
-                            <span class="product--name--store--name">{{ item.storeName }}</span>
+                            <span class="product--name--store--name" (click)="goStore(item.storeUrl)">{{ item.storeName }}</span>
                             <span>{{ item.locationName }}</span>
                             </div>
                             </div>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-12 image--center">
                                     <span class="text__center__pricelist">Rp. {{ item.pricelist | number  }}</span>
-                            <span class="text__center__name">{{ item.name | slice:0:30 }}</span>
+                            <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:30 }}</span>
                             </div>
                     </div>
                             </div>
@@ -116,10 +116,10 @@
                                                     <div class="itemz" *ngFor="let item of productPop | slice:0:8">
                                                     <div class="containerz-dalem" >
                                                     <div>
-                                                            <img [src]="productStoreUrl + item.storeImageUrl">
+                                                            <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                                                     </div>
                                                     <div>
-                                                            <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                            <span (click)="goStore(productDetail.storeUrl)" class="product--name--store--name">{{ item.storeName }}</span>
                                                             <span>{{ item.locationName }}</span>
                                                     </div>
                                                     </div>
@@ -129,7 +129,7 @@
                                                     </div>
                                                     <div class="col-12 image--center">
                                                             <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
-                                                    <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
+                                                    <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:21 }}</span>
                                                     </div>
                                             </div>
                                                     </div>

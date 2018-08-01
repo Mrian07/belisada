@@ -3,7 +3,7 @@ import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, N
 import swal from 'sweetalert2';
 import { CreateStoreRequest, CheckStoreRequest, ProfileStoreResponse } from '@belisada/core/models/store/store.model';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
-import { StoreService, UserService, ShareMessageService } from '@belisada/core/services';
+import { StoreService, UserService, ShareMessageService, AuthService } from '@belisada/core/services';
 
 @Component({
 selector: 'app-create-store',
@@ -41,7 +41,8 @@ export class CreateStoreComponent implements OnInit {
   limitBrand: Number = 100;
   brandName: string;
   constructor(private fb: FormBuilder, private storeService: StoreService, private profileS: UserService, private el: ElementRef,
-    private shareMessageService: ShareMessageService) {}
+    private shareMessageService: ShareMessageService,   private authService: AuthService, 
+    private userService: UserService) {}
 
   ngOnInit() {
     this.shareMessageService.changeMessage('create-store');
@@ -248,11 +249,20 @@ export class CreateStoreComponent implements OnInit {
             confirmButtonText: 'Ok'
           }).then((result) => {
             if (result.value) {
+              this.authService.refreshToken().subscribe(respon => {
+                this.userService.setUserToLocalStorage(respon.token);
+                console.log('status', respon);
+              });
               location.reload();
             }
           });
         } else {
           swal(rsl.message);
+          this.authService.refreshToken().subscribe(respon => {
+            console.log('status', respon);
+            this.userService.setUserToLocalStorage(respon.token);
+          });
+          location.reload();
         }
       });
     } else {
