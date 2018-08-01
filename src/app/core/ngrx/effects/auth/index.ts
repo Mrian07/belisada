@@ -5,6 +5,7 @@ import {Actions, Effect} from '@ngrx/effects';
 import { UserService } from '@belisada/core/services';
 import * as Action from '../../actions';
 import swal from 'sweetalert2';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 
 
@@ -12,7 +13,8 @@ import swal from 'sweetalert2';
 export class AuthEffects {
   constructor(
     private actions$: Actions,
-    private userService: UserService
+    private userService: UserService,
+    private loadingService: LoadingService
 ) {}
 
   @Effect()
@@ -22,6 +24,7 @@ export class AuthEffects {
       this.userService.signin(req)
       .pipe(switchMap( (status: any) => {
         // console.log('status: ', status.);
+        this.loadingService.hide();
         if (status.status === 0) {
           swal('belisada.co.id', status.message, 'warning');
           return [];
@@ -39,6 +42,7 @@ export class AuthEffects {
     .pipe(switchMap((req) =>
       this.userService.signup(req)
         .pipe(switchMap( (status: any) => {
+          this.loadingService.hide();
 
           if (status.status === 0) {
             swal('belisada.co.id', status.message, 'warning');
