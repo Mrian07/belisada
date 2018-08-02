@@ -82,7 +82,7 @@
 
                 <!-- <div class="frame-image"> -->
                         <div class="con-image">
-                                <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
+                                <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img [src]='productImageItemLooping+item' height="50"></span>
                         </div>
 
 

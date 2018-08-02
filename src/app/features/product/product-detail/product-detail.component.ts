@@ -48,6 +48,7 @@ export class ProductDetailComponent implements OnInit {
   storeImageUrl;
   productImageUrl;
   productImageUrlNew;
+  productImageItemLooping;
   productNewatProdDetail: Home[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -62,6 +63,7 @@ export class ProductDetailComponent implements OnInit {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
     this.productImageUrlNew = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+    this.productImageItemLooping = 'http://image.belisada.id:8888/unsafe/80x80/center/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
@@ -72,7 +74,7 @@ export class ProductDetailComponent implements OnInit {
     if (token) {
       this.isLogin = true;
     }
-    console.log('shippingAddress: ', this.shippingAddress);
+    // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
   }
@@ -98,11 +100,12 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        console.log('res: ', res.data);
+        console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
         // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
+        console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -120,18 +123,11 @@ export class ProductDetailComponent implements OnInit {
 
   goStore(url) {
     this.router.navigate(['/etalase-toko/' + url]);
-    console.log(url);
+    // console.log(url);
   }
 
   selectImg(img) {
     this.imgIndex = img;
-    // this.activatedRoute.params.subscribe((params: Params) => {
-    //   this.productService.detailProduct(params['id']).subscribe(res => {
-    //     this.productDetail = res.data;
-    //     this.tabVal = this.productDetail.specification;
-    //     this.imgIndex = img;
-    //   });
-    // });
   }
 
   listShipping() {
@@ -147,8 +143,8 @@ export class ProductDetailComponent implements OnInit {
         this.getShippingRates(queryParam);
       }
 
-      console.log('this.shippingAddress: ', this.shippingAddress);
-      console.log('this.shippingAddressList: ', this.shippingAddressList);
+      // console.log('this.shippingAddress: ', this.shippingAddress);
+      // console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
 
@@ -159,7 +155,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.tabVal = this.productDetail.specification;
-        console.log(this.tabVal);
+        // console.log(this.tabVal);
       });
     });
   }
@@ -202,18 +198,18 @@ export class ProductDetailComponent implements OnInit {
 
   gotTodetailPart(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    console.log(r);
+    // console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
     window.scrollTo(0, 0);
   }
 
   shippingChange() {
-    console.log('aaaa');
+    // console.log('aaaa');
   }
 
   addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
-    console.log('userData: ', userData);
+    // console.log('userData: ', userData);
 
     if (userData) {
       if (userData.storeId === storeId) {
@@ -237,7 +233,7 @@ export class ProductDetailComponent implements OnInit {
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-            console.log('response: ', response);
+            // console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
               this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);

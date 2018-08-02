@@ -188,6 +188,7 @@ validateAllFormFields(formGroup: FormGroup) {
         });
       });
     } else {
+      this.loadingService.hide();
       console.log(this.validationOnpopUpCreateStore.valid);
         // swal('ops maaf ada kesalahan silahkan cek data kamu');
         this.validateAllFormFields(this.validationOnpopUpCreateStore);
