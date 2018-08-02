@@ -50,8 +50,10 @@ export class HomeComponent implements OnInit {
   
   constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router,
     private homeS: HomeSService) {
-        this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/163x179/filters:fill(fff)/';
-        this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/';
+        // this.productImageUrl = 'http://image.belisada.id:8888/unsafe/center/180x180/filters:fill(fff)/';
+        this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+
+        this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
     }
 
   ngOnInit() {

@@ -47,6 +47,7 @@ export class ProductDetailComponent implements OnInit {
 
   storeImageUrl;
   productImageUrl;
+  productImageUrlNew;
   productNewatProdDetail: Home[] = [];
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -60,6 +61,7 @@ export class ProductDetailComponent implements OnInit {
   ) {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
+    this.productImageUrlNew = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
@@ -122,13 +124,14 @@ export class ProductDetailComponent implements OnInit {
   }
 
   selectImg(img) {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = this.productDetail.specification;
-        this.imgIndex = img;
-      });
-    });
+    this.imgIndex = img;
+    // this.activatedRoute.params.subscribe((params: Params) => {
+    //   this.productService.detailProduct(params['id']).subscribe(res => {
+    //     this.productDetail = res.data;
+    //     this.tabVal = this.productDetail.specification;
+    //     this.imgIndex = img;
+    //   });
+    // });
   }
 
   listShipping() {
