@@ -234,7 +234,7 @@ border-radius: 6px;
     font-weight: bold;
     color: black;
     display: block;
-    height: 4rem;
+    // height: 4rem;
     overflow: hidden;
 }
 .product--image--store {
@@ -467,8 +467,8 @@ footer {
   
   .itemz {
     border:1px solid #ed9a1d;
-     border-radius: 10px;
-    padding: 10px;
+     border-radius: 5px;
+    padding: 5px;
     .containerz-dalem {
     display: grid;
     grid-template-columns: 30% 69%;
