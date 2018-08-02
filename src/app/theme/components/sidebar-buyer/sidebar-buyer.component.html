@@ -6,12 +6,10 @@
                 <div (click)="goToCreateStore()" class="btn-jualan">Ikut Jualan</div>
             </div> -->
 
-            <div *ngIf="pemisah != 2; else cold">
-                <div class="btn-jualan">
-
-                        <a href="https://seller0.belisada.id/auth/sign-in" target="blank">Ikut Jualan </a>
-                </div>
-               
+            <div *ngIf="pemisah != 2; else cold" class="f-btn-jualan">
+                <a href="https://seller0.belisada.id/auth/sign-in" class="btn-jualan" target="blank">
+                    Ikut Jualan 
+                </a>
             </div>
 
 
