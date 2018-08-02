@@ -105,9 +105,7 @@ export class HomeComponent implements OnInit {
   getDataForPop() {
       this.homeS.getHomePopular().subscribe(res => {
           this.productPop = res;
-          
-          console.log('apa ini', res);
-      })
+      });
   }
 
 
@@ -147,6 +145,10 @@ export class HomeComponent implements OnInit {
       this.storeService.getProvince('209').subscribe(data => {
           this.provinces = data;
       });
+  }
+  goStore(url) {
+    this.router.navigate(['/etalase-toko/' + url]);
+    console.log(url);
   }
 
   goToDetail(id, name) {

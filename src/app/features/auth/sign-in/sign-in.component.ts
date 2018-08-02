@@ -17,6 +17,7 @@ import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { StorageService } from '@belisada/core/services/local-storage/storage.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 const CART_KEY = 'cart';
 const CART_POST_KEY = 'cartpost';
@@ -53,7 +54,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private shoppingCartService: ShoppingCartService,
     private storageService: StorageService,
     private productService: ProductService,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingService: LoadingService
   ) {
     this.storage = this.storageService.get();
   }
@@ -72,20 +74,21 @@ export class SigninComponent implements OnInit, AfterViewInit {
       const x = this.ngrx.select<any>(UserReducer.LoginState).subscribe( result => {
         // Handle result
         this.test = result;
-
-          const token: string = this.test.token;
-          // if (form.value.isRemember === 'true') {
-            this.userService.setUserToLocalStorage(token);
-            this.setCartToLocalStorage();
-            // this.userService.setRemember('true');
-          // } else {
-          //   this.userService.setUserToSessionStorage(token);
-          //   this.userService.setRemember('false');
-          // }
-          this.router.navigateByUrl('/buyer/profile');
-          // location.reload();
+        this.loadingService.hide();
+        const token: string = this.test.token;
+        // if (form.value.isRemember === 'true') {
+        this.userService.setUserToLocalStorage(token);
+        this.setCartToLocalStorage();
+          // this.userService.setRemember('true');
+        // } else {
+        //   this.userService.setUserToSessionStorage(token);
+        //   this.userService.setRemember('false');
+        // }
+        this.router.navigateByUrl('/buyer/profile');
+        // location.reload();
 
       }, error => {
+        this.loadingService.hide();
         swal('belisada.co.id', 'unknown error', 'error');
       });
 
@@ -111,9 +114,14 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
   /* Fungsi ini untuk melakukan input data sign in dengan melakukan validasi pengecekan email, password */
   onSubmit() {
+    this.loadingService.show();
     const form = this.signinFormGroup;
     this.formSubmited = true;
-    if (form.valid) {
+    if (!form.valid) {
+      this.loadingService.hide();
+      return;
+    }
+    // if (form.valid) {
 
       const signinRequest: SigninRequest = form.value;
       this.ngrx.dispatch(new UserAction.TryLogin(signinRequest));
@@ -121,7 +129,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
       form.reset();
       form.patchValue({email: signinRequest.email});
       // this.router.navigateByUrl('/');
-    }
+    // }
     this.LoginStatus.unsubscribe();
   }
 
@@ -161,10 +169,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
   }
 
   onKey(event: any) { // without type info
-    console.log('ok', event);
     this.penampung = event.keyCode === 9;
     if (event.keyCode === 9) {
-      console.log('ini tab');
     }
   }
 

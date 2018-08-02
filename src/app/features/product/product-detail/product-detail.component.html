@@ -11,7 +11,7 @@
                     <span class="product-review">21 Reviews</span> -->
 
                     <div class='product-title'>
-                        {{productDetail.name | slice:0:21}}
+                        {{productDetail.name}}
                     </div>
                     <div *ngIf="productDetail.pricelistlast>=0">
                         <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
@@ -45,6 +45,12 @@
                         <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
                         <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                     </div>
+                    <div class="product-info">
+                        <span class="strong-text">Berat  </span>
+                      <span>  {{ productDetail.weight }}gr </span>
+                        <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
+                        <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
+                    </div>
                     <!-- <div class="product-info">
                         <span class="strong-text">Kebijakan Pengembalian:</span> Mendukung 7 hari pengembalian dana tanpa syarat
                     </div> -->
@@ -62,10 +68,8 @@
             </div>
 
             <div class="col-5">
-
-                        <img [src]="productImageUrl + imgIndex"  height="400">
-
-                    
+                <div class="show-image">
+                    <img [src]="productImageUrl + imgIndex"  height="400">
                 </div>
                 <!-- <div id="lasteventimg">
                 <ul>
@@ -111,9 +115,9 @@
                 <div class="sidebar-conten">
                     <div class="sidebar-info">
                         <img [src]='storeImageUrl + productDetail.storeImageUrl'>
-                        <span class="shop-title" (click)="goStore(productDetail.storeId)">{{productDetail.storeName}}</span>
+                        <span class="shop-title" (click)="goStore(productDetail.storeUrl)">{{productDetail.storeName}}</span>
                         <span class="shop-city">{{productDetail.locationName}}</span>
-                        <span class="shop-btn">Lihat Toko <fa name="plus-circle"></fa></span>
+                        <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa name="plus-circle"></fa></span>
                         <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->
                     </div>
                     <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
@@ -212,21 +216,23 @@
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> comming soon </span> 
+                  <span class="w__fontsize--prodName"> coming soon </span> 
               </div>
             </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> comming soon </span> 
+                  <span class="w__fontsize--prodName"> coming soon </span> 
               </div>
             </div>
         </div>
 
     </div>
     
+<div class="w__paddingin"></div>
 </div>
+
     
     
     

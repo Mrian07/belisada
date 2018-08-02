@@ -24,7 +24,6 @@ export class InvoiceComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.transactionService.getInvoice(params['id']).subscribe(respon => {
         this.info = respon.data;
-        console.log('apa ini', respon.data);
       });
     });
   }

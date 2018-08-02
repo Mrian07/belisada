@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit {
   isLogin: Boolean = false;
   shippingRates: any;
 
-  shippingAddress: GetShippingResponse = new GetShippingResponse();
+  shippingAddress: any;
   rates: ShippingRate[];
   // selectedShippingAddress: GetShippingResponse;
 
@@ -62,6 +62,7 @@ export class ProductDetailComponent implements OnInit {
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
+    this.shippingAddress = '';
   }
 
   ngOnInit() {
@@ -95,11 +96,12 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        // console.log('res: ', res.data);
+        console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
         // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
+        console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -115,17 +117,13 @@ export class ProductDetailComponent implements OnInit {
     this.activeUlasan = false;
   }
 
-  goStore(id) {
+  goStore(url) {
+    this.router.navigate(['/etalase-toko/' + url]);
+    // console.log(url);
   }
 
   selectImg(img) {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = this.productDetail.specification;
-        this.imgIndex = img;
-      });
-    });
+    this.imgIndex = img;
   }
 
   listShipping() {
@@ -141,8 +139,8 @@ export class ProductDetailComponent implements OnInit {
         this.getShippingRates(queryParam);
       }
 
-      console.log('this.shippingAddress: ', this.shippingAddress);
-      console.log('this.shippingAddressList: ', this.shippingAddressList);
+      // console.log('this.shippingAddress: ', this.shippingAddress);
+      // console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
 
@@ -153,7 +151,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.tabVal = this.productDetail.specification;
-        console.log(this.tabVal);
+        // console.log(this.tabVal);
       });
     });
   }
@@ -197,10 +195,8 @@ export class ProductDetailComponent implements OnInit {
   gotTodetailPart(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
     // console.log(r);
-      this.router.navigate(['/product/product-detail/' + id + '/' + r]);
-    //window.scrollTo(0, 0);
-    
-    
+    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+    window.scrollTo(0, 0);
   }
 
   shippingChange() {

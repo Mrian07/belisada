@@ -5,4 +5,5 @@ import { Injectable } from '@angular/core';
 })
 export class Globals {
   isBackdropActive: Boolean = false;
+  isLoading: Boolean = false;
 }

@@ -41,6 +41,7 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
 import { ADirective } from '@belisada/shared/directives';
 import 'angular2-navigate-with-data';
 import {SlideshowModule} from 'ng-simple-slideshow';
+import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {SlideshowModule} from 'ng-simple-slideshow';
     MaintenanceComponent,
     LandingPageComponent,
     HomeComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    EtalaseTokoComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -42,4 +42,7 @@ export class TerimakasihPageComponent implements OnInit {
     this._trialEndsAt = '2018-07-12 00:00:00';
     console.log(this.router.getNavigatedData());
   }
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
 }

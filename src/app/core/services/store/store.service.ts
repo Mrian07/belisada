@@ -1,13 +1,13 @@
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Configuration } from '@belisada/core/config';
 import {
   CreateStoreRequest, CreateStoreResponse, CheckStoreRequest,
   CheckStoreResponse, DetailStoreResponse, DetailStoreRequest,
   ProfileStoreResponse, UpdateStoreResponse, UpdateStoreRequest,
-  UpdateDescriptionRequest, OpenStoreResponse
+  UpdateDescriptionRequest, OpenStoreResponse, EtalaseStore, EtalaseStoreData
 } from '@belisada/core/models/store/store.model';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 
@@ -90,7 +90,6 @@ export class StoreService {
   // param: {description: string?, storeUrl: string, imageStoreUrl: string, phone: string?}
   // used by edit-store component
   updateDesc(data: UpdateDescriptionRequest) {
-    console.log('isi data: ', data);
     return this.http.put(this.cfg.apiURL + '/store/update/store', data)
       .pipe(
         map(rsl => rsl as UpdateStoreResponse)
@@ -159,6 +158,13 @@ export class StoreService {
     return this.http.get(this.cfg.apiURL +  '/location' + '/village/' + id)
       .pipe(
         map(response => response as Village[])
+      );
+  }
+  
+  getEtalase(id: any): Observable<EtalaseStore> {
+    return this.http.get(this.cfg.apiURL + '/store/' + id)
+      .pipe(
+        map(response => response as EtalaseStore)
       );
   }
 

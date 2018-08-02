@@ -39,7 +39,7 @@ import { ShippingAddressComponent } from './shipping-address/shipping-address.co
     OrderStatusComponent,
     OrderHistoryComponent,
     ProfileInformationComponent,
-    ShippingAddressComponent
+    ShippingAddressComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

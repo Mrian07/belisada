@@ -95,14 +95,12 @@ export class OrderStatusComponent implements OnInit {
     const fr = new FileReader();
     const f = event.target.files[0];
     const that = this;
-    console.log('image:', f);
 
     if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
     fr.onload = function() {
       that.updateImg = true;
       img.src = fr.result;
       that.imageDataUrl = fr.result;
-      console.log('apa', fr.result);
     };
     fr.readAsDataURL(f);
     this.statusFlag();

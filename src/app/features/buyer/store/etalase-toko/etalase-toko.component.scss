@@ -1,0 +1,157 @@
+.w-contain__etalase-toko {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 5%;
+
+}
+
+.w-container__head {
+    display: grid;
+    grid-template-columns: 10% 30% 60%;
+    .w-text__store-name {
+        font-size: 18px;
+    }
+    .w-text__store-open-or-close {
+        text-transform: uppercase;
+        color: #ff9900;
+    }
+    .w-text__store-city {
+        text-transform: uppercase;
+    }
+    .w-text__store-online {
+        color: #42a313;
+        text-transform: capitalize;
+    }
+    .w-container__right {
+        background: #f6f6f6;
+        padding: 1rem;
+        .w-image__in-right {
+            width: 2rem;
+            margin: 0 auto;
+            margin-top: 4px;
+        }
+        .w-margin__in-container {
+            margin-bottom: 2rem;
+        }
+        .w-text__in-right {
+            color:#ffa108;
+        }
+        .w-container__three-row {
+            display: grid;
+            grid-template-columns: 5% 44% 5% 44%;
+        }
+    }
+}
+.activation {
+
+    &__container {
+        display: table;
+        height: 200px;
+        width: 100%;
+        background: #e6e6e6;
+        margin-top: 18px;
+        margin-bottom: 19px;
+
+        .makeit--center {
+            vertical-align: middle;
+            text-align: center;
+        }
+    }
+}
+
+.w-banner__container--midle {
+    display: table;
+    height: 100%;
+    width: 100%;
+    height: 200px;
+    background: #e6e6e6;
+    margin-top: 18px;
+    margin-bottom: 19px;
+    .w-banner__inside-container {
+        vertical-align: middle;
+    text-align: center;
+    }
+
+}
+
+
+.product-spec-title{
+    background: #f8992e;
+    color:#ffffff;
+    text-align: center;
+    box-shadow: 2px 2px 4px #c9c9c9;
+    margin-bottom:  13px;
+}
+
+.product-spec-conten{
+    padding: 10px;
+    font-size: 11px;
+    border-bottom: 1px solid #c1c1c1;
+    border-left: 1px solid #c1c1c1;
+    border-right: 1px solid #c1c1c1;
+}
+
+.tab-hover{
+    padding: 10px;
+    cursor: pointer;
+}
+
+.tab-hover:hover{
+    background: #f2b066;
+    border-bottom: 2px solid #e46833;
+}
+
+.tab-active{
+    background: #f2b066;
+    border-bottom: 2px solid #e46833;
+}
+
+.containerz {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 25px; 
+    padding: 10px;
+  }
+  
+  
+  .itemz {
+    border:1px solid #ed9a1d;
+     border-radius: 10px;
+    padding: 10px;
+    .containerz-dalem {
+    display: grid;
+    grid-template-columns: 30% 69%;
+      .aaa {
+        display:block;
+      }
+  }
+  
+  }
+  .product--image--store {
+    padding-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+  .product--name--store--name {
+    font-weight: bold;
+    color: black;
+    display: block;
+    height: 4rem;
+    overflow: hidden;
+}
+.text__center__name {
+    display: block;
+    color: #1881e6;
+    word-wrap: break-word;
+    text-align: center;
+    
+}
+.text__center__pricelist {
+    font-size: 22px;
+    display: block;
+    word-wrap: break-word;
+   
+
+}

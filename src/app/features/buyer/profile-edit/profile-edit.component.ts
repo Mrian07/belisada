@@ -6,7 +6,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { EditProfileRequest } from '@belisada/core/models';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { DateUtil } from '@belisada/core/util';
-import { UserService } from '@belisada/core/services';
+import { UserService, Globals } from '@belisada/core/services';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-profile-edit',
@@ -43,6 +44,7 @@ export class ProfileEditComponent implements OnInit {
     private dateUtil: DateUtil,
     private userService: UserService,
     private router: Router,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -84,6 +86,11 @@ export class ProfileEditComponent implements OnInit {
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit() {
+    this.loadingService.show();
+    if (!this.createComForm.valid) {
+      this.loadingService.hide();
+      return;
+    }
     const editProfileRequest: EditProfileRequest = new EditProfileRequest();
     editProfileRequest.name = this.createComForm.controls['name'].value;
     editProfileRequest.phone = this.createComForm.controls['phone'].value;
@@ -91,6 +98,7 @@ export class ProfileEditComponent implements OnInit {
     editProfileRequest.dateOfBirth =
     this.dateUtil.formatMyDate(this.createComForm.controls['dateOfBirth'].value.date, this.defaultDateFormat);
     this.userService.updateProfile(editProfileRequest).subscribe(data => {
+      this.loadingService.hide();
       swal(
         'Sukses',
         'Ubah data profile berhasil.',

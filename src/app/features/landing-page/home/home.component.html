@@ -14,7 +14,7 @@
 
     <aside>
         <div class="flash--sale--column">
-            <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-07-24 00:00:00'"></countdown-timer>
+            <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-08-02 00:00:00'"></countdown-timer>
         </div>
         <div class="rowz">
             <div class="columnz">
@@ -55,12 +55,12 @@
                     <span class="text--new--product">Product Terbaru</span>
                     <div class="containerz">
                             <div class="itemz" *ngFor="let item of productNew | slice:0:16">
-                            <div class="containerz-dalem" >
-                            <div>
-                                    <img [src]="productStoreUrl + item.storeImageUrl">
+                        <div class="containerz-dalem" >
+                        <div style="height: 50px;">
+                                <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                             </div>
-                            <div>
-                            <span class="product--name--store--name">{{ item.storeName }}</span>
+                            <div style="height: 10px;">
+                            <span class="product--name--store--name" (click)="goStore(item.storeUrl)">{{ item.storeName }}</span>
                             <span>{{ item.locationName }}</span>
                             </div>
                             </div>
@@ -70,7 +70,7 @@
                             </div>
                             <div class="col-12 image--center">
                                     <span class="text__center__pricelist">Rp. {{ item.pricelist | number  }}</span>
-                            <span class="text__center__name">{{ item.name | slice:0:30 }}</span>
+                            <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:30 }}</span>
                             </div>
                     </div>
                             </div>
@@ -115,21 +115,21 @@
                                                     
                                                     <div class="itemz" *ngFor="let item of productPop | slice:0:8">
                                                     <div class="containerz-dalem" >
-                                                    <div>
-                                                            <img [src]="productStoreUrl + item.storeImageUrl">
+                                                    <div style="height: 50px;">
+                                                            <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                                                     </div>
-                                                    <div>
-                                                            <span class="product--name--store--name">{{ item.storeName }}</span>
+                                                    <div style="height: 10px;">
+                                                            <span (click)="goStore(productDetail.storeUrl)" class="product--name--store--name">{{ item.storeName }}</span>
                                                             <span>{{ item.locationName }}</span>
                                                     </div>
                                                     </div>
                                             <div class="row">
-                                                    <div class="col-12">
+                                                    <div class="col-12" style="height: 200px;">
                                                             <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                                                     </div>
                                                     <div class="col-12 image--center">
                                                             <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
-                                                    <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
+                                                    <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:21 }}</span>
                                                     </div>
                                             </div>
                                                     </div>
