@@ -69,7 +69,7 @@ export class ProductDetailComponent implements OnInit {
     if (token) {
       this.isLogin = true;
     }
-    console.log('shippingAddress: ', this.shippingAddress);
+    // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
   }
@@ -196,18 +196,20 @@ export class ProductDetailComponent implements OnInit {
 
   gotTodetailPart(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    console.log(r);
-    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
-    window.scrollTo(0, 0);
+    // console.log(r);
+      this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+    //window.scrollTo(0, 0);
+    
+    
   }
 
   shippingChange() {
-    console.log('aaaa');
+    // console.log('aaaa');
   }
 
   addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
-    console.log('userData: ', userData);
+    // console.log('userData: ', userData);
 
     if (userData) {
       if (userData.storeId === storeId) {
@@ -231,7 +233,7 @@ export class ProductDetailComponent implements OnInit {
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-            console.log('response: ', response);
+            // console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
               this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
