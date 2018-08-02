@@ -354,6 +354,8 @@ border-radius: 6px;
 	width: 50%
 }
 
+
+
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 
 @media only screen and (max-width: 480px) {
@@ -463,7 +465,6 @@ footer {
     padding: 10px;
   }
   
-  
   .itemz {
     border:1px solid #ed9a1d;
      border-radius: 10px;
@@ -556,3 +557,12 @@ footer {
  }
 
  
+ @media screen and (max-width: 1440px) {
+    .containerz {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 25px; 
+        padding: 10px;
+      }
+  }

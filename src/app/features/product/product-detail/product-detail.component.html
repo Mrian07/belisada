@@ -82,7 +82,7 @@
 
                 <!-- <div class="frame-image"> -->
                         <div class="con-image">
-                                <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
+                                <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img [src]='productImageItemLooping+item' height="50"></span>
                         </div>
 
 
@@ -114,7 +114,7 @@
                 </div>
                 <div class="sidebar-conten">
                     <div class="sidebar-info">
-                        <img [src]='storeImageUrl + productDetail.storeImageUrl'>
+                        <img [src]='productImageUrlNew + productDetail.storeImageUrl'>
                         <span class="shop-title" (click)="goStore(productDetail.storeUrl)">{{productDetail.storeName}}</span>
                         <span class="shop-city">{{productDetail.locationName}}</span>
                         <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa name="plus-circle"></fa></span>
@@ -138,7 +138,7 @@
         <div class="product-other-title">Produk Merk Lainnya</div>
         <div class="product-other-conten">
             <span class="item-list" *ngFor="let item of productNewatProdDetail | slice:0:5">
-                <img (click)="gotTodetailPart(item.productId, item.name)" [src]="productImageUrl + item.imageUrl" height="200">
+                <img (click)="gotTodetailPart(item.productId, item.name)" [src]="productImageUrlNew + item.imageUrl">
                 <span class="item-list-title"> {{ item.storeName }}</span>
                 <span class="item-list-price">Rp {{ item.pricelist | number }}</span>
             </span>
