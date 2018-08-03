@@ -8,7 +8,7 @@
             <div class="col-8">
                 <div class="row">
                     <div class="col-9">
-                        <span class="title-search">HASIL PENCARIAN UNTUK {{keys}}</span><br>
+                        <span class="title-search">HASIL PENCARIAN UNTUK  {{keys}}</span><br>
                         BRAND: <a href='#' class='link-search'>ALL BRANDS</a>
                     </div>
                     <div class="col-3">
@@ -32,7 +32,7 @@
                                     </div>
                                 </div>
                                 <div class="img-item" (click)="goDetail(item.productId,item.name)">
-                                    <img src='{{ item.imageUrl }}' border="0" height="200">
+                                    <img [src]='produkIMG+item.imageUrl' border="0" height="200">
                                 </div>
                                 <div class="item" (click)="goDetail(item.productId,item.name)">{{ item.name }}</div>
                                 <img src='assets/img/dummy-star.jpg'><br>
