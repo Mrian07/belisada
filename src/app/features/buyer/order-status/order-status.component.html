@@ -18,7 +18,7 @@
             <div class="text-order">{{item.expiredTime}}</div>
         </div>
         <div class="col-6">
-            <div class="text-rek">Lihat Nomor Rekening Belisada</div>
+            <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <fa name="credit-card"></fa></div>
         </div>
         <div class="col-3">
 
@@ -96,27 +96,41 @@
 
 
 <app-models [(visible)]="showDialog" class="frameDialog">
-    <div class="modal-body">
+  <div class="modal-body">
 
-        <div *ngIf="isForm==true">    
+    <div *ngIf="isForm==true">    
 
-            <div class="title-modal">Upload Bukti Transfer Anda</div>
+      <div class="title-modal">Upload Bukti Transfer Anda</div>
 
-            <div class="image">
-              <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
-            </div> 
+      <div class="image">
+        <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
+      </div> 
 
-            <div class="upload-btn-wrapper" *ngIf="isPilih == true">
-                <div class="btn-konfirm">Pilih Bukti Transfer</div>                
-                <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-            </div>  
-            <div class="btn-upload" *ngIf="isSent == true" (click)="uploadBuktiTransfer()">Klik disini untuk unggah bukti transfer</div>
-        
-        </div>
-        <div *ngIf="regSuccess==true" class="isSuccess">
-            <div class="title-modal">Upload Bukti Transfer Berhasil</div>    
-            <div class="text-success">berhasil.</div>
-        </div>
+      <div class="upload-btn-wrapper" *ngIf="isPilih == true">
+          <div class="btn-konfirm">Pilih Bukti Transfer</div>                
+          <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
+      </div>  
+      <div class="btn-upload" *ngIf="isSent == true" (click)="uploadBuktiTransfer()">Klik disini untuk unggah bukti transfer</div>
+    
     </div>
+    <div *ngIf="regSuccess==true" class="isSuccess">
+        <div class="title-modal">Upload Bukti Transfer Berhasil</div>    
+        <div class="text-success">berhasil.</div>
+    </div>
+  </div>
+</app-models>
 
+<app-models [(visible)]="showDialogRek" class="frameDialog">
+  <div class="modal-body">
+    
+    <div class='list-metode'>
+      <div class="row">
+          <div class="col-3" *ngFor="let item of listPayment">
+              <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+              {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
+          </div>
+      </div>
+  </div>
+   
+  </div>
 </app-models>

@@ -26,9 +26,10 @@ productImageUrl: any;
 
   constructor(private route: ActivatedRoute, private storeS: StoreService, private prodS: SearchService) {
 
-    this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/';
-    this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/';
-    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/163x179/filters:fill(fff)/';
+    // this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/center/';
+    this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
+    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
   }
 
   ngOnInit() {

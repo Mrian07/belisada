@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../../core/services/transaction/transaction.service';
 import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
 import { Router} from '@angular/router';
+import { PaymentService } from './../../../core/services/payment/payment.service';
+import { PaymentList } from '@belisada/core/models/payment/payment.model';
 
 @Component({
   selector: 'app-order-status',
@@ -27,10 +29,12 @@ export class OrderStatusComponent implements OnInit {
   isLoading: boolean;
   isEmpty: boolean;
   transactionId: number;
+  listPayment: PaymentList[];
 
   constructor(
     private transactionService: TransactionService,
     private router: Router,
+    private paymentService: PaymentService,
   ) { this.list = []; }
 
   ngOnInit() {
@@ -40,6 +44,7 @@ export class OrderStatusComponent implements OnInit {
     this.isForm = true;
     this.isPilih = true;
     this.pendingOrder();
+    this.allPayment();
   }
 
   statusFlag() {
@@ -131,6 +136,14 @@ export class OrderStatusComponent implements OnInit {
 
   detailInvoice(id) {
     this.router.navigate(['/invoice/' + id ]);
+  }
+
+  allPayment() {
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[0].data;
+
+    console.log('bank', this.listPayment);
+    });
   }
 
 }
