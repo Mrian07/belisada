@@ -55,7 +55,12 @@ export class ActivationRequest {
 }
 
 export class ActivationResponse extends BaseResponseModel {
+    data: DataActive;
+}
 
+export class DataActive{
+    token: string;
+    name: string;
 }
 
 export class SendEmailRequest {

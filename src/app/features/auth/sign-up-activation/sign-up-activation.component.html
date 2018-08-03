@@ -29,6 +29,7 @@
 
     <div class="u-display-table-cell makeit--center" *ngIf="activationResponse.status === 2">
         <!-- <h2>{{ activationResponse.message }}</h2> -->
-        <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p>
+        <!-- <p>Selamat, akun anda sudah aktif, silahkan klik <a routerLink="/account/sign-in">disini</a> untuk masuk</p> -->
+        <p>Selamat <b>{{name}}</b>, akun anda sudah aktif. <br>Dalam 15 detik halaman akan dialihkan ke halaman profile.</p>
     </div>
 </div>

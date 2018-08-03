@@ -28,14 +28,24 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
     private jwtUtil: JWTUtil
   ) { }
 
+
   ngOnInit() {
     this.createForm();
 
     this.key = this.activatedRoute.snapshot.queryParamMap.get('key');
-    console.log('this.key: ', this.key);
+    console.log('ada key: ', this.key);
     const activationRequest: ActivationRequest = new ActivationRequest();
     activationRequest.key = this.key;
     this.userService.activation(activationRequest).subscribe(response => {
+      
+      if(response.status === 2){
+        this.userService.setUserToLocalStorage(response.data.token);
+        this.name = response.data.name;
+        setTimeout(() => {
+          this.router.navigateByUrl('/buyer/profile');
+        } , 1500);
+      }
+      
 
       this.activationResponse = response;
 
