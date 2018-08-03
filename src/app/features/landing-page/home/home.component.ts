@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   productStoreUrl;
   lnght;
   imageUrlArray;
-  
+
   constructor(private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private router: Router,
     private homeS: HomeSService) {
         this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/163x179/filters:fill(fff)/';
@@ -147,7 +147,7 @@ export class HomeComponent implements OnInit {
       });
   }
   goStore(url) {
-    this.router.navigate(['/etalase-toko/' + url]);
+    this.router.navigate(['/' + url]);
     console.log(url);
   }
 
@@ -160,7 +160,6 @@ export class HomeComponent implements OnInit {
         this.router.navigate(['/product/product-detail/' + id + '/' + r]);
     }
 
-   
    window.scrollTo(0, 0);
   }
 
