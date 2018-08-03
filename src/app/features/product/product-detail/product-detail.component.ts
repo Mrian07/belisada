@@ -122,7 +122,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   goStore(url) {
-    this.router.navigate(['/etalase-toko/' + url]);
+    this.router.navigate(['/' + url]);
     // console.log(url);
   }
 

@@ -250,4 +250,22 @@ export class SigninComponent implements OnInit, AfterViewInit {
     }
   }
 
+  googleLogin() {
+    this.authService.doGoogleLogin()
+    .then(res => {
+      console.log('googleLogin-res: ', res);
+    }, err => {
+      console.log('googleLogin-err: ', err);
+    });
+  }
+
+  facebookLogin() {
+    this.authService.doFacebookLogin()
+    .then(res => {
+      console.log('facebookLogin-res: ', res);
+    }, err => {
+      console.log('facebookLogin-err: ', err);
+    });
+  }
+
 }

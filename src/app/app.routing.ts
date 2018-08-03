@@ -26,7 +26,7 @@ const routes: Routes = [
     component: LandingPageComponent,
     children: [
       {
-        path: 'etalase-toko/:urls',
+        path: ':urls',
         component: EtalaseTokoComponent,
         data: {
             title: 'Product Detail'

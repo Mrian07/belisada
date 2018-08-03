@@ -2,19 +2,22 @@ import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http/src/headers';
 import { Router } from '@angular/router';
-import { Token, RefreshToken } from '@belisada/core/models';
+import { Token } from '@belisada/core/models';
 import { Configuration } from '@belisada/core/config';
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object, private configuration: Configuration,
-  private http: HttpClient, private routes: Router) { }
+  constructor(
+    private configuration: Configuration,
+    private http: HttpClient,
+    public afAuth: AngularFireAuth
+  ) { }
 
   /*
   param:
@@ -25,13 +28,7 @@ export class AuthService {
   token: any;
 
   checkToken() {
-    // if (localStorage.getItem('isRemember') === 'true') {
-      this.token = localStorage.getItem('token');
-    // } else {
-    //   if (isPlatformBrowser(this.platformId)) {
-    //     this.token = sessionStorage.getItem('token');
-    //   }
-    // }
+    this.token = localStorage.getItem('token');
 
     const objToken = {
       token : this.token
@@ -48,13 +45,7 @@ export class AuthService {
   Description: Fungsi ini mengambil token yang tersimpan pada local storage.
   */
   getToken() {
-    // if (localStorage.getItem('isRemember') === 'true') {
-      this.token = localStorage.getItem('token');
-    // } else {
-    //   if (isPlatformBrowser(this.platformId)) {
-    //   this.token = sessionStorage.getItem('token');
-    //   }
-    // }
+    this.token = localStorage.getItem('token');
     if (this.token) {
       return this.token;
     }
@@ -66,5 +57,36 @@ export class AuthService {
       .pipe(
         map(response => response as Token)
       );
+  }
+
+
+  doFacebookLogin() {
+    return new Promise<any>((resolve, reject) => {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      this.afAuth.auth
+      .signInWithPopup(provider)
+      .then(res => {
+        resolve(res);
+      }, err => {
+        console.log(err);
+        reject(err);
+      });
+    });
+  }
+
+  doGoogleLogin() {
+    return new Promise<any>((resolve, reject) => {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      this.afAuth.auth
+      .signInWithPopup(provider)
+      .then(res => {
+        resolve(res);
+      }, err => {
+        console.log(err);
+        reject(err);
+      });
+    });
   }
 }
