@@ -253,7 +253,16 @@ export class SigninComponent implements OnInit, AfterViewInit {
   googleLogin() {
     this.authService.doGoogleLogin()
     .then(res => {
-      console.log('googleLogin-res: ', res);
+      const signinRequest: SigninRequest = new SigninRequest();
+      signinRequest.email = res.additionalUserInfo.profile.email;
+      signinRequest.avatar = res.additionalUserInfo.profile.picture;
+      signinRequest.loginType = 'social';
+      signinRequest.name = res.additionalUserInfo.profile.name;
+      signinRequest.socialName = res.additionalUserInfo.providerId;
+      signinRequest.socialToken = res.credential.idToken;
+      // signinRequest.userType = res.additionalUserInfo.profile.email;
+      this.ngrx.dispatch(new UserAction.TryLogin(signinRequest));
+      console.log('googleLogin-res: ' + JSON.stringify(res));
     }, err => {
       console.log('googleLogin-err: ', err);
     });

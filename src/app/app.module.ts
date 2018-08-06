@@ -2,7 +2,7 @@ import { InvoiceComponent } from './features/invoice/invoice.component';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
@@ -49,6 +49,8 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
+import { ShareModule } from '@ngx-share/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,9 +59,11 @@ import { environment } from '../environments/environment';
     LandingPageComponent,
     HomeComponent,
     InvoiceComponent,
-    EtalaseTokoComponent
+    EtalaseTokoComponent,
   ],
   imports: [
+    HttpClientModule,
+    HttpClientJsonpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
@@ -79,6 +83,7 @@ import { environment } from '../environments/environment';
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    ShareModule.forRoot()
   ],
   providers: [
     {

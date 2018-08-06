@@ -36,10 +36,14 @@ export class SignupResponse {
 }
 
 export class SigninRequest {
+    avatar?: string;
     email: string;
-    password: string;
-
-    constructor() {}
+    loginType?: string;
+    name?: string;
+    password?: string;
+    socialName?: string;
+    socialToken?: string;
+    userType?: string;
 }
 
 export class SigninResponse extends BaseResponseModel {
