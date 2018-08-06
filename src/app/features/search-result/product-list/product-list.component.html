@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-3">
                         <span class="title-search">Showing {{list.numberOfElements}} of {{list.totalElements}}</span><br>
-                        SORT: <a href='#' class='link-search'>BY POPULARITY</a> <button class="btn-down"><fa name="fas fa-angle-down"></fa></button>
+                        SORT: <a href='#' class='link-search'>BY POPULARITY</a> <button class="btn-down"><fa-icon [icon]="['fas', 'angle-down']"></fa-icon></button>
                     </div>
                 </div>
                 <div *ngIf="list.totalElements==0" class="product-empty">
