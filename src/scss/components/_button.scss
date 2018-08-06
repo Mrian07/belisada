@@ -45,6 +45,24 @@
     &.btn--rounded {
         border-radius: 2rem;
     }
+
+    &--share {
+        height: 3rem;
+        width: 3rem;
+        border: none;
+        border-radius: 50%;
+        color: #fff;
+
+        &.btn--list {
+            &:not(:last-child) {
+                margin-right: .5rem;
+            }
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 

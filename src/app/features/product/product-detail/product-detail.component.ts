@@ -10,6 +10,7 @@ import { Home } from '@belisada/core/models';
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
+import { ShareButtons } from '@ngx-share/core';
 
 @Component({
   selector: 'app-product-detail',
@@ -58,7 +59,8 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private homeS: HomeSService,
     private shoppingCartService: ShoppingCartService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    public share: ShareButtons
   ) {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
@@ -70,6 +72,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('this.share: ', this.share);
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;

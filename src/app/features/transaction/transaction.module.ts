@@ -5,9 +5,16 @@ import { CommonModule } from '@angular/common';
 import { TransactionComponent } from '@belisada/features/transaction/transaction.component';
 import { TransactionRoutingModule } from './transaction-routing.module';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { TerimakasihPageComponent } from './terimakasih-page/terimakasih-page.component';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas, far, fab);
 @NgModule({
   imports: [
     CommonModule,
@@ -15,7 +22,7 @@ import { CountdownTimerModule } from 'ngx-countdown-timer';
     ThemeModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule,
+    FontAwesomeModule,
     CountdownTimerModule.forRoot()
   ],
   declarations: [

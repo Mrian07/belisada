@@ -27,7 +27,7 @@
                                 'has-danger': vForValidation.controls.email.valid && (vForValidation.controls.email.dirty || vForValidation.controls.email.touched)
                                 }">
                             <div #b *ngIf="vForValidation.controls.email.dirty && vForValidation.controls.email.valid" class="alert alert-danger toll tooltip">
-                                <fa name="fas fa-ban errspan"></fa>
+                                <fa-icon class="errspan" [icon]="['fas', 'ban']"></fa-icon>
                                 <div class="testing">
                                     <span class="tooltiptext">{{ message }}</span>
                                 </div>

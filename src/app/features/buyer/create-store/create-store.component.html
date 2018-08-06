@@ -14,7 +14,7 @@
                     <li class="u-inline-list-gap">
                         <div *ngIf="data.picture" class="image-preview" [ngStyle]="{'background-image': 'url(' + data.picture + ')'}">
                             <span class="action-button" (click)="removeImage()">
-                                <fa name="trash"></fa>
+                                <fa-icon [icon]="['fas', 'trash']"></fa-icon>
                             </span>
                         </div>
                     </li>
