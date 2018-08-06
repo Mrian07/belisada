@@ -96,7 +96,7 @@ export class ProductDetailList {
   categoryThreeName: string;
   imageUrl: string[];
   pricelist: number;
-  couriers: Couriers;
+  couriers: Couriers[];
 
   isGuarantee: boolean;
   guaranteeType: string;
@@ -122,6 +122,7 @@ export class Couriers {
   courierId: number;
   name: string;
   code: string;
+  imageUrl: string;
 }
 
 export class MoreInformation {

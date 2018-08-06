@@ -125,6 +125,7 @@
                 </div>    
             </div>
             <div class="col-2">
+
                 <div class="sidebar-title">
                         Informasi Penjual 
                 </div>
@@ -142,12 +143,18 @@
                     <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
                 </div>
 
-                <!-- <div class="sidebar-title">
-                    Dukungan Pengiriman
+                <div class="sidebar-title">
+                    Informasi Penjual
                 </div>
                 <div class="sidebar-conten">
-                    Segera....
-                </div> -->
+                    <ul class="courier-service-list">
+                        <li *ngFor="let courier of productDetail.couriers">
+                            <img [src]="courier.imageUrl" alt="">
+                            <span>{{ courier.name }} <fa-icon class="checklist" [icon]="['fas', 'check']"></fa-icon></span>
+                            <!-- <span>Yes <fa-icon class="checklist" [icon]="['fas', 'check']"></fa-icon></span> -->
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
 
