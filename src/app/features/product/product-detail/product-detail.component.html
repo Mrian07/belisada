@@ -142,16 +142,11 @@
                     <span class="shop-text"><strong>Jumlah Produk:</strong> Coming Soon </span>
                     <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
                 </div>
-
+                
                 <div class="sidebar-title">
                     Dukungan Pengiriman
                 </div>
                 <div class="sidebar-conten">
-<<<<<<< HEAD
-                    Segera....
-                </div> -->
-                <div class="btn-penawaran" (click)="penawaran(productDetail.productId,productDetail.name)">Penawaran Lainnya</div>
-=======
                     <ul class="courier-service-list">
                         <li *ngFor="let courier of productDetail.couriers">
                             <img [src]="courier.imageUrl" alt="">
@@ -160,7 +155,8 @@
                         </li>
                     </ul>
                 </div>
->>>>>>> 3226ff7dec0c9cb89e7441a3d8d45bccf998412b
+
+                <div class="btn-penawaran" (click)="penawaran(productDetail.productId,productDetail.name)">Penawaran Lainnya</div>
             </div>
         </div>
 

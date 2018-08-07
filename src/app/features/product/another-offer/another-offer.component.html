@@ -57,9 +57,9 @@
                 {{item.pricelist}}
               </div>
               <div class="text-c">
-                  <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa name="minus"></fa> </span> 
+                  <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> 
                   <span class="item-qty"> {{cartItem}} </span>
-                  <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa name="plus"></fa> </span> 
+                  <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span> 
               </div>
               <div class="text-c">
                 {{item.classificationValue}}
@@ -74,7 +74,7 @@
                 {{item.storeName}}
               </div>
               <div class="text-c">
-                <div class="btn-add">Add To Cart <fa name="cart-arrow-down"></fa></div>
+                <div class="btn-add">Add To Cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></div>
               </div>
             </div>
           
