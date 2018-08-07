@@ -261,5 +261,13 @@ export class ProductDetailComponent implements OnInit {
   decreaseQty() {
     if (this.qty > 1) { this.qty -= 1; }
   }
+
+  penawaran(id, name){
+
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    this.router.navigate(['/product/another-offer/' + id + '/' + r]);
+    window.scrollTo(0, 0);
+  }
+
 }
 

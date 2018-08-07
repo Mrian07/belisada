@@ -9,6 +9,7 @@ import { ThemeModule } from '../../theme/theme.module';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule } from '@angular/forms';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
+import { AnotherOfferComponent } from './another-offer/another-offer.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-tok
   ],
   declarations: [
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    AnotherOfferComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

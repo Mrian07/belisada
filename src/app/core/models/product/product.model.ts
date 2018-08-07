@@ -132,4 +132,41 @@ export class MoreInformation {
   storeImageUrl: string;
 }
 
+export class Filter{
+  brandId: number;
+  brandImageUrl: string;
+  brandName: string;
+  discount: number;
+  id:number;
+  imageUrl: string;
+  locationId: number;
+  locationName: string;
+  name: string;
+  originId: number;
+  pricelist: number;
+  productId: number;
+  qty: number;
+  rate: number;
+  review: number;
+  sku: number;
+  specialPrice: number;
+  storeId: number;
+  storeImageUrl: string;
+  storeName: string;
+  storeUrl: string;
+}
+
+export class FilterOffers{
+  filter: string;
+  data: DataFilter[];
+}
+
+export class DataFilter{
+  filterCount: number
+  filterName: string;
+  filterId: number;
+  code: string;
+  name: string;
+}
+
 
