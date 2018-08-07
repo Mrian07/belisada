@@ -160,7 +160,7 @@ export class StoreService {
         map(response => response as Village[])
       );
   }
-  
+
   getEtalase(id: any): Observable<EtalaseStore> {
     return this.http.get(this.cfg.apiURL + '/store/' + id)
       .pipe(

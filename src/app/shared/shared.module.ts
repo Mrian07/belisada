@@ -1,10 +1,6 @@
-// import { FilterPipe } from './pipes/filter.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { ModelsComponent } from '@belisada/shared/components/models/models.component';
-import { ClickOutsideDirective, ADirective } from '@belisada/shared/directives';
-// import { FilterPipe } from '@belisada/shared/pipes';
+import { ClickOutsideDirective } from '@belisada/shared/directives';
 
 @NgModule({
   imports: [
@@ -12,7 +8,6 @@ import { ClickOutsideDirective, ADirective } from '@belisada/shared/directives';
   ],
   declarations: [
     ClickOutsideDirective
-    // FilterPipe
   ]
 })
 export class SharedModule { }

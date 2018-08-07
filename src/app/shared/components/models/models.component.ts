@@ -33,6 +33,8 @@ export class ModelsComponent implements OnInit {
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
+    sessionStorage.setItem('boolean', 'true');
+    const data = sessionStorage.getItem('boolean');
   }
 
 }

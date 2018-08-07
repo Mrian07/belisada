@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { MainLayoutComponent } from './layout/main/main-layout.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LocationStrategy, PathLocationStrategy, CommonModule } from '@angular/common';
@@ -18,6 +17,12 @@ import { HeadingSellerComponent } from './components/heading-seller/heading-sell
 import { FilterPipe } from '@belisada/shared/pipes';
 import { FieldErrorDisplayComponent } from '@belisada/features/buyer/create-store/field-error-display/field-error-display.component';
 import { CountdownTimerModule } from 'ngx-countdown-timer';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
 const COMPONENTS = [
   ModelsComponent,
@@ -39,12 +44,14 @@ const PIPES = [
   FilterPipe
 ];
 
+library.add(fas, far, fab);
+
 @NgModule({
   imports: [
-    AngularFontAwesomeModule,
     CommonModule,
     FormsModule,
     RouterModule,
+    FontAwesomeModule,
     ReactiveFormsModule,
     CountdownTimerModule.forRoot()
   ],

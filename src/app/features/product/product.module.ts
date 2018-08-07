@@ -6,9 +6,10 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 import { ThemeModule } from '../../theme/theme.module';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule } from '@angular/forms';
-import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
+import { ShareModule } from '@ngx-share/core';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-tok
     FormsModule,
     ProductRoutingModule,
     ThemeModule,
-    AngularFontAwesomeModule
+    FontAwesomeModule,
+    ShareModule.forRoot()
   ],
   declarations: [
     ProductComponent,

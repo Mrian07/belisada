@@ -467,8 +467,13 @@ footer {
 
   .itemz {
     border:1px solid #ed9a1d;
-     border-radius: 5px;
+    border-radius: 5px;
     padding: 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
     .containerz-dalem {
     display: grid;
     grid-template-columns: 20% 80%;

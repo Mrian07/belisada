@@ -10,7 +10,9 @@
                 <div class="category-menu" (click)="menuAllCategory(isMenu)">
 
                     <div  class="select-box select-box-orange"><span>All Category</span>
-                        <fa name="caret-down"></fa></div>
+                        <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                        <!-- <fa name="caret-down"></fa> -->
+                    </div>
 
                     <!-- <div class="select-box select-box-orange">
                         <span>All Category</span>
@@ -96,7 +98,8 @@
                         </ul>
                     </div>
                 </div>
-                <fa name="search"></fa>
+                <fa-icon [icon]="['fas', 'search']"></fa-icon>
+                <!-- <fa name="search"></fa> -->
                 <!-- </div> -->
             </div>
         </div>
@@ -265,7 +268,8 @@
                 <img class="country-flag" src="/assets/img/id_flag.png" alt="">
                 <span class="text-language">
                     ID<br>
-                    <fa name="caret-down"></fa>
+                    <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                    <!-- <fa name="caret-down"></fa> -->
                 </span>
             </li>
         </ul>

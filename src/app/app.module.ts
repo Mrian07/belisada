@@ -2,10 +2,9 @@ import { InvoiceComponent } from './features/invoice/invoice.component';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 // import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaLoaderService } from 'ng-recaptcha';
 
 import { StoreModule } from '@ngrx/store';
@@ -43,11 +42,20 @@ import 'angular2-navigate-with-data';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 
+// !font-awesome
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
 // !angular2 fire
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+
+library.add(fas, far, fab);
 
 @NgModule({
   declarations: [
@@ -57,9 +65,11 @@ import { environment } from '../environments/environment';
     LandingPageComponent,
     HomeComponent,
     InvoiceComponent,
-    EtalaseTokoComponent
+    EtalaseTokoComponent,
   ],
   imports: [
+    HttpClientModule,
+    HttpClientJsonpModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
@@ -70,9 +80,9 @@ import { environment } from '../environments/environment';
     SlideshowModule,
     ThemeModule,
     FormsModule,
+    FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AngularFontAwesomeModule,
     StoreModule.forRoot({}),
     CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects]),

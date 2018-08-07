@@ -81,8 +81,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private bukaPopUp() {
-    sessionStorage.setItem('boolean', 'true');
-    const data = sessionStorage.getItem('boolean');
+
     this.dataForPopUp = sessionStorage.getItem('boolean');
     // if (this.dataForPopUp === 'true') {
     //   console.log('si data for poop up ada nih', this.dataForPopUp);

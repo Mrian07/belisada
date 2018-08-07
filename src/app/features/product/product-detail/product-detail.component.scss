@@ -378,3 +378,16 @@ ul#horizontal-list li {
 .w__paddingin {
     padding-bottom: 3rem;
 }
+
+.courier-service-list {
+    
+    li {
+        display: block;
+
+        fa-icon {
+            &.checklist {
+                color: #8BF56E;
+            }
+        }
+    }
+}

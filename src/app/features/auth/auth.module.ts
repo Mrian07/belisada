@@ -8,11 +8,17 @@ import {
   AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent, ForgotPasswordComponent, ResetPasswordComponent
 } from '@belisada/features/auth';
 import { ThemeModule } from '../../theme/theme.module';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginReducer, SignUpBuyerReducer } from '@belisada/core/ngrx/reducers';
 import { AuthEffects } from '@belisada/core/ngrx/effects';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+
+library.add(fas, far, fab);
 
 @NgModule({
   imports: [
@@ -21,7 +27,7 @@ import { AuthEffects } from '@belisada/core/ngrx/effects';
     ReactiveFormsModule,
     ThemeModule,
     AuthRoutingModule,
-    AngularFontAwesomeModule,
+    FontAwesomeModule,
     StoreModule.forFeature('login', LoginReducer),
     StoreModule.forFeature('signup', SignUpBuyerReducer),
     EffectsModule.forFeature([AuthEffects]),
