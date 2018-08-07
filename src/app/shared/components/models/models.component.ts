@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, OnChanges, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, EventEmitter, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -18,6 +18,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   ]
 })
 export class ModelsComponent implements OnInit {
+  // @HostBinding('class.is-open')
+  @Input() myFunction: Function;
   @Input() closable = true;
   @Input() visible: boolean;
   @Input() maxwidth: number;
