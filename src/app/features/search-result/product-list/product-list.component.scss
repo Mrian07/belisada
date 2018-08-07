@@ -5,7 +5,7 @@
 }
 .paging li {
   display: inline-block;
-  
+
 }
 .paging a {
   border: 1px solid #ebeef2;
@@ -45,6 +45,7 @@
     font-weight: bold;
     position: relative;
     font-family: 'Roboto', sans-serif;
+    height: 400px;
 }
 
 .icon-bar-group {
@@ -123,7 +124,7 @@ a.link-search:hover{
 
 
 
-// filter dibawah 
+// filter dibawah
 
 
 
@@ -161,7 +162,7 @@ h1 {
     cursor: pointer;
 
     margin-left: 0 !important;
-    margin-right: 0 !important; 
+    margin-right: 0 !important;
   }
   .blue label {
     background: #2980b9;
@@ -211,7 +212,7 @@ h1 {
   input[type=radio]:checked + label::after {
     transform: rotateX(180deg);
   }
-  
+
   .margin--ul {
       margin: 1em;
   }

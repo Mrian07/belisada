@@ -10,7 +10,9 @@
                 <div class="category-menu" (click)="menuAllCategory(isMenu)">
 
                     <div  class="select-box select-box-orange"><span>All Category</span>
-                        <fa name="caret-down"></fa></div>
+                        <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                        <!-- <fa name="caret-down"></fa> -->
+                    </div>
 
                     <!-- <div class="select-box select-box-orange">
                         <span>All Category</span>
@@ -49,6 +51,19 @@
                                     {{childSubMenu.name}}
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div class="banner-category__container center">
+                        <img class="u-margin-bottom-1" src="/assets/img/bbbb.jpeg" alt="">
+
+                        <button class="btn btn--orange u-margin-bottom-1">Shop Now</button>
+
+                        <h3>Featured Product</h3>
+
+                        <div class="banner-category__grid">
+                            <img src="/assets/img/aaaa.jpeg" alt="">
+                            <img src="/assets/img/aaaa.jpeg" alt="">
+                            <img src="/assets/img/aaaa.jpeg" alt="">
                         </div>
                     </div>
                 </div>
@@ -96,7 +111,8 @@
                         </ul>
                     </div>
                 </div>
-                <fa name="search"></fa>
+                <fa-icon [icon]="['fas', 'search']"></fa-icon>
+                <!-- <fa name="search"></fa> -->
                 <!-- </div> -->
             </div>
         </div>
@@ -265,7 +281,8 @@
                 <img class="country-flag" src="/assets/img/id_flag.png" alt="">
                 <span class="text-language">
                     ID<br>
-                    <fa name="caret-down"></fa>
+                    <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+                    <!-- <fa name="caret-down"></fa> -->
                 </span>
             </li>
         </ul>

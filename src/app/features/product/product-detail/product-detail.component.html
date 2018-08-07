@@ -32,7 +32,7 @@
                         </select>
 
                         <!-- <span class="btn-small">Ganti Destinasi</span>  -->
-                        <span class="btn-flag"><fa name="exclamation"></fa></span>
+                        <span class="btn-flag"><fa-icon [icon]="['fas', 'exclamation']"></fa-icon></span>
                     </div>
                     <div class="product-info" *ngIf="isLogin">
                         <span class="strong-text">Metode Pengiriman: 
@@ -41,7 +41,7 @@
                             <option disabled value="">Pilih Pengiriman</option>
                             <option *ngFor="let rate of rates" [ngValue]='rate'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                         </select>
-                        <span class="btn-flag"><fa name="exclamation"></fa></span></span>
+                        <span class="btn-flag"><fa-icon [icon]="['fas', 'exclamation']"></fa-icon></span></span>
                         <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
                         <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                     </div>
@@ -58,10 +58,10 @@
                         <span class="strong-text">Variant:</span> <span class="v1">50 ml</span> <span class="v2">100 ml</span> <span class="v2">200 ml</span>
                     </div> -->
                     <div class="product-info">
-                        <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa name="minus"></fa> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa name="plus"></fa> </span>
+                        <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span>
                     </div>
                     <div class="product-btn">
-                        <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa name="cart-arrow-down"></fa></span></span>
+                        <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
                         <!-- <span class="btn-chat">Chat Seller <span class="btn-add-cart"><fa name="comments"></fa></span></span> -->
                     </div>
                 </div>
@@ -99,16 +99,33 @@
                 
 
 
-                <div class="row">
+                <div class="row u-margin-top-2">
                     <div class="col-6">
-                        <!-- <span class="show-small-text"><fa name="heart"></fa> Tambahkan ke Wishlist </span>  -->
+                        <!-- <span class="show-small-text"> -->
+                            <fa-icon [icon]="['far', 'heart']"></fa-icon> Tambahkan ke Wishlist 
+                        <!-- </span>  -->
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 right">
+                        <!--Set color and icon-->
+                        Share
+                        <button class="btn--share btn--list" shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
+                            <fa-icon [icon]="share.prop.facebook.icon" size="md"></fa-icon>
+                        </button>
+
+                        <button class="btn--share btn--list" shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
+                            <fa-icon [icon]="share.prop.twitter.icon" size="md"></fa-icon>
+                        </button>
+
+                        <button class="btn--share btn--list" shareButton="google" [style.backgroundColor]="share.prop.google.color">
+                            <fa-icon [icon]="share.prop.google.icon" size="md"></fa-icon>
+                        </button>
+
                         <!-- <span class="show-small-text">Share</span> <img src='assets/img/dummy-sosmed.jpg'> -->
                     </div>
                 </div>    
             </div>
             <div class="col-2">
+
                 <div class="sidebar-title">
                         Informasi Penjual 
                 </div>
@@ -117,7 +134,7 @@
                         <img [src]='productImageUrlNew + productDetail.storeImageUrl'>
                         <span class="shop-title" (click)="goStore(productDetail.storeUrl)">{{productDetail.storeName}}</span>
                         <span class="shop-city">{{productDetail.locationName}}</span>
-                        <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa name="plus-circle"></fa></span>
+                        <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></span>
                         <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->
                     </div>
                     <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
@@ -126,13 +143,24 @@
                     <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
                 </div>
 
-                <!-- <div class="sidebar-title">
+                <div class="sidebar-title">
                     Dukungan Pengiriman
                 </div>
                 <div class="sidebar-conten">
+<<<<<<< HEAD
                     Segera....
                 </div> -->
                 <div class="btn-penawaran" (click)="penawaran(productDetail.productId,productDetail.name)">Penawaran Lainnya</div>
+=======
+                    <ul class="courier-service-list">
+                        <li *ngFor="let courier of productDetail.couriers">
+                            <img [src]="courier.imageUrl" alt="">
+                            <span>{{ courier.name }} <fa-icon class="checklist" [icon]="['fas', 'check']"></fa-icon></span>
+                            <!-- <span>Yes <fa-icon class="checklist" [icon]="['fas', 'check']"></fa-icon></span> -->
+                        </li>
+                    </ul>
+                </div>
+>>>>>>> 3226ff7dec0c9cb89e7441a3d8d45bccf998412b
             </div>
         </div>
 

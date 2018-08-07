@@ -13,9 +13,12 @@ export class ThumborService {
 
   process(imageUrl, option: ThumborOptions) {
     let filtersUrl = 'filters:';
-    Object.keys(option.filter).forEach(function(k) {
-      filtersUrl += k + '(' + option.filter[k] + ')';
-    });
+    // if (option.filter) {
+      Object.keys(option.filter).forEach(function(k) {
+        filtersUrl += k + '(' + option.filter[k] + ')';
+      });
+    // }
+
     const size = option.width + 'x' + option.height + '/';
     const fit = option.fitting + '/';
 

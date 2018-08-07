@@ -33,11 +33,14 @@ export class ProductListComponent implements OnInit {
   userlistCourier: any;
   a;
   en;
+  produkIMG: any;
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
     private router: Router,
     private searchService: SearchService,
-  ) { }
+  ) {
+    this.produkIMG = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+   }
 
   ngOnInit() {
     this.getUser();

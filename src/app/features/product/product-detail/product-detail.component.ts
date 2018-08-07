@@ -10,6 +10,10 @@ import { Home } from '@belisada/core/models';
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
+import { ShareButtons } from '@ngx-share/core';
+import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
+import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
+import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 
 @Component({
   selector: 'app-product-detail',
@@ -58,7 +62,9 @@ export class ProductDetailComponent implements OnInit {
     private productService: ProductService,
     private homeS: HomeSService,
     private shoppingCartService: ShoppingCartService,
-    private addressService: AddressService
+    private addressService: AddressService,
+    private thumborService: ThumborService,
+    public share: ShareButtons
   ) {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
@@ -70,6 +76,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('this.share: ', this.share);
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;
@@ -102,6 +109,21 @@ export class ProductDetailComponent implements OnInit {
         this.moreInformation = res.data.moreInformation;
         console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
+
+        const thumborOption: ThumborOptions = {
+          width: 100,
+          height: 100,
+          fitting: ThumborSizingEnum.FIT_IN,
+          filter: {
+            fill: 'white'
+          }
+        };
+
+        this.productDetail.couriers.forEach((item, index) => {
+          this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
+        });
+
+        console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
 
         // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];

@@ -8,14 +8,19 @@ import { CreateStoreComponent } from '@belisada/features/buyer/create-store/crea
 import { BuyerRoutingModule } from '@belisada/features/buyer/buyer-routing.module';
 import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { ThemeModule } from '../../theme/theme.module';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ADirective } from '@belisada/shared/directives';
 import { OrderComponent } from './order/order.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileInformationComponent } from './profile-information/profile-information.component';
 import { ShippingAddressComponent } from './shipping-address/shipping-address.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
 
+library.add(fas, far, fab);
 
 
 
@@ -27,7 +32,7 @@ import { ShippingAddressComponent } from './shipping-address/shipping-address.co
     ReactiveFormsModule,
     MyDatePickerModule,
     BuyerRoutingModule,
-    AngularFontAwesomeModule
+    FontAwesomeModule,
   ],
   declarations: [
     BuyerComponent,

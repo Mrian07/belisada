@@ -34,7 +34,7 @@
                             'has-success': signinFormGroup.controls.password.valid && (signinFormGroup.controls.password.dirty && signinFormGroup.controls.password.touched)
                             }">
 
-                            <div class="togglePassBuy" (click)="togglePass()"><fa name="fas fa-eye"></fa></div>
+                            <div class="togglePassBuy" (click)="togglePass()"><fa-icon [icon]="['fas', 'eye']"></fa-icon></div>
 
                         <div *ngIf="signinFormGroup.controls.password.invalid && (signinFormGroup.controls.password.dirty || formSubmited)" class="alert alert-danger toll tooltip testing">
                             <span class="tooltiptext">Password tidak boleh kosong</span>
@@ -51,8 +51,8 @@
                     </div>
                 </form>
 
-                <!-- <button (click)="facebookLogin()">Sign-in with Facebook</button>
-                <button (click)="googleLogin()">Sign-in with Google</button> -->
+                <button (click)="facebookLogin()">Sign-in with Facebook</button>
+                <button (click)="googleLogin()">Sign-in with Google</button>
             </div>
         </div>
     </div>
