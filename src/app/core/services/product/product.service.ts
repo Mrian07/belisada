@@ -43,7 +43,7 @@ export class ProductService {
       );
   }
 
-  getOffers(queryParams): Observable<Filter[]> {
+  getOffers(queryParams): Observable<Filter> {
     let params = new HttpParams();
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
@@ -51,7 +51,7 @@ export class ProductService {
     // params.set('productId', id);
     return this.http.get(this.configuration.apiUrlMongo + '/search/offers', {params: params})
       .pipe(
-        map(response => response as Filter[])
+        map(response => response as Filter)
       );
   }
 
