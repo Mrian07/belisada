@@ -241,14 +241,34 @@
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> coming soon </span>
+                  <!-- Contenedor Principal -->
+	<div class="comments-container">
+
+
+        </div>
+                  <!-- <span class="w__fontsize--prodName">
+
+                  </span> -->
               </div>
             </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> coming soon </span>
+                    <!-- <div>
+                            <h3> {{title}}</h3>
+                            <ul class="list">
+                             <li *ngFor="let l of list | slice : startPage:paginationLimit">
+                               {{l.name}} ({{l.age}})
+                             </li>
+                            </ul>
+                            <button *ngIf ="paginationLimit < list.length" (click)="showMoreItems()">
+                             Show More
+                            </button>
+                            <button *ngIf ="paginationLimit > 4" (click)="showLessItems()">
+                             Show Less
+                            </button>
+                    </div> -->
               </div>
             </div>
         </div>
@@ -257,7 +277,6 @@
 
 <div class="w__paddingin"></div>
 </div>
-
 
 
 
