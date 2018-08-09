@@ -119,8 +119,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   goToStoreNol() {
     sessionStorage.setItem('boolean', 'true');
+    this.showDialog = false;
     const data = sessionStorage.getItem('boolean');
-    document.location.href = 'https://seller0.belisada.id/auth/sign-in';
+    window.open('https://seller0.belisada.id/auth/sign-in', '_blank');
   }
   onFilterClick(event) {
     this.showDialog = false;
