@@ -1,3 +1,4 @@
+import { TestingServicesService } from './../../../core/services/testService/testing-services.service';
 import { ModelsComponent } from './../../../shared/components/models/models.component';
 import swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -9,7 +10,7 @@ import { LocalStorageEnum } from '@belisada/core/enum';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 import { Observable } from 'rxjs';
-
+import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -61,10 +62,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     private storeService: StoreService,
     private userS: UserService,
     private router: Router,
-    private homeS: HomeSService
+    private homeS: HomeSService,
+    private _messageService: TestingServicesService,
   ) {
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
     this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
+    this._messageService.listen().subscribe((m: any) => {
+      console.log(m);
+      this.onFilterClick(m);
+  });
   }
 
   ngOnInit() {
@@ -111,14 +117,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
 
   }
-  onFilterClick() {
-    console.log('asdasd');
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
-}
+  goToStoreNol() {
+    sessionStorage.setItem('boolean', 'true');
+    this.showDialog = false;
+    const data = sessionStorage.getItem('boolean');
+    window.open('https://seller0.belisada.id/auth/sign-in', '_blank');
+  }
+  onFilterClick(event) {
+    this.showDialog = false;
+        sessionStorage.setItem('boolean', 'true');
+    const data = sessionStorage.getItem('boolean');
+    console.log('Fire onFilterClick: ', event);
+  }
   functionOnStore() {
       console.log('asdasdsadasd');
   }
+
 
 
   getDataForNew() {
