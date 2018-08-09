@@ -1,3 +1,5 @@
+import { TestingServicesService } from './../../../core/services/testService/testing-services.service';
+import { ShareMessageService } from './../../../core/services/share-message/share-message.service';
 import { Component, OnInit, Input, Output, OnChanges, EventEmitter, HostBinding } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -24,8 +26,7 @@ export class ModelsComponent implements OnInit {
   @Input() visible: boolean;
   @Input() maxwidth: number;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  constructor() { }
+  constructor (private _messageService: TestingServicesService) { }
 
   ngOnInit() {
   }
@@ -33,8 +34,10 @@ export class ModelsComponent implements OnInit {
   close() {
     this.visible = false;
     this.visibleChange.emit(this.visible);
-    sessionStorage.setItem('boolean', 'true');
+    sessionStorage.setItem('boolean', 'false');
     const data = sessionStorage.getItem('boolean');
+    this._messageService.filter('Register click');
+    console.log('asdasdas');
   }
 
 }
