@@ -64,7 +64,7 @@
 
 .wrapper9 {
     display: grid;
-grid-gap: 10px;
+    grid-gap: 10px;
     grid-template-columns: 69% 30%;
 }
 .header--home {
@@ -72,17 +72,19 @@ grid-gap: 10px;
 }
 
 .flash--sale--column {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     background-color: #ffc247;
 
     .flash--sale--text{
         color: white;
-        padding-left: 1em;
+        // padding-left: 1em;
         font-size: 19px;
-    font-weight: 600;
+        font-weight: 600;
     }
 
     .flash--sale--timer {
-        padding-left: 26%;
+        // padding-left: 26%;
         font-size: 22px;
     }
 }
@@ -443,18 +445,12 @@ footer {
   width: grid-width(12);
 }
 
-
-.columnz {
-    float: left;
-    width: 39%;
-    padding: 10px;
-}
-
 /* Clear floats after the columns */
-.rowz:after {
-    content: "";
-    display: table;
-    clear: both;
+.rowz {
+    display: grid;
+    grid-column-gap: 1rem;
+    margin-bottom: 1rem;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .containerz {

@@ -2,170 +2,171 @@
 <div class="container">
 
     <main>
-        <slideshow #slideshow
-            [imageUrls]="imageUrls"
-            [minHeight]="'525px'"
-            [showArrows]="false"
-            [autoPlay]="true"
-            [showDots]="true"
-            [showCaptions]="true">
-        </slideshow>
+    <slideshow #slideshow
+        [imageUrls]="imageUrls"
+        [minHeight]="'525px'"
+        [showArrows]="false"
+        [autoPlay]="true"
+        [showDots]="true"
+        [showCaptions]="true">
+    </slideshow>
     </main>
 
     <aside>
-        <div class="flash--sale--column">
-            <span class="flash--sale--text">Flash Sale</span> <countdown-timer class="flash--sale--timer" [end]="'2018-08-02 00:00:00'"></countdown-timer>
+    <div class="flash--sale--column u-margin-bottom-1">
+        <div class="flash--sale--text center">Flash Sale</div>
+        <div class="left"><countdown-timer class="flash--sale--timer" [end]="'2018-08-09 00:00:00'"></countdown-timer></div>
+    </div>
+    <div class="rowz" *ngFor="let i of [0,1,2]">
+        <div class="columnz center">
+            <img src="assets/img/dummy-product-detail.jpg">
         </div>
-        <div class="rowz">
-            <div class="columnz">
-                <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
-            </div>
-            <div class="columnz">
-                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
-                <span class="flash--sale--city">DKI JAKARTA</span>
-                <span class="flash--sale--rating">
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
+        <div class="columnz">
+            <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+            <span class="flash--sale--city">DKI JAKARTA</span>
+            <span class="flash--sale--rating">
+                <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                <fa-icon [icon]="['fas', 'star']"></fa-icon>
 
-                    <!-- <fa name="star"></fa>
-                    <fa name="star"></fa>
-                    <fa name="star"></fa>
-                    <fa name="star"></fa>
-                    <fa name="star"></fa> -->
-                </span>
-                <span class="flash--sale--harga">Rp.6.500.000</span>
-                <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
-            </div>
-            <div class="columnz">
-                <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
-            </div>
-            <div class="columnz">
-                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
-                <span class="flash--sale--city">DKI JAKARTA</span>
-                <span class="flash--sale--rating">
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                </span>
-                <span class="flash--sale--harga">Rp.6.500.000</span>
-                <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
-            </div>
-            <div class="columnz">
-                <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
-            </div>
-            <div class="columnz">
-                <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
-                <span class="flash--sale--city">DKI JAKARTA</span>
-                <span class="flash--sale--rating">
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                </span>
-                <span class="flash--sale--harga">Rp.6.500.000</span>
-                <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
-            </div>
+                <!-- <fa name="star"></fa>
+                <fa name="star"></fa>
+                <fa name="star"></fa>
+                <fa name="star"></fa>
+                <fa name="star"></fa> -->
+            </span>
+            <span class="flash--sale--harga">Rp.6.500.000</span>
+            <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
         </div>
+        <!-- <div class="columnz">
+        <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+        </div>
+        <div class="columnz">
+        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+        <span class="flash--sale--city">DKI JAKARTA</span>
+        <span class="flash--sale--rating">
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+        </span>
+        <span class="flash--sale--harga">Rp.6.500.000</span>
+        <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+        </div>
+        <div class="columnz">
+        <img class="image--flash--sale" src="assets/img/dummy-product-detail.jpg">
+        </div>
+        <div class="columnz">
+        <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
+        <span class="flash--sale--city">DKI JAKARTA</span>
+        <span class="flash--sale--rating">
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+        </span>
+        <span class="flash--sale--harga">Rp.6.500.000</span>
+        <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+        </div> -->
+    </div>
     </aside>
 
     <div class="row wrapper--for--middle" *ngIf="lnght !== 0" >
-            <div class="col-12">
-                    <span class="text--new--product">Product Terbaru</span>
+        <div class="col-12">
+            <span class="text--new--product">Product Terbaru</span>
+            <div class="containerz">
+                <div class="itemz" *ngFor="let item of productNew | slice:0:16">
+            <div class="containerz-dalem" >
+            <div style="height: 50px;">
+                <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
+                </div>
+                <div style="height: 10px;">
+                <span class="product--name--store--name" (click)="goStore(item.storeUrl)">{{ item.storeName }}</span>
+                <span>{{ item.locationName }}</span>
+                </div>
+                </div>
+            <div class="row">
+                <div class="col-12">
+                    <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
+                </div>
+                <div class="col-12 image--center">
+                    <span class="text__center__pricelist">Rp. {{ item.pricelist | number  }}</span>
+                <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:30 }}</span>
+                </div>
+            </div>
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-12">
+                    <div class="aasdsad">
+                        <div class="flex-wrapper">
+                            <div class="text--pop--searc">Popular Search</div>
+                        <div class="item">
+                        <button class="b"> Kaos Marvel </button>
+                        </div>
+                        <div class="item">
+                        <button class="b"> OPPO A37 </button>
+                        </div>
+                        <div class="item">
+                        <button class="b"> Iphone X </button>
+                        </div>
+                        <div class="item">
+                        <button class="b"> Whey Protein </button>
+                        </div>
+                        <div class="item">
+                        <button class="b"> AC </button>
+                        </div>
+                        <div class="item">
+                        <button class="b"> AC </button>
+                        </div>
+                            <div class="item">
+                                <button class="b"> AC </button>
+                            </div>
+                                <div class="item">
+                                <button class="b"> AC </button>
+                                </div>
+                        </div>
+                        </div>
+
+                </div>
+            </div>  -->
+            <!-- <div class="aasdsad"> -->
+                    <span class="text--new--product">Product Popular</span>
                     <div class="containerz">
-                            <div class="itemz" *ngFor="let item of productNew | slice:0:16">
-                        <div class="containerz-dalem" >
-                        <div style="height: 50px;">
+
+                            <div class="itemz" *ngFor="let item of productPop | slice:0:8">
+                            <div class="containerz-dalem" >
+                            <div style="height: 50px;">
                                 <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
                             </div>
                             <div style="height: 10px;">
-                            <span class="product--name--store--name" (click)="goStore(item.storeUrl)">{{ item.storeName }}</span>
-                            <span>{{ item.locationName }}</span>
+                                <span (click)="goStore(productDetail.storeUrl)" class="product--name--store--name">{{ item.storeName }}</span>
+                                <span>{{ item.locationName }}</span>
                             </div>
                             </div>
-                    <div class="row">
-                            <div class="col-12">
-                                    <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
+                        <div class="row">
+                            <div class="col-12" style="height: 200px;">
+                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                             </div>
                             <div class="col-12 image--center">
-                                    <span class="text__center__pricelist">Rp. {{ item.pricelist | number  }}</span>
-                            <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:30 }}</span>
+                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
+                            <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:21 }}</span>
                             </div>
-                    </div>
+                        </div>
                             </div>
-                    </div>
-                    <!-- <div class="row">
+                        </div>
+                        <div class="row">
                             <div class="col-12">
-                                    <div class="aasdsad">
-                                            <div class="flex-wrapper">
-                                                    <div class="text--pop--searc">Popular Search</div>
-                                            <div class="item">
-                                            <button class="b"> Kaos Marvel </button>
-                                            </div>
-                                            <div class="item">
-                                            <button class="b"> OPPO A37 </button>
-                                            </div>
-                                            <div class="item">
-                                            <button class="b"> Iphone X </button>
-                                            </div>
-                                            <div class="item">
-                                            <button class="b"> Whey Protein </button>
-                                            </div>
-                                            <div class="item">
-                                            <button class="b"> AC </button>
-                                            </div>
-                                            <div class="item">
-                                            <button class="b"> AC </button>
-                                            </div>
-                                                    <div class="item">
-                                                            <button class="b"> AC </button>
-                                                    </div>
-                                                            <div class="item">
-                                                            <button class="b"> AC </button>
-                                                            </div>
-                                            </div>
-                                            </div>
-
+                                    <!-- <span class="text--new--product">Official Store</span> -->
                             </div>
-                    </div>  -->
-                    <!-- <div class="aasdsad"> -->
-                                    <span class="text--new--product">Product Popular</span>
-                                    <div class="containerz">
+                        </div>
 
-                                                    <div class="itemz" *ngFor="let item of productPop | slice:0:8">
-                                                    <div class="containerz-dalem" >
-                                                    <div style="height: 50px;">
-                                                            <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
-                                                    </div>
-                                                    <div style="height: 10px;">
-                                                            <span (click)="goStore(productDetail.storeUrl)" class="product--name--store--name">{{ item.storeName }}</span>
-                                                            <span>{{ item.locationName }}</span>
-                                                    </div>
-                                                    </div>
-                                            <div class="row">
-                                                    <div class="col-12" style="height: 200px;">
-                                                            <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
-                                                    </div>
-                                                    <div class="col-12 image--center">
-                                                            <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
-                                                    <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:21 }}</span>
-                                                    </div>
-                                            </div>
-                                                    </div>
-                                            </div>
-                                            <div class="row">
-                                                    <div class="col-12">
-                                                                    <!-- <span class="text--new--product">Official Store</span> -->
-                                                    </div>
-                                            </div>
-
-            </div>
         </div>
+    </div>
     <footer>
 
     </footer>
