@@ -138,7 +138,39 @@ export class ProductDetailComponent implements OnInit {
       // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
+      this.productService.getDiscus(params['id']).subscribe(resDiscus => {
+        console.log('discus',resDiscus);
+      });
 
+      this.productService.detailProduct(params['id']).subscribe(res => {
+        this.productDetail = res.data;
+        this.moreInformation = res.data.moreInformation;
+        console.log('this.productDetail: ', this.productDetail);
+        this.tabVal = this.productDetail.specification;
+
+        const thumborOption: ThumborOptions = {
+          width: 100,
+          height: 100,
+          fitting: ThumborSizingEnum.FIT_IN,
+          filter: {
+            fill: 'white'
+          }
+        };
+
+        this.productDetail.couriers.forEach((item, index) => {
+          this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
+        });
+
+        console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
+
+        // console.log('ini tabval', this.tabVal);
+        this.imgIndex = this.productDetail.imageUrl[0];
+        console.log('this.imgIndex: ', this.imgIndex);
+
+        if (this.isLogin) {
+          this.listShipping();
+        }
+      });
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
