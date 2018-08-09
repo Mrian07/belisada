@@ -6,6 +6,7 @@ import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
 import { ShoppingCartService } from './../../../core/services/shopping-cart/shopping-cart.service';
 import { AuthService } from '@belisada/core/services';
 import { AddressService } from './../../../core/services/address/address.service';
+import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 
 @Component({
   selector: 'app-another-offer',
@@ -20,7 +21,11 @@ export class AnotherOfferComponent implements OnInit {
 
   myForm: FormGroup;
 
+  shippingR: any;
+
   addressId: number;
+  shippingRates: any[];
+  rates: ShippingRate[];
 
   constructor(
     private productService: ProductService,
@@ -29,28 +34,51 @@ export class AnotherOfferComponent implements OnInit {
     private authService: AuthService,
     private addressService: AddressService,
     private fb: FormBuilder
-  ) { }
+  ) {
+    this.shippingR = '';
+  }
 
   ngOnInit() {
     this.cartItem = 1;
     this.loadData();
-    this.destinationId();
+    // this.destinationId();
     this.myForm = this.fb.group({
       courier: this.fb.array([]),
       classification: this.fb.array([]),
     });
   }
 
-  destinationId(){
-
-  //   const queryParam = {
-  //     itemCartIds: this.authService.getToken(),
-  //   };
-
+  shipment(productId,originId,weight){
     this.addressService.getShipping().subscribe(res => {
       this.addressId = res[0].addressId;
+
+      const queryParam = {
+        productId: productId,
+        weight: originId,
+        originId:weight,
+        destinationId: res[0].addressId,
+      };
+
+      this.shoppingCartService.getShippingRates(queryParam).subscribe(resship => {
+        this.shippingRates = resship;
+        console.log('res ship', resship);
+      });
+
    });
+
+
   }
+
+  // destinationId(){
+
+  // //   const queryParam = {
+  // //     itemCartIds: this.authService.getToken(),
+  // //   };
+
+  //   this.addressService.getShipping().subscribe(res => {
+  //     this.addressId = res[0].addressId;
+  //  });
+  // }
 
   loadData() {
 
@@ -58,6 +86,47 @@ export class AnotherOfferComponent implements OnInit {
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
+
+       
+
+        // res.data.forEach((cart, index) => {
+
+          // cart.cartItems.forEach((item, i) => {
+          //   const option = {
+          //     width: 150,
+          //     height: 150,
+          //     fitting: ThumborSizingEnum.FIT_IN,
+          //     filter: {
+          //       fill: 'fff'
+          //     }
+          //   };
+          //   const newImgUrl = this.thumborService.process(item.imageUrl, option);
+          //   this.checkoutTrx.cart[index].cartItems[i].imageUrl = newImgUrl;
+          // });
+  
+          // cart.itemCartIds.forEach((item) => {
+          //   if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
+          // });
+          // this.shippingAddresses[index] =
+          //   (cart.shippingAddressId === 0) ? 0 :
+          //     (cart.destinations.some(x => x.shippingAddressId === cart.shippingAddressId)) ? cart.shippingAddressId : 0;
+  
+          // const queryParam = {
+          //   itemCartIds: cart.itemCartIds,
+          //   originId: cart.originId,
+          //   destinationId: cart.destinationId,
+          //   weight: cart.totalWeight
+          // };
+          // this.getShippingRates(queryParam, index, () => {
+          //   this.shippingRates[index] = (cart.courierCode === '') ? '' :
+          //     (this.rates[index].some(
+          //       x => x.courierCode + '~' + x.courierService === cart.courierCode + '~' + cart.courierService))
+          //         ? cart.courierCode + '~' + cart.courierService : '';
+          //   this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
+          // });
+       // });
+
+
         const queryParams = {
           page: 1,
           ot: 'asc',
@@ -66,6 +135,27 @@ export class AnotherOfferComponent implements OnInit {
         };
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
+
+          for(let item of this.filter.content){
+            this.addressService.getShipping().subscribe(res => {
+              this.addressId = res[0].addressId;
+        
+              const queryParam = {
+                productId: item.productId,
+                weight: item.originId,
+                originId: item.weight,
+                destinationId: res[0].addressId,
+              };
+        
+              this.shoppingCartService.getShippingRates(queryParam).subscribe(resship => {
+                this.shippingRates = resship;
+                console.log('res ship', resship);
+              });
+        
+           });
+          }
+
+
           console.log('hasil offer', respon);
           this.productService.getFilterOffers(queryParams).subscribe(respons => {
             this.filterOffers = respons;
@@ -105,14 +195,6 @@ export class AnotherOfferComponent implements OnInit {
         console.log('not specified');
         break;
     }
-
-    // console.log('listClassification: ', listClassification.value);
-
-    // const queryParams = {
-    //   shipping: listCourier.value,
-    //   classification: listClassification.value,
-    // }
-
 
     this.activatedRoute.params.subscribe((params: Params) => {
 

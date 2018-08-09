@@ -25,6 +25,7 @@
           <div *ngFor="let itemFilter of filterOffers">
             <div class="itemFT">{{itemFilter.filter}}</div>
             <div class="itemFC" *ngFor="let itemFilterC of itemFilter.data">
+
                 <input [checked]="classificationOpt === itemFilterC.filterName" type="checkbox" (change)="getFilId(itemFilter.filter,itemFilterC.filterName, $event.target.checked)"> 
               {{itemFilterC.filterName}}
             </div>
@@ -69,8 +70,11 @@
                 {{item.locationName}}
               </div>
               <div class="text-c">
-                <div class="btn-rate">Pilih Pengiriman</div>
-                <div class="val-rate">TIKI</div>
+                <select [(ngModel)]="shippingR"
+                    class="u-margin-right-1">
+                    <option disabled value="">Pilih Pengiriman</option>
+                    <option *ngFor="let rate of shippingRates" [ngValue]='rate'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                </select>
               </div>
               <div class="text-c">
                 {{item.storeName}}
@@ -80,6 +84,26 @@
               </div>
             </div>
           
+
+            <!-- <div class="paging" *ngIf="list.totalElements!=0">
+                <ul>
+                    <li>
+                        <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+                    </li>
+                    <li>
+                        <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+                    </li>
+                    <li *ngFor="let p of pages">
+                        <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+                    </li>
+                    <li>
+                        <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+                    </li>
+                    <li>
+                        <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+                    </li>
+                </ul>
+            </div> -->
 
 
         </div>
