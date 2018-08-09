@@ -26,7 +26,7 @@
             <div class="itemFT">{{itemFilter.filter}}</div>
             <div class="itemFC" *ngFor="let itemFilterC of itemFilter.data">
 
-                <input [checked]="classificationOpt === itemFilterC.filterName" type="checkbox" (change)="getFilId(itemFilter.filter,itemFilterC.filterName, $event.target.checked)"> 
+                <input [checked]="classificationOpt === itemFilterC.filterName" type="checkbox" (change)="getFilId(itemFilter.filter,itemFilterC.filterId, $event.target.checked)"> 
               {{itemFilterC.filterName}}
             </div>
           </div>
