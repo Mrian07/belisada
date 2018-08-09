@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
-import { AddProductRequest, AddProductResponse, ProductDetail } from '@belisada/core/models/product/product.model';
+import { AddProductRequest, AddProductResponse, ProductDetail, Filter, FilterOffers } from '@belisada/core/models/product/product.model';
 import { ProductDetailSimple, ProductSimple } from '@belisada/core/models/product/product-detail-simple';
 
 @Injectable({
@@ -42,4 +42,30 @@ export class ProductService {
         map(response => response as ProductDetail)
       );
   }
+
+  getOffers(queryParams): Observable<Filter> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    // params.set('productId', id);
+    return this.http.get(this.configuration.apiUrlMongo + '/search/offers', {params: params})
+      .pipe(
+        map(response => response as Filter)
+      );
+  }
+
+
+  getFilterOffers(queryParams): Observable<FilterOffers[]> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    // params.set('productId', id);
+    return this.http.get(this.configuration.apiUrlMongo + '/search/filterOffers', {params: params})
+      .pipe(
+        map(response => response as FilterOffers[])
+      );
+  }
+
 }

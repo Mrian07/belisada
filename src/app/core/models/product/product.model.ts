@@ -133,4 +133,64 @@ export class MoreInformation {
   storeImageUrl: string;
 }
 
+export class Filter{ 
+  content: FilterContent[]
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  size: number;
+  sort: FilterSort;
+  totalElements: number;
+  totalPages: number;
+}
+
+export class FilterSort{ 
+  ascending:boolean;
+  descending: boolean;
+  direction: string;
+  ignoreCase: boolean;
+  nullHandling: string;
+  property: string;
+}
+
+export class FilterContent{
+  brandId: number;
+  brandImageUrl: string;
+  brandName: string;
+  discount: number;
+  id:number;
+  imageUrl: string;
+  locationId: number;
+  locationName: string;
+  name: string;
+  originId: number;
+  pricelist: number;
+  productId: number;
+  qty: number;
+  rate: number;
+  review: number;
+  sku: number;
+  specialPrice: number;
+  storeId: number;
+  storeImageUrl: string;
+  storeName: string;
+  storeUrl: string;
+  weight: number;
+}
+
+
+export class FilterOffers{
+  filter: string;
+  data: DataFilter[];
+}
+
+export class DataFilter{
+  filterCount: number
+  filterName: string;
+  filterId: number;
+  code: string;
+  name: string;
+}
+
 

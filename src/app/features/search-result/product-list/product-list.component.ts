@@ -33,6 +33,7 @@ export class ProductListComponent implements OnInit {
   userlistCourier: any;
   a;
   en;
+  functionOnStore;
   produkIMG: any;
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,

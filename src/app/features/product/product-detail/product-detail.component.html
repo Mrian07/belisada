@@ -22,8 +22,8 @@
                     </div> -->
                     <div class="product-info" *ngIf="isLogin">
                         <span class="strong-text">Dikirim Dari:</span> {{ productDetail.locationName }}
-                        <br>Ke {{ shippingAddress.regionName }}, {{ shippingAddress.cityName }}, 
-                        
+                        <br>Ke {{ shippingAddress.regionName }}, {{ shippingAddress.cityName }},
+
                         <select [(ngModel)]="shippingAddress" (change)="addressChange()"
                             class="u-margin-right-1">
                             <option disabled value="">Pilih Alamat</option>
@@ -35,7 +35,7 @@
                         <span class="btn-flag"><fa-icon [icon]="['fas', 'exclamation']"></fa-icon></span>
                     </div>
                     <div class="product-info" *ngIf="isLogin">
-                        <span class="strong-text">Metode Pengiriman: 
+                        <span class="strong-text">Metode Pengiriman:
                         <select [(ngModel)]="shippingRates"
                             class="u-margin-right-1">
                             <option disabled value="">Pilih Pengiriman</option>
@@ -92,17 +92,17 @@
                                         <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
                                     </ul>
                             </div>
-                        </div>  
+                        </div>
 
                 </div> -->
 
-                
+
 
 
                 <div class="row u-margin-top-2">
                     <div class="col-6">
                         <!-- <span class="show-small-text"> -->
-                            <fa-icon [icon]="['far', 'heart']"></fa-icon> Tambahkan ke Wishlist 
+                            <fa-icon [icon]="['far', 'heart']"></fa-icon> Tambahkan ke Wishlist
                         <!-- </span>  -->
                     </div>
                     <div class="col-6 right">
@@ -122,12 +122,12 @@
 
                         <!-- <span class="show-small-text">Share</span> <img src='assets/img/dummy-sosmed.jpg'> -->
                     </div>
-                </div>    
+                </div>
             </div>
             <div class="col-2">
 
                 <div class="sidebar-title">
-                        Informasi Penjual 
+                        Informasi Penjual
                 </div>
                 <div class="sidebar-conten">
                     <div class="sidebar-info">
@@ -143,7 +143,7 @@
                     <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
                 </div>
 
-                <div class="sidebar-title">
+                <!-- <div class="sidebar-title">
                     Dukungan Pengiriman
                 </div>
                 <div class="sidebar-conten">
@@ -151,10 +151,12 @@
                         <li *ngFor="let courier of productDetail.couriers">
                             <img [src]="courier.imageUrl" alt="">
                             <span>{{ courier.name }} <fa-icon class="checklist" [icon]="['fas', 'check']"></fa-icon></span>
-                            <!-- <span>Yes <fa-icon class="checklist" [icon]="['fas', 'check']"></fa-icon></span> -->
+
                         </li>
                     </ul>
-                </div>
+                </div> -->
+
+                <div class="btn-penawaran" (click)="penawaran(productDetail.productId,productDetail.name)">Penawaran Lainnya</div>
             </div>
         </div>
 
@@ -206,56 +208,56 @@
         <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span> 
+                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
               </div>
             </div>
-          
+
     <table id="customers">
-    
+
         <tr *ngFor="let item of productDetail.specification">
           <td>{{item.name}} :</td>
           <td>{{ item. value }}</td>
         </tr>
       </table>
-    
+
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskripsi === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span> 
+                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
                   <span>{{ productDetail.description }}</span>
               </div>
             </div>
-          
+
     <!-- <table id="customers">
-    
+
         <tr *ngFor="let item of productDetail.specification">
           <td>{{item.name}} :</td>
           <td>{{ item. value }}</td>
         </tr>
       </table> -->
-    
+
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> coming soon </span> 
+                  <span class="w__fontsize--prodName"> coming soon </span>
               </div>
             </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
             <div class="row">
               <div class="col-12">
-                  <span class="w__fontsize--prodName"> coming soon </span> 
+                  <span class="w__fontsize--prodName"> coming soon </span>
               </div>
             </div>
         </div>
 
     </div>
-    
+
 <div class="w__paddingin"></div>
 </div>
 
-    
-    
-    
+
+
+

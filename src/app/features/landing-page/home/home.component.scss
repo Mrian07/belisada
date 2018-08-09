@@ -557,6 +557,55 @@ footer {
      font-size:24px;
  }
 
+ .w-wrapper__in--home {
+     background-color: white;
+     height: 300px;
+     .w-text__for-welcome {
+         display: block;
+         font-size: 22px;
+         font-weight: bold;
+         color: black;
+         text-align: center;
+     }
+     .w-image__for-welcome {
+        position: absolute;
+        /* left: 1px; */
+        /* top: -7px; */
+        z-index: 1;
+        bottom: 100px;
+        left: -11px;
+        width: 200px;
+     }
+     .w-text__botom-welcome {
+        padding-top: 8%;
+        font-size: 14px;
+
+     }
+     .w__wrapper--for-button {
+        display: grid;
+        -ms-grid-columns: 50% 50%;
+        grid-template-columns: 40% 40% 20%;
+        grid-gap: 1em;
+        padding-top: 3%;
+        .w__isi--buton {
+            text-align: right;
+        }
+        .w__isi--buton--ber {
+            // text-align: left;
+            padding-left: 112px;
+
+        }
+        .w-aasdasdsa {
+            position: absolute;
+            z-index: 1;
+            bottom: 11%;
+            left: 72%;
+
+     width: 100px;
+        }
+     }
+ }
+
 
  @media screen and (max-width: 1440px) {
     .containerz {

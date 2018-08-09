@@ -1,0 +1,91 @@
+<div class="containPage has-header">
+  <div class="containPageCenter">
+    <div class="frame-ao">
+      <div class="frm">
+        <div class="toProduct">
+          Return To Product 
+        </div>
+        <div class="ingnJual">
+          Ingin menjual juga? 
+        </div>
+      </div>
+
+      <div class="frm">
+        <div class="img-p">
+          <img src="{{productDetail.brandImageUrl}}" border="0">
+        </div>
+        <div>
+          <span class="text-p">{{productDetail.name}}</span>
+          <span class="text-p">{{productDetail.brandName}}</span>
+        </div>
+      </div>
+
+      <div class="frm">
+        <div>
+          <div *ngFor="let itemFilter of filterOffers">
+            <div class="itemFT">{{itemFilter.filter}}</div>
+            <div class="itemFC" *ngFor="let itemFilterC of itemFilter.data">
+                <input [checked]="classificationOpt === itemFilterC.filterName" type="checkbox" (change)="getFilId(itemFilter.filter,itemFilterC.filterName, $event.target.checked)"> 
+              {{itemFilterC.filterName}}
+            </div>
+          </div>
+        </div>
+        <div>
+          
+          <div class="frm-title">
+            <div class="title-c">
+              Price
+            </div>
+            <div class="title-c">
+              Qty
+            </div>
+            <div class="title-c">
+              Kondisi
+            </div>
+            <div class="title-c">
+              Lokasi
+            </div>
+            <div class="title-c">
+              Shipment
+            </div>
+            <div class="title-c">
+              Sold By
+            </div>
+          </div>
+
+          <div class="frm-contain" *ngFor="let item of filter.content">
+              <div class="text-c">
+                {{item.pricelist}}
+              </div>
+              <div class="text-c">
+                  <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> 
+                  <span class="item-qty"> {{cartItem}} </span>
+                  <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span> 
+              </div>
+              <div class="text-c">
+                {{item.classificationValue}}
+              </div>
+              <div class="text-c">
+                {{item.locationName}}
+              </div>
+              <div class="text-c">
+                <div class="btn-rate">Pilih Pengiriman</div>
+                <div class="val-rate">TIKI</div>
+              </div>
+              <div class="text-c">
+                {{item.storeName}}
+              </div>
+              <div class="text-c">
+                <div class="btn-add">Add To Cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></div>
+              </div>
+            </div>
+          
+
+
+        </div>
+      </div>
+      <!-- <span class="toProduct">Return To Product</span> <span class="ingnJual">Ingin menjual juga?</span>  -->
+
+    </div>
+  </div>
+</div>

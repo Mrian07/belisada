@@ -1,7 +1,8 @@
+import { ModelsComponent } from './../../../shared/components/models/models.component';
 import swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, HostListener, Output, EventEmitter } from '@angular/core';
 import { UserData, Home } from '@belisada/core/models';
 import { StoreService, UserService, HomeSService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
@@ -14,13 +15,16 @@ import { Observable } from 'rxjs';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
-  imageUrls = [
-     'https://cdn.vox-cdn.com/uploads/chorus_image/image/56748793/dbohn_170625_1801_0018.0.0.jpg',
-     'https://cdn.vox-cdn.com/uploads/chorus_asset/file/9278671/jbareham_170917_2000_0124.jpg' ,
-     'https://cdn.vox-cdn.com/uploads/chorus_image/image/56789263/akrales_170919_1976_0104.0.jpg'
+export class HomeComponent implements OnInit, OnDestroy {
+    imageUrls = [
+      'https://cdn.vox-cdn.com/uploads/chorus_image/image/56748793/dbohn_170625_1801_0018.0.0.jpg',
+      'https://cdn.vox-cdn.com/uploads/chorus_asset/file/9278671/jbareham_170917_2000_0124.jpg' ,
+      'https://cdn.vox-cdn.com/uploads/chorus_image/image/56789263/akrales_170919_1976_0104.0.jpg'
     ];
 
+      @Input() sideBar: ModelsComponent;
+      @Input() visible: boolean;
+      @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   public validationOnpopUpCreateStore: FormGroup;
   provinces: Province[];
   nameOwner: FormControl;
@@ -48,31 +52,47 @@ export class HomeComponent implements OnInit {
   productStoreUrl;
   lnght;
   imageUrlArray;
+  showDialog;
+  dataForPopUp;
 
-  private $counter: Observable<number>;
 
   constructor(
     private fb: FormBuilder,
     private storeService: StoreService,
     private userS: UserService,
     private router: Router,
-    private homeS: HomeSService) {
-      this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
-
-      this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
+    private homeS: HomeSService
+  ) {
+    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
   }
 
   ngOnInit() {
     this.flagStatus();
     this.regForm = true;
+    this.bukaPopUp();
+    this.formData();
+    this.userData = this.userS.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    if (this.userData) {
+      this.isLogin = true;
+    }
+    this.getDataForNew();
+    this.getDataForPop();
+  }
 
+  private bukaPopUp() {
+    this.dataForPopUp = sessionStorage.getItem('boolean');
+    this.showDialog = this.showDialog = !this.showDialog;
+  }
+
+  private formData() {
     this.storeName = new FormControl(null, Validators.required);
     this.storeUrl = new FormControl(null, Validators.required);
     this.validationOnpopUpCreateStore = this.fb.group({
       nameOwner: new FormControl(null, Validators.required),
       name: new FormControl(null, Validators.required),
       storeUrl: this.storeUrl,
-    //   address: new FormControl(null, Validators.required),
+      //   address: new FormControl(null, Validators.required),
       email: new FormControl('', [
         Validators.required,
         Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
@@ -81,27 +101,25 @@ export class HomeComponent implements OnInit {
         Validators.required,
         Validators.minLength(7)
       ]),
-    //   province: new FormControl(null, Validators.required),
-    //   city: new FormControl(null, Validators.required),
-    //   district: new FormControl(null, Validators.required),
-    //   villageId: new FormControl(null,
-    //       Validators.required,
-    //   ),
-    //   postal: new FormControl('', [
-    //       Validators.required,
-    //       Validators.minLength(5),
-    //       Validators.maxLength(5)
-
-    //   ]),
-    //   description: new FormControl(null, Validators.required)
     });
-    this.userData = this.userS.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
-    if (this.userData) {
-      this.isLogin = true;
-    }
-    this.getDataForNew();
-    this.getDataForPop();
   }
+
+  alertOnInit() {
+    alert('aaa');
+  }
+  gotoHome() {
+    this.router.navigate(['/']);
+
+  }
+  onFilterClick() {
+    console.log('asdasd');
+    this.visible = false;
+    this.visibleChange.emit(this.visible);
+}
+  functionOnStore() {
+      console.log('asdasdsadasd');
+  }
+
 
   getDataForNew() {
   this.homeS.getHomeNew().subscribe(res => {
@@ -155,8 +173,7 @@ export class HomeComponent implements OnInit {
     });
   }
   goStore(url) {
-  this.router.navigate(['/' + url]);
-  console.log(url);
+    this.router.navigate(['/' + url]);
   }
 
   goToDetail(id, name) {
@@ -283,5 +300,12 @@ export class HomeComponent implements OnInit {
     });
   });
   }
+
+
+  ngOnDestroy() {
+    sessionStorage.setItem('boolean', 'false');
+    console.log('asdsadsad');
+   }
+
 
 }

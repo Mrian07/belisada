@@ -35,10 +35,10 @@
                         </div> -->
 
 
-                        
+
                     <!-- </div> -->
                 </div>
-        
+
                 <div class="menu__container" *ngIf="isMenu == true">
                     <div class="menu__container--title" *ngFor="let menu of menuCategory" (mouseenter)="subMenu(menu.categoryId)">
                         {{menu.name}}
@@ -169,14 +169,14 @@
                         <img class="country-flag  img-circle" src="{{avatar}}" alt="">
                         <span class="text-language w--text--name">
                                 {{ userData.name.split(' ')[0]  }}
-                            
+
                         </span>
                     <!-- <div class="profile-wrapper">
                         <img class="u-display-block centered-block-element img-circle" src="{{avatar}}" alt="">
                         <span class="u-display-block text-profile">{{ userData.name.split(' ')[0] }}</span>
                     </div> -->
 
-    
+
                 </a>
                 <div [ngClass]="isAccountMenu ? 'show-element' : 'hide-element'" class="account-menu__container">
                     <div (click)="goToProfile()" class="cursor-on-profile">Profile</div>
@@ -187,14 +187,14 @@
                     <li *ngIf="role === 0" class="padding__button">
                         <div (click)="showDialog = !showDialog" class="colx2 btn btn--orange btn--size--80 w--forbutton">
                             <div>
-                                
+
                                 <p class="padding--for--text">Mulai Berjualan</p>
                             <!-- <p>belisada</p> -->
                             </div>
                             <div>
                                 <img  class="padding--for--text" src="/assets/img/store_icon.png">
                             </div>
-        
+
                         </div>
                         </li>
 
@@ -207,29 +207,29 @@
                                 <div>
                                     <img class="padding--for--text" src="/assets/img/store_icon.png">
                                 </div>
-            
+
                             </div>
                             </li>
 
                             <li *ngIf="role === 2" class="padding__button">
                                     <div (click)="navigateToIkutJualan()" class="colx2 btn btn--orange btn--size--80 w-In-Role2">
-        
+
                                         <div>
                                             <p class="padding--for--text">Mulai Berjualan</p>
-                                           
+
                                         </div>
                                         <div>
                                             <img class="padding--for--text" src="/assets/img/store_icon.png">
                                         </div>
-                    
+
                                     </div>
                                     </li>
 
-                                    
+
 
 
 <app-models [(visible)]="showDialog" class="frameDialog">
-        <div class="modal-body">  
+        <div class="modal-body">
             <div *ngIf="regForm==true">
                     <div class="title">Buka Toko</div>
                     <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
@@ -246,8 +246,8 @@
                             <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Nama toko tidak boleh kosong"></app-field-error-display>
                         </ng-template>
                         <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama Toko <img src="assets/img/wait.gif"></div>
-    
-    
+
+
                         <input type="text" formControlName="email" maxlength="60" class="input-style-text-100" placeholder="Masukan email">
                         <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
                             <span class="tooltiptext">Harap masukan format email dengan benar</span>
@@ -255,23 +255,23 @@
                         <ng-template #emailOn>
                             <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Email tidak boleh kosong"></app-field-error-display>
                         </ng-template>
-    
+
                         <input type="password" formControlName="password" maxlength="60" class="input-style-text-100" placeholder="Masukan password">
                         <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
                             <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password tidak boleh kosong</p>
-    
+
                             <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Minimal panjang password 7 karakter. </p>
                         </div>
-    
+
                         <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
                         <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
                         <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
                     </form>
             </div>
 
-               
+
                 <div *ngIf="regSuccess==true" class="regSuccess">
-                        <div class="title">Pendaftaran Berhasil</div>    
+                        <div class="title">Pendaftaran Berhasil</div>
                         <div class="text-success">Selamat Toko Anda Berhasil Didaftarkan</div>
                     </div>
         </div>
@@ -287,7 +287,7 @@
             </li>
         </ul>
 
-        
+
     </div>
 </div>
 

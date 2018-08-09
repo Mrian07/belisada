@@ -9,3 +9,4 @@ export * from './filter/filter-s.service';
 export * from './searchBar/search-bar.service';
 export * from './globals/globals';
 export * from './home/home-s.service';
+export * from './testService/testing-services.service';

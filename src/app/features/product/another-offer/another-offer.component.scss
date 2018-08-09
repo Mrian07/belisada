@@ -1,0 +1,101 @@
+.frame-ao{
+    border: 1px solid #dddddd;
+    padding:10px;
+    margin: 20px 0px;
+}
+
+.frm{
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    margin-top:20px;
+    font-size: 12px;
+}
+
+.toProduct{
+    padding: 0px 10px 0px 0px;
+    border-right: 1px solid #dddddd;
+    color:#4687e8;
+    text-align: right;
+}
+
+.ingnJual{
+    padding: 0px 0px 0px 10px;
+    color:#4687e8;
+}
+
+.text-p{
+    font-weight: bold;
+    display: block;
+}
+
+.img-p{
+    text-align: center;
+}
+
+.frm-title{
+    display: grid;
+    width:980px;
+    grid-template-columns: 150px 120px  150px  150px  150px 150px;
+    border-bottom:1px solid #dddddd;
+    text-align: center;
+    padding-bottom: 5px;
+}
+
+.title-c{
+    font-weight: bold;
+}
+
+.frm-contain{
+    text-align: center;
+    margin-top:10px;
+    width:980px;
+    display: grid;
+    grid-template-columns: 150px 120px  150px  150px  150px 150px 1fr;
+}
+
+.plus-minus{
+    border: 1px solid #dddddd;
+    padding:5px;
+    margin:10px;
+    cursor: pointer;
+    color:#747474;
+    border-radius:5px;
+}
+
+.plus-minus:hover{
+    background: #dddddd;
+}
+
+.btn-add{
+    background: #232f3d;
+    padding:5px;
+    color:#f4f5f6;
+    text-align:center;
+}
+
+.itemFT{
+    margin-top:10px;
+    font-weight: bold;
+}
+
+.itemFC{
+    font-size: 12px;
+}
+
+.btn-rate{
+    background: #2abef5;
+    border-radius: 5px 5px 0px 0px;
+    padding:7px;
+    color:#ffffff;
+    cursor: pointer;
+}
+
+.btn-rate:hover{
+    background: #56cbf6;
+}
+
+.val-rate{
+    border: 1px solid #2abef5;
+    border-radius: 0px 0px 5px 5px;
+    padding:7px;
+}
