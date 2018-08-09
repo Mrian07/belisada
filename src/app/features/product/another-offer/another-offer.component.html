@@ -54,14 +54,14 @@
             </div>
           </div>
 
-          <div class="frm-contain" *ngFor="let item of filter.content">
+          <div class="frm-contain" *ngFor="let item of filter.content; let i = index">
               <div class="text-c">
-                {{item.pricelist}}
+                Rp {{item.pricelist | number}}
               </div>
               <div class="text-c">
-                  <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> 
-                  <span class="item-qty"> {{cartItem}} </span>
-                  <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span> 
+                  <span class="plus-minus" (click)="decreaseQty(cartItem[i], i)"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> 
+                  <span class="item-qty"> {{ cartItem[i] }} </span>
+                  <span class="plus-minus" (click)="increaseQty(cartItem[i], i)"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span> 
               </div>
               <div class="text-c">
                 {{item.classificationValue}}
@@ -70,10 +70,10 @@
                 {{item.locationName}}
               </div>
               <div class="text-c">
-                <select [(ngModel)]="shippingR"
+                <select [(ngModel)]="shippingRates[i]"
                     class="u-margin-right-1">
                     <option disabled value="">Pilih Pengiriman</option>
-                    <option *ngFor="let rate of shippingRates" [ngValue]='rate'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                    <option *ngFor="let rate of shipRates[i]" [ngValue]='rate'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                 </select>
               </div>
               <div class="text-c">

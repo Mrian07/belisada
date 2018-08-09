@@ -87,7 +87,7 @@ export class CheckoutComponent implements OnInit {
   getCartCheckout() {
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
-
+       console.log('test', response); 
       response.cart.forEach((cart, index) => {
 
         cart.cartItems.forEach((item, i) => {
