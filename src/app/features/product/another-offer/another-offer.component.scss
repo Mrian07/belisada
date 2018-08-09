@@ -81,3 +81,21 @@
 .itemFC{
     font-size: 12px;
 }
+
+.btn-rate{
+    background: #2abef5;
+    border-radius: 5px 5px 0px 0px;
+    padding:7px;
+    color:#ffffff;
+    cursor: pointer;
+}
+
+.btn-rate:hover{
+    background: #56cbf6;
+}
+
+.val-rate{
+    border: 1px solid #2abef5;
+    border-radius: 0px 0px 5px 5px;
+    padding:7px;
+}

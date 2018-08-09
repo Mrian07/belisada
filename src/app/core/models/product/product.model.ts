@@ -133,7 +133,28 @@ export class MoreInformation {
   storeImageUrl: string;
 }
 
-export class Filter{
+export class Filter{ 
+  content: FilterContent[]
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  size: number;
+  sort: FilterSort;
+  totalElements: number;
+  totalPages: number;
+}
+
+export class FilterSort{ 
+  ascending:boolean;
+  descending: boolean;
+  direction: string;
+  ignoreCase: boolean;
+  nullHandling: string;
+  property: string;
+}
+
+export class FilterContent{
   brandId: number;
   brandImageUrl: string;
   brandName: string;
@@ -155,7 +176,9 @@ export class Filter{
   storeImageUrl: string;
   storeName: string;
   storeUrl: string;
+  weight: number;
 }
+
 
 export class FilterOffers{
   filter: string;
