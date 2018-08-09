@@ -46,6 +46,13 @@ export class ProductDetailComponent implements OnInit {
   activeDiskripsi: boolean;
   activeDiskusi: boolean;
   activeUlasan: boolean;
+  showmore;
+
+
+  title:String;
+  list:any;
+  startPage : Number;
+  paginationLimit:Number;
 
   imgIndex: string;
 
@@ -73,6 +80,34 @@ export class ProductDetailComponent implements OnInit {
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
+    this.showmore = 'true';
+
+
+    this.list = [
+      {name:'Prashobh',age:'25'},
+      {name:'Abraham',age:'35'},
+      {name:'Anil',age:'40'},
+      {name:'Sam',age:'40'},
+      {name:'Philip',age:'40'},
+      {name:'Bal',age:'40'},
+      {name:'Anu',age:'20'},
+      {name:'Sam',age:'25'},
+      {name:'Rocky',age:'35'},
+      {name:'Major',age:'40'},
+      {name:'Kian',age:'40'},
+      {name:'Karan',age:'40'},
+      {name:'Bal',age:'40'},
+      {name:'Anu',age:'20'},
+      {name:'Prashobh',age:'25'},
+      {name:'Abraham',age:'35'},
+      {name:'Anil',age:'40'},
+      {name:'Sam',age:'40'},
+      {name:'Philip',age:'40'},
+      {name:'Bal',age:'40'},
+      {name:'Anu',age:'20'}
+    ]
+    this.startPage = 0;
+    this.paginationLimit = 4;
   }
 
   ngOnInit() {
@@ -141,6 +176,14 @@ export class ProductDetailComponent implements OnInit {
     this.activeDiskripsi = false;
     this.activeDiskusi = false;
     this.activeUlasan = false;
+  }
+  showMoreItems()
+  {
+     this.paginationLimit = Number(this.paginationLimit) + 3;
+  }
+  showLessItems()
+  {
+    this.paginationLimit = Number(this.paginationLimit) - 3;
   }
 
   goStore(url) {
