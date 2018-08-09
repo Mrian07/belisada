@@ -6,6 +6,7 @@ import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
 import { ShoppingCartService } from './../../../core/services/shopping-cart/shopping-cart.service';
 import { AuthService } from '@belisada/core/services';
 import { AddressService } from './../../../core/services/address/address.service';
+import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 
 @Component({
   selector: 'app-another-offer',
@@ -13,14 +14,23 @@ import { AddressService } from './../../../core/services/address/address.service
   styleUrls: ['./another-offer.component.scss']
 })
 export class AnotherOfferComponent implements OnInit {
-  cartItem: number;
+  cartItem = [];
+  cartItem2: number;
   productDetail: ProductDetailList = new ProductDetailList();
   filter: Filter = new Filter();
   filterOffers: FilterOffers[];
 
   myForm: FormGroup;
 
+  shippingR: any[];
+
   addressId: number;
+  // shippingRates: any[];
+  // rates: ShippingRate[];
+  // shippingRates = [];
+  shipRates = [];
+  rates = [];
+  shippingRates = [];
 
   constructor(
     private productService: ProductService,
@@ -29,28 +39,18 @@ export class AnotherOfferComponent implements OnInit {
     private authService: AuthService,
     private addressService: AddressService,
     private fb: FormBuilder
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
-    this.cartItem = 1;
     this.loadData();
-    this.destinationId();
     this.myForm = this.fb.group({
       courier: this.fb.array([]),
       classification: this.fb.array([]),
     });
   }
 
-  destinationId(){
-
-  //   const queryParam = {
-  //     itemCartIds: this.authService.getToken(),
-  //   };
-
-    this.addressService.getShipping().subscribe(res => {
-      this.addressId = res[0].addressId;
-   });
-  }
 
   loadData() {
 
@@ -58,6 +58,7 @@ export class AnotherOfferComponent implements OnInit {
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
+
         const queryParams = {
           page: 1,
           ot: 'asc',
@@ -66,7 +67,33 @@ export class AnotherOfferComponent implements OnInit {
         };
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
-          console.log('hasil offer', respon);
+          console.log('list prod', respon);
+
+          this.addressService.getShipping().subscribe(res => {
+            this.addressId = res[0].addressId;
+
+            respon.content.forEach((cart, index) => {
+              this.cartItem[index] = 1;
+              this.cartItem2 =1;
+              this.shippingRates[index] = '';
+              console.log('cartItem: ', this.cartItem);
+  
+              const queryParams = {
+                productId: cart.productId,
+                weight: cart.originId,
+                originId: cart.weight,
+                destinationId: this.addressId,
+              };
+  
+  
+              this.shoppingCartService.getShippingRates(queryParams).subscribe(resship => {
+                this.shipRates[index] = resship;
+                console.log('this.shipRates', this.shipRates);
+              });
+  
+            });
+          });
+
           this.productService.getFilterOffers(queryParams).subscribe(respons => {
             this.filterOffers = respons;
           });
@@ -106,14 +133,6 @@ export class AnotherOfferComponent implements OnInit {
         break;
     }
 
-    // console.log('listClassification: ', listClassification.value);
-
-    // const queryParams = {
-    //   shipping: listCourier.value,
-    //   classification: listClassification.value,
-    // }
-
-
     this.activatedRoute.params.subscribe((params: Params) => {
 
       this.productService.detailProduct(params['id']).subscribe(res => {
@@ -137,40 +156,15 @@ export class AnotherOfferComponent implements OnInit {
     
   }
 
-  decreaseQty(cartItem) {
-    if(cartItem >1){
-      this.cartItem = cartItem-1;
-    }
-    
 
-    // if (cartItem.quantity > 1) {
-    //   const data = {
-    //     itemCartId: cartItem.itemCartId,
-    //     note: '',
-    //     quantity: --cartItem.quantity
-    //   };
-    //   this.shoppingCartService.updateCart(data).subscribe(response => {
-    //     if (response.status === 1) {
-    //       this.shoppingCartService.updateQuantity(cartItem.productId, -1);
-    //       this.getCartCheckout();
-    //     }
-    //   });
-    // }
+  decreaseQty(cartItem, index) {
+    if(cartItem >1){
+      this.cartItem[index]= cartItem-1;
+    }
   }
 
-  increaseQty(cartItem) {
-    this.cartItem = cartItem+1;
-    // const data = {
-    //   itemCartId: cartItem.itemCartId,
-    //   note: '',
-    //   quantity: ++cartItem.quantity
-    // };
-    // this.shoppingCartService.updateCart(data).subscribe(response => {
-    //   if (response.status === 1) {
-    //     this.shoppingCartService.updateQuantity(cartItem.productId, +1);
-    //     this.getCartCheckout();
-    //   }
-    // });
+  increaseQty(cartItem, index) {
+    this.cartItem[index] = cartItem+1;
   }
 
 }
