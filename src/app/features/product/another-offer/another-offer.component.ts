@@ -16,6 +16,7 @@ import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-optio
 export class AnotherOfferComponent implements OnInit {
   cartItem = [];
   cartItem2: number;
+
   productDetail: ProductDetailList = new ProductDetailList();
   filter: Filter = new Filter();
   filterOffers: FilterOffers[];
@@ -25,12 +26,15 @@ export class AnotherOfferComponent implements OnInit {
   shippingR: any[];
 
   addressId: number;
-  // shippingRates: any[];
-  // rates: ShippingRate[];
-  // shippingRates = [];
   shipRates = [];
   rates = [];
   shippingRates = [];
+
+  sortUrut: string;
+  sortName: string;
+  currentPage: number;
+  lastPage: number;
+  pages: any = [];
 
   constructor(
     private productService: ProductService,
@@ -38,7 +42,8 @@ export class AnotherOfferComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private authService: AuthService,
     private addressService: AddressService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
 
   }
@@ -53,8 +58,10 @@ export class AnotherOfferComponent implements OnInit {
 
 
   loadData() {
-
+    
     this.activatedRoute.params.subscribe((params: Params) => {
+      this.pages = [];
+      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
@@ -67,6 +74,13 @@ export class AnotherOfferComponent implements OnInit {
         };
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
+          this.lastPage = this.filter.totalPages;
+          for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+            if (r > 0 && r <= this.filter.totalPages) {
+              this.pages.push(r);
+            }
+          }
+
           console.log('list prod', respon);
 
           this.addressService.getShipping().subscribe(res => {
@@ -76,7 +90,6 @@ export class AnotherOfferComponent implements OnInit {
               this.cartItem[index] = 1;
               this.cartItem2 =1;
               this.shippingRates[index] = '';
-              console.log('cartItem: ', this.cartItem);
   
               const queryParams = {
                 productId: cart.productId,
@@ -165,6 +178,14 @@ export class AnotherOfferComponent implements OnInit {
 
   increaseQty(cartItem, index) {
     this.cartItem[index] = cartItem+1;
+  }
+
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
+    if (page < 1 || page > this.filter.totalPages) { return false; }
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate(['/product/another-offer'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    window.scrollTo(0, 0);
   }
 
 }

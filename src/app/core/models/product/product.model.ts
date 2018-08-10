@@ -133,7 +133,7 @@ export class MoreInformation {
   storeImageUrl: string;
 }
 
-export class Filter{ 
+export class Filter{
   content: FilterContent[]
   first: boolean;
   last: boolean;
@@ -145,7 +145,7 @@ export class Filter{
   totalPages: number;
 }
 
-export class FilterSort{ 
+export class FilterSort{
   ascending:boolean;
   descending: boolean;
   direction: string;
@@ -180,17 +180,33 @@ export class FilterContent{
 }
 
 
-export class FilterOffers{
+export class FilterOffers {
   filter: string;
   data: DataFilter[];
 }
 
-export class DataFilter{
-  filterCount: number
+export class DataFilter {
+  filterCount: number;
   filterName: string;
   filterId: number;
   code: string;
   name: string;
+}
+
+export class Isi {
+  last: boolean;
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  content: Content[];
+}
+
+export class Content {
+  message: string;
+  userId: number;
+  productId: number;
+  since: string;
+  discusParentId: number;
 }
 
 
