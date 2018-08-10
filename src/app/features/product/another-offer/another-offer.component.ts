@@ -60,20 +60,19 @@ export class AnotherOfferComponent implements OnInit {
     });
   }
 
-
   loadData() {
+
+    this.activatedRoute.queryParams.subscribe((params2: Params) => {
+    this.currentPage = (params2['page'] === undefined) ? 1 : +params2['page'];
 
     this.activatedRoute.params.subscribe((params: Params) => {
 
-      this.activatedRoute.queryParams.subscribe((params: Params) => {
-
       this.pages = [];
-      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
       this.id = params['id'];
       this.name = params['name'];
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
-
+        console.log('list', res.data);
         const queryParams = {
           itemperpage: 5,
           page: this.currentPage,
@@ -95,15 +94,15 @@ export class AnotherOfferComponent implements OnInit {
 
           console.log('list prod', respon);
 
-          this.addressService.getShipping().subscribe(res => {
-            this.addressId = res[0].addressId;
+          this.addressService.getShipping().subscribe(result => {
+            this.addressId = result[0].addressId;
 
             respon.content.forEach((cart, index) => {
               this.cartItem[index] = 1;
               this.cartItem2 = 1;
               this.shippingRates[index] = '';
 
-              const queryParams = {
+              const queryParams2 = {
                 productId: cart.productId,
                 weight: cart.originId,
                 originId: cart.weight,
@@ -111,7 +110,7 @@ export class AnotherOfferComponent implements OnInit {
               };
 
 
-              this.shoppingCartService.getShippingRates(queryParams).subscribe(resship => {
+              this.shoppingCartService.getShippingRates(queryParams2).subscribe(resship => {
                 this.shipRates[index] = resship;
                 console.log('this.shipRates', this.shipRates);
               });
@@ -124,11 +123,10 @@ export class AnotherOfferComponent implements OnInit {
           });
         });
       });
+
       });
+
     });
-
-    
-
 
 
   }
@@ -201,7 +199,7 @@ export class AnotherOfferComponent implements OnInit {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.filter.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/product/another-offer/'+ this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/product/another-offer/' + this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
 

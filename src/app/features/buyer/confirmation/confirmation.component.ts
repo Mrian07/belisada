@@ -45,4 +45,8 @@ export class ConfirmationComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    // coming soon
+  }
+
 }
