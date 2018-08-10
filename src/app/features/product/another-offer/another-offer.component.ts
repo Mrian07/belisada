@@ -74,14 +74,12 @@ export class AnotherOfferComponent implements OnInit {
         this.productDetail = res.data;
         console.log('list', res.data);
         const queryParams = {
-          itemperpage: 5,
+          itemperpage: 10,
           page: this.currentPage,
           ot: 'asc',
           ob: 'name',
           id: params['id']
         };
-
-        console.log('ini adalah', queryParams);
 
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
@@ -91,8 +89,6 @@ export class AnotherOfferComponent implements OnInit {
               this.pages.push(r);
             }
           }
-
-          console.log('list prod', respon);
 
           this.addressService.getShipping().subscribe(result => {
             this.addressId = result[0].addressId;
@@ -112,7 +108,6 @@ export class AnotherOfferComponent implements OnInit {
 
               this.shoppingCartService.getShippingRates(queryParams2).subscribe(resship => {
                 this.shipRates[index] = resship;
-                console.log('this.shipRates', this.shipRates);
               });
 
             });
@@ -175,7 +170,6 @@ export class AnotherOfferComponent implements OnInit {
         };
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
-          // console.log('hasil offer', respon);
 
         });
 
