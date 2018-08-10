@@ -49,14 +49,15 @@ export class ProductDetailComponent implements OnInit {
   showmore;
 
 
-  title:String;
-  list:any;
-  startPage : Number;
-  paginationLimit:Number;
+  title: String;
+  list: any;
+  startPage: Number;
+  paginationLimit: Number;
 
   imgIndex: string;
 
-  storeImageUrl;
+  storeImageUrl: any;
+  brandImageUrl: any;
   productImageUrl;
   productImageUrlNew;
   productImageItemLooping;

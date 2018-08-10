@@ -35,6 +35,7 @@ export class AnotherOfferComponent implements OnInit {
   currentPage: number;
   lastPage: number;
   pages: any = [];
+  brandImageUrl: any;
 
   constructor(
     private productService: ProductService,
@@ -58,7 +59,7 @@ export class AnotherOfferComponent implements OnInit {
 
 
   loadData() {
-    
+
     this.activatedRoute.params.subscribe((params: Params) => {
       this.pages = [];
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
@@ -88,22 +89,22 @@ export class AnotherOfferComponent implements OnInit {
 
             respon.content.forEach((cart, index) => {
               this.cartItem[index] = 1;
-              this.cartItem2 =1;
+              this.cartItem2 = 1;
               this.shippingRates[index] = '';
-  
+
               const queryParams = {
                 productId: cart.productId,
                 weight: cart.originId,
                 originId: cart.weight,
                 destinationId: this.addressId,
               };
-  
-  
+
+
               this.shoppingCartService.getShippingRates(queryParams).subscribe(resship => {
                 this.shipRates[index] = resship;
                 console.log('this.shipRates', this.shipRates);
               });
-  
+
             });
           });
 
@@ -116,16 +117,16 @@ export class AnotherOfferComponent implements OnInit {
     });
   }
 
-  getFilId(title,name, isChecked: boolean){
-    let listCourier:FormArray = <FormArray> this.myForm.controls.courier;
-    let listClassification:FormArray = <FormArray> this.myForm.controls.classification;
+  getFilId(title, name, isChecked: boolean) {
+    let listCourier: FormArray = <FormArray> this.myForm.controls.courier;
+    let listClassification: FormArray = <FormArray> this.myForm.controls.classification;
 
     switch (title) {
       case 'Courier':
         listCourier = <FormArray> this.myForm.controls.courier;
-        if(isChecked==true){
-          listCourier.push(new FormControl(name));     
-        }else{
+        if ( isChecked === true) {
+          listCourier.push(new FormControl(name));
+        } else {
           const index = listCourier.controls.findIndex(x => x.value === name);
           listCourier.removeAt(index);
         }
@@ -133,14 +134,14 @@ export class AnotherOfferComponent implements OnInit {
 
       case 'Classification':
         listClassification = <FormArray> this.myForm.controls.classification;
-        if(isChecked==true){
-          listClassification.push(new FormControl(name));     
-        }else{
+        if (isChecked === true) {
+          listClassification.push(new FormControl(name));
+        } else {
           const index = listClassification.controls.findIndex(x => x.value === name);
           listClassification.removeAt(index);
         }
         break;
-    
+
       default:
         console.log('not specified');
         break;
@@ -166,18 +167,18 @@ export class AnotherOfferComponent implements OnInit {
 
       });
     });
-    
+
   }
 
 
   decreaseQty(cartItem, index) {
-    if(cartItem >1){
-      this.cartItem[index]= cartItem-1;
+    if (cartItem > 1) {
+      this.cartItem[index] = cartItem - 1;
     }
   }
 
   increaseQty(cartItem, index) {
-    this.cartItem[index] = cartItem+1;
+    this.cartItem[index] = cartItem + 1;
   }
 
   setPage(page: number, increment?: number) {

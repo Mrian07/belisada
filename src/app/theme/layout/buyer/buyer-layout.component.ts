@@ -10,7 +10,7 @@ export class BuyerLayoutComponent {
 
   isMenu: boolean;
 
-  constructor(private globals: Globals) {
+  constructor(public globals: Globals) {
   }
 
 }

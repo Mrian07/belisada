@@ -79,7 +79,7 @@ export class UploadImgTransfer {
 export class Invoice {
     status: string;
     message: string;
-    data: InvoiceData[];
+    data: InvoiceData;
 }
 
 export class InvoiceData {
@@ -94,6 +94,12 @@ export class InvoiceData {
     invoiceNumber: string;
     namaPenerima: string;
     paymentNumber: string;
+    paymentMethod: string;
+    storeName: string;
+    buyerName: string;
+    useAsuransi: boolean;
+    totalWeight: string;
+    total: string;
     cartItems: InvoiceCart[];
 }
 

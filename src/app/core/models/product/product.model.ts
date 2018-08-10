@@ -65,7 +65,7 @@ export class ProductDetail {
 export class ProductDetailList {
   status: number;
   message: string;
-  productId: number;
+  productId: any;
   name: string;
   nameEn: string;
   highlight: string;
@@ -116,6 +116,8 @@ export class ProductDetailList {
   locationName: string;
   id: string;
   moreInformation: MoreInformation;
+  storeImageUrl: any;
+  brandImageUrl: any;
 }
 
 export class Couriers {
@@ -133,8 +135,8 @@ export class MoreInformation {
   storeImageUrl: string;
 }
 
-export class Filter{
-  content: FilterContent[]
+export class Filter {
+  content: FilterContent[];
   first: boolean;
   last: boolean;
   number: number;
@@ -145,8 +147,8 @@ export class Filter{
   totalPages: number;
 }
 
-export class FilterSort{
-  ascending:boolean;
+export class FilterSort {
+  ascending: boolean;
   descending: boolean;
   direction: string;
   ignoreCase: boolean;
@@ -154,12 +156,12 @@ export class FilterSort{
   property: string;
 }
 
-export class FilterContent{
+export class FilterContent {
   brandId: number;
   brandImageUrl: string;
   brandName: string;
   discount: number;
-  id:number;
+  id: number;
   imageUrl: string;
   locationId: number;
   locationName: string;
