@@ -721,17 +721,17 @@ ul#horizontal-list li {
 * Responsive
 ========================*/
 @media only screen and (max-width: 766px) {
-   .comments-container {
-       width: 480px;
-   }
+    .comments-container {
+        width: 480px;
+    }
 
-   .comments-list .comment-box {
-       width: 390px;
-   }
+    .comments-list .comment-box {
+        width: 390px;
+    }
 
-   .reply-list .comment-box {
-       width: 320px;
-   }
+    .reply-list .comment-box {
+        width: 320px;
+    }
 }
 
 
@@ -746,6 +746,7 @@ ul#horizontal-list li {
     }
 
     &__container {
+        height: 100%;
         margin: 0 auto;
         width: 120rem;
     }
@@ -755,4 +756,28 @@ ul#horizontal-list li {
         font-size: 2.4rem;
         color: #393939;
     }
+
+    &__price {
+        font-weight: 400;
+        font-size: 2.4rem;
+        color: #ED7425;
+        vertical-align: middle;
+    }
+
+    &__grid {
+        display: table;
+        width: 100%;
+        height: 100%;
+
+        &--col {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    }
+}
+
+.btn--add-to-cart {
+    padding: 1.5rem 3rem;
+    font-weight: 700;
+    font-size: 1.5rem;
 }

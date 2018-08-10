@@ -316,30 +316,28 @@
                 </li>
             </ul>
         </div>
-                  <!-- <span class="w__fontsize--prodName">
 
-                  </span> -->
-              </div>
-            </div>
+        </div>
+        </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
             <div class="row">
-              <div class="col-12">
+                <div class="col-12">
                     <div>
-                            <h3> {{title}}</h3>
-                            <ul class="list">
-                             <li *ngFor="let l of list | slice : startPage:paginationLimit">
-                               {{l.name}} ({{l.age}})
-                             </li>
-                            </ul>
-                            <button *ngIf ="paginationLimit < list.length" (click)="showMoreItems()">
-                             Show More
-                            </button>
-                            <button *ngIf ="paginationLimit > 4" (click)="showLessItems()">
-                             Show Less
-                            </button>
+                        <h3> {{title}}</h3>
+                        <ul class="list">
+                            <li *ngFor="let l of list | slice : startPage:paginationLimit">
+                                {{l.name}} ({{l.age}})
+                            </li>
+                        </ul>
+                        <button *ngIf ="paginationLimit < list.length" (click)="showMoreItems()">
+                            Show More
+                        </button>
+                        <button *ngIf ="paginationLimit > 4" (click)="showLessItems()">
+                            Show Less
+                        </button>
                     </div>
-              </div>
+                </div>
             </div>
         </div>
 
@@ -348,9 +346,18 @@
 <div class="w__paddingin"></div>
 </div>
 
-<div class="heading__detail">
+<div class="heading__detail" *ngIf="isSubHeaderShow">
     <div class="heading__container">
-        <span class="heading__title">{{productDetail.name}}</span>
+        <div class="heading__grid">
+            <div class="heading__grid--col">
+                <span class="heading__title">{{ productDetail.name }}</span>
+            </div>
+            <div class="heading__grid--col right">
+                <span class="heading__price u-margin-right-1">{{ productDetail.pricelist | currency:'Rp ' }}</span>
+                <button class="btn btn--blue-belisada btn--flat btn--add-to-cart u-margin-right-1" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart</button>
+                <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button>
+            </div>
+        </div>
     </div>
 </div>
 
