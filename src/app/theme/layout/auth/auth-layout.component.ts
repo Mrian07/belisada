@@ -20,7 +20,7 @@ import { Globals } from '@belisada/core/services';
 })
 export class AuthLayoutComponent {
 
-    constructor(private globals: Globals) {
+    constructor(public globals: Globals) {
     }
 
 }

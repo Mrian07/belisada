@@ -60,6 +60,7 @@ export class ProfileInformationComponent implements OnInit {
 
   userData: UserData = new UserData();
   token: string;
+  status: any;
 
   constructor(
     private fb: FormBuilder,
@@ -153,7 +154,7 @@ validateAllFormFields(formGroup: FormGroup) {
   }
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
-  onSubmit(form: NgForm) {
+  onSubmit() {
     this.loadingService.show();
     if (this.validationOnpopUpCreateStore.valid) {
       const model = this.validationOnpopUpCreateStore.value;

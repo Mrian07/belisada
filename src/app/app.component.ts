@@ -14,7 +14,7 @@ import { Globals } from '@belisada/core/services';
 export class AppComponent {
     title = 'app';
 
-    constructor(private globals: Globals) {
+    constructor(public globals: Globals) {
 
     }
     // resolved(captchaResponse: string) {

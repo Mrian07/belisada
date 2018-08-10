@@ -10,7 +10,7 @@ import { PaymentList } from '@belisada/core/models/payment/payment.model';
   styleUrls: ['./terimakasih-page.component.scss']
 })
 export class TerimakasihPageComponent implements OnInit {
-  private _trialEndsAt;
+  public _trialEndsAt;
 
   successTransactionRes: SuccessTransactionRes;
   listPayment: PaymentList[];
