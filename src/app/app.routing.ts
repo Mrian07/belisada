@@ -37,7 +37,6 @@ const routes: Routes = [
   { path: 'invoice/:id', component: InvoiceComponent, },
   { path: 'account', loadChildren: 'app/features/auth/auth.module#AuthModule' },
   { path: 'buyer', loadChildren: 'app/features/buyer/buyer.module#BuyerModule' },
-  { path: 'seller', loadChildren: 'app/features/seller/seller.module#SellerModule' },
   { path: 'search-result', loadChildren: 'app/features/search-result/search-result.module#SearchResultModule' },
   { path: 'product', loadChildren: 'app/features/product/product.module#ProductModule' },
   { path: 'transaction', loadChildren: 'app/features/transaction/transaction.module#TransactionModule' },

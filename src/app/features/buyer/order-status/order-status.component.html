@@ -30,9 +30,9 @@
         </div>
         <div class="col-7">
 
-            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}}) 
+            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})
               <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span>
-            </div> 
+            </div>
         </div>
         <div class="col-2">
           <div class="text-progress">On Progress</div>
@@ -40,7 +40,7 @@
       </div>
   </div>
   <div *ngIf="openDetail==true && transactionId==item.transactionId" class="os-body">
-    
+
     <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
       <tr *ngFor="let itemList of itemCart.cart">
         <td valign="top" width="20%">
@@ -51,8 +51,8 @@
                   <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
               </td>
               <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.name}}</div> 
-                  <div class="item-colom">{{itemListProduct.priceList | currency:'Rp '}}</div> 
+                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} </div>
+                  <div class="item-colom">{{itemListProduct.subtotal | currency:'Rp '}}</div>
               </td>
               <td valign="top">
                 <span class="qty">QTY</span> x {{ itemListProduct.quantity }}
@@ -101,23 +101,23 @@
 <app-models [(visible)]="showDialog" class="frameDialog">
   <div class="modal-body">
 
-    <div *ngIf="isForm==true">    
+    <div *ngIf="isForm==true">
 
       <div class="title-modal">Upload Bukti Transfer Anda</div>
 
       <div class="image">
         <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
-      </div> 
+      </div>
 
       <div class="upload-btn-wrapper" *ngIf="isPilih == true">
-          <div class="btn-konfirm">Pilih Bukti Transfer</div>                
+          <div class="btn-konfirm">Pilih Bukti Transfer</div>
           <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-      </div>  
+      </div>
       <div class="btn-upload" *ngIf="isSent == true" (click)="uploadBuktiTransfer()">Klik disini untuk unggah bukti transfer</div>
-    
+
     </div>
     <div *ngIf="regSuccess==true" class="isSuccess">
-        <div class="title-modal">Upload Bukti Transfer Berhasil</div>    
+        <div class="title-modal">Upload Bukti Transfer Berhasil</div>
         <div class="text-success">berhasil.</div>
     </div>
   </div>
@@ -125,7 +125,7 @@
 
 <app-models [(visible)]="showDialogRek" class="frameDialog">
   <div class="modal-body">
-    
+
     <div class='list-metode'>
       <div class="row">
           <div class="col-3" *ngFor="let item of listPayment">
@@ -134,6 +134,6 @@
           </div>
       </div>
   </div>
-   
+
   </div>
 </app-models>

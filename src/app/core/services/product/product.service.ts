@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
-import { AddProductRequest, AddProductResponse, ProductDetail, Filter, FilterOffers } from '@belisada/core/models/product/product.model';
+import { AddProductRequest, AddProductResponse, ProductDetail, Filter, FilterOffers, Isi } from '@belisada/core/models/product/product.model';
 import { ProductDetailSimple, ProductSimple } from '@belisada/core/models/product/product-detail-simple';
 
 @Injectable({
@@ -34,6 +34,12 @@ export class ProductService {
       .pipe(
         map(response => response as AddProductResponse)
       );
+  }
+  getDiscus(id: Object): Observable<Isi> {
+    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id)
+    .pipe(
+      map(response => response as Isi)
+    );
   }
 
   detailProduct(id: Object): Observable<ProductDetail> {
