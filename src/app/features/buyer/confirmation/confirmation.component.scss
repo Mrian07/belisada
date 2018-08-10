@@ -1,0 +1,49 @@
+.frame-c{
+    margin-top:20px;
+    text-align: center;
+    color:#111111;
+    width:700px;
+}
+
+.text-c{
+    font-size: 12px;
+}
+
+.text-t{
+    font-weight: bold;
+    color:#fd9c28;
+}
+
+.btn-confirm{
+    margin-top:20px;
+    background: #f37b37;
+    color:#ffffff;
+    padding: 15px;
+    border: 0px;
+    font-size: 15px;
+    margin-bottom:20px;
+}
+
+.form-c{
+    margin-top:100px;
+    width:600px;
+    margin:0px auto;
+    display: grid;
+    grid-template-columns: 200px 300px;
+}
+
+.input-c{
+    border:0px;
+    font-size: 13px;
+    padding:10px;
+    border-bottom: 1px solid #2d2d2d;
+    width:100%;
+    margin-left:8px;
+}
+
+.label-c{
+    text-align: right;
+    color: #2d2d2d;
+    width:200px;
+    margin-top:10px;
+}
