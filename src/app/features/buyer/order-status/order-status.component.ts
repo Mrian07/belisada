@@ -67,6 +67,7 @@ export class OrderStatusComponent implements OnInit {
       }
       this.isLoading = false;
       this.list = respon;
+      console.log(respon);
     });
   }
 

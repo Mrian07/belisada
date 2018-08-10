@@ -37,6 +37,9 @@ export class AnotherOfferComponent implements OnInit {
   pages: any = [];
   brandImageUrl: any;
 
+  id: string;
+  name: string;
+
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
@@ -61,18 +64,26 @@ export class AnotherOfferComponent implements OnInit {
   loadData() {
 
     this.activatedRoute.params.subscribe((params: Params) => {
+
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+
       this.pages = [];
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
-
+      this.id = params['id'];
+      this.name = params['name'];
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
 
         const queryParams = {
-          page: 1,
+          itemperpage: 5,
+          page: this.currentPage,
           ot: 'asc',
           ob: 'name',
           id: params['id']
         };
+
+        console.log('ini adalah', queryParams);
+
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
           this.lastPage = this.filter.totalPages;
@@ -112,9 +123,14 @@ export class AnotherOfferComponent implements OnInit {
             this.filterOffers = respons;
           });
         });
-
+      });
       });
     });
+
+    
+
+
+
   }
 
   getFilId(title, name, isChecked: boolean) {
@@ -185,7 +201,7 @@ export class AnotherOfferComponent implements OnInit {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.filter.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/product/another-offer'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/product/another-offer/'+ this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
 
