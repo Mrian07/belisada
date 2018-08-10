@@ -7,8 +7,6 @@
             <div class="col-5">
                 <div class="b1-detail">
                     <span class="product-brand">Brand : {{ productDetail.brandName }}</span>
-                    <!-- <span class="product-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>
-                    <span class="product-review">21 Reviews</span> -->
 
                     <div class='product-title'>
                         {{productDetail.name}}
@@ -62,7 +60,6 @@
                     </div>
                     <div class="product-btn">
                         <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
-                        <!-- <span class="btn-chat">Chat Seller <span class="btn-add-cart"><fa name="comments"></fa></span></span> -->
                     </div>
                 </div>
             </div>
@@ -135,7 +132,6 @@
                         <span class="shop-title" (click)="goStore(productDetail.storeUrl)">{{productDetail.storeName}}</span>
                         <span class="shop-city">{{productDetail.locationName}}</span>
                         <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></span>
-                        <!-- <span class="shop-star"><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa><fa name="star"></fa></span>             -->
                     </div>
                     <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
                     <span class="shop-text"><strong>Produk Terjual:</strong> Coming Soon </span>
@@ -350,6 +346,12 @@
     </div>
 
 <div class="w__paddingin"></div>
+</div>
+
+<div class="heading__detail">
+    <div class="heading__container">
+        <span class="heading__title">{{productDetail.name}}</span>
+    </div>
 </div>
 
 
