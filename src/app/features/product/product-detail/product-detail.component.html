@@ -45,12 +45,6 @@
                         <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
                         <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                     </div>
-                    <div class="product-info">
-                        <span class="strong-text">Berat  </span>
-                      <span>  {{ productDetail.weight }}gr </span>
-                        <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
-                        <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
-                    </div>
                     <!-- <div class="product-info">
                         <span class="strong-text">Kebijakan Pengembalian:</span> Mendukung 7 hari pengembalian dana tanpa syarat
                     </div> -->
@@ -59,6 +53,12 @@
                     </div> -->
                     <div class="product-info">
                         <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span>
+                    </div>
+                    <div class="product-info">
+                        <span class="strong-text">Berat  </span>
+                      <span>  {{ productDetail.weight }}gr </span>
+                        <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
+                        <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                     </div>
                     <div class="product-btn">
                         <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
@@ -215,18 +215,18 @@
     <table id="customers">
 
         <tr *ngFor="let item of productDetail.specification">
-          <td>{{item.name}} :</td>
-          <td>{{ item. value }}</td>
+            <td>{{item.name}} :</td>
+            <td>{{ item. value }}</td>
         </tr>
-      </table>
+    </table>
 
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskripsi === true">
             <div class="row">
-              <div class="col-12">
-                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
-                  <span>{{ productDetail.description }}</span>
-              </div>
+                <div class="col-12">
+                    <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
+                    <span>{{ productDetail.description }}</span>
+                </div>
             </div>
 
     <!-- <table id="customers">
@@ -240,112 +240,108 @@
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
             <div class="row">
-              <div class="col-12">
-                  <!-- Contenedor Principal -->
-	<div class="comments-container">
+                    <div class="col-12 w--product-discusi" *ngFor="let item of discus">
+                            <ul class="w--product__list">
+                                <li class="w--product__list-item">
+                                    <div class="w--product-talk__question">
+                                        <a>
+                                            <img src="{{item.imageAvatarUrl}}" class="w--product-talk__question-avatar">
+                                        </a>
+                                        <div class="product-talk__detail">
+                                            <div class="w--product-talk__additional-info">
+                                                <a class="w--product_talk"> {{ item.name }} </a>
+                                                <span class="w--product_talk-time"> -  {{ item.since }}</span>
+                                            </div>
+                                            <div class="w-product--talk__text">
+                                                {{ item.message }}
 
-            <ul id="comments-list" class="comments-list">
-                <li>
-                    <div class="comment-main-level">
-                        <!-- Avatar -->
-                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-                        <!-- Contenedor del Comentario -->
-                        <div class="comment-box">
-                            <div class="comment-head">
-                                <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-                                <span>hace 20 minutos</span>
-                                <i class="fa fa-reply"></i>
-                                <i class="fa fa-heart"></i>
-                            </div>
-                            <div class="comment-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                            </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="w-product-talk__comments" *ngFor="let item333 of item.childs">
+                                        <ul class="w-product-talk__coment-list">
+                                            <li class="product-talk__comennts-list-item">
+                                                <div>
+                                                    <img src="{{item333.imageAvatarUrl}}" class="w-product-talk__profile">
+                                                </div>
+                                                <div class="w-product-talk__detail">
+                                                    <a class="w-product-talk__name">{{  item333.name }} </a>
+                                                    <span class="badge__belisada-seller" *ngIf="item333.label === 'penjual'">
+                                                        {{ item333.label }}
+                                                    </span>
+                                                    <span class="w-product-talk_time">
+                                                        {{ item333.since }}
+                                                    </span>
+                                                </div>
+                                                <div class="w-product--talk__text">
+                                                    {{ item333.message }}
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="w--product-talk__comment-box">
+                                        <div class="list-box-replyholder">
+                                            <a class="w-product-talk__profile"></a>
+                                            <div *ngIf="textAreaClick === true && idDicus === item.discusId; else login">
+                                                <form>
+                                                        <textarea [formControl]="messageString" (click)="textAreaExpannded(item.discusId)" class="w-product-talk__coment-taxtarea expanded"> {{ item.discusId }}</textarea>
+
+                                                    </form>
+                                                <div class="w__o--button-posisition row">
+                                                        <div class="col-12 template--button">
+                                                                <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
+                                                                <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button>
+                                                            </div>
+
+                                                </div>
+                                                <!-- <div class="w--button__position row">
+                                                    <div class="col-12">
+                                                        <div class="col-6">
+                                                            <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
+                                                        </div>
+                                                        <div class="col-6">
+
+                                                            <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <ng-template #login>
+                                                <textarea name="" id="" (click)="textAreaExpannded(item.discusId)" class="w-product-talk__coment-taxtarea"></textarea>
+
+                                            </ng-template>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
+
                         </div>
-                    </div>
-                    <!-- Respuestas de los comentarios -->
-                    <ul class="comments-list reply-list">
-                        <li>
-                            <!-- Avatar -->
-                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fa fa-reply"></i>
-                                    <i class="fa fa-heart"></i>
-                                </div>
-                                <div class="comment-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                </div>
-                            </div>
-                        </li>
 
-                        <li>
-                            <!-- Avatar -->
-                            <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg" alt=""></div>
-                            <!-- Contenedor del Comentario -->
-                            <div class="comment-box">
-                                <div class="comment-head">
-                                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
-                                    <span>hace 10 minutos</span>
-                                    <i class="fa fa-reply"></i>
-                                    <i class="fa fa-heart"></i>
-                                </div>
-                                <div class="comment-content">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <div class="comment-main-level">
-                        <!-- Avatar -->
-                        <div class="comment-avatar"><img src="http://i9.photobucket.com/albums/a88/creaticode/avatar_2_zps7de12f8b.jpg" alt=""></div>
-                        <!-- Contenedor del Comentario -->
-                        <div class="comment-box">
-                            <div class="comment-head">
-                                <h6 class="comment-name"><a href="http://creaticode.com/blog">Lorena Rojero</a></h6>
-                                <span>hace 10 minutos</span>
-                                <i class="fa fa-reply"></i>
-                                <i class="fa fa-heart"></i>
-                            </div>
-                            <div class="comment-content">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-        </div>
-                  <!-- <span class="w__fontsize--prodName">
-
-                  </span> -->
-              </div>
             </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
-            <div class="row">
-              <div class="col-12">
-                    <div>
+                <div class="row">
+                    <div class="col-12">
+                        <div>
                             <h3> {{title}}</h3>
                             <ul class="list">
-                             <li *ngFor="let l of list | slice : startPage:paginationLimit">
-                               {{l.name}} ({{l.age}})
-                             </li>
+                                <li *ngFor="let l of list | slice : startPage:paginationLimit">
+                                    {{l.name}} ({{l.age}})
+                                </li>
                             </ul>
-                            <button *ngIf ="paginationLimit < list.length" (click)="showMoreItems()">
-                             Show More
+                            <button *ngIf="paginationLimit < list.length" (click)="showMoreItems()">
+                                Show More
                             </button>
-                            <button *ngIf ="paginationLimit > 4" (click)="showLessItems()">
-                             Show Less
+                            <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
+                                Show Less
                             </button>
+                        </div>
                     </div>
-              </div>
+                </div>
             </div>
-        </div>
 
     </div>
 

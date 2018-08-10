@@ -1,4 +1,6 @@
-import { ProductDetailList, MoreInformation } from '@belisada/core/models/product/product.model';
+import { CreateDiscus } from './../../../core/models/product/product.model';
+import { FormControl, Validators } from '@angular/forms';
+import { ProductDetailList, MoreInformation, Isi, Content } from '@belisada/core/models/product/product.model';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from './../../../core/services/product/product.service';
@@ -49,10 +51,11 @@ export class ProductDetailComponent implements OnInit {
   showmore;
 
 
-  title:String;
-  list:any;
-  startPage : Number;
-  paginationLimit:Number;
+  title: String;
+  list: any;
+  startPage: number;
+  paginationLimit: number;
+  discus: Content[];
 
   imgIndex: string;
 
@@ -61,6 +64,14 @@ export class ProductDetailComponent implements OnInit {
   productImageUrlNew;
   productImageItemLooping;
   productNewatProdDetail: Home[] = [];
+
+  textAreaClick: boolean;
+  idDicus: number;
+  messageString: FormControl;
+  oktest: CreateDiscus = new CreateDiscus();
+
+
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -84,34 +95,36 @@ export class ProductDetailComponent implements OnInit {
 
 
     this.list = [
-      {name:'Prashobh',age:'25'},
-      {name:'Abraham',age:'35'},
-      {name:'Anil',age:'40'},
-      {name:'Sam',age:'40'},
-      {name:'Philip',age:'40'},
-      {name:'Bal',age:'40'},
-      {name:'Anu',age:'20'},
-      {name:'Sam',age:'25'},
-      {name:'Rocky',age:'35'},
-      {name:'Major',age:'40'},
-      {name:'Kian',age:'40'},
-      {name:'Karan',age:'40'},
-      {name:'Bal',age:'40'},
-      {name:'Anu',age:'20'},
-      {name:'Prashobh',age:'25'},
-      {name:'Abraham',age:'35'},
-      {name:'Anil',age:'40'},
-      {name:'Sam',age:'40'},
-      {name:'Philip',age:'40'},
-      {name:'Bal',age:'40'},
-      {name:'Anu',age:'20'}
-    ]
+      {name: 'Prashobh ', age: '25 '},
+      {name: 'Abraham ', age: '35 '},
+      {name: 'Anil ', age: '40 '},
+      {name: 'Sam ', age: '40 '},
+      {name: 'Philip ', age: '40 '},
+      {name: 'Bal ', age: '40 '},
+      {name: 'Anu ', age: '20 '},
+      {name: 'Sam ', age: '25 '},
+      {name: 'Rocky ', age: '35 '},
+      {name: 'Major ', age: '40 '},
+      {name: 'Kian ', age: '40 '},
+      {name: 'Karan ', age: '40 '},
+      {name: 'Bal ', age: '40 '},
+      {name: 'Anu ', age: '20 '},
+      {name: 'Prashobh ', age: '25 '},
+      {name: 'Abraham ', age: '35 '},
+      {name: 'Anil ', age: '40 '},
+      {name: 'Sam ', age: '40 '},
+      {name: 'Philip ', age: '40 '},
+      {name: 'Bal ', age: '40 '},
+      {name: 'Anu ', age: '20 '}
+    ];
     this.startPage = 0;
     this.paginationLimit = 4;
+    this.messageString = new FormControl('');
+
   }
 
   ngOnInit() {
-    console.log('this.share: ', this.share);
+    console.log('this.share: ',  this.share);
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;
@@ -119,6 +132,16 @@ export class ProductDetailComponent implements OnInit {
     // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
+  }
+
+  textAreaExpannded(e) {
+    this.idDicus = e;
+    console.log(e);
+    this.messageString.reset();
+    this.textAreaClick = true;
+  }
+  hideTextArea() {
+    this.textAreaClick = false;
   }
 
   addressChange() {
@@ -138,9 +161,7 @@ export class ProductDetailComponent implements OnInit {
       // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.getDiscus(params['id']).subscribe(resDiscus => {
-        console.log('discus',resDiscus);
-      });
+      this.getDiscus(params);
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
@@ -202,6 +223,44 @@ export class ProductDetailComponent implements OnInit {
       });
     });
   }
+  private getDiscus(params: Params) {
+    this.productService.getDiscus(params['id']).subscribe(resDiscus => {
+      this.discus = resDiscus.content;
+      console.log('discus', this.discus);
+    });
+  }
+
+  onSent() {
+    const a = {
+     discusParentId : this.idDicus,
+     message : this.messageString.value,
+     productId: this.productDetail.productId
+   };
+   console.log('ini a', this.oktest);
+   if (this.isLogin === false) {
+    swal({
+      title: 'OOOPSSS',
+      text: 'Anda Belum Login',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Login !'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigateByUrl('/account/sign-in/' + this.productDetail.productId);
+      }
+    });
+   } else {
+    this.productService.createDiscus(a).subscribe(rsl => {
+      console.log(rsl);
+
+    });
+   }
+
+
+   console.log(this.messageString.value);
+ }
 
   active() {
     this.activeSpesifikasi = false;
@@ -209,12 +268,10 @@ export class ProductDetailComponent implements OnInit {
     this.activeDiskusi = false;
     this.activeUlasan = false;
   }
-  showMoreItems()
-  {
-     this.paginationLimit = Number(this.paginationLimit) + 3;
+  showMoreItems() {
+    this.paginationLimit = Number(this.paginationLimit) + 3;
   }
-  showLessItems()
-  {
+  showLessItems() {
     this.paginationLimit = Number(this.paginationLimit) - 3;
   }
 
@@ -359,7 +416,7 @@ export class ProductDetailComponent implements OnInit {
     if (this.qty > 1) { this.qty -= 1; }
   }
 
-  penawaran(id, name){
+  penawaran(id, name) {
 
     const r = name.replace(new RegExp('/', 'g'), ' ');
     this.router.navigate(['/product/another-offer/' + id + '/' + r]);
