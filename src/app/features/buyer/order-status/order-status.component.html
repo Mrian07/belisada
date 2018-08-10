@@ -54,6 +54,9 @@
                   <div class="item-colom">{{itemListProduct.name}}</div> 
                   <div class="item-colom">{{itemListProduct.priceList | currency:'Rp '}}</div> 
               </td>
+              <td valign="top">
+                <span class="qty">QTY</span> x {{ itemListProduct.quantity }}
+              </td>
             </tr>
           </table>
         </td>
@@ -76,7 +79,7 @@
           <div class="item-colom">
             <div class="row">
               <div class="col-12">
-                <label>No Resi: {{itemList.noResi}}</label>
+                <label>No Resi: {{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
               </div>
             </div>
             <div class="row">
