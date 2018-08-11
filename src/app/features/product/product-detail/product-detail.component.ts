@@ -1,8 +1,10 @@
-import { ProductDetailList, MoreInformation } from '@belisada/core/models/product/product.model';
-import { Component, OnInit, HostListener } from '@angular/core';
+
+import { Component, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
-import { ProductService } from './../../../core/services/product/product.service';
+import { Title, Meta, TransferState, makeStateKey } from '@angular/platform-browser';
+import { ProductDetailList, MoreInformation } from '@belisada/core/models/product/product.model';
+import { ProductService } from '@belisada/core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
@@ -15,6 +17,8 @@ import { ShareButtons } from '@ngx-share/core';
 import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
 import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
+
+const RESULT_KEY = makeStateKey<string>('result');
 
 @Component({
   selector: 'app-product-detail',
@@ -59,7 +63,8 @@ export class ProductDetailComponent implements OnInit {
   productImageUrlNew;
   productImageItemLooping;
   productNewatProdDetail: Home[] = [];
-
+  private isServer: boolean;
+  public result;
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 450) ? true : false;
@@ -78,6 +83,8 @@ export class ProductDetailComponent implements OnInit {
     public share: ShareButtons,
     private titles: Title,
     private meta: Meta,
+    private tstate: TransferState,
+    @Inject(PLATFORM_ID) platformId
 
   ) {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
@@ -88,7 +95,7 @@ export class ProductDetailComponent implements OnInit {
     this.shippingRates = '';
     this.shippingAddress = '';
     this.showmore = 'true';
-
+    this.isServer = isPlatformServer(platformId);
 
     this.list = [
       {name: 'Prashobh', age: '25'},
@@ -118,14 +125,27 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('this.share: ', this.share);
+    // console.log('this.share: ', this.share);
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;
     }
-    // console.log('shippingAddress: ', this.shippingAddress);
+    // // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
+    if (this.tstate.hasKey(RESULT_KEY)) {
+      // We are in the browser
+      this.result = this.tstate.get(RESULT_KEY, '');
+      console.log(this.result);
+    } else if (this.isServer) {
+        // We are on the server
+        this.tstate.set(RESULT_KEY, 'Im created on the server!');
+        console.log(this.result);
+    } else {
+        // No result received
+        this.result = 'Im created in the browser!';
+        console.log(this.result);
+    }
   }
 
   addressChange() {
@@ -142,17 +162,17 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.homeS.getHomeNew().subscribe(res => {
       this.productNewatProdDetail = res;
-      // console.log('ini res: ', res);
+      // // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.getDiscus(params['id']).subscribe(resDiscus => {
-        console.log('discus', resDiscus);
+        // console.log('discus', resDiscus);
       });
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        console.log('this.productDetail: ', this.productDetail);
+        // console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
         /// SEO
@@ -174,11 +194,11 @@ export class ProductDetailComponent implements OnInit {
           this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
         });
 
-        console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
+        // console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
 
-        // console.log('ini tabval', this.tabVal);
+        // // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
-        console.log('this.imgIndex: ', this.imgIndex);
+        // console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -187,7 +207,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        console.log('this.productDetail: ', this.productDetail);
+        // console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
         const thumborOption: ThumborOptions = {
@@ -203,11 +223,11 @@ export class ProductDetailComponent implements OnInit {
           this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
         });
 
-        console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
+        // console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
 
-        // console.log('ini tabval', this.tabVal);
+        // // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
-        console.log('this.imgIndex: ', this.imgIndex);
+        // console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -231,7 +251,7 @@ export class ProductDetailComponent implements OnInit {
 
   goStore(url) {
     this.router.navigate(['/' + url]);
-    // console.log(url);
+    // // console.log(url);
   }
 
   selectImg(img) {
@@ -251,8 +271,8 @@ export class ProductDetailComponent implements OnInit {
         this.getShippingRates(queryParam);
       }
 
-      // console.log('this.shippingAddress: ', this.shippingAddress);
-      // console.log('this.shippingAddressList: ', this.shippingAddressList);
+      // // console.log('this.shippingAddress: ', this.shippingAddress);
+      // // console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
 
@@ -263,7 +283,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.tabVal = this.productDetail.specification;
-        // console.log(this.tabVal);
+        // // console.log(this.tabVal);
       });
     });
   }
@@ -306,18 +326,18 @@ export class ProductDetailComponent implements OnInit {
 
   gotTodetailPart(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    // console.log(r);
+    // // console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
     window.scrollTo(0, 0);
   }
 
   shippingChange() {
-    // console.log('aaaa');
+    // // console.log('aaaa');
   }
 
   addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
-    // console.log('userData: ', userData);
+    // // console.log('userData: ', userData);
 
     if (userData) {
       if (userData.storeId === storeId) {
@@ -341,7 +361,7 @@ export class ProductDetailComponent implements OnInit {
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-            // console.log('response: ', response);
+            // // console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
               this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
