@@ -1,6 +1,7 @@
 import { ProductDetailList, MoreInformation } from '@belisada/core/models/product/product.model';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 import { ProductService } from './../../../core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
@@ -74,7 +75,10 @@ export class ProductDetailComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private addressService: AddressService,
     private thumborService: ThumborService,
-    public share: ShareButtons
+    public share: ShareButtons,
+    private titles: Title,
+    private meta: Meta,
+
   ) {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
@@ -87,28 +91,28 @@ export class ProductDetailComponent implements OnInit {
 
 
     this.list = [
-      {name:'Prashobh',age:'25'},
-      {name:'Abraham',age:'35'},
-      {name:'Anil',age:'40'},
-      {name:'Sam',age:'40'},
-      {name:'Philip',age:'40'},
-      {name:'Bal',age:'40'},
-      {name:'Anu',age:'20'},
-      {name:'Sam',age:'25'},
-      {name:'Rocky',age:'35'},
-      {name:'Major',age:'40'},
-      {name:'Kian',age:'40'},
-      {name:'Karan',age:'40'},
-      {name:'Bal',age:'40'},
-      {name:'Anu',age:'20'},
-      {name:'Prashobh',age:'25'},
-      {name:'Abraham',age:'35'},
-      {name:'Anil',age:'40'},
-      {name:'Sam',age:'40'},
-      {name:'Philip',age:'40'},
-      {name:'Bal',age:'40'},
-      {name:'Anu',age:'20'}
-    ]
+      {name: 'Prashobh', age: '25'},
+      {name: 'Abraham', age: '35'},
+      {name: 'Anil', age: '40'},
+      {name: 'Sam', age: '40'},
+      {name: 'Philip', age: '40'},
+      {name: 'Bal', age: '40'},
+      {name: 'Anu', age: '20'},
+      {name: 'Sam', age: '25'},
+      {name: 'Rocky', age: '35'},
+      {name: 'Major', age: '40'},
+      {name: 'Kian', age: '40'},
+      {name: 'Karan', age: '40'},
+      {name: 'Bal', age: '40'},
+      {name: 'Anu', age: '20'},
+      {name: 'Prashobh', age: '25'},
+      {name: 'Abraham', age: '35'},
+      {name: 'Anil', age: '40'},
+      {name: 'Sam', age: '40'},
+      {name: 'Philip', age: '40'},
+      {name: 'Bal', age: '40'},
+      {name: 'Anu', age: '20'}
+    ];
     this.startPage = 0;
     this.paginationLimit = 4;
   }
@@ -142,7 +146,7 @@ export class ProductDetailComponent implements OnInit {
     });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.productService.getDiscus(params['id']).subscribe(resDiscus => {
-        console.log('discus',resDiscus);
+        console.log('discus', resDiscus);
       });
 
       this.productService.detailProduct(params['id']).subscribe(res => {
@@ -151,6 +155,12 @@ export class ProductDetailComponent implements OnInit {
         console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
+        /// SEO
+        this.titles.setTitle(this.productDetail.name);
+        this.meta.updateTag({
+            'description': this.productDetail.description
+        });
+        ///
         const thumborOption: ThumborOptions = {
           width: 100,
           height: 100,
@@ -212,12 +222,10 @@ export class ProductDetailComponent implements OnInit {
     this.activeDiskusi = false;
     this.activeUlasan = false;
   }
-  showMoreItems()
-  {
+  showMoreItems() {
      this.paginationLimit = Number(this.paginationLimit) + 3;
   }
-  showLessItems()
-  {
+  showLessItems() {
     this.paginationLimit = Number(this.paginationLimit) - 3;
   }
 
@@ -362,7 +370,7 @@ export class ProductDetailComponent implements OnInit {
     if (this.qty > 1) { this.qty -= 1; }
   }
 
-  penawaran(id, name){
+  penawaran(id, name) {
 
     const r = name.replace(new RegExp('/', 'g'), ' ');
     this.router.navigate(['/product/another-offer/' + id + '/' + r]);
