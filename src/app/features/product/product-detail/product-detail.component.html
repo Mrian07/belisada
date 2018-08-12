@@ -45,7 +45,7 @@
                     </div>
                     <div class="product-info">
                         <span class="strong-text">Berat  </span>
-                      <span>  {{ productDetail.weight }}gr </span>
+                        <span>  {{ productDetail.weight }}gr </span>
                         <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
                         <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                     </div>
@@ -203,41 +203,41 @@
         </div>
         <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
             <div class="row">
-              <div class="col-12">
-                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
-              </div>
+                <div class="col-12">
+                    <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
+                </div>
             </div>
 
     <table id="customers">
 
         <tr *ngFor="let item of productDetail.specification">
-          <td>{{item.name}} :</td>
-          <td>{{ item. value }}</td>
+            <td>{{item.name}} :</td>
+            <td>{{ item. value }}</td>
         </tr>
-      </table>
+    </table>
 
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskripsi === true">
             <div class="row">
-              <div class="col-12">
-                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
-                  <span>{{ productDetail.description }}</span>
-              </div>
+                <div class="col-12">
+                    <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
+                    <span>{{ productDetail.description }}</span>
+                </div>
             </div>
 
     <!-- <table id="customers">
 
         <tr *ngFor="let item of productDetail.specification">
-          <td>{{item.name}} :</td>
-          <td>{{ item. value }}</td>
+            <td>{{item.name}} :</td>
+            <td>{{ item. value }}</td>
         </tr>
-      </table> -->
+    </table> -->
 
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
             <div class="row">
-              <div class="col-12">
-                  <!-- Contenedor Principal -->
+                <div class="col-12">
+                <!-- Contenedor Principal -->
 	<div class="comments-container">
 
             <ul id="comments-list" class="comments-list">

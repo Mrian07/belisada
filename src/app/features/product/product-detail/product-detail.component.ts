@@ -49,7 +49,6 @@ export class ProductDetailComponent implements OnInit {
   activeUlasan: boolean;
   showmore;
 
-
   title: String;
   list: any;
   startPage: Number;
@@ -63,6 +62,9 @@ export class ProductDetailComponent implements OnInit {
   productImageUrlNew;
   productImageItemLooping;
   productNewatProdDetail: Home[] = [];
+  productDescription: any;
+  productDiskusi: any;
+  productUlasan: any;
   private isServer: boolean;
   public result;
   @HostListener('window:scroll', ['$event'])
@@ -122,10 +124,13 @@ export class ProductDetailComponent implements OnInit {
     ];
     this.startPage = 0;
     this.paginationLimit = 4;
+
+    if (this.imgIndex === undefined) {
+      this.imgIndex = 'https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg';
+    }
   }
 
   ngOnInit() {
-    // console.log('this.share: ', this.share);
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;
@@ -133,19 +138,6 @@ export class ProductDetailComponent implements OnInit {
     // // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
-    if (this.tstate.hasKey(RESULT_KEY)) {
-      // We are in the browser
-      this.result = this.tstate.get(RESULT_KEY, '');
-      console.log(this.result);
-    } else if (this.isServer) {
-        // We are on the server
-        this.tstate.set(RESULT_KEY, 'Im created on the server!');
-        console.log(this.result);
-    } else {
-        // No result received
-        this.result = 'Im created in the browser!';
-        console.log(this.result);
-    }
   }
 
   addressChange() {
@@ -173,13 +165,33 @@ export class ProductDetailComponent implements OnInit {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
         // console.log('this.productDetail: ', this.productDetail);
+        // Spec tab value
         this.tabVal = this.productDetail.specification;
+        // Description tab value
+        this.productDescription = this.productDetail.description;
+        // Diskusi tab value
+        this.productDiskusi = 'Comming soon';
+        // Ulasan tab Value
+        this.productUlasan = 'Comming soon';
 
         /// SEO
+        // Title
         this.titles.setTitle(this.productDetail.name);
-        this.meta.updateTag({
-            'description': this.productDetail.description
-        });
+        // Set meta tags
+        // Twitter
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+        this.meta.updateTag({ name: 'twitter:site', content: 'Belisada' });
+        this.meta.updateTag({ name: 'twitter:title', content: this.productDetail.name });
+        this.meta.updateTag({ name: 'twitter:description', content: this.productDetail.description });
+        this.meta.updateTag({ name: 'twitter:image', content: this.productDetail.imageUrl[0] });
+        // Facebook
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:site_name', content: 'Belisada' });
+        this.meta.updateTag({ property: 'og:title', content: this.productDetail.name });
+        this.meta.updateTag({ property: 'og:description', content: this.productDetail.description });
+        this.meta.updateTag({ property: 'og:image', content: this.productDetail.imageUrl[0] });
+        this.meta.updateTag({ property: 'og:url', content: 'https://dev.belisada.com/product/product-detail/' +
+        this.productDetail.id + '/' + this.productDetail.name });
         ///
         const thumborOption: ThumborOptions = {
           width: 100,
@@ -243,7 +255,7 @@ export class ProductDetailComponent implements OnInit {
     this.activeUlasan = false;
   }
   showMoreItems() {
-     this.paginationLimit = Number(this.paginationLimit) + 3;
+    this.paginationLimit = Number(this.paginationLimit) + 3;
   }
   showLessItems() {
     this.paginationLimit = Number(this.paginationLimit) - 3;
@@ -279,49 +291,26 @@ export class ProductDetailComponent implements OnInit {
   spesifikasi() {
     this.active();
     this.activeSpesifikasi = true;
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = this.productDetail.specification;
-        // // console.log(this.tabVal);
-      });
-    });
+    this.tabVal = this.productDetail.specification;
   }
 
   deskripsi() {
     this.active();
     this.activeDiskripsi = true;
     this.activeSpesifikasi = false;
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = this.productDetail.description;
-      });
-    });
+    this.tabVal = this.productDescription;
   }
 
   diskusi() {
     this.active();
     this.activeDiskusi = true;
-    this.tabVal = 'Coming soon 1...';
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = 'Coming soon 1...';
-      });
-    });
+    this.tabVal = this.productDiskusi;
   }
 
   ulasan() {
     this.active();
     this.activeUlasan = true;
-    this.tabVal = 'Coming soon 2...';
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = 'Coming soon 2...';
-      });
-    });
+    this.tabVal = this.productUlasan;
   }
 
   gotTodetailPart(id, name) {
