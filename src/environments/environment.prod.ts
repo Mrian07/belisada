@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  domain: 'https://belisada.id',
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
   thumborUrl: 'http://image.belisada.id:8888/',

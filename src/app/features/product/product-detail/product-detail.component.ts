@@ -17,6 +17,7 @@ import { ShareButtons } from '@ngx-share/core';
 import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
 import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
+import { Configuration } from '@belisada/core/config';
 
 const RESULT_KEY = makeStateKey<string>('result');
 
@@ -83,6 +84,7 @@ export class ProductDetailComponent implements OnInit {
     private addressService: AddressService,
     private thumborService: ThumborService,
     public share: ShareButtons,
+    private configuration: Configuration,
     private titles: Title,
     private meta: Meta,
     private tstate: TransferState,
@@ -190,7 +192,7 @@ export class ProductDetailComponent implements OnInit {
         this.meta.updateTag({ property: 'og:title', content: this.productDetail.name });
         this.meta.updateTag({ property: 'og:description', content: this.productDetail.description });
         this.meta.updateTag({ property: 'og:image', content: this.productDetail.imageUrl[0] });
-        this.meta.updateTag({ property: 'og:url', content: 'https://dev.belisada.com/product/product-detail/' +
+        this.meta.updateTag({ property: 'og:url', content: this.configuration.domainUrl + '/product/product-detail/' +
         this.productDetail.id + '/' + this.productDetail.name });
         ///
         const thumborOption: ThumborOptions = {
