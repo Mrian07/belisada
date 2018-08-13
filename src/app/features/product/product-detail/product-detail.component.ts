@@ -71,6 +71,7 @@ export class ProductDetailComponent implements OnInit {
   discus: Content[];
   idDicus: number;
   messageString: FormControl;
+  messageBottom: FormControl;
   oktest: CreateDiscus = new CreateDiscus();
   private isServer: boolean;
   public result;
@@ -133,6 +134,7 @@ export class ProductDetailComponent implements OnInit {
     this.startPage = 0;
     this.paginationLimit = 4;
     this.messageString = new FormControl('');
+    this.messageBottom = new FormControl('');
 
     if (this.imgIndex === undefined) {
       this.imgIndex = 'https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg';
@@ -328,13 +330,24 @@ export class ProductDetailComponent implements OnInit {
     message : this.messageString.value,
     productId: this.productDetail.productId
   };
-  console.log('ini a', this.oktest);
-  this.productService.createDiscus(a).subscribe(rsl => {
-  console.log(rsl);
-
-  });
-
-  console.log(this.messageString.value);
+  if (this.isLogin) {
+    this.productService.createDiscus(a).subscribe(rsl => {
+      console.log(rsl);
+      });
+  } else {
+    swal({
+      title: 'Oops',
+      text: 'Maaf anda harus login untuk melanjutkan',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigate(['/account/sign-in/' + this.productDetail.productId + '/' + this.productDetail.name]);
+      }
+    });
+  }
 }
 
   diskusi() {
@@ -358,6 +371,28 @@ export class ProductDetailComponent implements OnInit {
 
   shippingChange() {
     // // console.log('aaaa');
+  }
+  BtnBuat() {
+    const a = {
+      message : this.messageBottom.value,
+      productId: this.productDetail.productId
+    };
+    console.log('ini a', this.oktest);
+    swal({
+      title: 'Oops',
+      text: 'Maaf anda harus login untuk melanjutkan',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33'
+    }).then((result) => {
+      if (result.value) {
+        this.router.navigate(['/account/sign-in/' + this.productDetail.productId + '/' + this.productDetail.name]);
+      }
+    });
+    this.productService.createDiscus(a).subscribe(rsl => {
+      window.location.reload();
+    });
   }
 
   addToCart(productId, storeId) {

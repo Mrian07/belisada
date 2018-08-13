@@ -43,6 +43,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
   LoginStatus: Subscription;
   test: any;
   private storage: Storage;
+  param1: string;
+  param2: string;
   // subscription: Subscription;
 
   constructor(
@@ -55,9 +57,13 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private storageService: StorageService,
     private productService: ProductService,
     private authService: AuthService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private route: ActivatedRoute
   ) {
     this.storage = this.storageService.get();
+    this.param1 = this.route.snapshot.params.id;
+    this.param2 = this.route.snapshot.params.name;
+    console.log(this.route.snapshot.params);
   }
 
   ngOnInit() {
@@ -84,7 +90,14 @@ export class SigninComponent implements OnInit, AfterViewInit {
         //   this.userService.setUserToSessionStorage(token);
         //   this.userService.setRemember('false');
         // }
-        this.router.navigateByUrl('/buyer/profile');
+        if (this.param1) {
+          // this.router.navigateByUrl('/buyer/profile');
+          window.location.reload();
+
+        } else {
+          this.router.navigateByUrl('/buyer/profile');
+        }
+        // this.router.navigateByUrl('/buyer/profile');
         // location.reload();
 
       }, error => {
@@ -97,7 +110,11 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
   checkIsLogin() {
     if (this.authService.getToken()) {
-      this.router.navigateByUrl('/buyer/profile');
+      if (!this.param1) {
+        this.router.navigateByUrl('/buyer/profile');
+      } else {
+        console.log('123');
+      }
     }
   }
 
@@ -129,6 +146,9 @@ export class SigninComponent implements OnInit, AfterViewInit {
       form.reset();
       form.patchValue({email: signinRequest.email});
       // this.router.navigateByUrl('/');
+      if (this.param1) {
+        this.router.navigateByUrl('/product/product-detail/' + this.param1 + '/' + this.param2);
+      }
     // }
     this.LoginStatus.unsubscribe();
   }
