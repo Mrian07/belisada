@@ -4,9 +4,11 @@ import { ProductDetailList, Filter, FilterOffers } from '@belisada/core/models/p
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
 import { ShoppingCartService } from './../../../core/services/shopping-cart/shopping-cart.service';
-import { AuthService } from '@belisada/core/services';
 import { AddressService } from './../../../core/services/address/address.service';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
+import swal from 'sweetalert2';
+import { UserService, AuthService, HomeSService } from '@belisada/core/services';
+import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 
 @Component({
   selector: 'app-another-offer',
@@ -40,6 +42,18 @@ export class AnotherOfferComponent implements OnInit {
   id: string;
   name: string;
 
+  getlistCourier: string;
+  getListClassification: string;
+  currentShipping: any;
+  currentClassification: any;
+
+  dataConst: any;
+  dataConst2: any;
+
+  shippingAddress: any;
+
+  qty = 1;
+
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
@@ -47,9 +61,10 @@ export class AnotherOfferComponent implements OnInit {
     private authService: AuthService,
     private addressService: AddressService,
     private fb: FormBuilder,
+    private userService: UserService,
     private router: Router
   ) {
-
+    this.shippingAddress = '';
   }
 
   ngOnInit() {
@@ -58,6 +73,48 @@ export class AnotherOfferComponent implements OnInit {
       courier: this.fb.array([]),
       classification: this.fb.array([]),
     });
+    this.getlistCourier = '';
+    this.getListClassification = '';
+  }
+
+  addToCart(productId, storeId, i) {
+    const userData = this.userService.getUserData(this.authService.getToken());
+    // console.log('userData: ', userData);
+
+    if (userData) {
+      if (userData.storeId === storeId) {
+        swal(
+            'belisada.id',
+            'Product ini berasal dari Toko Anda'
+          );
+      } else {
+        if (this.cartItem[i] === undefined) {
+          swal(
+            'belisada.id',
+            'Jumlah harus di pilih!'
+          );
+        } else {
+          const addToCartRequest: AddToCartRequest = {
+            productId: productId,
+            quantity: this.cartItem[i],
+            courierCode: this.shippingRates[i].courierCode,
+            courierService: this.shippingRates[i].courierService,
+            shippingAddressId: this.addressId
+          };
+
+          console.log('ini', addToCartRequest);
+          this.shoppingCartService.create(addToCartRequest).subscribe(response => {
+            if (response.status === 1) {
+              this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
+            } else {
+              swal('belisada.id', response.message, 'error');
+            }
+          });
+        }
+      }
+    } else {
+      this.shoppingCartService.addItem(productId, +this.qty);
+    }
   }
 
   loadData() {
@@ -65,23 +122,51 @@ export class AnotherOfferComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((params2: Params) => {
     this.currentPage = (params2['page'] === undefined) ? 1 : +params2['page'];
 
-    this.activatedRoute.params.subscribe((params: Params) => {
+    // console.log('ambil ship: ', params2['shipping']);
+      if (params2['classification']) {
+        this.currentClassification = params2['classification'];
+      }
+    // this.currentShipping = (params2['shipping'] === undefined) ? '' : +params2['shipping'];
 
+    this.activatedRoute.params.subscribe((params: Params) => {
+      console.log('shippinya', this.currentShipping);
       this.pages = [];
       this.id = params['id'];
       this.name = params['name'];
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
-        console.log('list', res.data);
-        const queryParams = {
+
+        if (this.currentClassification) {
+          this.dataConst  = {
+            itemperpage: 10,
+            page: this.currentPage,
+            classification: this.currentClassification,
+            ot: 'asc',
+            ob: 'name',
+            id: params['id'],
+          };
+        } else {
+          this.dataConst = {
+            itemperpage: 10,
+            page: this.currentPage,
+            ot: 'asc',
+            ob: 'name',
+            id: params['id'],
+          };
+        }
+
+        this.dataConst2 = {
           itemperpage: 10,
-          page: this.currentPage,
-          ot: 'asc',
-          ob: 'name',
-          id: params['id']
+            page: this.currentPage,
+            ot: 'asc',
+            ob: 'name',
+            id: params['id'],
         };
 
+        const queryParams3 = this.dataConst2;
+        const queryParams = this.dataConst;
         this.productService.getOffers(queryParams).subscribe(respon => {
+
           this.filter = respon;
           this.lastPage = this.filter.totalPages;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
@@ -91,18 +176,20 @@ export class AnotherOfferComponent implements OnInit {
           }
 
           this.addressService.getShipping().subscribe(result => {
+            console.log('result: ', result);
             this.addressId = result[0].addressId;
+            const rajaOngkirId = result[0].rajaOngkirId;
 
-            respon.content.forEach((cart, index) => {
+            respon.content.forEach((item, index) => {
               this.cartItem[index] = 1;
               this.cartItem2 = 1;
               this.shippingRates[index] = '';
 
               const queryParams2 = {
-                productId: cart.productId,
-                weight: cart.originId,
-                originId: cart.weight,
-                destinationId: this.addressId,
+                productId: item.productId,
+                weight: item.weight,
+                originId: rajaOngkirId,
+                destinationId: item.originId,
               };
 
 
@@ -113,7 +200,7 @@ export class AnotherOfferComponent implements OnInit {
             });
           });
 
-          this.productService.getFilterOffers(queryParams).subscribe(respons => {
+          this.productService.getFilterOffers(queryParams3).subscribe(respons => {
             this.filterOffers = respons;
           });
         });
@@ -127,6 +214,7 @@ export class AnotherOfferComponent implements OnInit {
   }
 
   getFilId(title, name, isChecked: boolean) {
+
     let listCourier: FormArray = <FormArray> this.myForm.controls.courier;
     let listClassification: FormArray = <FormArray> this.myForm.controls.classification;
 
@@ -156,6 +244,9 @@ export class AnotherOfferComponent implements OnInit {
         break;
     }
 
+    this.getlistCourier = listCourier.value;
+    this.getListClassification = listClassification.value;
+
     this.activatedRoute.params.subscribe((params: Params) => {
 
       this.productService.detailProduct(params['id']).subscribe(res => {
@@ -168,8 +259,16 @@ export class AnotherOfferComponent implements OnInit {
           shipping: listCourier.value,
           classification: listClassification.value,
         };
+        this.pages = [];
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
+          this.lastPage = this.filter.totalPages;
+          for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+            if (r > 0 && r <= this.filter.totalPages) {
+              this.pages.push(r);
+            }
+          }
+
 
         });
 
@@ -193,7 +292,7 @@ export class AnotherOfferComponent implements OnInit {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.filter.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/product/another-offer/' + this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/product/another-offer/' + this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut, classification: this.getListClassification.toString(), shipping: this.getlistCourier.toString() }, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
 
