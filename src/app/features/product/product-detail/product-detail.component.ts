@@ -177,23 +177,24 @@ export class ProductDetailComponent implements OnInit {
 
         /// SEO
         // Title
-        this.titles.setTitle(this.productDetail.name);
+        this.titles.setTitle('Belisada - ' + this.productDetail.name);
         // Set meta tags
         // Twitter
-        this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
-        this.meta.updateTag({ name: 'twitter:site', content: 'Belisada' });
-        this.meta.updateTag({ name: 'twitter:title', content: this.productDetail.name });
-        this.meta.updateTag({ name: 'twitter:description', content: this.productDetail.description });
-        this.meta.updateTag({ name: 'twitter:image', content: this.productDetail.imageUrl[0] });
+        // this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+        // this.meta.updateTag({ name: 'twitter:site', content: 'Belisada.co.id' });
+        // this.meta.updateTag({ name: 'twitter:title', content: this.productDetail.name });
+        // this.meta.updateTag({ name: 'twitter:description', content: this.productDetail.name});
+        // this.meta.updateTag({ name: 'twitter:image', content: this.productDetail.imageUrl[0] });
         // Facebook
         this.meta.updateTag({ property: 'og:type', content: 'article' });
         this.meta.updateTag({ property: 'og:site_name', content: 'Belisada' });
         this.meta.updateTag({ property: 'og:title', content: this.productDetail.name });
-        this.meta.updateTag({ property: 'og:description', content: this.productDetail.description });
+        this.meta.updateTag({ property: 'og:description', content:  this.productDetail.name + ', ' + this.productDetail.description });
         this.meta.updateTag({ property: 'og:image', content: this.productDetail.imageUrl[0] });
         this.meta.updateTag({ property: 'og:url', content: this.configuration.domainUrl + '/product/product-detail/' +
         this.productDetail.id + '/' + this.productDetail.name });
         ///
+        console.log(this.productImageUrl + '' + this.productDetail.imageUrl[0]);
         const thumborOption: ThumborOptions = {
           width: 100,
           height: 100,
