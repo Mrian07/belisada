@@ -1,8 +1,10 @@
+import { FormControl } from '@angular/forms';
+import { Content } from './../../../core/models/product/product.model';
 import { Component, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Title, Meta, TransferState, makeStateKey } from '@angular/platform-browser';
-import { ProductDetailList, MoreInformation } from '@belisada/core/models/product/product.model';
+import { ProductDetailList, MoreInformation, CreateDiscus } from '@belisada/core/models/product/product.model';
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
@@ -65,6 +67,11 @@ export class ProductDetailComponent implements OnInit {
   productDescription: any;
   productDiskusi: any;
   productUlasan: any;
+  textAreaClick: boolean;
+  discus: Content[];
+  idDicus: number;
+  messageString: FormControl;
+  oktest: CreateDiscus = new CreateDiscus();
   private isServer: boolean;
   public result;
   @HostListener('window:scroll', ['$event'])
@@ -125,6 +132,7 @@ export class ProductDetailComponent implements OnInit {
     ];
     this.startPage = 0;
     this.paginationLimit = 4;
+    this.messageString = new FormControl('');
 
     if (this.imgIndex === undefined) {
       this.imgIndex = 'https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg';
@@ -158,9 +166,7 @@ export class ProductDetailComponent implements OnInit {
       // // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.getDiscus(params['id']).subscribe(resDiscus => {
-        // console.log('discus', resDiscus);
-      });
+      this.getDiscus(params);
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
@@ -255,11 +261,26 @@ export class ProductDetailComponent implements OnInit {
     this.activeDiskusi = false;
     this.activeUlasan = false;
   }
+    textAreaExpannded(e) {
+        this.idDicus = e;
+        console.log(e);
+        this.messageString.reset();
+        this.textAreaClick = true;
+      }
+      hideTextArea() {
+        this.textAreaClick = false;
+      }
   showMoreItems() {
     this.paginationLimit = Number(this.paginationLimit) + 3;
   }
   showLessItems() {
     this.paginationLimit = Number(this.paginationLimit) - 3;
+  }
+  private getDiscus(params: Params) {
+    this.productService.getDiscus(params['id']).subscribe(resDiscus => {
+      this.discus = resDiscus.content;
+      console.log('discus', this.discus);
+    });
   }
 
   goStore(url) {
@@ -301,6 +322,20 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = false;
     this.tabVal = this.productDescription;
   }
+  onSent() {
+    const a = {
+    discusParentId : this.idDicus,
+    message : this.messageString.value,
+    productId: this.productDetail.productId
+  };
+  console.log('ini a', this.oktest);
+  this.productService.createDiscus(a).subscribe(rsl => {
+  console.log(rsl);
+
+  });
+
+  console.log(this.messageString.value);
+}
 
   diskusi() {
     this.active();
