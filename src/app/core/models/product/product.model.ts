@@ -118,6 +118,7 @@ export class ProductDetailList {
   locationName: string;
   id: string;
   moreInformation: MoreInformation;
+  brandImageUrl: any;
 }
 
 export class Specification {

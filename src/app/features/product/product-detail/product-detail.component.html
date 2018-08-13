@@ -43,6 +43,12 @@
                         <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
                         <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                     </div>
+                    <div class="product-info">
+                        <span class="strong-text">Berat  </span>
+                        <span>  {{ productDetail.weight }}gr </span>
+                        <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
+                        <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
+                    </div>
                     <!-- <div class="product-info">
                         <span class="strong-text">Kebijakan Pengembalian:</span> Mendukung 7 hari pengembalian dana tanpa syarat
                     </div> -->
@@ -203,9 +209,9 @@
         </div>
         <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
             <div class="row">
-              <div class="col-12">
-                  <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
-              </div>
+                <div class="col-12">
+                    <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
+                </div>
             </div>
 
     <table id="customers">
@@ -228,10 +234,10 @@
     <!-- <table id="customers">
 
         <tr *ngFor="let item of productDetail.specification">
-          <td>{{item.name}} :</td>
-          <td>{{ item. value }}</td>
+            <td>{{item.name}} :</td>
+            <td>{{ item. value }}</td>
         </tr>
-      </table> -->
+    </table> -->
 
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskusi === true">
@@ -347,6 +353,21 @@
 
 <div class="w__paddingin"></div>
 <!-- </div> -->
+
+<div class="heading__detail" *ngIf="isSubHeaderShow">
+    <div class="heading__container">
+        <div class="heading__grid">
+            <div class="heading__grid--col">
+                <span class="heading__title">{{ productDetail.name }}</span>
+            </div>
+            <div class="heading__grid--col right">
+                <span class="heading__price u-margin-right-1">{{ productDetail.pricelist | currency:'Rp ' }}</span>
+                <button class="btn btn--blue-belisada btn--flat btn--add-to-cart u-margin-right-1" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart</button>
+                <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="heading__detail" *ngIf="isSubHeaderShow">
     <div class="heading__container">

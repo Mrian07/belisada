@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
-import { AddProductRequest, AddProductResponse, ProductDetail, Filter, FilterOffers,
-Isi } from '@belisada/core/models/product/product.model';
+import { AddProductRequest, AddProductResponse, ProductDetail, Filter,
+  FilterOffers, Isi } from '@belisada/core/models/product/product.model';
 import { ProductDetailSimple, ProductSimple } from '@belisada/core/models/product/product-detail-simple';
 
 @Injectable({

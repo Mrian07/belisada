@@ -248,7 +248,7 @@ export class ProductDetailComponent implements OnInit {
       confirmButtonText: 'Login !'
     }).then((result) => {
       if (result.value) {
-        this.router.navigateByUrl('/account/sign-in/' + this.productDetail.productId);
+        this.router.navigateByUrl('/account/sign-in/');
       }
     });
    } else {
