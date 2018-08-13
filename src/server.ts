@@ -38,7 +38,8 @@ app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, ''));
 
 // TODO: implement data requests securely
-app.get('/api/*', (req, res) => {
+app.get('https://api0.belisada.id/*', (req, res) => {
+  console.log(req);
   res.status(404).send('data requests are not supported');
 });
 
