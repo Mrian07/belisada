@@ -1,8 +1,9 @@
-import { FormControl, Validators } from '@angular/forms';
-import { ProductDetailList, MoreInformation, CreateDiscus, Content } from '@belisada/core/models/product/product.model';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformServer } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ProductService } from './../../../core/services/product/product.service';
+import { Title, Meta, TransferState, makeStateKey } from '@angular/platform-browser';
+import { ProductDetailList, MoreInformation } from '@belisada/core/models/product/product.model';
+import { ProductService } from '@belisada/core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
@@ -15,6 +16,9 @@ import { ShareButtons } from '@ngx-share/core';
 import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
 import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
+import { Configuration } from '@belisada/core/config';
+
+const RESULT_KEY = makeStateKey<string>('result');
 
 @Component({
   selector: 'app-product-detail',
@@ -45,12 +49,10 @@ export class ProductDetailComponent implements OnInit {
   activeUlasan: boolean;
   showmore;
 
-
   title: String;
   list: any;
-  startPage: number;
-  paginationLimit: number;
-  discus: Content[];
+  startPage: Number;
+  paginationLimit: Number;
 
   imgIndex: string;
 
@@ -60,13 +62,11 @@ export class ProductDetailComponent implements OnInit {
   productImageUrlNew;
   productImageItemLooping;
   productNewatProdDetail: Home[] = [];
-
-  textAreaClick: boolean;
-  idDicus: number;
-  messageString: FormControl;
-  oktest: CreateDiscus = new CreateDiscus();
-
-
+  productDescription: any;
+  productDiskusi: any;
+  productUlasan: any;
+  private isServer: boolean;
+  public result;
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 450) ? true : false;
@@ -82,7 +82,13 @@ export class ProductDetailComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private addressService: AddressService,
     private thumborService: ThumborService,
-    public share: ShareButtons
+    public share: ShareButtons,
+    private configuration: Configuration,
+    private titles: Title,
+    private meta: Meta,
+    private tstate: TransferState,
+    @Inject(PLATFORM_ID) platformId
+
   ) {
     this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
     this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
@@ -92,56 +98,47 @@ export class ProductDetailComponent implements OnInit {
     this.shippingRates = '';
     this.shippingAddress = '';
     this.showmore = 'true';
-
+    this.isServer = isPlatformServer(platformId);
 
     this.list = [
-      {name: 'Prashobh ', age: '25 '},
-      {name: 'Abraham ', age: '35 '},
-      {name: 'Anil ', age: '40 '},
-      {name: 'Sam ', age: '40 '},
-      {name: 'Philip ', age: '40 '},
-      {name: 'Bal ', age: '40 '},
-      {name: 'Anu ', age: '20 '},
-      {name: 'Sam ', age: '25 '},
-      {name: 'Rocky ', age: '35 '},
-      {name: 'Major ', age: '40 '},
-      {name: 'Kian ', age: '40 '},
-      {name: 'Karan ', age: '40 '},
-      {name: 'Bal ', age: '40 '},
-      {name: 'Anu ', age: '20 '},
-      {name: 'Prashobh ', age: '25 '},
-      {name: 'Abraham ', age: '35 '},
-      {name: 'Anil ', age: '40 '},
-      {name: 'Sam ', age: '40 '},
-      {name: 'Philip ', age: '40 '},
-      {name: 'Bal ', age: '40 '},
-      {name: 'Anu ', age: '20 '}
+      {name: 'Prashobh', age: '25'},
+      {name: 'Abraham', age: '35'},
+      {name: 'Anil', age: '40'},
+      {name: 'Sam', age: '40'},
+      {name: 'Philip', age: '40'},
+      {name: 'Bal', age: '40'},
+      {name: 'Anu', age: '20'},
+      {name: 'Sam', age: '25'},
+      {name: 'Rocky', age: '35'},
+      {name: 'Major', age: '40'},
+      {name: 'Kian', age: '40'},
+      {name: 'Karan', age: '40'},
+      {name: 'Bal', age: '40'},
+      {name: 'Anu', age: '20'},
+      {name: 'Prashobh', age: '25'},
+      {name: 'Abraham', age: '35'},
+      {name: 'Anil', age: '40'},
+      {name: 'Sam', age: '40'},
+      {name: 'Philip', age: '40'},
+      {name: 'Bal', age: '40'},
+      {name: 'Anu', age: '20'}
     ];
     this.startPage = 0;
     this.paginationLimit = 4;
-    this.messageString = new FormControl('');
 
+    if (this.imgIndex === undefined) {
+      this.imgIndex = 'https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg';
+    }
   }
 
   ngOnInit() {
-    console.log('this.share: ',  this.share);
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;
     }
-    // console.log('shippingAddress: ', this.shippingAddress);
+    // // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
-  }
-
-  textAreaExpannded(e) {
-    this.idDicus = e;
-    console.log(e);
-    this.messageString.reset();
-    this.textAreaClick = true;
-  }
-  hideTextArea() {
-    this.textAreaClick = false;
   }
 
   addressChange() {
@@ -158,15 +155,72 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     this.homeS.getHomeNew().subscribe(res => {
       this.productNewatProdDetail = res;
-      // console.log('ini res: ', res);
+      // // console.log('ini res: ', res);
     });
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.getDiscus(params);
+      this.productService.getDiscus(params['id']).subscribe(resDiscus => {
+        // console.log('discus', resDiscus);
+      });
 
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        console.log('this.productDetail: ', this.productDetail);
+        // console.log('this.productDetail: ', this.productDetail);
+        // Spec tab value
+        this.tabVal = this.productDetail.specification;
+        // Description tab value
+        this.productDescription = this.productDetail.description;
+        // Diskusi tab value
+        this.productDiskusi = 'Comming soon';
+        // Ulasan tab Value
+        this.productUlasan = 'Comming soon';
+
+        /// SEO
+        // Title
+        this.titles.setTitle(this.productDetail.name);
+        // Set meta tags
+        // Twitter
+        this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+        this.meta.updateTag({ name: 'twitter:site', content: 'Belisada' });
+        this.meta.updateTag({ name: 'twitter:title', content: this.productDetail.name });
+        this.meta.updateTag({ name: 'twitter:description', content: this.productDetail.description });
+        this.meta.updateTag({ name: 'twitter:image', content: this.productDetail.imageUrl[0] });
+        // Facebook
+        this.meta.updateTag({ property: 'og:type', content: 'article' });
+        this.meta.updateTag({ property: 'og:site_name', content: 'Belisada' });
+        this.meta.updateTag({ property: 'og:title', content: this.productDetail.name });
+        this.meta.updateTag({ property: 'og:description', content: this.productDetail.description });
+        this.meta.updateTag({ property: 'og:image', content: this.productDetail.imageUrl[0] });
+        this.meta.updateTag({ property: 'og:url', content: this.configuration.domainUrl + '/product/product-detail/' +
+        this.productDetail.id + '/' + this.productDetail.name });
+        ///
+        const thumborOption: ThumborOptions = {
+          width: 100,
+          height: 100,
+          fitting: ThumborSizingEnum.FIT_IN,
+          filter: {
+            fill: 'white'
+          }
+        };
+
+        this.productDetail.couriers.forEach((item, index) => {
+          this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
+        });
+
+        // console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
+
+        // // console.log('ini tabval', this.tabVal);
+        this.imgIndex = this.productDetail.imageUrl[0];
+        // console.log('this.imgIndex: ', this.imgIndex);
+
+        if (this.isLogin) {
+          this.listShipping();
+        }
+      });
+      this.productService.detailProduct(params['id']).subscribe(res => {
+        this.productDetail = res.data;
+        this.moreInformation = res.data.moreInformation;
+        // console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
         const thumborOption: ThumborOptions = {
@@ -182,40 +236,11 @@ export class ProductDetailComponent implements OnInit {
           this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
         });
 
-        console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
+        // console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
 
-        // console.log('ini tabval', this.tabVal);
+        // // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
-        console.log('this.imgIndex: ', this.imgIndex);
-
-        if (this.isLogin) {
-          this.listShipping();
-        }
-      });
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.moreInformation = res.data.moreInformation;
-        console.log('this.productDetail: ', this.productDetail);
-        this.tabVal = this.productDetail.specification;
-
-        const thumborOption: ThumborOptions = {
-          width: 100,
-          height: 100,
-          fitting: ThumborSizingEnum.FIT_IN,
-          filter: {
-            fill: 'white'
-          }
-        };
-
-        this.productDetail.couriers.forEach((item, index) => {
-          this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
-        });
-
-        console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
-
-        // console.log('ini tabval', this.tabVal);
-        this.imgIndex = this.productDetail.imageUrl[0];
-        console.log('this.imgIndex: ', this.imgIndex);
+        // console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -223,44 +248,6 @@ export class ProductDetailComponent implements OnInit {
       });
     });
   }
-  private getDiscus(params: Params) {
-    this.productService.getDiscus(params['id']).subscribe(resDiscus => {
-      this.discus = resDiscus.content;
-      console.log('discus', this.discus);
-    });
-  }
-
-  onSent() {
-    const a = {
-     discusParentId : this.idDicus,
-     message : this.messageString.value,
-     productId: this.productDetail.productId
-   };
-   console.log('ini a', this.oktest);
-   if (this.isLogin === false) {
-    swal({
-      title: 'OOOPSSS',
-      text: 'Anda Belum Login',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Login !'
-    }).then((result) => {
-      if (result.value) {
-        this.router.navigateByUrl('/account/sign-in/');
-      }
-    });
-   } else {
-    this.productService.createDiscus(a).subscribe(rsl => {
-      console.log(rsl);
-
-    });
-   }
-
-
-   console.log(this.messageString.value);
- }
 
   active() {
     this.activeSpesifikasi = false;
@@ -277,7 +264,7 @@ export class ProductDetailComponent implements OnInit {
 
   goStore(url) {
     this.router.navigate(['/' + url]);
-    // console.log(url);
+    // // console.log(url);
   }
 
   selectImg(img) {
@@ -297,73 +284,50 @@ export class ProductDetailComponent implements OnInit {
         this.getShippingRates(queryParam);
       }
 
-      // console.log('this.shippingAddress: ', this.shippingAddress);
-      // console.log('this.shippingAddressList: ', this.shippingAddressList);
+      // // console.log('this.shippingAddress: ', this.shippingAddress);
+      // // console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
 
   spesifikasi() {
     this.active();
     this.activeSpesifikasi = true;
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = this.productDetail.specification;
-        // console.log(this.tabVal);
-      });
-    });
+    this.tabVal = this.productDetail.specification;
   }
 
   deskripsi() {
     this.active();
     this.activeDiskripsi = true;
     this.activeSpesifikasi = false;
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = this.productDetail.description;
-      });
-    });
+    this.tabVal = this.productDescription;
   }
 
   diskusi() {
     this.active();
     this.activeDiskusi = true;
-    this.tabVal = 'Coming soon 1...';
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = 'Coming soon 1...';
-      });
-    });
+    this.tabVal = this.productDiskusi;
   }
 
   ulasan() {
     this.active();
     this.activeUlasan = true;
-    this.tabVal = 'Coming soon 2...';
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.detailProduct(params['id']).subscribe(res => {
-        this.productDetail = res.data;
-        this.tabVal = 'Coming soon 2...';
-      });
-    });
+    this.tabVal = this.productUlasan;
   }
 
   gotTodetailPart(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    // console.log(r);
+    // // console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
     window.scrollTo(0, 0);
   }
 
   shippingChange() {
-    // console.log('aaaa');
+    // // console.log('aaaa');
   }
 
   addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
-    // console.log('userData: ', userData);
+    // // console.log('userData: ', userData);
 
     if (userData) {
       if (userData.storeId === storeId) {
@@ -387,7 +351,7 @@ export class ProductDetailComponent implements OnInit {
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-            // console.log('response: ', response);
+            // // console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
               this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
@@ -424,4 +388,3 @@ export class ProductDetailComponent implements OnInit {
   }
 
 }
-
