@@ -77,10 +77,10 @@
                 </select>
               </div>
               <div class="text-c">
-                {{item.storeName}}
+                {{item.storeName}} / {{item.productId}} - {{item.storeId}}
               </div>
               <div class="text-c">
-                <div class="btn-add">Add To Cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></div>
+                <div class="btn-add" (click)="addToCart(item.productId, item.storeId, i)">Add To Cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></div>
               </div>
             </div>
           

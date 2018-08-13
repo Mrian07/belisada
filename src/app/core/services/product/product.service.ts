@@ -38,7 +38,7 @@ export class ProductService {
       );
   }
   getDiscus(id: Object): Observable<Isi> {
-    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id)
+    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id + '?itemperpage=100')
     .pipe(
       map(response => response as Isi)
     );
