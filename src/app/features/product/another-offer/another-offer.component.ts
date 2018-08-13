@@ -35,6 +35,10 @@ export class AnotherOfferComponent implements OnInit {
   currentPage: number;
   lastPage: number;
   pages: any = [];
+  brandImageUrl: any;
+
+  id: string;
+  name: string;
 
   constructor(
     private productService: ProductService,
@@ -56,22 +60,27 @@ export class AnotherOfferComponent implements OnInit {
     });
   }
 
-
   loadData() {
-    
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.pages = [];
-      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
 
+    this.activatedRoute.queryParams.subscribe((params2: Params) => {
+    this.currentPage = (params2['page'] === undefined) ? 1 : +params2['page'];
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+
+      this.pages = [];
+      this.id = params['id'];
+      this.name = params['name'];
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
-
+        console.log('list', res.data);
         const queryParams = {
-          page: 1,
+          itemperpage: 10,
+          page: this.currentPage,
           ot: 'asc',
           ob: 'name',
           id: params['id']
         };
+
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
           this.lastPage = this.filter.totalPages;
@@ -81,29 +90,26 @@ export class AnotherOfferComponent implements OnInit {
             }
           }
 
-          console.log('list prod', respon);
-
-          this.addressService.getShipping().subscribe(res => {
-            this.addressId = res[0].addressId;
+          this.addressService.getShipping().subscribe(result => {
+            this.addressId = result[0].addressId;
 
             respon.content.forEach((cart, index) => {
               this.cartItem[index] = 1;
-              this.cartItem2 =1;
+              this.cartItem2 = 1;
               this.shippingRates[index] = '';
-  
-              const queryParams = {
+
+              const queryParams2 = {
                 productId: cart.productId,
                 weight: cart.originId,
                 originId: cart.weight,
                 destinationId: this.addressId,
               };
-  
-  
-              this.shoppingCartService.getShippingRates(queryParams).subscribe(resship => {
+
+
+              this.shoppingCartService.getShippingRates(queryParams2).subscribe(resship => {
                 this.shipRates[index] = resship;
-                console.log('this.shipRates', this.shipRates);
               });
-  
+
             });
           });
 
@@ -111,21 +117,25 @@ export class AnotherOfferComponent implements OnInit {
             this.filterOffers = respons;
           });
         });
+      });
 
       });
+
     });
+
+
   }
 
-  getFilId(title,name, isChecked: boolean){
-    let listCourier:FormArray = <FormArray> this.myForm.controls.courier;
-    let listClassification:FormArray = <FormArray> this.myForm.controls.classification;
+  getFilId(title, name, isChecked: boolean) {
+    let listCourier: FormArray = <FormArray> this.myForm.controls.courier;
+    let listClassification: FormArray = <FormArray> this.myForm.controls.classification;
 
     switch (title) {
       case 'Courier':
         listCourier = <FormArray> this.myForm.controls.courier;
-        if(isChecked==true){
-          listCourier.push(new FormControl(name));     
-        }else{
+        if ( isChecked === true) {
+          listCourier.push(new FormControl(name));
+        } else {
           const index = listCourier.controls.findIndex(x => x.value === name);
           listCourier.removeAt(index);
         }
@@ -133,14 +143,14 @@ export class AnotherOfferComponent implements OnInit {
 
       case 'Classification':
         listClassification = <FormArray> this.myForm.controls.classification;
-        if(isChecked==true){
-          listClassification.push(new FormControl(name));     
-        }else{
+        if (isChecked === true) {
+          listClassification.push(new FormControl(name));
+        } else {
           const index = listClassification.controls.findIndex(x => x.value === name);
           listClassification.removeAt(index);
         }
         break;
-    
+
       default:
         console.log('not specified');
         break;
@@ -160,31 +170,30 @@ export class AnotherOfferComponent implements OnInit {
         };
         this.productService.getOffers(queryParams).subscribe(respon => {
           this.filter = respon;
-          // console.log('hasil offer', respon);
 
         });
 
       });
     });
-    
+
   }
 
 
   decreaseQty(cartItem, index) {
-    if(cartItem >1){
-      this.cartItem[index]= cartItem-1;
+    if (cartItem > 1) {
+      this.cartItem[index] = cartItem - 1;
     }
   }
 
   increaseQty(cartItem, index) {
-    this.cartItem[index] = cartItem+1;
+    this.cartItem[index] = cartItem + 1;
   }
 
   setPage(page: number, increment?: number) {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.filter.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/product/another-offer'], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/product/another-offer/' + this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
 

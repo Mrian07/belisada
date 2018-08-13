@@ -11,32 +11,7 @@
 
                     <div  class="select-box select-box-orange"><span>All Category</span>
                         <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
-                        <!-- <fa name="caret-down"></fa> -->
                     </div>
-
-                    <!-- <div class="select-box select-box-orange">
-                        <span>All Category</span>
-                        <fa name="caret-down"></fa>
-                        <input type="hidden" name=""> -->
-
-                        <!-- <div class="menu__container">
-                            <div class="menu__container--title" *ngFor="let menu of menuCategory.data">
-                                {{menu.name}}
-                                <div class="menu__value">
-                                    <div class="menu__value--tile">Smart Phone</div>
-                                    <div>
-                                        Asus
-                                    </div>
-                                    <div>
-                                        HP
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-
-
-                    <!-- </div> -->
                 </div>
 
                 <div class="menu__container" *ngIf="isMenu == true">
@@ -70,27 +45,6 @@
 
             </div>
 
-            <!-- <div class="select-box-container w--select--box">
-                <div class="select-box select-box-orange" (click)="isSelectBoxActive = !isSelectBoxActive">
-                    <span>All Category</span>
-                    <fa name="caret-down"></fa>
-                    <input type="hidden" name="">
-                </div>
-                <div class="drick-select-container--toggle" [ngClass]="{'active':isSelectBoxActive}">
-                    <ul class="drick-select-list">
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                        <li>aaaaa</li>
-                    </ul>
-                </div>
-            </div> -->
             <div class="input-group icon-right with-select-box">
                 <!-- <div class=""> -->
                 <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter($event)"
@@ -112,8 +66,6 @@
                     </div>
                 </div>
                 <fa-icon [icon]="['fas', 'search']"></fa-icon>
-                <!-- <fa name="search"></fa> -->
-                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -282,7 +234,6 @@
                 <span class="text-language">
                     ID<br>
                     <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
-                    <!-- <fa name="caret-down"></fa> -->
                 </span>
             </li>
         </ul>

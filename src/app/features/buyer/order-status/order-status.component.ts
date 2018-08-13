@@ -30,6 +30,9 @@ export class OrderStatusComponent implements OnInit {
   isEmpty: boolean;
   transactionId: number;
   listPayment: PaymentList[];
+  regSuccess: any;
+  showDialogRek: any;
+
 
   constructor(
     private transactionService: TransactionService,
@@ -64,6 +67,7 @@ export class OrderStatusComponent implements OnInit {
       }
       this.isLoading = false;
       this.list = respon;
+      console.log(respon);
     });
   }
 

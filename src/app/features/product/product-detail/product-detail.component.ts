@@ -1,7 +1,6 @@
-import { CreateDiscus } from './../../../core/models/product/product.model';
 import { FormControl, Validators } from '@angular/forms';
-import { ProductDetailList, MoreInformation, Isi, Content } from '@belisada/core/models/product/product.model';
-import { Component, OnInit } from '@angular/core';
+import { ProductDetailList, MoreInformation, CreateDiscus, Content } from '@belisada/core/models/product/product.model';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ProductService } from './../../../core/services/product/product.service';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
@@ -24,15 +23,13 @@ import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizin
 })
 export class ProductDetailComponent implements OnInit {
 
-  // id: number;
-  // name: string;
-
   isLogin: Boolean = false;
   shippingRates: any;
 
+  isSubHeaderShow: Boolean = false;
+
   shippingAddress: any;
   rates: ShippingRate[];
-  // selectedShippingAddress: GetShippingResponse;
 
   productDetail: ProductDetailList = new ProductDetailList();
   moreInformation: MoreInformation = new MoreInformation();
@@ -40,8 +37,6 @@ export class ProductDetailComponent implements OnInit {
   shippingAddressList: GetShippingResponse[];
 
   qty = 1;
-  // currentPage: number;
-  // pages: any = [];
 
   tabVal: any;
   activeSpesifikasi: boolean;
@@ -59,7 +54,8 @@ export class ProductDetailComponent implements OnInit {
 
   imgIndex: string;
 
-  storeImageUrl;
+  storeImageUrl: any;
+  brandImageUrl: any;
   productImageUrl;
   productImageUrlNew;
   productImageItemLooping;
@@ -71,6 +67,10 @@ export class ProductDetailComponent implements OnInit {
   oktest: CreateDiscus = new CreateDiscus();
 
 
+  @HostListener('window:scroll', ['$event'])
+    doSomething(event) {
+      this.isSubHeaderShow = (window.pageYOffset > 450) ? true : false;
+    }
 
   constructor(
     private activatedRoute: ActivatedRoute,

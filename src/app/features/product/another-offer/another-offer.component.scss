@@ -41,7 +41,7 @@
 
 .frm{
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 150px 1fr;
     margin-top:20px;
     font-size: 12px;
 }
@@ -51,11 +51,13 @@
     border-right: 1px solid #dddddd;
     color:#4687e8;
     text-align: right;
+    font-size: 15px;
 }
 
 .ingnJual{
     padding: 0px 0px 0px 10px;
     color:#4687e8;
+    font-size: 15px;
 }
 
 .text-p{
@@ -106,6 +108,11 @@
     padding:5px;
     color:#f4f5f6;
     text-align:center;
+    cursor: pointer;
+}
+
+.btn-add:hover{
+    background: #2d3e52;
 }
 
 .itemFT{

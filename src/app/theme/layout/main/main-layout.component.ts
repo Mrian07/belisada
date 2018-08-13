@@ -8,7 +8,7 @@ import { ShareMessageService } from '@belisada/core/services';
 })
 export class MainLayoutComponent implements OnInit {
   isClickOut: Boolean = false;
-  constructor(private globals: Globals, private shareMessageService: ShareMessageService) {
+  constructor(public globals: Globals, private shareMessageService: ShareMessageService) {
   }
 
   ngOnInit() {
@@ -17,7 +17,7 @@ export class MainLayoutComponent implements OnInit {
 
   cekMenuAllCategory() {
     this.shareMessageService.currentMessage.subscribe(respon => {
-       if (respon === 'open-menu-category') {
+      if (respon === 'open-menu-category') {
           this.isClickOut = true;
         } else if (respon === 'close-menu-category') {
           this.isClickOut = false;
@@ -28,7 +28,6 @@ export class MainLayoutComponent implements OnInit {
   closeMenuAllCategory(isClickOut) {
     if (isClickOut === true) {
       this.isClickOut = false;
-  
     } else {
       this.shareMessageService.changeMessage('close-menu-category');
     }

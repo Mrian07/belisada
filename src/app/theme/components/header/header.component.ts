@@ -84,6 +84,7 @@ export class HeaderComponent implements OnInit {
  regForm: boolean;
  regSuccess: boolean;
  role = 0;
+ showDialog: any;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -92,7 +93,7 @@ export class HeaderComponent implements OnInit {
     private search: SearchBarService,
     private searchService: SearchService,
     private shareMessageService: ShareMessageService,
-    private globals: Globals,
+    public globals: Globals,
     private shoppingCartService: ShoppingCartService,
     private productService: ProductService,
     private authService: AuthService,

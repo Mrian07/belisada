@@ -32,6 +32,7 @@ export class CreateStoreComponent implements OnInit {
   districts: District[];
   villages: Village[];
   storeUrl: FormControl;
+  onViewAddress: any;
   private formSumitAttempt: boolean;
 
 

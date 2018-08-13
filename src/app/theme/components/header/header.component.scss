@@ -1,4 +1,4 @@
-@import "styles";
+// @import 'styles';
 
 .profile-wrapper {
     max-width: 60px;
@@ -53,11 +53,11 @@
             cursor: pointer;
 
             &:hover {
-                color: $color--white;
-                background-color: $color--belisada;
+                color: #fff;
+                background-color: #ED7425;;
 
                 .highlight {
-                    color: $color--white;
+                    color: #fff;
                 }
             }
         }
@@ -65,7 +65,7 @@
 
     .highlight {
         font-weight: 700;
-        color: $color--belisada;
+        color: #ED7425;
     }
 }
 
@@ -93,8 +93,8 @@
         border-radius: 50%;
         text-align: center;
         font-size: 1.2rem;
-        color: $color--white;
-        background-color: $color--belisada;
+        color: #fff;
+        background-color: #ED7425;
     }
 
     &__container {
@@ -122,7 +122,7 @@
             border-left: 1rem solid transparent;
             border-right: 1rem solid transparent;
             
-            border-bottom: 1rem solid $color--white;
+            border-bottom: 1rem solid #fff;
         }
     }
 
@@ -203,16 +203,16 @@
                     font-size: 1.4rem;
                     font-weight: 700;
                     text-decoration: none;
-                    color: $color--dark-grey;
+                    color: #333333;
                     
                     &:hover {
-                        color: $color--grey;
+                        color: #aeaeae;
                     }
                 }
                 &--price {
                     float: left;
                     font-size: 1.4rem;
-                    color: $color--link-blue;
+                    color: #1aa5df;
                 }
                 &--qty {
                     float: right;
@@ -223,7 +223,7 @@
     }
 
     &__footer {
-        background-color: $color--white;
+        background-color: #fff;
 
         .button--goto-cart {
             width: 100%;
@@ -233,8 +233,8 @@
             padding: .5rem;
             font-size: 2rem;
             text-decoration: none;
-            color: $color--white;
-            background-color: $color--belisada;
+            color: #fff;
+            background-color: #ED7425;
         }
     }
 }

@@ -9,7 +9,7 @@ import { InvoiceData } from '@belisada/core/models/transaction/transaction.model
   styleUrls: ['./invoice.component.scss']
 })
 export class InvoiceComponent implements OnInit {
-  info : InvoiceData[];
+  info: InvoiceData;
   constructor(
     private transactionService: TransactionService,
     private activatedRoute: ActivatedRoute,

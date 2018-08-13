@@ -42,6 +42,10 @@
         transition: .2s ease-in-out
     ), webkit moz ms o);
 
+    &.btn--flat {
+        border-radius: 0!important;
+    }
+
     &.btn--rounded {
         border-radius: 2rem;
     }
@@ -122,6 +126,10 @@
     $btn-color: btn-color("blue");
     @include btn-theme($btn-color, $btn-text-color-light);
 }
+.btn--blue-belisada {
+    $btn-color: $color--blue-belisada;
+    @include btn-theme($btn-color, $btn-text-color-light);
+}
 
 /**
  * @atom Button Variant Colors (monochrome)
@@ -196,6 +204,11 @@
 }
 .btn-size-30 {
     width: 30%;
+}
+
+.btn--bold {
+    font-weight: 700;
+    font-size: 1.5rem;
 }
 
 .btn-alert-ok {

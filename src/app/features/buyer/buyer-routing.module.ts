@@ -6,6 +6,7 @@ import { ProfileEditComponent } from '@belisada/features/buyer/profile-edit/prof
 import { CreateStoreComponent } from '@belisada/features/buyer/create-store/create-store.component';
 import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
+import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
 
 const routes: Routes = [
   {
@@ -39,6 +40,13 @@ const routes: Routes = [
         component: ProfileEditComponent,
         data: {
           title: 'Edit Profile'
+        }
+      },
+      {
+        path: 'confirmation',
+        component: ConfirmationComponent,
+        data: {
+          title: 'Konfirmasi Pembayaran'
         }
       },
       {
