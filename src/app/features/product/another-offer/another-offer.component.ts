@@ -52,8 +52,6 @@ export class AnotherOfferComponent implements OnInit {
 
   shippingAddress: any;
 
-  qty = 1;
-
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
@@ -113,7 +111,7 @@ export class AnotherOfferComponent implements OnInit {
         }
       }
     } else {
-      this.shoppingCartService.addItem(productId, +this.qty);
+      this.shoppingCartService.addItem(productId, +this.cartItem[i]);
     }
   }
 
