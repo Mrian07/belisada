@@ -1,23 +1,41 @@
 // import { Component } from '@angular/core';
 import {Component, NgModule, Injectable, Inject, ViewChild, OnInit} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import { Globals } from '@belisada/core/services';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 // import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-root',
-    template: `
-        <router-outlet></router-outlet>
-        <div class="loading" *ngIf="globals.isLoading === true"></div>`,
-    styleUrls: ['./app.component.scss']
+  selector: 'app-root',
+  template: `
+    <router-outlet></router-outlet>
+    <div class="loading" *ngIf="globals.isLoading === true"></div>`,
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'app';
+  title = 'app';
 
-    constructor(public globals: Globals) {
+  constructor(public globals: Globals, titleService: Title, router: Router, activatedRoute: ActivatedRoute) {
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const title = this.getTitle(router.routerState, router.routerState.root).join('-');
+        console.log('title', title);
+        titleService.setTitle(title);
+      }
+    });
+  }
 
+  // collect that title data properties from all child routes
+  // there might be a better way but this worked for me
+  getTitle(state, parent) {
+    const data = [];
+    if (parent && parent.snapshot.data && parent.snapshot.data.title) {
+      data.push(parent.snapshot.data.title);
     }
-    // resolved(captchaResponse: string) {
-    //   console.log(`Resolved captcha with response ${captchaResponse}:`);
-    // }
+
+    if (state && parent) {
+      data.push(... this.getTitle(state, state.firstChild(parent)));
+    }
+    return data;
+  }
 }
