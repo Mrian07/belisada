@@ -90,7 +90,7 @@
           </div>
         </td>
         <td width="40%">
-          <span class="btn-konfirm">Konfirmasi Barang</span> <span class="btn-invoice" (click)="detailInvoice(itemList.orderNumber)"><u>Lihat Invoice</u></span>
+          <span class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>
     </table>
