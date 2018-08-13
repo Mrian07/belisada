@@ -6,7 +6,7 @@
     </div>
     <div class="bs-header__search-box">
         <div class="search-by-category-wrapper">
-            <div class="select-box-container w--select--box" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
+            <div class="select-box-container w--select--box">
                 <div class="category-menu" (click)="menuAllCategory(isMenu)">
 
                     <div  class="select-box select-box-orange"><span>All Category</span>
@@ -112,23 +112,12 @@
                 <span class="text-language">
                     Login / Daftar
                 </span>
-                    <!-- <div class="profile-wrapper w-edit-for-margin">
-                        <img class="u-display-block centered-block-element img-circle" src="/assets/img/profile.png" alt="">
-                        <span>Masuk</span>
-                    </div> -->
                 </a>
                 <a *ngIf="isLogin === true" class="account-menu--trigger" (click)="toggleAccountMenu()" clickOutside (clickOutside)="onClickOutside($event)">
-                        <img class="country-flag  img-circle" src="{{avatar}}" alt="">
-                        <span class="text-language w--text--name">
-                                {{ userData.name.split(' ')[0]  }}
-
-                        </span>
-                    <!-- <div class="profile-wrapper">
-                        <img class="u-display-block centered-block-element img-circle" src="{{avatar}}" alt="">
-                        <span class="u-display-block text-profile">{{ userData.name.split(' ')[0] }}</span>
-                    </div> -->
-
-
+                    <img class="country-flag  img-circle" src="{{avatar}}" alt="">
+                    <span class="text-language w--text--name">
+                        {{ userData.name.split(' ')[0]  }}
+                    </span>
                 </a>
                 <div [ngClass]="isAccountMenu ? 'show-element' : 'hide-element'" class="account-menu__container">
                     <div (click)="goToProfile()" class="cursor-on-profile">Profile</div>
@@ -136,99 +125,37 @@
                     <div><button class="btn rounded btn--navy" (click)="logout()">Logout</button></div>
                 </div>
             </li>
-                    <li *ngIf="role === 0" class="padding__button">
-                        <div (click)="showDialog = !showDialog" class="colx2 btn btn--orange btn--size--80 w--forbutton">
-                            <div>
-
-                                <p class="padding--for--text">Mulai Berjualan</p>
-                            <!-- <p>belisada</p> -->
-                            </div>
-                            <div>
-                                <img  class="padding--for--text" src="/assets/img/store_icon.png">
-                            </div>
-
-                        </div>
-                        </li>
-
-                        <li *ngIf="role !== 2 && role != 0" class="padding__button">
-                            <div (click)="goToSeller()" class="colx2 btn btn--orange btn--size--80 w--forbutto">
-
-                                <div>
-                                        <p class="padding--for--text">Belisada Seller</p>
-                                </div>
-                                <div>
-                                    <img class="padding--for--text" src="/assets/img/store_icon.png">
-                                </div>
-
-                            </div>
-                            </li>
-
-                            <li *ngIf="role === 2" class="padding__button">
-                                    <div (click)="navigateToIkutJualan()" class="colx2 btn btn--orange btn--size--80 w-In-Role2">
-
-                                        <div>
-                                            <p class="padding--for--text">Mulai Berjualan</p>
-
-                                        </div>
-                                        <div>
-                                            <img class="padding--for--text" src="/assets/img/store_icon.png">
-                                        </div>
-
-                                    </div>
-                                    </li>
-
-
-
-
-<app-models [(visible)]="showDialog" class="frameDialog">
-        <div class="modal-body">
-            <div *ngIf="regForm==true">
-                    <div class="title">Buka Toko</div>
-                    <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
-                        <input type="hidden" class="input-style-text-100" formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" />
-                        <input type="text" formControlName="nameOwner" maxlength="30" class="input-style-text-100" placeholder="Masukan nama pemilik toko">
-                        <app-field-error-display [displayError]="isFieldValid('nameOwner')" errorMsg="Nama pemilik toko tidak boleh kosong"></app-field-error-display>
-                        <input type="text" formControlName="name" maxlength="30" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Masukan nama toko">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
-                            <div class="testing">
-                                <span class="tooltiptext">{{serverMessage}}</span>
-                            </div>
-                        </div>
-                        <ng-template #nameCheckingTemplate>
-                            <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Nama toko tidak boleh kosong"></app-field-error-display>
-                        </ng-template>
-                        <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama Toko <img src="assets/img/wait.gif"></div>
-
-
-                        <input type="text" formControlName="email" maxlength="60" class="input-style-text-100" placeholder="Masukan email">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
-                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                        </div>
-                        <ng-template #emailOn>
-                            <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Email tidak boleh kosong"></app-field-error-display>
-                        </ng-template>
-
-                        <input type="password" formControlName="password" maxlength="60" class="input-style-text-100" placeholder="Masukan password">
-                        <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
-                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password tidak boleh kosong</p>
-
-                            <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Minimal panjang password 7 karakter. </p>
-                        </div>
-
-                        <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
-                        <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
-                        <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
-                    </form>
-            </div>
-
-
-                <div *ngIf="regSuccess==true" class="regSuccess">
-                        <div class="title">Pendaftaran Berhasil</div>
-                        <div class="text-success">Selamat Toko Anda Berhasil Didaftarkan</div>
+            <li *ngIf="role === 0" class="padding__button">
+                <div (click)="showDialog = !showDialog" class="colx2 btn btn--orange btn--size--80 w--forbutton">
+                    <div>
+                        <p class="padding--for--text">Mulai Berjualan</p>
                     </div>
-        </div>
+                    <div>
+                        <img  class="padding--for--text" src="/assets/img/store_icon.png">
+                    </div>
+                </div>
+            </li>
+            <li *ngIf="role !== 2 && role != 0" class="padding__button">
+                <div (click)="goToSeller()" class="colx2 btn btn--orange btn--size--80 w--forbutto">
+                    <div>
+                        <p class="padding--for--text">Belisada Seller</p>
+                    </div>
+                    <div>
+                        <img class="padding--for--text" src="/assets/img/store_icon.png">
+                    </div>
+                </div>
+            </li>
 
-    </app-models>
+            <li *ngIf="role === 2" class="padding__button">
+                <div (click)="navigateToIkutJualan()" class="colx2 btn btn--orange btn--size--80 w-In-Role2">
+                    <div>
+                        <p class="padding--for--text">Mulai Berjualan</p>
+                    </div>
+                    <div>
+                        <img class="padding--for--text" src="/assets/img/store_icon.png">
+                    </div>
+                </div>
+            </li>
             <li>
                 <img class="country-flag" src="/assets/img/id_flag.png" alt="">
                 <span class="text-language">
@@ -238,8 +165,54 @@
             </li>
         </ul>
 
-
     </div>
 </div>
+
+<app-models [(visible)]="showDialog" class="frameDialog">
+    <div class="modal-body">
+        <div *ngIf="regForm==true">
+            <div class="title">Buka Toko</div>
+            <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
+                <input type="hidden" class="input-style-text-100" formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" />
+                <input type="text" formControlName="nameOwner" maxlength="30" class="input-style-text-100" placeholder="Masukan nama pemilik toko">
+                <app-field-error-display [displayError]="isFieldValid('nameOwner')" errorMsg="Nama pemilik toko tidak boleh kosong"></app-field-error-display>
+                <input type="text" formControlName="name" maxlength="30" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Masukan nama toko">
+                <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
+                    <div class="testing">
+                        <span class="tooltiptext">{{serverMessage}}</span>
+                    </div>
+                </div>
+                <ng-template #nameCheckingTemplate>
+                    <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Nama toko tidak boleh kosong"></app-field-error-display>
+                </ng-template>
+                <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama Toko <img src="assets/img/wait.gif"></div>
+
+                <input type="text" formControlName="email" maxlength="60" class="input-style-text-100" placeholder="Masukan email">
+                <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
+                    <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                </div>
+                <ng-template #emailOn>
+                    <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Email tidak boleh kosong"></app-field-error-display>
+                </ng-template>
+
+                <input type="password" formControlName="password" maxlength="60" class="input-style-text-100" placeholder="Masukan password">
+                <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
+                    <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password tidak boleh kosong</p>
+
+                    <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Minimal panjang password 7 karakter. </p>
+                </div>
+
+                <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
+                <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
+                <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
+            </form>
+        </div>
+
+        <div *ngIf="regSuccess==true" class="regSuccess">
+            <div class="title">Pendaftaran Berhasil</div>
+            <div class="text-success">Selamat Toko Anda Berhasil Didaftarkan</div>
+        </div>
+    </div>
+</app-models>
 
 
