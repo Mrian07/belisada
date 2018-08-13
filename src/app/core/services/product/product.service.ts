@@ -1,3 +1,4 @@
+import { CreateDiscus } from './../../models/product/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -37,7 +38,7 @@ export class ProductService {
       );
   }
   getDiscus(id: Object): Observable<Isi> {
-    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id)
+    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id + '?itemperpage=100')
     .pipe(
       map(response => response as Isi)
     );
@@ -60,6 +61,10 @@ export class ProductService {
       .pipe(
         map(response => response as Filter)
       );
+  }
+
+  createDiscus(data) {
+    return this.http.put(this.configuration.apiURL + '/productfeedback/discus/create', data);
   }
 
 

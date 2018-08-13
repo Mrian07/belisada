@@ -65,7 +65,8 @@ export class ProductDetail {
 export class ProductDetailList {
   status: number;
   message: string;
-  productId: any;
+  storeImageUrl: string;
+  productId: number;
   name: string;
   nameEn: string;
   highlight: string;
@@ -105,9 +106,10 @@ export class ProductDetailList {
   guaranteeTimeValue: string;
   pricelistlast: number;
 
-  specification: string[];
+  specification: Specification[];
   seen: number;
   sold: number;
+  value: string;
   rate: number;
   review: number;
   discount: number;
@@ -116,8 +118,12 @@ export class ProductDetailList {
   locationName: string;
   id: string;
   moreInformation: MoreInformation;
-  storeImageUrl: any;
   brandImageUrl: any;
+}
+
+export class Specification {
+  name: string;
+  value: string;
 }
 
 export class Couriers {
@@ -209,6 +215,24 @@ export class Content {
   productId: number;
   since: string;
   discusParentId: number;
+  discusId: number;
+  label: string;
+  name: string;
+  childs: Child[];
 }
 
+export class Child {
+  discusId: number;
+  label: string;
+  message: string;
+  name: string;
+  since: string;
+  userId: string;
+}
+
+export class CreateDiscus {
+  discusParentId: number;
+  message: string;
+  productId: string;
+}
 

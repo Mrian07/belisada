@@ -6,7 +6,7 @@ import { ProductRoutingModule } from './product-routing.module';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 import { ThemeModule } from '../../theme/theme.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 import { AnotherOfferComponent } from './another-offer/another-offer.component';
 import { ShareModule } from '@ngx-share/core';
@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ProductRoutingModule,
     ThemeModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
     ShareModule.forRoot()
   ],
   declarations: [

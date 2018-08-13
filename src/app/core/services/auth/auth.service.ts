@@ -7,7 +7,9 @@ import { Token } from '@belisada/core/models';
 import { Configuration } from '@belisada/core/config';
 import { Inject, PLATFORM_ID } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import { firebase } from '@firebase/app';
+import '@firebase/auth';
+
 
 @Injectable({
   providedIn: 'root',

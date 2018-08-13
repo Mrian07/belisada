@@ -410,12 +410,13 @@ onSent() {
   }
 
   menuAllCategory(data) {
-    // console.log('click',  data);
     if (data === true) {
       this.isMenu = false;
+      this.globals.isBackdropActive = false;
       this.shareMessageService.changeMessage('close-menu-category');
     } else {
       this.isMenu = true;
+      this.globals.isBackdropActive = true;
       this.shareMessageService.changeMessage('open-menu-category');
       this.getCategory();
     }

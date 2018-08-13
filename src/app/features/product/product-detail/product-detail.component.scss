@@ -369,10 +369,6 @@ ul#horizontal-list {
     list-style: none;
     // padding-top: 20px;
 }
-ul#horizontal-list li {
-    // display: inline;
-    // padding:10px;
-}
 
 
 .w__paddingin {
@@ -404,6 +400,200 @@ ul#horizontal-list li {
         }
     }
 }
+
+.w--product-discusi {
+    float: right!important;
+    border-right: 0!important;
+    .w--product-talk__question {
+        float: left;
+        width: 100%;
+        padding: 20px 27.5px 20px 16px;
+        box-sizing: border-box;
+        border-radius: 3px 0 0 0;
+        position: relative;
+
+    }
+    .w-product--talk__text {
+        margin: 0;
+        font-size: 13px;
+        line-height: 20px;
+        color: rgba(0,0,0,.54);
+        word-wrap: break-word;
+    }
+    .w--product__list-item {
+        overflow: hidden;
+        border-radius: 3px;
+        border: 1px solid #e0e0e0;
+        margin-bottom: 24px;
+        width: 100%;
+
+    }
+    .w--product__list {
+        list-style: none;
+        margin-bottom: 24px;
+        padding: 0;
+        float: left;
+        width: 100%;
+
+        }
+
+
+        .w--product-talk__question-avatar {
+            display: block;
+            float: left;
+            margin: 4px 10px 0 0;
+            width: 37px;
+            height: 35px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: no-repeat center;
+            background-size: contain;
+            object-fit: cover;
+        }
+        .product-talk__detail {
+            position: relative;
+            line-height: 15px;
+            margin-left: 47px;
+            padding-right: 140px;
+            .w--product-talk__additional-info {
+                line-height: 16px;
+                margin-bottom: 3px;
+            }
+            .w--product_talk {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 12px;
+                font-weight: 600;
+                color: rgba(0,0,0,.74);
+                word-wrap: break-word;
+            }
+            .w--product_talk-time {
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 11px;
+                color: rgba(0,0,0,.38);
+            }
+        }
+        .w-product-talk__comments {
+            float: left;
+            width: 100%;
+            display: block;
+            padding-bottom: 10px;
+            background-color: #fafafa;
+            border-top: 1px solid #e0e0e0;
+        }
+        .w-product-talk__coment-list {
+            list-style: none;
+            float: left;
+            width: calc(100% - 90.5px);
+            padding: 10px 27.5px 0 16px;
+            margin-left: 47px;
+        }
+        .product-talk__comennts-list-item {
+            float: left;
+            width: 100%;
+            padding: 10px 0;
+        }
+        .w-product-talk__detail {
+            position: relative;
+            line-height: 15px;
+            margin-left: 47px;
+            padding-right: 140px;
+        }
+        .w-product-talk__name {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 12px;
+            font-weight: 600;
+            color: rgba(0,0,0,.74);
+            word-wrap: break-word;
+
+        }
+        .w-product-talk__profile {
+            display: block;
+            float: left;
+            margin: 4px 10px 0 0;
+            width: 37px;
+            height: 35px;
+            border-radius: 50%;
+            box-sizing: border-box;
+            background: no-repeat center;
+            background-size: contain;
+            object-fit: cover;
+        }
+        .badge__belisada-seller {
+            display: inline-block!important;
+            vertical-align: middle!important;
+            background-color: #ff9d00!important;
+            color: #FFFFFF!important;
+            font-size: 10px!important;
+            font-weight: 600!important;
+            border-radius: 10px!important;
+            height: 17px!important;
+            box-sizing: border-box!important;
+            padding: 0 7.5px!important;
+            margin-left: 4px!important;
+            margin-right: 11px;
+        }
+        .w-product-talk_time {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 11px;
+            color: rgba(0,0,0,.38);
+        }
+        .w--product-talk__comment-box {
+            overflow: hidden;
+            display: block;
+            padding: 10px 27.5px 10px 16px;
+            margin-left: 47px;
+            .list-box-replyholder {
+                float: left;
+                width: 100%;
+                .w-product-talk__coment-taxtarea {
+                    overflow: hidden;
+                    resize: none;
+                    height: 36px;
+                    width: 90%;
+                    margin-bottom: 0;
+                    border: 1px solid #e0e0e0;
+                    box-shadow: none;
+                    box-sizing: border-box;
+                    transition: height .2s ease-in-out,border .2s linear;
+                }
+                .expanded {
+                    height: 200px;
+                }
+                .w--button__position {
+                    text-align: right;
+                }
+                .btn__cancel {
+                    width: 130px!important;
+                    background-color: #fff!important;
+                    border-color: #e0e0e0!important;
+                }
+                .btn__kirim {
+                    width: 130px!important;
+                    background-color: #E16413!important;
+                    border-color: #e0e0e0!important;
+                    color: white;
+                    margin-right: 3px;
+                }
+            }
+        }
+        .template--button {
+            text-align: right;
+        }
+        .w__product-talk__template {
+            display: flex;
+            align-items: flex-end;
+        }
+        .w__o--button-posisition {
+            margin-left: 47px;
+            width: 90%;
+        }
+}
+
+
 
 
 /** ====================
@@ -732,6 +922,16 @@ ul#horizontal-list li {
     .reply-list .comment-box {
         width: 320px;
     }
+}
+.textArea--botom {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
 }
 
 

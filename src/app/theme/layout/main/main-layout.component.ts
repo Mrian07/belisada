@@ -18,10 +18,12 @@ export class MainLayoutComponent implements OnInit {
   cekMenuAllCategory() {
     this.shareMessageService.currentMessage.subscribe(respon => {
       if (respon === 'open-menu-category') {
-          this.isClickOut = true;
-        } else if (respon === 'close-menu-category') {
-          this.isClickOut = false;
-        }
+        this.globals.isBackdropActive = true;
+        this.isClickOut = true;
+      } else if (respon === 'close-menu-category') {
+        this.globals.isBackdropActive = false;
+        this.isClickOut = false;
+      }
     });
   }
 
