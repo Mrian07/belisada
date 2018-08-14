@@ -28,7 +28,8 @@
                                         <img src='assets/img/wishlist.png'>
                                     </div>
                                     <div class="col-6 icon-right">
-                                        <img src='assets/img/discount.png'>
+                                        <div class="ribbon ribbon--orange"
+                                         *ngIf="item.discount > 0">{{ item.discount }}%</div>
                                     </div>
                                 </div>
                                 <div class="img-item" (click)="goDetail(item.productId,item.name)">
