@@ -334,6 +334,7 @@ export class ProductDetailComponent implements OnInit {
   if (this.isLogin) {
     this.productService.createDiscus(a).subscribe(rsl => {
       console.log(rsl);
+      window.location.reload();
       });
   } else {
     swal({
@@ -379,21 +380,25 @@ export class ProductDetailComponent implements OnInit {
       productId: this.productDetail.productId
     };
     console.log('ini a', this.oktest);
-    swal({
-      title: 'Oops',
-      text: 'Maaf anda harus login untuk melanjutkan',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33'
-    }).then((result) => {
-      if (result.value) {
-        this.router.navigate(['/account/sign-in/' + this.productDetail.productId + '/' + this.productDetail.name]);
-      }
-    });
-    this.productService.createDiscus(a).subscribe(rsl => {
-      window.location.reload();
-    });
+    if (this.isLogin) {
+      this.productService.createDiscus(a).subscribe(rsl => {
+        console.log(rsl);
+        window.location.reload();
+        });
+    } else {
+      swal({
+        title: 'Oops',
+        text: 'Maaf anda harus login untuk melanjutkan',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33'
+      }).then((result) => {
+        if (result.value) {
+         console.log('asd');
+        }
+      });
+    }
   }
 
   addToCart(productId, storeId) {

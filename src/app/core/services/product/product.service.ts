@@ -64,7 +64,7 @@ export class ProductService {
   }
 
   createDiscus(data) {
-    return this.http.put(this.configuration.apiURL + '/productfeedback/discus/create', data);
+    return this.http.post(this.configuration.apiURL + '/productfeedback/discus/create', data);
   }
 
 
