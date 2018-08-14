@@ -1,148 +1,145 @@
 <div class="wrapper">
-  
 
     <div class="half">
         <div class="wrapper-for-filter-top">
             <div>
-                    <div *ngIf="keyST === 'product'; else product">
-                            <img (click)="goToProduct()" class="img--see change--cursor" src="/assets/img/colour_package.png" alt="">
-                            <span (click)="goToProduct()" class="change--cursor">Produk</span>
-                        </div>
-                        <ng-template #product>
-                                <img (click)="goToProduct()"  class="img--see change--cursor" src="/assets/img/package.png" alt="">
-                                <span (click)="goToProduct()" class="change--cursor">Produk</span>
-                        </ng-template>
-              
-              
+                <div *ngIf="keyST === 'product'; else product">
+                    <img (click)="goToProduct()" class="img--see change--cursor" src="/assets/img/colour_package.png" alt="">
+                    <span (click)="goToProduct()" class="change--cursor">Produk</span>
+                </div>
+                <ng-template #product>
+                    <img (click)="goToProduct()" class="img--see change--cursor" src="/assets/img/package.png" alt="">
+                    <span (click)="goToProduct()" class="change--cursor">Produk</span>
+                </ng-template>
+
             </div>
-            <!-- <div>
-                    <div *ngIf="keyST === 'store'; else store">
-                            <img (click)="goToToko()" class="img--see change--cursor" src="/assets/img/colour_shop.png" alt="">
-                            <span (click)="goToToko()" class="change--cursor">Toko</span>
-                        </div>
-                        <ng-template #store>
-                                <img (click)="goToToko()"  class="img--see change--cursor" src="/assets/img/shop.png" alt="">
-                                <span (click)="goToToko()" class="change--cursor">Toko</span>
-                        </ng-template>
-               
+                        <!-- <div>
+            <div *ngIf="keyST === 'store'; else store">
+            <img (click)="goToToko()" class="img--see change--cursor" src="/assets/img/colour_shop.png" alt="">
+            <span (click)="goToToko()" class="change--cursor">Toko</span>
+            </div>
+            <ng-template #store>
+            <img (click)="goToToko()"  class="img--see change--cursor" src="/assets/img/shop.png" alt="">
+            <span (click)="goToToko()" class="change--cursor">Toko</span>
+            </ng-template>
+
             </div> -->
-           
-          </div>
-          <hr>
-          <br>
+
+        </div>
+        <hr>
+        <br>
         <p>Filters</p>
-      <div class="tab">
-        <input class="opac" id="tab-one" type="checkbox" name="tabs">
-        <label for="tab-one">Category</label>
-     
-        <div class="tab-content">
-          <div>
-            <ul class="margin--ul" *ngFor="let item of userCate">
-                    <li  (click)="cCategory(item.categoryId)" class="change--cursor"  [ngClass]="{'active1': item.categoryId == categoryOPT}"> {{item.categoryName}}</li>
-                    
-              </ul>
-          </div>
-         <div>
-           
-         </div>
-         <div>
-          
-         </div>
-       
-        </div>
-      </div>
-      <div class="tab">
-        <input class="opac" id="tab-two" type="checkbox" name="tabs">
-        <label for="tab-two">Brand</label>
-        <div class="tab-content">
-          <div *ngIf="leng === 0; else lengOnBrand">
-              Oops. No brand was found
-          </div>
-          <ng-template #lengOnBrand> <ul class="margin--ul" *ngFor="let item of userlist" >
-                <!-- <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li> -->
-                 <li  (click)="asd(item.filterId,$event.target.checked)" class="change--cursor"  [ngClass]="{'active1': item.filterId === brandOPT}"> {{item.filterName}}</li>
-                <li *ngIf="(leng === 0)">
-                    No Brand was found
-              </li>
-              </ul></ng-template>
-           
-           
-        </div>
-      </div>
-      <div class="tab">
-        <input class="opac" id="tab-three" type="checkbox" name="tabs">
-        <label for="tab-three">Kondisi</label>
-        <div class="tab-content">
-            <ul class="margin--ul" *ngFor="let item of userlistClass">
-            
-                <li> <input [checked]="classificationOpt === item.filterId" type="checkbox" (change)="getFilId(item.filterId, $event.target.checked)">   {{item.filterName}}</li>
-              </ul>
-        </div>
-      </div>
-      <hr>
         <div class="tab">
-          <input class="opac" id="tab-five" type="checkbox" name="tabs">
-          <label for="tab-five">Location</label>
-          <div class="tab-content">
-              <div class="drick-select-container">
-                  <div class="ui icon input parent">
-                      <input class="drick-select__text" [ngClass]="{'active':onCityFocus}" type="text" [(ngModel)]="brandName"
-                          (keyup)="searchBrand()"
-                          (focus)="onCityFocus = true" (focusout)="onBrandBlur()" placeholder="Select one">
-                      <i class="drick-select__icon caret down icon fa fa-caret-down"></i>
-                      <div class="wrapper--2col">
-                          <div>
-                                <input class="okOce" [checked]="cat === jabode" type="checkbox" (change)="jabod1e(jabode,$event.target.checked)"> <span> JABODETABEK</span>
-                          </div>
-                          <div>
-                                <input class="okOce" [checked]="cat === bandung12" type="checkbox" (change)="bandung(bandung12,$event.target.checked)">  <span> Bandung </span>
-                          </div>
-                          <div>
-                                <input class="okOce" [checked]="cat === surabaya" type="checkbox" (change)="cSurabaya(surabaya,$event.target.checked)">  <span> SURABAYA </span>
-                          </div>
-                          <div>
-                                <input class="okOce" [checked]="cat === medan" type="checkbox" (change)="cMedan(medan,$event.target.checked)">  <span> MEDAN </span>
-                          </div>
-                          <div>
-                                <input class="okOce" [checked]="cat === yogya" type="checkbox" (change)="cJogja(yogya,$event.target.checked)">  <span> DIY Jogja </span>
-                          </div>
-                      </div>
-                     
-                  </div>
-                  <div class="drick-select-container--toggle" [ngClass]="{'active':onCityFocus}"
-                      id="drick-scroll-container"
-                      (scroll)="onScrollDown()">
-                      <ul class="drick-select-list">
-                          <li *ngFor="let i of city.data" (click)="selectBrand(i)">
-                              {{i.cityName}}
-                          </li>
-                          <li *ngIf="(lengOnCity === 0)">
-                                No City was found
-                          </li>
-                      </ul>
-                  </div>
-                
-              </div>
-             
-          </div>
-         
+            <input class="opac" id="tab-one" type="checkbox" name="tabs">
+            <label for="tab-one">Category</label>
+
+            <div class="tab-content">
+                <div>
+                    <ul class="margin--ul" *ngFor="let item of userCate">
+                        <li (click)="cCategory(item.categoryId)" class="change--cursor" [ngClass]="{'active1': item.categoryId == categoryOPT}"> {{item.categoryName}}</li>
+
+                    </ul>
+                </div>
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+
+            </div>
         </div>
         <div class="tab">
-          <input class="opac" id="tab-four" type="checkbox" name="tabs">
-          <label for="tab-four">Shipping options</label>
-          <div class="tab-content">
-              <ul class="margin--ul" *ngFor="let item of userlistCourier">
-                    <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li>
-                   
+            <input class="opac" id="tab-two" type="checkbox" name="tabs">
+            <label for="tab-two">Brand</label>
+            <div class="tab-content">
+                <div *ngIf="leng === 0; else lengOnBrand">
+                    Oops. No brand was found
+                </div>
+                <ng-template #lengOnBrand>
+                    <ul class="margin--ul" *ngFor="let item of userlist">
+                        <!-- <li><input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)">   {{item.name}}</li> -->
+                        <li (click)="asd(item.filterId,$event.target.checked)" class="change--cursor" [ngClass]="{'active1': item.filterId === brandOPT}"> {{item.filterName}}</li>
+                        <li *ngIf="(leng === 0)">
+                            No Brand was found
+                        </li>
+                    </ul>
+                </ng-template>
+
+            </div>
+        </div>
+        <div class="tab">
+            <input class="opac" id="tab-three" type="checkbox" name="tabs">
+            <label for="tab-three">Kondisi</label>
+            <div class="tab-content">
+                <ul class="margin--ul" *ngFor="let item of userlistClass">
+
+                    <li>
+                        <input [checked]="classificationOpt === item.filterId" type="checkbox" (change)="getFilId(item.filterId, $event.target.checked)"> {{item.filterName}}</li>
                 </ul>
-               
-                <!-- <li *ngIf="(shippingOpt === 'jne')">
-                        <input [checked]=true type="checkbox">   {{shippingOpt}}
-                  </li> -->
-                <!-- <input [checked]=false  type="checkbox" (change)="onChange($event.target.checked)">  asdasdadasd -->
-           
-          </div>
+            </div>
+        </div>
+        <hr>
+        <div class="tab">
+            <input class="opac" id="tab-five" type="checkbox" name="tabs">
+            <label for="tab-five">Location</label>
+            <div class="tab-content">
+                <div class="drick-select-container">
+                    <div class="ui icon input parent">
+                        <input class="drick-select__text" [ngClass]="{'active':onCityFocus}" type="text" [(ngModel)]="brandName" (keyup)="searchBrand()" (focus)="onCityFocus = true" (focusout)="onBrandBlur()" placeholder="Select one">
+                        <i class="drick-select__icon caret down icon fa fa-caret-down"></i>
+                        <div class="wrapper--2col">
+                            <div>
+                                <input class="okOce" [checked]="cat === jabode" type="checkbox" (change)="jabod1e(jabode,$event.target.checked)"> <span> JABODETABEK</span>
+                            </div>
+                            <div>
+                                <input class="okOce" [checked]="cat === bandung12" type="checkbox" (change)="bandung(bandung12,$event.target.checked)"> <span> Bandung </span>
+                            </div>
+                            <div>
+                                <input class="okOce" [checked]="cat === surabaya" type="checkbox" (change)="cSurabaya(surabaya,$event.target.checked)"> <span> SURABAYA </span>
+                            </div>
+                            <div>
+                                <input class="okOce" [checked]="cat === medan" type="checkbox" (change)="cMedan(medan,$event.target.checked)"> <span> MEDAN </span>
+                            </div>
+                            <div>
+                                <input class="okOce" [checked]="cat === yogya" type="checkbox" (change)="cJogja(yogya,$event.target.checked)"> <span> DIY Jogja </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="drick-select-container--toggle" [ngClass]="{'active':onCityFocus}" id="drick-scroll-container" (scroll)="onScrollDown()">
+                        <ul class="drick-select-list">
+                            <li *ngFor="let i of city.data" (click)="selectBrand(i)">
+                                {{i.cityName}}
+                            </li>
+                            <li *ngIf="(lengOnCity === 0)">
+                                No City was found
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="tab">
+            <input class="opac" id="tab-four" type="checkbox" name="tabs">
+            <label for="tab-four">Shipping options</label>
+            <div class="tab-content">
+                <ul class="margin--ul" *ngFor="let item of userlistCourier | slice : startPage:paginationLimit">
+                    <li>
+                        <input [checked]="shippingOpt === item.code" type="checkbox" (change)="onChange(item.code, $event.target.checked)"> {{item.name}}</li>
+                </ul>
+                <button *ngIf="paginationLimit < Leng" (click)="showMoreItems()">
+                    Show More
+                </button>
+                <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
+                    Show Less
+                </button>
+
+            </div>
         </div>
     </div>
-    
-  </div>
+
+</div>
