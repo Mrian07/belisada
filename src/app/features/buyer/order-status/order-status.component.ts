@@ -147,9 +147,11 @@ export class OrderStatusComponent implements OnInit {
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
     this.listPayment = respon[0].data;
-
-    console.log('bank', this.listPayment);
     });
+  }
+
+  confirm() {
+    this.router.navigate(['/buyer/confirmation']);
   }
 
 }

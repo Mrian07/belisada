@@ -30,7 +30,7 @@
         </div>
         <div class="col-7">
 
-            <div class="text-payinfo">Payment: <span class="text-orange">Menunggu Pembayaran</span>  <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})
+            <div class="text-payinfo" (click)="confirm()">Payment: <span class="text-orange">Menunggu Pembayaran</span>  <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})
               <!-- <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span> -->
             </div>
         </div>
