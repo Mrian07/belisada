@@ -119,6 +119,7 @@ export class ProductDetailList {
   id: string;
   moreInformation: MoreInformation;
   brandImageUrl: any;
+  specialPrice: number;
 }
 
 export class Specification {

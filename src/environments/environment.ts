@@ -5,6 +5,7 @@
 
 export const environment = {
   production: false,
+  baseUrlSeller: 'https://seller0.belisada.id',
   domain: 'https://dev.belisada.id',
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',

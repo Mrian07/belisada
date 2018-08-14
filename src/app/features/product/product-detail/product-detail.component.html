@@ -340,13 +340,20 @@
             <!-- </ul> -->
         </div>
 
-        </div>
-        </div>
-        <!-- </div> -->
         <div class="product-spec-conten" *ngIf="activeUlasan === true">
             <div class="row">
                 <div class="col-12">
-                    <div>
+                    <!-- <div class="review__content" *ngFor="let review of review.content">
+                        <div class="review__emoticon">
+                            <img src="/assets/img/id_flag.png" alt="">
+                        </div>
+                        <div class="review__rating">
+                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
+                        </div>
+                        <div class="review__message"></div>
+                    </div> -->
+
+                    <!-- <div>
                         <h3> {{title}}</h3>
                         <ul class="list">
                             <li *ngFor="let l of list | slice : startPage:paginationLimit">
@@ -359,10 +366,15 @@
                         <button *ngIf ="paginationLimit > 4" (click)="showLessItems()">
                             Show Less
                         </button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
+
+    </div>
+</div>
+        <!-- </div> -->
+        
 
 <div class="w__paddingin"></div>
 <!-- </div> -->
