@@ -29,6 +29,7 @@ import { Province, District, Village, City } from '@belisada/core/models/store/a
 import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-header',
@@ -56,6 +57,8 @@ export class HeaderComponent implements OnInit {
 
   isMenu: Boolean = false;
 
+  baseUrlSeller: string = environment.baseUrlSeller;
+
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
@@ -65,26 +68,26 @@ export class HeaderComponent implements OnInit {
   /*
     dibawah buat popUp
   */
- public validationOnpopUpCreateStore: FormGroup;
- provinces: Province[];
- nameOwner: FormControl;
- serverMessage: String;
- fm: any = {};
- cities: City[];
- curentPostal: any;
- districts: District[];
- villages: Village[];
- nameChecking: Boolean = false;
- storeName: FormControl;
- pending_submit: Boolean = false;
- timer: any;
- ip: string;
- country: string;
- storeUrl: FormControl;
- regForm: boolean;
- regSuccess: boolean;
- role = 0;
- showDialog: any;
+  public validationOnpopUpCreateStore: FormGroup;
+  provinces: Province[];
+  nameOwner: FormControl;
+  serverMessage: String;
+  fm: any = {};
+  cities: City[];
+  curentPostal: any;
+  districts: District[];
+  villages: Village[];
+  nameChecking: Boolean = false;
+  storeName: FormControl;
+  pending_submit: Boolean = false;
+  timer: any;
+  ip: string;
+  country: string;
+  storeUrl: FormControl;
+  regForm: boolean;
+  regSuccess: boolean;
+  role = 0;
+  showDialog: any;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -150,14 +153,9 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  goToSeller() {
-    window.location.href = 'https://seller0.belisada.id/auth/sign-in';
-  }
-
   navigateToIkutJualan() {
     this.router.navigate(['/buyer/create-store']);
   }
-
 
   onNameKeydown(event: any) {
     const pattern = /[a-zA-Z 0-9\+\- ]+/;

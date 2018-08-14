@@ -11,6 +11,7 @@ import { Province, City, District, Village } from '@belisada/core/models/store/a
 import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 import { Observable } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
+import { environment } from '@env/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -121,7 +122,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     sessionStorage.setItem('boolean', 'true');
     this.showDialog = false;
     const data = sessionStorage.getItem('boolean');
-    window.open('https://seller0.belisada.id/auth/sign-in', '_blank');
+    window.open(environment.baseUrlSeller + '/auth/sign-in', '_blank');
   }
   onFilterClick(event) {
     this.showDialog = false;
