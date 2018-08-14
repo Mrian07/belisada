@@ -1,0 +1,80 @@
+.ribbon {
+    line-height: .8em;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(0,0,0,.15);
+    display: block;
+    width: 6rem;
+    height: 4rem;
+    background: linear-gradient(to bottom, #999999 0%,#CCCCCC 100%);
+    color: white;
+    padding-top: 1.5rem;
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    -webkit-filter: drop-shadow(0 .5rem .3em rgba(0,0,0,.5));
+    transform: translate3d(0, 0, 0);
+    
+    &:after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-right: 3rem solid transparent;
+        border-left: 3rem solid transparent;
+        border-top: 1.5rem solid #CCCCCC;
+        position: absolute;
+        top: 4rem;
+        left: 0;
+    }
+        
+    &.ribbon--red {
+        background: linear-gradient(to bottom, #D3362D 0%,#E57368 100%);
+        
+        &:after {
+            border-top: 1.5rem solid #E57368;
+        }
+    }
+            
+    &.ribbon--orange {
+        // background: linear-gradient(to bottom, #E7711B 0%,#F7981D 100%);
+        background: $color--belisada;
+        
+        &:after {
+            border-top: 1.5rem solid $color--belisada;
+        }
+    }
+            
+    &.ribbon--yellow {
+        background: linear-gradient(to bottom, #F1CA3A 0%,#F6EB3B 100%);
+        
+        &:after {
+            border-top: 1.5rem solid #F6EB3B;
+        }
+    }
+            
+    &.ribbon--green {
+        background: linear-gradient(to bottom, #5f9654 0%,#65b045 100%);
+        
+        &:after {
+            border-top: 1.5rem solid #65B045;
+        }
+    }
+        
+    &.ribbon--blue {
+        background: linear-gradient(to bottom, #1C91C0 0%,#11A9CC 100%);
+        
+        &:after {
+            border-top: 1.5rem solid #11A9CC;
+        }
+    }
+            
+    &.ribbon--purple {
+        background: linear-gradient(to bottom, #5C3292 0%,#7E3794 100%);
+        
+        &:after {
+            border-top: 1.5rem solid #7E3794;
+        }
+    }
+
+}

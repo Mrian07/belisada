@@ -6,18 +6,21 @@
         <div class="row">
             <div class="col-5">
                 <div class="b1-detail">
+                    <div class="ribbon ribbon--orange"
+                        *ngIf="productDetail.discount > 0">{{ productDetail.discount }}%</div>
+
                     <span class="product-brand">Brand : {{ productDetail.brandName }}</span>
 
                     <div class='product-title'>
                         {{productDetail.name}}
                     </div>
-                    <div *ngIf="productDetail.pricelistlast>=0">
-                        <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
-                        <!-- <span class="product-discont"><s>{{productDetail.pricelistlast | currency:'Rp '}}</s></span> -->
+                    <div *ngIf="productDetail.specialPrice > 0">
+                        <span class="product-real-price">{{productDetail.specialPrice | currency:'Rp '}}</span>
+                        <span class="product-discont"><s>{{productDetail.pricelist | currency:'Rp '}}</s></span>
                     </div>
-                    <!-- <div *ngIf="productDetail.pricelistlast==0">
-                        <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
-                    </div> -->
+                    <div *ngIf="productDetail.specialPrice === 0">
+                        <span class="product-real-price">{{productDetail.specialPrice | currency:'Rp '}}</span>
+                    </div>
                     <div class="product-info" *ngIf="isLogin">
                         <span class="strong-text">Dikirim Dari:</span> {{ productDetail.locationName }}
                         <br>Ke {{ shippingAddress.regionName }}, {{ shippingAddress.cityName }},
@@ -138,10 +141,10 @@
                         <span class="shop-city">{{productDetail.locationName}}</span>
                         <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></span>
                     </div>
-                    <span class="shop-text"><strong>Terakhir Online:</strong> Coming Soon</span>
-                    <span class="shop-text"><strong>Produk Terjual:</strong> Coming Soon </span>
-                    <span class="shop-text"><strong>Jumlah Produk:</strong> Coming Soon </span>
-                    <span class="shop-text"><strong>Transaksi Sukses:</strong> Coming Soon </span>
+                    <span class="shop-text"><strong>Terakhir Online:</strong> {{ moreInformation.lastOnline }}</span>
+                    <span class="shop-text"><strong>Produk Terjual:</strong> {{ moreInformation.productSold }}</span>
+                    <span class="shop-text"><strong>Jumlah Produk:</strong> {{ moreInformation.productQuantity }}</span>
+                    <span class="shop-text"><strong>Transaksi Sukses:</strong> {{ moreInformation.transactionSuccess }}</span>
                 </div>
 
                 <!-- <div class="sidebar-title">
@@ -207,25 +210,36 @@
             </div>
         </div>
         <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-12">
                     <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
                 </div>
-            </div>
+            </div> -->
 
-    <table id="customers">
-
-        <tr *ngFor="let item of productDetail.specification">
-            <td>{{item.name}} :</td>
-            <td>{{ item. value }}</td>
-        </tr>
-    </table>
+            <table id="customers">
+                <tr>
+                    <td>Garansi :</td>
+                    <td>{{ productDetail.guaranteeTimeValue }}</td>
+                </tr>
+                <tr>
+                    <td>Kondisi :</td>
+                    <td>{{ productDetail.classificationValue }}</td>
+                </tr>
+                <tr>
+                    <td>Dimensi :</td>
+                    <td>{{ productDetail.dimensionslength }} x {{ productDetail.dimensionsWidth }} x {{ productDetail.dimensionsheight }}</td>
+                </tr>
+                <tr *ngFor="let item of productDetail.specification">
+                    <td>{{ item.name }} :</td>
+                    <td>{{ item. value }}</td>
+                </tr>
+            </table>
 
         </div>
         <div class="product-spec-conten" *ngIf="activeDiskripsi === true">
             <div class="row">
                 <div class="col-12">
-                    <span class="w__fontsize--prodName"> {{ productDetail.name }} </span>
+                    <!-- <span class="w__fontsize--prodName"> {{ productDetail.name }} </span> -->
                     <span>{{ productDetail.description }}</span>
                 </div>
             </div>
@@ -348,26 +362,10 @@
                     </div>
                 </div>
             </div>
-
-    </div>
+        </div>
 
 <div class="w__paddingin"></div>
 <!-- </div> -->
-
-<div class="heading__detail" *ngIf="isSubHeaderShow">
-    <div class="heading__container">
-        <div class="heading__grid">
-            <div class="heading__grid--col">
-                <span class="heading__title">{{ productDetail.name }}</span>
-            </div>
-            <div class="heading__grid--col right">
-                <span class="heading__price u-margin-right-1">{{ productDetail.pricelist | currency:'Rp ' }}</span>
-                <button class="btn btn--blue-belisada btn--flat btn--add-to-cart u-margin-right-1" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart</button>
-                <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="heading__detail" *ngIf="isSubHeaderShow">
     <div class="heading__container">
