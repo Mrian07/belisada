@@ -51,11 +51,8 @@
                   <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
               </td>
               <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} </div>
-                  <div class="item-colom">{{itemListProduct.subtotal | currency:'Rp '}}</div>
-              </td>
-              <td valign="top">
-                <span class="qty">QTY</span> x {{ itemListProduct.quantity }}
+                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}}</div>
+                  <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
               </td>
             </tr>
           </table>
