@@ -19,7 +19,7 @@
                         <span class="product-discont"><s>{{productDetail.pricelist | currency:'Rp '}}</s></span>
                     </div>
                     <div *ngIf="productDetail.specialPrice === 0">
-                        <span class="product-real-price">{{productDetail.specialPrice | currency:'Rp '}}</span>
+                        <span class="product-real-price">{{productDetail.pricelist | currency:'Rp '}}</span>
                     </div>
                     <div class="product-info" *ngIf="isLogin">
                         <span class="strong-text">Dikirim Dari:</span> {{ productDetail.locationName }}
