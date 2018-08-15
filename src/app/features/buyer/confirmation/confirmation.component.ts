@@ -82,6 +82,10 @@ export class ConfirmationComponent implements OnInit {
     });
   }
 
+  isFieldValid(field: string) { 
+    return !this.createComForm.get(field).valid && this.createComForm.get(field).touched;
+}
+
   onSubmit() {
     // const confirmation: Confirmation = new Confirmation();
     // confirmation.paymentNumber = this.createComForm.controls['paymentNumber'].value;

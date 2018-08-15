@@ -12,6 +12,11 @@
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="paymentNumber">
+                    <app-field-error-display [displayError]="isFieldValid('paymentNumber')" errorMsg="Payment id tidak boleh kosong"></app-field-error-display>
+                    <div *ngIf="createComForm.controls.paymentNumber.invalid && (createComForm.controls.paymentNumber.dirty && createComForm.controls.paymentNumber.touched)" class="alert alert-danger toll tooltip testing">
+                        <span class="tooltiptext">Nama tidak boleh kosong</span>
+                    </div>
+
                 </div>
                 <div class="label-c">
                     Di Transfer Ke :
