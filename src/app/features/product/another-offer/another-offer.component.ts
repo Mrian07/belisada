@@ -82,13 +82,13 @@ export class AnotherOfferComponent implements OnInit {
     if (userData) {
       if (userData.storeId === storeId) {
         swal(
-            'belisada.id',
+            'belisada.co.id',
             'Product ini berasal dari Toko Anda'
           );
       } else {
         if (this.cartItem[i] === undefined) {
           swal(
-            'belisada.id',
+            'belisada.co.id',
             'Jumlah harus di pilih!'
           );
         } else {
@@ -105,7 +105,7 @@ export class AnotherOfferComponent implements OnInit {
             if (response.status === 1) {
               this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
             } else {
-              swal('belisada.id', response.message, 'error');
+              swal('belisada.co.id', response.message, 'error');
             }
           });
         }

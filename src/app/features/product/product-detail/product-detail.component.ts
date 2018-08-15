@@ -408,13 +408,13 @@ export class ProductDetailComponent implements OnInit {
     if (userData) {
       if (userData.storeId === storeId) {
         swal(
-            'belisada.id',
+            'belisada.co.id',
             'Product ini berasal dari Toko Anda'
           );
       } else {
         if (this.qty === undefined) {
           swal(
-            'belisada.id',
+            'belisada.co.id',
             'Jumlah harus di pilih!'
           );
         } else {
@@ -432,7 +432,7 @@ export class ProductDetailComponent implements OnInit {
               // this.shoppingCartService.addItem(productId, +quantity);
               this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
             } else {
-              swal('belisada.id', response.message, 'error');
+              swal('belisada.co.id', response.message, 'error');
             }
           });
         }
