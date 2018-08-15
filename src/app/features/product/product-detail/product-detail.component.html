@@ -169,7 +169,15 @@
             <span class="item-list" *ngFor="let item of productNewatProdDetail | slice:0:5">
                 <img (click)="gotTodetailPart(item.productId, item.name)" [src]="productImageUrlNew + item.imageUrl">
                 <span class="item-list-title"> {{ item.storeName }}</span>
-                <span class="item-list-price">Rp {{ item.pricelist | number }}</span>
+                <!-- <div *ngIf="item.specialPrice > 0">
+                        <span class="product-real-price">{{item.specialPrice | currency:'Rp '}}</span>
+                        <span class="product-discont"><s>{{item.pricelist | currency:'Rp '}}</s></span>
+                    </div>
+                    <div *ngIf="item.specialPrice === 0">
+                        <span class="product-real-price">{{item.pricelist | currency:'Rp '}}</span>
+                    </div> -->
+                <span class="item-list-price" *ngIf="item.specialPrice > 0">Rp {{ item.specialPrice | number }}</span>
+                <span class="item-list-price" *ngIf="item.specialPrice === 0">Rp {{ item.pricelist | number }}</span>
             </span>
             <!-- <span class="item-list">
                 <img src='assets/img/dummy-product-detail.jpg' height="200">
@@ -382,7 +390,8 @@
                 <span class="heading__title">{{ productDetail.name }}</span>
             </div>
             <div class="heading__grid--col right">
-                <span class="heading__price u-margin-right-1">{{ productDetail.pricelist | currency:'Rp ' }}</span>
+                <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice > 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
+                <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice === 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
                 <button class="btn btn--blue-belisada btn--flat btn--add-to-cart u-margin-right-1" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart</button>
                 <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button>
             </div>
