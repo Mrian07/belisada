@@ -12,16 +12,15 @@
 </div>
 
 <div *ngFor="let item of list">
-  <div  class="os-head" (click)="openOS(openDetail, item.transactionId)">
+  <div  class="os-head">
       <div class="row row-atur">
         <div class="col-3">
             <div class="text-order">{{item.expiredTime}}</div>
         </div>
-        <div class="col-6">
+        <div class="col-9">
             <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
-        </div>
-        <div class="col-3">
-
+            <div class="text-confirm" (click)="confirm()">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
+            <div class="text-more" (click)="openOS(openDetail, item.transactionId)">See More <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
         </div>
       </div>
       <div class="row row-atur">
@@ -30,7 +29,7 @@
         </div>
         <div class="col-7">
 
-            <div class="text-payinfo" (click)="confirm()">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})
+            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})
               <!-- <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span> -->
             </div>
         </div>

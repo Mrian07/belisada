@@ -3,6 +3,7 @@
     text-align: center;
     color:#111111;
     width:700px;
+    margin-left: 70px;
 }
 
 .text-c{
@@ -29,7 +30,7 @@
     width:600px;
     margin:0px auto;
     display: grid;
-    grid-template-columns: 200px 300px;
+    grid-template-columns: 200px 350px;
 }
 
 .input-c{
@@ -40,6 +41,7 @@
     width:100%;
     margin-left:8px;
     border-radius:0px;
+    margin-bottom:5px;
 }
 
 .label-c{
@@ -58,4 +60,19 @@
     margin-top:10px;
     border-bottom: 1px solid #2d2d2d;
     margin-left:5px;
+}
+
+.btn-status{
+    margin:0px auto;
+    background: #1aab6c;
+    padding:10px;
+    color: #ffffff;
+    border-radius:5px;
+    margin-top: 20px;
+    cursor: pointer;
+    width:200px;
+}
+
+.btn-status:hover{
+    background: #26c580;
 }

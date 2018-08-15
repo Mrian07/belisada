@@ -12,6 +12,7 @@
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="paymentNumber">
+                    <app-field-error-display  [displayError]="isFieldValid('paymentNumber')" errorMsg="Payment id tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Di Transfer Ke :
@@ -26,24 +27,28 @@
                     <select formControlName="bankId" class="input-c">
                         <option  *ngFor="let item of listBank" value="{{item.bankId}}" >{{item.name}}</option>
                     </select>
+                    <app-field-error-display  [displayError]="isFieldValid('bankId')" errorMsg="Ditransfer dari tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Pemilik Rekening :
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="accountName">
+                    <app-field-error-display  [displayError]="isFieldValid('accountName')" errorMsg="Pemilik rekening tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     No Rekening :
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="accountNumber">
+                    <app-field-error-display  [displayError]="isFieldValid('accountNumber')" errorMsg="Nomor rekening tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Nominal :
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="nominal">
+                    <app-field-error-display  [displayError]="isFieldValid('nominal')" errorMsg="Nominal tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Tanggal Transfer :
@@ -53,6 +58,7 @@
                     <div class="date-custom">
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="transerDate" class="date-confim input-c"></my-date-picker>
                     </div>
+                    <app-field-error-display  [displayError]="isFieldValid('transerDate')" errorMsg="Tanggal transfer tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Berita :
@@ -68,7 +74,10 @@
     <div *ngIf="isProses==true">
         <h2>Konfirmasi Pembayaran Berhasil</h2>
         <span class="text-c">
-            Terima kasih atas konfirmasi yang kirimkan.<br> Kami akan segera melakukan pengecekan pembayaran Anda.<br> Jika pembayaran Anda sudah masuk maka transaksi Anda segera kami proses.
+            <p>Terima kasih telah melakukan konfirmasi pembayaran.</p>
+            <p>Kami akan melakukan validasi konfirmasi Anda telebih dulu.</p>
+            <div class="btn-status" (click)="liatTransaksi()">Liat Status Transaksi</div>
+            
         </span>
     </div>
     

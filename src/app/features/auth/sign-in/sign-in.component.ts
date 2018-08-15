@@ -202,7 +202,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
     // console.log('storedCart', storedCart);
     if (storedCart && JSON.parse(storedCart).items.length !== 0) {
       // if () {
-        console.log('isStoredCart');
+        // console.log('isStoredCart');
         preLoginCart.updateFrom(JSON.parse(storedCart));
         preLoginCart.items.forEach((item, index) => {
 
@@ -215,7 +215,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
               weightPerItem: prod.weight
             };
             this.shoppingCartService.create(data).subscribe(response => {
-              // console.log('response: ', response);
+              // console.log('shoppingCartService-create: ', response);
               if (index === preLoginCart.items.length - 1) {
                 return cb();
               } else {

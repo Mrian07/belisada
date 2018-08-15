@@ -102,22 +102,22 @@ export class OrderStatusComponent implements OnInit {
 
   }
 
-  setUrl(event, img) {
-    const fr = new FileReader();
-    const f = event.target.files[0];
-    const that = this;
+  // setUrl(event, img) {
+  //   const fr = new FileReader();
+  //   const f = event.target.files[0];
+  //   const that = this;
 
-    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
-    fr.onload = function() {
-      that.updateImg = true;
-      img.src = fr.result;
-      that.imageDataUrl = fr.result;
-    };
-    fr.readAsDataURL(f);
-    this.statusFlag();
-    this.isForm = true;
-    this.isSent = true;
-  }
+  //   if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+  //   fr.onload = function() {
+  //     that.updateImg = true;
+  //     img.src = fr.result;
+  //     that.imageDataUrl = fr.result;
+  //   };
+  //   fr.readAsDataURL(f);
+  //   this.statusFlag();
+  //   this.isForm = true;
+  //   this.isSent = true;
+  // }
 
   takeId(transactionId, imgBuktiTransfer) {
     this.transactionId = transactionId;
