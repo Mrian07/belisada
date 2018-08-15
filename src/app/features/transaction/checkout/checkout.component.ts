@@ -87,7 +87,7 @@ export class CheckoutComponent implements OnInit {
   getCartCheckout() {
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
-       console.log('test', response); 
+      console.log('test', response);
       response.cart.forEach((cart, index) => {
 
         cart.cartItems.forEach((item, i) => {
@@ -333,7 +333,7 @@ export class CheckoutComponent implements OnInit {
         this.shoppingCartService.empty();
         this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
       } else {
-        swal('belisada.id', response.message, 'error');
+        swal('belisada.co.id', response.message, 'error');
       }
     });
   }

@@ -56,7 +56,13 @@
                                 <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                             </div>
                             <div class="col-12 image--center">
-                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number  }}</span>
+                                    <div *ngIf="item.specialPrice > 0">
+                                            <span class="product-real-price">{{item.specialPrice | currency:'Rp '}}</span>
+                                            <span class="product-discont"><s>{{item.pricelist | currency:'Rp '}}</s></span>
+                                        </div>
+                                        <div *ngIf="item.specialPrice === 0">
+                                            <span class="product-real-price">{{item.pricelist | currency:'Rp '}}</span>
+                                        </div>
                                 <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:30 }}</span>
                             </div>
                         </div>
@@ -81,7 +87,13 @@
                                 <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
                             </div>
                             <div class="col-12 image--center">
-                                <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span>
+                                    <div *ngIf="item.specialPrice > 0">
+                                            <span class="product-real-price">{{item.specialPrice | currency:'Rp '}}</span>
+                                            <span class="product-discont"><s>{{item.pricelist | currency:'Rp '}}</s></span>
+                                        </div>
+                                        <div *ngIf="item.specialPrice === 0">
+                                            <span class="product-real-price">{{item.pricelist | currency:'Rp '}}</span>
+                                        </div>
                             <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:21 }}</span>
                             </div>
                         </div>
@@ -93,7 +105,7 @@
                 <app-models [(visible)]="showDialog"  maxwidth="765" class="frameDialog" *ngIf="isLogin !== true && dataForPopUp !== '' && dataForPopUp !== 'false'">
                     <div class="modal-body w-wrapper__in--home">
 
-                        <span class="w-text__for-welcome"> Hai Selamat datang di belisada.id </span>
+                        <span class="w-text__for-welcome"> Hai Selamat datang di belisada.co.id </span>
                         <img  class="w-image__for-welcome"  src="assets/img/aset12.png">
                         <div>
                             <span class="w-text__for-welcome w-text__botom-welcome">Apa yang ingin anda lakukan?</span>
@@ -112,5 +124,6 @@
                 </app-models>
             </footer>
         </div>
+        <div class="clearfix"></div>
     </div>
 </div>

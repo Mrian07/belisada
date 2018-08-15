@@ -1,8 +1,8 @@
-<div (click)="closeMenuAllCategory(isClickOut)">
-    <div class="daddy-container">
+<!-- <div (click)="closeMenuAllCategory(isClickOut)"> -->
+    <div class="daddy-container" (click)="closeMenuAllCategory(isClickOut)">
         <div class="overlay-header" *ngIf="globals.isBackdropActive === true"></div>
         <app-header></app-header>
         <router-outlet></router-outlet>
         <app-footer></app-footer>
     </div>
-</div>
+<!-- </div> -->

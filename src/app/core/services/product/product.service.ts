@@ -8,6 +8,7 @@ import { Configuration } from '@belisada/core/config';
 import { AddProductRequest, AddProductResponse, ProductDetail, Filter,
   FilterOffers, Isi } from '@belisada/core/models/product/product.model';
 import { ProductDetailSimple, ProductSimple } from '@belisada/core/models/product/product-detail-simple';
+import { ProductReviewResponse } from '@belisada/core/models/product/product-review';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +39,7 @@ export class ProductService {
       );
   }
   getDiscus(id: Object): Observable<Isi> {
-    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id + '?itemperpage=100')
+    return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id)
     .pipe(
       map(response => response as Isi)
     );
@@ -64,7 +65,7 @@ export class ProductService {
   }
 
   createDiscus(data) {
-    return this.http.put(this.configuration.apiURL + '/productfeedback/discus/create', data);
+    return this.http.post(this.configuration.apiURL + '/productfeedback/discus/create', data);
   }
 
 
@@ -77,6 +78,17 @@ export class ProductService {
     return this.http.get(this.configuration.apiUrlMongo + '/search/filterOffers', {params: params})
       .pipe(
         map(response => response as FilterOffers[])
+      );
+  }
+
+  getReview(id, queryParams) {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiURL + '/productfeedback/review/all/' + id, {params: params})
+      .pipe(
+        map(response => response as ProductReviewResponse)
       );
   }
 

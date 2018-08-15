@@ -5,6 +5,7 @@ import { CreateStoreRequest, CheckStoreRequest, ProfileStoreResponse } from '@be
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService, UserService, ShareMessageService, AuthService } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { Router } from '@angular/router';
 
 @Component({
 selector: 'app-create-store',
@@ -45,7 +46,7 @@ export class CreateStoreComponent implements OnInit {
   constructor(
     private fb: FormBuilder, private storeService: StoreService, private profileS: UserService, private el: ElementRef,
     private shareMessageService: ShareMessageService, private authService: AuthService, private userService: UserService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService, private router: Router
   ) {}
 
   ngOnInit() {
@@ -257,18 +258,18 @@ export class CreateStoreComponent implements OnInit {
             if (result.value) {
               this.authService.refreshToken().subscribe(respon => {
                 this.userService.setUserToLocalStorage(respon.token);
+                this.router.navigateByUrl('/buyer/profile');
                 console.log('status', respon);
               });
-              location.reload();
             }
           });
         } else {
           swal(rsl.message);
-          this.authService.refreshToken().subscribe(respon => {
-            console.log('status', respon);
-            this.userService.setUserToLocalStorage(respon.token);
-          });
-          location.reload();
+          // this.authService.refreshToken().subscribe(respon => {
+          //   console.log('status', respon);
+          //   this.userService.setUserToLocalStorage(respon.token);
+          // });
+          // location.reload();
         }
       });
     } else {

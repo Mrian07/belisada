@@ -28,7 +28,8 @@
                                         <img src='assets/img/wishlist.png'>
                                     </div>
                                     <div class="col-6 icon-right">
-                                        <img src='assets/img/discount.png'>
+                                        <div class="ribbon ribbon--orange"
+                                         *ngIf="item.discount > 0">{{ item.discount }}%</div>
                                     </div>
                                 </div>
                                 <div class="img-item" (click)="goDetail(item.productId,item.name)">
@@ -37,7 +38,7 @@
                                 <div class="item" (click)="goDetail(item.productId,item.name)">{{ item.name }}</div>
                                 <img src='assets/img/dummy-star.jpg'><br>
                                 <div *ngIf="item.discount>0">
-                                    <span class="price">Rp {{ item.discount | number}}</span>
+                                    <span class="price">Rp {{ item.specialPrice | number}}</span>
                                     <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
                                 </div>
                                 <div *ngIf="item.discount<=0">

@@ -5,6 +5,7 @@ import { UserData } from '@belisada/core/models';
 import { LocalStorageEnum } from '@belisada/core/enum';
 
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '@env/environment';
 @Component({
   selector: 'bs-sidebar-buyer',
   templateUrl: './sidebar-buyer.component.html',
@@ -17,6 +18,8 @@ export class SidebarBuyerComponent implements OnInit {
   userData: UserData = new UserData();
   isLogin: Boolean = false;
   pemisah: any;
+
+  baseUrlSeller: string = environment.baseUrlSeller;
 
   zzzz;
   public location = '';
@@ -50,10 +53,6 @@ export class SidebarBuyerComponent implements OnInit {
   goToCreateStore() {
     this.router.navigateByUrl('/buyer/create-store');
     this.cekFlag();
-  }
-
-  goToSeller() {
-    this.zzzz = 'https://seller0.belisada.id/auth/sign-in';
   }
 
   profile() {
