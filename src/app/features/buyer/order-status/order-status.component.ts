@@ -68,8 +68,6 @@ export class OrderStatusComponent implements OnInit {
       }
       this.isLoading = false;
       this.list = respon.content;
-      console.log('siap: ', respon.content);
-      console.log('siap2: ', respon);
     });
   }
 
