@@ -130,8 +130,9 @@ export class ShoppingCartService {
       this.productService.get(item.productId)
       .subscribe(product => {
         const prod = product.data;
+        console.log('prod: ', prod);
         prod.weight = (prod.weight === 0) ? 1 : prod.weight;
-        cart.itemsTotal += item.quantity * prod.pricelist;
+        cart.itemsTotal += item.quantity * ((prod.specialPrice > 0) ? prod.specialPrice : prod.pricelist);
         cart.deliveryTotal +=
           (cart.freightRate === undefined) ? 0 : cart.freightRate.amount * item.quantity * prod.weight;
         cart.grossTotal = cart.itemsTotal + cart.deliveryTotal;
