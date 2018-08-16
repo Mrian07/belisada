@@ -21,6 +21,8 @@ export class AppComponent {
         const title = this.getTitle(router.routerState, router.routerState.root).join('-');
         console.log('title', title);
         titleService.setTitle(title);
+        (<any>window).ga('set', 'page', event.urlAfterRedirects);
+        (<any>window).ga('send', 'pageview');
       }
     });
   }
