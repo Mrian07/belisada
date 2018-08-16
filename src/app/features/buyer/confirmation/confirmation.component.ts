@@ -5,6 +5,8 @@ import { Confirmation } from '@belisada/core/models/payment/payment.model';
 import { DateUtil } from '@belisada/core/util';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { IMyDpOptions } from 'mydatepicker';
+import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -45,6 +47,7 @@ export class ConfirmationComponent implements OnInit {
     private paymentService: PaymentService,
     private fb: FormBuilder,
     private dateUtil: DateUtil,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -55,14 +58,14 @@ export class ConfirmationComponent implements OnInit {
 
   createFormControls() {
     this.createComForm = this.fb.group({
-    paymentNumber: new FormControl('', Validators.required),
+    paymentNumber: new FormControl(null, Validators.required),
     transferTo: new FormControl('', Validators.required),
     bankId: new FormControl('', Validators.required),
     transerDate: new FormControl('', Validators.required),
     accountName: new FormControl('', Validators.required),
     accountNumber: new FormControl('', Validators.required),
     nominal: new FormControl('', Validators.required),
-    news: new FormControl('', Validators.required)
+    news: new FormControl('')
     });
   }
 
@@ -82,42 +85,58 @@ export class ConfirmationComponent implements OnInit {
     });
   }
 
-  isFieldValid(field: string) { 
-    return !this.createComForm.get(field).valid && this.createComForm.get(field).touched;
-}
-
-  onSubmit() {
-    // const confirmation: Confirmation = new Confirmation();
-    // confirmation.paymentNumber = this.createComForm.controls['paymentNumber'].value;
-    // confirmation.transferTo = this.createComForm.controls['transferTo'].value;
-    // confirmation.bankId = this.createComForm.controls['bankId'].value;
-    // confirmation.accountName = this.createComForm.controls['accountName'].value;
-    // confirmation.accountNumber = this.createComForm.controls['accountNumber'].value;
-    // confirmation.transerDate =
-    // this.dateUtil.formatMyDate(this.createComForm.controls['transerDate'].value.date, this.defaultDateFormat);
-    // confirmation.news = this.createComForm.controls['news'].value;
-    // confirmation.nominal = this.createComForm.controls['nominal'].value;
-
-    // console.log('confirmation', confirmation);
-
-    const data = {
-      paymentNumber: this.createComForm.controls['paymentNumber'].value,
-      transferTo: this.createComForm.controls['transferTo'].value,
-      bankId: this.createComForm.controls['bankId'].value,
-      accountName: this.createComForm.controls['accountName'].value,
-      accountNumber: this.createComForm.controls['accountNumber'].value,
-      transerDate: this.dateUtil.formatMyDate(this.createComForm.controls['transerDate'].value.date, this.defaultDateFormat),
-      news: this.createComForm.controls['news'].value,
-      nominal: this.createComForm.controls['nominal'].value,
-    };
-
-    this.paymentService.confirmation(data).subscribe(respon => {
-      console.log('respon', respon);
-      if (respon.status === 1) {
-        this.isProses = true;
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+          control.markAsTouched({
+              onlySelf: true
+          });
+      } else if (control instanceof FormGroup) {
+          this.validateAllFormFields(control);
       }
     });
+  }
+
+  isFieldValid(field: string) {
+    return !this.createComForm.get(field).valid && this.createComForm.get(field).touched;
+  }
+
+  onSubmit() {
+
+    if (this.createComForm.valid) {
+      const data = {
+        paymentNumber: this.createComForm.controls['paymentNumber'].value,
+        transferTo: this.createComForm.controls['transferTo'].value,
+        bankId: this.createComForm.controls['bankId'].value,
+        accountName: this.createComForm.controls['accountName'].value,
+        accountNumber: this.createComForm.controls['accountNumber'].value,
+        transerDate: this.dateUtil.formatMyDate(this.createComForm.controls['transerDate'].value.date, this.defaultDateFormat),
+        news: this.createComForm.controls['news'].value,
+        nominal: this.createComForm.controls['nominal'].value,
+      };
+
+      this.paymentService.confirmation(data).subscribe(respon => {
+        if (respon.status === 1) {
+          this.isProses = true;
+        } else {
+          swal(
+            'Alert',
+            'Konfirmasi gagal pastikan Payment ID yang Anda masukan sudah benar.',
+            'error'
+          );
+        }
+      });
+
+    } else {
+          this.validateAllFormFields(this.createComForm);
+    }
 
   }
+
+  liatTransaksi() {
+    this.router.navigate(['/buyer/order']);
+  }
+
 
 }
