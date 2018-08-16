@@ -53,8 +53,11 @@ export class ProductDetailComponent implements OnInit {
 
   title: String;
   list: any;
-  startPage: Number;
-  paginationLimit: Number;
+  startPage: number;
+  paginationLimit: number;
+  openDetail: boolean;
+  idDisuci: number;
+  boolDiscus: boolean;
 
   imgIndex: string;
 
@@ -132,7 +135,8 @@ export class ProductDetailComponent implements OnInit {
       {name: 'Anu', age: '20'}
     ];
     this.startPage = 0;
-    this.paginationLimit = 4;
+    this.paginationLimit = 2;
+    this.boolDiscus = true;
     this.messageString = new FormControl('');
     this.messageBottom = new FormControl('');
 
@@ -273,8 +277,21 @@ export class ProductDetailComponent implements OnInit {
       hideTextArea() {
         this.textAreaClick = false;
       }
-  showMoreItems() {
-    this.paginationLimit = Number(this.paginationLimit) + 3;
+  showMoreItems(status, e) {
+    if (status === true ) {
+      this.idDisuci = e;
+      this.boolDiscus = false;
+      this.paginationLimit = Number(this.paginationLimit) + 3;
+    } else {
+      this.idDisuci = e;
+      this.paginationLimit = Number(this.paginationLimit) + 3;
+      this.boolDiscus = true;
+      console.log(status, e)
+    }
+
+
+
+
   }
   showLessItems() {
     this.paginationLimit = Number(this.paginationLimit) - 3;

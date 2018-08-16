@@ -272,6 +272,7 @@
                                         </a>
                                         <div class="product-talk__detail">
                                             <div class="w--product-talk__additional-info">
+
                                                 <a class="w--product_talk"> {{ item.name }} </a>
                                                 <span class="w--product_talk-time"> -  {{ item.since }}</span>
                                             </div>
@@ -282,14 +283,15 @@
                                         </div>
 
                                     </div>
-                                    <div class="w-product-talk__comments" *ngFor="let item333 of item.childs">
-                                        <ul class="w-product-talk__coment-list">
+                                    <div class="w-product-talk__comments" *ngFor="let item333 of item.childs | slice : startPage:paginationLimit">
+                                        <ul class="w-product-talk__coment-list" *ngIf="boolDiscus === true">
                                             <li class="product-talk__comennts-list-item">
                                                 <div>
                                                     <img src="{{item333.imageAvatarUrl}}" class="w-product-talk__profile">
                                                 </div>
                                                 <div class="w-product-talk__detail">
-                                                    <a class="w-product-talk__name">{{  item333.name }} </a>
+
+                                                    <a class="w-product-talk__name">{{  item333.name }}  </a>
                                                     <span class="badge__belisada-seller" *ngIf="item333.label === 'penjual'">
                                                         {{ item333.label }}
                                                     </span>
@@ -331,6 +333,13 @@
                                                 </div> -->
                                             </div>
                                             <ng-template #login>
+
+                                                    <button *ngIf="paginationLimit < list.length" (click)="showMoreItems(openDetail,item.discusId)">
+                                                            Show More
+                                                        </button>
+                                                        <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
+                                                            Show Less
+                                                        </button>
                                                 <textarea name="" id="" (click)="textAreaExpannded(item.discusId)" class="w-product-talk__coment-taxtarea"></textarea>
 
                                             </ng-template>
@@ -352,7 +361,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="product-spec-conten" *ngIf="activeUlasan === true">
-                        <!-- <div class="row">
+                        <div class="row">
                             <div class="col-12">
                                 <div>
                                     <h3> {{title}}</h3>
@@ -369,7 +378,7 @@
                                     </button>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>
