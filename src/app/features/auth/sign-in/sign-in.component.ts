@@ -113,7 +113,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
       if (!this.param1) {
         this.router.navigateByUrl('/buyer/profile');
       } else {
-        console.log('123');
+        // console.log('123');
       }
     }
   }
@@ -195,7 +195,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
   }
 
   setCartToLocalStorage() {
-    // console.log('setCartToLocalStorage');
+    console.log('setCartToLocalStorage');
     const cart = new ShoppingCart();
     const preLoginCart = new ShoppingCart();
     const storedCart = this.storage.getItem(CART_KEY);
@@ -211,14 +211,17 @@ export class SigninComponent implements OnInit, AfterViewInit {
             const data = {
               productId: prod.productId,
               quantity: item.quantity,
-              price: prod.pricelist,
+              price: (prod.specialPrice > 0) ? prod.specialPrice : prod.pricelist,
               weightPerItem: prod.weight
             };
             this.shoppingCartService.create(data).subscribe(response => {
-              // console.log('shoppingCartService-create: ', response);
+              console.log('shoppingCartService-create: ', response);
+              console.log(index + ' ~ ' + (preLoginCart.items.length - 1));
               if (index === preLoginCart.items.length - 1) {
+                console.log('cb');
                 return cb();
               } else {
+                console.log('-------');
                 return;
               }
             });
@@ -227,6 +230,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
       // }
     } else {
       this.shoppingCartService.getSingleResult().subscribe(response => {
+        console.log('response-getSingleResult: ', response);
         cart.grossTotal = response.grandTotal;
         cart.deliveryTotal = response.deliveryTotal;
         cart.itemsTotal = response.grandTotal;
@@ -248,7 +252,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
     const that = this;
     function cb() {
-      // console.log('callback called');
+      console.log('callback called');
       that.shoppingCartService.getSingleResult().subscribe(response => {
         cart.grossTotal = response.grandTotal;
         cart.deliveryTotal = response.deliveryTotal;
