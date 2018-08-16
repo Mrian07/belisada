@@ -3,7 +3,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from '@belisada/core/config';
 import { map } from 'rxjs/operators';
-import { Invoice, OrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
+import { Invoice, ContentOrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +13,9 @@ export class TransactionService {
   constructor(private configuration: Configuration, private http: HttpClient) { }
 
     getOrder(data) {
-      return this.http.get(this.configuration.apiURL + '/buyer/transaction/history?transaction_status=' + data)
+      return this.http.get(this.configuration.apiURL + '/buyer/transaction/history/v2?transaction_status=' + data)
       .pipe(
-        map(response => response as OrderStatus[])
+        map(response => response as ContentOrderStatus)
       );
     }
 

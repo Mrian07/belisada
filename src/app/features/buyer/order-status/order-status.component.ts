@@ -63,13 +63,11 @@ export class OrderStatusComponent implements OnInit {
     this.status = 'PENDING';
     this.transactionService.getOrder(this.status).subscribe(respon => {
 
-      console.log('apaaa', respon);
-      if (respon.length === 0 ) {
+      if (respon.content.length === 0 ) {
         this.isEmpty = true;
       }
       this.isLoading = false;
-      this.list = respon;
-      console.log(respon);
+      this.list = respon.content;
     });
   }
 
