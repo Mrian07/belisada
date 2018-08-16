@@ -24,6 +24,7 @@ export class ProductDetailSimple {
     dimensionsWidth: number;
     dimensionslength: number;
     dimensionsheight: number;
+    specialPrice: number;
 }
 
 export class ProductSimple {
