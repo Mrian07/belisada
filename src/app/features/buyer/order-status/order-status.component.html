@@ -71,21 +71,25 @@
 
           </div>
         </td>
-        <td valign="top" width="15%">
+        <td valign="top" width="22%">
           <div class="item-colom">
             <div class="row">
               <div class="col-12">
-                <label>No Resi: {{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
+                No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
               </div>
-            </div>
-            <div class="row">
               <div class="col-12">
-                <label>Status: {{itemList.statusTracking}}</label>
+                Status: <label>{{itemList.statusTracking}}</label>
+              </div>
+              <div class="col-12">
+                Total Berat: <label>{{itemList.totalWeight}}kg</label>
+              </div>
+              <div class="col-12">
+                Biaya Pengiriman: <label>Rp.{{itemList.courierPrice | number}}</label>
               </div>
             </div>
           </div>
         </td>
-        <td width="40%">
+        <td width="33%">
           <span class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>

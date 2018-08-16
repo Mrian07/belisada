@@ -1,3 +1,14 @@
+export class ContentOrderStatus {
+    content: OrderStatus[];
+    first: string;
+    last: string;
+    number: number;
+    numberOfElements: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
+}
+
 export class OrderStatus {
     expiredTime: string;
     imageUrl: string;
