@@ -278,16 +278,9 @@ export class ProductDetailComponent implements OnInit {
         this.textAreaClick = false;
       }
   showMoreItems(status, e) {
-    if (status === true ) {
-      this.idDisuci = e;
-      this.boolDiscus = false;
+      this.idDicus = e;
       this.paginationLimit = Number(this.paginationLimit) + 3;
-    } else {
-      this.idDisuci = e;
-      this.paginationLimit = Number(this.paginationLimit) + 3;
-      this.boolDiscus = true;
-      console.log(status, e)
-    }
+
 
 
 

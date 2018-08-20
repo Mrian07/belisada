@@ -284,8 +284,8 @@
 
                                     </div>
                                     <div class="w-product-talk__comments" *ngFor="let item333 of item.childs | slice : startPage:paginationLimit">
-                                        <ul class="w-product-talk__coment-list" *ngIf="boolDiscus === true">
-                                            <li class="product-talk__comennts-list-item">
+                                        <ul class="w-product-talk__coment-list" >
+                                            <li class="product-talk__comennts-list-item" >
                                                 <div>
                                                     <img src="{{item333.imageAvatarUrl}}" class="w-product-talk__profile">
                                                 </div>
@@ -303,7 +303,9 @@
                                                     {{ item333.message }}
                                                 </div>
                                             </li>
+
                                         </ul>
+
                                     </div>
                                     <div class="w--product-talk__comment-box">
                                         <div class="list-box-replyholder">
