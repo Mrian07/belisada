@@ -1,9 +1,7 @@
-// import { Component } from '@angular/core';
-import {Component, NgModule, Injectable, Inject, ViewChild, OnInit} from '@angular/core';
-import {BrowserModule, Title} from '@angular/platform-browser';
+import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Globals } from '@belisada/core/services';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-// import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +19,8 @@ export class AppComponent {
         const title = this.getTitle(router.routerState, router.routerState.root).join('-');
         console.log('title', title);
         titleService.setTitle(title);
+        (<any>window).ga('set', 'page', event.urlAfterRedirects);
+        (<any>window).ga('send', 'pageview');
       }
     });
   }

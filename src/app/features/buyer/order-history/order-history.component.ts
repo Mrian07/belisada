@@ -52,12 +52,12 @@ export class OrderHistoryComponent implements OnInit {
   pendingOrder() {
     this.status = 'HISTORY';
     this.transactionService.getOrder(this.status).subscribe(respon => {
-      if (respon.length === 0 ) {
+      if (respon.content.length === 0 ) {
         this.isEmpty = true;
       }
 
       this.isLoading = false;
-      this.list = respon;
+      this.list = respon.content;
     });
   }
 
