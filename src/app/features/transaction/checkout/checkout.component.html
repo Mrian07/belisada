@@ -54,7 +54,10 @@
                         <td class="table-val"><span class="item-name">{{ cartItem.name }}</span> <span class="item-size"> ( {{ cartItem.weightPerItem }} g )</span>
                         <div><span class="item-delete" (click)="deleteCart(cartItem.itemCartId, cartItem.productId, cartItem.quantity)">Hapus Barang <fa-icon class="item-trash" [icon]="['fas', 'trash']"></fa-icon></span></div>
                         </td>
-                        <td class="table-val right"><span class="item-price">Rp {{ cartItem.priceList | number }}</span></td>
+                        <td class="table-val right">
+                            <span class="item-price" *ngIf="cartItem.specialPrice > 0">Rp {{ cartItem.specialPrice | number }}</span>
+                            <span class="item-price" *ngIf="cartItem.specialPrice === 0">Rp {{ cartItem.priceList | number }}</span>
+                        </td>
                         <td class="table-val">
                             <div class="item-center">
                                 <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> <span class="item-qty">{{ cartItem.quantity }}</span> <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span>
