@@ -12,16 +12,14 @@
 </div>
 
 <div *ngFor="let item of list">
-  <div  class="os-head" (click)="openOS(openDetail, item.transactionId)">
+  <div  class="os-head">
       <div class="row row-atur">
         <div class="col-3">
             <div class="text-order">{{item.expiredTime}}</div>
         </div>
-        <div class="col-6">
-            <div class="text-rek">Lihat Nomor Rekening Belisada</div>
-        </div>
-        <div class="col-3">
-
+        <div class="col-9">
+          <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
+          <div class="text-more" (click)="openOS(openDetail, item.transactionId)">See More <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
         </div>
       </div>
       <div class="row row-atur">
@@ -92,3 +90,17 @@
   </div>
 </div>
 
+<app-models [(visible)]="showDialogRek" class="frameDialog">
+    <div class="modal-body">
+  
+      <div class='list-metode'>
+        <div class="row">
+            <div class="col-3" *ngFor="let item of listPayment">
+                <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+                {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
+            </div>
+        </div>
+    </div>
+  
+    </div>
+  </app-models>

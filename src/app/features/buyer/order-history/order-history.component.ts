@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../../core/services/transaction/transaction.service';
 import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
+import { PaymentService } from './../../../core/services/payment/payment.service';
+import { PaymentList } from '@belisada/core/models/payment/payment.model';
 
 @Component({
   selector: 'app-order-history',
@@ -24,10 +26,12 @@ export class OrderHistoryComponent implements OnInit {
   isSent: boolean;
   isLoading: boolean;
   isEmpty: boolean;
-
+  showDialogRek: any;
   transactionId: number;
+  listPayment: PaymentList[];
 
-  constructor(private transactionService: TransactionService) {
+  constructor(private transactionService: TransactionService,
+    private paymentService: PaymentService) {
     this.list = [];
   }
 
@@ -38,6 +42,7 @@ export class OrderHistoryComponent implements OnInit {
     this.isForm = true;
     this.isPilih = true;
     this.pendingOrder();
+    this.allPayment();
   }
 
   statusFlag() {
@@ -126,6 +131,12 @@ export class OrderHistoryComponent implements OnInit {
       this.isPilih = true;
     });
 
+  }
+
+  allPayment() {
+    this.paymentService.getPayment().subscribe(respon => {
+    this.listPayment = respon[0].data;
+    });
   }
 
 }
