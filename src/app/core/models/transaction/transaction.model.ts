@@ -96,6 +96,7 @@ export class Invoice {
 export class InvoiceData {
     alamatPenerima: string;
     alamatSebagai: string;
+    orderNumber: string;
     asuransi: number;
     courierCode: string;
     courierPrice: string;

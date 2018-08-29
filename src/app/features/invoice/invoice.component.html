@@ -23,21 +23,32 @@
   </div> -->
 </div>
 <div class="f-body">
-  
+
   <div class="row">
     <div class="col-6">
-        <span class="i-title">Payment ID</span><br>
-        #{{info.paymentNumber}}
+        <span class="i-title">Order ID</span><br>
+        #{{info.orderNumber}}
     </div>
     <div class="col-6 i-right">
         <span class="i-title">Order Date</span><br>
         {{info.createdOrder}}
     </div>
   </div>
-  <div class="i-metode">
+  <div class="row">
+    <div class="col-4">
+        <span class="i-title">Metode Pembayaran</span><br>
+        {{info.paymentMethod}}
+    </div>
+    <div class="col-4">
+        <span class="i-title">Payment ID</span><br>
+        {{info.paymentNumber}}
+    </div>
+  </div>
+  <!-- <div class="i-metode">
     <span class="i-title">Metode Pembayaran</span><br>
     {{info.paymentMethod}}
-  </div>
+  </div> -->
+
   <div class="row">
     <div class="col-4">
         <span class="i-title">Penjual</span><br>
@@ -98,5 +109,5 @@
   <div class="i-logo">
     <img src="assets/img/logo.png" border="0" width="200">
   </div>
-  
+
 </div>
