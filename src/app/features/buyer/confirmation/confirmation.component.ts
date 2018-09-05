@@ -69,6 +69,15 @@ export class ConfirmationComponent implements OnInit {
     });
   }
 
+  numberCheck(event: any) {
+    const pattern = /[0-9]/;
+
+    const inputChar = String.fromCharCode(event.charCode);
+    if (event.keyCode !== 8 && !pattern.test(inputChar)) {
+        event.preventDefault();
+    }
+  }
+
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
       this.createComForm.patchValue(

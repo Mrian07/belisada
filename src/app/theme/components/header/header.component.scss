@@ -373,9 +373,10 @@ a {
 
 .menu__container {
     margin-top:5px;
-    width:300px;
+    width:30rem;
+    min-height: 38rem;
     position: absolute;
-    left: -150px;
+    left: -15rem;
     display: block;
     cursor: pointer;
     background: #fff;
