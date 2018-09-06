@@ -40,14 +40,14 @@
                     No Rekening :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="accountNumber">
+                    <input type="text" class="input-c" formControlName="accountNumber" (keypress)="numberCheck($event)">
                     <app-field-error-display  [displayError]="isFieldValid('accountNumber')" errorMsg="Nomor rekening tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Nominal :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="nominal">
+                    <input type="text" class="input-c" formControlName="nominal" (keypress)="numberCheck($event)">
                     <app-field-error-display  [displayError]="isFieldValid('nominal')" errorMsg="Nominal tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
