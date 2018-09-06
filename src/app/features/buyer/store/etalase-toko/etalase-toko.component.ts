@@ -5,6 +5,7 @@ import { EtalaseStore, EtalaseStoreData } from '@belisada/core/models/store/stor
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { ListSearch } from '@belisada/core/models/search/search.model';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-etalase-toko',
@@ -27,9 +28,9 @@ productImageUrl: any;
   constructor(private route: ActivatedRoute, private storeS: StoreService, private prodS: SearchService) {
 
     // this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/center/';
-    this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
-    this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
-    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+    this.storeImage = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/30x30/center/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
   }
 
   ngOnInit() {

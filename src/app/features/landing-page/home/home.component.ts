@@ -66,8 +66,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private homeS: HomeSService,
     private _messageService: TestingServicesService,
   ) {
-    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
-    this.productStoreUrl = 'http://image.belisada.id:8888/unsafe/30x30/center/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/30x30/center/';
     this._messageService.listen().subscribe((m: any) => {
       console.log(m);
       this.onFilterClick(m);
@@ -191,16 +191,21 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.router.navigate(['/' + url]);
   }
 
-  goToDetail(id, name) {
-  const r = name.replace(new RegExp('/', 'g'), ' ');
-  console.log(r);
-  if (r === ' ') {
-    this.router.navigate(['/product/product-detail/' + id + '/' + 'yourItem']);
-  } else {
-    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
   }
 
-   window.scrollTo(0, 0);
+  goToDetail(id, name) {
+    const r = this.encodeUrl(name);
+    console.log(r);
+    // if (r === ' ') {
+    //   this.router.navigate(['/product/product-detail/' + id + '/' + 'yourItem']);
+    // } else {
+      this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+    // }
+
+    window.scrollTo(0, 0);
   }
 
   getCity(id) {
