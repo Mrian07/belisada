@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../../core/services/transaction/transaction.service';
-import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
+import { OrderStatus, UploadImgTransfer, ContentOrderStatus } from '@belisada/core/models/transaction/transaction.model';
 import { PaymentService } from './../../../core/services/payment/payment.service';
 import { PaymentList } from '@belisada/core/models/payment/payment.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-order-history',
@@ -30,7 +31,14 @@ export class OrderHistoryComponent implements OnInit {
   transactionId: number;
   listPayment: PaymentList[];
 
+  proddetail: ContentOrderStatus = new ContentOrderStatus();
+  lastPage: number;
+  currentPage: number;
+  pages: any = [];
+
   constructor(private transactionService: TransactionService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
     private paymentService: PaymentService) {
     this.list = [];
   }
@@ -55,14 +63,34 @@ export class OrderHistoryComponent implements OnInit {
   }
 
   pendingOrder() {
-    this.status = 'HISTORY';
-    this.transactionService.getOrder(this.status).subscribe(respon => {
-      if (respon.content.length === 0 ) {
-        this.isEmpty = true;
-      }
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
 
-      this.isLoading = false;
-      this.list = respon.content;
+      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+      const queryParams = {
+        itemperpage: 10,
+        page: this.currentPage,
+        ot: 'asc',
+        transaction_status: 'HISTORY'
+      };
+
+      this.transactionService.getOrder(queryParams).subscribe(respon => {
+        if (respon.content.length === 0 ) {
+          this.isEmpty = true;
+        }
+
+        this.isLoading = false;
+        this.list = respon.content;
+
+        this.proddetail = respon;
+        this.pages = [];
+        this.lastPage = this.proddetail.totalPages;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.proddetail.totalPages) {
+            this.pages.push(r);
+          }
+        }
+
+      });
     });
   }
 

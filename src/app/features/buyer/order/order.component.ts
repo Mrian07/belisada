@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -8,14 +9,22 @@ import { Component, OnInit } from '@angular/core';
 export class OrderComponent implements OnInit {
 
   tabOrder: string;
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.tabOrder = 'tabStatus';
   }
 
-  tab($data) {
-    this.tabOrder = $data;
+  tab(data, tabOrder) {
+
+    if (tabOrder === data) {
+      this.tabOrder = data;
+    } else {
+      this.router.navigateByUrl('/buyer/order');
+      this.tabOrder = data;
+    }
   }
 
 }

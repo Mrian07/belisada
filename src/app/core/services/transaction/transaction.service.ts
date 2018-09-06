@@ -12,8 +12,13 @@ export class TransactionService {
 
   constructor(private configuration: Configuration, private http: HttpClient) { }
 
-    getOrder(data) {
-      return this.http.get(this.configuration.apiURL + '/buyer/transaction/history/v2?transaction_status=' + data)
+    getOrder(queryParams) {
+
+      let params = new HttpParams();
+      Object.keys(queryParams).forEach(function(k) {
+        params = params.append(k, queryParams[k]);
+      });
+      return this.http.get(this.configuration.apiURL + '/buyer/transaction/history/v2', {params: params})
       .pipe(
         map(response => response as ContentOrderStatus)
       );
