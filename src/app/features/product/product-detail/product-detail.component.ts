@@ -19,6 +19,7 @@ import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service'
 import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 import { Configuration } from '@belisada/core/config';
+import { environment } from '@env/environment';
 
 const RESULT_KEY = makeStateKey<string>('result');
 
@@ -101,10 +102,10 @@ export class ProductDetailComponent implements OnInit {
     @Inject(PLATFORM_ID) platformId
 
   ) {
-    this.storeImageUrl = 'http://image.belisada.id:8888/unsafe/218x218/';
-    this.productImageUrl = 'http://image.belisada.id:8888/unsafe/fit-in/400x400/filters:fill(fff)/';
-    this.productImageUrlNew = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
-    this.productImageItemLooping = 'http://image.belisada.id:8888/unsafe/80x80/center/filters:fill(fff)/';
+    this.storeImageUrl = environment.thumborUrl + 'unsafe/218x218/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/filters:fill(fff)/';
+    this.productImageUrlNew = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
+    this.productImageItemLooping = environment.thumborUrl + 'unsafe/80x80/center/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
@@ -405,7 +406,7 @@ export class ProductDetailComponent implements OnInit {
         cancelButtonColor: '#d33'
       }).then((result) => {
         if (result.value) {
-         console.log('asd');
+          console.log('asd');
         }
       });
     }

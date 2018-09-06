@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FilterM } from '@belisada/core/models/filter/filter-m';
 import { FilterSService } from '@belisada/core/services';
 import { ListSearch } from '../../../core/models/search/search.model';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-product-list',
@@ -40,7 +41,7 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private searchService: SearchService,
   ) {
-    this.produkIMG = 'http://image.belisada.id:8888/unsafe/180x180/center/filters:fill(fff)/';
+    this.produkIMG = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
    }
 
   ngOnInit() {
