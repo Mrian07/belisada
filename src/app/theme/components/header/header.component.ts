@@ -89,6 +89,8 @@ export class HeaderComponent implements OnInit {
   role = 0;
   showDialog: any;
 
+  token: string;
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -107,6 +109,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.token = localStorage.getItem('token');
     this.flagStatus();
     this.getCategory();
     this.regForm = true;
