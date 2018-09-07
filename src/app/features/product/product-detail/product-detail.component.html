@@ -233,10 +233,10 @@
                     <td>Kondisi :</td>
                     <td>{{ productDetail.classificationValue }}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Dimensi :</td>
                     <td>{{ productDetail.dimensionslength }} x {{ productDetail.dimensionsWidth }} x {{ productDetail.dimensionsheight }}</td>
-                </tr>
+                </tr> -->
                 <tr *ngFor="let item of productDetail.specification">
                     <td>{{ item.name }} :</td>
                     <td>{{ item. value }}</td>
@@ -380,7 +380,7 @@
                 <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice > 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
                 <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice === 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
                 <button class="btn btn--blue-belisada btn--flat btn--add-to-cart u-margin-right-1" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart</button>
-                <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button>
+                <!-- <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button> -->
             </div>
         </div>
     </div>
