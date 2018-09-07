@@ -1,8 +1,7 @@
 <div class="contain-order">
 
-    <span [ngClass]="(tabOrder=='tabStatus')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabStatus')">Status Pesanan</span> 
-    <span [ngClass]="(tabOrder=='tabHistory')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabHistory')">Riwayat Pesanan</span>
-
+    <span [ngClass]="(tabOrder=='tabStatus')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabStatus', tabOrder)">Status Pesanan</span> 
+    <span [ngClass]="(tabOrder=='tabHistory')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabHistory', tabOrder)">Riwayat Pesanan</span>
     <div class="frame-order">
         <app-order-status *ngIf="tabOrder=='tabStatus'"></app-order-status>
         <app-order-history *ngIf="tabOrder=='tabHistory'"></app-order-history>

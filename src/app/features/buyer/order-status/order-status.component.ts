@@ -1,8 +1,8 @@
 import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../../core/services/transaction/transaction.service';
-import { OrderStatus, UploadImgTransfer } from '@belisada/core/models/transaction/transaction.model';
-import { Router} from '@angular/router';
+import { OrderStatus, UploadImgTransfer, ContentOrderStatus } from '@belisada/core/models/transaction/transaction.model';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PaymentService } from './../../../core/services/payment/payment.service';
 import { PaymentList } from '@belisada/core/models/payment/payment.model';
 
@@ -33,10 +33,15 @@ export class OrderStatusComponent implements OnInit {
   regSuccess: any;
   showDialogRek: any;
 
+  proddetail: ContentOrderStatus = new ContentOrderStatus();
+  lastPage: number;
+  currentPage: number;
+  pages: any = [];
 
   constructor(
     private transactionService: TransactionService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private paymentService: PaymentService,
   ) { this.list = []; }
 
@@ -60,14 +65,35 @@ export class OrderStatusComponent implements OnInit {
   }
 
   pendingOrder() {
-    this.status = 'PENDING';
-    this.transactionService.getOrder(this.status).subscribe(respon => {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+      const queryParams = {
+        itemperpage: 10,
+        page: this.currentPage,
+        ot: 'asc',
+        transaction_status: 'PENDING'
+      };
 
-      if (respon.content.length === 0 ) {
-        this.isEmpty = true;
-      }
-      this.isLoading = false;
-      this.list = respon.content;
+      this.transactionService.getOrder(queryParams).subscribe(respon => {
+
+        console.log('hasilnya', respon);
+        if (respon.content.length === 0 ) {
+          this.isEmpty = true;
+        }
+        this.isLoading = false;
+        this.list = respon.content;
+
+        this.proddetail = respon;
+        this.pages = [];
+        this.lastPage = this.proddetail.totalPages;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.proddetail.totalPages) {
+            this.pages.push(r);
+          }
+        }
+
+      });
+
     });
   }
 
@@ -150,6 +176,14 @@ export class OrderStatusComponent implements OnInit {
 
   confirm() {
     this.router.navigate(['/buyer/confirmation']);
+  }
+
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
+    if (page < 1 || page > this.proddetail.totalPages) { return false; }
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate(['/buyer/order'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
+    window.scrollTo(0, 0);
   }
 
 }

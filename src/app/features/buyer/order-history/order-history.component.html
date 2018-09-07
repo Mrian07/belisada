@@ -40,7 +40,7 @@
     <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
       <tr *ngFor="let itemList of itemCart.cart">
         <td valign="top" width="20%">
-          <span class="order-id">ORDER ID: {{itemList.orderNumbere}}</span>
+          <span class="order-id">ORDER ID: {{itemList.orderNumber}}</span>
           <table border="0" width="100%">
             <tr *ngFor="let itemListProduct of itemList.cartItems">
               <td valign="top" width="40%">
@@ -88,6 +88,25 @@
       </tr>
     </table>
   </div>
+</div>
+<div class="paging" *ngIf="a!=0">
+	<ul>
+		<li>
+			<a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+		</li>
+		<li>
+			<a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+		</li>
+		<li *ngFor="let p of pages">
+			<a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+		</li>
+		<li>
+			<a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+		</li>
+		<li>
+			<a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+		</li>
+	</ul>
 </div>
 
 <app-models [(visible)]="showDialogRek" class="frameDialog">

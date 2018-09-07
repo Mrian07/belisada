@@ -4,7 +4,7 @@ export const environment = {
   domain: 'https://belisada.co.id',
   apiUrl: 'https://api.belisada.id/belisada',
   apiUrlMongo: 'https://api.belisada.id/belisada-mongo',
-  thumborUrl: 'http://image.belisada.id:8888/',
+  thumborUrl: 'https://image.belisada.co.id/',
   firebase: {
     apiKey: 'AIzaSyDHdXsPrLfNpCMKbdrLSsL2r3XD8MB6Hbs',
     authDomain: 'belisada-id.firebaseapp.com',
