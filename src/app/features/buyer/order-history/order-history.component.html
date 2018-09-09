@@ -89,7 +89,7 @@
     </table>
   </div>
 </div>
-<div class="paging" *ngIf="a!=0">
+<div class="paging" *ngIf="proddetail.totalElements != 0">
 	<ul>
 		<li>
 			<a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
