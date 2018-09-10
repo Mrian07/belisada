@@ -28,10 +28,10 @@
         </div>
         <div class="col-7">
 
-            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})</div>
+            <div class="text-payinfo">Payment: ({{item.paymentMethod}})</div>
         </div>
         <div class="col-2">
-          <div class="text-progress">Finish</div>
+          <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
         </div>
       </div>
   </div>
@@ -47,7 +47,7 @@
                   <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
               </td>
               <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.name}}</div>
+                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}}</div>
                   <div class="item-colom">{{itemListProduct.priceList | currency:'Rp '}}</div>
               </td>
             </tr>
