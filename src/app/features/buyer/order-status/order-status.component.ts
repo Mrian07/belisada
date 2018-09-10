@@ -84,7 +84,7 @@ export class OrderStatusComponent implements OnInit {
         this.isLoading = false;
         this.list = respon.content;
         for (this.x of respon.content) {
-          console.log(this.x.statusCode)
+          console.log(this.x.statusCode);
         }
 
         this.proddetail = respon;
