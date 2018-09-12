@@ -374,7 +374,7 @@
     <div class="heading__container">
         <div class="heading__grid">
             <div class="heading__grid--col">
-                <span class="heading__title">{{ productDetail.name }}</span>
+                <span class="heading__title">{{ productDetail.name | slice:0:23 }} ...</span>
             </div>
             <div class="heading__grid--col right">
                 <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice > 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
