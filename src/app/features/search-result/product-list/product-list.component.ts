@@ -41,7 +41,7 @@ export class ProductListComponent implements OnInit {
     private router: Router,
     private searchService: SearchService,
   ) {
-    this.produkIMG = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
+    this.produkIMG = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
    }
 
   ngOnInit() {

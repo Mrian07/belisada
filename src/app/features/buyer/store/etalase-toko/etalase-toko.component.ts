@@ -29,9 +29,9 @@ productImageUrl: any;
     private router: Router) {
 
     // this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/center/';
-    this.storeImage = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
-    this.productStoreUrl = environment.thumborUrl + 'unsafe/30x30/center/';
-    this.productImageUrl = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
+    this.storeImage = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/fit-in/30x30/center/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
   }
 
   ngOnInit() {

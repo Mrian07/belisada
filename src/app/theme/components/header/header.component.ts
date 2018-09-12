@@ -88,7 +88,8 @@ export class HeaderComponent implements OnInit {
   regSuccess: boolean;
   role = 0;
   showDialog: any;
-
+  imageHeader;
+  imageHeaderNya;
   token: string;
 
   constructor(
@@ -106,6 +107,8 @@ export class HeaderComponent implements OnInit {
     private fb: FormBuilder, private storeService: StoreService, private userS: UserService, private categoryService: CategoryService
   ) {
     this.searchBarResults = [];
+    this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
+    this.imageHeaderNya = 'http://cdn.belisada.id/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
   }
 
   ngOnInit() {

@@ -102,10 +102,10 @@ export class ProductDetailComponent implements OnInit {
     @Inject(PLATFORM_ID) platformId
 
   ) {
-    this.storeImageUrl = environment.thumborUrl + 'unsafe/218x218/';
+    this.storeImageUrl = environment.thumborUrl + 'unsafe/fit-in/218x218/';
     this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/filters:fill(fff)/';
-    this.productImageUrlNew = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
-    this.productImageItemLooping = environment.thumborUrl + 'unsafe/80x80/center/filters:fill(fff)/';
+    this.productImageUrlNew = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.productImageItemLooping = environment.thumborUrl + 'unsafe/fit-in/80x80/center/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
