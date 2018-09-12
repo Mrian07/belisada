@@ -52,6 +52,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   productPop: Home[] = [];
   productImageUrl;
   productStoreUrl;
+  imageDummy;
+  imageDmy;
+  imageHeader;
+  imageHeaderNya;
   lnght;
   imageUrlArray;
   showDialog;
@@ -66,8 +70,12 @@ export class HomeComponent implements OnInit, OnDestroy {
     private homeS: HomeSService,
     private _messageService: TestingServicesService,
   ) {
-    this.productImageUrl = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
-    this.productStoreUrl = environment.thumborUrl + 'unsafe/30x30/center/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/fit-in/30x30/center/';
+    this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.imageDmy = environment.thumborUrl + 'unsafe/fit-in/150x150/center/filters:fill(fff)/';
+    this.imageHeaderNya = 'http://cdn.belisada.id/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
+    this.imageDummy = 'http://cdn.belisada.id/imageproductbrand/2ad61795-9903-4efe-a8a8-ffbdfe705d0c.jpeg';
     this._messageService.listen().subscribe((m: any) => {
       console.log(m);
       this.onFilterClick(m);
