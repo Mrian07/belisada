@@ -48,6 +48,7 @@ productImageUrl: any;
       console.log(queryParams);
     this.prodS.getList(queryParams).subscribe(responseList => {
       this.list  = responseList;
+      console.log(this.list);
     });
       });
   }

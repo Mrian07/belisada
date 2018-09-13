@@ -9,7 +9,7 @@ export const environment = {
   domain: 'https://dev.belisada.id',
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
-  thumborUrl: 'http://image.belisada.id:8888/',
+  thumborUrl: 'https://image.belisada.id/',
   firebase: {
     apiKey: 'AIzaSyBIUJNYI-q2h2Bh1Drb7GvDuK7KDjx_e5o',
     authDomain: 'belisada-dev.firebaseapp.com',
