@@ -37,6 +37,11 @@ $ribbon-tail: 10px;
     color: #111;
 }
 
+.wrapper__2grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
 .dialog {
     z-index: 1000;
     position: fixed;
@@ -428,9 +433,20 @@ header {
 }
 
 main {
-  width: grid-width(8, true);
-  float: left;
+    width: 70%; /* fallback if needed */
+    width: calc(70% - 1em);
+    float: left;
 }
+aside {
+    width: 30%; /* fallback if needed */
+    width: calc(30% - 1em);
+    float: right;
+  }
+  .image--aside {
+    width: 586px;
+    max-width:700px;
+}
+
 
 .mains {
     width: grid-width(5, true);
@@ -440,10 +456,6 @@ main {
     width: grid-width(5);
     float: right;
   }
-aside {
-  width: grid-width(4);
-  float: right;
-}
 
 footer {
   clear: both;

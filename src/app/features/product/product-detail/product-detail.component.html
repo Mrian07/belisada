@@ -15,7 +15,7 @@
                         {{productDetail.name}}
                     </div>
                     <div *ngIf="productDetail.specialPrice > 0">
-                        <span class="product-real-price">{{productDetail.specialPrice | currency:'Rp '}}</span>
+                        <span class="product-real-price">{{productDetail.specialPrice | currency:'Rp '}}<br></span>
                         <span class="product-discont"><s>{{productDetail.pricelist | currency:'Rp '}}</s></span>
                     </div>
                     <div *ngIf="productDetail.specialPrice === 0">
@@ -107,7 +107,7 @@
                 <div class="row u-margin-top-2">
                     <div class="col-6">
                         <!-- <span class="show-small-text"> -->
-                            <fa-icon [icon]="['far', 'heart']"></fa-icon> Tambahkan ke Wishlist
+                            <!-- <fa-icon [icon]="['far', 'heart']"></fa-icon> Tambahkan ke Wishlist -->
                         <!-- </span>  -->
                     </div>
                     <div class="col-6 right">

@@ -4,7 +4,7 @@
         <main>
             <slideshow #slideshow
                 [imageUrls]="imageUrls"
-                [minHeight]="'525px'"
+                [minHeight]="'659px'"
                 [showArrows]="false"
                 [autoPlay]="true"
                 [showDots]="true"
@@ -13,28 +13,8 @@
         </main>
 
         <aside>
-            <div class="flash--sale--column u-margin-bottom-1">
-                <div class="flash--sale--text center">Flash Sale</div>
-                <div class="left"><countdown-timer class="flash--sale--timer" [end]="'2018-08-09 00:00:00'"></countdown-timer></div>
-            </div>
-            <div class="rowz" *ngFor="let i of [0,1,2]">
-                <div class="columnz center">
-                    <img [src]="imageDmy + imageDummy">
-                </div>
-                <div class="columnz">
-                    <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
-                    <span class="flash--sale--city">DKI JAKARTA</span>
-                    <span class="flash--sale--rating">
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    </span>
-                    <span class="flash--sale--harga">Rp.6.500.000</span>
-                    <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
-                </div>
-            </div>
+            <img class= "image--aside" src="assets/img/bannerBaru.png">
+            <img class= "image--aside" src="assets/img/bannerBaru2.png">
         </aside>
 
         <div class="row wrapper--for--middle" *ngIf="lnght !== 0" >
