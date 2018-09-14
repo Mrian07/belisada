@@ -67,6 +67,7 @@ export class ProductDetailComponent implements OnInit {
   productImageUrl;
   productImageUrlNew;
   productImageItemLooping;
+  storeImgDiscussion: string;
   productNewatProdDetail: Home[] = [];
   productDescription: any;
   productDiskusi: any;
@@ -106,6 +107,7 @@ export class ProductDetailComponent implements OnInit {
     this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/filters:fill(fff)/';
     this.productImageUrlNew = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
     this.productImageItemLooping = environment.thumborUrl + 'unsafe/fit-in/80x80/center/filters:fill(fff)/';
+    this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/45x45/center/filters:fill(fff)/';
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
