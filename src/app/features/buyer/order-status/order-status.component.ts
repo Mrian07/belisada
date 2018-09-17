@@ -1,10 +1,10 @@
-import { transition } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from './../../../core/services/transaction/transaction.service';
-import { OrderStatus, UploadImgTransfer, ContentOrderStatus } from '@belisada/core/models/transaction/transaction.model';
+import { OrderStatus, ContentOrderStatus } from '@belisada/core/models/transaction/transaction.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PaymentService } from './../../../core/services/payment/payment.service';
 import { PaymentList } from '@belisada/core/models/payment/payment.model';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-order-status',
@@ -13,7 +13,6 @@ import { PaymentList } from '@belisada/core/models/payment/payment.model';
 })
 export class OrderStatusComponent implements OnInit {
   list: OrderStatus[];
-  // list: any[];
   status: string;
   base64Img: string;
   openDetail: boolean;
@@ -178,8 +177,23 @@ export class OrderStatusComponent implements OnInit {
     });
   }
 
-  confirm() {
-    this.router.navigate(['/buyer/confirmation']);
+  confirm(paymentNumber) {
+    this.router.navigate(['/buyer/confirmation'], { queryParams: { paymentNumber: paymentNumber } });
+  }
+
+  receiptConfirmation(orderNumber) {
+    const data = {
+      orderNumber: orderNumber
+    };
+    this.transactionService.itemsReceived(data).subscribe(response => {
+      swal(
+        (response.status === 1) ? 'Success' : 'Error',
+        response.message,
+        (response.status === 1) ? 'success' : 'error'
+      );
+      this.pendingOrder();
+      console.log('response: ', response);
+    });
   }
 
   setPage(page: number, increment?: number) {

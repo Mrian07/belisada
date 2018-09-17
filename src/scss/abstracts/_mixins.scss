@@ -6,6 +6,10 @@
     }
 }
 
+@mixin debug($d) {
+    $debug: debug($d);
+}
+
 /// Mixin to size an element
 /// @author Hugo Giraudel
 /// @param {Length} $width
@@ -14,7 +18,7 @@
     width: $width;
     height: $height;
 }
-  
+
 /// Mixin to adjust position an element
 /// @param {String} $position
 /// @param {top [val] left [val] right [val] bottom [val]} $args

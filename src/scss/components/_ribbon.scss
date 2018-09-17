@@ -77,4 +77,20 @@
         }
     }
 
+
+    // SIZING
+    &.ribbon--small {
+        font-size: 1.2rem;
+        padding-top: 1rem;
+        width: 4rem;
+        height: 3rem;
+
+        &:after {
+            border-right-width: 2rem;
+            border-left-width: 2rem;
+            border-top-width: 1rem;
+            top: 3rem;
+        }
+    }
+
 }

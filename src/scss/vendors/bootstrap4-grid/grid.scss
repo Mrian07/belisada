@@ -11,7 +11,8 @@
 // adapting to different screen sizes, for use in media queries.
 
 $grid-breakpoints: (
-        xs: 0,
+        xxs: 0,
+        xs: 320px,
         sm: 576px,
         md: 768px,
         lg: 992px,
@@ -51,6 +52,7 @@ $container-max-widths: (
 
 $grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
+$grid-gutter-width--small: 10px !default;
 
 // END of Grid Options
 

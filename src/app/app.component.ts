@@ -16,6 +16,7 @@ export class AppComponent {
   constructor(public globals: Globals, titleService: Title, router: Router, activatedRoute: ActivatedRoute) {
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
+        window.scrollTo(0, 0);
         const title = this.getTitle(router.routerState, router.routerState.root).join('-');
         console.log('title', title);
         titleService.setTitle(title);

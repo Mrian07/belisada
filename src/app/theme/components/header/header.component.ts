@@ -91,6 +91,7 @@ export class HeaderComponent implements OnInit {
   imageHeader;
   imageHeaderNya;
   token: string;
+  avatarThumbor: string;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -108,6 +109,7 @@ export class HeaderComponent implements OnInit {
   ) {
     this.searchBarResults = [];
     this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
+    this.avatarThumbor = environment.thumborUrl + 'unsafe/fit-in/50x50/center/filters:fill(fff)/';
     this.imageHeaderNya = 'http://cdn.belisada.id/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
   }
 

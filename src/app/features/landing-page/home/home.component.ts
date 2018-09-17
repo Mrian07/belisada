@@ -70,8 +70,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     private homeS: HomeSService,
     private _messageService: TestingServicesService,
   ) {
-    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
-    this.productStoreUrl = environment.thumborUrl + 'unsafe/fit-in/30x30/center/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/400x400/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/50x50/center/filters:fill(fff)/';
     this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
     this.imageDmy = environment.thumborUrl + 'unsafe/fit-in/150x150/center/filters:fill(fff)/';
     this.imageHeaderNya = 'http://cdn.belisada.id/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
@@ -145,9 +145,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
 
   getDataForNew() {
-  this.homeS.getHomeNew().subscribe(res => {
-    this.productNew = res;
-    this.lnght = res.length;
+    this.homeS.getHomeNew().subscribe(res => {
+      this.productNew = res;
+      this.lnght = res.length;
     });
   }
 

@@ -19,7 +19,7 @@
         </div>
         <div class="col-9">
             <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
-            <div class="text-confirm" (click)="confirm()">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
+            <div class="text-confirm" (click)="confirm(item.paymentNumber)">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
             <div class="text-more" (click)="openOS(openDetail, item.transactionId)">See More <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
         </div>
       </div>
@@ -78,7 +78,7 @@
                 No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
               </div>
               <div class="col-12">
-                Status: <label>{{itemList.statusTracking}}</label>
+                Status: <label>{{itemList.statusOrder}}</label>
               </div>
               <div class="col-12">
                 Total Berat: <label>{{itemList.totalWeight}}kg</label>
@@ -90,7 +90,7 @@
           </div>
         </td>
         <td width="33%">
-          <span class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
+          <span *ngIf="itemList.statusOrderCode === '157'" (click)="receiptConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>
     </table>

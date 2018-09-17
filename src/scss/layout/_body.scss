@@ -25,3 +25,16 @@
     z-index: 10;
     background-color: rgba(0,0,0,0.5); /*dim the background*/
 }
+
+.has-header {
+    padding-top: 7.5rem;
+}
+
+.has-footer {
+    padding-bottom: 20rem;
+    margin-bottom: 0;
+}
+
+.grey-body {
+    background-color: $color--bg-grey;
+}

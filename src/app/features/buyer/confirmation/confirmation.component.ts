@@ -6,7 +6,7 @@ import { DateUtil } from '@belisada/core/util';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { IMyDpOptions } from 'mydatepicker';
 import swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-confirmation',
@@ -48,24 +48,32 @@ export class ConfirmationComponent implements OnInit {
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.createFormControls();
     this.allPayment();
     this.allBank();
+
+    this.route.queryParams
+      .subscribe(params => {
+        this.createComForm.patchValue({
+          paymentNumber: params.paymentNumber
+        });
+      });
   }
 
   createFormControls() {
     this.createComForm = this.fb.group({
-    paymentNumber: new FormControl(null, Validators.required),
-    transferTo: new FormControl('', Validators.required),
-    bankId: new FormControl('', Validators.required),
-    transerDate: new FormControl('', Validators.required),
-    accountName: new FormControl('', Validators.required),
-    accountNumber: new FormControl('', Validators.required),
-    nominal: new FormControl('', Validators.required),
-    news: new FormControl('')
+      paymentNumber: new FormControl(null, Validators.required),
+      transferTo: new FormControl('', Validators.required),
+      bankId: new FormControl('', Validators.required),
+      transerDate: new FormControl('', Validators.required),
+      accountName: new FormControl('', Validators.required),
+      accountNumber: new FormControl('', Validators.required),
+      nominal: new FormControl('', Validators.required),
+      news: new FormControl('')
     });
   }
 

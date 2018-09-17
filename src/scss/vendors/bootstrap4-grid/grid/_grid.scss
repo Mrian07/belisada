@@ -41,6 +41,17 @@
       padding-left: 0;
     }
   }
+
+  .small-gutters {
+    margin-right: ($grid-gutter-width--small / -2);
+    margin-left: ($grid-gutter-width--small / -2);
+
+    > .col,
+    > [class*="col-"] {
+      padding-right: ($grid-gutter-width--small / 2);
+      padding-left: ($grid-gutter-width--small / 2);
+    }
+  }
 }
 
 // Columns
@@ -49,4 +60,5 @@
 
 @if $enable-grid-classes {
   @include make-grid-columns();
+  @include make-grid-columns-custom(8);
 }

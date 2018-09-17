@@ -22,7 +22,7 @@
 @import "components/table";
 
 @import "layout/sidebar-seller";
-@import "layout/grid";
+// @import "layout/grid";
 @import "layout/header";
 @import "layout/body";
 @import "layout/footer";
@@ -42,4 +42,4 @@
 @import "pages/_404";
 @import "pages/modal";
 
-// @import "vendors/bootstrap4-grid/grid"
+@import "vendors/bootstrap4-grid/grid"

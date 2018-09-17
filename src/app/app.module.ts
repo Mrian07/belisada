@@ -65,7 +65,7 @@ library.add(fas, far, fab);
     LandingPageComponent,
     HomeComponent,
     InvoiceComponent,
-    EtalaseTokoComponent,
+    EtalaseTokoComponent
   ],
   imports: [
     HttpClientModule,

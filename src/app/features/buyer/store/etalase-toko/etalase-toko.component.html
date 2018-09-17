@@ -1,65 +1,68 @@
-<div class="containPage has-header w-contain__etalase-toko">
-  <div class="row">
-    <div class="col-12 w-container__head">
-        <img [src]="storeImage + proddetail.storeImageUrl ">
-      <div>
-      <div class="row">
-        <div class="col-12">
-          <div class="col-6">
-            <span class="w-text__store-name"> {{ proddetail.storeName }} </span>
-          </div>
-          <div class="col-6">
-            <span class="w-text__store-open-or-close">Open</span>
-          </div>
-        </div>
-        <div class="col-12">
-            <div class="col-6">
-              <span class="w-text__store-city"> {{ proddetail.locationName }} </span>
-            </div>
-            <div class="col-6">
-              <span class="w-text__store-online">online</span>
-            </div>
-          </div>
-          <div class="col-12">
-            <span> " {{ proddetail.description }} "</span>
-            </div>
-      </div>
-      </div>
-      <div class="w-container__right">
-        <div class="w-container__three-row">
-          <img class="w-image__in-right" src="assets/img/profile.png">
-          <div class="w-margin__in-container">
-            <span class="w-text__in-right"> Bergabung {{ proddetail.joinFrom }}</span>
-          </div>
-          <img class="w-image__in-right" src="assets/img/profile.png">
-          <div>
-            <span class="w-text__in-right"> Jumlah Produk : 50</span>
-          </div>
-          <img class="w-image__in-right" src="assets/img/delivery-packages-on-a-trolley.png">
-          <div class="w-margin__in-container">
-            <span class="w-text__in-right">Lama Proses :  2 hari</span>
-          </div>
-          <img class="w-image__in-right" src="assets/img/delivery-packages-on-a-trolley.png">
-          <div>
-            <span class="w-text__in-right">Transaksi Berhasil:  {{ proddetail.productSold }}</span>
-          </div>
-          <img class="w-image__in-right" src="assets/img/followers.png">
-          <div>
-            <span class="w-text__in-right"> 2150 Folowers</span>
-          </div>
-        </div>
-      </div>
-        <!-- <p>sadlasdlsakdlaskdl;akd;lask</p> -->
+<div class="container has-header has-footer">
 
-    </div>
     <div class="row">
-      <div class="col-12">
-          <div class="activation__container">
-              <div class="u-display-table-cell makeit--center">
-                <p>Promotional Banner</p>
-          </div>
+        <div class="col-12 w-container__head">
+            <img [src]="storeImage + proddetail.storeImageUrl ">
+            <div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="col-6">
+                            <span class="w-text__store-name"> {{ proddetail.storeName }} </span>
+                        </div>
+                        <div class="col-6">
+                            <span class="w-text__store-open-or-close">Open</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <span class="w-text__store-city"> {{ proddetail.locationName }} </span>
+                        </div>
+                        <div class="col-6">
+                            <span class="w-text__store-online">online</span>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <span> " {{ proddetail.description }} "</span>
+                    </div>
+                </div>
+            </div>
+            <div class="w-container__right">
+                <div class="w-container__three-row">
+                    <img class="w-image__in-right" src="assets/img/profile.png">
+                    <div class="w-margin__in-container">
+                        <span class="w-text__in-right"> Bergabung {{ proddetail.joinFrom }}</span>
+                    </div>
+                    <img class="w-image__in-right" src="assets/img/profile.png">
+                    <div>
+                        <span class="w-text__in-right"> Jumlah Produk : 50</span>
+                    </div>
+                    <img class="w-image__in-right" src="assets/img/delivery-packages-on-a-trolley.png">
+                    <div class="w-margin__in-container">
+                        <span class="w-text__in-right">Lama Proses :  2 hari</span>
+                    </div>
+                    <img class="w-image__in-right" src="assets/img/delivery-packages-on-a-trolley.png">
+                    <div>
+                        <span class="w-text__in-right">Transaksi Berhasil:  {{ proddetail.productSold }}</span>
+                    </div>
+                    <img class="w-image__in-right" src="assets/img/followers.png">
+                    <div>
+                        <span class="w-text__in-right"> 2150 Folowers</span>
+                    </div>
+                </div>
+            </div>
+            <!-- <p>sadlasdlsakdlaskdl;akd;lask</p> -->
+
         </div>
-      </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="activation__container">
+                <div class="u-display-table-cell makeit--center">
+                    <p>Promotional Banner</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row product-spec-title">
         <div [ngClass]="activeSpesifikasi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'">
@@ -74,38 +77,32 @@
     </div>
     <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
         <div class="row">
-          <div class="col-12">
-              <div class="containerz">
-                  <div class="itemz" *ngFor="let item of list.content | slice:0:8">
-                          <div class="containerz-dalem">
-                          <div>
-                                  <img [src]="productStoreUrl+item.storeImageUrl">
-                          </div>
-                          <div>
-                                  <span class="product--name--store--name">  {{ item.storeName }} </span>
-                                  <span> {{ item.locationName }} </span>
-                          </div>
-                          </div>
-                  <div class="row">
-                          <div class="col-12">
-                          <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl+item.imageUrl">
-                          </div>
-                          <div class="col-12 image--center">
-                          <!-- <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span> -->
-                          <span class="text__center__pricelist" *ngIf="item.specialPrice > 0">{{ item.specialPrice | currency:'Rp ' }}</span>
-                          <span class="text__center__pricelist" *ngIf="item.specialPrice === 0">{{ item.pricelist | currency:'Rp ' }}</span>
-                          <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
-                          </div>
-                  </div>
-                  </div>
-          </div>
-
-          </div>
+            <div class="col-12">
+                <div class="containerz">
+                    <div class="itemz" *ngFor="let item of list.content | slice:0:8">
+                        <div class="containerz-dalem">
+                            <div>
+                                <img [src]="productStoreUrl+item.storeImageUrl">
+                            </div>
+                            <div>
+                                <span class="product--name--store--name">  {{ item.storeName }} </span>
+                                <span> {{ item.locationName }} </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl+item.imageUrl">
+                            </div>
+                            <div class="col-12 image--center">
+                                <!-- <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span> -->
+                                <span class="text__center__pricelist" *ngIf="item.specialPrice > 0">{{ item.specialPrice | currency:'Rp ' }}</span>
+                                <span class="text__center__pricelist" *ngIf="item.specialPrice === 0">{{ item.pricelist | currency:'Rp ' }}</span>
+                                <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
-  </div>
-
-
 </div>
