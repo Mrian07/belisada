@@ -25,6 +25,7 @@ export class ModelsComponent implements OnInit {
   @Input() closable = true;
   @Input() visible: boolean;
   @Input() maxwidth: number;
+  @Input() height?: number;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor (private _messageService: TestingServicesService) { }
 
