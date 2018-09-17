@@ -1,11 +1,14 @@
-
+.width-90 {
+  width: 90%;
+}
 
 .loginBtn {
     box-sizing: border-box;
     position: relative;
     /* width: 13em;  - apply for fixed size */
-    margin: 0.2em;
+    // margin: 0.2em;
     padding: 0 15px 0 46px;
+    margin: 0 1.5rem;
     border: none;
     text-align: left;
     line-height: 34px;
@@ -13,8 +16,9 @@
     border-radius: 0.2em;
     font-size: 16px;
     color: #FFF;
-    margin-top: 5%;
-    margin-left: 14%;
+    width: 21rem;
+    // margin-top: 5%;
+    // margin-left: 14%;
   }
   .loginBtn:before {
     content: "";
