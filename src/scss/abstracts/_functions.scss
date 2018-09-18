@@ -14,3 +14,8 @@
 @function select-box-color($color) {
     @return map-get($select-box-colors, $color);
 }
+
+@function debug($d: '') {
+    $debug: $debug + '» #{inspect($d)} \A' !global;
+    @return $debug;
+}

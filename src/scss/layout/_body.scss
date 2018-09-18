@@ -2,7 +2,7 @@
     width: 100%;
     padding: 0 2rem;
     margin: 0px auto;
-    padding-bottom: 19.5rem;
+    padding-bottom: 25rem;
     padding-top: 1rem;
 
     &.has-header {
@@ -11,7 +11,7 @@
 }
 
 .containPageCenter{
-    width: 120rem;    
+    width: 120rem;
     margin: 0px auto;
     margin-top:20px;
 }
@@ -24,4 +24,17 @@
     height: 100%;
     z-index: 10;
     background-color: rgba(0,0,0,0.5); /*dim the background*/
+}
+
+.has-header {
+    padding-top: 7.5rem;
+}
+
+.has-footer {
+    padding-bottom: 20rem;
+    margin-bottom: 0;
+}
+
+.grey-body {
+    background-color: $color--bg-grey;
 }

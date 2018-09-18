@@ -1,3 +1,5 @@
+import { BaseResponseModel } from '@belisada/core/models/base-response.model';
+
 export class ContentOrderStatus {
     content: OrderStatus[];
     first: string;
@@ -116,5 +118,9 @@ export class InvoiceData {
 }
 
 export class InvoiceCart {
+
+}
+
+export class ItemsReceivedResponse extends BaseResponseModel {
 
 }

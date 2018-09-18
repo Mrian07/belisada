@@ -1,5 +1,5 @@
 /* The container */
-.container {
+.container-checkbox {
     display: block;
     position: relative;
     padding-left: 32px;
@@ -49,12 +49,12 @@
 }
 
 /* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
+.container-checkbox input:checked ~ .checkmark:after {
     display: block;
 }
 
 /* Style the checkmark/indicator */
-.container .checkmark:after {
+.container-checkbox .checkmark:after {
     left: 9px;
     top: 5px;
     width: 5px;

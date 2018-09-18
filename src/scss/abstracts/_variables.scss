@@ -26,6 +26,8 @@ $btn-colors: (
     "black": #000000
 );
 
+$debug: '';
+
 $select-box-colors: (
     "orange": #ED7425
 );
@@ -39,6 +41,9 @@ $select-box-width: 15rem;
  */
 $btn-text-color-light: #fff;
 $btn-text-color-dark: #4A6C80;
+
+$text-color--dark: #181c16;
+$text-color--light: #9c9c9c;
 
 // COLORS
 $color-primary: #55c57a;
@@ -57,6 +62,7 @@ $color--dark-grey: #333333;
 $color--grey: #8d8d8d;
 $color--ash: #cccccc;
 $color--light-grey: #dddddd;
+$color--bg-grey: #f0f0f0;
 $color--highlight: #eeeeee;
 $color--white: #ffffff;
 

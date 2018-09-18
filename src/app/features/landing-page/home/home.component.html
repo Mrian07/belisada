@@ -1,133 +1,153 @@
-<div class="containPage has-header header--home">
-    <div class="container">
 
-        <main>
-            <slideshow #slideshow
-                [imageUrls]="imageUrls"
-                [minHeight]="'525px'"
-                [showArrows]="false"
-                [autoPlay]="true"
-                [showDots]="true"
-                [showCaptions]="true">
-            </slideshow>
-        </main>
-
-        <aside>
-            <div class="flash--sale--column u-margin-bottom-1">
-                <div class="flash--sale--text center">Flash Sale</div>
-                <div class="left"><countdown-timer class="flash--sale--timer" [end]="'2018-08-09 00:00:00'"></countdown-timer></div>
-            </div>
-            <div class="rowz" *ngFor="let i of [0,1,2]">
-                <div class="columnz center">
-                    <img src="assets/img/dummy-product-detail.jpg">
-                </div>
-                <div class="columnz">
-                    <span class="flash--sale--text--for--toko">Toko Jaya Electric</span>
-                    <span class="flash--sale--city">DKI JAKARTA</span>
-                    <span class="flash--sale--rating">
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                        <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                    </span>
-                    <span class="flash--sale--harga">Rp.6.500.000</span>
-                    <button class="btn with--color">Masukan keranjang <i class="fa fa-cart-arrow-down"> </i></button>
+<div class="container has-header has-footer">
+    <!-- PROMO BANNER -->
+    <div class="promo-banner__container">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="promo-banner__slide-show">
+                    <slideshow #slideshow
+                        [imageUrls]="imageUrls"
+                        [height]="'100%'"
+                        [showArrows]="false"
+                        [autoPlay]="true"
+                        [showDots]="true"
+                        [showCaptions]="true"
+                        [backgroundSize]="'cover'"
+                        [backgroundPosition]="'center center'"
+                        [backgroundRepeat]="'no-repeat'">
+                    </slideshow>
                 </div>
             </div>
-        </aside>
-
-        <div class="row wrapper--for--middle" *ngIf="lnght !== 0" >
-            <div class="col-12">
-                <span class="text--new--product">Product Terbaru</span>
-                <div class="containerz">
-                    <div class="itemz" *ngFor="let item of productNew | slice:0:16">
-                        <div class="containerz-dalem" >
-                            <div style="height: 50px;">
-                                <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
-                            </div>
-                            <div style="height: 10px;">
-                                <span class="product--name--store--name" (click)="goStore(item.storeUrl)">{{ item.storeName }}</span>
-                                <span>{{ item.locationName }}</span>
-                            </div>
-                            <!-- <div class="ribbon ribbon--orange"
-                            *ngIf="item.discount > 0">{{ item.discount }}%</div> -->
-                            <!-- <div
-                                    *ngIf="item.discount > 0">{{ item.discount }}%</div> -->
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
-                            </div>
-                            <div class="col-12 image--center">
-                                    <div *ngIf="item.specialPrice > 0">
-                                            <span class="product-real-price">{{item.specialPrice | currency:'Rp '}}</span>
-                                            <span class="product-discont"><s>{{item.pricelist | currency:'Rp '}}</s></span>
-                                        </div>
-                                        <div *ngIf="item.specialPrice === 0">
-                                            <span class="product-real-price">{{item.pricelist | currency:'Rp '}}</span>
-                                        </div>
-                                <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:30 }}</span>
-                            </div>
-                        </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col promo-banner__container--top-right">
+                        <img class= "promo-banner__image--aside" src="assets/img/bannerBaru.png">
                     </div>
                 </div>
-
-                <span class="text--new--product">Product Popular</span>
-                <div class="containerz">
-
-                    <div class="itemz" *ngFor="let item of productPop | slice:0:8">
-                        <div class="containerz-dalem" >
-                            <div style="height: 50px;">
-                                <img (click)="goStore(item.storeUrl)" [src]="productStoreUrl + item.storeImageUrl">
-                            </div>
-                            <div style="height: 10px;">
-                                <span (click)="goStore(productDetail.storeUrl)" class="product--name--store--name">{{ item.storeName }}</span>
-                                <span>{{ item.locationName }}</span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12" style="height: 200px;">
-                                <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl + item.imageUrl">
-                            </div>
-                            <div class="col-12 image--center">
-                                    <div *ngIf="item.specialPrice > 0">
-                                            <span class="product-real-price">{{item.specialPrice | currency:'Rp '}}</span>
-                                            <span class="product-discont"><s>{{item.pricelist | currency:'Rp '}}</s></span>
-                                        </div>
-                                        <div *ngIf="item.specialPrice === 0">
-                                            <span class="product-real-price">{{item.pricelist | currency:'Rp '}}</span>
-                                        </div>
-                            <span class="text__center__name" (click)="goToDetail(item.productId,item.name)">{{ item.name | slice:0:21 }}</span>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col promo-banner__container--bottom-right">
+                        <img class= "promo-banner__image--aside" src="assets/img/bannerBaru2.png">
                     </div>
                 </div>
             </div>
-
-            <footer>
-                <app-models [(visible)]="showDialog"  maxwidth="765" class="frameDialog" *ngIf="isLogin !== true && dataForPopUp !== '' && dataForPopUp !== 'false'">
-                    <div class="modal-body w-wrapper__in--home">
-
-                        <span class="w-text__for-welcome"> Hai Selamat datang di belisada.co.id </span>
-                        <img  class="w-image__for-welcome"  src="assets/img/aset12.png">
-                        <div>
-                            <span class="w-text__for-welcome w-text__botom-welcome">Apa yang ingin anda lakukan?</span>
-                        </div>
-                        <div class="w__wrapper--for-button">
-                        <div class="w__isi--buton">
-                            <div  class="w__isi--buton--ber"> <button class="btn btn--orange btn--size--80 butnon--click" (click)="onFilterClick($event)" >Berbelanja</button></div>
-                        </div>
-
-                        <div>
-                            <div  class="w__isi--buton--ber"> <button class="btn btn--blue btn--size--80" (click)="goToStoreNol()" >Berjualan</button></div>
-                        </div>
-                            <img  class="w-image__for-welcome w-aasdasdsa" src="assets/img/store_image.png">
-                        </div>
-                    </div>
-                </app-models>
-            </footer>
         </div>
         <div class="clearfix"></div>
     </div>
+    <!-- !PROMO BANNER! -->
+
+    <!-- LATEST PRODUCT -->
+    <div class="section">
+        <div class="section__title">
+            <h2>Produk Terbaru</h2>
+            <span class="striped"></span>
+        </div>
+
+        <div class="section__content">
+            <div class="row small-gutters">
+                <div class="col-xl-8r col-md-3 col-xs-6 u-margin-bottom-1" *ngFor="let item of productNew | slice:0:16">
+                    <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
+                        <div class="product__grid">
+                            <div class="ribbon ribbon--orange ribbon--small" *ngIf="item.discount > 0">
+                                {{ item.discount }}%
+                            </div>
+                            <div class="store">
+                                <div class="store__picture">
+                                    <a [routerLink]="['/' + item.storeUrl]">
+                                        <img [src]="productStoreUrl + item.storeImageUrl" alt="">
+                                    </a>
+                                </div>
+                                <div class="store__info">
+                                    <h2 class="store__info--name"><a [routerLink]="['/' + item.storeUrl]" title="{{ item.storeName }}">{{ item.storeName }}</a></h2>
+                                    <span class="store__info--location">{{ item.locationName }}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            
+                            <div class="product__image">
+                                <img [src]="productImageUrl + item.imageUrl" alt="">
+                            </div>
+
+                            <div class="product__info">
+                                <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
+                                <span class="product__info--price">
+                                    {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                </span>
+                                <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- !LATEST PRODUCT! -->
+
+    <!-- POPULAR PRODUCT -->
+    <div class="section">
+        <div class="section__title">
+            <h2>Produk Populer</h2>
+            <span class="striped"></span>
+        </div>
+
+        <div class="section__content">
+            <div class="row small-gutters">
+                <div class="col-xl-8r col-md-3 col-xs-6 u-margin-bottom-1" *ngFor="let item of productPop | slice:0:8">
+                    <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
+                        <div class="product__grid">
+                            <div class="ribbon ribbon--orange ribbon--small" *ngIf="item.discount > 0">
+                                {{ item.discount }}%
+                            </div>
+                            <div class="store">
+                                <div class="store__picture">
+                                    <a [routerLink]="['/' + item.storeUrl]">
+                                        <img [src]="productStoreUrl + item.storeImageUrl" alt="">
+                                    </a>
+                                </div>
+                                <div class="store__info">
+                                    <h2 class="store__info--name"><a [routerLink]="['/' + item.storeUrl]" title="{{ item.storeName }}">{{ item.storeName }}</a></h2>
+                                    <span class="store__info--location">{{ item.locationName }}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            
+                            <div class="product__image">
+                                <img [src]="productImageUrl + item.imageUrl" alt="">
+                            </div>
+
+                            <div class="product__info">
+                                <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
+                                <span class="product__info--price">{{item.specialPrice | currency:'Rp '}}</span>
+                                <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- !POPULAR PRODUCT! -->
 </div>
+<div class="clearfix"></div>
+
+
+<!-- Modals -->
+<app-models [(visible)]="showDialog" maxwidth="800" height="300" class="modal-home"
+    *ngIf="isLogin !== true && dataForPopUp !== '' && dataForPopUp !== 'false'">
+    <!-- <div class="modal-body modal-home"> -->
+
+    <img  class="image--balloon"  src="assets/img/balloon.png">
+    <img  class="image--house" src="assets/img/store_image.png">
+
+    <h2 class="text--welcome text-center">Hai Selamat datang di belisada.co.id </h2>
+    <h3 class="text--question text-center">Apa yang ingin anda lakukan?</h3>
+
+    <div class="row">
+        <div class="col-xs-6 text-right">
+            <button class="btn btn--orange" (click)="onFilterClick($event)">Berbelanja</button>
+        </div>
+        <div class="col-xs-6">
+            <button class="btn btn--blue-belisada" (click)="goToStoreNol()">Berjualan</button>
+        </div>
+    </div>
+    <!-- </div> -->
+</app-models>

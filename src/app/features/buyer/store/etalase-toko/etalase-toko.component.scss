@@ -110,11 +110,11 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-column-gap: 10px;
-    grid-row-gap: 25px; 
+    grid-row-gap: 25px;
     padding: 10px;
   }
-  
-  
+
+
   .itemz {
     border:1px solid #ed9a1d;
     border-radius: 10px;
@@ -131,7 +131,7 @@
         display:block;
       }
   }
-  
+
   }
   .product--image--store {
     padding-top: 30px;
@@ -151,12 +151,13 @@
     color: #1881e6;
     word-wrap: break-word;
     text-align: center;
-    
+
 }
 .text__center__pricelist {
     font-size: 22px;
     display: block;
     word-wrap: break-word;
-   
+    text-align: center;
+
 
 }

@@ -15,7 +15,7 @@
   <div  class="os-head">
       <div class="row row-atur">
         <div class="col-3">
-            <div class="text-order">{{item.expiredTime}}</div>
+            <div class="text-order">{{item.createdTime}}</div>
         </div>
         <div class="col-9">
             <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
@@ -24,17 +24,17 @@
         </div>
       </div>
       <div class="row row-atur">
-        <div class="col-3">
-            <div class="text-payid">Payment ID: {{item.paymentNumber}}</div>
+        <div class="col-4">
+            <div class="text-payid">Payment ID: {{item.paymentNumber}} </div>
         </div>
-        <div class="col-7">
+        <div class="col-6">
 
-            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})
+            <div class="text-payinfo">Payment: ({{item.paymentMethod}})
               <!-- <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span> -->
             </div>
         </div>
         <div class="col-2">
-          <div class="text-progress">On Progress</div>
+          <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
         </div>
       </div>
   </div>
@@ -78,7 +78,7 @@
                 No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
               </div>
               <div class="col-12">
-                Status: <label>{{itemList.statusTracking}}</label>
+                Status: <label>{{itemList.statusOrder}}</label>
               </div>
               <div class="col-12">
                 Total Berat: <label>{{itemList.totalWeight}}kg</label>
@@ -90,13 +90,13 @@
           </div>
         </td>
         <td width="33%">
-          <span class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
+          <span *ngIf="itemList.statusOrderCode === '157'" (click)="receiptConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>
     </table>
   </div>
 </div>
-<div class="paging" *ngIf="a!=0">
+<div class="paging" *ngIf="proddetail.totalElements != 0">
 	<ul>
 		<li>
 			<a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>

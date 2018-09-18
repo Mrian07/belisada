@@ -15,7 +15,7 @@
   <div  class="os-head">
       <div class="row row-atur">
         <div class="col-3">
-            <div class="text-order">{{item.expiredTime}}</div>
+            <div class="text-order">{{item.createdTime}}</div>
         </div>
         <div class="col-9">
           <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
@@ -28,15 +28,15 @@
         </div>
         <div class="col-7">
 
-            <div class="text-payinfo">Payment: <span id="text-tunggu">{{item.status}}</span> ({{item.paymentMethod}})</div> 
+            <div class="text-payinfo">Payment: ({{item.paymentMethod}})</div>
         </div>
         <div class="col-2">
-          <div class="text-progress">Finish</div>
+          <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
         </div>
       </div>
   </div>
   <div *ngIf="openDetail==true && transactionId==item.transactionId" class="os-body">
-    
+
     <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
       <tr *ngFor="let itemList of itemCart.cart">
         <td valign="top" width="20%">
@@ -47,8 +47,8 @@
                   <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
               </td>
               <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.name}}</div> 
-                  <div class="item-colom">{{itemListProduct.priceList | currency:'Rp '}}</div> 
+                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}}</div>
+                  <div class="item-colom">{{itemListProduct.priceList | currency:'Rp '}}</div>
               </td>
             </tr>
           </table>
@@ -77,7 +77,7 @@
             </div>
             <div class="row">
               <div class="col-12">
-                <label>Status: {{itemList.statusTracking}}</label>
+                <label>Status: {{itemList.statusOrder}}</label>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
     </table>
   </div>
 </div>
-<div class="paging" *ngIf="a!=0">
+<div class="paging" *ngIf="proddetail.totalElements != 0">
 	<ul>
 		<li>
 			<a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
@@ -111,7 +111,7 @@
 
 <app-models [(visible)]="showDialogRek" class="frameDialog">
     <div class="modal-body">
-  
+
       <div class='list-metode'>
         <div class="row">
             <div class="col-3" *ngFor="let item of listPayment">
@@ -120,6 +120,6 @@
             </div>
         </div>
     </div>
-  
+
     </div>
   </app-models>

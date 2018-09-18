@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { StoreService } from '@belisada/core/services';
 import { EtalaseStore, EtalaseStoreData } from '@belisada/core/models/store/store.model';
 import { ProductService } from '@belisada/core/services/product/product.service';
@@ -25,12 +25,13 @@ activeUlasan: boolean;
 productImageUrl: any;
 
 
-  constructor(private route: ActivatedRoute, private storeS: StoreService, private prodS: SearchService) {
+  constructor(private route: ActivatedRoute, private storeS: StoreService, private prodS: SearchService,
+    private router: Router) {
 
     // this.storeImage = 'http://image.belisada.id:8888/unsafe/180x180/center/';
-    this.storeImage = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
-    this.productStoreUrl = environment.thumborUrl + 'unsafe/30x30/center/';
-    this.productImageUrl = environment.thumborUrl + 'unsafe/180x180/center/filters:fill(fff)/';
+    this.storeImage = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/fit-in/30x30/center/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
   }
 
   ngOnInit() {
@@ -47,6 +48,7 @@ productImageUrl: any;
       console.log(queryParams);
     this.prodS.getList(queryParams).subscribe(responseList => {
       this.list  = responseList;
+      console.log(this.list);
     });
       });
   }
@@ -61,4 +63,9 @@ productImageUrl: any;
     this.activeSpesifikasi = true;
   }
 
+  goToDetail(id, name) {
+    const r = name.replace(new RegExp('/', 'g'), ' ');
+    this.router.navigate(['/product/product-detail/' + id + '/' + r]);
+   window.scrollTo(0, 0);
+  }
 }

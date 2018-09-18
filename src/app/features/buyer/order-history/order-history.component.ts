@@ -167,4 +167,12 @@ export class OrderHistoryComponent implements OnInit {
     });
   }
 
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
+    if (page < 1 || page > this.proddetail.totalPages) { return false; }
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate(['/buyer/order'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
+    window.scrollTo(0, 0);
+  }
+
 }

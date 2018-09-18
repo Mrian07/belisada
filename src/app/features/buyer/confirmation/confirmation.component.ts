@@ -6,8 +6,12 @@ import { DateUtil } from '@belisada/core/util';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { IMyDpOptions } from 'mydatepicker';
 import swal from 'sweetalert2';
+<<<<<<< HEAD
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DataConfirm } from '@belisada/core/models/payment/payment.model';
+=======
+import { Router, ActivatedRoute } from '@angular/router';
+>>>>>>> 0c52e1fa8b866e97f449e2f2c1327b382740c15e
 
 @Component({
   selector: 'app-confirmation',
@@ -52,6 +56,7 @@ export class ConfirmationComponent implements OnInit {
     private dateUtil: DateUtil,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    // private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -59,7 +64,6 @@ export class ConfirmationComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
 
       this.paymentService.getConfirmation(params['id']).subscribe(respon => {
-        console.log('ini', respon);
 
         if (respon.status === 1) {
           this.list = respon.data;
@@ -74,18 +78,25 @@ export class ConfirmationComponent implements OnInit {
     this.createFormControls();
     this.allPayment();
     this.allBank();
+
+    // this.route.queryParams
+    //   .subscribe(params => {
+    //     this.createComForm.patchValue({
+    //       paymentNumber: params.paymentNumber
+    //     });
+    //   });
   }
 
   createFormControls() {
     this.createComForm = this.fb.group({
-    paymentNumber: new FormControl(null, Validators.required),
-    transferTo: new FormControl('', Validators.required),
-    bankId: new FormControl('', Validators.required),
-    transerDate: new FormControl('', Validators.required),
-    accountName: new FormControl('', Validators.required),
-    accountNumber: new FormControl('', Validators.required),
-    nominal: new FormControl('', Validators.required),
-    news: new FormControl('')
+      paymentNumber: new FormControl(null, Validators.required),
+      transferTo: new FormControl('', Validators.required),
+      bankId: new FormControl('', Validators.required),
+      transerDate: new FormControl('', Validators.required),
+      accountName: new FormControl('', Validators.required),
+      accountNumber: new FormControl('', Validators.required),
+      nominal: new FormControl('', Validators.required),
+      news: new FormControl('')
     });
   }
 
@@ -110,7 +121,6 @@ export class ConfirmationComponent implements OnInit {
   allBank() {
     this.paymentService.getBankUser().subscribe(respon => {
       this.listBank = respon;
-      console.log('bank:', this.listBank);
     });
   }
 

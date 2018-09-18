@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
-  AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent, ForgotPasswordComponent, ResetPasswordComponent
+  AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
+  ForgotPasswordComponent, ResetPasswordComponent
 } from '@belisada/features/auth';
-// import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 
 const routes: Routes = [
   {
