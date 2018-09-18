@@ -33,6 +33,17 @@
     grid-template-columns: 200px 350px;
 }
 
+.form-c2{
+    margin-top:100px;
+    width:600px;
+    margin:0px auto;
+    display: grid;
+    grid-template-columns: 200px 350px;
+    margin-bottom:20px;
+    border: 1px solid #dddddd;
+    padding:10px;
+}
+
 .input-c{
     border:0px;
     font-size: 13px;
@@ -75,4 +86,12 @@
 
 .btn-status:hover{
     background: #26c580;
+}
+
+.contain-c{
+    font-size: 13px;
+    text-align: left;
+    margin-top:12px;
+    margin-left:10px;
+    font-weight: bold;
 }

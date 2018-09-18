@@ -3,7 +3,7 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from '@belisada/core/config';
 import { map } from 'rxjs/operators';
-import { Payment, Confirmation } from '@belisada/core/models/payment/payment.model';
+import { Payment, Confirmation, GetConfirmation } from '@belisada/core/models/payment/payment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,4 +32,12 @@ export class PaymentService {
         map(response => response as Confirmation)
       );
   }
+
+  getConfirmation(id) {
+    return this.http.get(this.configuration.apiURL + '/buyer/order/confirmation/banktransfer?payment_number=' + id)
+      .pipe(
+        map(response => response as GetConfirmation)
+      );
+  }
+
 }

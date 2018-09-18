@@ -6,7 +6,8 @@ import { DateUtil } from '@belisada/core/util';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { IMyDpOptions } from 'mydatepicker';
 import swal from 'sweetalert2';
-import { Router } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { DataConfirm } from '@belisada/core/models/payment/payment.model';
 
 @Component({
   selector: 'app-confirmation',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./confirmation.component.scss']
 })
 export class ConfirmationComponent implements OnInit {
+  list: DataConfirm;
   createComForm: FormGroup;
   nmBank: string;
   rekBank: number;
@@ -23,6 +25,7 @@ export class ConfirmationComponent implements OnInit {
   listBank: any[];
 
   isProses: Boolean = false;
+  isConfirm: Boolean = false;
 
   // ----- Start date picker declaration required
   today: Date = new Date();
@@ -48,9 +51,26 @@ export class ConfirmationComponent implements OnInit {
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+
+      this.paymentService.getConfirmation(params['id']).subscribe(respon => {
+        console.log('ini', respon);
+
+        if (respon.status === 1) {
+          this.list = respon.data;
+          this.isConfirm = true;
+        } else {
+          this.isConfirm = false;
+        }
+      });
+    });
+
+
     this.createFormControls();
     this.allPayment();
     this.allBank();

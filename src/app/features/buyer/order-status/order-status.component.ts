@@ -174,8 +174,8 @@ export class OrderStatusComponent implements OnInit {
     });
   }
 
-  confirm() {
-    this.router.navigate(['/buyer/confirmation']);
+  confirm(paymentNumber) {
+    this.router.navigate(['/buyer/confirmation/' + paymentNumber]);
   }
 
   setPage(page: number, increment?: number) {

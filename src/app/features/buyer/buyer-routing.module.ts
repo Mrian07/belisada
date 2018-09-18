@@ -43,7 +43,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'confirmation',
+        path: 'confirmation/:id',
         component: ConfirmationComponent,
         data: {
           title: 'Konfirmasi Pembayaran'
