@@ -76,15 +76,15 @@ export class OrderStatusComponent implements OnInit {
 
       this.transactionService.getOrder(queryParams).subscribe(respon => {
 
-        console.log('hasilnya', respon.content);
+       // console.log('hasilnya', respon.content);
         if (respon.content.length === 0 ) {
           this.isEmpty = true;
         }
         this.isLoading = false;
         this.list = respon.content;
-        for (this.x of respon.content) {
-          console.log(this.x.statusCode);
-        }
+        // for (this.x of respon.content) {
+        //   console.log(this.x.statusCode);
+        // }
 
         this.proddetail = respon;
         this.pages = [];
