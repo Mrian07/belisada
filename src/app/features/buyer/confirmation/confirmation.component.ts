@@ -6,12 +6,8 @@ import { DateUtil } from '@belisada/core/util';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { IMyDpOptions } from 'mydatepicker';
 import swal from 'sweetalert2';
-<<<<<<< HEAD
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DataConfirm } from '@belisada/core/models/payment/payment.model';
-=======
-import { Router, ActivatedRoute } from '@angular/router';
->>>>>>> 0c52e1fa8b866e97f449e2f2c1327b382740c15e
 
 @Component({
   selector: 'app-confirmation',
