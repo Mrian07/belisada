@@ -60,8 +60,15 @@ export class ConfirmationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.createFormControls();
+    this.allPayment();
+    this.allBank();
 
     this.activatedRoute.params.subscribe((params: Params) => {
+
+      this.createComForm.patchValue({
+        paymentNumber: params['id']
+      });
 
       this.paymentService.getConfirmation(params['id']).subscribe(respon => {
 
@@ -73,11 +80,6 @@ export class ConfirmationComponent implements OnInit {
         }
       });
     });
-
-
-    this.createFormControls();
-    this.allPayment();
-    this.allBank();
 
     // this.route.queryParams
     //   .subscribe(params => {
