@@ -2,8 +2,8 @@ export const environment = {
   production: true,
   baseUrlSeller: 'https://seller.belisada.co.id',
   domain: 'https://belisada.co.id',
-  apiUrl: 'https://api.belisada.id/belisada',
-  apiUrlMongo: 'https://api.belisada.id/belisada-mongo',
+  apiUrl: 'https://air.belisada.co.id/belisada',
+  apiUrlMongo: 'https://air.belisada.co.id/belisada-mongo',
   thumborUrl: 'https://image.belisada.co.id/',
   firebase: {
     apiKey: 'AIzaSyDHdXsPrLfNpCMKbdrLSsL2r3XD8MB6Hbs',
