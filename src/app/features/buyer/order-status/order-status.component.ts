@@ -38,6 +38,9 @@ export class OrderStatusComponent implements OnInit {
   pages: any = [];
   x: any;
 
+  orderNumber: number;
+  showDialogKonfirm: boolean;
+
   constructor(
     private transactionService: TransactionService,
     private router: Router,
@@ -195,6 +198,15 @@ export class OrderStatusComponent implements OnInit {
       this.pendingOrder();
       console.log('response: ', response);
     });
+    this.showDialogKonfirm = false;
+  }
+
+  alertConfirmation(orderNumber) {
+    this.orderNumber = orderNumber;
+  }
+
+  closeShowDialogKonfirm() {
+    this.showDialogKonfirm = false;
   }
 
   setPage(page: number, increment?: number) {

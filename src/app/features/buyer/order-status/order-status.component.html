@@ -90,7 +90,9 @@
           </div>
         </td>
         <td width="33%">
-          <span *ngIf="itemList.statusOrderCode === '157'" (click)="receiptConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
+          <!-- <span *ngIf="itemList.statusOrderCode === '157'" (click)="receiptConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>  -->
+          <span *ngIf="itemList.statusOrderCode === '157'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> 
+          <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>
     </table>
@@ -155,4 +157,23 @@
   </div>
 
   </div>
+</app-models>
+
+
+<app-models [(visible)]="showDialogKonfirm" class="frameDialog">
+  <div class="modal-body">
+
+    Apakah konfirmasi barang akan diproses<br>Untuk nomor order {{orderNumber}}
+  </div>
+  <div>
+      <div class="row">
+        <div class="col-6 btn-confirm-left">
+          <button class="btn btn--blue" (click)="receiptConfirmation(orderNumber)">Proses</button>
+        </div>
+        <div class="col-6 btn-confirm-right">
+          <button class="btn btn--orange" (click)="closeShowDialogKonfirm()">Tidak</button>
+        </div>
+      </div>
+  </div>
+  
 </app-models>
