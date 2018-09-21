@@ -69,7 +69,9 @@
 
                             <div class="product__info">
                                 <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
-                                <span class="product__info--price">{{item.specialPrice | currency:'Rp '}}</span>
+                                <span class="product__info--price">
+                                    {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                </span>
                                 <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
                             </div>
                         </div>
@@ -114,7 +116,9 @@
 
                             <div class="product__info">
                                 <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
-                                <span class="product__info--price">{{item.specialPrice | currency:'Rp '}}</span>
+                                <span class="product__info--price">
+                                    {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                </span>
                                 <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
                             </div>
                         </div>
@@ -124,29 +128,28 @@
         </div>
     </div>
     <!-- !POPULAR PRODUCT! -->
-
 </div>
 <div class="clearfix"></div>
 
 
 <!-- Modals -->
-<app-models [(visible)]="showDialog"  maxwidth="765" class="frameDialog" *ngIf="isLogin !== true && dataForPopUp !== '' && dataForPopUp !== 'false'">
-    <div class="modal-body w-wrapper__in--home">
+<app-models [(visible)]="showDialog" minwidth="800" height="300" class="modal-home"
+    *ngIf="isLogin !== true && dataForPopUp !== '' && dataForPopUp !== 'false'">
+    <!-- <div class="modal-body modal-home"> -->
 
-        <span class="w-text__for-welcome"> Hai Selamat datang di belisada.co.id </span>
-        <img  class="w-image__for-welcome"  src="assets/img/aset12.png">
-        <div>
-            <span class="w-text__for-welcome w-text__botom-welcome">Apa yang ingin anda lakukan?</span>
+    <img  class="image--balloon"  src="assets/img/balloon.png">
+    <img  class="image--house" src="assets/img/store_image.png">
+
+    <h2 class="text--welcome text-center">Hai Selamat datang di belisada.co.id </h2>
+    <h3 class="text--question text-center">Apa yang ingin anda lakukan?</h3>
+
+    <div class="row">
+        <div class="col-xs-6 text-right">
+            <button class="btn btn--orange" (click)="onFilterClick($event)">Berbelanja</button>
         </div>
-        <div class="w__wrapper--for-button">
-            <div class="w__isi--buton">
-                <div  class="w__isi--buton--ber"> <button class="btn btn--orange btn--size--80 butnon--click" (click)="onFilterClick($event)" >Berbelanja</button></div>
-            </div>
-
-            <div>
-                <div  class="w__isi--buton--ber"> <button class="btn btn--blue btn--size--80" (click)="goToStoreNol()" >Berjualan</button></div>
-            </div>
-            <img  class="w-image__for-welcome w-aasdasdsa" src="assets/img/store_image.png">
+        <div class="col-xs-6">
+            <button class="btn btn--blue-belisada" (click)="goToStoreNol()">Berjualan</button>
         </div>
     </div>
+    <!-- </div> -->
 </app-models>

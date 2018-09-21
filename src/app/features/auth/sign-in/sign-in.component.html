@@ -1,7 +1,7 @@
 <div class="tabs">
     <div class="tab-2">
-      <label for="tab2-1" (click)="goToSignUp()">Registrasi</label>
-      <input id="tab2-1" name="tabs-two" type="radio">
+        <label for="tab2-1" (click)="goToSignUp()">Registrasi</label>
+        <input id="tab2-1" name="tabs-two" type="radio">
     </div>
     <div class="tab-2">
         <label for="tab2-2">Login</label>
@@ -40,7 +40,7 @@
                             <span class="tooltiptext">Password tidak boleh kosong</span>
                         </div>
                     </div>
-                    <div class="border-btn">
+                    <div class="border-btn u-margin-bottom-3">
                         <div class="text-registration">
                             <input type="checkbox" formControlName="isRemember" value="true"> Ingatkan<br>
                             Lupa Password? <a routerLink="/account/forgot-password" class="link-text">Klik</a> Disini
@@ -51,16 +51,18 @@
                     </div>
                 </form>
 
-                <!-- <button (click)="facebookLogin()">Sign-in with Facebook</button> -->
-                <button (click)="facebookLogin()" class="loginBtn loginBtn--facebook">
-                        Login with Facebook
-                </button>
-
-                <!-- <button (click)="googleLogin()">Sign-in with Google</button> -->
-
-                <button (click)="googleLogin()" class="loginBtn loginBtn--google">
-                Login with Google
-                </button>
+                <div class="row no-gutters justify-content-md-center width-90">
+                    <div class="col-xl-6 col-xs-12 text-right">
+                        <button (click)="facebookLogin()" class="loginBtn loginBtn--facebook">
+                            Login with Facebook
+                        </button>
+                    </div>
+                    <div class="col-xl-6 col-xs-12 text-left">
+                        <button (click)="googleLogin()" class="loginBtn loginBtn--google">
+                            Login with Google
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

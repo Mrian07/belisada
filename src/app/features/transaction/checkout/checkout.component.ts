@@ -57,6 +57,8 @@ export class CheckoutComponent implements OnInit {
 
   checkoutTrx: CheckoutTrx = new CheckoutTrx;
 
+  showDialog;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -87,6 +89,10 @@ export class CheckoutComponent implements OnInit {
   getCartCheckout() {
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
+
+      if (response.cart[0].shippingAddressId === 0) {
+        this.showDialog = this.showDialog = !this.showDialog;
+      }
       console.log('test', response);
       response.cart.forEach((cart, index) => {
 
@@ -424,5 +430,10 @@ export class CheckoutComponent implements OnInit {
     if (event.keyCode !== 8 && !pattern.test(inputChar)) {
         event.preventDefault();
     }
+  }
+
+  showPilihAlamat() {
+    this.showDialog = false;
+    this.showDialogPilihAlamat = true;
   }
 }

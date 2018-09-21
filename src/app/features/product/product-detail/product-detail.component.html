@@ -375,7 +375,7 @@
             </div>
             <div class="heading__grid--col right">
                 <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice > 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
-                <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice === 0">{{ productDetail.specialPrice | currency:'Rp ' }}</span>
+                <span class="heading__price u-margin-right-1" *ngIf="productDetail.specialPrice === 0">{{ productDetail.pricelist | currency:'Rp ' }}</span>
                 <button class="btn btn--blue-belisada btn--flat btn--add-to-cart" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart</button>
                 <!-- <button class="btn btn--orange btn--flat btn--add-to-cart">Chat Seller</button> -->
             </div>

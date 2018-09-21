@@ -23,7 +23,6 @@ import { Page404Component, MaintenanceComponent } from '@belisada/features/error
 import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy } from '@angular/common';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModelsComponent } from '@belisada/shared/components/models/models.component';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
 import { ProvinceReducer, CityReducer } from '@belisada/core/ngrx/reducers/store';
 import { SigninComponent, SignUpComponent, SignUpActivationComponent,

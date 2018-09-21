@@ -10,7 +10,7 @@
 
 	<div class='list-metode'>
 		<div class="row">
-			<div class="col-3" *ngFor="let item of listPayment">
+			<div class="col" *ngFor="let item of listPayment">
 				<div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
 				{{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
 			</div>

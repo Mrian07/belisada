@@ -6,7 +6,8 @@ import { DateUtil } from '@belisada/core/util';
 import { DateFormatEnum } from '@belisada/core/enum';
 import { IMyDpOptions } from 'mydatepicker';
 import swal from 'sweetalert2';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, Params, ActivatedRoute } from '@angular/router';
+import { DataConfirm } from '@belisada/core/models/payment/payment.model';
 
 @Component({
   selector: 'app-confirmation',
@@ -14,6 +15,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./confirmation.component.scss']
 })
 export class ConfirmationComponent implements OnInit {
+  list: DataConfirm;
   createComForm: FormGroup;
   nmBank: string;
   rekBank: number;
@@ -23,6 +25,7 @@ export class ConfirmationComponent implements OnInit {
   listBank: any[];
 
   isProses: Boolean = false;
+  isConfirm: Boolean = false;
 
   // ----- Start date picker declaration required
   today: Date = new Date();
@@ -48,7 +51,8 @@ export class ConfirmationComponent implements OnInit {
     private fb: FormBuilder,
     private dateUtil: DateUtil,
     private router: Router,
-    private route: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    // private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -56,12 +60,29 @@ export class ConfirmationComponent implements OnInit {
     this.allPayment();
     this.allBank();
 
-    this.route.queryParams
-      .subscribe(params => {
-        this.createComForm.patchValue({
-          paymentNumber: params.paymentNumber
-        });
+    this.activatedRoute.params.subscribe((params: Params) => {
+
+      this.createComForm.patchValue({
+        paymentNumber: params['id']
       });
+
+      this.paymentService.getConfirmation(params['id']).subscribe(respon => {
+
+        if (respon.status === 1) {
+          this.list = respon.data;
+          this.isConfirm = true;
+        } else {
+          this.isConfirm = false;
+        }
+      });
+    });
+
+    // this.route.queryParams
+    //   .subscribe(params => {
+    //     this.createComForm.patchValue({
+    //       paymentNumber: params.paymentNumber
+    //     });
+    //   });
   }
 
   createFormControls() {
@@ -98,7 +119,6 @@ export class ConfirmationComponent implements OnInit {
   allBank() {
     this.paymentService.getBankUser().subscribe(respon => {
       this.listBank = respon;
-      console.log('bank:git st', this.listBank);
     });
   }
 

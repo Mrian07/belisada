@@ -31,3 +31,24 @@ export class Confirmation {
 export class ImageUrl {
 
 }
+
+
+export class GetConfirmation {
+  status: number;
+  message: string;
+  data: DataConfirm;
+}
+
+export class DataConfirm {
+  bankId: number;
+  accountName: string;
+  accountNumber: number;
+  nominal: number;
+  paymentNumber: string;
+  transferTo: string;
+  transferFrom: string;
+  image: string;
+  news: string;
+  userId: number;
+  transerDate: any;
+}

@@ -1,5 +1,5 @@
 <div  class="frame-c">
-    <div *ngIf="isProses==false">
+    <div *ngIf="isProses==false && isConfirm==false">
             <h2>Konfirmasi Pembayaran</h2>
             <span class="text-c">Terima kasih telah berbelanda di Belisada.co.id<p>
             Bila Anda telah melakukan pembayaran secara <span class="text-t">BANK TRANSFER</span>,<p>
@@ -79,6 +79,66 @@
             <div class="btn-status" (click)="liatTransaksi()">Lihat Status Transaksi</div>
             
         </span>
+    </div>
+    <div *ngIf="isConfirm==true">
+        <h2>Konfirmasi Pembayaran</h2>
+            <span class="text-c">Terima kasih telah berbelanda di Belisada.co.id<p>
+            Dibawah ini adalah detail Konfirmasi Anda.</span>
+            <br>
+            <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-c2">
+                <div class="label-c">
+                    Payment ID :
+                </div>
+                <div class="contain-c">
+                    {{list.paymentNumber}}
+                </div>
+                <div class="label-c">
+                    Di Transfer Ke :
+                </div>
+                <div class="contain-c">
+                    {{list.transferTo}}
+                </div>
+                <div class="label-c">
+                    Ditransfer Dari :
+                </div>
+                <div class="contain-c">
+                    {{list.transferFrom}}
+                </div>
+                <div class="label-c">
+                    Pemilik Rekening :
+                </div>
+                <div class="contain-c">
+                    {{list.accountName}}
+                </div>
+                <div class="label-c">
+                    No Rekening :
+                </div>
+                <div class="contain-c">
+                    {{list.accountNumber}}
+                </div>
+                <div class="label-c">
+                    Nominal :
+                </div>
+                <div class="contain-c">
+                    {{list.nominal}}
+                </div>
+                <div class="label-c">
+                    Tanggal Transfer :
+                    <div date-picker="start"></div>
+                </div>
+                <div class="contain-c">
+                    {{list.transerDate}}
+                </div>
+                <div class="label-c">
+                    Berita :
+                </div>
+                <div class="contain-c">
+                    {{list.news}}
+                </div>
+            </div>
+            
+            </form>
     </div>
     
 
