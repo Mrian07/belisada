@@ -90,6 +90,10 @@
           </div>
         </td>
         <td width="33%">
+
+
+     
+
           <!-- <span *ngIf="itemList.statusOrderCode === '157'" (click)="receiptConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>  -->
           <span *ngIf="itemList.statusOrderCode === '157'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> 
           <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
@@ -160,20 +164,20 @@
 </app-models>
 
 
-<app-models [(visible)]="showDialogKonfirm" class="frameDialog">
+<app-models [(visible)]="showDialogKonfirm" maxwidth="600" class="frameDialog">
+  <div class="model-head">KONFIRMASI PENERIMAAN BARANG</div>
   <div class="modal-body">
 
-    Apakah konfirmasi barang akan diproses<br>Untuk nomor order {{orderNumber}}
+    <b>Apakah anda sudah menerima pesanan anda?</b><br>
+    - Klik Selesai untuk menyelesaikan transaksi anda dan Dana akan diteruskan kepada Seller<br>
+    - Klik Komplain jika barang yang anda terima tidak sesuai (Kurang/ Rusak/ Lain-lain)
   </div>
-  <div>
-      <div class="row">
-        <div class="col-6 btn-confirm-left">
-          <button class="btn btn--blue" (click)="receiptConfirmation(orderNumber)">Proses</button>
-        </div>
-        <div class="col-6 btn-confirm-right">
-          <button class="btn btn--orange" (click)="closeShowDialogKonfirm()">Tidak</button>
-        </div>
-      </div>
+  <div class="modal-footer">
+
+          <span class="btn-komplain-confirm" (click)="receiptConfirmation(orderNumber)">Komplain</span>
+
+          <span class="btn-selesai-confirm" (click)="closeShowDialogKonfirm()">Selesai</span>
+
   </div>
   
 </app-models>
