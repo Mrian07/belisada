@@ -98,7 +98,7 @@ export class ConfirmationComponent implements OnInit {
   allBank() {
     this.paymentService.getBankUser().subscribe(respon => {
       this.listBank = respon;
-      console.log('bank:', this.listBank);
+      console.log('bank:git st', this.listBank);
     });
   }
 
