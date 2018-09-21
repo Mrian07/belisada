@@ -33,16 +33,14 @@
 
 .list-metode{
     border: 5px solid #26a700;
-    padding:10px;
-    text-align:center;
-    margin-bottom:20px;
+    padding: 10px;
+    text-align: center;
+    margin: 2rem auto;
     font-family: arial;
     font-size: 12px;
     font-weight: bold;
     display: block;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 16px;
+    width: fit-content;
 }
 .w_backtohome {
     padding:10px;
@@ -61,7 +59,6 @@
     width: 13%;
     height: 50px;
 }
-.img-pay .img-icon{
-    height: 40px;
+.img-pay {
     margin-bottom:10px;
 }
