@@ -5,6 +5,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { PaymentService } from './../../../core/services/payment/payment.service';
 import { PaymentList } from '@belisada/core/models/payment/payment.model';
 import swal from 'sweetalert2';
+import mct from 'madrick-countdown-timer';
 
 @Component({
   selector: 'app-order-status',
@@ -38,6 +39,15 @@ export class OrderStatusComponent implements OnInit {
   pages: any = [];
   x: any;
 
+  countdown = {
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+    status: 0,
+    message: ''
+};
+
   orderNumber: number;
   showDialogKonfirm: boolean;
 
@@ -56,6 +66,15 @@ export class OrderStatusComponent implements OnInit {
     this.isPilih = true;
     this.pendingOrder();
     this.allPayment();
+    mct.countdown('Jan 5, 2019 13:47:25', (countdown) => {
+      // countdown = {
+      //   days, hours, minutes, seconds,
+      //   status [0 -> expired / 1 -> counting],
+      //   message ['EXPIRED' / 'COUNTING']
+      // }
+
+      this.countdown = countdown;
+  });
   }
 
   statusFlag() {
@@ -88,8 +107,17 @@ export class OrderStatusComponent implements OnInit {
         // for (this.x of respon.content) {
         //   console.log(this.x.statusCode);
         // }
-
+        const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
+        console.log('b',b);
         this.proddetail = respon;
+        b.forEach((x) => {
+          console.log('x: ', x);
+          mct.countdown(x.expiredConfirmationPaymentBuyerDate, (countdown) => {
+            this.proddetail.content.find(i => i.paymentNumber === x.paymentNumber).countdown = countdown;
+            // this.countdown = countdown;
+          });
+        });
+        console.log(this.proddetail.content);
         this.pages = [];
         this.lastPage = this.proddetail.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {

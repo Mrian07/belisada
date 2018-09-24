@@ -14,6 +14,8 @@ export class ContentOrderStatus {
 export class OrderStatus {
     expiredTime: string;
     imageUrl: string;
+    expiredConfirmationPaymentBuyerDate: string;
+    countdown: Countdown;
     paymentMethod: string;
     paymentMethodCode: string;
     paymentNumber: string;
@@ -22,6 +24,16 @@ export class OrderStatus {
     transaction: Transaction[];
     transactionId: number;
 }
+export class Countdown {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  
+    status: number;
+    message: string;
+  }
+  
 
 export class Transaction {
     cart: Cart[];
