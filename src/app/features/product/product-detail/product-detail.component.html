@@ -309,7 +309,7 @@
                         <div class="w--product-talk__comment-box">
                             <div class="list-box-replyholder">
                                 <a class="w-product-talk__profile"></a>
-                                <div *ngIf="textAreaClick === true && idDicus === item.discusId; else login">
+                                <div>
                                     <form>
                                             <textarea [formControl]="messageString" (click)="textAreaExpannded(item.discusId)" class="w-product-talk__coment-taxtarea expanded"> {{ item.discusId }}</textarea>
 
@@ -317,7 +317,7 @@
                                     <div class="w__o--button-posisition row">
                                             <div class="col-12 template--button">
                                                     <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
-                                                    <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button>
+                                                    <!-- <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button> -->
                                                 </div>
 
                                     </div>
@@ -333,17 +333,22 @@
                                         </div>
                                     </div> -->
                                 </div>
-                                <ng-template #login>
+                                <!-- <ng-template #login>
+                                    <div class="w__o--button-posisition row">
+                                            <div class="col-12 template--button">
+                                                    <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
+                                                    <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button>
+                                                </div>
 
+                                    </div>
                                     <button *ngIf="paginationLimit < list.length" (click)="showMoreItems(openDetail,item.discusId)">
                                         Show More
                                     </button>
                                     <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
                                         Show Less
                                     </button>
-                                    <textarea name="" id="" (click)="textAreaExpannded(item.discusId)" class="w-product-talk__coment-taxtarea"></textarea>
 
-                                </ng-template>
+                                </ng-template> -->
                             </div>
                         </div>
                     </li>
