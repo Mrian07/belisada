@@ -1,3 +1,29 @@
+.isoffday{
+    background: #87e960;
+    color:#000000;
+    padding:10px;
+    border-top: 2px solid #6dd544;
+    border-bottom: 2px solid #6dd544;
+    margin-bottom:10px;
+    font-size: 12px;
+}
+
+.cont-detail{
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+}
+
+.cont-detail-sub1{
+    margin-right: 8px;
+}
+
+.empty-stock{
+    background: #f10b16;
+    color:#ffffff;
+    padding:5px;
+    border-radius:5px;
+}
+
 .b1-detail{
     background: #f8f8f8;
     padding: 10px;
@@ -138,6 +164,16 @@
     margin-bottom:20px;
 }
 
+.btn-add-off{
+    background: #aeb3b8;
+    color:#ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    width: 180px;
+    display: inline-block;
+}
+
 .btn-add{
     background: #232f3d;
     color:#ffffff;
@@ -216,7 +252,6 @@
     color:#4d4c4c;
     text-align: center;
     font-weight: bold;
-    width: 240px;
 }
 
 .sidebar-conten{
@@ -225,7 +260,6 @@
     border-right: 1px solid #c9c9c9;
     border-bottom: 1px solid #c9c9c9;
     margin-bottom:20px;
-    width: 240px;
 }
 
 .sidebar-info{
@@ -383,7 +417,6 @@ ul#horizontal-list {
     background: #f57b2a;
     padding:10px;
     color:#ffffff;
-    width: 240px;
     text-align: center;
     cursor: pointer;
 }

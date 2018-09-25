@@ -54,6 +54,19 @@
     font-size: 15px;
 }
 
+.toProductLink{
+    padding: 0px 10px 0px 0px;
+    border-right: 1px solid #dddddd;
+    color:#4687e8;
+    text-align: right;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.toProductLink:hover{
+    color:#639ef7;
+}
+
 .ingnJual{
     padding: 0px 0px 0px 10px;
     color:#4687e8;
