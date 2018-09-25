@@ -127,7 +127,7 @@
 
             <div class='list-metode'>
                 <div class="row">
-                    <div class="col-3" *ngFor="let item of listPayment">
+                    <div class="col" *ngFor="let item of listPayment">
                         <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
                         {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
                     </div>
@@ -205,7 +205,7 @@
 
             <!-- Dialog PopUp add  -->
 
-            <app-models [(visible)]="showDialogPilihAlamat" maxwidth="1200" class="frameDialog">
+            <app-models [(visible)]="showDialogPilihAlamat" minwidth="1200" class="frameDialog">
                 <div class="modal-body">
 
                     <form [formGroup]="formAddCrtl" (ngSubmit)="onSent()" #fs="ngForm" novalidate>

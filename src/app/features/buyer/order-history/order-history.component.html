@@ -110,16 +110,14 @@
 </div>
 
 <app-models [(visible)]="showDialogRek" class="frameDialog">
-    <div class="modal-body">
+  <div class="row modal-body">
 
-      <div class='list-metode'>
-        <div class="row">
-            <div class="col-3" *ngFor="let item of listPayment">
-                <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
-                {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
-            </div>
-        </div>
+    <div class="col list-metode" *ngFor="let item of listPayment">
+      <div>
+        <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+        {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
+      </div>
     </div>
 
-    </div>
-  </app-models>
+  </div>
+</app-models>

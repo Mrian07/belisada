@@ -20,18 +20,21 @@
         <div class="col-9">
             <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
             <div class="text-confirm" (click)="confirm(item.paymentNumber)">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
-            <div class="text-more" (click)="openOS(openDetail, item.transactionId)">See More <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
+            <div class="text-more" (click)="openOS(openDetail, item.transactionId)">Lihat Detail <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
         </div>
       </div>
       <div class="row row-atur">
         <div class="col-4">
             <div class="text-payid">Payment ID: {{item.paymentNumber}} </div>
         </div>
-        <div class="col-6">
+        <div class="col-4">
 
             <div class="text-payinfo">Payment: ({{item.paymentMethod}})
               <!-- <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span> -->
             </div>
+        </div>
+        <div class="col-2" *ngIf="item.countdown && item.status !== 'pembayaran berhasil'">
+          Batas Waktu Respon: {{item.countdown.days}}d - {{item.countdown.hours}}h - {{item.countdown.minutes}}m - {{item.countdown.seconds}}s
         </div>
         <div class="col-2">
           <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
@@ -145,16 +148,14 @@
 </app-models>
 
 <app-models [(visible)]="showDialogRek" class="frameDialog">
-  <div class="modal-body">
+  <div class="row modal-body">
 
-    <div class='list-metode'>
-      <div class="row">
-          <div class="col-3" *ngFor="let item of listPayment">
-              <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
-              {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
-          </div>
+    <div class="col list-metode" *ngFor="let item of listPayment">
+      <div>
+        <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+        {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
       </div>
-  </div>
+    </div>
 
   </div>
 </app-models>

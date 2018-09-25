@@ -346,8 +346,10 @@ export class ProductDetailComponent implements OnInit {
   };
   if (this.isLogin) {
     this.productService.createDiscus(a).subscribe(rsl => {
-      console.log(rsl);
-      window.location.reload();
+      this.productService.getDiscus(this.productDetail.productId).subscribe(resDiscus => {
+        this.discus = resDiscus.content;
+        this.messageString.reset();
+      });
       });
   } else {
     swal({
@@ -395,8 +397,11 @@ export class ProductDetailComponent implements OnInit {
     console.log('ini a', this.oktest);
     if (this.isLogin) {
       this.productService.createDiscus(a).subscribe(rsl => {
-        console.log(rsl);
-        window.location.reload();
+        this.productService.getDiscus(this.productDetail.productId).subscribe(resDiscus => {
+          this.discus = resDiscus.content;
+        });
+        this.messageBottom.reset();
+        // window.location.reload();
         });
     } else {
       swal({

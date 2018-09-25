@@ -116,7 +116,9 @@
 
                             <div class="product__info">
                                 <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
-                                <span class="product__info--price">{{item.specialPrice | currency:'Rp '}}</span>
+                                <span class="product__info--price">
+                                    {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                </span>
                                 <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
                             </div>
                         </div>
@@ -131,7 +133,7 @@
 
 
 <!-- Modals -->
-<app-models [(visible)]="showDialog" maxwidth="800" height="300" class="modal-home"
+<app-models [(visible)]="showDialog" minwidth="800" height="300" class="modal-home"
     *ngIf="isLogin !== true && dataForPopUp !== '' && dataForPopUp !== 'false'">
     <!-- <div class="modal-body modal-home"> -->
 

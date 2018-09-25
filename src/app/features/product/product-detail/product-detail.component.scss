@@ -595,6 +595,7 @@ ul#horizontal-list {
                     border: 1px solid #e0e0e0;
                     box-shadow: none;
                     box-sizing: border-box;
+                    display: block;
                     transition: height .2s ease-in-out,border .2s linear;
                 }
                 .expanded {
