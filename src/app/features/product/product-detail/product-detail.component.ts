@@ -55,7 +55,7 @@ export class ProductDetailComponent implements OnInit {
   title: String;
   list: any;
   startPage: number;
-  paginationLimit: number;
+  paginationLimit: any;
   openDetail: boolean;
   idDisuci: number;
   boolDiscus: boolean;
@@ -74,7 +74,7 @@ export class ProductDetailComponent implements OnInit {
   productUlasan: any;
   textAreaClick: boolean;
   discus: Content[];
-  idDicus: number;
+  idDicus: any;
   messageString: FormControl;
   messageBottom: FormControl;
   oktest: CreateDiscus = new CreateDiscus();
@@ -138,7 +138,7 @@ export class ProductDetailComponent implements OnInit {
       {name: 'Anu', age: '20'}
     ];
     this.startPage = 0;
-    this.paginationLimit = 2;
+    this.paginationLimit = {};
     this.boolDiscus = true;
     this.messageString = new FormControl('');
     this.messageBottom = new FormControl('');
@@ -280,14 +280,14 @@ export class ProductDetailComponent implements OnInit {
       hideTextArea() {
         this.textAreaClick = false;
       }
-  showMoreItems(status, e) {
-      this.idDicus = e;
-      this.paginationLimit = Number(this.paginationLimit) + 3;
-
-
-
-
-
+  showMoreItems(discusId) {
+    console.log('iddicus: ', discusId);
+    if (this.idDicus = discusId) {
+      console.log('okz');
+    this.paginationLimit = Number(this.paginationLimit) + 3;
+    } else {
+      console.log('bkz');
+    }
   }
   showLessItems() {
     this.paginationLimit = Number(this.paginationLimit) - 3;
@@ -295,6 +295,10 @@ export class ProductDetailComponent implements OnInit {
   private getDiscus(params: Params) {
     this.productService.getDiscus(params['id']).subscribe(resDiscus => {
       this.discus = resDiscus.content;
+      this.discus.forEach((item => {
+        this.paginationLimit[item.discusId] = 2;
+      }));
+      console.log(this.paginationLimit);
       console.log('discus', this.discus);
     });
   }
@@ -348,6 +352,7 @@ export class ProductDetailComponent implements OnInit {
     this.productService.createDiscus(a).subscribe(rsl => {
       this.productService.getDiscus(this.productDetail.productId).subscribe(resDiscus => {
         this.discus = resDiscus.content;
+        console.log('2',this.paginationLimit);
         this.messageString.reset();
       });
       });

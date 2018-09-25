@@ -274,7 +274,13 @@
                             </div>
 
                         </div>
-                        <div class="w-product-talk__comments" *ngFor="let item333 of item.childs | slice : startPage:paginationLimit">
+                        <!-- <button (click)="showMoreItems(item.discusId)">
+                            Show More
+                        </button>
+                        <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
+                            Show Less
+                        </button> -->
+                        <div class="w-product-talk__comments" *ngFor="let item333 of item.childs">
                             <ul class="w-product-talk__coment-list" >
                                 <li class="product-talk__comennts-list-item" >
                                     <div>
@@ -313,34 +319,7 @@
                                                 </div>
 
                                     </div>
-                                    <!-- <div class="w--button__position row">
-                                        <div class="col-12">
-                                            <div class="col-6">
-                                                <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
-                                            </div>
-                                            <div class="col-6">
-
-                                                <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                 </div>
-                                <!-- <ng-template #login>
-                                    <div class="w__o--button-posisition row">
-                                            <div class="col-12 template--button">
-                                                    <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
-                                                    <button (click)="hideTextArea()" class="btn btn__cancel">Cancel</button>
-                                                </div>
-
-                                    </div>
-                                    <button *ngIf="paginationLimit < list.length" (click)="showMoreItems(openDetail,item.discusId)">
-                                        Show More
-                                    </button>
-                                    <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
-                                        Show Less
-                                    </button>
-
-                                </ng-template> -->
                             </div>
                         </div>
                     </li>
