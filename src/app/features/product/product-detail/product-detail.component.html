@@ -75,9 +75,9 @@
 
                 </div> -->
                 <div class="product-btn">
-                    <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)" *ngIf="productDetail.moreInformation.isoffday==false || productDetail.qty!=0;else isoffday">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
+                    <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)" *ngIf="productDetail.moreInformation.isoffday==false || productDetail.qty!=0;else isoffdays">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
                 
-                    <ng-template #isoffday>
+                    <ng-template #isoffdays>
                             <span class="btn-add-off">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
                     </ng-template>
                 </div>
