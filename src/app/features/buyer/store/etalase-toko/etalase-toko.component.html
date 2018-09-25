@@ -12,7 +12,8 @@
                             <span class="w-text__store-name"> {{ proddetail.storeName }} </span>
                         </div>
                         <div class="col-6">
-                            <span class="w-text__store-open-or-close">Open</span>
+                            <span class="w-text__store-open-or-close" *ngIf="proddetail.isoffday === false; else closedStore">Open</span>
+                                <ng-template #closedStore>Please login to continue.</ng-template>
                         </div>
                     </div>
                     <div class="col-12">
@@ -36,11 +37,11 @@
                     </div>
                     <img class="w-image__in-right" src="assets/img/profile.png">
                     <div>
-                        <span class="w-text__in-right"> Jumlah Produk : 50</span>
+                        <span class="w-text__in-right"> Jumlah Produk : {{ proddetail.productSold }}</span>
                     </div>
                     <img class="w-image__in-right" src="assets/img/delivery-packages-on-a-trolley.png">
                     <div class="w-margin__in-container">
-                        <span class="w-text__in-right">Lama Proses :  2 hari</span>
+                        <span class="w-text__in-right">Lama Proses :   {{ proddetail.longProcess }}</span>
                     </div>
                     <img class="w-image__in-right" src="assets/img/delivery-packages-on-a-trolley.png">
                     <div>
@@ -48,7 +49,7 @@
                     </div>
                     <img class="w-image__in-right" src="assets/img/followers.png">
                     <div>
-                        <span class="w-text__in-right"> 2150 Folowers</span>
+                        <span class="w-text__in-right"> {{proddetail.follower}} Folowers</span>
                     </div>
                 </div>
             </div>
