@@ -1,5 +1,7 @@
 <div class="container has-header has-footer">
-
+    <div class="isoffday" *ngIf="proddetail.isoffday==true">
+        Maaf toko saat ini sedang tutup silakan kunjungi kembali beberapa waktu kedepan.
+    </div>
     <div class="row">
         <div class="col-12 w-container__head">
             <img [src]="storeImage + proddetail.storeImageUrl ">

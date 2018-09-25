@@ -90,10 +90,6 @@
           </div>
         </td>
         <td width="33%">
-
-
-     
-
           <!-- <span *ngIf="itemList.statusOrderCode === '157'" (click)="receiptConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>  -->
           <span *ngIf="itemList.statusOrderCode === '157'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> 
           <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>

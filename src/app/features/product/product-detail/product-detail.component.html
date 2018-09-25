@@ -1,12 +1,16 @@
 <div class="container has-header has-footer">
+    <div class="isoffday" *ngIf="productDetail.moreInformation.isoffday==true">
+        Maaf toko saat ini sedang tutup silakan kunjungi kembali beberapa waktu kedepan.
+    </div>
     <span class='product-bc'>
         Home/ {{productDetail.categoryOneName}}/ <strong>{{productDetail.categoryTwoName}}/ {{productDetail.categoryThreeName}}</strong>
     </span>
-    <div class="row">
-        <div class="col-5">
+
+    <div class="cont-detail">
+        <div class="cont-detail-sub1">
+            
             <div class="b1-detail">
-                <div class="ribbon ribbon--orange"
-                    *ngIf="productDetail.discount > 0">{{ productDetail.discount }}%</div>
+                <div class="ribbon ribbon--orange" *ngIf="productDetail.discount > 0">{{ productDetail.discount }}%</div>
 
                 <span class="product-brand">Brand : {{ productDetail.brandName }}</span>
 
@@ -66,43 +70,24 @@
 
                 </div> -->
                 <div class="product-btn">
-                    <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
+                    <span class="btn-add" (click)="addToCart(productDetail.productId, productDetail.storeId)" *ngIf="productDetail.moreInformation.isoffday==false || productDetail.qty!=0;else isoffday">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
+                
+                    <ng-template #isoffday>
+                            <span class="btn-add-off">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></span>
+                    </ng-template>
                 </div>
             </div>
-        </div>
 
-        <div class="col-5">
+
+        </div>
+        <div>
+                
             <div class="show-image">
                 <img [src]="productImageUrl + imgIndex"  height="400">
             </div>
-            <!-- <div id="lasteventimg">
-            <ul>
-                <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
-            </ul>
-            </div>   -->
-            <!-- <div class="show-image">
-                <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></span>
-            </div> -->
-
-            <!-- <div class="frame-image"> -->
-                    <div class="con-image">
-                            <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img [src]='productImageItemLooping+item' height="50"></span>
-                    </div>
-
-
-                    <!-- <div id="menu-outer">
-                            <div class="table">
-                                <ul id="horizontal-list">
-                                    <li class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img src='{{item}}' height="50"></li>
-                                </ul>
-                        </div>
-                    </div>
-
-            </div> -->
-
-
-
-
+            <div class="con-image">
+                    <span class="show-image-small" *ngFor="let item of productDetail.imageUrl" (click)="selectImg(item)"><img [src]='productImageItemLooping+item' height="50"></span>
+            </div>
             <div class="row u-margin-top-2">
                 <div class="col-6">
                     <!-- <span class="show-small-text"> -->
@@ -127,8 +112,10 @@
                     <!-- <span class="show-small-text">Share</span> <img src='assets/img/dummy-sosmed.jpg'> -->
                 </div>
             </div>
+
         </div>
-        <div class="col-2">
+        <div>
+            
 
             <div class="sidebar-title">
                     Informasi Penjual
@@ -160,6 +147,7 @@
             </div> -->
 
             <div class="btn-penawaran" (click)="penawaran(productDetail.productId,productDetail.name)">Penawaran Lainnya</div>
+
         </div>
     </div>
 
