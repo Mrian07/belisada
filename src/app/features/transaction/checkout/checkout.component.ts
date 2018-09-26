@@ -87,13 +87,11 @@ export class CheckoutComponent implements OnInit {
   }
 
   getCartCheckout() {
+
+    this.cekShipping();
+
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
-
-      if (response.cart[0].shippingAddressId === 0) {
-        this.showDialog = this.showDialog = !this.showDialog;
-      }
-      console.log('test', response);
       response.cart.forEach((cart, index) => {
 
         cart.cartItems.forEach((item, i) => {
@@ -131,6 +129,14 @@ export class CheckoutComponent implements OnInit {
         });
       });
     });
+  }
+
+  cekShipping(){
+    this.addressService.getShipping().subscribe(respon => {
+        if (respon.length === 0) {
+            this.showDialog = true;
+        }
+      });
   }
 
   allPayment() {
