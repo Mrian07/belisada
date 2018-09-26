@@ -140,6 +140,7 @@ export class MoreInformation {
   productQuantity: number;
   transactionSuccess: number;
   storeImageUrl: string;
+  isoffday: boolean;
 }
 
 export class Filter {
