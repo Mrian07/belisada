@@ -180,7 +180,6 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        // console.log('this.productDetail: ', this.productDetail);
         // Spec tab value
         this.tabVal = this.productDetail.specification;
         // Description tab value
