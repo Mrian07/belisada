@@ -94,5 +94,8 @@ export class EtalaseStoreData {
   locationName: string;
   description: string;
   storeId: number;
+  isoffday: any;
+  longProcess: any;
+  follower: any;
 }
 

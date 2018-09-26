@@ -13,35 +13,37 @@
                         <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
                     </div>
                 </div>
-
-                <div class="menu__container" *ngIf="isMenu == true">
-                    <div class="menu__container--title" *ngFor="let menu of menuCategory" (mouseenter)="subMenu(menu.categoryId)">
-                        {{menu.name}}
-                    </div>
-                    <div class="menu_frame_child">
-                        <div class="menu__container--child">
-                            <div *ngFor="let subMenu of subMenuCategory" class="menuColom">
-                                <div class="menuColom__title">{{subMenu.name}}</div>
-                                <div *ngFor="let childSubMenu of subMenu.childs">
-                                    {{childSubMenu.name}}
+                <div class="category-menu__container">
+                    <div class="menu__container" *ngIf="isMenu == true">
+                        <div class="menu__container--title" *ngFor="let menu of menuCategory" (mouseenter)="subMenu(menu.categoryId)">
+                            {{menu.name}}
+                        </div>
+                        <div class="menu_frame_child">
+                            <div class="menu__container--child">
+                                <div *ngFor="let subMenu of subMenuCategory" class="menuColom">
+                                    <div class="menuColom__title">{{subMenu.name}}</div>
+                                    <div *ngFor="let childSubMenu of subMenu.childs">
+                                        {{childSubMenu.name}}
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="banner-category__container center">
-                        <img class="u-margin-bottom-1" src="/assets/img/bbbb.jpeg" alt="">
-
-                        <button class="btn btn--orange u-margin-bottom-1">Shop Now</button>
-
-                        <h3>Featured Product</h3>
-
-                        <div class="banner-category__grid">
-                            <img src="/assets/img/aaaa.jpeg" alt="">
-                            <img src="/assets/img/aaaa.jpeg" alt="">
-                            <img src="/assets/img/aaaa.jpeg" alt="">
+                        <div class="banner-category__container center">
+                            <img class="u-margin-bottom-1" src="/assets/img/bbbb.jpeg" alt="">
+    
+                            <button class="btn btn--orange u-margin-bottom-1">Shop Now</button>
+    
+                            <h3>Featured Product</h3>
+    
+                            <div class="banner-category__grid">
+                                <img src="/assets/img/aaaa.jpeg" alt="">
+                                <img src="/assets/img/aaaa.jpeg" alt="">
+                                <img src="/assets/img/aaaa.jpeg" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
+              
 
             </div>
 
