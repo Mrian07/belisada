@@ -130,7 +130,7 @@
                     <img [src]='productImageUrlNew + productDetail.storeImageUrl'>
                     <span class="shop-title" (click)="goStore(productDetail.storeUrl)">{{productDetail.storeName}}</span>
                     <span class="shop-city">{{productDetail.locationName}}</span>
-                    <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa-icon [icon]="['fas', 'plus-circle']"></fa-icon></span>
+                    <span class="shop-btn" (click)="goStore(productDetail.storeUrl)">Lihat Toko <fa-icon [icon]="['fas', 'search']"></fa-icon></span>
                 </div>
                 <span class="shop-text"><strong>Terakhir Online:</strong> {{ moreInformation.lastOnline }}</span>
                 <span class="shop-text"><strong>Produk Terjual:</strong> {{ moreInformation.productSold }}</span>
