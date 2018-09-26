@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Content } from './../../../core/models/product/product.model';
 import { Component, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
@@ -140,7 +140,7 @@ export class ProductDetailComponent implements OnInit {
     this.startPage = 0;
     this.paginationLimit = {};
     this.boolDiscus = true;
-    this.messageString = new FormControl('');
+    this.messageString = new FormControl('', Validators.required);
     this.messageBottom = new FormControl('');
 
     if (this.imgIndex === undefined) {
@@ -348,13 +348,18 @@ export class ProductDetailComponent implements OnInit {
     productId: this.productDetail.productId
   };
   if (this.isLogin) {
-    this.productService.createDiscus(a).subscribe(rsl => {
-      this.productService.getDiscus(this.productDetail.productId).subscribe(resDiscus => {
+    if (this.messageString.valid) {
+        this.productService.createDiscus(a).subscribe(rsl => {
+        this.productService.getDiscus(this.productDetail.productId).subscribe(resDiscus => {
         this.discus = resDiscus.content;
-        console.log('2',this.paginationLimit);
         this.messageString.reset();
       });
       });
+    } else {
+      swal(
+        'Oops Maaf Anda harus mengisi diskusi'
+      );
+    }
   } else {
     swal({
       title: 'Oops',
