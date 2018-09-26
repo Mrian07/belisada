@@ -353,15 +353,21 @@ a {
         cursor: pointer;
 
     }
+
+    &__container {
+        position: absolute;
+        left: -15rem;
+        top: 4.7rem;
+    }
 }
 
 .menu__container {
-    margin-top:5px;
+    margin-top:0.4px;
     width:30rem;
     min-height: 38rem;
-    position: absolute;
-    left: -15rem;
+    max-height: 38rem;
     display: block;
+    overflow: auto;
     cursor: pointer;
     background: #fff;
     color: #403f3f;
