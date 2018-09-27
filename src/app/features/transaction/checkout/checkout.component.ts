@@ -131,7 +131,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  cekShipping(){
+  cekShipping() {
     this.addressService.getShipping().subscribe(respon => {
         if (respon.length === 0) {
             this.showDialog = true;
