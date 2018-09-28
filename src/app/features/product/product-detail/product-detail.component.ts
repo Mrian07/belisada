@@ -56,6 +56,11 @@ export class ProductDetailComponent implements OnInit {
   list: any;
   startPage: number;
   paginationLimit: any;
+  LengthDiscus: any;
+  BoolLengDiscus: boolean;
+
+
+
   openDetail: boolean;
   idDisuci: number;
   boolDiscus: boolean;
@@ -279,26 +284,36 @@ export class ProductDetailComponent implements OnInit {
       hideTextArea() {
         this.textAreaClick = false;
       }
-  showMoreItems(discusId) {
-    console.log('iddicus: ', discusId);
-    if (this.idDicus = discusId) {
-      console.log('okz');
-    this.paginationLimit = Number(this.paginationLimit) + 3;
+  showMoreItems(e) {
+  
+    if( this.idDicus = e ) {
+      console.log('sss');
+      this.paginationLimit[this.idDicus] = Number(this.paginationLimit) + 3;
     } else {
-      console.log('bkz');
+      console.log('aaa');
     }
   }
-  showLessItems() {
-    this.paginationLimit = Number(this.paginationLimit) - 3;
+  showLessItems(e) {
+    if( this.idDicus = e ) {
+      console.log('sss');
+      this.paginationLimit[this.idDicus] = Number(this.paginationLimit) - 3;
+    } else {
+      console.log('aaa');
+    }
   }
   private getDiscus(params: Params) {
     this.productService.getDiscus(params['id']).subscribe(resDiscus => {
       this.discus = resDiscus.content;
       this.discus.forEach((item => {
         this.paginationLimit[item.discusId] = 2;
+        if(item.childs) {
+          this.BoolLengDiscus = true;
+        }
+        // this.LengthDiscus = item.childs.length;
       }));
       console.log(this.paginationLimit);
       console.log('discus', this.discus);
+      console.log('this', this.LengthDiscus);
     });
   }
 
