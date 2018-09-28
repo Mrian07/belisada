@@ -20,8 +20,6 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
-import { BantuanComponent } from './bantuan/bantuan.component';
-import { BantuanKomplainComponent } from './bantuan-komplain/bantuan-komplain.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { ComplaintProductComponent } from './complaint-product/complaint-product.component';
 
