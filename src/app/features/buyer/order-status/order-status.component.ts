@@ -160,6 +160,10 @@ export class OrderStatusComponent implements OnInit {
 
   }
 
+  complaint() {
+    this.router.navigateByUrl('/buyer/bantuan');
+  }
+
   // setUrl(event, img) {
   //   const fr = new FileReader();
   //   const f = event.target.files[0];
