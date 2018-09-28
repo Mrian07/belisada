@@ -49,8 +49,6 @@ library.add(fas, far, fab);
     ProfileInformationComponent,
     ShippingAddressComponent,
     ConfirmationComponent,
-    BantuanComponent,
-    BantuanKomplainComponent,
     ComplaintComponent,
     ComplaintProductComponent,
   ],
