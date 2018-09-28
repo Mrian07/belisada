@@ -30,6 +30,7 @@ export class CartItemCheckout {
   productId: number;
   name: string;
   priceList: number;
+  qty: number;
   quantity: number;
   imageUrl: string;
   subtotal: number;

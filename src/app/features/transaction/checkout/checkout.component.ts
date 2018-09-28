@@ -54,6 +54,7 @@ export class CheckoutComponent implements OnInit {
 
   isPayment: boolean;
   isNote: boolean;
+  isAny0Qty: Boolean = false;
 
   checkoutTrx: CheckoutTrx = new CheckoutTrx;
 
@@ -95,6 +96,7 @@ export class CheckoutComponent implements OnInit {
       response.cart.forEach((cart, index) => {
 
         cart.cartItems.forEach((item, i) => {
+          if (item.qty === 0) { this.isAny0Qty = true; }
           const option = {
             width: 150,
             height: 150,
@@ -340,6 +342,10 @@ export class CheckoutComponent implements OnInit {
     const data: CheckoutReq = new CheckoutReq();
     data.itemCartIds = this.itemCartIds;
     data.paymentMethodCode = 'BT';
+    if (this.isAny0Qty) {
+      swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
+      return;
+    }
     this.checkoutService.doCheckout(data).subscribe(response => {
       if (response.status === 1) {
         this.shoppingCartService.empty();

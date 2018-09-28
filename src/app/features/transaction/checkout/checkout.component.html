@@ -59,8 +59,13 @@
                             <span class="item-price" *ngIf="cartItem.specialPrice === 0">Rp {{ cartItem.priceList | number }}</span>
                         </td>
                         <td class="table-val">
-                            <div class="item-center">
+                            <div class="item-center" *ngIf="cartItem.qty !== 0">
                                 <span class="plus-minus" (click)="decreaseQty(cartItem)"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> <span class="item-qty">{{ cartItem.quantity }}</span> <span class="plus-minus" (click)="increaseQty(cartItem)"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span>
+                            </div>
+                            <div class="item-center" *ngIf="cartItem.qty === 0">
+                                <span class="red-label">
+                                    Stock kosong
+                                </span>
                             </div>
                             <div class="item-center">
                                 <span class="item-size">( {{ cartItem.totalWeight }} g )</span>
