@@ -60,6 +60,11 @@ export class SidebarBuyerComponent implements OnInit {
     this.router.navigateByUrl('/buyer/profile');
   }
 
+  bantuan() {
+    this.btnJual = false;
+    this.router.navigateByUrl('/buyer/bantuan');
+  }
+
   myOrder() {
     this.btnJual = false;
     this.router.navigateByUrl('/buyer/order');
