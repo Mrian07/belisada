@@ -274,13 +274,13 @@
                             </div>
 
                         </div>
-                        <!-- <button (click)="showMoreItems(item.discusId)">
+                        <button  *ngIf="paginationLimit[item.discusId] < list.length && item.childs"  (click)="showMoreItems(item.discusId)">
                             Show More
                         </button>
-                        <button *ngIf="paginationLimit > 4" (click)="showLessItems()">
+                        <!-- <button  *ngIf="paginationLimit[item.discusId] > 4"   (click)="showLessItems(item.discusId)">
                             Show Less
                         </button> -->
-                        <div class="w-product-talk__comments" *ngFor="let item333 of item.childs">
+                        <div class="w-product-talk__comments" *ngFor="let item333 of item.childs  | slice : paginationLimit[item.discusId]">
                             <ul class="w-product-talk__coment-list" >
                                 <li class="product-talk__comennts-list-item" >
                                     <div>
@@ -335,6 +335,7 @@
     </div>
 
     <div class="product-spec-conten" *ngIf="activeUlasan === true">
+        
     </div>
 </div>
         <!-- </div> -->
