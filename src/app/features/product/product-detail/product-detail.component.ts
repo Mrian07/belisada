@@ -147,7 +147,6 @@ export class ProductDetailComponent implements OnInit {
     this.boolDiscus = true;
     this.messageString = new FormControl('', Validators.required);
     this.messageBottom = new FormControl('');
-
     if (this.imgIndex === undefined) {
       this.imgIndex = 'https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg';
     }
