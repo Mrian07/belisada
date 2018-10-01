@@ -1,0 +1,41 @@
+.contain-order{
+    margin-top:70px;
+    margin-bottom:50px;
+}
+
+.btn-tab{
+    
+    &__active{
+        text-align: center;
+        border: 1px solid #f27138;
+        color: #ffffff;
+        background: #f27138;
+        padding:10px;
+        margin-right:5px;
+        cursor: pointer;
+    }
+
+    &__noActive{
+        text-align: center;
+        border: 1px solid #f27138;
+        color: #222222;
+        background: #ffffff;
+        padding:10px;
+        margin-right:5px;
+        cursor: pointer;
+    }
+    
+}
+
+.btn-tab__noActive:hover{
+    background: #f27138;
+    color:#ffffff;
+}
+
+
+.frame-order{
+    border: 1px solid #dadada;
+    padding:20px;
+    margin-top:7px;
+    margin-bottom:20px;
+}

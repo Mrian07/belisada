@@ -20,6 +20,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
+import { ComplaintComponent } from './complaint/complaint.component';
+import { ComplaintProductComponent } from './complaint-product/complaint-product.component';
 
 library.add(fas, far, fab);
 
@@ -47,6 +49,8 @@ library.add(fas, far, fab);
     ProfileInformationComponent,
     ShippingAddressComponent,
     ConfirmationComponent,
+    ComplaintComponent,
+    ComplaintProductComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

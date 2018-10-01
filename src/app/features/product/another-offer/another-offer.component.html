@@ -3,10 +3,10 @@
     <div class="frame-ao">
       <div class="frm">
         <div class="toProduct">
-            <a href="product/product-detail/{{id}}/{{name}}" class="toProductLink">Return To Product</a>
+          <a [routerLink]="['/product/product-detail/'+ id + '/' + name]" class="toProductLink">Return To Product</a>
         </div>
         <div class="ingnJual">
-          Ingin menjual juga? 
+          <a href="http://localhost:4300/add-product?mProductId={{productDetail.masterId}}" class="toProductLink" target="_blank">Ingin menjual juga?</a>
         </div>
       </div>
 

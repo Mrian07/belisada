@@ -63,7 +63,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
     this.storage = this.storageService.get();
     this.param1 = this.route.snapshot.params.id;
     this.param2 = this.route.snapshot.params.name;
-    console.log(this.route.snapshot.params);
   }
 
   ngOnInit() {
@@ -84,7 +83,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
         const token: string = this.test.token;
         // if (form.value.isRemember === 'true') {
         this.userService.setUserToLocalStorage(token);
-        this.setCartToLocalStorage();
+        this.setCartToLocalStorage(token);
           // this.userService.setRemember('true');
         // } else {
         //   this.userService.setUserToSessionStorage(token);
@@ -113,7 +112,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
       if (!this.param1) {
         this.router.navigateByUrl('/buyer/profile');
       } else {
-        // console.log('123');
       }
     }
   }
@@ -174,7 +172,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
         }
       },
       error => {
-          console.log('error', error);
       });
   }
 
@@ -194,18 +191,15 @@ export class SigninComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setCartToLocalStorage() {
-    console.log('setCartToLocalStorage');
+  setCartToLocalStorage(token) {
+    let isAlertAppeared = false;
+    const user = this.userService.getUserData(token);
     const cart = new ShoppingCart();
     const preLoginCart = new ShoppingCart();
     const storedCart = this.storage.getItem(CART_KEY);
-    // console.log('storedCart', storedCart);
     if (storedCart && JSON.parse(storedCart).items.length !== 0) {
-      // if () {
-        // console.log('isStoredCart');
         preLoginCart.updateFrom(JSON.parse(storedCart));
         preLoginCart.items.forEach((item, index) => {
-
           this.productService.get(item.productId).subscribe(product => {
             const prod = product.data;
             const data = {
@@ -214,23 +208,29 @@ export class SigninComponent implements OnInit, AfterViewInit {
               price: (prod.specialPrice > 0) ? prod.specialPrice : prod.pricelist,
               weightPerItem: prod.weight
             };
-            this.shoppingCartService.create(data).subscribe(response => {
-              console.log('shoppingCartService-create: ', response);
-              console.log(index + ' ~ ' + (preLoginCart.items.length - 1));
-              if (index === preLoginCart.items.length - 1) {
-                console.log('cb');
-                return cb();
-              } else {
-                console.log('-------');
-                return;
+            if (user.storeId !== prod.storeId) {
+              this.shoppingCartService.create(data).subscribe(response => {
+                if (index === preLoginCart.items.length - 1) {
+                  return cb();
+                } else {
+                  return;
+                }
+              });
+            } else {
+              if (isAlertAppeared === false) {
+                swal(
+                  'Perhatian!',
+                  'Anda mencoba membeli barang anda sendiri. Barang dari toko anda akan otomatis kami hapus dari keranjang.',
+                  'warning'
+                );
+                isAlertAppeared = true;
               }
-            });
+            }
           });
         });
       // }
     } else {
       this.shoppingCartService.getSingleResult().subscribe(response => {
-        console.log('response-getSingleResult: ', response);
         cart.grossTotal = response.grandTotal;
         cart.deliveryTotal = response.deliveryTotal;
         cart.itemsTotal = response.grandTotal;
@@ -241,18 +241,15 @@ export class SigninComponent implements OnInit, AfterViewInit {
           cartItem.productId = item.productId;
           cartItem.quantity = item.quantity;
           cart.items.push(cartItem);
-          // console.log('cart_loop', cart);
         });
         this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
         this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
         this.shoppingCartService.dispatch(cart);
-        // console.log('jalan dulu gak ni?');
       });
     }
 
     const that = this;
     function cb() {
-      console.log('callback called');
       that.shoppingCartService.getSingleResult().subscribe(response => {
         cart.grossTotal = response.grandTotal;
         cart.deliveryTotal = response.deliveryTotal;
@@ -264,12 +261,10 @@ export class SigninComponent implements OnInit, AfterViewInit {
           cartItem.productId = item.productId;
           cartItem.quantity = item.quantity;
           cart.items.push(cartItem);
-          // console.log('cart_loop', cart);
         });
         that.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
         that.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
         that.shoppingCartService.dispatch(cart);
-        // console.log('jalan dulu gak ni?');
       });
     }
   }
@@ -278,7 +273,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
     this.loadingService.show();
     this.authService.doGoogleLogin()
     .then(res => {
-      console.log('googleLogin-res: ' + JSON.stringify(res));
       const signinRequest: SigninRequest = new SigninRequest();
       signinRequest.email = res.additionalUserInfo.profile.email;
       signinRequest.avatar = res.additionalUserInfo.profile.picture;
@@ -290,7 +284,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
       this.ngrx.dispatch(new UserAction.TryLogin(signinRequest));
     }, err => {
       this.loadingService.hide();
-      console.log('googleLogin-err: ', err);
     });
   }
 
@@ -298,7 +291,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
     this.loadingService.show();
     this.authService.doFacebookLogin()
     .then(res => {
-      console.log('facebookLogin-res: ', res);
       const signinRequest: SigninRequest = new SigninRequest();
       signinRequest.email = res.additionalUserInfo.profile.email;
       signinRequest.avatar = res.additionalUserInfo.profile.picture.data.url;
@@ -310,7 +302,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
       this.ngrx.dispatch(new UserAction.TryLogin(signinRequest));
     }, err => {
       this.loadingService.hide();
-      console.log('facebookLogin-err: ', err);
     });
   }
 

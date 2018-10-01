@@ -7,6 +7,7 @@ import { CreateStoreComponent } from '@belisada/features/buyer/create-store/crea
 import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
 import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
+import { ComplaintComponent } from '@belisada/features/buyer/complaint/complaint.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,13 @@ const routes: Routes = [
         component: CreateStoreComponent,
         data: {
           title: 'Store'
+        }
+      },
+      {
+        path: 'bantuan',
+        component: ComplaintComponent,
+        data: {
+          title: 'Bantuan'
         }
       },
     ]
