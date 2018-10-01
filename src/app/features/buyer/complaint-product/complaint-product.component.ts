@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ComplaintService } from './../../../core/services/complaint/complaint.service';
+import { ListIssu, ListIssuReq } from '@belisada/core/models/complaint/complaint.model';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-complaint-product',
@@ -7,9 +11,70 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComplaintProductComponent implements OnInit {
 
-  constructor() { }
+  listIssu: ListIssu[];
+  listIssuSolution: ListIssu[];
+  showForm: boolean;
+  createComForm: FormGroup;
+  constructor(
+    private complaintService: ComplaintService,
+    private fb: FormBuilder,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+  ) { }
 
   ngOnInit() {
+    this.createFormControls();
+    this.dataIssu();
+    this.idParam();
+  }
+
+  idParam() {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.createComForm.patchValue(
+        {
+          orderNumber: params['id'],
+        });
+        if (params['id']) {
+          this.showForm = true;
+        } else {
+          this.showForm = false;
+        }
+
+    });
+  }
+
+  dataIssu() {
+    this.complaintService.getIssue().subscribe(respon => {
+      this.listIssu = respon;
+      this.complaintService.getIssueSolution().subscribe(respons => {
+        this.listIssuSolution = respons;
+      });
+    });
+  }
+
+  createFormControls() {
+    this.createComForm = this.fb.group({
+      orderNumber: new FormControl('', Validators.required),
+      orderRecieved: new FormControl('', Validators.required),
+      orderComplainIssue: new FormControl('', Validators.required),
+      orderComplainIssueSolution: new FormControl('', Validators.required),
+      reasonOrderComplainIssueSolution: new FormControl('', Validators.required)
+    });
+  }
+
+  onSubmit() {
+    const data: ListIssuReq = new ListIssuReq();
+    data.orderNumber = this.createComForm.controls['orderNumber'].value;
+    data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
+    data.orderComplainIssue = this.createComForm.controls['orderComplainIssue'].value;
+    data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
+    data.reasonOrderComplainIssueSolution = this.createComForm.controls['reasonOrderComplainIssueSolution'].value;
+
+    console.log('datanya:', data);
+  }
+
+  backToOrder() {
+    this.router.navigateByUrl('/buyer/order');
   }
 
 }

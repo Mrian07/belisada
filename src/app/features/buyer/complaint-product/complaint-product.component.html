@@ -1,39 +1,39 @@
-<div class="sub-contain">
+<div class="sub-contain" *ngIf="showForm==false">
   <span class="sub-b">ORDER ID</span><span class="sub-b">Nama Barang</span>
 </div>
-
-<div class="btn-upload">Unggah Foto</div>
-<div class="q-contain">
-  <div class="qText">Apakah barang yang anda pesan sudah di terima?</div>
-  <div class="qFrom"> 
-    <div><input type="radio" id="dewey" name="drone" value="dewey" /> Ya</div> 
-    <div><input type="radio" id="dewey" name="drone" value="dewey" /> Tidak</div>
+<div *ngIf="showForm==true">
+  {{orderNumber}}
+  <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+  <input type="hidden" formControlName="orderNumber">
+  <div class="btn-upload">Unggah Foto</div>
+  <div class="q-contain">
+    <div class="qText">Apakah barang yang anda pesan sudah di terima?</div>
+    <div class="qFrom"> 
+      <div><input type="radio" formControlName="orderRecieved" value="true" /> Ya</div> 
+      <div><input type="radio" formControlName="orderRecieved" value="false" /> Tidak</div>
+    </div>
+    
   </div>
-  
-</div>
+  <div class="q-contain">
+    <div class="qText">Masalah apa yang anda terima ?</div>
+    <div *ngFor="let list of listIssu"><input type="radio" formControlName="orderComplainIssue" value="{{list.statusCode}}" /> {{list.status}}</div>
+  </div>
 
-<div class="q-contain">
-  <div class="qText">Masalah apa yang anda terima ?</div>
-  <div><input type="radio" id="dewey" name="drone" value="dewey" /> Barang tidak sesuai deskripsi.</div>
-  <div><input type="radio" id="dewey" name="drone" value="dewey" /> Barang diterima dalam keadaan rusak.</div>
-  <div><input type="radio" id="dewey" name="drone" value="dewey" /> Barang tidak lengkap.</div>
-  <div><input type="radio" id="dewey" name="drone" value="dewey" /> Kurir yang dipakai tidak sesuai.</div>
-</div>
+  <div class="q-contain">
+    <div class="qText">Solusi yang anda inginkan</div>
+    <div class="qFrom2">
+      <div>
+          <div *ngFor="let listSol of listIssuSolution"><input type="radio" formControlName="orderComplainIssueSolution" value="{{listSol.statusCode}}" /> {{listSol.status}}</div>
+      </div>
+      <div>
+        <div>Tentukan alasan anda memilih salah satu solusi tersebut.</div>
+        <textarea cols="60" rows="5" formControlName="reasonOrderComplainIssueSolution"></textarea>
+      </div>
+    </div>  
+  </div>
+  <div class="btn-cont">
+      <button type="button" class="btn-back" (click)="backToOrder()">Kembali Ke Order</button> <button type="submit" class="btn-submit">Submit Komplain</button>
+  </div>
 
-<div class="q-contain">
-  <div class="qText">Solusi yang anda inginkan</div>
-  <div class="qFrom2">
-    <div>
-        <div><input type="radio" id="dewey" name="drone" value="dewey" /> Kembalikan dana.</div>
-        <div><input type="radio" id="dewey" name="drone" value="dewey" /> Tukar barang sesuai pasaran.</div>
-        <div><input type="radio" id="dewey" name="drone" value="dewey" /> Kembalikan dana dan retur barang.</div>
-    </div>
-    <div>
-      <div>Tentukan alasan anda memilih salah satu solusi tersebut.</div>
-      <textarea>apalah</textarea>
-    </div>
-  </div>  
-</div>
-<div class="btn-cont">
-  <span class="btn-back">Kembali Ke Order</span> <span class='btn-submit'>Submit Komplain</span>
+  </form>
 </div>
