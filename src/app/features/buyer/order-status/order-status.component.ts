@@ -160,7 +160,7 @@ export class OrderStatusComponent implements OnInit {
 
   }
 
-  complaint() {
+  complaint(e) {
     this.router.navigateByUrl('/buyer/bantuan');
   }
 

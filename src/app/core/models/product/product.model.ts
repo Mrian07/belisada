@@ -72,6 +72,7 @@ export class ProductDetailList {
   highlight: string;
   highlightEn: string;
   description: string;
+  masterId: any;
   descriptionEn: string;
   sku: string;
   brandId: number;
