@@ -27,7 +27,11 @@ export class OnlyLoggedInUsersGuard implements CanActivateChild {
     // }
 
     if (!this.user) {
-      this.router.navigateByUrl('/account/sign-in');
+      this.router.navigate(['/account/sign-in'], {
+        queryParams: {
+          routeback: state.url
+        }
+      });
       return false;
     } else {
       return true;
