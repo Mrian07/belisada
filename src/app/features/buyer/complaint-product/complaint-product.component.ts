@@ -15,6 +15,11 @@ export class ComplaintProductComponent implements OnInit {
   listIssuSolution: ListIssu[];
   showForm: boolean;
   createComForm: FormGroup;
+
+  updateImg: Boolean = false;
+  base64Img: any;
+  imageUrl: string;
+
   constructor(
     private complaintService: ComplaintService,
     private fb: FormBuilder,
@@ -69,12 +74,29 @@ export class ComplaintProductComponent implements OnInit {
     data.orderComplainIssue = this.createComForm.controls['orderComplainIssue'].value;
     data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
     data.reasonOrderComplainIssueSolution = this.createComForm.controls['reasonOrderComplainIssueSolution'].value;
+    this.complaintService.create(data).subscribe(respons => {
+      // this.listIssuSolution = respons;
+    });
 
-    console.log('datanya:', data);
   }
 
   backToOrder() {
     this.router.navigateByUrl('/buyer/order');
+  }
+
+  setUrl(event, img) {
+    // consol
+    const fr = new FileReader();
+    const f = event.target.files[0];
+    const that = this;
+    // this.onViewDesc = false;
+    if (!f.type.match(/image.*/)) { return alert('Not valid image file'); }
+    fr.onload = function() {
+      that.updateImg = true;
+      that.base64Img = fr.result;
+      img.src = fr.result;
+    };
+    fr.readAsDataURL(f);
   }
 
 }

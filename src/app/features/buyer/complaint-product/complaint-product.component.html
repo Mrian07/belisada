@@ -5,7 +5,15 @@
   {{orderNumber}}
   <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
   <input type="hidden" formControlName="orderNumber">
-  <div class="btn-upload">Unggah Foto</div>
+
+
+  <div class="img-url"><img src="{{ imageUrl }}" border="0" width="150" #avaImg class="img-upload"></div>
+  <div class="upload-btn-wrapper">
+    <div class="btn-upload" (click)="edit()">Unggah Foto</div>
+    <input type="file" name="imageUrl" (change)="setUrl($event, avaImg)"/>
+  </div>
+
+  <!-- <div class="btn-upload">Unggah Foto</div> -->
   <div class="q-contain">
     <div class="qText">Apakah barang yang anda pesan sudah di terima?</div>
     <div class="qFrom"> 

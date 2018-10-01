@@ -78,3 +78,27 @@
 .btn-submit:hover{
     background: #fb914b;
 }
+
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    text-align: center;
+}
+
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.img-upload{
+    margin-bottom:10px;
+}
+
+.img-url{
+    text-align: center;
+}
