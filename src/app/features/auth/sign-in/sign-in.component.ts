@@ -45,6 +45,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
   private storage: Storage;
   param1: string;
   param2: string;
+  routeback: string;
   // subscription: Subscription;
 
   constructor(
@@ -69,6 +70,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
     this.test = '';
     this.createFormControl();
     this.checkIsLogin();
+    this.route.queryParams.subscribe(params => this.routeback = params.routeback || '/buyer/profile')
   }
 
   ngAfterViewInit() {
@@ -84,7 +86,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
         // if (form.value.isRemember === 'true') {
         this.userService.setUserToLocalStorage(token);
         this.setCartToLocalStorage(token);
-          // this.userService.setRemember('true');
+        // this.userService.setRemember('true');
         // } else {
         //   this.userService.setUserToSessionStorage(token);
         //   this.userService.setRemember('false');
@@ -92,9 +94,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
         if (this.param1) {
           // this.router.navigateByUrl('/buyer/profile');
           window.location.reload();
-
         } else {
-          this.router.navigateByUrl('/buyer/profile');
+          this.router.navigateByUrl(this.routeback);
         }
         // this.router.navigateByUrl('/buyer/profile');
         // location.reload();
