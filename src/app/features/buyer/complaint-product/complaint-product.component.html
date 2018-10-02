@@ -1,8 +1,7 @@
-<div class="sub-contain" *ngIf="showForm==false">
+<div class="sub-contain" *ngIf="showForm==false && isSuccess==false">
   <span class="sub-b">ORDER ID</span><span class="sub-b">Nama Barang</span>
 </div>
 <div *ngIf="showForm==true">
-  {{orderNumber}}
   <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
   <input type="hidden" formControlName="orderNumber">
 
@@ -44,4 +43,9 @@
   </div>
 
   </form>
+</div>
+
+<div *ngIf="isSuccess==true" class="success-komplain">
+  <div>Terima kasih atas komplain yang Anda kirimkan, kami akan segera melakukan verifikasi.</div>
+  <button type="button" class="btn-back" (click)="backToOrder()">Kembali Ke Order</button>
 </div>
