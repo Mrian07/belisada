@@ -3,6 +3,7 @@ import { ComplaintService } from './../../../core/services/complaint/complaint.s
 import { ListIssu, ListIssuReq } from '@belisada/core/models/complaint/complaint.model';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-complaint-product',
@@ -19,6 +20,8 @@ export class ComplaintProductComponent implements OnInit {
   updateImg: Boolean = false;
   base64Img: any;
   imageUrl: string;
+
+  isSuccess: Boolean = false;
 
   constructor(
     private complaintService: ComplaintService,
@@ -69,14 +72,45 @@ export class ComplaintProductComponent implements OnInit {
 
   onSubmit() {
     const data: ListIssuReq = new ListIssuReq();
+    if (this.base64Img) { data.image = this.base64Img; }
     data.orderNumber = this.createComForm.controls['orderNumber'].value;
     data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
     data.orderComplainIssue = this.createComForm.controls['orderComplainIssue'].value;
     data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
     data.reasonOrderComplainIssueSolution = this.createComForm.controls['reasonOrderComplainIssueSolution'].value;
-    this.complaintService.create(data).subscribe(respons => {
-      // this.listIssuSolution = respons;
-    });
+
+    if (this.createComForm.controls['orderRecieved'].value === '') {
+      swal(
+        'Gagal',
+        'Silakan pilih masalah apa yang anda terima.',
+        'error'
+      );
+    } else if (this.createComForm.controls['orderComplainIssue'].value === '') {
+      swal(
+        'Gagal',
+        'Silakan pilih solusi yang anda inginkan.',
+        'error'
+      );
+    } else {
+      this.complaintService.create(data).subscribe(respons => {
+        if (respons.status === 1) {
+          this.isSuccess = true;
+          this.showForm = false;
+        } else if (respons.status === 3) {
+          swal(
+            'Gagal',
+            'Maaf Anda tidak di izinkan melakukan komplain lebih dari satu kali dengan ID yang sama.',
+            'error'
+          );
+        } else if (respons.status === 0) {
+          swal(
+            'Gagal',
+            'Maaf komplain gagal terkirim silakan dicoba kembali.',
+            'error'
+          );
+        }
+      });
+    }
 
   }
 
