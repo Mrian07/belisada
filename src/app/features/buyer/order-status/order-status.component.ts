@@ -161,7 +161,7 @@ export class OrderStatusComponent implements OnInit {
   }
 
   complaint(e) {
-    this.router.navigateByUrl('/buyer/bantuan');
+    this.router.navigateByUrl('/buyer/bantuan?id=' + e);
   }
 
   // setUrl(event, img) {
