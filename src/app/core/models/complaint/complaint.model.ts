@@ -5,10 +5,11 @@ export class ListIssu {
 }
 
 export class ListIssuReq {
+    image: string;
     orderComplainIssue: string;
     orderComplainIssueSolution: string;
     orderNumber: string;
-    orderRecieved: true;
+    orderRecieved: boolean;
     reasonOrderComplainIssueSolution: string;
 }
 
