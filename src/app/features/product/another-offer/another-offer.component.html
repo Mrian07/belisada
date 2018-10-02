@@ -6,7 +6,7 @@
           <a [routerLink]="['/product/product-detail/'+ id + '/' + name]" class="toProductLink">Return To Product</a>
         </div>
         <div class="ingnJual">
-          <a href="http://localhost:4300/add-product?mProductId={{productDetail.masterId}}" class="toProductLink" target="_blank">Ingin menjual juga?</a>
+          <a href="{{ environment.baseUrlSeller }}/add-product?mProductId={{productDetail.masterId}}" class="toProductLink" target="_blank">Ingin menjual juga?</a>
         </div>
       </div>
 

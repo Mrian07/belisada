@@ -9,6 +9,7 @@ import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-optio
 import swal from 'sweetalert2';
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-another-offer',
@@ -51,6 +52,8 @@ export class AnotherOfferComponent implements OnInit {
   dataConst2: any;
 
   shippingAddress: any;
+
+  environment = environment;
 
   constructor(
     private productService: ProductService,

@@ -46,17 +46,28 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ]
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "myacico-smp:build"
+            "browserTarget": "myacico-smp:build:local"
           },
           "configurations": {
             "production": {
               "browserTarget": "myacico-smp:build:production"
+            },
+            "local": {
+              "browserTarget": "myacico-smp:build:local"
             }
           }
         },
