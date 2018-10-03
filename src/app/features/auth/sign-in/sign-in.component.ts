@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
@@ -27,7 +27,7 @@ const CART_POST_KEY = 'cartpost';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss']
 })
-export class SigninComponent implements OnInit, AfterViewInit {
+export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
 
   /* Mendeklarasikan nama variable*/
   signinFormGroup: FormGroup;
@@ -43,9 +43,9 @@ export class SigninComponent implements OnInit, AfterViewInit {
   LoginStatus: Subscription;
   test: any;
   private storage: Storage;
-  param1: string;
-  param2: string;
   routeback: string;
+  
+  isLoaded: Boolean = false;
   // subscription: Subscription;
 
   constructor(
@@ -62,8 +62,6 @@ export class SigninComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute
   ) {
     this.storage = this.storageService.get();
-    this.param1 = this.route.snapshot.params.id;
-    this.param2 = this.route.snapshot.params.name;
   }
 
   ngOnInit() {
@@ -74,6 +72,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log('[CART] ngAfterViewInit');
     this.LoginStatus = this.actionsSubject.asObservable()
     .pipe(filter(action => action.type === UserAction.LOGINSUCCESS))
     .subscribe((action: UserAction.LoginSuccess) => {
@@ -84,19 +83,25 @@ export class SigninComponent implements OnInit, AfterViewInit {
         this.loadingService.hide();
         const token: string = this.test.token;
         // if (form.value.isRemember === 'true') {
+
         this.userService.setUserToLocalStorage(token);
-        this.setCartToLocalStorage(token);
+        console.log('[CART] UserAction.LoginSuccess');
+        console.log('[CART] this.isLoaded:', this.isLoaded);
+
+        this.setCartToLocalStorage(token).then(() => {
+          this.router.navigateByUrl(this.routeback);
+        });
         // this.userService.setRemember('true');
         // } else {
         //   this.userService.setUserToSessionStorage(token);
         //   this.userService.setRemember('false');
         // }
-        if (this.param1) {
-          // this.router.navigateByUrl('/buyer/profile');
-          window.location.reload();
-        } else {
-          this.router.navigateByUrl(this.routeback);
-        }
+        // if (this.param1) {
+        //   // this.router.navigateByUrl('/buyer/profile');
+        //   window.location.reload();
+        // } else {
+        //   this.router.navigateByUrl(this.routeback);
+        // }
         // this.router.navigateByUrl('/buyer/profile');
         // location.reload();
 
@@ -110,10 +115,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
   checkIsLogin() {
     if (this.authService.getToken()) {
-      if (!this.param1) {
-        this.router.navigateByUrl('/buyer/profile');
-      } else {
-      }
+      this.router.navigateByUrl('/buyer/profile');
     }
   }
 
@@ -144,17 +146,13 @@ export class SigninComponent implements OnInit, AfterViewInit {
       this.formSubmited = false;
       form.reset();
       form.patchValue({email: signinRequest.email});
-      // this.router.navigateByUrl('/');
-      if (this.param1) {
-        this.router.navigateByUrl('/product/product-detail/' + this.param1 + '/' + this.param2);
-      }
     // }
     this.LoginStatus.unsubscribe();
   }
 
   /*Fungsi ini untuk berpindah halaman sign up jika user ingin melakukan pendaftaran*/
   goToSignUp() {
-      this.router.navigateByUrl('/account/sign-up');
+    this.router.navigateByUrl('/account/sign-up');
   }
 
   /* Fungsi ini untuk melakukan pengecekan email valid*/
@@ -193,81 +191,97 @@ export class SigninComponent implements OnInit, AfterViewInit {
   }
 
   setCartToLocalStorage(token) {
-    let isAlertAppeared = false;
-    const user = this.userService.getUserData(token);
-    const cart = new ShoppingCart();
-    const preLoginCart = new ShoppingCart();
-    const storedCart = this.storage.getItem(CART_KEY);
-    if (storedCart && JSON.parse(storedCart).items.length !== 0) {
-        preLoginCart.updateFrom(JSON.parse(storedCart));
-        preLoginCart.items.forEach((item, index) => {
-          this.productService.get(item.productId).subscribe(product => {
-            const prod = product.data;
-            const data = {
-              productId: prod.productId,
-              quantity: item.quantity,
-              price: (prod.specialPrice > 0) ? prod.specialPrice : prod.pricelist,
-              weightPerItem: prod.weight
-            };
-            if (user.storeId !== prod.storeId) {
-              this.shoppingCartService.create(data).subscribe(response => {
-                if (index === preLoginCart.items.length - 1) {
-                  return cb();
-                } else {
-                  return;
+    return new Promise((resolve, reject) => {
+      console.log('[CART] setCartToLocalStorage !BEGIN');
+      let isAlertAppeared = false;
+      const user = this.userService.getUserData(token);
+      const cart = new ShoppingCart();
+      const preLoginCart = new ShoppingCart();
+      const storedCart = this.storage.getItem(CART_KEY);
+      if (storedCart && JSON.parse(storedCart).items.length !== 0) {
+          preLoginCart.updateFrom(JSON.parse(storedCart));
+          console.log('[CART] preLoginCart.items.length:', preLoginCart.items.length);
+          preLoginCart.items.forEach((item, index) => {
+            console.log('[CART] Looping preLoginCart.items | index:', index);
+            this.productService.get(item.productId).subscribe(product => {
+              const prod = product.data;
+              console.log('[CART] productService.get | prod.productId:', prod.productId);
+              const data = {
+                productId: prod.productId,
+                quantity: item.quantity,
+                price: (prod.specialPrice > 0) ? prod.specialPrice : prod.pricelist,
+                weightPerItem: prod.weight
+              };
+              if (user.storeId !== prod.storeId) {
+                this.shoppingCartService.create(data).subscribe(response => {
+                  console.log('[CART] shoppingCartService.create | index:', index);
+                  console.log('[CART] shoppingCartService.create | preLoginCart.items.length:', preLoginCart.items.length);
+                  if (index === preLoginCart.items.length - 1) {
+                    return cb();
+                  } else {
+                    return;
+                  }
+                });
+              } else {
+                if (isAlertAppeared === false) {
+                  swal(
+                    'Perhatian!',
+                    'Anda mencoba membeli barang anda sendiri. Barang dari toko anda akan otomatis kami hapus dari keranjang.',
+                    'warning'
+                  );
+                  isAlertAppeared = true;
                 }
-              });
-            } else {
-              if (isAlertAppeared === false) {
-                swal(
-                  'Perhatian!',
-                  'Anda mencoba membeli barang anda sendiri. Barang dari toko anda akan otomatis kami hapus dari keranjang.',
-                  'warning'
-                );
-                isAlertAppeared = true;
+                if (index === preLoginCart.items.length - 1) resolve();
               }
-            }
+            });
           });
-        });
-      // }
-    } else {
-      this.shoppingCartService.getSingleResult().subscribe(response => {
-        cart.grossTotal = response.grandTotal;
-        cart.deliveryTotal = response.deliveryTotal;
-        cart.itemsTotal = response.grandTotal;
+        // }
+      } else {
+        this.shoppingCartService.getSingleResult().subscribe(response => {
+          cart.grossTotal = response.grandTotal;
+          cart.deliveryTotal = response.deliveryTotal;
+          cart.itemsTotal = response.grandTotal;
 
-        response.items.forEach((item, index) => {
-          const cartItem = new CartItem();
-          cartItem.itemCartId = item.itemCartId;
-          cartItem.productId = item.productId;
-          cartItem.quantity = item.quantity;
-          cart.items.push(cartItem);
+          response.items.forEach((item, index) => {
+            const cartItem = new CartItem();
+            cartItem.itemCartId = item.itemCartId;
+            cartItem.productId = item.productId;
+            cartItem.quantity = item.quantity;
+            cart.items.push(cartItem);
+          });
+          this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
+          this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
+          this.shoppingCartService.dispatch(cart);
+          resolve();
         });
-        this.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
-        this.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
-        this.shoppingCartService.dispatch(cart);
-      });
-    }
+      }
 
-    const that = this;
-    function cb() {
-      that.shoppingCartService.getSingleResult().subscribe(response => {
-        cart.grossTotal = response.grandTotal;
-        cart.deliveryTotal = response.deliveryTotal;
-        cart.itemsTotal = response.grandTotal;
+      const that = this;
+      function cb() {
+        console.log('[CART] cb !BEGIN');
+        that.shoppingCartService.getSingleResult().subscribe(response => {
+          console.log('[CART] shoppingCartService.getSingleResult | response:', response);
+          cart.grossTotal = response.grandTotal;
+          cart.deliveryTotal = response.deliveryTotal;
+          cart.itemsTotal = response.grandTotal;
 
-        response.items.forEach((item, index) => {
-          const cartItem = new CartItem();
-          cartItem.itemCartId = item.itemCartId;
-          cartItem.productId = item.productId;
-          cartItem.quantity = item.quantity;
-          cart.items.push(cartItem);
+          console.log('[CART] shoppingCartService.getSingleResult | response.items:', response.items);
+          response.items.forEach((item, index) => {
+            console.log('[CART] response.items | index:', index);
+            const cartItem = new CartItem();
+            cartItem.itemCartId = item.itemCartId;
+            cartItem.productId = item.productId;
+            cartItem.quantity = item.quantity;
+            cart.items.push(cartItem);
+          });
+          that.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
+          that.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
+          that.shoppingCartService.dispatch(cart);
+          resolve();
         });
-        that.storage.setItem(CART_KEY, JSON.stringify(new ShoppingCart()));
-        that.storage.setItem(CART_POST_KEY, JSON.stringify(cart));
-        that.shoppingCartService.dispatch(cart);
-      });
-    }
+      }
+    });
+    
   }
 
   googleLogin() {
@@ -304,6 +318,11 @@ export class SigninComponent implements OnInit, AfterViewInit {
     }, err => {
       this.loadingService.hide();
     });
+  }
+
+  ngOnDestroy(): void {
+    console.log('[CART] ngOnDestroy');
+    this.LoginStatus.unsubscribe();
   }
 
 }
