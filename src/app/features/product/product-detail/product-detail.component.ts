@@ -82,6 +82,7 @@ export class ProductDetailComponent implements OnInit {
   idDicus: any;
   messageString: FormControl;
   messageBottom: FormControl;
+  imageBrandNull: any;
   oktest: CreateDiscus = new CreateDiscus();
 
   snapshot: RouterStateSnapshot;
@@ -116,6 +117,7 @@ export class ProductDetailComponent implements OnInit {
     this.productImageUrlNew = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
     this.productImageItemLooping = environment.thumborUrl + 'unsafe/fit-in/80x80/center/filters:fill(fff)/';
     this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/45x45/center/filters:fill(fff)/';
+    // this.imageBrandNull = `https://image.belisada.id/unsafe/fit-in/180x180/center/filters:fill(fff)/https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg`;
     this.shippingAddressList = [];
     this.shippingRates = '';
     this.shippingAddress = '';
