@@ -235,7 +235,7 @@ export class ShoppingCartService {
   }
 
   create(data: AddToCartRequest): Observable<AddToCartResponse> {
-    console.log('data: ', data);
+    console.log('[CART] create-data-res: ', data);
     return this.http.post(this.configuration.apiURL + '/buyer/cart/create', data)
       .pipe(
         map(response => response as AddToCartResponse)

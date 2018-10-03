@@ -77,6 +77,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('[CART] CHECKOUT PAGE');
     this.isNote = false;
     this.isPayment = false;
     this.getCartCheckout();

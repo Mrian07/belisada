@@ -18,13 +18,6 @@ const routes: Routes = [
         }
       },
       {
-        path: 'sign-in/:id/:name',
-        component: SigninComponent,
-        data: {
-          title: 'Sign In'
-        }
-      },
-      {
         path: 'sign-up',
         component: SignUpComponent,
         data: {

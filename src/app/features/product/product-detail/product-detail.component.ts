@@ -2,7 +2,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Content } from './../../../core/models/product/product.model';
 import { Component, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 import { isPlatformServer } from '@angular/common';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import { Title, Meta, TransferState, makeStateKey } from '@angular/platform-browser';
 import { ProductDetailList, MoreInformation, CreateDiscus } from '@belisada/core/models/product/product.model';
 import { ProductService } from '@belisada/core/services/product/product.service';
@@ -83,6 +83,9 @@ export class ProductDetailComponent implements OnInit {
   messageString: FormControl;
   messageBottom: FormControl;
   oktest: CreateDiscus = new CreateDiscus();
+
+  snapshot: RouterStateSnapshot;
+
   private isServer: boolean;
   public result;
   @HostListener('window:scroll', ['$event'])
@@ -150,6 +153,8 @@ export class ProductDetailComponent implements OnInit {
     if (this.imgIndex === undefined) {
       this.imgIndex = 'https://cdn.myacico.co.id/belisada_v2/No-image-found.jpg';
     }
+
+    this.snapshot = router.routerState.snapshot;
   }
 
   ngOnInit() {
@@ -384,7 +389,15 @@ export class ProductDetailComponent implements OnInit {
       cancelButtonColor: '#d33'
     }).then((result) => {
       if (result.value) {
-        this.router.navigate(['/account/sign-in/' + this.productDetail.productId + '/' + this.productDetail.name]);
+        console.log('result.value: ', result.value);
+        console.log('this.snapshot.url', this.snapshot.url);
+        this.router.navigate(['/account/sign-in'],
+          {
+            queryParams: {
+              routeback: this.snapshot.url
+            }
+          }
+        );
       }
     });
   }
@@ -436,7 +449,15 @@ export class ProductDetailComponent implements OnInit {
         cancelButtonColor: '#d33'
       }).then((result) => {
         if (result.value) {
-          console.log('asd');
+          console.log('result.value: ', result.value);
+          console.log('this.snapshot.url', this.snapshot.url);
+          this.router.navigate(['/account/sign-in'],
+            {
+              queryParams: {
+                routeback: this.snapshot.url
+              }
+            }
+          );
         }
       });
     }
