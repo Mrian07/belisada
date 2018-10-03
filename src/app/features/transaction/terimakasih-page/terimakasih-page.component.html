@@ -1,40 +1,81 @@
 <div class="containPage has-header">
-	<!-- <app-terimakasih-page inputDate="July 11, 2018 12:00:00"></app-terimakasih-page> -->
-
-	<img class="img--center--thx" src="/assets/img/logo.png">
-	<p class="text--center cusstome--font">Anda memiliki waktu 2x24 jam</p>
-	<p class="text--center">untuk melakukan pembayaran</p>
-	<!-- <p class="text--center"></p> -->
-	<p class="text--center custome--timer"> <countdown-timer [end]="_trialEndsAt"></countdown-timer> </p> 
-	<img class="img--center--dino" src="/assets/img/Asset_3400.png">
-
-	<div class='list-metode'>
-		<div class="row">
-			<div class="col" *ngFor="let item of listPayment">
-				<div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
-				{{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
-			</div>
-			<!-- <div class="col-3">
-				<div class="img-pay"><img src="assets/img/bank_mandiri.png"class="img-icon"></div>
-				675765765775<br>On<br>PT Belisada Global Indonesia
-			</div>
-			<div class="col-3">
-				<div class="img-pay"><img src="assets/img/bank_bni.png" class="img-icon"></div>
-				675765765775<br>On<br>PT Belisada Global Indonesia
-			</div>
-			<div class="col-3">
-				675765765775<br>On<br>PT Belisada Global Indonesia
-			</div> -->
+	<div class="colom-grid">
+		<div class="b-image">
+			<img class="img-center-dino" src="/assets/img/Asset_3400.png">
 		</div>
-	
-	</div> 
-	<div class="row">
-		<div class="col-12">
-					<button class="btn btn--orange w_backtohome" (click)="goHome()">Back To Home</button>
-			
+		<div>
+			<div class="bc">
+			<!-- <app-terimakasih-page inputDate="July 11, 2018 12:00:00"></app-terimakasih-page> -->
+		
+				<img class="img--center--thx" src="/assets/img/logo.png">
+				<div class="text-info">Segera selesaikan pembayaran Anda sebelum stok habis !</div>
+				<div class="b-countdown">
+					<p class="text--center">Anda memiliki waktu 1x24 jam sampai tanggal {{successTransactionRes.data.expiredTimeIndo}}, untuk melakukan pembayaran</p>
+					<p class="text--center custome--timer"> <countdown-timer [end]="_trialEndsAt"></countdown-timer> </p> 
+				</div>
+				<!-- <p class="text--center cusstome--font">Anda memiliki waktu 1x24 jam sampai tanggal 23 September 2018, untuk melakukan pembayaran</p> -->
+				<!-- <p class="text--center"></p> -->
+				<div class="text-info">Metode Pembayaran: Bank Transfer</div>
+				
+				<div class="pay" *ngFor="let item of listPayment">
+					<img src="{{ item.imageUrl }}" class="img-icon"><br>
+					<div class="subPay"><b>{{ item.accountNumber }}</b> a/n <b>{{ item.accountName }}</b></div>
+				</div>
+
+				<div class="linePay">
+					<div class="payJml">Jumlah yang harus dibayar:</div>
+					<div class="payTot">Rp. 80.900</div>
+				</div>
+				<div class="bPanduan">Panduan Pembayaran</div>
+				<div class="titlePanduan">Via ATM BCA</div>
+				<div class="conPanduan">
+					Masukan Kartu ATM BCA & PIN<br>
+					Pilih menu "Transaksi Lainnya"<br>
+					Pilih "Transfer"<br>
+					Masukan Nomor Rekening diatas A/N PT. BELISADA GLOBAL INDONESIA<br>
+					Masukan Nominal yang harus dibayarkan
+				</div>
+				<div class="titlePanduan2">Via M-Banking BCA</div>
+				<div class="titlePanduan2">Via Internet Banking BCA</div>
+				<!-- <div class='list-metode'>
+					<div class="row">
+						<div class="col" *ngFor="let item of listPayment">
+							<div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+							{{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
+						</div>
+
+
+						<div class="col-3">
+							<div class="img-pay"><img src="assets/img/bank_mandiri.png"class="img-icon"></div>
+							675765765775<br>On<br>PT Belisada Global Indonesia
+						</div>
+						<div class="col-3">
+							<div class="img-pay"><img src="assets/img/bank_bni.png" class="img-icon"></div>
+							675765765775<br>On<br>PT Belisada Global Indonesia
+						</div>
+						<div class="col-3">
+							675765765775<br>On<br>PT Belisada Global Indonesia
+						</div>
+
+
+					</div>
+				
+				</div>  -->
+				<!-- <div class="row">
+					<div class="col-12">
+								<button class="btn btn--orange w_backtohome" (click)="goHome()">Back To Home</button>
+						
+					</div>
+				</div> -->
+
+				<div class="btnStatus">Lihat Status Transaksi</div>
+				<div class="textFoot">Pembelian Anda Menunggu Pembayaran, Silakan Lakukan Pembayaran Melalu Metode Bank Transfer Dengan Nomor Rekening Diatas</div>
+			</div>
 		</div>
-	</div>
-	
-	
+		<div class="b-image"> 
+			<img class="img-center-kotak" src="/assets/img/atm.png">
+		</div>
+	</div>		
 </div>
-
+	
+	

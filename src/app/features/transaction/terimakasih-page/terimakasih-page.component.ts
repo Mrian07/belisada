@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CheckoutService } from '@belisada/core/services/checkout/checkout.service';
-import { SuccessTransactionRes } from '@belisada/core/models/checkout/checkout-transaction';
+import { SuccessTransactionRes, SuccessTransactionData } from '@belisada/core/models/checkout/checkout-transaction';
 import { PaymentService } from '@belisada/core/services/payment/payment.service';
 import { PaymentList } from '@belisada/core/models/payment/payment.model';
 @Component({
@@ -12,15 +12,17 @@ import { PaymentList } from '@belisada/core/models/payment/payment.model';
 export class TerimakasihPageComponent implements OnInit {
   public _trialEndsAt;
 
-  successTransactionRes: SuccessTransactionRes;
+  successTransactionRes: SuccessTransactionRes = new SuccessTransactionRes();
   listPayment: PaymentList[];
-
+  expiredTimeIndo: any;
   constructor(
     private router: Router,
     private checkoutService: CheckoutService,
     private activatedRoute: ActivatedRoute,
     private paymentService: PaymentService
-  ) {}
+  ) {
+    this.successTransactionRes.data = new SuccessTransactionData();
+  }
 
   ngOnInit() {
 
@@ -28,6 +30,7 @@ export class TerimakasihPageComponent implements OnInit {
       this.checkoutService.getSuccessTransaction(params['id']).subscribe(response => {
         console.log('response: ', response);
         this.successTransactionRes = response;
+        // this.expiredTimeIndo = response.data[0].expiredTimeIndo;
         const arrD = response.data.expiredTime.split(' ')[0].split('/');
         const newDate = arrD[2] + '-' + arrD[1] + '-' + arrD[0];
         this._trialEndsAt = newDate + ' ' + response.data.expiredTime.split(' ')[1];

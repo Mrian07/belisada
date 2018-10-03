@@ -1,3 +1,10 @@
+.text-info{
+    color: #676767;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .img--center--thx {
     width: 350px;
     display: block;
@@ -10,8 +17,14 @@
     text-align: center;
     font-weight: lighter
 }
-.cusstome--font {
-    padding-top: 30px;
+
+.b-countdown{
+    border:1px solid #f8992e;
+    width:400px;
+    margin:0px auto;
+    margin-top: 20px;
+    border-radius:5px;
+    margin-bottom:20px;
 }
 
 .custome--timer {
@@ -21,10 +34,30 @@
     letter-spacing: 10px;
 }
 
-.img--center--dino {
+.b-image{
+    height:100%;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 8px;
+}
+
+.img-center-dino {
+    display: block;
+    // margin-left: auto;
+    // margin-right: auto;
+    bottom:300px;
+    position: absolute;
+    width: 300px;
+    margin-left: 8%;
+}
+
+.img-center-kotak {
+    display: block;
+    // margin-left: auto;
+    // margin-right: auto;
+    bottom:300px;
+    position: absolute;
+    width: 300px;
+    margin-right: 8%;
 }
 
 .border--custome {
@@ -61,4 +94,114 @@
 }
 .img-pay {
     margin-bottom:10px;
+}
+
+.colom-grid{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    margin-top:20px;
+    margin-bottom:30px;
+}
+
+
+.bc{
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    padding: 6px;
+}
+
+.pay{
+    text-align: center;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.subPay{
+    border: 1px solid #f8992e;
+    border-radius:5px;
+    width:400px;
+    margin:0px auto;
+    font-size: 13px;
+}
+
+.linePay{
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    padding:10px;
+    width:400px;
+    margin:0px auto;
+}
+
+.payJml{
+    font-size: 20px;
+}
+
+.payTot{
+    font-size:25px;
+    color: #f52111;
+    font-weight: bold;
+}
+
+.textFoot{
+    font-size: 10px;
+    // color:#dddddd;
+    text-align: center;
+    width:400px;
+    margin:0px auto;
+}
+
+.bPanduan{
+    width:400px;
+    margin:0px auto;
+    text-align: left;
+}
+
+.btnStatus{
+    color:#ffffff;
+    background: #f57b2a;
+    border-radius: 5px;
+    width: 400px;
+    margin:0px auto;
+    text-align: center;
+    padding:10px;
+    margin-top:20px;
+}
+
+.titlePanduan2{
+    background: #ffffff;
+    border: 1px solid #f57b2a;
+    padding: 5px;
+    padding-left:10px;
+    border-radius:7px;
+    width:400px;
+    margin:0px auto;
+    margin-top:10px;
+    font-weight: bold;
+}
+
+.titlePanduan{
+    background: #ffffff;
+    border: 1px solid #f57b2a;
+    padding: 5px;
+    padding-left:10px;
+    border-radius:7px 7px 0px 0px;
+    width:400px;
+    margin:0px auto;
+    margin-top:10px;
+    font-weight: bold;
+    //  cursor: pointer;
+}
+
+// .titlePanduan:hover{
+//     background: #f5bc96;
+// }
+
+
+.conPanduan{
+    border: 1px solid #f57b2a;
+    border-top:0px;
+    width:400px;
+    margin:0px auto;
+    padding:10px;
+    border-radius:0px 0px 7px 7px;
 }

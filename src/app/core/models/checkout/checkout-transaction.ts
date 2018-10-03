@@ -47,19 +47,26 @@ export class CheckoutShippingAddress {
 
 export class SuccessTransactionRes extends BaseResponseModel {
   data: SuccessTransactionData;
+  message: string;
+  status: number;
 }
 
 export class SuccessTransactionData {
-  transactionId: number;
+  buyerEmail: string;
+  buyerName: string;
+  createdTime: string;
+  expiredConfirmationPaymentBuyerDate: string;
+  expiredConfirmationPaymentBuyerTime: number;
+  expiredTimeIndo: string;
+  expiredTime: string;
+  grandTotal: number;
+  imageUrl: string;
+  invoiceNumber: string;
+  paymentMethod: string;
+  paymentMethodCode: string;
   paymentNumber: string;
   status: string;
   statusCode: string;
-  paymentMethodCode: string;
-  paymentMethod: string;
-  expiredTime: string;
-  createdTime: string;
-  imageUrl: string;
-  transaction: any[];
-  buyerName: string;
-  buyerEmail: string;
+
+
 }
