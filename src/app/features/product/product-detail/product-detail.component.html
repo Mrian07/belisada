@@ -66,11 +66,11 @@
                 <div class="product-info" *ngIf="moreInformation.isoffday === false && productDetail.qty !== 0;else emptyStock">
                     <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span>
                 </div>
-                <ng-template #emptyStock>
+                <!-- <ng-template #emptyStock>
                         <div class="product-info">
                             <span class="empty-stock">Stok Kosong</span>
                         </div>    
-                </ng-template>
+                </ng-template> -->
                 <!-- <div class="product-info">
                     <span class="strong-text">Berat  </span>
                     <span>  {{ productDetail.weight }}gr </span>
