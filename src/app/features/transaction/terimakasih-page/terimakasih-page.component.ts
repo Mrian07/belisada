@@ -48,4 +48,8 @@ export class TerimakasihPageComponent implements OnInit {
   goHome() {
     this.router.navigateByUrl('/');
   }
+
+  goToOrder() {
+    this.router.navigateByUrl('/buyer/order');
+  }
 }
