@@ -80,7 +80,12 @@
                 {{item.storeName}}
               </div>
               <div class="text-c">
-                <div class="btn-add" (click)="addToCart(item.productId, item.storeId, i)">Add To Cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></div>
+                <div class="btn-add" (click)="addToCart(item.productId, item.storeId, i)" *ngIf="item.qty !== 0 || item.isoffdays == false;else isoffdays">Add To Cart<fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></div>
+
+                <ng-template #isoffdays>
+                  <div class="btn-add-off">Add To Cart <span class="btn-add-cart"><fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></span></div>
+                </ng-template>
+
               </div>
             </div>
           

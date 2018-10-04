@@ -167,7 +167,7 @@ export class AnotherOfferComponent implements OnInit {
         const queryParams3 = this.dataConst2;
         const queryParams = this.dataConst;
         this.productService.getOffers(queryParams).subscribe(respon => {
-
+          console.log('apa ini', respon);
           this.filter = respon;
           this.lastPage = this.filter.totalPages;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
