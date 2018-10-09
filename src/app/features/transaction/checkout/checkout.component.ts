@@ -7,7 +7,7 @@ import { StoreService } from '@belisada/core/services';
 import { PaymentService } from './../../../core/services/payment/payment.service';
 import { Payment, PaymentList } from '@belisada/core/models/payment/payment.model';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
-import { CheckoutTrx, UpdateShippingReq } from '@belisada/core/models/checkout/checkout-cart';
+import { CheckoutTrx, UpdateShippingReq, UpdateAsuransiReq } from '@belisada/core/models/checkout/checkout-cart';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { CheckoutService } from '@belisada/core/services/checkout/checkout.service';
 import { CheckoutReq, CheckoutShippingAddress } from '@belisada/core/models/checkout/checkout-transaction';
@@ -30,6 +30,7 @@ export class CheckoutComponent implements OnInit {
   rates = [];
   shippingAddressDatas = [];
   shippingRates: string[];
+  isInsurance: any[];
   itemCartIds: number[];
   shippingAddresses: any[];
 
@@ -72,6 +73,7 @@ export class CheckoutComponent implements OnInit {
   ) {
     this.itemCartIds = [];
     this.shippingRates = [];
+    this.isInsurance = [];
     this.shippingAddresses = [];
     this.checkoutShippingAddress = [];
   }
@@ -95,6 +97,7 @@ export class CheckoutComponent implements OnInit {
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
       response.cart.forEach((cart, index) => {
+        this.isInsurance[index] = cart.useAsuransi;
 
         cart.cartItems.forEach((item, i) => {
           if (item.qty === 0) { this.isAny0Qty = true; }
@@ -448,5 +451,15 @@ export class CheckoutComponent implements OnInit {
   showPilihAlamat() {
     this.showDialog = false;
     this.showDialogPilihAlamat = true;
+  }
+
+  updateInsurance(itemCartIds, isInsurance) {
+    const updateAsuransiReq: UpdateAsuransiReq = new UpdateAsuransiReq();
+    updateAsuransiReq.itemCartIds = itemCartIds;
+    updateAsuransiReq.useAsuransi = isInsurance;
+    this.checkoutService.updateAsuransi(updateAsuransiReq).subscribe(response => {
+      console.log('response: ', response);
+      this.getCartCheckout();
+    });
   }
 }

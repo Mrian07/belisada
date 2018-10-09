@@ -68,3 +68,8 @@ export class UpdateShippingReq {
 export class UpdateShippingRes extends BaseResponseModel {
 
 }
+
+export class UpdateAsuransiReq {
+  itemCartIds: number[];
+  useAsuransi: Boolean;
+}
