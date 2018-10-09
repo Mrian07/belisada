@@ -76,7 +76,7 @@
                 <!-- <div class="product-info">
                     <span class="strong-text">Variant:</span> <span class="v1">50 ml</span> <span class="v2">100 ml</span> <span class="v2">200 ml</span>
                 </div> -->
-                <div class="product-info" *ngIf="moreInformation.isoffday === false && productDetail.qty !== 0;else emptyStock">
+                <div class="product-info" *ngIf="moreInformation.isoffday === false && productDetail.qty !== 0">
                     <span class="strong-text">Qty:</span> <span class="plus-minus" (click)="decreaseQty()"> <fa-icon [icon]="['fas', 'minus']"></fa-icon> </span> <span class="plus-minus-number"> {{ qty }} </span> <span class="plus-minus" (click)="increaseQty()"> <fa-icon [icon]="['fas', 'plus']"></fa-icon> </span>
                 </div>
                 <!-- <ng-template #emptyStock>

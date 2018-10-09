@@ -20,7 +20,7 @@
                         <td colspan="5">
                             <div class="row item-order">
                                 <div class="col-6">
-                                    <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>                      
+                                    <span class="nm-store">Nama Toko: <span class="link-store">{{ cartCheckout.storeName }}</span></span>
                                 </div>
                                 <div class="col-6 item-order-right">
                                     <select [(ngModel)]="shippingAddresses[in]" (change)="addressChange(cartCheckout.itemCartIds, cartCheckout.originId, cartCheckout.totalWeight, cartCheckout.destinations, in)"
@@ -43,7 +43,8 @@
                                             [selected]='(cartCheckout.courierCode+"~"+cartCheckout.courierService) === (rate.courierCode+"~"+rate.courierService)'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                                     </select> -->
 
-                                    <span class="item-price" *ngIf="cartCheckout.courierPrice !== 0">Rp {{ cartCheckout.courierPrice | number }}</span>
+                                    <span class="item-price" *ngIf="cartCheckout.courierPrice !== 0">Rp {{ cartCheckout.courierPrice | number }} </span>
+                                    <span>Asuransi: <input type="checkbox" [(ngModel)]="isInsurance[in]" (change)="updateInsurance(cartCheckout.itemCartIds, isInsurance[in])"></span>
                                 </div>
                             </div>
                         </td>

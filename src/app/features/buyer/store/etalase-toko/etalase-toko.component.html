@@ -75,7 +75,7 @@
         </div>
     </div>
     <div class="row product-spec-title">
-        <div [ngClass]="activeSpesifikasi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'">
+        <div [ngClass]="activeProduct == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'">
             Produk Toko Ini
         </div>
         <div [ngClass]="activeDiskripsi == true ? 'col-3 tab-hover tab-active': 'col-3 tab-hover'">
@@ -85,8 +85,64 @@
             Diskusi Produk
         </div>
     </div>
-    <div class="product-spec-conten" *ngIf="activeSpesifikasi === true">
-        <div class="row">
+    <div class="product-spec-conten" *ngIf="activeProduct === true">
+        
+            <div class="row small-gutters">
+                <div class="col-xl-8r col-md-3 col-xs-6 u-margin-bottom-1" *ngFor="let item of list.content">
+                    <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
+                        <div class="product__grid">
+                            <div class="ribbon ribbon--orange ribbon--small" *ngIf="item.discount > 0">
+                                {{ item.discount }}%
+                            </div>
+                            <div class="store">
+                                <div class="store__picture">
+                                    <a [routerLink]="['/' + item.storeUrl]">
+                                        <img [src]="productStoreUrl + item.storeImageUrl" alt="">
+                                    </a>
+                                </div>
+                                <div class="store__info">
+                                    <h2 class="store__info--name"><a [routerLink]="['/' + item.storeUrl]" title="{{ item.storeName }}">{{ item.storeName }}</a></h2>
+                                    <span class="store__info--location">{{ item.locationName }}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            
+                            <div class="product__image">
+                                <img [src]="productImageUrl + item.imageUrl" alt="">
+                            </div>
+
+                            <div class="product__info">
+                                <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
+                                <span class="product__info--price">
+                                    {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                </span>
+                                <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="paging" *ngIf="list.totalElements != 0">
+                    <ul>
+                        <li>
+                            <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+                        </li>
+                        <li>
+                            <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+                        </li>
+                        <li *ngFor="let p of pages">
+                            <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+                        </li>
+                        <li>
+                            <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+                        </li>
+                        <li>
+                            <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+                        </li>
+                    </ul>
+                </div>
+        <!-- <div class="row">
             <div class="col-12">
                 <div class="containerz">
                     <div class="itemz" *ngFor="let item of list.content">
@@ -104,7 +160,6 @@
                                 <img (click)="goToDetail(item.productId,item.name)" class="product--image--store" [src]="productImageUrl+item.imageUrl">
                             </div>
                             <div class="col-12 image--center">
-                                <!-- <span class="text__center__pricelist">Rp. {{ item.pricelist | number | slice:0:9 }}</span> -->
                                 <span class="text__center__pricelist" *ngIf="item.specialPrice > 0">{{ item.specialPrice | currency:'Rp ' }}</span>
                                 <span class="text__center__pricelist" *ngIf="item.specialPrice === 0">{{ item.pricelist | currency:'Rp ' }}</span>
                                 <span class="text__center__name">{{ item.name | slice:0:21 }}</span>
@@ -113,6 +168,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
