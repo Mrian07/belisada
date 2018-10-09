@@ -14,6 +14,6 @@ export const environment = {
     messagingSenderId: '1065104193441'
   },
   googleKey : {
-    geoCodeApi: 'AIzaSyDCFC1cjYOcU1BbQQsSd_ex45HqhHF-rGM'
+    geoCodeApi: 'AIzaSyCFkbqNnK4gXRI7N-wWkty0Qh8Puy83Lck'
   }
 };

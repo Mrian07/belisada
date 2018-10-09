@@ -585,8 +585,11 @@ export class ProductDetailComponent implements OnInit {
             if(n) {
               this.zipCode = d.long_name;
               console.log(this.zipCode);
-              this.http.get('https://api0.belisada.id/belisada/rates/v2?productId=' + this.productDetail.productId + '&postal=' + this.zipCode).
-              subscribe((resx) => {
+              const array = {
+                productId: this.productDetail.productId,
+                postal: this.zipCode
+              };
+              this.shoppingCartService.getShippingRates(array).subscribe(resx => {
                 this.responseFromAPIwithLatLong = resx;
               });
             } else {
