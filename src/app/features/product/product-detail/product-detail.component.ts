@@ -20,7 +20,7 @@ import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options'
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 import { Configuration } from '@belisada/core/config';
 import { environment } from '@env/environment';
-
+import { HttpClient } from '@angular/common/http';
 const RESULT_KEY = makeStateKey<string>('result');
 
 @Component({
@@ -87,6 +87,20 @@ export class ProductDetailComponent implements OnInit {
 
   snapshot: RouterStateSnapshot;
 
+
+  // variable yang dibutuhkan untuk mendapatkan current post //
+  isTracking = false;
+
+  currentLat: any;
+  currentLong: any;
+  ressPonseFromGoogle;
+  responseFromAPIwithLatLong: any = [];
+  address: any;
+  zipCode: any;
+  postalCode: Boolean = false;
+  statusFromGoogle: any;
+  // akhir dari current post //
+
   private isServer: boolean;
   public result;
   @HostListener('window:scroll', ['$event'])
@@ -109,6 +123,7 @@ export class ProductDetailComponent implements OnInit {
     private titles: Title,
     private meta: Meta,
     private tstate: TransferState,
+    private http: HttpClient,
     @Inject(PLATFORM_ID) platformId
 
   ) {
@@ -160,6 +175,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.trackMe();
     const token = this.authService.getToken();
     if (token) {
       this.isLogin = true;
@@ -526,5 +542,61 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/product/another-offer/' + id + '/' + r]);
     window.scrollTo(0, 0);
   }
+
+
+  // function untuk mendapatkan current posisition //
+  trackMe() {
+    console.log('123123')
+    if (navigator.geolocation) {
+      this.isTracking = true;
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.showTrackingPosition(position);
+      });
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
+
+  showTrackingPosition(position) {
+    console.log(`tracking postion:  ${position.coords.latitude} - ${position.coords.longitude}`);
+    this.currentLat = position.coords.latitude;
+    this.currentLong = position.coords.longitude;
+    const latLong = `${position.coords.latitude},${position.coords.longitude}`;
+    console.log(latLong);
+    const b = {
+      key: environment.googleKey.geoCodeApi,
+      latlng: latLong,
+    };
+    console.log('latlong',b);
+    this.productService.getMap(b).subscribe(resss => {
+      console.log('ress', resss);
+      this.ressPonseFromGoogle = resss;
+      this.statusFromGoogle = this.ressPonseFromGoogle.status;
+      console.log(this.ressPonseFromGoogle.status);
+      console.log(resss);
+      for (const b of this.ressPonseFromGoogle.results) {
+        const m = b.types.includes('street_address');
+        if(m) {
+          this.address = b.formatted_address;
+          console.log(b.formatted_address)
+        }
+          for(const d of b.address_components) {
+            const n = d.types.includes('postal_code');
+            if(n) {
+              this.zipCode = d.long_name;
+              console.log(this.zipCode);
+              this.http.get('https://api0.belisada.id/belisada/rates/v2?productId=' + this.productDetail.productId + '&postal=' + this.zipCode).
+              subscribe((resx) => {
+                this.responseFromAPIwithLatLong = resx;
+              });
+            } else {
+              break;
+            }
+          }
+        }
+    });
+  }
+
+  // akhir dari function ///
 
 }

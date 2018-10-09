@@ -30,7 +30,7 @@ export class Interceptor implements HttpInterceptor {
 
       request = request.clone({
         setHeaders: {
-          token: `${auth.getToken()}`
+          token: `${auth.getToken()}`,
          },
       });
 

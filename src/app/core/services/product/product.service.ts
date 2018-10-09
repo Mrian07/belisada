@@ -45,6 +45,15 @@ export class ProductService {
     );
   }
 
+  getMap(queryParams) {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+
+    return this.http.get('https://maps.googleapis.com/maps/api/geocode/json?',   {params: params});
+  }
+
   detailProduct(id: Object): Observable<ProductDetail> {
     return this.http.get(this.configuration.apiUrlMongo + '/product/detail/' + id)
       .pipe(

@@ -12,5 +12,8 @@ export const environment = {
     projectId: 'belisada-id',
     storageBucket: 'belisada-id.appspot.com',
     messagingSenderId: '1065104193441'
+  },
+  googleKey : {
+    geoCodeApi: 'AIzaSyDCFC1cjYOcU1BbQQsSd_ex45HqhHF-rGM'
   }
 };

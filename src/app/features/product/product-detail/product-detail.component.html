@@ -51,6 +51,19 @@
                     <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
                     <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
                 </div>
+                <div class="product-info" *ngIf="!isLogin && statusFromGoogle === 'OK'">
+                    Anda berada di : {{ address }} <br>
+                    <span class="strong-text">Estimasi Biaya pengiriman
+                            <select
+                        class="u-margin-right-1">
+                        <option disabled value="">Pilih Pengiriman</option>
+                        <option *ngFor="let rate of responseFromAPIwithLatLong" [ngValue]='rate'>{{ rate.name }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                    </select>
+                 </span>
+                    <span class="btn-flag"><fa-icon [icon]="['fas', 'exclamation']"></fa-icon></span>
+                    <!-- <span class="metode-price">Rp 15.000 Ke Jakarta</span>
+                    <span class="metode-price">Rp 15.000 Ke Jakarta</span> -->
+                </div>
                 <div class="product-info">
                     <span class="strong-text">Berat  </span>
                     <span>  {{ productDetail.weight }}gr </span>

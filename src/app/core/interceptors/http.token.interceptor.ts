@@ -27,12 +27,13 @@ export class HttpTokenInterceptor implements HttpInterceptor {
     const sendtoken = {
       token : token
     };
-
+    if (token) {
       request = request.clone({
         setHeaders: {
           token: `${auth.getToken()}`
         },
       });
+    }
 
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
