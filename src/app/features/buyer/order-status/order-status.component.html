@@ -33,8 +33,14 @@
               <!-- <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span> -->
             </div>
         </div>
-        <div class="col-2" *ngIf="item.countdown && item.status !== 'pembayaran berhasil'">
-          Batas Waktu Respon: {{item.countdown.days}}d - {{item.countdown.hours}}h - {{item.countdown.minutes}}m - {{item.countdown.seconds}}s
+        <div class="col-2" *ngIf="item.countdown">
+          Batas Waktu Respon:
+          <ng-container *ngIf="item.countdown.status === 1; else expired">
+            {{ item.countdown.days }}d - {{ item.countdown.hours }}h - {{ item.countdown.minutes }}m - {{ item.countdown.seconds }}s
+          </ng-container>
+          <ng-template #expired>
+            {{ item.countdown.message }}
+          </ng-template>
         </div>
         <div class="col-2">
           <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>

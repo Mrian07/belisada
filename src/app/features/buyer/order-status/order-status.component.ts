@@ -98,7 +98,7 @@ export class OrderStatusComponent implements OnInit {
 
       this.transactionService.getOrder(queryParams).subscribe(respon => {
 
-       // console.log('hasilnya', respon.content);
+        // console.log('hasilnya', respon.content);
         if (respon.content.length === 0 ) {
           this.isEmpty = true;
         }
@@ -108,7 +108,7 @@ export class OrderStatusComponent implements OnInit {
         //   console.log(this.x.statusCode);
         // }
         const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
-        console.log('b',b);
+        console.log('b', b);
         this.proddetail = respon;
         b.forEach((x) => {
           console.log('x: ', x);
