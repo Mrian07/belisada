@@ -38,6 +38,7 @@ export class TerimakasihPageComponent implements OnInit {
         this.paymentService.getPayment().subscribe(respon => {
 
           this.listPayment = respon.find(x => x.paymentMethodCode === response.data.paymentMethodCode).data;
+          console.log('this list',this.listPayment)
         });
       });
     });

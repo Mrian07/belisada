@@ -11,7 +11,8 @@
 				<div class="text-info">Segera selesaikan pembayaran Anda sebelum stok habis !</div>
 				<div class="b-countdown">
 					<p class="text--center">Anda memiliki waktu 1x24 jam sampai tanggal {{successTransactionRes.data.expiredTimeIndo}}, untuk melakukan pembayaran</p>
-					<p class="text--center custome--timer"> <countdown-timer [end]="_trialEndsAt"></countdown-timer> </p> 
+					<p class="text--center custome--timer"> 
+						<countdown-timer [end]="successTransactionRes.data.expiredConfirmationPaymentBuyerDate"></countdown-timer> </p> 
 				</div>
 				<!-- <p class="text--center cusstome--font">Anda memiliki waktu 1x24 jam sampai tanggal 23 September 2018, untuk melakukan pembayaran</p> -->
 				<!-- <p class="text--center"></p> -->
@@ -24,7 +25,7 @@
 
 				<div class="linePay">
 					<div class="payJml">Jumlah yang harus dibayar:</div>
-					<div class="payTot">Rp. 80.900</div>
+					<div class="payTot">{{ successTransactionRes.data.grandTotal | currency:'Rp ' }}</div>
 				</div>
 				<div class="bPanduan">Panduan Pembayaran</div>
 				<div class="titlePanduan">Via ATM BCA</div>
