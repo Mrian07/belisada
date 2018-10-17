@@ -49,6 +49,7 @@ export class OrderStatusComponent implements OnInit {
 };
 
   orderNumber: number;
+  itemCartId: number;
   showDialogKonfirm: boolean;
 
   constructor(
@@ -233,7 +234,8 @@ export class OrderStatusComponent implements OnInit {
     this.showDialogKonfirm = false;
   }
 
-  alertConfirmation(orderNumber) {
+  alertConfirmation(orderNumber, itemCartId) {
+    this.itemCartId = itemCartId;
     this.orderNumber = orderNumber;
   }
 
