@@ -61,11 +61,10 @@
               <td valign="top" width="60%">
                   <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}}</div>
                   <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
-
-                  GABAN: {{itemListProduct.itemCartId}}
               </td>
             </tr>
           </table>
+          
         </td>
         <td valign="top" width="35%">
           <div class="item-colom-border">
@@ -79,7 +78,6 @@
             </div>
 
             Alamat: {{itemList.alamatSebagai}}<br><label>{{ itemList.alamatPenerima }}</label>
-
           </div>
         </td>
         <td valign="top" width="22%">
@@ -101,8 +99,9 @@
           </div>
         </td>
         <td width="33%">
+          <!-- {{itemListProduct.itemCartId}} - {{itemList.orderNumber}} -->
           <!-- <span (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> -->
-          <span *ngIf="itemList.statusOrderCode === '157'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemListProduct.itemCartId)" class="btn-konfirm">Konfirmasi Barang</span> 
+          <span *ngIf="itemList.statusOrderCode === '157'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> 
           <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>
@@ -172,7 +171,6 @@
 <app-models [(visible)]="showDialogKonfirm" maxwidth="600" class="frameDialog">
   <div class="model-head">KONFIRMASI PENERIMAAN BARANG</div>
   <div class="modal-body">
-
     <b>Apakah anda sudah menerima pesanan anda?</b><br>
     - Klik Selesai untuk menyelesaikan transaksi anda dan Dana akan diteruskan kepada Seller<br>
     - Klik Komplain jika barang yang anda terima tidak sesuai (Kurang/ Rusak/ Lain-lain)

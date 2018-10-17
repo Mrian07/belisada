@@ -234,8 +234,7 @@ export class OrderStatusComponent implements OnInit {
     this.showDialogKonfirm = false;
   }
 
-  alertConfirmation(orderNumber, itemCartId) {
-    this.itemCartId = itemCartId;
+  alertConfirmation(orderNumber) {
     this.orderNumber = orderNumber;
   }
 

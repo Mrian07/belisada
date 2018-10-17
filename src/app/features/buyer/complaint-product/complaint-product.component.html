@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="showForm==true">
   <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
-  <input type="text" formControlName="orderNumber">
+  <input type="hidden" formControlName="orderNumber">
 
 
   <div class="img-url"><img src="{{ imageUrl }}" border="0" width="150" #avaImg class="img-upload"></div>
