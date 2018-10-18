@@ -14,7 +14,7 @@ export const environment = {
     messagingSenderId: '778701366310'
   },
   googleKey : {
-    geoCodeApi: 'AIzaSyBEzUDClxR1Q29RY3P1YIeGFgbqa1XLLV8'
+    geoCodeApi: 'AIzaSyDD0bujgeZIqfEqa4vCiZSoiVxtUEH9NtU'
   }
   // imgUrl163x179: 'http://image.belisada.id:8888/unsafe/163x179',
 };

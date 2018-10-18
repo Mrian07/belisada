@@ -76,7 +76,7 @@ export class ComplaintProductComponent implements OnInit {
     data.orderNumber = this.createComForm.controls['orderNumber'].value;
     data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
     data.orderComplainIssue = this.createComForm.controls['orderComplainIssue'].value;
-    data.orderRecieved = this.createComForm.controls['orderRecieved'].value;
+    data.orderComplainIssueSolution = this.createComForm.controls['orderComplainIssueSolution'].value;
     data.reasonOrderComplainIssueSolution = this.createComForm.controls['reasonOrderComplainIssueSolution'].value;
 
     if (this.createComForm.controls['orderRecieved'].value === '') {

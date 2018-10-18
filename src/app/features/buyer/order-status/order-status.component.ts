@@ -49,6 +49,7 @@ export class OrderStatusComponent implements OnInit {
 };
 
   orderNumber: number;
+  itemCartId: number;
   showDialogKonfirm: boolean;
 
   constructor(
