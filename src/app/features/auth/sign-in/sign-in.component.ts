@@ -124,7 +124,7 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
     this.signinFormGroup = this.fb.group({
       email: ['', [
         Validators.required,
-        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')]],
+        Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z0-9.-_]{2,}[.]{1}[a-zA-Z]{2,}')]],
       password: ['', Validators.required],
       isRemember: ['']
     });
