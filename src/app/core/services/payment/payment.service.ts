@@ -40,4 +40,14 @@ export class PaymentService {
       );
   }
 
+  /**
+   * Ipay entry to ipay88
+   */
+  public ipayEntry(request) {
+    return this.http.post('https://sandbox.ipay88.co.id/epayment/entry.asp', request)
+      .pipe(
+        map(response => response)
+      );
+  }
+
 }
