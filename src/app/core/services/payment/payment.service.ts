@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpParams, HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from '@belisada/core/config';
 import { map } from 'rxjs/operators';
@@ -43,8 +43,15 @@ export class PaymentService {
   /**
    * Ipay entry to ipay88
    */
-  public ipayEntry(request) {
-    return this.http.post('https://sandbox.ipay88.co.id/epayment/entry.asp', request)
+  public ipayEntry(queryParams) {
+    console.log('[IPAY88] queryParams: ', queryParams);
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    console.log('[IPAY88] params: ', params);
+
+    return this.http.request('POST', 'https://sandbox.ipay88.co.id/epayment/entry.asp', {responseType: 'text', params})
       .pipe(
         map(response => response)
       );
