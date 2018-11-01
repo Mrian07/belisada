@@ -16,7 +16,8 @@ import { Home, ProductDetailV2Spec, Isi } from '@belisada/core/models';
 enum TabTypeEnum {
   SPEC = 'SPEC',
   DESC = 'DESC',
-  DISC = 'DISC'
+  DISC = 'DISC',
+  REVW = 'REVW'
 }
 
 @Component({
