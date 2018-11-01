@@ -28,7 +28,7 @@
     border-radius: .5rem;
     border: 0;
     font-weight: 300;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     cursor:pointer;
 	text: {
         decoration: none;
@@ -44,6 +44,17 @@
 
     &.btn--flat {
         border-radius: 0!important;
+    }
+
+    &.btn--fluid {
+        width: 100%;
+        text-align: center;
+    }
+
+    &.btn--lg {
+        padding: 1.5rem 4rem;
+        font-size: 1.6rem;
+        font-weight: 700;
     }
 
     &.btn--rounded {
@@ -65,6 +76,16 @@
 
         &:hover {
             cursor: pointer;
+        }
+    }
+
+    &:disabled,
+    &[disabled] {
+        background-color: #aeb3b8;
+        cursor: not-allowed;
+
+        &:hover {
+            background-color: #aeb3b8;
         }
     }
 }

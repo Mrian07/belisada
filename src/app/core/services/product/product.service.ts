@@ -1,4 +1,6 @@
-import { CreateDiscus } from './../../models/product/product.model';
+import {
+  ProductDetailV2, ProductDetailV2Store, ProductDetailV2Price,
+  ProductDetailV2Variant, ProductDetailV2Spec } from './../../models/product/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,7 +9,7 @@ import { map } from 'rxjs/operators';
 import { Configuration } from '@belisada/core/config';
 import { AddProductRequest, AddProductResponse, ProductDetail, Filter,
   FilterOffers, Isi } from '@belisada/core/models/product/product.model';
-import { ProductDetailSimple, ProductSimple } from '@belisada/core/models/product/product-detail-simple';
+import { ProductSimple } from '@belisada/core/models/product/product-detail-simple';
 import { ProductReviewResponse } from '@belisada/core/models/product/product-review';
 
 @Injectable({
@@ -59,6 +61,48 @@ export class ProductService {
       .pipe(
         map(response => response as ProductDetail)
       );
+  }
+
+  getProductDetailV2Spec(id): Observable<ProductDetailV2Spec[]> {
+    return this.http.get(this.configuration.apiUrlMongo + '/product/detail/v2/specification/' + id).pipe(
+      map(response => response as ProductDetailV2Spec[])
+    );
+  }
+
+  getProductDetailV2Variant(id): Observable<ProductDetailV2Variant[]> {
+    return this.http.get(this.configuration.apiUrlMongo + '/product/detail/v2/variation/' + id).pipe(
+      map(response => response as ProductDetailV2Variant[])
+    );
+  }
+
+  getProductDetailV2Store(id, queryParams?): Observable<ProductDetailV2Store> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiUrlMongo + '/product/detail/v2/store/' + id, {params: params}).pipe(
+      map(response => response as ProductDetailV2Store)
+    );
+  }
+
+  getProductDetailV2Price(id, queryParams?): Observable<ProductDetailV2Price> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiUrlMongo + '/product/detail/v2/price/' + id, {params: params}).pipe(
+      map(response => response as ProductDetailV2Price)
+    );
+  }
+
+  getProductDetailV2(id, queryParams?): Observable<ProductDetailV2> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiUrlMongo + '/product/detail/v2/' + id, {params: params}).pipe(
+      map(response => response as ProductDetailV2)
+    );
   }
 
   getOffers(queryParams): Observable<Filter> {

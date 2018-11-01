@@ -12,6 +12,10 @@ import { AnotherOfferComponent } from './another-offer/another-offer.component';
 import { ShareModule } from '@ngx-share/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProductDetailV2Component } from './product-detail-v2/product-detail-v2.component';
+import { ComponentsModule } from '@belisada/shared/components';
+import { ProductsSandbox } from './products.sandbox';
+import { ProductsResolver } from './products.resolver';
 
 @NgModule({
   imports: [
@@ -19,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FormsModule,
     ProductRoutingModule,
     ThemeModule,
+    ComponentsModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     ShareModule.forRoot()
@@ -26,7 +31,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   declarations: [
     ProductComponent,
     ProductDetailComponent,
-    AnotherOfferComponent
+    AnotherOfferComponent,
+    ProductDetailV2Component
+  ],
+  providers: [
+    ProductsSandbox,
+    ProductsResolver
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

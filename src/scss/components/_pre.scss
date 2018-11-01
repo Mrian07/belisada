@@ -1,0 +1,12 @@
+pre {
+    tab-size: 2;
+
+    color: #fff;
+    background-color: #1d2a34;
+    padding: 1rem;
+}
+
+pre[data-lang]::before {
+    content: attr(data-lang);
+    display: block;
+}

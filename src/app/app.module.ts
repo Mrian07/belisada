@@ -53,6 +53,10 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
+import { AddressEffect } from './shared/store/effects/address.effect';
+import { reducers } from './shared/store';
+import { ShippingMethodEffects } from './shared/store/effects/shipping-method.effect';
+import { ProductsEffects } from './shared/store/effects/products.effect';
 
 library.add(fas, far, fab);
 
@@ -83,9 +87,9 @@ library.add(fas, far, fab);
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     CountdownTimerModule.forRoot(),
-    EffectsModule.forRoot([StoreEffects]),
+    EffectsModule.forRoot([StoreEffects, ProductsEffects, AddressEffect, ShippingMethodEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),

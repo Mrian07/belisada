@@ -123,6 +123,114 @@ export class ProductDetailList {
   specialPrice: number;
 }
 
+export class ProductDetailV2Spec {
+  attributeId: number;
+  name: string;
+  attributeValueId: number;
+  value: string;
+}
+
+export class ProductDetailV2Variant {
+  attributeId: number;
+  name: string;
+  varians: ProductDetailV2VariantValue[];
+}
+
+export class ProductDetailV2VariantValue {
+  attributeValueId: number;
+  value: string;
+}
+
+export class ProductDetailV2Store {
+  status: number;
+  message: string;
+  data: ProductDetailV2StoreData;
+}
+
+export class ProductDetailV2StoreData {
+  lastOnline: string;
+  productSold: number;
+  productQuantity: number;
+  transactionSuccess: number;
+  storeImageUrl: string;
+  isoffday: boolean;
+  storeUrl: string;
+  locationId: number;
+  locationName: string;
+  originId: number;
+  storeName: string;
+  storeId: number;
+}
+
+export class ProductDetailV2Price {
+  status: number;
+  message: string;
+  data: ProductDetailV2PriceData;
+}
+
+export class ProductDetailV2PriceData {
+  isDetail: boolean;
+  range: {
+    productId: number;
+    min: number;
+    max: number;
+    discount: number;
+    specialPrice: number;
+  };
+}
+
+export class ProductDetailV2 {
+  status: number;
+  message: string;
+  data: ProductDetailV2Data;
+}
+
+export class ProductDetailV2Data {
+  productId: number;
+  name: string;
+  nameEn: string;
+  highlight: string;
+  highlightEn: string;
+  description: string;
+  sku: string;
+  brandId: number;
+  brandName: string;
+  storeId: number;
+  weight: number;
+  dimensionsWidth: number;
+  dimensionslength: number;
+  dimensionsheight: number;
+  classification: string;
+  classificationValue: string;
+  qtyType: string;
+  qtyTypeValue: string;
+  qty: number;
+  status: string;
+  statusCode: string;
+  categoryOneId: number;
+  categoryOneName: string;
+  categoryTwoId: number;
+  categoryTwoName: string;
+  categoryThreeId: number;
+  categoryThreeName: string;
+  imageUrl: string[];
+  pricelist: number;
+  couriers: Couriers[];
+  isGuarantee: boolean;
+  guaranteeType: number;
+  guaranteeTypeValue: string;
+  guaranteeTime: number;
+  guaranteeTimeValue: string;
+  specification: Specification[];
+  // categorys: [];
+  discount: number;
+  specialPrice: number;
+  masterId: number;
+  fromMaster: boolean;
+  masterVarianId: number;
+  useVarian: boolean;
+}
+
 export class Specification {
   name: string;
   value: string;
@@ -205,11 +313,14 @@ export class DataFilter {
 }
 
 export class Isi {
-  last: boolean;
-  totalPages: number;
-  totalElements: number;
-  size: number;
   content: Content[];
+  first: boolean;
+  last: boolean;
+  number: number;
+  numberOfElements: number;
+  size: number;
+  totalElements: number;
+  totalPages: number;
 }
 
 export class Content {

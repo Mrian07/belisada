@@ -1,0 +1,17 @@
+.qty {
+    color: #fd9426;
+
+    &__button {
+        color: #7b7b7b;
+        border: 1px solid #d4d4d4;
+        border-radius: .5rem;
+        padding: .5rem 1rem;
+        margin: 0 1rem;
+        font-size: 1.2rem;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #d4d4d4;
+        }
+    }
+}

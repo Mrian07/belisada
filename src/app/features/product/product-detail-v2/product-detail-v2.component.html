@@ -1,0 +1,374 @@
+<div class="container has-header has-footer">
+    <div class="row">
+        <div class="col-12">
+            <span>Home / {{ product?.categoryOneName }} / {{ product?.categoryTwoName }} / {{ product?.categoryThreeName }}</span>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-5">
+            <section class="detail-product"> <!-- #SECTION [PRODUCT_DETAIL] detail-product -->
+                <div class="detail-product__wrapper">
+                    <div>Brand: <a class="detail-product__brand">{{ product?.brandName }}</a></div>
+
+                    <h1 class="detail-product__product-name">
+                        {{ product?.name }}
+                    </h1>
+
+                    <div class="detail-product__price-wrapper">
+                        <span class="detail-product__price">
+                            {{ product?.priceData?.range.min | currency:'Rp ' }}
+                        </span>
+                        {{ (product?.priceData?.range.max !== 0) ? '-' : '' }}
+                        <span class="detail-product__price" *ngIf="product?.priceData?.range.max !== 0">
+                            {{ product?.priceData?.range.max | currency:'Rp ' }}
+                        </span>
+                        <span class="detail-product__special-price" *ngIf="product?.priceData?.range.specialPrice !== 0">
+                            {{ product?.priceData?.range.specialPrice | currency:'Rp ' }}
+                        </span>
+                    </div>
+
+                    <div class="detail-product__row-gap--1">
+                        Garansi: <span class="detail-product__label-val">{{ product?.guaranteeTypeValue }} - {{ product?.guaranteeTimeValue }}</span>
+                    </div>
+
+                    <div *ngFor="let item of product?.variants; let i = index">
+                        <span class="detail-product__variant-label" [ngClass]="{'detail-product__variant-label--not-first': (i !== 0)}">{{ item.name }}</span>
+                        <span [class]="'detail-product__variant detail-product__variant--' + (i + 1)"
+                            [ngClass]="{'active': (
+                                +activeVariants[i]?.split(':')[0] === item.attributeId
+                                && +activeVariants[i]?.split(':')[1] === variant.attributeValueId)}"    
+                            (click)="selectVariant(item.attributeId, variant.attributeValueId, i)"
+                            *ngFor="let variant of item.varians">
+                            {{ variant.value }}
+                        </span>
+                    </div>
+
+                    <div class="detail-product__qty-wrapper">
+                        <span>Qty</span>
+                        <qty-counter (updateQty)="setQty($event)"></qty-counter>
+                    </div>
+
+                    <div class="detail-product__weight-n-insurance-wrapper detail-product__row-gap--1">
+                        <span>
+                            Berat: <span class="detail-product__label-val">{{ product?.weight }}gr</span>
+                        </span>
+                        <span>
+                            Asuransi: <span class="detail-product__label-val">Opsional</span>
+                        </span>
+                    </div>
+
+                    <div class="detail-product__row-gap--1">
+                        Dikirim Dari: <span class="detail-product__shipping-origin">{{ product?.storeInfo?.locationName }}</span> Ke
+                        <select [(ngModel)]="selectedShippingAddress" (change)="shippingAddressChange()">
+                            <option disabled value="">Pilih alamat</option>
+                            <option *ngFor="let item of shippingAddresses" [ngValue]="item">{{ item.cityName + ', ' + item.regionName }} </option>
+                        </select>
+                    </div>
+
+                    <div class="detail-product__row-gap--1">
+                        Metode Pengiriman: 
+                        <select [(ngModel)]="selectedShippingMethod">
+                            <option disabled value="">Pilih pengiriman</option>
+                            <option *ngFor="let item of shippingMethod" [ngValue]="item">{{ item.name + ' ' + item.courierService + ' Rp ' + item.courierPrice }}</option>
+                        </select>
+                    </div>
+
+                    <div>Kebijakan Pengembalian: <span class="detail-product__label-val">Mendukung 7 hari pengembalian dana tanpa syarat</span></div>
+
+                    <div class="detail-product__button-wrapper">
+                        <button class="btn btn--flat btn--blue-belisada btn--lg"
+                            [disabled]="product?.priceData?.isDetail === false" (click)="addToCart()">Add to cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></button>
+                        <button class="btn btn--flat btn--orange btn--lg">Chat seller</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-md-4">
+            <section class="product-image"> <!-- #SECTION [PRODUCT_DETAIL] product-image -->
+                <div class="product-image__preview">
+                    <img [src]="'https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + selectedImage" alt="">
+                </div>
+
+                <div class="row justify-content-sm-center small-gutters product-image__thumbnail-wrapper">
+                    <div class="col-sm-5r" *ngFor="let item of product?.imageUrl">
+                        <div class="product-image__thumbnail" (click)="selectedImage = item">
+                            <img [src]="'https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item" alt="">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="extras"> <!-- #SECTION [PRODUCT_DETAIL] extras -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <span><fa-icon [icon]="['far', 'heart']"></fa-icon> Tambah ke Whistlist</span>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <span>Share </span>
+
+                        <button class="btn--share btn--list" shareButton="facebook" [style.backgroundColor]="share.prop.facebook.color">
+                            <fa-icon [icon]="share.prop.facebook.icon" size="md"></fa-icon>
+                        </button>
+    
+                        <button class="btn--share btn--list" shareButton="twitter" [style.backgroundColor]="share.prop.twitter.color">
+                            <fa-icon [icon]="share.prop.twitter.icon" size="md"></fa-icon>
+                        </button>
+    
+                        <button class="btn--share btn--list" shareButton="google" [style.backgroundColor]="share.prop.google.color">
+                            <fa-icon [icon]="share.prop.google.icon" size="md"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="col-md-3">
+            <section class="store"> <!-- #SECTION [PRODUCT_DETAIL] store -->
+                <div class="segment">
+                    <div class="segment__header">
+                        Informasi Penjual
+                    </div>
+                    <div class="segment__content">
+                        <div class="store__image">
+                            <img [src]="'https://image.belisada.co.id/unsafe/fit-in/150x150/center/filters:fill(fff)/' + product?.storeInfo?.storeImageUrl" alt="">
+                        </div>
+                        <span class="store__name">{{ product?.storeInfo?.storeName }}</span>
+                        <span class="store__location store__row-gap--1">{{ product?.storeInfo?.locationName }}</span>
+                        <div class="store__extras store__row-gap--1">
+                            <a class="btn btn--orange btn--flat" [routerLink]="['/' + product?.storeInfo?.storeUrl]" routerLinkActive="router-link-active" >Lihat Toko <fa-icon [icon]="['fas', 'search']"></fa-icon></a>
+                        </div>
+                        <div class="store__info">
+                            <table>
+                                <tr>
+                                    <th>Terakhir Online</th>
+                                    <td>:</td>
+                                    <td>{{ product?.storeInfo?.lastOnline }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Produk Terjual</th>
+                                    <td>:</td>
+                                    <td>{{ product?.storeInfo?.productSold }} Produk Terjual</td>
+                                </tr>
+                                <tr>
+                                    <th>Jumlah Produk</th>
+                                    <td>:</td>
+                                    <td>{{ product?.storeInfo?.productQuantity }} Produk</td>
+                                </tr>
+                                <tr>
+                                    <th>Transaksi Sukses</th>
+                                    <td>:</td>
+                                    <td>{{ product?.storeInfo?.transactionSuccess }} Transaksi</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div>
+                <a class="btn btn--flat btn--fluid btn--orange" href="">Penawaran Lainnya</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="other-product">  <!-- #SECTION [PRODUCT_DETAIL] other-product -->
+        <h3>Produk Merk Lainya</h3>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="other-product__wrapper">
+                    <div class="row">
+                        <div class="col-sm-2" *ngFor="let item of otherBrandProducts | slice:0:6">
+                            <a [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
+                                <div>
+                                    <img [src]="'https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item.imageUrl" alt="">
+                                    <div>
+                                        <div class="other-product__product-name">{{ item.name }}</div>
+                                        <div class="other-product__product-price" *ngIf="item.specialPrice !== 0">{{ item.specialPrice | currency:'Rp ' }}</div>
+                                        <div class="other-product__product-price" *ngIf="item.specialPrice === 0">{{ item.pricelist | currency:'Rp ' }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+            
+                        <!-- <div class="col-sm-2">
+                            <div>
+                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
+                                <div>
+                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
+                                    <div class="other-product__product-price">RP 9.999.999.999</div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-2">
+                            <div>
+                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
+                                <div>
+                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
+                                    <div class="other-product__product-price">RP 9.999.999.999</div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-2">
+                            <div>
+                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
+                                <div>
+                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
+                                    <div class="other-product__product-price">RP 9.999.999.999</div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-2">
+                            <div>
+                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
+                                <div>
+                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
+                                    <div class="other-product__product-price">RP 9.999.999.999</div>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-2">
+                            <div>
+                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
+                                <div>
+                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
+                                    <div class="other-product__product-price">RP 9.999.999.999</div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="detail-info">
+        <div class="detail-info__tab-wrapper">
+            <div class="row">
+                <div class="col-sm-3 detail-info__tab" [ngClass]="{'active': tabActive === 'SPEC'}" (click)="tabActive = tabTypeEnum.SPEC">
+                    Spesifikasi
+                </div>
+                <div class="col-sm-3 detail-info__tab" [ngClass]="{'active': tabActive === 'DESC'}" (click)="tabActive = tabTypeEnum.DESC">
+                    Deskripsi
+                </div>
+                <div class="col-sm-3 detail-info__tab" [ngClass]="{'active': tabActive === 'DISC'}" (click)="tabActive = tabTypeEnum.DISC">
+                    Diskusi Produk
+                </div>
+                <div class="col-sm-3 detail-info__tab" [ngClass]="{'active': tabActive === 'REVW'}" (click)="tabActive = tabTypeEnum.REVW">
+                    Ulasan Produk
+                </div>
+            </div>
+        </div>
+        <div class="detail-info__content-wrapper">
+            <div class="detail-info__specification" *ngIf="tabActive === 'SPEC'">
+                <table id="customers">
+                    <tr *ngFor="let item of productSpecifications">
+                        <td>{{ item.name }} :</td>
+                        <td>{{ item.value }}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="detail-info__description" *ngIf="tabActive === 'DESC'">
+                {{ product?.description }}
+            </div>
+
+            <!-- <div class="detail-info__discuss">
+                {{ product?.description }}
+            </div> -->
+
+            <!-- <div class="detail-info__discuss" *ngIf="activeDiskusi === true">
+                <div class="row">
+                    <div class="col-12 w--product-discusi" *ngFor="let item of discus">
+                        <ul class="w--product__list">
+                            <li class="w--product__list-item">
+                                <div class="w--product-talk__question">
+                                    <a>
+                                        <img src="{{ storeImgDiscussion + item.imageAvatarUrl}}" class="w--product-talk__question-avatar">
+                                    </a>
+                                    <div class="product-talk__detail">
+                                        <div class="w--product-talk__additional-info">
+        
+                                            <a class="w--product_talk"> {{ item.name }} </a>
+                                            <span class="w--product_talk-time"> -  {{ item.since }}</span>
+                                        </div>
+                                        <div class="w-product--talk__text">
+                                            {{ item.message }}
+        
+                                        </div>
+                                    </div>
+        
+                                </div>
+                                <button  *ngIf="paginationLimit[item.discusId] < list.length && item.childs"  (click)="showMoreItems(item.discusId)">
+                                    Show More
+                                </button>
+                                <div class="w-product-talk__comments" *ngFor="let item333 of item.childs  | slice : paginationLimit[item.discusId]">
+                                    <ul class="w-product-talk__coment-list" >
+                                        <li class="product-talk__comennts-list-item" >
+                                            <div>
+                                                <img src="{{item333.imageAvatarUrl}}" class="w-product-talk__profile">
+                                            </div>
+                                            <div class="w-product-talk__detail">
+        
+                                                <a class="w-product-talk__name">{{  item333.name }}  </a>
+                                                <span class="badge__belisada-seller" *ngIf="item333.label === 'penjual'">
+                                                    {{ item333.label }}
+                                                </span>
+                                                <span class="w-product-talk_time">
+                                                    {{ item333.since }}
+                                                </span>
+                                            </div>
+                                            <div class="w-product--talk__text">
+                                                {{ item333.message }}
+                                            </div>
+                                        </li>
+        
+                                    </ul>
+        
+                                </div>
+                                <div class="w--product-talk__comment-box">
+                                    <div class="list-box-replyholder">
+                                        <a class="w-product-talk__profile"></a>
+                                        <div>
+                                            <form>
+                                                    <textarea [formControl]="messageString" (click)="textAreaExpannded(item.discusId)" class="w-product-talk__coment-taxtarea expanded"> {{ item.discusId }}</textarea>
+        
+                                                </form>
+                                            <div class="w__o--button-posisition row">
+                                                    <div class="col-12 template--button">
+                                                            <button (click)="onSent()" class="btn btn__kirim">Kirim</button>
+                                                        </div>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+        
+                        </ul>
+        
+                    </div>
+                    <textarea [formControl]="messageBottom" name="" id="" class="textArea--botom"></textarea>
+                    <button (click)="BtnBuat()" class="btn btn__kirim">Kirim</button>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- <pre data-lang="JSON">
+        <code>
+            {{ product | json }}
+        </code>
+    </pre>
+
+    <pre data-lang="JSON">
+        <code>
+            {{ activeVariants | json }}
+        </code>
+    </pre> -->
+</div>
