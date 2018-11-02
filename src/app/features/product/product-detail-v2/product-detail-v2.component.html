@@ -191,56 +191,6 @@
                                 </div>
                             </a>
                         </div>
-            
-                        <!-- <div class="col-sm-2">
-                            <div>
-                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
-                                <div>
-                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
-                                    <div class="other-product__product-price">RP 9.999.999.999</div>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="col-sm-2">
-                            <div>
-                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
-                                <div>
-                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
-                                    <div class="other-product__product-price">RP 9.999.999.999</div>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="col-sm-2">
-                            <div>
-                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
-                                <div>
-                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
-                                    <div class="other-product__product-price">RP 9.999.999.999</div>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="col-sm-2">
-                            <div>
-                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
-                                <div>
-                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
-                                    <div class="other-product__product-price">RP 9.999.999.999</div>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <div class="col-sm-2">
-                            <div>
-                                <img src="https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/http://cdn.belisada.id/imageproduct/bdcfc586-70a2-4f18-943b-6fedcebe01a5.jpeg" alt="">
-                                <div>
-                                    <div class="other-product__product-name">Missha All Around Safe Black Sebum Zero Sun</div>
-                                    <div class="other-product__product-price">RP 9.999.999.999</div>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -266,7 +216,7 @@
         </div>
         <div class="detail-info__content-wrapper">
             <div class="detail-info__specification" *ngIf="tabActive === 'SPEC'">
-                <table id="customers">
+                <table class="detail-info__specification-table">
                     <tr *ngFor="let item of productSpecifications">
                         <td>{{ item.name }} :</td>
                         <td>{{ item.value }}</td>
@@ -278,9 +228,58 @@
                 {{ product?.description }}
             </div>
 
-            <!-- <div class="detail-info__discuss">
-                {{ product?.description }}
-            </div> -->
+            <div class="detail-info__discussion" *ngIf="tabActive === 'DISC'">
+
+                <div class="discussion__content">
+                    <div class="discussion__content-wrapper" *ngFor="let item of productDiscussion?.content">
+                        <div class="discussion__parent">
+                            <div class="discussion__container--side-a">
+                                <div class="discussion__pp">
+                                    <img [src]="item.imageAvatarUrl" alt="">
+                                </div>
+                            </div>
+                            <div class="discussion__container--side-b">
+                                <h4 class="discussion__name">{{ item.name }}</h4>
+                                <p class="discussion__message">{{ item.message }}</p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+
+                        <div class="discussion__child-wrapper">
+                            <div class="discussion__child" *ngFor="let child of item.childs">
+                                <div class="discussion__container--side-a">
+                                    <div class="discussion__pp">
+                                        <img [src]="child.imageAvatarUrl" alt="">
+                                    </div>
+                                </div>
+                                <div class="discussion__container--side-b">
+                                    <h4 class="discussion__name">{{ child.name }} <span class="discussion__label" *ngIf="child.label !== ''">{{ child.label }}</span></h4>
+                                    <p class="discussion__message">{{ child.message }}</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <div class="discussion__footer-child text-right" *ngIf="isLogin">
+                                <form [formGroup]="createNewDiscussionForm" (submit)="createNewDiscussion(item.discusId)">
+                                    <div>
+                                        <textarea formControlName="message" class="discussion__text-area" rows="1"></textarea>
+                                    </div>
+                                    <button [disabled]="product?.priceData?.isDetail === false" class="btn btn--orange">Kirim</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="discussion__footer text-right" *ngIf="isLogin">
+                    <form [formGroup]="createNewDiscussionForm" (submit)="createNewDiscussion()">
+                        <div class="form-group">
+                            <textarea formControlName="message" class="discussion__text-area" rows="7"></textarea>
+                        </div>
+                        <button [disabled]="product?.priceData?.isDetail === false" class="btn btn--orange">Kirim</button>
+                    </form>
+                </div>
+            </div>
 
             <!-- <div class="detail-info__discuss" *ngIf="activeDiskusi === true">
                 <div class="row">
@@ -359,16 +358,28 @@
             </div> -->
         </div>
     </section>
+</div>
 
-    <!-- <pre data-lang="JSON">
-        <code>
-            {{ product | json }}
-        </code>
-    </pre>
 
-    <pre data-lang="JSON">
-        <code>
-            {{ activeVariants | json }}
-        </code>
-    </pre> -->
+<div class="heading__detail" *ngIf="isSubHeaderShow">
+    <div class="container heading__container">
+        <div class="heading__grid">
+            <div class="heading__grid--col">
+                <span class="heading__title">{{ product?.name | slice:0:23 }} ...</span>
+            </div>
+            <div class="heading__grid--col right">
+                <span class="heading__price" *ngIf="product?.priceData?.range.specialPrice === 0">
+                    {{ product?.priceData?.range.min | currency:'Rp ' }}
+                </span>
+                {{ (product?.priceData?.range.max !== 0 && product?.priceData?.range.specialPrice === 0) ? '-' : '' }}
+                <span class="heading__price" *ngIf="product?.priceData?.range.max !== 0 && product?.priceData?.range.specialPrice === 0">
+                    {{ product?.priceData?.range.max | currency:'Rp ' }}
+                </span>
+                <span class="heading__price" *ngIf="product?.priceData?.range.specialPrice !== 0">
+                    {{ product?.priceData?.range.specialPrice | currency:'Rp ' }}
+                </span>
+                <button class="btn btn--blue-belisada btn--flat btn--add-to-cart u-margin-left-1" [disabled]="product?.priceData?.isDetail === false" (click)="addToCart()">Add To Cart</button>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, HostListener } from '@angular/core';
 import { ShareButtons } from '@ngx-share/core';
 import { Subscription, combineLatest } from 'rxjs';
 import { ProductsSandbox } from '../products.sandbox';
@@ -12,6 +12,7 @@ import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopp
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { Home, ProductDetailV2Spec, Isi } from '@belisada/core/models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 enum TabTypeEnum {
   SPEC = 'SPEC',
@@ -19,6 +20,14 @@ enum TabTypeEnum {
   DISC = 'DISC',
   REVW = 'REVW'
 }
+
+/**
+ * ANCHOR Todo list PRODUCT DETAIL
+ *
+ * TODO Discussion paging (show more child)
+ * TODO Find solution for ngrx subscribe issues
+ * TODO Review product
+ */
 
 @Component({
   selector: 'app-product-detail-v2',
@@ -49,12 +58,26 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public selectedShippingMethod: any;
   /** --------- */
 
+  /**
+   *  #[FormGroup]
+   */
+  public createNewDiscussionForm: FormGroup;
+  /** ---------- */
+
   public activeVariants = [];
 
   public qty = 1;
 
+  public isLogin: boolean;
+  public isSubHeaderShow: boolean;
+
+  @HostListener('window:scroll', ['$event'])
+    doSomething(event) {
+      this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
+    }
+
   constructor(
-    private _changeDetector: ChangeDetectorRef,
+    private _fb: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
     public share: ShareButtons,
@@ -68,6 +91,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     private _addressService: AddressService,
     private _homeService: HomeSService
   ) {
+    this.isLogin = false;
+    this.isSubHeaderShow = false;
     this.selectedShippingAddress = '';
     this.selectedShippingMethod = '';
     this.tabActive = TabTypeEnum.SPEC;
@@ -75,11 +100,21 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._registerEvents();
+
+    // TODO create base sandbox to subscribe credentials
+    const token = this._authService.getToken();
+    if (token) this.isLogin = true;
+
+    // TODO create function for init form
+    this.createNewDiscussionForm = this._fb.group({
+      discusParentId: [],
+      message: ['', [Validators.required]],
+      productId: ['', [Validators.required]]
+    });
     // this._fetchQueryParams();
   }
 
   ngOnDestroy(): void {
-    console.log('ngOnDestroy');
     this._subscriptions.forEach(sub => sub.unsubscribe());
   }
 
@@ -96,7 +131,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     if (this.activeVariants.includes('')) queryValueString = queryValueString.replace(/,/g, '');
 
     this._router.navigate(
-      ['/product/product-detail-v2/'
+      ['/product/product-detail/'
         + this._route.snapshot.params.id
         + '/'
         + this._route.snapshot.params.name],
@@ -127,8 +162,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    * @param shippingAddress Shipping address object
    */
   public changeShippingAddress() {
-    console.log('changeShippingAddress');
-
     this._loadShippingMethod({
       productId: this.product.priceData.range.productId,
       rajaOngkirId: this.selectedShippingAddress.rajaOngkirId,
@@ -141,7 +174,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    * @param shippingMethod Shipping method object
    */
   public changeShippingMethod(shippingMethod) {
-    console.log('shippingMethod: ', shippingMethod);
     this.selectedShippingMethod = shippingMethod;
   }
 
@@ -181,6 +213,19 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   }
 
 
+  public createNewDiscussion(discusParentId?: number) {
+    this.createNewDiscussionForm.patchValue({
+      discusParentId: discusParentId || null,
+      productId: this.product.priceData.range.productId
+    });
+    console.log(this.createNewDiscussionForm.value);
+    this._productService.createDiscus(this.createNewDiscussionForm.value).subscribe(rsl => {
+      this._loadDiscuss(this.product.priceData.range.productId);
+      this.createNewDiscussionForm.reset();
+    });
+  }
+
+
   public encodeUrl(name) {
     return name.replace(new RegExp('/', 'g'), ' ');
   }
@@ -190,8 +235,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    * @param params productId: number; rajaOngkirId: number; weight: number
    */
   private _loadShippingMethod(params: {productId: number; rajaOngkirId: number; weight: number}) {
-    console.log('_loadShippingMethod');
-    // TODO: Change productId and weight as API ready
     const queryParams = {
       productId: params.productId,
       destinationId: params.rajaOngkirId,
@@ -214,7 +257,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    */
   private _loadDiscuss(id: number) {
     this._productService.getDiscus(id).subscribe(discuss => {
-      console.log('discuss: ', discuss);
+      this.productDiscussion = discuss;
     });
   }
 
@@ -273,7 +316,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
                 this.selectedShippingAddress = address.find(x => x.isDefault === true);
               }
               this.shippingAddresses = address;
-              console.log('this.product.priceData.range.productId: ', this.product.priceData.range.productId);
               this._loadShippingMethod({
                 productId: this.product.priceData.range.productId,
                 rajaOngkirId: this.selectedShippingAddress.rajaOngkirId,
@@ -290,7 +332,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     });
 
     this._productService.getProductDetailV2Spec(this._route.snapshot.params.id).subscribe(specs => {
-      console.log('specs: ', specs);
       this.productSpecifications = specs;
     });
 
