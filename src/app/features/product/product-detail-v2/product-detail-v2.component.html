@@ -17,16 +17,24 @@
                     </h1>
 
                     <div class="detail-product__price-wrapper">
-                        <span class="detail-product__price">
-                            {{ product?.priceData?.range.min | currency:'Rp ' }}
-                        </span>
-                        {{ (product?.priceData?.range.max !== 0) ? '-' : '' }}
-                        <span class="detail-product__price" *ngIf="product?.priceData?.range.max !== 0">
-                            {{ product?.priceData?.range.max | currency:'Rp ' }}
-                        </span>
-                        <span class="detail-product__special-price" *ngIf="product?.priceData?.range.specialPrice !== 0">
-                            {{ product?.priceData?.range.specialPrice | currency:'Rp ' }}
-                        </span>
+                        <div *ngIf="product?.priceData?.isDetail === false; else isDetail">
+                            <span class="detail-product__price" >
+                                {{ product?.priceData?.range.min | currency:'Rp ' }}
+                            </span>
+                            -
+                            <span class="detail-product__price">
+                                {{ product?.priceData?.range.max | currency:'Rp ' }}
+                            </span>
+                        </div>
+                        <ng-template #isDetail>
+                            <span class="detail-product__price">
+                                <span *ngIf="product?.priceData?.range.specialPrice === 0; else elsePrice">{{ product?.priceData?.range.pricelist | currency:'Rp ' }}</span>
+                                <ng-template #elsePrice>{{ product?.priceData?.range.specialPrice | currency:'Rp ' }}</ng-template>
+                            </span>
+                            <span class="detail-product__special-price" *ngIf="product?.priceData?.range.specialPrice !== 0">
+                                {{ product?.priceData?.range.pricelist | currency:'Rp ' }}
+                            </span>
+                        </ng-template>
                     </div>
 
                     <div class="detail-product__row-gap--1">
@@ -61,7 +69,7 @@
 
                     <div class="detail-product__row-gap--1">
                         Dikirim Dari: <span class="detail-product__shipping-origin">{{ product?.storeInfo?.locationName }}</span> Ke
-                        <select [(ngModel)]="selectedShippingAddress" (change)="shippingAddressChange()">
+                        <select [(ngModel)]="selectedShippingAddress" (change)="changeShippingAddress()">
                             <option disabled value="">Pilih alamat</option>
                             <option *ngFor="let item of shippingAddresses" [ngValue]="item">{{ item.cityName + ', ' + item.regionName }} </option>
                         </select>
@@ -222,6 +230,10 @@
                         <td>{{ item.value }}</td>
                     </tr>
                 </table>
+
+                <pre>
+                    {{ product | json }}
+                </pre>
             </div>
 
             <div class="detail-info__description" *ngIf="tabActive === 'DESC'">
