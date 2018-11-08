@@ -25,7 +25,7 @@ export class PaymentComponent implements OnInit {
       MerchantCode: 'ID00724',
       PaymentId: '1',
       RefNo: 'PYT-24092018-2',
-      Amount: '300000',
+      Amount: '1000000',
       Currency: 'IDR',
       ProdDesc: 'Xiaomi A4',
       UserName: 'Yosi Oliver',
@@ -33,7 +33,7 @@ export class PaymentComponent implements OnInit {
       UserContact: '085214887659',
       Remark: '',
       Lang: 'UTF-8',
-      signature: 'iSTZlkex1m2jxnECAD4NjEHclFY=',
+      signature: 'tzIlWLbjEpCI8ZP0I2Fy/4d5X/c=',
       ResponseURL: 'https://dev.belisada.id/payment/response',
       BackendURL: 'https://dev.belisada.id/payment/response_backend'
     };
