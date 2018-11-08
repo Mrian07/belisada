@@ -437,6 +437,8 @@ onSent() {
     // console.log('queryParams: ', queryParams);
     this.categoryService.getAllCategory(queryParams).subscribe(response => {
       this.menuCategory = response.data;
+      console.log('menuCategory: ', this.menuCategory);
+      this.subMenu(this.menuCategory[0].categoryId);
       this.subMenuCategory = [];
       // if (id) { this.subMenuCategory = response.data; }
       // console.log('category', this.menuCategory);
@@ -451,6 +453,7 @@ onSent() {
     };
     this.categoryService.getAllCategory(queryParams).subscribe(response => {
       this.subMenuCategory = response.data;
+      console.log('this.subMenuCategory: ', this.subMenuCategory);
       // console.log('sub category', response);
     });
   }

@@ -1,224 +1,90 @@
-<div class="bs-header">
-    <div class="bs-header__logo-box">
-        <a routerLink="/">
-            <img src="/assets/img/betta.png" width="130px">
-        </a>
+<div class="top-header">
+    <div class="top-header__banner" [ngStyle]="{'background-color': '#064564'}">
+        <!-- <img src="/assets/img/header/top-banner.png" alt=""> -->
     </div>
-    <div class="bs-header__search-box">
-        <div class="search-by-category-wrapper">
-            <div class="select-box-container w--select--box">
-                <div class="category-menu" (click)="menuAllCategory(isMenu)">
-
-                    <div  class="select-box select-box-orange"><span>All Category</span>
-                        <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
-                    </div>
-                </div>
-                <div class="category-menu__container">
-                    <div class="menu__container" *ngIf="isMenu == true">
-                        <div class="menu__container--title" *ngFor="let menu of menuCategory" (mouseenter)="subMenu(menu.categoryId)">
-                            {{menu.name}}
-                        </div>
-                        <div class="menu_frame_child">
-                            <div class="menu__container--child">
-                                <div *ngFor="let subMenu of subMenuCategory" class="menuColom">
-                                    <div class="menuColom__title">{{subMenu.name}}</div>
-                                    <div *ngFor="let childSubMenu of subMenu.childs">
-                                        {{childSubMenu.name}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="banner-category__container center">
-                            <img class="u-margin-bottom-1" src="/assets/img/bbbb.jpeg" alt="">
-    
-                            <button class="btn btn--orange u-margin-bottom-1">Shop Now</button>
-    
-                            <h3>Featured Product</h3>
-    
-                            <div class="banner-category__grid">
-                                <img src="/assets/img/aaaa.jpeg" alt="">
-                                <img src="/assets/img/aaaa.jpeg" alt="">
-                                <img src="/assets/img/aaaa.jpeg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              
-
+</div>
+<div class="extras-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 extras-header__social-list">
+                <a href="https://www.facebook.com/BelisadaID/" target="_blank">
+                    <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+                </a>
+                <a href="https://twitter.com/BelisadaID/" target="_blank">
+                    <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+                </a>
+                <a href="https://www.instagram.com/belisada.id/" target="_blank">
+                    <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+                </a>
             </div>
+            <div class="col-md-9 extras-header__accounts text-right">
+                <a class="link" href="https://seller0.belisada.id/auth/sign-in" target="_blank">Mulai menjual di belisada</a>
 
-            <div class="input-group icon-right with-select-box">
-                <!-- <div class=""> -->
-                <input type="text" (keyup)="searchK($event)" (keyup.enter)="searchEnter($event)"
-                    (focus)="showSearch = true" (focusout)="onSearchFocusOut()" class="input" placeholder="Temukan produk idaman anda"/>
-                <div class="list-suggestion" [ngClass]="{'show-element': showSearch === true, 'hide-element': showSearch === false}">
-                    <div class="product-suggestion">
-                        <ul>
-                            <li><span class="highlight">{{ keyword }}</span></li>
-                        </ul>
-                    </div>
+                <span class="delimiter"></span>
 
-                    <div class="product-suggestion" *ngIf="searchBarResults.length > 0">
-                        <div class="suggestion-block">
-                            <span class="suggestion-label">Kategori</span>
-                        </div>
-                        <ul>
-                            <li (click)="clickSearch(keyword, item.categoryId)" *ngFor="let item of searchBarResults; let i = index"><span class="highlight">{{ keyword }}</span> di {{ item.categoryName }}</li>
-                        </ul>
-                    </div>
-                </div>
-                <fa-icon [icon]="['fas', 'search']"></fa-icon>
+                <a [routerLink]="['/account/sign-in']" class="btn btn--inverted btn--orange btn--bold">Login</a>
+                <a [routerLink]="['/account/sign-up']" class="btn btn--blue btn--bold">Daftar</a>
             </div>
         </div>
-    </div>
-    <div class="bs-header__account-box">
-        <ul>
-            <li class="shopping-cart" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
-                <img src="/assets/img/cart.png" alt="">
-
-                <div class="cart__container">
-                    <div class="arrow-up"></div>
-                    <div class="cart__header">
-                        <div class="cart__header--left">
-                            <img class="icon" src="/assets/img/cart.png" alt="">
-                            <span class="counter">{{ itemCount }}</span>
-                        </div>
-                        <div class="cart__header--right">
-                            Total: <span class="total-price">Rp {{itemsTotal | number}}</span>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="cart__content">
-                        <ul>
-                            <li *ngFor="let item of cartItems">
-                                <div class="cart__content--left-side">
-                                    <img class="product--image" [src]="item.product.imageUrl" alt="">
-                                </div>
-                                <div class="cart__content--right-side">
-                                    <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
-                                    <span class="product--price">Rp {{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | number }}</span><span class="product--qty">Qty {{ item.quantity }}</span>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="cart__footer">
-                        <a [routerLink]="['/transaction/checkout']" (click)="globals.isBackdropActive = false" class="button--goto-cart">Lihat Keranjang</a>
-                    </div>
-                </div>
-                <span class="cart__counter">{{ itemCount }}</span>
-            </li>
-            <li>
-                <a *ngIf="isLogin === false" routerLink="/account/sign-in">
-                    <img class="country-flag" src="/assets/img/profile.png" alt="">
-                <span class="text-language">
-                    Login / Daftar
-                </span>
-                </a>
-                <a *ngIf="isLogin === true" class="account-menu--trigger" (click)="toggleAccountMenu()" clickOutside (clickOutside)="onClickOutside($event)">
-                    <img class="country-flag  img-circle" src="{{avatar}}" alt="">
-                    <span class="text-language w--text--name">
-                        {{ userData.name.split(' ')[0]  }}
-                    </span>
-                </a>
-                <div [ngClass]="isAccountMenu ? 'show-element' : 'hide-element'" class="account-menu__container">
-                    <div (click)="goToProfile()" class="cursor-on-profile">Profile</div>
-                    <div (click)="goToTrxHistory()" class="cursor-on-profile">Pesananku</div>
-                    <div><button class="btn rounded btn--navy" (click)="logout()">Logout</button></div>
-                </div>
-            </li>
-            <li *ngIf="role === 0" class="padding__button">
-                <a href="{{ baseUrlSeller }}/auth/sign-in" target="_blank">
-                    <div class="colx2 btn btn--orange btn--size--80 w--forbutton">
-                        <div>
-                            <p class="padding--for--text">Mulai Berjualan</p>
-                        </div>
-                        <div>
-                            <img  class="padding--for--text" src="/assets/img/store_icon.png">
-                        </div>
-                    </div>
-                </a>
-            </li>
-            <li *ngIf="role !== 2 && role != 0" class="padding__button">
-                <a href="{{ baseUrlSeller }}/auth/sign-in?token={{token}}" target="_blank">
-                    <div class="colx2 btn btn--orange btn--size--80 w--forbutto">
-                        <div>
-                            <p class="padding--for--text">Belisada Seller</p>
-                        </div>
-                        <div>
-                            <img class="padding--for--text" src="/assets/img/store_icon.png">
-                        </div>
-                    </div>
-                </a>
-            </li>
-
-            <li *ngIf="role === 2" class="padding__button">
-                <div (click)="navigateToIkutJualan()" class="colx2 btn btn--orange btn--size--80 w-In-Role2">
-                    <div>
-                        <p class="padding--for--text">Mulai Berjualan</p>
-                    </div>
-                    <div>
-                        <img class="padding--for--text" src="/assets/img/store_icon.png">
-                    </div>
-                </div>
-            </li>
-            <li>
-                <img class="country-flag" src="/assets/img/id_flag.png" alt="">
-                <span class="text-language">
-                    ID<br>
-                    <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
-                </span>
-            </li>
-        </ul>
-
     </div>
 </div>
 
-<app-models [(visible)]="showDialog" class="frameDialog" minwidth="500">
-    <div class="modal-body">
-        <div *ngIf="regForm==true">
-            <div class="title">Buka Toko</div>
-            <form [formGroup]="validationOnpopUpCreateStore" class=" center-for-button" (ngSubmit)="onSent()" #fs="ngForm" novalidate>
-                <input type="hidden" class="input-style-text-100" formControlName="storeUrl" placeholder="URL toko mengikuti nama toko anda" />
-                <input type="text" formControlName="nameOwner" maxlength="30" class="input-style-text-100" placeholder="Masukan nama pemilik toko">
-                <app-field-error-display [displayError]="isFieldValid('nameOwner')" errorMsg="Nama pemilik toko tidak boleh kosong"></app-field-error-display>
-                <input type="text" formControlName="name" maxlength="30" (keypress)="onNameKeydown($event)" class="input-style-text-100" placeholder="Masukan nama toko">
-                <div *ngIf="validationOnpopUpCreateStore.controls.name.errors && validationOnpopUpCreateStore.controls.name.errors.server; else nameCheckingTemplate" class="alert alert-danger toll tooltip">
-                    <div class="testing">
-                        <span class="tooltiptext">{{serverMessage}}</span>
+<div class="main-header-wrapper">
+    <div class="main-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-3">
+                    <div class="logo">
+                        <a [routerLink]="['/']">
+                            <img src="/assets/img/logo.png" alt="">
+                        </a>
                     </div>
                 </div>
-                <ng-template #nameCheckingTemplate>
-                    <app-field-error-display [displayError]="isFieldValid('name')" errorMsg="Nama toko tidak boleh kosong"></app-field-error-display>
-                </ng-template>
-                <div *ngIf="nameChecking" class="alert alert-danger toll tooltip">Memeriksa nama Toko <img src="assets/img/wait.gif"></div>
-
-                <input type="text" formControlName="email" maxlength="60" class="input-style-text-100" placeholder="Masukan email">
-                <div *ngIf="validationOnpopUpCreateStore.controls.email?.invalid && (validationOnpopUpCreateStore.controls.email.dirty && validationOnpopUpCreateStore.controls.email.touched); else emailOn" class="alert alert-danger toll tooltip testing">
-                    <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                <div class="header-extras col-md-9 col-sm-3">
+                    <div class="search">
+                        <div class="search__box">
+                            <div class="search__wrapper">
+                                <input type="text" class="search__input" placeholder="Cari produkmu disini">
+                                <fa-icon class="search__icon" [icon]="['fas', 'search']"></fa-icon>
+                            </div>
+                            <button class="search__button">Cari</button>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="extras-menu">
+                        <div class="extras-menu__banner--1">
+                            <img src="/assets/img/banner/mini.png" alt="">
+                        </div>
+                    </div>
                 </div>
-                <ng-template #emailOn>
-                    <app-field-error-display [displayError]="isFieldValid('email')" errorMsg="Email tidak boleh kosong"></app-field-error-display>
-                </ng-template>
-
-                <input type="password" formControlName="password" maxlength="60" class="input-style-text-100" placeholder="Masukan password">
-                <div *ngIf="validationOnpopUpCreateStore.controls.password.errors && (validationOnpopUpCreateStore.controls.password.dirty || validationOnpopUpCreateStore.controls.password.touched)" class="alert alert-danger toll tooltip-for-password testing">
-                    <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.required" class="tooltiptext">Password tidak boleh kosong</p>
-
-                    <p *ngIf="validationOnpopUpCreateStore.controls.password.errors.minlength" class="tooltiptext">Minimal panjang password 7 karakter. </p>
-                </div>
-
-                <div class="agrements">Dengan klik DAFTAR,Anda telah menyetujui <span class="syarat-and-ketentuan">Syarat & Ketentuan</span> </div>
-                <div class="agrements paddingclass"> Serta <span class="syarat-and-ketentuan"> Kebijakan Privasi</span> belisada.co.id </div>
-                <button class="btn btn--orange btn-size-55 text-btn component-center center-for-button">Daftar</button>
-            </form>
-        </div>
-
-        <div *ngIf="regSuccess==true" class="regSuccess">
-            <div class="title">Pendaftaran Berhasil</div>
-            <div class="text-success">Selamat Toko Anda Berhasil Didaftarkan</div>
+            </div>
         </div>
     </div>
-</app-models>
+</div>
 
+<div class="navigation-header">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <ul class="navigation">
+                    <bs-category-menu [categories]="subMenuCategory"></bs-category-menu>
 
+                    <li class="navigation__menus">
+                        <a [routerLink]="['/']">Special Offers</a>
+                    </li>
+                    <li class="navigation__menus">
+                        <a [routerLink]="['/']">Computers</a>
+                    </li>
+                    <li class="navigation__menus">
+                        <a [routerLink]="['/']">Cameras</a>
+                    </li>
+                    <li class="navigation__menus">
+                        <a [routerLink]="['/']">Cell Phones</a>
+                    </li>
+
+                    <li class="shopping-cart pull-right"><fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
