@@ -45,16 +45,27 @@ export class PaymentService {
    */
   public ipayEntry(queryParams) {
     console.log('[IPAY88] queryParams: ', queryParams);
-    let params = new HttpParams();
-    Object.keys(queryParams).forEach(function(k) {
-      params = params.append(k, queryParams[k]);
-    });
-    console.log('[IPAY88] params: ', params);
+    // let params = new HttpParams();
+    // Object.keys(queryParams).forEach(function(k) {
+    //   params = params.append(k, queryParams[k]);
+    // });
+    // console.log('[IPAY88] params: ', params);
 
-    return this.http.request('POST', 'https://sandbox.ipay88.co.id/epayment/entry.asp', {responseType: 'text', params})
-      .pipe(
-        map(response => response)
-      );
+
+    const formData = new FormData();
+    Object.keys(queryParams).forEach(function(k) {
+      formData.append(k, queryParams[k]);
+    });
+    console.log('[IPAY88] formData: ', formData);
+
+    return this.http.post('https://sandbox.ipay88.co.id/epayment/entry.asp', formData).pipe(
+      map(response => response)
+    );
+
+    // return this.http.request('POST', 'https://sandbox.ipay88.co.id/epayment/entry.asp', {responseType: 'text', params})
+    //   .pipe(
+    //     map(response => response)
+    //   );
   }
 
 }
