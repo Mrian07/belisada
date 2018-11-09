@@ -44,10 +44,29 @@
                     <div class="search">
                         <div class="search__box">
                             <div class="search__wrapper">
-                                <input type="text" class="search__input" placeholder="Cari produkmu disini">
+                                <input type="text" [(ngModel)]="keywordSearch" class="search__input"
+                                    (keyup.enter)="onSearchSubmit()" (keyup)="searchK($event)"
+                                    (focus)="showSearch = true" (focusout)="onSearchFocusOut()" placeholder="Cari produkmu disini">
                                 <fa-icon class="search__icon" [icon]="['fas', 'search']"></fa-icon>
+
+                                <div class="list-suggestion" [ngClass]="{'show-element': showSearch === true, 'hide-element': showSearch === false}">
+                                    <div class="product-suggestion">
+                                        <ul>
+                                            <li (click)="onSearchSubmit()"><span class="highlight">{{ keywordSearch }}</span></li>
+                                        </ul>
+                                    </div>
+                
+                                    <div class="product-suggestion" *ngIf="searchBarResults.length > 0">
+                                        <div class="suggestion-block">
+                                            <span class="suggestion-label">Kategori</span>
+                                        </div>
+                                        <ul>
+                                            <li (click)="clickSearch(item.categoryId)" *ngFor="let item of searchBarResults; let i = index"><span class="highlight">{{ keywordSearch }}</span> di {{ item.categoryName }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
-                            <button class="search__button">Cari</button>
+                            <button class="search__button" (click)="onSearchSubmit()">Cari</button>
                             <div class="clearfix"></div>
                         </div>
                     </div>
@@ -82,7 +101,40 @@
                         <a [routerLink]="['/']">Cell Phones</a>
                     </li>
 
-                    <li class="shopping-cart pull-right"><fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon></li>
+                    <li class="shopping-cart pull-right" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
+                        <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>
+                        <div class="cart__container">
+                            <div class="arrow-up"></div>
+                            <div class="cart__header">
+                                <div class="cart__header--left">
+                                    <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>
+                                    <span class="counter">{{ itemCount }}</span>
+                                </div>
+                                <div class="cart__header--right">
+                                    Total: <span class="total-price">Rp {{itemsTotal | number}}</span>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="cart__content">
+                                <ul>
+                                    <li *ngFor="let item of cartItems">
+                                        <div class="cart__content--left-side">
+                                            <img class="product--image" [src]="item.product.imageUrl" alt="">
+                                        </div>
+                                        <div class="cart__content--right-side">
+                                            <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
+                                            <span class="product--price">Rp {{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | number }}</span><span class="product--qty">Qty {{ item.quantity }}</span>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="cart__footer">
+                                <a [routerLink]="['/transaction/checkout']" (click)="globals.isBackdropActive = false" class="button--goto-cart">Lihat Keranjang</a>
+                            </div>
+                        </div>
+                        <span class="cart__counter">{{ itemCount }}</span>
+                    </li>
                 </ul>
             </div>
         </div>
