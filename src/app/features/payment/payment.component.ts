@@ -31,10 +31,9 @@ export class PaymentComponent implements OnInit {
       UserName: 'Yosi Oliver',
       UserEmail: 'yosioliver@gmail.com',
       UserContact: '085214887659',
-      Remark: '',
-      Lang: 'UTF-8',
-      Signature: 'cPHfTOLOGZt904rjgKdHeca7Ek0=',
-      ResponseURL: 'https://dev.belisada.id/payment/response'
+      signature: 'iSTZlkex1m2jxnECAD4NjEHclFY=',
+      ResponseURL: 'https://dev.belisada.id/payment/response',
+      BackendURL: 'https://dev.belisada.id/payment/response_backend'
     };
     console.log('[IPAY88] request: ', request);
     this._paymentService.ipayEntry(request).subscribe(response => {

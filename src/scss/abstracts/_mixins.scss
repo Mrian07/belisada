@@ -99,6 +99,7 @@
 
 @mixin btn-theme($btn-color, $text-color) {
     color: $text-color;
+    border: 1px solid $btn-color;
     background-color: $btn-color;
     &:hover, &:active {
         background-color: darken($btn-color, 6%);
