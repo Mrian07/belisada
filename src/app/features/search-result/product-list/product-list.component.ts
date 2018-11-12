@@ -7,12 +7,73 @@ import { ListSearch, DataFilter, DataLocation } from '../../../core/models/searc
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 
+import { Options, LabelType } from 'ng5-slider';
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+
+  minValue: Number = 0;
+  maxValue: Number = 800;
+  options: Options = {
+    floor: 0,
+    ceil: 1000,
+
+    translate: (value: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '<b>Min:</b> Rp ' + value;
+        case LabelType.High:
+          return '<b>Max:</b> Rp ' + value;
+        default:
+          return 'Rp ' + value;
+      }
+    }
+
+
+
+    // translate: (value: number): string => {
+    //   return 'Rp.' + value;
+    // },
+   // step: 5
+  };
+
+  valueRate: Number = 3;
+  optionsRate: Options = {
+    floor: 0,
+    ceil: 5,
+    showTicks: true,
+    showSelectionBar: true,
+
+    getSelectionBarColor: (valueRate: number): string => {
+      return '#2AE02A';
+    },
+
+    getPointerColor: (value: number): string => {
+      return '#2AE02A';
+    },
+
+    translate: (valueRate: number, label: LabelType): string => {
+      switch (label) {
+        case LabelType.Low:
+          return '' + valueRate;
+        case LabelType.High:
+          return '' + valueRate;
+        default:
+        // <i class="fas fa-star"></i>
+          // return '<fa-icon [icon]="[fa, start]"></fa-icon>' + valueRate;
+          return '' + valueRate;
+      }
+    }
+
+  };
+
+
+  ceil: any;
+
   list: ListSearch = new ListSearch();
   currentPage: number;
   lastPage: number;
@@ -54,6 +115,9 @@ export class ProductListComponent implements OnInit {
 
   activeQueryParams: any;
 
+  min: number;
+  max: number;
+
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
     private router: Router,
@@ -80,10 +144,6 @@ export class ProductListComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
 
-
-
-      console.log('this.curType: ', this.curType);
-      console.log('params: ', params);
       this.activeQueryParams = Object.assign({}, params);
 
       this.filterSearch(params);
@@ -91,14 +151,34 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  changePrice() {
+    this.activeQueryParams['min'] = this.minValue;
+    this.activeQueryParams['max'] = this.maxValue;
+
+    this.router.navigate(['/search-result/product-list'], {
+      queryParams: this.activeQueryParams
+    });
+  }
+
+  changeRating() {
+    this.activeQueryParams['rate'] = this.valueRate;
+
+    this.router.navigate(['/search-result/product-list'], {
+      queryParams: this.activeQueryParams
+    });
+  }
+
   filterSearch(params) {
-    // this.activatedRoute.queryParams.subscribe((params: Params) => {
+
       const queryParams = {
         q: params.q,
       };
 
       this.searchService.getSearchFilter(queryParams).subscribe(response => {
           this.listFilter = response[0].data;
+
+          console.log('hasil filter', response[5].data[0].max);
+
           this.listFilter.forEach((item, index) => {
             this.curType.push('');
           });
@@ -111,7 +191,7 @@ export class ProductListComponent implements OnInit {
             });
           }
       });
-    // });
+
   }
 
   selectLocation() {
@@ -192,44 +272,7 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/search-result/product-list'], {
       queryParams: this.activeQueryParams
     });
-
-    // this.activatedRoute.queryParams.subscribe((params: Params) => {
-    //   this.pages = [];
-    //   this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
-    //   this.cat = params.location === undefined ? [] : params.location;
-    //   this.shippingOpt = params.shipping === undefined ? [] : params.shipping;
-    //   this.categoryOPT = params.category === undefined ? [] :  params.category;
-    //   this.classificationOpt = params.classification === undefined ? [] : params.classification;
-    //   this.keys = params.q;
-    //   this.keyST = 'product';
-    //   this.brandOPT = params.brand === undefined ? [] : params.brand;
-
-    //   const queryParams = {
-    //     page: this.currentPage,
-    //     itemperpage: 10,
-    //     ob: this.sortName,
-    //     ot: this.sortUrut,
-    //     q: params.q,
-    //     st: params.st,
-    //     location: this.cat,
-    //     shipping: this.shippingOpt,
-    //     classification: this.classificationOpt,
-    //     brand: this.brandOPT,
-    //     category: this.categoryOPT,
-    //     couriertype: this.curType
-    //   };
-
-    //   this.searchService.getList(queryParams).subscribe(response => {
-    //     this.list = response;
-    //     console.log('apalah 222', response);
-    //     this.lastPage = this.list.totalPages;
-    //     for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-    //       if (r > 0 && r <= this.list.totalPages) {
-    //         this.pages.push(r);
-    //       }
-    //     }
-    //   });
-    // });
+x
   }
 
 
@@ -256,10 +299,14 @@ export class ProductListComponent implements OnInit {
         shipping: this.shippingOpt,
         classification: this.classificationOpt,
         brand: this.brandOPT,
-        category: this.categoryOPT
+        category: this.categoryOPT,
       };
 
       if (params.courier) queryParams['couriertype'] = params.courier;
+
+      if (params.max) queryParams['max'] = params.max;
+      if (params.min) queryParams['min'] = params.min;
+      if (params.rate) queryParams['rate'] = params.rate;
 
       this.searchService.getList(queryParams).subscribe(response => {
         this.list = response;

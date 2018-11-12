@@ -1,8 +1,8 @@
 <div class="container has-header has-footer">
     <div class="frame-src-head">
         <div class="frame-src-sub">
-            <div class="frame-b">Lokasi Penjual {{cat}}
-                <br>
+            <div class="frame-b">
+                <div class="title-src">Lokasi Penjual </div>
                 <select [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
                 (change)="selectLocation()">
                     <option value=""></option>
@@ -10,14 +10,36 @@
                 </select>
 
             </div>
-            <div class="frame-b">Metode Pengiriman
+            <div class="frame-b">
+                <div class="title-src">Metode Pengiriman</div>
                 <ul>
                     <li *ngFor="let itmF of listFilter; let i = index"><input [value]="itmF.type" [checked]="curType[i] === itmF.type" type="checkbox" (change)="changeCourier(itmF.type, $event.target.checked, i)"> {{itmF.type}}</li>
                 </ul>
             </div>
-            <div class="frame-b">Harga</div>
-            <div class="frame-c">Rating<br>
-                <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+            <div class="frame-b">
+                <div class="title-src">Harga</div>
+                <input type="hidden" [(ngModel)]="minValue">
+                <input type="hidden" [(ngModel)]="maxValue">
+                <div class="f-slider">
+                    <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changePrice()">
+                        
+                    </ng5-slider>
+                </div>
+                
+
+
+            </div>
+            <div class="frame-c">
+                <div class="title-src">Rating</div>
+             
+                <input type="hidden" [(ngModel)]="valueRate">
+                <div class="f-slider">
+                    <ng5-slider [(value)]="valueRate" [options]="optionsRate" (valueChange)="changeRating()"></ng5-slider>
+                </div>    
+
+
+
+
 
             </div>
         </div>
