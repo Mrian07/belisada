@@ -1,6 +1,6 @@
 import {
   ProductDetailV2, ProductDetailV2Store, ProductDetailV2Price,
-  ProductDetailV2Variant, ProductDetailV2Spec } from './../../models/product/product.model';
+  ProductDetailV2Variant, ProductDetailV2Spec, AnotherOffers, AnotherOfferDetail } from './../../models/product/product.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -144,5 +144,39 @@ export class ProductService {
         map(response => response as ProductReviewResponse)
       );
   }
+
+  /*
+  Prod Another
+  */
+
+// getProductAnotherV2(id): Observable<AnotherOffers> {
+//   return this.http.get(this.configuration.apiUrlMongo + '/offers/detail/' + id).pipe(
+//     map(response => response as AnotherOffers)
+//   );
+// }
+getProductAnotherV2(id): Observable<AnotherOffers[]> {
+  return this.http.get(this.configuration.apiUrlMongo + '/offers/detail/' + id)
+    .pipe(
+      map(response => response as AnotherOffers[])
+    );
+}
+getProductAnotherVarian(id): Observable<ProductDetailV2Variant[]> {
+  return this.http.get(this.configuration.apiUrlMongo + '/offers/variation/' + id)
+    .pipe(
+      map(response => response as ProductDetailV2Variant[])
+    );
+}
+
+
+getProductDataDetail(id, queryParams):  Observable<AnotherOfferDetail> {
+  let params = new HttpParams();
+  Object.keys(queryParams).forEach(function(k) {
+    params = params.append(k, queryParams[k]);
+  });
+  return this.http.get(this.configuration.apiUrlMongo + '/offers/' + id, {params: params})
+    .pipe(
+      map(response => response as AnotherOfferDetail)
+    );
+}
 
 }
