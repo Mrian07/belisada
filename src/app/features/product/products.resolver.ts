@@ -21,5 +21,8 @@ export class ProductsResolver implements Resolve<any> {
     // this.productsSandbox.loadProductDetailsPrice(+route.params.id, route.queryParams);
     // this.productsSandbox.loadProductDetailsStore(+route.params.id, route.queryParams);
     // this.productsSandbox.loadProductDetailsVariant(+route.params.id);
+
+    //  this.productsSandbox.anotherProdcut(+route.params.id);
+     this.productsSandbox.anotherProdcut(+route.params.id);
   }
 }

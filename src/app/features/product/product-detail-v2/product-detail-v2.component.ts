@@ -291,6 +291,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
         this.product = product.data;
+        console.log(product.data);
         this.selectedImage = product.data.imageUrl[0];
 
         this._productService.getProductDetailV2Variant(id).subscribe((variants) => {
@@ -422,4 +423,12 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     //   }
     // }));
   }
+
+  /*
+  * #gOTo product lain
+  */
+ gotoPenawaran(e) {
+  this._router.navigate(['/product/another-offers/' + e ]);
+  window.scrollTo(0, 0);
+ }
 }
