@@ -1,21 +1,25 @@
 <div class="container has-header has-footer">
     <div class="frame-src-head">
         <div class="frame-src-sub">
-            <div class="frame-b">Lokasi Penjual
+            <div class="frame-b">Lokasi Penjual {{cat}}
                 <br>
-                <select>
-                    <option></option>
+                <select [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
+                (change)="selectLocation()">
+                    <option value=""></option>
+                    <option *ngFor="let itmLoc of listLocation; let n = index" [ngValue]="itmLoc.cityId">{{itmLoc.cityName}}</option>
                 </select>
 
             </div>
             <div class="frame-b">Metode Pengiriman
                 <ul>
-                    <li>Setandar</li>
-                    <li>Express</li>
+                    <li *ngFor="let itmF of listFilter; let i = index"><input [value]="itmF.type" [checked]="curType[i] === itmF.type" type="checkbox" (change)="changeCourier(itmF.type, $event.target.checked, i)"> {{itmF.type}}</li>
                 </ul>
             </div>
             <div class="frame-b">Harga</div>
-            <div class="frame-c">Rating</div>
+            <div class="frame-c">Rating<br>
+                <mat-slider min="1" max="5" step="0.5" value="1.5"></mat-slider>
+
+            </div>
         </div>
     </div>
     <div class="frame-src">
@@ -107,9 +111,9 @@
                 <li>
                     <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}"><fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Previous</a>
                 </li>
-                <li *ngFor="let p of pages">
+                <!-- <li *ngFor="let p of pages">
                     <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
-                </li>
+                </li> -->
                 <li>
                     <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
                 </li>
@@ -122,6 +126,7 @@
 
         
     </div>
+
     <!-- <div class="b-sr">
 
         <div class="row">
