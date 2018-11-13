@@ -1,11 +1,15 @@
+.link{
+  cursor: pointer;
+}
+
 .paging ul {
   list-style-type: none;
   padding: 0;
   text-align: center;
+  
 }
 .paging li {
   display: inline-block;
-
 }
 .paging a {
   // border: 1px solid #ebeef2;

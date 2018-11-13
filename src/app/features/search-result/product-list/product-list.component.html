@@ -6,7 +6,7 @@
                 <select [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
                 (change)="selectLocation()">
                     <option value=""></option>
-                    <option *ngFor="let itmLoc of listLocation; let n = index" [ngValue]="itmLoc.cityId">{{itmLoc.cityName}}</option>
+                    <option *ngFor="let itmLoc of listLocation; let n = index" [value]="itmLoc.cityId">{{itmLoc.cityName}}</option>
                 </select>
 
             </div>
@@ -59,12 +59,8 @@
                     
             </div>
             <div class="sc-bar">
-                Sort by <select>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                Sort by <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
+                        <option *ngFor="let itmS of listSort">{{itmS}}</option>
                     </select>
             </div>
             <div class="sd-bar">
@@ -115,10 +111,10 @@
 
                         <div *ngIf="item.discount>0">
                             <span class="price">Rp {{ item.specialPrice | number}}</span>
-                            <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
+                            <span class="price-slash"><s>Rp {{ item.fixPrice | number}}</s></span>
                         </div>
                         <div *ngIf="item.discount<=0">
-                            <span class="price">Rp {{ item.pricelist | number}}</span>
+                            <span class="price">Rp {{ item.fixPrice | number}}</span>
                         </div>
                     </div>
                 </div>
@@ -127,19 +123,19 @@
 
         <div class="paging" *ngIf="list.totalElements!=0">
             <ul>
-                <li>
+                <li  class="link">
                     <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">Go To First</a>
                 </li>
-                <li>
+                <li  class="link">
                     <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}"><fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Previous</a>
                 </li>
                 <!-- <li *ngFor="let p of pages">
                     <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
                 </li> -->
-                <li>
+                <li  class="link">
                     <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
                 </li>
-                <li>
+                <li  class="link">
                     <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Go To Last</a>
                 </li>
             </ul>
@@ -193,10 +189,10 @@
    
                                 <div *ngIf="item.discount>0">
                                     <span class="price">Rp {{ item.specialPrice | number}}</span>
-                                    <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
+                                    <span class="price-slash"><s>Rp {{ item.fixPrice | number}}</s></span>
                                 </div>
                                 <div *ngIf="item.discount<=0">
-                                    <span class="price">Rp {{ item.pricelist | number}}</span>
+                                    <span class="price">Rp {{ item.fixPrice | number}}</span>
                                 </div>
                             </div>
                         </div>
