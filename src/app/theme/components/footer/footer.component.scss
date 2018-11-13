@@ -1,0 +1,101 @@
+.footer {
+    &__top {
+        background-color: #06334f;
+        padding: 3rem 0;
+    }
+
+    &__main {
+        padding: 5rem 0;
+        color: #000000;
+        background-color: #fff;
+
+        .sitemap {
+            &__title {
+                margin-bottom: 1rem;
+                
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 25%;
+                    border-bottom: 1px solid #dfdfdf;
+                }
+            }
+
+            &__list {
+                list-style: none;
+                font-size: 1.8rem;
+
+                li {
+
+                    a {
+                        color: #777777;
+                        text-decoration: none;
+                        &:hover {
+                            color: #000000
+                        }
+                    }
+
+                    &:before {
+                        content: "- ";
+                        font-size: 2.4rem;
+                        color: #000000;
+                    }
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        background-color: #fff;
+
+        .btn {
+            padding: 1rem;
+        }
+
+        img {
+            max-height: 4.5rem;
+        }
+    }
+
+    .form-subscribe {
+        
+        &__wrapper {
+            border: 3px solid #fff;
+            width: fit-content;
+        }
+
+        &__input {
+            padding: 1.5rem 2rem;
+            color: #fff;
+            font-size: 1.6rem;
+            width: 30rem;
+            border: 0;
+            background-color: transparent;
+
+            &::placeholder {
+                color: #fff;
+            }
+        }
+
+        &__delimiter {
+            padding: 1rem 0;
+            border-right: 1px solid #fff;
+        }
+
+        &__button {
+            padding: 1.5rem 2rem;
+            color: #fff;
+            border: 0;
+            background-color: transparent;
+            font-size: 1.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            
+            &:hover {
+                color: #06334f;
+                background-color: #fff;
+            }
+        }
+    }
+}
