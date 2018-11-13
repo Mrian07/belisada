@@ -272,7 +272,7 @@ export class ProductListComponent implements OnInit {
     this.router.navigate(['/search-result/product-list'], {
       queryParams: this.activeQueryParams
     });
-x
+
   }
 
 
