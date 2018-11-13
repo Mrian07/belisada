@@ -51,6 +51,9 @@ export class SearchFiler {
 export class DataFilter {
   filterCount: number;
   type: string;
+
+  min: number;
+  max: number;
 }
 
 export class Location {
