@@ -6,9 +6,9 @@ import * as productDetailsActionsStore from '../../shared/store/actions/product-
 import * as productDetailsActionsVariant from '../../shared/store/actions/product-details-variant.action';
 import * as addressActions from '../../shared/store/actions/address.action';
 import * as shippingMethodActions from '../../shared/store/actions/shipping-method.action';
-
+import * as productAnother from '../../shared/store/actions/another-offer.action';
 import { Injectable } from '@angular/core';
-import { ProductDetailV2 } from '@belisada/core/models';
+import { ProductDetailV2, AnotherOffers } from '@belisada/core/models';
 
 @Injectable()
 export class ProductsSandbox {
@@ -30,6 +30,9 @@ export class ProductsSandbox {
 
   public shippingMethod$                = this.appState$.select(store.getShippingMethodData);
   public shippingMethodLoading$         = this.appState$.select(store.getShippingMethodLoading);
+
+  public anotherProducts$                = this.appState$.select(store.getAnotherProductData);
+  public anotherProductsLoading$         = this.appState$.select(store.getAnotherProductLoading);
 
   constructor(
     protected appState$: Store<store.State>
@@ -82,5 +85,9 @@ export class ProductsSandbox {
    */
   public selectProduct(product: ProductDetailV2): void {
     this.appState$.dispatch(new productDetailsActions.LoadSuccessAction(product));
+  }
+
+  public anotherProdcut(id: any ): void {
+    this.appState$.dispatch(new productAnother.LoadAction(id));
   }
 }

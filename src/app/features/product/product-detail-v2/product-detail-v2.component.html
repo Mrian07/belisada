@@ -169,6 +169,7 @@
                                     <th>Transaksi Sukses</th>
                                     <td>:</td>
                                     <td>{{ product?.storeInfo?.transactionSuccess }} Transaksi</td>
+                                    <td>{{ product?.productId }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -176,7 +177,7 @@
                 </div>
             </section>
             <div>
-                <a class="btn btn--flat btn--fluid btn--orange" href="">Penawaran Lainnya</a>
+                <div class="btn btn--flat btn--fluid btn--orange" (click)= "gotoPenawaran(product?.productId)">Penawaran Lainnya</div>
             </div>
         </div>
     </div>

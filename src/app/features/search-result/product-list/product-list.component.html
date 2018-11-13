@@ -1,21 +1,47 @@
 <div class="container has-header has-footer">
     <div class="frame-src-head">
         <div class="frame-src-sub">
-            <div class="frame-b">Lokasi Penjual
-                <br>
-                <select>
-                    <option></option>
+            <div class="frame-b">
+                <div class="title-src">Lokasi Penjual </div>
+                <select [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
+                (change)="selectLocation()">
+                    <option value=""></option>
+                    <option *ngFor="let itmLoc of listLocation; let n = index" [ngValue]="itmLoc.cityId">{{itmLoc.cityName}}</option>
                 </select>
 
             </div>
-            <div class="frame-b">Metode Pengiriman
+            <div class="frame-b">
+                <div class="title-src">Metode Pengiriman</div>
                 <ul>
-                    <li>Setandar</li>
-                    <li>Express</li>
+                    <li *ngFor="let itmF of listFilter; let i = index"><input [value]="itmF.type" [checked]="curType[i] === itmF.type" type="checkbox" (change)="changeCourier(itmF.type, $event.target.checked, i)"> {{itmF.type}}</li>
                 </ul>
             </div>
-            <div class="frame-b">Harga</div>
-            <div class="frame-c">Rating</div>
+            <div class="frame-b">
+                <div class="title-src">Harga</div>
+                <input type="hidden" [(ngModel)]="minValue">
+                <input type="hidden" [(ngModel)]="maxValue">
+                <div class="f-slider">
+                    <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changePrice()">
+                        
+                    </ng5-slider>
+                </div>
+                
+
+
+            </div>
+            <div class="frame-c">
+                <div class="title-src">Rating</div>
+             
+                <input type="hidden" [(ngModel)]="valueRate">
+                <div class="f-slider">
+                    <ng5-slider [(value)]="valueRate" [options]="optionsRate" (valueChange)="changeRating()"></ng5-slider>
+                </div>    
+
+
+
+
+
+            </div>
         </div>
     </div>
     <div class="frame-src">
@@ -107,9 +133,9 @@
                 <li>
                     <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}"><fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Previous</a>
                 </li>
-                <li *ngFor="let p of pages">
+                <!-- <li *ngFor="let p of pages">
                     <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
-                </li>
+                </li> -->
                 <li>
                     <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
                 </li>
@@ -122,6 +148,7 @@
 
         
     </div>
+
     <!-- <div class="b-sr">
 
         <div class="row">

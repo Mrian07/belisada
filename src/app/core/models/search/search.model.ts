@@ -42,3 +42,28 @@ export class SearchBarResponse {
   categoryId: number;
   categoryName: string;
 }
+
+export class SearchFiler {
+  filter: string;
+  data: DataFilter[];
+}
+
+export class DataFilter {
+  filterCount: number;
+  type: string;
+
+  min: number;
+  max: number;
+}
+
+export class Location {
+  dataCount: number;
+  pageCount: number;
+  data: DataLocation[];
+}
+
+export class DataLocation {
+  cityId: number;
+  cityName: string;
+}
+

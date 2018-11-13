@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Configuration } from '@belisada/core/config';
-import { ListSearch, SearchBarResponse } from '@belisada/core/models/search/search.model';
+import { ListSearch, SearchBarResponse, SearchFiler, Location } from '@belisada/core/models/search/search.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,4 +35,25 @@ export class SearchService {
     );
   }
 
+  getSearchFilter(queryParams: Object): Observable<SearchFiler[]> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiUrlMongo + '/search/filter', {params: params})
+    .pipe(
+      map(response => response as SearchFiler[])
+    );
+  }
+
+  getLocation(queryParams: Object): Observable<Location> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiUrlMongo + '/location/city', {params: params})
+    .pipe(
+      map(response => response as Location)
+    );
+  }
 }

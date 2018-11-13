@@ -5,6 +5,7 @@ import * as productDetailsActions from '../actions/product-details.action';
 import * as productDetailsPriceActions from '../actions/product-details-price.action';
 import * as productDetailsStoreActions from '../actions/product-details-store.action';
 import * as productDetailsVariantActions from '../actions/product-details-variant.action';
+import * as productAnother from '../actions/another-offer.action';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map, switchMap, catchError } from 'rxjs/operators';
@@ -76,4 +77,42 @@ export class ProductsEffects {
       );
     })
   );
+  /**
+   * product another effect
+   */
+  @Effect()
+  // getProdAnother$: Observable<Action> = this._actions$.pipe(
+  //   ofType(productAnother.ActionTypes.LOAD),
+  //   map((action: productAnother.LoadAction) => action.payload),
+  //   switchMap(state => {
+  //     return this._productService.getProductAnotherV2(state).pipe(
+  //       map(products => new productAnother.LoadSuccessAction(products.data)),
+  //       catchError(error  => of(new productAnother.LoadFailAction()))
+
+  //     );
+  //   })
+  // );
+  @Effect()
+  getProdAnotherx$: Observable<Action> = this._actions$.pipe(
+  ofType(productAnother.ActionTypes.LOAD),
+  map((action: productAnother.LoadAction) => action.payload),
+  switchMap(state => {
+    return this._productService.getProductAnotherV2(state).pipe(
+      map(products => new productAnother.LoadSuccessAction(products)),
+      catchError(error  => of(new productAnother.LoadFailAction()))
+
+    );
+  })
+  );
+  // @Effect()
+  // getProductAnother: Observable<Action> = this._actions$.pipe(
+  //   ofType(productAnother.ActionTypes.LOAD),
+  //   map((action: productAnother.LoadAction) => action.payload),
+  //   switchMap(action => {
+  //     return this._productService.getProductAnotherV2(action).pipe(
+  //       map(variants => new productAnother.LoadSuccessAction(variants)),
+  //       catchError(error => of(new productAnother.LoadFailAction()))
+  //     );
+  //   })
+  // );
 }

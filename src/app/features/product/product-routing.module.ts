@@ -6,6 +6,7 @@ import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-tok
 import { AnotherOfferComponent } from '@belisada/features/product/another-offer/another-offer.component';
 import { ProductDetailV2Component } from './product-detail-v2/product-detail-v2.component';
 import { ProductsResolver } from './products.resolver';
+import { AnotherOfferV2Component } from './another-offer-v2/another-offer-v2.component';
 const routes: Routes = [
   {
     path: '',
@@ -31,12 +32,23 @@ const routes: Routes = [
         runGuardsAndResolvers: 'paramsOrQueryParamsChange'
       },
 
+      // {
+      //   path: 'another-offer/:id/:name',
+      //   component: AnotherOfferComponent,
+      //   data: {
+      //     title: 'Penawaran Lain'
+      //   }
+      // },
       {
-        path: 'another-offer/:id/:name',
-        component: AnotherOfferComponent,
+        path: 'another-offers/:id',
+        component: AnotherOfferV2Component,
         data: {
           title: 'Penawaran Lain'
-        }
+        },
+        resolve: {
+          productDetails: ProductsResolver
+        },
+        runGuardsAndResolvers: 'paramsOrQueryParamsChange'
       },
 
     ]
