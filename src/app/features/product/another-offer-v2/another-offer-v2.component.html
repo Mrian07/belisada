@@ -47,8 +47,16 @@
     </div>
   </div>  
   
-  <!-- <div class="item5">Footer</div>  -->
-
+  <div class="item5" *ngIf="role !== 2 && role != 0">
+    <a href="{{ baseUrlSeller }}/auth/sign-in?token={{token}}" target="_blank" class="btn btn--yelloworange">
+    Jual Produk Serupa
+    </a>
+  </div> 
+  <div class="item5" *ngIf="role === 0">
+    <a href="{{ baseUrlSeller }}/auth/sign-in" target="_blank" class="btn btn--yelloworange">
+        Jual Produk Serupa
+        </a>
+  </div> 
   </div>
 
 <div class="grid-container wrapperF">
