@@ -47,8 +47,16 @@
     </div>
   </div>  
   
-  <!-- <div class="item5">Footer</div>  -->
-
+  <div class="item5" *ngIf="role !== 2 && role != 0">
+    <a href="{{ baseUrlSeller }}/auth/sign-in?token={{token}}" target="_blank" class="btn btn--yelloworange">
+    Jual Produk Serupa
+    </a>
+  </div> 
+  <div class="item5" *ngIf="role === 0">
+    <a href="{{ baseUrlSeller }}/auth/sign-in" target="_blank" class="btn btn--yelloworange">
+        Jual Produk Serupa
+        </a>
+  </div> 
   </div>
 
 <div class="grid-container wrapperF">
@@ -80,7 +88,7 @@
             <td data-label="Period"><span *ngFor="let courierType of item.courierType"> {{ courierType }}</span></td>
             <td data-label="Period">{{ item.fixPrice | currency:'Rp ' }}</td>
             <td data-label="Period">
-              <button (click)="addToCart(item.productId, item.storeId, i)" class="btn btn--orange">BELI PRODUCT</button>
+              <button (click)="addToCart(item.productId, item.storeId, i)" class="btn btn--yelloworange">BELI PRODUCT</button>
             </td>
           </tr>
         </tbody>

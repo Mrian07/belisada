@@ -8,11 +8,12 @@ import { AuthService, UserService } from '@belisada/core/services';
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AnotherOffersData, AnotherOffersDetailData, AnotherOfferDetail } from '@belisada/core/models';
+import { AnotherOffersData, AnotherOffersDetailData, AnotherOfferDetail, UserData } from '@belisada/core/models';
 import { environment } from '@env/environment';
 import { ProductReviewResponse } from '@belisada/core/models/product/product-review';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import swal from 'sweetalert2';
+import { LocalStorageEnum } from '@belisada/core/enum';
 
 @Component({
   selector: 'app-another-offer-v2',
@@ -34,6 +35,9 @@ export class AnotherOfferV2Component implements OnInit {
   numberOfEl: any;
   prodIdAtas: any;
 
+  role = 0;
+  userData: UserData = new UserData();
+  isLogin: Boolean = false;
 
   cartItem = [];
   cartItem2: number;
@@ -45,6 +49,9 @@ export class AnotherOfferV2Component implements OnInit {
   shipRates = [];
   rates = [];
   shippingRates = [];
+
+
+  baseUrlSeller: string = environment.baseUrlSeller;
   constructor(
     public productsSandbox: ProductsSandbox,
 
@@ -61,6 +68,12 @@ export class AnotherOfferV2Component implements OnInit {
    }
 
   ngOnInit() {
+    this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    if (this.userData) {
+      // this.avatar = this.userData.avatar;
+      this.role = this.userData.role;
+      this.isLogin = true;
+    }
     this.subscriptions.push(this.productsSandbox.anotherProducts$.subscribe((product: any) => {
       // this.productsSandbox.anotherProdcut(product);
       if (product) {
@@ -127,7 +140,7 @@ export class AnotherOfferV2Component implements OnInit {
     if (this.activeVariants.includes('')) queryValueString = queryValueString.replace(/,/g, '');
 
     this.router.navigate(
-      ['/product/testing/'
+      ['/product/another-offers/'
         + this.activatedRoute.snapshot.params.id],
       {
         queryParams: {
@@ -160,41 +173,45 @@ export class AnotherOfferV2Component implements OnInit {
   addToCart(productId, storeId, i) {
     console.log('123', productId, storeId, i);
     const userData = this.userService.getUserData(this.authService.getToken());
-    // console.log('userData: ', userData);
-
+    console.log('userData: ', userData);
+    console.log(this.cartItem);
     if (userData) {
-      if (userData.storeId === storeId) {
-        swal(
-            'belisada.co.id',
-            'Product ini berasal dari Toko Anda'
-          );
-      } else {
-        if (this.cartItem[i] === undefined) {
-          swal(
-            'belisada.co.id',
-            'Jumlah harus di pilih!'
-          );
-        } else {
-          const addToCartRequest: AddToCartRequest = {
-            productId: productId,
-            quantity: this.cartItem[i],
-            courierCode: this.shippingRates[i].courierCode,
-            courierService: this.shippingRates[i].courierService,
-            shippingAddressId: this.addressId
-          };
+      const addToCartRequest: AddToCartRequest = {
+        productId: productId,
+        quantity: 1,
+        // courierCode: this.shippingRates[i].courierCode,
+        // courierService: this.shippingRates[i].courierService,
+        shippingAddressId: this.addressId
+      };
 
-          console.log('ini', addToCartRequest);
-          this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-            if (response.status === 1) {
-              this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
-            } else {
-              swal('belisada.co.id', response.message, 'error');
-            }
-          });
+      // console.log('ini', this.shippingRates[i].courierCode);
+      this.shoppingCartService.create(addToCartRequest).subscribe(response => {
+        if (response.status === 1) {
+          this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
+        } else {
+          swal('belisada.co.id', response.message, 'error');
         }
-      }
+      });
+      // if (userData.storeId === storeId) {
+      //   swal(
+      //       'belisada.co.id',
+      //       'Product ini berasal dari Toko Anda'
+      //     );
+      // } else {
+      //   if (this.cartItem[i] === undefined) {
+      //     swal(
+      //       'belisada.co.id',
+      //       'Jumlah harus di pilih!'
+      //     );
+      //   } else {
+          
+      //   }
+      // }
     } else {
-      this.shoppingCartService.addItem(productId, +this.cartItem[i]);
+      this.shoppingCartService.addItem(productId, 1);
     }
+  }
+  navigateToIkutJualan() {
+    this.router.navigate(['/buyer/create-store']);
   }
 }
