@@ -72,7 +72,7 @@
         </div>
 
 
-
+        
 
         <div *ngIf="list.totalElements==0" class="product-empty">
             Maaf produk yang Anda cari tidak ditemukan.
@@ -90,20 +90,27 @@
                                  *ngIf="item.discount > 0">{{ item.discount }}%</div>
                             </div>
                         </div> -->
+
+            
+
+                        <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">  
+                            <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+                        </a>  
+
+
                         <div class="item" (click)="goDetail(item.productId,item.name)">{{ item.name }}
-                            <div class="b-star"> 
-                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                            <fa-icon [icon]="['fas', 'star']"></fa-icon>
-                            <span class="i-review">14 Review</span>
+                            <div class="b-star" > 
+                          
+                                <fa-icon class="star-yello" *ngFor="let i of Arr(item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
+                                <fa-icon class="star-default" *ngFor="let i of Arr(5-item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
+ 
+
+                            <span class="i-review">{{item.review}} Review</span>
                             </div>
                         </div>
                         <div class="img-item" (click)="goDetail(item.productId,item.name)">
                             <img [src]='produkIMG+item.imageUrl' border="0" height="200">
-                        </div>
-                       
+                        </div> 
 
                         <div *ngIf="item.discount>0">
                             <span class="price">Rp {{ item.specialPrice | number}}</span>
@@ -116,7 +123,7 @@
                 </div>
             </div>
         </div>
-
+        <div *ngFor="let i of Arr(num).fill(1)">1</div>
         <div class="paging" *ngIf="list.totalElements!=0">
             <ul>
                 <li>

@@ -9,12 +9,15 @@ import { HttpClient } from '@angular/common/http';
 
 import { Options, LabelType } from 'ng5-slider';
 
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
+
+  Arr = Array;
 
   minValue: Number = 0;
   maxValue: Number = 0;
@@ -101,14 +104,39 @@ export class ProductListComponent implements OnInit {
   perPage: any = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
   itemperpage: number;
 
+
+  starDefault: number;
+  starYellow: number;
+
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
     private router: Router,
     private searchService: SearchService,
-    private http: HttpClient
+    private http: HttpClient,
   ) {
     this.produkIMG = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
   }
+
+
+
+
+  starList: boolean[] = [true, true, true, true, true];
+  rating: number;
+  i: number;
+  setStar(data: any) {
+    this.rating = data + 1;
+    for (const i = 0; i <= 4; i++) {
+      if (i <= data) {
+        this.starList[i] = false;
+      } else {
+        this.starList[i] = true;
+      }
+    }
+   }
+
+
+
+
 
   ngOnInit() {
     const queryParams = {
@@ -336,7 +364,7 @@ export class ProductListComponent implements OnInit {
 
       this.searchService.getList(queryParams).subscribe(response => {
         this.list = response;
-        console.log('apa', response);
+        // console.log('apa', response.rate);
         this.lastPage = this.list.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
           if (r > 0 && r <= this.list.totalPages) {
