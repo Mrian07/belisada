@@ -64,12 +64,8 @@
                     </select>
             </div>
             <div class="sd-bar">
-                Items per page <select>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
+                    <option *ngFor="let itmPer of perPage">{{itmPer}}</option>
                 </select>
             </div>
             
@@ -123,19 +119,19 @@
 
         <div class="paging" *ngIf="list.totalElements!=0">
             <ul>
-                <li  class="link">
-                    <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">Go To First</a>
+                <li>
+                    <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}" class="link">Go To First</a>
                 </li>
-                <li  class="link">
+                <li>
                     <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}"><fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Previous</a>
                 </li>
                 <!-- <li *ngFor="let p of pages">
                     <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
                 </li> -->
-                <li  class="link">
+                <li>
                     <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
                 </li>
-                <li  class="link">
+                <li>
                     <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Go To Last</a>
                 </li>
             </ul>

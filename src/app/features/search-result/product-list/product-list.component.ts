@@ -98,6 +98,8 @@ export class ProductListComponent implements OnInit {
   max: number;
 
   listSort: any = ['name', 'brandname', 'rate', 'review', 'pricelist', 'discount', 'seen'];
+  perPage: any = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
+  itemperpage: number;
 
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
@@ -112,6 +114,7 @@ export class ProductListComponent implements OnInit {
     const queryParams = {
       postal: '52181',
     };
+
 
     this.searchService.getLocation(queryParams).subscribe(response => {
       this.listLocation = response.data;
@@ -153,8 +156,6 @@ export class ProductListComponent implements OnInit {
 
       this.searchService.getSearchFilter(queryParams).subscribe(response => {
           this.listFilter = response[0].data;
-
-          console.log('hasil filter', response);
 
           // min
           this.minValue = response[5].data[0].min;
@@ -203,6 +204,13 @@ export class ProductListComponent implements OnInit {
 
   selectSortBy() {
     this.activeQueryParams['sortName'] = this.sortName;
+    this.router.navigate(['/search-result/product-list'], {
+      queryParams: this.activeQueryParams
+    });
+  }
+
+  selectPerPage() {
+    this.activeQueryParams['itemperpage'] = this.itemperpage;
     this.router.navigate(['/search-result/product-list'], {
       queryParams: this.activeQueryParams
     });
@@ -299,9 +307,12 @@ export class ProductListComponent implements OnInit {
       this.keyST = 'product';
       this.brandOPT = params.brand === undefined ? [] : params.brand;
 
+      (params.itemperpage) ? this.itemperpage = params.itemperpage : this.itemperpage = 10;
+      (params.sortName) ? this.sortName = params.sortName : this.sortName = 'name';
+
       const queryParams = {
         page: this.currentPage,
-        itemperpage: 10,
+        itemperpage: this.itemperpage,
         ob: this.sortName,
         ot: this.sortUrut,
         q: params.q,
