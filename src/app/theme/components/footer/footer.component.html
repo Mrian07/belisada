@@ -1,61 +1,87 @@
-<!-- <div class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-2 col-md-6 u-margin-bottom-1">
-                <ul class="menuList">
-                    <li><a href="">About Us</a></li>
-                    <li><a href="">Contact</a></li>
-                    <li><a href="">Term & Conditions</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-2 col-md-6 u-margin-bottom-1">
-                <ul class="menuList">
-                    <li>
-                        <a href="https://www.facebook.com/BelisadaID/">
-                            <fa-icon [icon]="['fab', 'facebook']"></fa-icon> Facebook</a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/BelisadaID/">
-                            <fa-icon [icon]="['fab', 'twitter']"></fa-icon> Twitter</a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/belisada.id/">
-                            <fa-icon [icon]="['fab', 'instagram']"></fa-icon> Instagram</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-12 u-margin-bottom-1">
-                <form class="form-inline" (ngSubmit)="subscribe()">
-
-                    <label for="email">Subscribe to our newsletter:</label>
-                    <div class="input-group">
-                        <div class="input-group-area">
-                            <input type="text" [formControl]="subscribe_email" placeholder="Email Address" class="footer-input">
+<section class="footer">
+    <div class="footer__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-6">
+                    <form class="form-subscribe" (ngSubmit)="subscribe()">
+                        <!-- <label for="email">Subscribe to our newsletter:</label> -->
+                        <div class="form-subscribe__wrapper pull-right">
+                            <input type="text" class="form-subscribe__input" [formControl]="subscribe_email" placeholder="Enter your Email Address">
+                            <span class="form-subscribe__delimiter"></span>
+                            <button class="form-subscribe__button" type="submit">Subscribe</button>
                         </div>
-                        <div class="input-group-icon cursor" (click)="subscribe()">
-                            <span>Subscribe</span>
-                        </div>
-                    </div>
-                    <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
-                        <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                    </div>
-
-                </form>
+                        <!-- <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
+                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                        </div> -->
+                    </form>
+                </div>
             </div>
-            <div class="col-lg-4 col-md-12 u-margin-bottom-1">Jalan Kesehatan No.60 O-P, RT.2 RW.4 Petojo Selatan, Gambir,
-                <br>Jakarta Pusat 10160.
-                <br>
-                <br>cs@belisada.co.id
-            </div>
-        </div>
-        <div class="center">
-            Copyright © 2018 belisada.co.id. All Rights Reserved.
         </div>
     </div>
-</div> -->
 
-<div class="footer">
-    <div class="wrapper--orange">
+    <div class="footer__main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5r">
+                    <img src="/assets/img/banner/footer2.png" alt="">
+                </div>
+                <div class="col-md-5r">
+                    <div class="sitemap__title">
+                        <h2>Categories</h2>
+                    </div>
+                    <ul class="sitemap__list">
+                        <li><a [routerLink]="['/']">Handpicked Items</a></li>
+                        <li><a [routerLink]="['/']">Electronics</a></li>
+                        <li><a [routerLink]="['/']">Fresh New Arrival</a></li>
+                        <li><a [routerLink]="['/']">Smartphones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5r">
+                    <div class="sitemap__title">
+                        <h2>Quick Links</h2>
+                    </div>
+                    <ul class="sitemap__list">
+                        <li><a [routerLink]="['/']">Shipping & Returns</a></li>
+                        <li><a [routerLink]="['/']">Privacy Policy</a></li>
+                        <li><a [routerLink]="['/']">Terms & Conditions</a></li>
+                        <li><a [routerLink]="['/']">Vacancies</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5r">
+                    <div class="sitemap__title">
+                        <h2>Account</h2>
+                    </div>
+                    <ul class="sitemap__list">
+                        <li><a [routerLink]="['/']">Wishlist</a></li>
+                        <li><a [routerLink]="['/']">Compare</a></li>
+                        <li><a [routerLink]="['/']">Subscribe</a></li>
+                        <li><a [routerLink]="['/']">Log in</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-5r">
+                    <img src="/assets/img/banner/footer1.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer__bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <a [routerLink]="['/']">
+                        <img src="/assets/img/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="col-md-6 text-right">
+                    <button class="btn btn--blue">Bahasa Indonesia</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="wrapper--orange">
         <div class="container">
             <div class="row">
                 <div class="col-3 wrapper--orange--text__phone">
@@ -67,9 +93,6 @@
                         <span>cs@belisada.co.id</span>
                 </div>
                 <div class="col-3 wrapper--orange--text__phone">FAQ</div>
-                <!-- <div class="col-3">
-                    <button>Butuh bantuan? </button>
-                </div> -->
             </div>
         </div>
     </div>
@@ -80,22 +103,7 @@
                     <span class="text__wrapper--mid--footer">Lets Keep in touch</span>
                     <span class="span--recomend">Get recomendations, tips, updates, promotions and more</span>
                     <div class="col-lg-4 col-md-12 wrapper--form">
-                        <form class="form-inline" (ngSubmit)="subscribe()">
-
-                            <!-- <label for="email">Subscribe to our newsletter:</label> -->
-                            <div class="input-group">
-                                <div class="input-group-area">
-                                    <input type="text" [formControl]="subscribe_email" placeholder="Email Address" class="footer-input">
-                                </div>
-                                <div class="input--type__button-subscribe" (click)="subscribe()">
-                                    <span>Subscribe</span>
-                                </div>
-                            </div>
-                            <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
-                                <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                            </div>
-
-                        </form>
+                        
                     </div>
                 </div>
             </div>
@@ -165,5 +173,5 @@
     </div>
     <div class="center">
         Copyright © 2018 belisada.co.id. All Rights Reserved.
-    </div>
-</div>
+    </div> -->
+</section>

@@ -16,6 +16,8 @@ import { Observable, Subscription } from 'rxjs';
 import { ShoppingCart } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
+import { BannerService } from '@belisada/core/services/banner/banner.service';
+import { BannerData } from '@belisada/core/models/banner/banner.model';
 
 interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
@@ -43,6 +45,9 @@ export class HeaderComponent implements OnInit {
   public searchBarResults: SearchBarResponse[];
   /** ---------------- */
 
+  public bannerTop: BannerData;
+  public bannerSearch: BannerData;
+
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
   public itemCount: number;
@@ -61,6 +66,7 @@ export class HeaderComponent implements OnInit {
     private _shoppingCartService: ShoppingCartService,
     private _productService: ProductService,
     private _thumborService: ThumborService,
+    private _bannerService: BannerService,
     private _router: Router,
   ) {
     this.searchBarResults = [];
@@ -71,6 +77,7 @@ export class HeaderComponent implements OnInit {
     this._getCategory();
     this._getData();
     this._shoppingCart();
+    this._getBennerData();
   }
 
 
@@ -130,8 +137,6 @@ export class HeaderComponent implements OnInit {
           const newImgUrl = this._thumborService.process(product.imageUrl, option);
           product.imageUrl = newImgUrl;
 
-          // console.log('product: ', product);
-
           this.cartItems.push({
             ...item,
             product,
@@ -140,7 +145,6 @@ export class HeaderComponent implements OnInit {
       });
     });
   }
-
 
   private _getData() {
     this.userData = this._userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
@@ -166,6 +170,15 @@ export class HeaderComponent implements OnInit {
     };
     this._categoryService.getAllCategory(queryParams).subscribe(response => {
       this.subMenuCategory = response.data;
+    });
+  }
+
+  private _getBennerData() {
+    this._bannerService.getBannerTop().subscribe(response => {
+      this.bannerTop = response.data;
+    });
+    this._bannerService.getBannerSearch().subscribe(response => {
+      this.bannerSearch = response.data;
     });
   }
 }

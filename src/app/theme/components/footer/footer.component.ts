@@ -6,17 +6,20 @@ import { SubscribeService } from '@belisada/core/services';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
   subscribe_email: FormControl;
   subscribeRequest: SubscribeRequest = new SubscribeRequest();
 
-  constructor(private onSubs: SubscribeService) {}
+  constructor(
+    private onSubs: SubscribeService
+  ) {}
 
   ngOnInit() {
     this.subscribe_email = new FormControl('', [
-    Validators.required,
-    Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}')
     ]);
   }
 

@@ -2,30 +2,33 @@
   list-style-type: none;
   padding: 0;
   text-align: center;
+  
 }
 .paging li {
   display: inline-block;
-
+  cursor: pointer;
 }
 .paging a {
   // border: 1px solid #ebeef2;
   padding: 3px 10px;
   margin: 0 3px;
   border-radius: 5px;
+  color:#1677b4;
+ 
 }
 .paging a.current-page {
   // border: 1px solid #cde;
   background: #def;
-  color: #3477cf;
+  color: #dad6d6;
   cursor: default;
 }
 .paging a:not(.disabled):not(.current-page):hover {
-  color: #abc;
+  color: #0b5e93;
   cursor: pointer;
   border-color: #cde;
 }
 .paging a.disabled {
-  color: #3477cf;
+  color: #dad6d6;
   cursor: default;
 }
 
@@ -345,3 +348,4 @@ h1 {
   color:#111111;
   font-weight: bold;
 }
+
