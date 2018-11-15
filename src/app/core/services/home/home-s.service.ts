@@ -12,17 +12,11 @@ import { Home } from '@belisada/core/models';
 export class HomeSService {
 
   constructor(private cfg: Configuration, private http: HttpClient) { }
-  getHomeNew(): Observable<Home[]> {
-    return this.http.get(this.cfg.apiURL + '/home/new/')
-      .pipe(
-        map(response => response as Home[])
-      );
-  }
 
-  getHomePopular(): Observable<Home[]> {
-    return this.http.get(this.cfg.apiURL + '/home/popular/')
+  getHomePopular(): Observable<Home> {
+    return this.http.get(this.cfg.apiUrlMongo + '/home/popular/')
       .pipe(
-        map(response => response as Home[])
+        map(response => response as Home)
       );
   }
 }
