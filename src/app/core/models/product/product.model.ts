@@ -370,6 +370,7 @@ export class AnotherOffersData {
   brandName: string;
   masterId: number;
   varian: any[];
+  image: string;
 }
 
 
