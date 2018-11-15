@@ -350,3 +350,53 @@ export class CreateDiscus {
   productId: string;
 }
 
+
+
+
+/*
+* #kebutuhan untuk another offers
+*/
+
+export class AnotherOffers {
+  status: number;
+  message: string;
+  data: AnotherOffersData[];
+}
+
+export class AnotherOffersData {
+  productId: number;
+  name: string;
+  brandId: number;
+  brandName: string;
+  masterId: number;
+  varian: any[];
+}
+
+
+export class AnotherOfferDetail {
+  content: AnotherOffersDetailData[];
+  last: number;
+  totalPages: number;
+  totalElements: number;
+  first: boolean;
+  numberOfElements: number;
+  size: number;
+  number: number;
+}
+
+export class AnotherOffersDetailData {
+  productId: number;
+  name: string;
+  sku: string;
+  storeId: number;
+  storeName: string;
+  storeUrl: string;
+  weight: number;
+  qty: string;
+  guaranteeType: string;
+  guaranteeTypeValue: string;
+  guaranteeTime: string;
+  guaranteeTimeValue: string;
+  rate: string;
+  imageUrl: string;
+}

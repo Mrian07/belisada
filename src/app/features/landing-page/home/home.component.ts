@@ -4,7 +4,7 @@ import swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy, Input, HostListener, Output, EventEmitter } from '@angular/core';
-import { UserData, Home } from '@belisada/core/models';
+import { UserData, Home, HomeContent, Brand } from '@belisada/core/models';
 import { StoreService, UserService, HomeSService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
@@ -12,6 +12,9 @@ import { CheckStoreRequest } from '@belisada/core/models/store/store.model';
 import { Observable } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { environment } from '@env/environment';
+import { BannerService } from '@belisada/core/services/banner/banner.service';
+import { BannerMainData, BannerData } from '@belisada/core/models/banner/banner.model';
+import { BrandService } from '@belisada/core/services/brand/brand.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -61,6 +64,17 @@ export class HomeComponent implements OnInit, OnDestroy {
   showDialog;
   dataForPopUp;
 
+  public brandImageUrl: string;
+
+  public bannerMain: BannerMainData = new BannerMainData();
+  public bannersLeft: BannerData[] = [];
+  public bannersBottom: BannerData[] = [];
+  public bannersPromoOne: BannerData = new BannerData;
+  public bannersPromoTwo: BannerData = new BannerData;
+  public homeContents: HomeContent[] = [];
+  public brandHomeList: Brand[] = [];
+
+  public Arr = Array;
 
   constructor(
     private fb: FormBuilder,
@@ -69,8 +83,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     private router: Router,
     private homeS: HomeSService,
     private _messageService: TestingServicesService,
+    private _bannerService: BannerService,
+    private _brandService: BrandService,
   ) {
     this.productImageUrl = environment.thumborUrl + 'unsafe/400x400/center/filters:fill(fff)/';
+    this.brandImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
     this.productStoreUrl = environment.thumborUrl + 'unsafe/50x50/center/filters:fill(fff)/';
     this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
     this.imageDmy = environment.thumborUrl + 'unsafe/fit-in/150x150/center/filters:fill(fff)/';
@@ -91,8 +108,53 @@ export class HomeComponent implements OnInit, OnDestroy {
     if (this.userData) {
       this.isLogin = true;
     }
-    this.getDataForNew();
-    this.getDataForPop();
+    this._getDataForPop();
+    this._getBannerMain();
+    this._getBannerLeft();
+    this._getBannerBottom();
+    this._getBannerPromoOne();
+    this._getBannerPromoTwo();
+    this._getBrandHomeList();
+  }
+
+  private _getBannerMain() {
+    this._bannerService.getBannerMain().subscribe(response => {
+      console.log('_getBannerMain: ', response);
+      if (response.status === 1) this.bannerMain = response.data;
+    });
+  }
+
+  private _getBannerLeft() {
+    this._bannerService.getBannerLeft().subscribe(response => {
+      console.log('_getBannerLeft: ', response);
+      if (response.status === 1) this.bannersLeft = response.data;
+    });
+  }
+
+  private _getBannerBottom() {
+    this._bannerService.getBannerBottom().subscribe(response => {
+      console.log('_getBannerBottom: ', response);
+      if (response.status === 1) this.bannersBottom = response.data;
+    });
+  }
+
+  private _getBannerPromoOne() {
+    this._bannerService.getBannerPromoOne().subscribe(response => {
+      if (response.status === 1) this.bannersPromoOne = response.data;
+    });
+  }
+
+  private _getBannerPromoTwo() {
+    this._bannerService.getBannerPromoTwo().subscribe(response => {
+      if (response.status === 1) this.bannersPromoTwo = response.data;
+    });
+  }
+
+  private _getBrandHomeList() {
+    this._brandService.getHomeBrandList().subscribe(response => {
+      console.log('response: ', response);
+      this.brandHomeList = response.content;
+    });
   }
 
   private bukaPopUp() {
@@ -142,21 +204,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log('asdasdsadasd');
   }
 
-
-
-  getDataForNew() {
-    this.homeS.getHomeNew().subscribe(res => {
-      this.productNew = res;
-      this.lnght = res.length;
-    });
-  }
-
-  getDataForPop() {
+  private _getDataForPop() {
     this.homeS.getHomePopular().subscribe(res => {
-      this.productPop = res;
+      this.homeContents = res.content;
     });
   }
-
 
   flagStatus() {
   this.regForm = false;
@@ -176,18 +228,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         }, 500);
       }
     });
-
-  //   this.validationOnpopUpCreateStore.get('province').valueChanges.subscribe(val => {
-  //       this.getCity(val);
-  //   });
-  //   this.validationOnpopUpCreateStore.get('city').valueChanges.subscribe(val => {
-  //       this.getDistrict(val);
-  //   });
-
-  //   this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {
-  //       this.getVillage(val);
-  //   });
-  //   this.validationOnpopUpCreateStore.get('district').valueChanges.subscribe(val => {});
   }
   getProvince() {
     // Country ID harcoded to Indonesia

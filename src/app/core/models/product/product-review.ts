@@ -1,5 +1,5 @@
 export class ProductReviewResponse {
-    content: ProductReviewContent[];
+    content: ProductReviewContent;
     last: Boolean;
     totalPages: number;
     totalElements: number;

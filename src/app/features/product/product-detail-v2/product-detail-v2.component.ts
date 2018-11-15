@@ -11,7 +11,7 @@ import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-c
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { AddressService } from '@belisada/core/services/address/address.service';
-import { Home, ProductDetailV2Spec, Isi } from '@belisada/core/models';
+import { Home, ProductDetailV2Spec, Isi, HomeContent } from '@belisada/core/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 enum TabTypeEnum {
@@ -44,7 +44,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public shippingMethod: ShippingRate[];
 
   public product;
-  public otherBrandProducts: Home[];
+  public otherBrandProducts: HomeContent[];
   public productSpecifications: ProductDetailV2Spec[];
   public productDiscussion: Isi;
 
@@ -291,6 +291,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
         this.product = product.data;
+        console.log(product.data);
         this.selectedImage = product.data.imageUrl[0];
 
         this._productService.getProductDetailV2Variant(id).subscribe((variants) => {
@@ -327,8 +328,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       });
     });
 
-    this._homeService.getHomeNew().subscribe(res => {
-      this.otherBrandProducts = res;
+    this._homeService.getHomePopular().subscribe(res => {
+      this.otherBrandProducts = res.content;
     });
 
     this._productService.getProductDetailV2Spec(this._route.snapshot.params.id).subscribe(specs => {
@@ -422,4 +423,12 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     //   }
     // }));
   }
+
+  /*
+  * #gOTo product lain
+  */
+ gotoPenawaran(e) {
+  this._router.navigate(['/product/another-offers/' + e ]);
+  window.scrollTo(0, 0);
+ }
 }

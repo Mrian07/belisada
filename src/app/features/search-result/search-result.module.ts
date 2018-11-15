@@ -13,6 +13,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 
+import { Ng5SliderModule } from 'ng5-slider';
+
 library.add(fas, far, fab);
 
 @NgModule({
@@ -21,7 +23,8 @@ library.add(fas, far, fab);
     SearchResultRoutingModule,
     ThemeModule,
     FormsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    Ng5SliderModule
   ],
   declarations: [
     SearchResultComponent,
@@ -29,6 +32,8 @@ library.add(fas, far, fab);
     SidebarComponent,
     StoreListComponent
   ],
+  providers: [ ],
+  bootstrap: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchResultModule { }

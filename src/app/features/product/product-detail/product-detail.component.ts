@@ -198,10 +198,10 @@ export class ProductDetailComponent implements OnInit {
   loadData() {
     this.active();
     this.activeSpesifikasi = true;
-    this.homeS.getHomeNew().subscribe(res => {
-      this.productNewatProdDetail = res;
-      // // console.log('ini res: ', res);
-    });
+    // this.homeS.getHomeNew().subscribe(res => {
+    //   this.productNewatProdDetail = res;
+    //   // // console.log('ini res: ', res);
+    // });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.getDiscus(params);
 

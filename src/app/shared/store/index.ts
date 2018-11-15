@@ -4,6 +4,7 @@ import * as fromProductDetailsStore from './reducers/product-details-store.reduc
 import * as fromProductDetailsVariant from './reducers/product-details-variant.reducer';
 import * as fromAddress from './reducers/address.reducer';
 import * as fromShippingMethod from './reducers/shipping-method.reducer';
+import * as fromAnotherProduct from './reducers/another-offer.reducer';
 import { ActionReducerMap, createSelector } from '@ngrx/store';
 
 export interface State {
@@ -13,6 +14,7 @@ export interface State {
   productDetailsVariant: fromProductDetailsVariant.State;
   address: fromAddress.State;
   shippingMethod: fromShippingMethod.State;
+  anotherProduct: fromAnotherProduct.State;
 }
 
 export const reducers: ActionReducerMap<State> = {
@@ -21,7 +23,8 @@ export const reducers: ActionReducerMap<State> = {
   productDetailsStore: fromProductDetailsStore.reducer,
   productDetailsVariant: fromProductDetailsVariant.reducer,
   address: fromAddress.reducer,
-  shippingMethod: fromShippingMethod.reducer
+  shippingMethod: fromShippingMethod.reducer,
+  anotherProduct: fromAnotherProduct.reducer
 };
 
 /**
@@ -77,3 +80,14 @@ export const getShippingMethodLoaded  = createSelector(getShippingMethodState, f
 export const getShippingMethodLoading = createSelector(getShippingMethodState, fromShippingMethod.getLoading);
 export const getShippingMethodFailed  = createSelector(getShippingMethodState, fromShippingMethod.getFailed);
 export const getShippingMethodData    = createSelector(getShippingMethodState, fromShippingMethod.getData);
+
+
+/**
+ * # product another store functions
+ */
+export const getAnotherProduct   = (state: State) => state.anotherProduct;
+export const getAnotherProductLoaded  = createSelector(getAnotherProduct, fromAnotherProduct.getLoaded);
+export const getAnotherProductLoading = createSelector(getAnotherProduct, fromAnotherProduct.getLoading);
+export const getAnotherProductFailed  = createSelector(getAnotherProduct, fromAnotherProduct.getFailed);
+export const getAnotherProductData    = createSelector(getAnotherProduct, fromAnotherProduct.getData);
+

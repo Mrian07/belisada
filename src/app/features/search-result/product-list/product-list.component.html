@@ -1,5 +1,154 @@
-<div class="containPage has-header">
-    <div class="b-sr">
+<div class="container has-header has-footer">
+    <div class="frame-src-head">
+        <div class="frame-src-sub">
+            <div class="frame-b">
+                <div class="frame-ba">
+                    <div class="title-src">Lokasi Penjual </div>
+                    <select style="width:100%" [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
+                    (change)="selectLocation()">
+                        <option value=""></option>
+                        <option *ngFor="let itmLoc of listLocation; let n = index" [value]="itmLoc.cityId">{{itmLoc.cityName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="frame-b">
+                <div class="frame-ba">
+                    <div class="title-src">Metode Pengiriman</div>
+                    <ul>
+                        <li *ngFor="let itmF of listFilter; let i = index"><input [value]="itmF.type" [checked]="curType[i] === itmF.type" type="checkbox" (change)="changeCourier(itmF.type, $event.target.checked, i)"> {{itmF.type}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="frame-b">
+                <div class="frame-ba">
+                    <div class="title-src">Harga</div>
+                    <input type="hidden" [(ngModel)]="minValue">
+                    <input type="hidden" [(ngModel)]="maxValue">
+                    <div class="f-slider">
+                        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changePrice()">
+                            
+                        </ng5-slider>
+                    </div>        
+                </div>
+            </div>
+            <div class="frame-c">
+                <div class="frame-ba">
+                    <div class="title-src">Rating</div>
+                
+                    <input type="hidden" [(ngModel)]="valueRate">
+                    <div class="f-slider">
+                        <ng5-slider [(value)]="valueRate" [options]="optionsRate" (valueChange)="changeRating()"></ng5-slider>
+                    </div>    
+
+                </div>   
+            </div>
+        </div>
+    </div>
+    <div class="frame-src">
+        <div class="b-bar">
+            <div>
+                <strong>Hasil Pencarian: '{{keys}}'</strong>
+            </div>
+            <div class="c-bar">
+                <div class="c-bar2">
+                    <fa-icon [icon]="['fas', 'th']"></fa-icon>
+                </div>
+                <div>
+                    <fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 3 items
+                </div>
+                    
+            </div>
+            <div class="sc-bar">
+                Sort By <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
+                        <option *ngFor="let itmS of listSort">{{itmS}}</option>
+                    </select>
+            </div>
+            <div class="sd-bar">
+                Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
+                    <option *ngFor="let itmPer of perPage">{{itmPer}}</option>
+                </select>
+            </div>
+            
+        </div>
+
+
+        
+
+        <div *ngIf="list.totalElements==0" class="product-empty">
+            Maaf produk yang Anda cari tidak ditemukan.
+        </div>
+        <div class="b-part" *ngIf="list.totalElements!=0">
+            <div class="row">
+                <div class="col-3 u-margin-bottom-3" [ngClass]="{'u-margin-right-0': (i + 1) % 4 === 0 }" *ngFor="let item of list.content; let i = index">
+                    <div class="b-product-list">
+                        <!-- <div class="row icon-bar-group">
+                            <div class="col-6 icon-left">
+                                <img src='assets/img/wishlist.png'>
+                            </div>
+                            <div class="col-6 icon-right">
+                                <div class="ribbon ribbon--orange"
+                                 *ngIf="item.discount > 0">{{ item.discount }}%</div>
+                            </div>
+                        </div> -->
+
+            
+
+                        <a *ngFor="let item of starList; let i=index " (click)="setStar(i)">  
+                            <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+                        </a>  
+
+
+                        <div class="item" (click)="goDetail(item.productId,item.name)">{{ item.name }}
+                            <div class="b-star" > 
+                          
+                                <fa-icon class="star-yello" *ngFor="let i of Arr(item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
+                                <fa-icon class="star-default" *ngFor="let i of Arr(5-item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
+ 
+
+                            <span class="i-review">{{item.review}} Review</span>
+                            </div>
+                        </div>
+                        <div class="img-item" (click)="goDetail(item.productId,item.name)">
+                            <img [src]='produkIMG+item.imageUrl' border="0" height="200">
+                        </div> 
+
+                        <div *ngIf="item.discount>0">
+                            <span class="price">Rp {{ item.specialPrice | number}}</span>
+                            <span class="price-slash"><s>Rp {{ item.fixPrice | number}}</s></span>
+                        </div>
+                        <div *ngIf="item.discount<=0">
+                            <span class="price">Rp {{ item.fixPrice | number}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+        <div class="paging" *ngIf="list.totalElements!=0">
+            <ul>
+                <li>
+                    <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}" class="link">Go To First</a>
+                </li>
+                <li>
+                    <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}"><fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Previous</a>
+                </li>
+                <!-- <li *ngFor="let p of pages">
+                    <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+                </li> -->
+                <li>
+                    <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
+                </li>
+                <li>
+                    <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Go To Last</a>
+                </li>
+            </ul>
+        </div>
+
+
+        
+    </div>
+
+    <!-- <div class="b-sr">
 
         <div class="row">
             <div class="col-2">
@@ -16,6 +165,10 @@
                         SORT: <a href='#' class='link-search'>BY POPULARITY</a> <button class="btn-down"><fa-icon [icon]="['fas', 'angle-down']"></fa-icon></button>
                     </div>
                 </div>
+
+
+
+
                 <div *ngIf="list.totalElements==0" class="product-empty">
                     Maaf produk yang Anda cari tidak ditemukan.
                 </div>
@@ -36,13 +189,13 @@
                                     <img [src]='produkIMG+item.imageUrl' border="0" height="200">
                                 </div>
                                 <div class="item" (click)="goDetail(item.productId,item.name)">{{ item.name }}</div>
-                                <!-- <img src='assets/img/dummy-star.jpg'><br> -->
+   
                                 <div *ngIf="item.discount>0">
                                     <span class="price">Rp {{ item.specialPrice | number}}</span>
-                                    <span class="price-slash"><s>Rp {{ item.pricelist | number}}</s></span>
+                                    <span class="price-slash"><s>Rp {{ item.fixPrice | number}}</s></span>
                                 </div>
                                 <div *ngIf="item.discount<=0">
-                                    <span class="price">Rp {{ item.pricelist | number}}</span>
+                                    <span class="price">Rp {{ item.fixPrice | number}}</span>
                                 </div>
                             </div>
                         </div>
@@ -68,11 +221,19 @@
                         </li>
                     </ul>
                 </div>
+
+
+
+
+
+
+
+
             </div>
             <div class="col-2">
                 <img src='assets/img/dummy-banner.jpg'><br>
                 <img src='assets/img/dummy-banner.jpg'><br>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>

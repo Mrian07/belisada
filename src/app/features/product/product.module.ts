@@ -16,6 +16,7 @@ import { ProductDetailV2Component } from './product-detail-v2/product-detail-v2.
 import { ComponentsModule } from '@belisada/shared/components';
 import { ProductsSandbox } from './products.sandbox';
 import { ProductsResolver } from './products.resolver';
+import { AnotherOfferV2Component } from './another-offer-v2/another-offer-v2.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { ProductsResolver } from './products.resolver';
     ProductComponent,
     ProductDetailComponent,
     AnotherOfferComponent,
-    ProductDetailV2Component
+    ProductDetailV2Component,
+    AnotherOfferV2Component
   ],
   providers: [
     ProductsSandbox,

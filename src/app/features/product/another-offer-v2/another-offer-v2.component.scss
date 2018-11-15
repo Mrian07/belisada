@@ -1,0 +1,218 @@
+.dadyContainWrappper {
+    padding: 3rem;
+}
+.containWrapper {
+ 
+    border: 3px solid hsl(209, 22%, 74%);
+}
+.wrapperF {
+    margin-top: 1%;
+    border: 3px solid  hsl(209, 22%, 74%);;
+}
+
+.text-color {
+    color: #00b3e8;
+}
+.font-size {
+    font-size: 16px;   
+}
+.btn--yelloworange {
+  background: #ffa700;
+  color: white;
+}
+
+// .item1 { grid-area: header; }
+.item2 { grid-area: menu; text-align: center }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; text-align: right }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    // 'header header header header header header'
+    'menu main main main main main'
+    'menu right right right right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 10px;
+//   background-color: #2196F3;
+  padding: 10px;
+}
+.grid-container > div {
+//   background-color: rgba(255, 255, 255, 0.8);
+//   text-align: center;
+  padding: 20px 0;
+//   font-size: 30px;
+}
+.wrapperF__text {
+    color: #00b3e8;
+    font-size: 16px;
+    display: block;
+}
+
+
+.asd {
+    border-radius: 5px;
+    padding: .5rem;
+    color: #8f8f8f;
+    background-color: #fff;
+    margin-left: 1rem;
+    border: 1px solid;
+}
+
+.detail-product__variant {
+    border-radius: 5px;
+    padding: .5rem;
+    color: #8f8f8f;
+    background-color: #fff;
+    margin-left: 1rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &--1 {
+        border: 1px solid #1eb31e;
+
+        &.active, &:hover {
+            color: #fff;
+            background-color: #1eb31e;
+        }
+    }
+
+    &--2 {
+        border: 1px solid #fd9426;
+
+        &.active, &:hover {
+            color: #fff;
+            background-color: #fd9426;
+        }
+    }
+}
+
+  
+  table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+    .text__bawah {
+      color: black;
+      font-size: 2.0rem;
+      font-weight: bold;
+      &--v2 { 
+        color: #727272;
+        font-size: 16px;
+      }
+    }
+  }
+ 
+  table caption {
+    // font-size: 1.5em;
+    // margin: .5em 0 .75em;
+    color: black;
+    text-align: left;
+  }
+  
+  table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 600px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+  .paging{
+    margin-top:20px;
+}
+
+.paging ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+.paging li {
+    display: inline-block;
+
+}
+.paging a {
+    border: 1px solid #ebeef2;
+    padding: 3px 10px;
+    margin: 0 3px;
+    border-radius: 5px;
+}
+.paging a.current-page {
+    border: 1px solid #cde;
+    background: #def;
+    color: #999;
+    cursor: default;
+}
+.paging a:not(.disabled):not(.current-page):hover {
+    color: #00b3e8;
+    cursor: pointer;
+    border-color: #cde;
+}
+.paging a.disabled {
+    color: #ccc;
+    cursor: default;
+}
