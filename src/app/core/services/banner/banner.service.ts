@@ -39,4 +39,25 @@ export class BannerService {
         map(response => response as BannerMainResponse)
       );
   }
+
+  public getBannerLeft(): Observable<BannerArrayResponse> {
+    return this.http.get(this.configuration.apiUrlMongo + '/banner/left')
+      .pipe(
+        map(response => response as BannerArrayResponse)
+      );
+  }
+
+  public getBannerPromoOne(): Observable<BannerResponse> {
+    return this.http.get(this.configuration.apiUrlMongo + '/banner/promo/sessionone')
+    .pipe(
+      map(response => response as BannerResponse)
+    );
+  }
+
+  public getBannerPromoTwo(): Observable<BannerResponse> {
+    return this.http.get(this.configuration.apiUrlMongo + '/banner/promo/sessiontwo')
+    .pipe(
+      map(response => response as BannerResponse)
+    );
+  }
 }

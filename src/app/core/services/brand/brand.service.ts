@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { BrandList } from '@belisada/core/models';
+import { BrandList, BrandHomeResponse } from '@belisada/core/models';
 import { Observable } from 'rxjs';
 import { Configuration } from '@belisada/core/config';
 import { map } from 'rxjs/operators';
@@ -20,6 +20,13 @@ export class BrandService {
     return this.http.get(this.configuration.apiURL + '/brand', {params: params})
       .pipe(
         map(response => response as BrandList)
+      );
+  }
+
+  getHomeBrandList(): Observable<BrandHomeResponse> {
+    return this.http.get(this.configuration.apiUrlMongo + '/brand?itemperpage=5&page=1')
+      .pipe(
+        map(response => response as BrandHomeResponse)
       );
   }
 }

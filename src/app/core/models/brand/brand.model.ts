@@ -10,3 +10,14 @@ export class Brand {
     imageUrl: string;
     isActive: boolean;
 }
+
+export class BrandHomeResponse {
+    content: Brand[];
+    last: boolean;
+    totalPages: number;
+    totalElements: number;
+    numberOfElements: number;
+    first: boolean;
+    size: number;
+    number: number;
+}
