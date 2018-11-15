@@ -16,12 +16,16 @@
 .font-size {
     font-size: 16px;   
 }
+.btn--yelloworange {
+  background: #ffa700;
+  color: white;
+}
 
 // .item1 { grid-area: header; }
-.item2 { grid-area: menu; }
+.item2 { grid-area: menu; text-align: center }
 .item3 { grid-area: main; }
 .item4 { grid-area: right; }
-.item5 { grid-area: footer; }
+.item5 { grid-area: footer; text-align: right }
 
 .grid-container {
   display: grid;

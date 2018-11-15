@@ -2,30 +2,33 @@
   list-style-type: none;
   padding: 0;
   text-align: center;
+  
 }
 .paging li {
   display: inline-block;
-
+  cursor: pointer;
 }
 .paging a {
   // border: 1px solid #ebeef2;
   padding: 3px 10px;
   margin: 0 3px;
   border-radius: 5px;
+  color:#1677b4;
+ 
 }
 .paging a.current-page {
   // border: 1px solid #cde;
   background: #def;
-  color: #3477cf;
+  color: #dad6d6;
   cursor: default;
 }
 .paging a:not(.disabled):not(.current-page):hover {
-  color: #abc;
+  color: #0b5e93;
   cursor: pointer;
   border-color: #cde;
 }
 .paging a.disabled {
-  color: #3477cf;
+  color: #dad6d6;
   cursor: default;
 }
 
@@ -318,6 +321,12 @@ h1 {
   text-align: center;
 }
 
+.frame-ba{
+  width:90%;
+  text-align: left;
+  margin:0px auto;
+}
+
 .frame-c{
   border-right: 1px solid #dddddd;
   border-left: 1px solid #dddddd;
@@ -326,16 +335,23 @@ h1 {
 
 .b-star{
   font-size: 12px;
+}
+
+.star-yello{
   color:#f6c43d;
+}
+
+.star-default{
+  color: #dddddd;
 }
 
 .i-review{
   color:#5e5d5d;
+  margin-left:10px;
 }
 
 .f-slider{
   padding-top:25px;
-  width:80%;
   margin:0px auto;
   font-size: 12px;
 }
@@ -345,3 +361,4 @@ h1 {
   color:#111111;
   font-weight: bold;
 }
+

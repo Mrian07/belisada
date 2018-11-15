@@ -24,7 +24,7 @@ library.add(fas, far, fab);
     ThemeModule,
     FormsModule,
     FontAwesomeModule,
-    Ng5SliderModule,
+    Ng5SliderModule
   ],
   declarations: [
     SearchResultComponent,
@@ -32,6 +32,8 @@ library.add(fas, far, fab);
     SidebarComponent,
     StoreListComponent
   ],
+  providers: [ ],
+  bootstrap: [],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SearchResultModule { }
