@@ -2,45 +2,45 @@
     <div class="frame-src-head">
         <div class="frame-src-sub">
             <div class="frame-b">
-                <div class="title-src">Lokasi Penjual </div>
-                <select [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
-                (change)="selectLocation()">
-                    <option value=""></option>
-                    <option *ngFor="let itmLoc of listLocation; let n = index" [value]="itmLoc.cityId">{{itmLoc.cityName}}</option>
-                </select>
-
-            </div>
-            <div class="frame-b">
-                <div class="title-src">Metode Pengiriman</div>
-                <ul>
-                    <li *ngFor="let itmF of listFilter; let i = index"><input [value]="itmF.type" [checked]="curType[i] === itmF.type" type="checkbox" (change)="changeCourier(itmF.type, $event.target.checked, i)"> {{itmF.type}}</li>
-                </ul>
-            </div>
-            <div class="frame-b">
-                <div class="title-src">Harga</div>
-                <input type="hidden" [(ngModel)]="minValue">
-                <input type="hidden" [(ngModel)]="maxValue">
-                <div class="f-slider">
-                    <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changePrice()">
-                        
-                    </ng5-slider>
+                <div class="frame-ba">
+                    <div class="title-src">Lokasi Penjual </div>
+                    <select style="width:100%" [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
+                    (change)="selectLocation()">
+                        <option value=""></option>
+                        <option *ngFor="let itmLoc of listLocation; let n = index" [value]="itmLoc.cityId">{{itmLoc.cityName}}</option>
+                    </select>
                 </div>
-                
-
-
+            </div>
+            <div class="frame-b">
+                <div class="frame-ba">
+                    <div class="title-src">Metode Pengiriman</div>
+                    <ul>
+                        <li *ngFor="let itmF of listFilter; let i = index"><input [value]="itmF.type" [checked]="curType[i] === itmF.type" type="checkbox" (change)="changeCourier(itmF.type, $event.target.checked, i)"> {{itmF.type}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="frame-b">
+                <div class="frame-ba">
+                    <div class="title-src">Harga</div>
+                    <input type="hidden" [(ngModel)]="minValue">
+                    <input type="hidden" [(ngModel)]="maxValue">
+                    <div class="f-slider">
+                        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options" (valueChange)="changePrice()">
+                            
+                        </ng5-slider>
+                    </div>        
+                </div>
             </div>
             <div class="frame-c">
-                <div class="title-src">Rating</div>
-             
-                <input type="hidden" [(ngModel)]="valueRate">
-                <div class="f-slider">
-                    <ng5-slider [(value)]="valueRate" [options]="optionsRate" (valueChange)="changeRating()"></ng5-slider>
-                </div>    
+                <div class="frame-ba">
+                    <div class="title-src">Rating</div>
+                
+                    <input type="hidden" [(ngModel)]="valueRate">
+                    <div class="f-slider">
+                        <ng5-slider [(value)]="valueRate" [options]="optionsRate" (valueChange)="changeRating()"></ng5-slider>
+                    </div>    
 
-
-
-
-
+                </div>   
             </div>
         </div>
     </div>
