@@ -117,27 +117,6 @@ export class ProductListComponent implements OnInit {
     this.produkIMG = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
   }
 
-
-
-
-  starList: boolean[] = [true, true, true, true, true];
-  rating: number;
-  i: number;
-  setStar(data: any) {
-    this.rating = data + 1;
-    for (const i = 0; i <= 4; i++) {
-      if (i <= data) {
-        this.starList[i] = false;
-      } else {
-        this.starList[i] = true;
-      }
-    }
-   }
-
-
-
-
-
   ngOnInit() {
     const queryParams = {
       postal: '52181',
