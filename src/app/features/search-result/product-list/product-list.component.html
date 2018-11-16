@@ -111,13 +111,7 @@
                                 <img [src]='produkIMG+item.imageUrl' border="0" height="200">
                             </div> 
 
-                            <div *ngIf="item.discount>0">
-                                <span class="price">Rp {{ item.specialPrice | number}}</span>
-                                <span class="price-slash"><s>Rp {{ item.fixPrice | number}}</s></span>
-                            </div>
-                            <div *ngIf="item.discount<=0">
-                                <span class="price">Rp {{ item.fixPrice | number}}</span>
-                            </div>
+                            <div><span class="price">Rp {{ item.fixPrice | number}}</span></div>
 
                         </div>
                     </div>
