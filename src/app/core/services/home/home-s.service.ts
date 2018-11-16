@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Home } from '@belisada/core/models';
+import { Home, FlashSaleResponse, FlashSaleExpiredResponse } from '@belisada/core/models';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,24 @@ export class HomeSService {
     return this.http.get(this.cfg.apiUrlMongo + '/home/popular/')
       .pipe(
         map(response => response as Home)
+      );
+  }
+
+  getFlashSale(queryParams): Observable<FlashSaleResponse> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.cfg.apiUrlMongo + '/home/flash-sale', {params: params})
+      .pipe(
+        map(response => response as FlashSaleResponse)
+      );
+  }
+
+  getFlashSaleExpired(): Observable<FlashSaleExpiredResponse> {
+    return this.http.get(this.cfg.apiUrlMongo + '/home/flash-sale/expired')
+      .pipe(
+        map(response => response as FlashSaleExpiredResponse)
       );
   }
 }
