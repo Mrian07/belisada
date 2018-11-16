@@ -25,10 +25,69 @@
     </div>
     <!-- !PROMO BANNER! -->
 
+    <div class="row">
+        <div class="col">
+            <div class="fs__title">
+                <h2>Today Deal</h2>
+                <span class="fs__countdown">{{countdown.hours}} : {{countdown.minutes}} : {{countdown.seconds}}</span>
+            </div>
+        </div>
+        <div class="col text-right">
+            <div class="fs__see-all">
+                <a [routerLink]="['/']">
+                    Lihat semua
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="flash-sale full-width u-margin-bottom-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2" *ngFor="let item of flashSaleProducts">
+                    <a class="fs-product__link" [routerLink]="['/']">
+                        <div class="fs-product__grid">
+                            <!-- <div class="fs-product__container"> -->
+                                <div>
+                                    <h2 class="fs-product__name">
+                                        {{ item.name }}
+                                    </h2>
+                                    <div class="fs-product__rating">
+                                        <fa-icon class="rating__star rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.rate).fill(1)"></fa-icon>
+                                        <fa-icon class="rating__star rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.rate).fill(1)"></fa-icon>
+                                        <span class="rating__count"> {{ item.review }} Reviews</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="fs-product__image">
+                                    <img [src]="productImageUrl + item.imageUrl" [alt]="item.imageUrl">
+                                </div>
+
+                                <div class="fs-product__qty-wrapper">
+                                    <div class="fs-product__qty">
+                                        <div class="fs-product__qty-left" [ngStyle]="{'width': (item.leftQty / item.qty) * 100 + '%'}">
+
+                                        </div>
+                                    </div>
+                                    <span class="fs-product__qty-info">Sisa {{ item.leftQty }} Unit</span>
+                                </div>
+    
+                                <div class="fs-product__info">
+                                    <span class="fs-product__info--price">
+                                        {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                    </span>
+                                </div>
+                            <!-- </div> -->
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- LATEST PRODUCT -->
     <div class="section u-margin-bottom-3">
         <div class="section__title">
-            <h2>Produk Terbaru</h2>
+            <h2>Produk Favorit</h2>
             <!-- <span class="striped"></span> -->
         </div>
 
@@ -40,12 +99,12 @@
                             <div class="product__container">
                                 <div>
                                     <h2 class="product__name">
-                                        {{ item.name | ellipsis:30 }}
+                                        {{ item.name }}
                                     </h2>
                                     <div class="product__rating">
-                                        <fa-icon class="rating__star rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(3).fill(1)"></fa-icon>
-                                        <fa-icon class="rating__star rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(2).fill(1)"></fa-icon>
-                                        <span class="rating__count"> 14 Reviews</span>
+                                        <fa-icon class="rating__star rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.rate).fill(1)"></fa-icon>
+                                        <fa-icon class="rating__star rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.rate).fill(1)"></fa-icon>
+                                        <span class="rating__count"> {{ item.review }} Reviews</span>
                                     </div>
                                 </div>
                                 

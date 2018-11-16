@@ -97,13 +97,13 @@
         <div class="col-md-4">
             <section class="product-image"> <!-- #SECTION [PRODUCT_DETAIL] product-image -->
                 <div class="product-image__preview">
-                    <img [src]="'https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + selectedImage" alt="">
+                    <img [src]="'https://img.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + selectedImage" alt="">
                 </div>
 
                 <div class="row justify-content-sm-center small-gutters product-image__thumbnail-wrapper">
                     <div class="col-sm-5r" *ngFor="let item of product?.imageUrl">
                         <div class="product-image__thumbnail" (click)="selectedImage = item">
-                            <img [src]="'https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item" alt="">
+                            <img [src]="'https://img.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item" alt="">
                         </div>
                     </div>
                 </div>
@@ -191,7 +191,7 @@
                         <div class="col-sm-2" *ngFor="let item of otherBrandProducts | slice:0:6">
                             <a [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
                                 <div>
-                                    <img [src]="'https://image.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item.imageUrl" alt="">
+                                    <img [src]="'https://img.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item.imageUrl" alt="">
                                     <div>
                                         <div class="other-product__product-name">{{ item.name }}</div>
                                         <div class="other-product__product-price" *ngIf="item.specialPrice !== 0">{{ item.specialPrice | currency:'Rp ' }}</div>

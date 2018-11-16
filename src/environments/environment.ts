@@ -9,7 +9,7 @@ export const environment = {
   domain: 'https://dev.belisada.id',
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
-  thumborUrl: 'https://image.belisada.id/',
+  thumborUrl: 'https://img.belisada.id/',
   firebase: {
     apiKey: 'AIzaSyBIUJNYI-q2h2Bh1Drb7GvDuK7KDjx_e5o',
     authDomain: 'belisada-dev.firebaseapp.com',
@@ -21,5 +21,4 @@ export const environment = {
   googleKey : {
     geoCodeApi: 'AIzaSyCuNBuV8wyDT2HZaUvzF0s6rWpBzfo1zq4'
   }
-  // imgUrl163x179: 'http://image.belisada.id:8888/unsafe/163x179',
 };

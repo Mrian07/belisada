@@ -45,8 +45,8 @@ export class HeaderComponent implements OnInit {
   public searchBarResults: SearchBarResponse[];
   /** ---------------- */
 
-  public bannerTop: BannerData;
-  public bannerSearch: BannerData;
+  public bannerTop: BannerData = new BannerData();
+  public bannerSearch: BannerData = new BannerData();
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
