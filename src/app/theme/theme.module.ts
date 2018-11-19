@@ -23,6 +23,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { CategoryMenuComponent } from './components/header/category-menu.component';
+import { AccountMenuComponent } from './components/header/account-menu.component';
 
 const COMPONENTS = [
   ModelsComponent,
@@ -33,6 +34,7 @@ const COMPONENTS = [
   SidebarSellerComponent,
   HeadingSellerComponent,
   CategoryMenuComponent,
+  AccountMenuComponent,
 
   MainLayoutComponent,
   AuthLayoutComponent,

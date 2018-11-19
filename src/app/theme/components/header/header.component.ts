@@ -18,6 +18,8 @@ import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizin
 import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service';
 import { BannerService } from '@belisada/core/services/banner/banner.service';
 import { BannerData } from '@belisada/core/models/banner/banner.model';
+import { environment } from '@env/environment';
+import swal from 'sweetalert2';
 
 interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
@@ -45,8 +47,8 @@ export class HeaderComponent implements OnInit {
   public searchBarResults: SearchBarResponse[];
   /** ---------------- */
 
-  public bannerTop: BannerData;
-  public bannerSearch: BannerData;
+  public bannerTop: BannerData = new BannerData();
+  public bannerSearch: BannerData = new BannerData();
 
   public cart: Observable<ShoppingCart>;
   public cartItems: ICartItemWithProduct[] = [];
@@ -57,6 +59,8 @@ export class HeaderComponent implements OnInit {
   public userData: UserData = new UserData();
 
   public showSearch: boolean;
+
+  public thumborProfilePicture: string;
 
   constructor(
     public globals: Globals,
@@ -116,6 +120,39 @@ export class HeaderComponent implements OnInit {
     };
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
   }
+
+  public logout() {
+    swal({
+      title: 'belisada.co.id',
+      text: 'Anda yakin akan logout?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Iya',
+      cancelButtonText: 'Tidak',
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.value) {
+        // if (localStorage.getItem('isRemember') === 'true') {
+          localStorage.removeItem(LocalStorageEnum.TOKEN_KEY);
+        // } else {
+        //   sessionStorage.clear();
+        //   localStorage.removeItem('isRemember');
+        // }
+        this._shoppingCartService.empty();
+        swal(
+          'Success!',
+          'Anda sudah keluar dari Account Area.',
+          'success'
+        ).then(() => {
+          this._router.navigateByUrl('/');
+          location.reload();
+        });
+      }
+    });
+  }
+
 
   private _shoppingCart() {
     this.cart = this._shoppingCartService.get();

@@ -4,7 +4,7 @@ import swal from 'sweetalert2';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import { Component, OnInit, OnDestroy, Input, HostListener, Output, EventEmitter } from '@angular/core';
-import { UserData, Home, HomeContent, Brand } from '@belisada/core/models';
+import { UserData, Home, HomeContent, Brand, FlashSaleContent, FlashSaleExpiredData } from '@belisada/core/models';
 import { StoreService, UserService, HomeSService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
@@ -15,6 +15,7 @@ import { environment } from '@env/environment';
 import { BannerService } from '@belisada/core/services/banner/banner.service';
 import { BannerMainData, BannerData } from '@belisada/core/models/banner/banner.model';
 import { BrandService } from '@belisada/core/services/brand/brand.service';
+import mct from 'madrick-countdown-timer';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -71,17 +72,22 @@ export class HomeComponent implements OnInit, OnDestroy {
   public bannersBottom: BannerData[] = [];
   public bannersPromoOne: BannerData = new BannerData;
   public bannersPromoTwo: BannerData = new BannerData;
+  public bannerTop: BannerData = new BannerData;
   public homeContents: HomeContent[] = [];
   public brandHomeList: Brand[] = [];
+  public flashSaleProducts: FlashSaleContent[] = [];
+  public flashSaleExpired: FlashSaleExpiredData;
 
   public Arr = Array;
+
+  public countdown = { days: 0, hours: 0, minutes: 0, seconds: 0, status: 0, message: '' };
 
   constructor(
     private fb: FormBuilder,
     private storeService: StoreService,
     private userS: UserService,
     private router: Router,
-    private homeS: HomeSService,
+    private _homeService: HomeSService,
     private _messageService: TestingServicesService,
     private _bannerService: BannerService,
     private _brandService: BrandService,
@@ -109,13 +115,23 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.isLogin = true;
     }
     this._getDataForPop();
+    // this._getBannerTop();
     this._getBannerMain();
     this._getBannerLeft();
     this._getBannerBottom();
     this._getBannerPromoOne();
     this._getBannerPromoTwo();
     this._getBrandHomeList();
+    this._getFlashSale();
+    this._getFlashSaleExpired();
   }
+
+  // private _getBannerTop() {
+  //   this._bannerService.getBannerTop().subscribe(response => {
+  //     console.log('_getBannerTop: ', response);
+  //     if (response.status === 1) this.bannerTop = response.data;
+  //   });
+  // }
 
   private _getBannerMain() {
     this._bannerService.getBannerMain().subscribe(response => {
@@ -154,6 +170,33 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._brandService.getHomeBrandList().subscribe(response => {
       console.log('response: ', response);
       this.brandHomeList = response.content;
+    });
+  }
+
+  private _getFlashSale() {
+    const queryParams = {
+      itemperpage: 6,
+      page: 1
+    };
+    this._homeService.getFlashSale(queryParams).subscribe(response => {
+      console.log('_getFlashSale: ', response);
+      this.flashSaleProducts = response.content;
+    });
+  }
+
+  private _getFlashSaleExpired() {
+    this._homeService.getFlashSaleExpired().subscribe(response => {
+      console.log('_getFlashSaleExpired: ', response);
+      if (response.status === 1) this.flashSaleExpired = response.data;
+
+      mct.countdown(this.flashSaleExpired.expiredTime, (countdown) => {
+        // countdown = {
+        //   days, hours, minutes, seconds,
+        //   status [0 -> expired / 1 -> counting],
+        //   message ['EXPIRED' / 'COUNTING']
+        // }
+        this.countdown = countdown;
+      }, { format: 'hms' });
     });
   }
 
@@ -205,7 +248,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private _getDataForPop() {
-    this.homeS.getHomePopular().subscribe(res => {
+    this._homeService.getHomePopular().subscribe(res => {
       this.homeContents = res.content;
     });
   }
