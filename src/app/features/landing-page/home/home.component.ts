@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.imageHeaderNya = 'http://cdn.belisada.id/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
     this.imageDummy = 'https://cdn.belisada.id/imageproductbrand/2ad61795-9903-4efe-a8a8-ffbdfe705d0c.jpeg';
     this._messageService.listen().subscribe((m: any) => {
-      console.log(m);
+      // console.log(m);
       this.onFilterClick(m);
   });
   }
@@ -135,21 +135,21 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private _getBannerMain() {
     this._bannerService.getBannerMain().subscribe(response => {
-      console.log('_getBannerMain: ', response);
+      // console.log('_getBannerMain: ', response);
       if (response.status === 1) this.bannerMain = response.data;
     });
   }
 
   private _getBannerLeft() {
     this._bannerService.getBannerLeft().subscribe(response => {
-      console.log('_getBannerLeft: ', response);
+      // console.log('_getBannerLeft: ', response);
       if (response.status === 1) this.bannersLeft = response.data;
     });
   }
 
   private _getBannerBottom() {
     this._bannerService.getBannerBottom().subscribe(response => {
-      console.log('_getBannerBottom: ', response);
+      // console.log('_getBannerBottom: ', response);
       if (response.status === 1) this.bannersBottom = response.data;
     });
   }
@@ -168,7 +168,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private _getBrandHomeList() {
     this._brandService.getHomeBrandList().subscribe(response => {
-      console.log('response: ', response);
+      // console.log('response: ', response);
       this.brandHomeList = response.content;
     });
   }
@@ -179,14 +179,14 @@ export class HomeComponent implements OnInit, OnDestroy {
       page: 1
     };
     this._homeService.getFlashSale(queryParams).subscribe(response => {
-      console.log('_getFlashSale: ', response);
+      // console.log('_getFlashSale: ', response);
       this.flashSaleProducts = response.content;
     });
   }
 
   private _getFlashSaleExpired() {
     this._homeService.getFlashSaleExpired().subscribe(response => {
-      console.log('_getFlashSaleExpired: ', response);
+      // console.log('_getFlashSaleExpired: ', response);
       if (response.status === 1) this.flashSaleExpired = response.data;
 
       mct.countdown(this.flashSaleExpired.expiredTime, (countdown) => {
@@ -241,10 +241,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.showDialog = false;
         sessionStorage.setItem('boolean', 'true');
     const data = sessionStorage.getItem('boolean');
-    console.log('Fire onFilterClick: ', event);
+    // console.log('Fire onFilterClick: ', event);
   }
   functionOnStore() {
-      console.log('asdasdsadasd');
+      // console.log('asdasdsadasd');
   }
 
   private _getDataForPop() {
@@ -259,7 +259,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   testingform(form: NgForm) {
-    console.log(form);
+    // console.log(form);
   }
   onChanges() {
     this.storeName.valueChanges.subscribe(val => {
@@ -289,7 +289,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   goToDetail(id, name) {
     const r = this.encodeUrl(name);
-    console.log(r);
+    // console.log(r);
     // if (r === ' ') {
     //   this.router.navigate(['/product/product-detail/' + id + '/' + 'yourItem']);
     // } else {
@@ -302,13 +302,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   getCity(id) {
     this.storeService.getCity(id).subscribe(data => {
       this.cities = data;
-      console.log('data city', data);
+      // console.log('data city', data);
     });
   }
   getDistrict(id) {
     this.storeService.getDistrict(id).subscribe(data => {
       this.districts = data;
-      console.log('data district', data);
+      // console.log('data district', data);
     });
   }
 
@@ -317,7 +317,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.villages = data;
       const model = this.validationOnpopUpCreateStore.value;
       const a = this.validationOnpopUpCreateStore.value.villageId = id.district;
-      console.log('data vilages', data);
+      // console.log('data vilages', data);
     });
   }
   validateAllFormFields(formGroup: FormGroup) {
@@ -415,8 +415,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     sessionStorage.setItem('boolean', 'false');
-    console.log('asdsadsad');
-   }
+    // console.log('asdsadsad');
+  }
 
 
 }

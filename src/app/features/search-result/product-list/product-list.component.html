@@ -111,7 +111,7 @@
                                 <img [src]='produkIMG+item.imageUrl' border="0" height="200">
                             </div> 
 
-                            <div><span class="price">Rp {{ item.fixPrice | number}}</span></div>
+                            <div><span class="price">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}</span></div>
 
                         </div>
                     </div>
