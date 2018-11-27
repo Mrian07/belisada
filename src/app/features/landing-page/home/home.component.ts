@@ -137,6 +137,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._bannerService.getBannerMain().subscribe(response => {
       // console.log('_getBannerMain: ', response);
       if (response.status === 1) this.bannerMain = response.data;
+      console.log(this.bannerMain)
     });
   }
 
