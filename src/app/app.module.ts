@@ -1,5 +1,5 @@
 import { InvoiceComponent } from './features/invoice/invoice.component';
-import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS, HttpClientJsonpModule } from '@angular/common/http';
@@ -58,6 +58,11 @@ import { reducers } from './shared/store';
 import { ShippingMethodEffects } from './shared/store/effects/shipping-method.effect';
 import { ProductsEffects } from './shared/store/effects/products.effect';
 
+import { registerLocaleData } from '@angular/common';
+import localeId from '@angular/common/locales/id';
+
+registerLocaleData(localeId, 'id');
+
 library.add(fas, far, fab);
 
 @NgModule({
@@ -99,6 +104,7 @@ library.add(fas, far, fab);
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
+    { provide: LOCALE_ID, useValue: 'id' },
     { provide: StorageService, useClass: LocalStorageServie },
     { provide: APP_BASE_HREF, useValue: '/' },
     {

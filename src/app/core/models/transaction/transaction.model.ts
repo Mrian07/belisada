@@ -29,11 +29,10 @@ export class Countdown {
     hours: number;
     minutes: number;
     seconds: number;
-  
+
     status: number;
     message: string;
-  }
-  
+}
 
 export class Transaction {
     cart: Cart[];

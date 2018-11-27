@@ -22,7 +22,7 @@ export class PaymentComponent implements OnInit {
       title: 'SUBMITTED! SEE CONSOLE!'
     });
     const request = {
-      MerchantCode: 'ID00724',
+      MerchantCode: 'ID00015',
       PaymentId: '1',
       RefNo: 'PYT-24092018-2',
       Amount: '300000',
@@ -31,9 +31,11 @@ export class PaymentComponent implements OnInit {
       UserName: 'Yosi Oliver',
       UserEmail: 'yosioliver@gmail.com',
       UserContact: '085214887659',
-      signature: 'iSTZlkex1m2jxnECAD4NjEHclFY=',
+      Remark: '',
+      Lang: 'UTF-8',
+      signature: 'GHIRs/2roqDM+BiLQQPPn0fkm/Q=',
       ResponseURL: 'https://dev.belisada.id/payment/response',
-      BackendURL: 'https://dev.belisada.id/payment/response_backend'
+      BackendURL: 'https://api0.belisada.id/payment/response'
     };
     console.log('[IPAY88] request: ', request);
     this._paymentService.ipayEntry(request).subscribe(response => {

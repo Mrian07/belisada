@@ -73,7 +73,7 @@
     
                                 <div class="fs-product__info">
                                     <span class="fs-product__info--price">
-                                        {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                        {{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}
                                     </span>
                                 </div>
                             <!-- </div> -->
@@ -84,7 +84,7 @@
         </div>
     </div>
 
-    <!-- LATEST PRODUCT -->
+    <!-- POPULAR PRODUCT -->
     <div class="section u-margin-bottom-3">
         <div class="section__title">
             <h2>Produk Favorit</h2>
@@ -114,7 +114,7 @@
     
                                 <div class="product__info">
                                     <span class="product__info--price">
-                                        {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
+                                        {{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}
                                     </span>
                                 </div>
                             </div>
@@ -124,53 +124,6 @@
             </div>
         </div>
     </div>
-    <!-- !LATEST PRODUCT! -->
-
-    <!-- POPULAR PRODUCT -->
-    <!-- <div class="section">
-        <div class="section__title">
-            <h2>Produk Populer</h2>
-            <span class="striped"></span>
-        </div>
-
-        <div class="section__content">
-            <div class="row small-gutters">
-                <div class="col-xl-8r col-md-3 col-xs-6 u-margin-bottom-1" *ngFor="let item of productPop | slice:0:8">
-                    <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
-                        <div class="product__grid">
-                            <div class="ribbon ribbon--orange ribbon--small" *ngIf="item.discount > 0">
-                                {{ item.discount }}%
-                            </div>
-                            <div class="store">
-                                <div class="store__picture">
-                                    <a [routerLink]="['/' + item.storeUrl]">
-                                        <img [src]="productStoreUrl + item.storeImageUrl" alt="">
-                                    </a>
-                                </div>
-                                <div class="store__info">
-                                    <h2 class="store__info--name"><a [routerLink]="['/' + item.storeUrl]" title="{{ item.storeName }}">{{ item.storeName }}</a></h2>
-                                    <span class="store__info--location">{{ item.locationName }}</span>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            
-                            <div class="product__image">
-                                <img [src]="productImageUrl + item.imageUrl" alt="">
-                            </div>
-
-                            <div class="product__info">
-                                <span class="product__info--discount"><s *ngIf="item.specialPrice > 0">{{item.pricelist | currency:'Rp '}}</s></span>
-                                <span class="product__info--price">
-                                    {{ ((item.specialPrice > 0) ? item.specialPrice : item.pricelist) | currency:'Rp ' }}
-                                </span>
-                                <h2 class="product__info--name" title="{{ item.name }}">{{ item.name | ellipsis:30 }}</h2>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <!-- !POPULAR PRODUCT! -->
 
     <div class="row u-margin-bottom-3">

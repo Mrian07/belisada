@@ -1,1 +1,19 @@
 <button (click)="onSubmit()">ipay88</button>
+
+<form #form action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+    <input type="text" name="MerchantCode" placeholder="MerchantCode">
+    <input type="text" name="PaymentId" placeholder="PaymentId">
+    <input type="text" name="RefNo" placeholder="RefNo">
+    <input type="text" name="Amount" placeholder="Amount">
+    <input type="text" name="Currency" placeholder="Currency">
+    <input type="text" name="ProdDesc" placeholder="ProdDesc">
+    <input type="text" name="UserName" placeholder="UserName">
+    <input type="text" name="UserEmail" placeholder="UserEmail">
+    <input type="text" name="UserContact" placeholder="UserContact">
+    <input type="text" name="Remark" placeholder="Remark">
+    <input type="text" name="Lang" placeholder="Lang">
+    <input type="text" name="signature" placeholder="signature">
+    <input type="text" name="ResponseURL" placeholder="ResponseURL">
+    <input type="text" name="BackendURL" placeholder="BackendURL">
+    <button type="submit" (click)="form.submit()">Submit</button>
+</form>

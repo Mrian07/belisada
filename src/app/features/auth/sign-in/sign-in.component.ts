@@ -89,6 +89,7 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
         console.log('[CART] this.isLoaded:', this.isLoaded);
 
         this.setCartToLocalStorage(token).then(() => {
+          x.unsubscribe();
           this.router.navigateByUrl(this.routeback);
         });
         // this.userService.setRemember('true');
@@ -281,7 +282,6 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
         });
       }
     });
-    
   }
 
   googleLogin() {

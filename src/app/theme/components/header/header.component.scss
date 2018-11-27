@@ -27,24 +27,96 @@
     }
 
     &__accounts {
+        display: table;
+        vertical-align: middle;
+
         .delimiter {
             height: 100%;
             margin-left: 1rem;
             border-left: 1px solid #a7a7a7;
+            vertical-align: middle;
         }
         a {
             margin-left: 1rem;
             text-decoration: none;
-
+            vertical-align: middle;
             &.link {
                 color: #f59b4d;
             }
         }
+
+        .accounts {
+            &__wrapper {
+                margin: 0;
+                margin-left: 1rem;
+                padding: 0;
+                list-style: none;
+                display: inline-table;
+                vertical-align: middle;
+            }
+
+            &__trigger {
+                position: relative;
+                display: table-cell;
+                vertical-align: middle;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+
+            &__menus {
+                display: none;
+                position: absolute;
+                top: 4rem;
+                right: 0;
+                z-index: 1;
+                list-style: none;
+                text-align: right;
+                width: 100%;
+                background-color: #fff;
+                box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.17);
+
+                &.show {
+                    display: block;
+                }
+
+                a {
+                    margin: 0;
+                    color: #777;
+                }
+
+                li {
+                    padding: .5rem 1rem;
+                    transition: .3ms all ease-in-out;
+
+                    &:hover {
+                        background-color: #efefef;
+                    }
+                }
+            }
+
+            &__avatar {
+                height: 2.5rem;
+                border-radius: 50%;
+                vertical-align: middle;
+            }
+
+            &__name {
+                margin-left: .5rem;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &__accounts-wrapper {
+        display: table-cell;
+        vertical-align: middle
     }
 }
 
 .main-header {
-    padding: 1rem 0;
+    padding: rem 0;
 
     .logo {
         padding: 1rem 0;

@@ -288,13 +288,11 @@ export class ProductListComponent implements OnInit {
       this.curType[i] = '';
     }
     this.activeQueryParams['courier'] = this.curType.toString();
-    console.log('testing', this.activeQueryParams['courier']);
     if (this.curType.includes('')) {
       this.activeQueryParams['courier'] = this.activeQueryParams['courier'].replace(/,/g, '');
     }
     // const newQueryParams = this.activeQueryParams;
     // newQueryParams['courier'] = this.curType.toString();
-    console.log('this.activeQueryParams: ', this.activeQueryParams);
     this.router.navigate(['/search-result/product-list'], {
       queryParams: this.activeQueryParams
     });

@@ -218,7 +218,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       discusParentId: discusParentId || null,
       productId: this.product.priceData.range.productId
     });
-    console.log(this.createNewDiscussionForm.value);
+    // console.log(this.createNewDiscussionForm.value);
     this._productService.createDiscus(this.createNewDiscussionForm.value).subscribe(rsl => {
       this._loadDiscuss(this.product.priceData.range.productId);
       this.createNewDiscussionForm.reset();
@@ -291,7 +291,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
         this.product = product.data;
-        console.log(product.data);
+        // console.log(product.data);
         this.selectedImage = product.data.imageUrl[0];
 
         this._productService.getProductDetailV2Variant(id).subscribe((variants) => {
@@ -326,14 +326,14 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
           });
         });
       });
-    });
 
-    this._homeService.getHomePopular().subscribe(res => {
-      this.otherBrandProducts = res.content;
-    });
+      this._homeService.getHomePopular().subscribe(res => {
+        this.otherBrandProducts = res.content;
+      });
 
-    this._productService.getProductDetailV2Spec(this._route.snapshot.params.id).subscribe(specs => {
-      this.productSpecifications = specs;
+      this._productService.getProductDetailV2Spec(id).subscribe(specs => {
+        this.productSpecifications = specs;
+      });
     });
 
     // this.productsSandbox.loadShippingAddress();
@@ -427,8 +427,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   /*
   * #gOTo product lain
   */
- gotoPenawaran(e) {
-  this._router.navigate(['/product/another-offers/' + e ]);
-  window.scrollTo(0, 0);
- }
+  gotoPenawaran(e) {
+    this._router.navigate(['/product/another-offers/' + e ]);
+    window.scrollTo(0, 0);
+  }
 }
