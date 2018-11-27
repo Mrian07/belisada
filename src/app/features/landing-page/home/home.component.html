@@ -5,7 +5,10 @@
         <div class="row small-gutters">
             <div class="col-sm-9">
                 <div class="promo-banner__slide-show">
-                    <img [src]="bannerMain.imageUrl" alt="">
+                        <img [src]="bannerMain.imageUrl" alt="">
+                            <div class="textblock"  *ngFor="let item of bannerMain.links" [ngStyle]="{'left': item.x + 'px', 'top': item.y +'px'}">
+                                <a href="#link1" style="text-decoration: none; color:crimson; ">{{ item.name }}</a>
+                            </div>
                 </div>
             </div>
             <div class="col-sm-3">
