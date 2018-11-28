@@ -49,15 +49,16 @@
             <div>
                 <strong>Hasil Pencarian: '{{keys}}'</strong>
             </div>
-            <div class="c-bar">
-                <div class="c-bar2">
-                    <fa-icon [icon]="['fas', 'th']"></fa-icon>
-                </div>
-                <div>
-                    <fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 3 items
-                </div>
-                    
+            <div class="btn-group c-bar">
+                    <button class="btn btn-primary-outline" type="button"(click)="onDisplayModeChange(1)" [ngClass]="{'btn-primary active': displayMode === 1}" >
+                        <i class="fa fa-th"></i><fa-icon [icon]="['fas', 'th']"></fa-icon>
+                    </button>
+                    <button class="btn btn-primary-outline" type="button"  (click)="onDisplayModeChange(2)" [ngClass]="{'btn-primary active': displayMode === 2}" >
+                        <i class="fa fa-list"></i><fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 
+                        {{ list.totalElements}} items
+                    </button> 
             </div>
+            
             <div class="sc-bar">
                 Sort By <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
                         <option *ngFor="let itmS of listSort">{{itmS}}</option>
@@ -81,12 +82,10 @@
 
 
 
-
-
-
         <div  *ngIf="list.totalElements!=0">
-            <div class="product__grid">
-                <div class="product" *ngFor="let item of list.content; let i = index">
+            
+            <div class="product__grid" *ngIf="displayMode === 1">
+                <app-grid-container class="product" *ngFor="let item of list.content; let i = index">
 
                     <div class="product__line">
 
@@ -115,11 +114,42 @@
 
                         </div>
                     </div>
-
-                </div>
-
+                </app-grid-container>
             </div>
-        </div>
+
+            <div class="product__list" *ngIf="displayMode === 2">
+                    <app-list-container class="product" *ngFor="let item of list.content; let i = index">
+    
+                        <div class="product__line">
+    
+                            <div class="product__container">
+    
+                                <a *ngFor="let item of starList; let i=index " (click)="setStar(i)"> 
+                                    <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+                                </a>  
+    
+    
+                                <div class="item">
+                                    <span (click)="goDetail(item.productId,item.name)">{{ item.name }}</span>
+                                    <div class="b-star"> 
+                                        <fa-icon class="star-yello" *ngFor="let i of Arr(item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
+                                        <fa-icon class="star-default" *ngFor="let i of Arr(5-item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
+    
+    
+                                    <span class="i-review">{{item.review}} Review</span>
+                                    </div>
+                                </div>
+                                <div class="img-item" (click)="goDetail(item.productId,item.name)">
+                                    <img [src]='produkIMG+item.imageUrl' border="0" height="200">
+                                </div> 
+    
+                                <div><span class="price">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}</span></div>
+    
+                            </div>
+                        </div>
+    
+                    </app-list-container>  
+            </div>
 
 
 

@@ -308,8 +308,9 @@ h1 {
   text-align: center;
 }
 
-.c-bar2{
-  border-right: 1px solid #dddddd;
+.btn-primary-outline{
+  background-color: transparent;
+  border-color: #ccc;
 }
 
 .sc-bar{
@@ -394,6 +395,10 @@ h1 {
   &__grid {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
+  }
+
+  &__list {
+    display: list-item;
   }
 
   &__container {

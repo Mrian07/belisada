@@ -104,6 +104,7 @@ export class ProductListComponent implements OnInit {
   perPage: any = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
   itemperpage: number;
 
+  public displayMode: number;
 
   starDefault: number;
   starYellow: number;
@@ -115,6 +116,7 @@ export class ProductListComponent implements OnInit {
     private http: HttpClient,
   ) {
     this.produkIMG = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.displayMode = 1;
   }
 
   ngOnInit() {
@@ -216,6 +218,10 @@ export class ProductListComponent implements OnInit {
     });
   }
 
+  onDisplayModeChange(mode: number): void {
+    this.displayMode = mode;
+  }
+
   selectPerPage() {
     this.activeQueryParams['itemperpage'] = this.itemperpage;
     this.router.navigate(['/search-result/product-list'], {
@@ -251,7 +257,7 @@ export class ProductListComponent implements OnInit {
               this.address = b.formatted_address;
               console.log(b.formatted_address);
             }
-              for(const d of b.address_components) {
+              for (const d of b.address_components) {
                 const n = d.types.includes('postal_code');
                 if (n) {
                   this.zipCode = d.long_name;
