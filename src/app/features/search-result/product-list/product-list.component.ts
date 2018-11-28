@@ -251,7 +251,7 @@ export class ProductListComponent implements OnInit {
               this.address = b.formatted_address;
               console.log(b.formatted_address);
             }
-              for(const d of b.address_components) {
+              for (const d of b.address_components) {
                 const n = d.types.includes('postal_code');
                 if (n) {
                   this.zipCode = d.long_name;
