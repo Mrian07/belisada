@@ -104,6 +104,7 @@ export class ProductListComponent implements OnInit {
   perPage: any = ['10', '20', '30', '40', '50', '60', '70', '80', '90', '100'];
   itemperpage: number;
 
+  public displayMode: number;
 
   starDefault: number;
   starYellow: number;
@@ -115,6 +116,7 @@ export class ProductListComponent implements OnInit {
     private http: HttpClient,
   ) {
     this.produkIMG = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
+    this.displayMode = 1;
   }
 
   ngOnInit() {
