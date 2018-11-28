@@ -234,13 +234,13 @@
             </div>
 
             <div class="detail-info__description" *ngIf="tabActive === 'DESC'">
-                {{ product?.description }}
+                {{ product?.description }} 
             </div>
 
             <div class="detail-info__discussion" *ngIf="tabActive === 'DISC'">
 
                 <div class="discussion__content">
-                    <div class="discussion__content-wrapper" *ngFor="let item of productDiscussion?.content">
+                    <div class="discussion__content-wrapper" *ngFor="let item of productDiscussion?.content; let x = index">
                         <div class="discussion__parent">
                             <div class="discussion__container--side-a">
                                 <div class="discussion__pp">
@@ -253,9 +253,15 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-
+                   
                         <div class="discussion__child-wrapper">
-                            <div class="discussion__child" *ngFor="let child of item.childs">
+
+                                
+                                
+                            <div class="discussion__open-list" *ngIf="item.childs?.length>=2" (click)="sliceValue[x] = 0">
+                                <span class="discussion__more-detail" *ngIf="sliceValue[x] !=0 "><fa-icon [icon]="['far', 'plus-square']"></fa-icon> Lihat {{item.childs?.length-2}} Jawaban Lainnya</span>
+                            </div>
+                            <div class="discussion__child" *ngFor="let child of item.childs | slice: sliceValue[x]">  
                                 <div class="discussion__container--side-a">
                                     <div class="discussion__pp">
                                         <img [src]="child.imageAvatarUrl" alt="">
@@ -267,6 +273,8 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
+
+
 
                             <div class="discussion__footer-child text-right" *ngIf="isLogin">
                                 <form [formGroup]="createNewDiscussionForm" (submit)="createNewDiscussion(item.discusId)">

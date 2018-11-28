@@ -71,6 +71,10 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public isLogin: boolean;
   public isSubHeaderShow: boolean;
 
+  public sliceValue = [];
+
+  openListDiscussion: any;
+
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
@@ -99,6 +103,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.openListDiscussion = null;
     this._registerEvents();
 
     // TODO create base sandbox to subscribe credentials
@@ -258,6 +263,10 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   private _loadDiscuss(id: number) {
     this._productService.getDiscus(id).subscribe(discuss => {
       this.productDiscussion = discuss;
+
+      this.productDiscussion.content.forEach((item, index) => {
+        this.sliceValue[index] = -2;
+      });
     });
   }
 
@@ -430,5 +439,11 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   gotoPenawaran(e) {
     this._router.navigate(['/product/another-offers/' + e ]);
     window.scrollTo(0, 0);
+  }
+
+  openMoreDiscussion($hasil) {
+    console.log('isi', $hasil);
+    this.openListDiscussion = $hasil.userId;
+
   }
 }

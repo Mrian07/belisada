@@ -411,6 +411,19 @@
                     border-color: #f4863c;
                 }
             }
+
+            &__open-list{
+                font-size: 18px;
+                padding-left: 6rem;
+                padding-right: 2rem;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                cursor: pointer;
+            }
+
+            &__more-detail{
+                font-size: 1.3rem;
+            }
         }
     }
 }
