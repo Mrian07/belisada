@@ -73,7 +73,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public sliceValue = [];
 
-  openListDiscussion: any;
+  openListDiscussion: any; // TODO: [PAK LALANG] Please remove unnecessary variable
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
@@ -441,6 +441,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
   }
 
+  // TODO: [PAK LALANG] please kindly remove unnecessary method :)
   openMoreDiscussion($hasil) {
     console.log('isi', $hasil);
     this.openListDiscussion = $hasil.userId;
