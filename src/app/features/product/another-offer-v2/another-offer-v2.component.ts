@@ -50,6 +50,7 @@ export class AnotherOfferV2Component implements OnInit {
   rates = [];
   shippingRates = [];
 
+  totalElements: number;
 
   baseUrlSeller: string = environment.baseUrlSeller;
   constructor(
@@ -65,7 +66,7 @@ export class AnotherOfferV2Component implements OnInit {
     private router: Router
   ) {
     this.productStoreUrl = environment.thumborUrl + 'unsafe/200x200/center/filters:fill(fff)/';
-   }
+  }
 
   ngOnInit() {
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
@@ -74,6 +75,7 @@ export class AnotherOfferV2Component implements OnInit {
       this.role = this.userData.role;
       this.isLogin = true;
     }
+
     this.subscriptions.push(this.productsSandbox.anotherProducts$.subscribe((product: any) => {
       // this.productsSandbox.anotherProdcut(product);
       if (product) {
@@ -82,58 +84,74 @@ export class AnotherOfferV2Component implements OnInit {
         this.productAtas = product.data;
       }
     }));
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.productService.getProductAnotherVarian(params['id']).subscribe(res => {
-          console.log('ros:', res);
-          this.productService.getProductDetailV2Variant(params['id']).subscribe((variants) => {
-            this.product = variants;
-            console.log('variants : ', this.product)
-            this.activeVariants = [];
-            variants.forEach(variant => {
-              this.activeVariants.push('');
-            });
-    
-            this._fetchQueryParams();
-          });
-          
-        });
-        const obsParams = combineLatest(this.activatedRoute.params, this.activatedRoute.queryParams,
-          (params, qparams) => ({ params, qparams }));
 
-          obsParams.subscribe((route) => {
-            this.prodIdAtas = route.params.id;
-            const id = route.params.id;
-            const queryParams = route.qparams;
-            this.pages = [];
-            this.productService.getProductDataDetail(params['id'], queryParams).subscribe((res) => {
-              this.variantDetailBwah = res.content;
-              this.totalPenjual  = res.totalElements;
-              this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
-              const x = res.number;         // assign the value 5 to x
-              const y = 1;         // assign the value 2 to y
-              const z = x + y;     // assign the value 7 to z (x + y)
-              this.hasil = z;
-              this.numberOfEl = res.numberOfElements;
-         console.log('resL',res);
-         this.lastPage = res.totalPages;
-         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-           if (r > 0 && r <= res.totalPages) {
-             this.pages.push(r);
-           }
-         }
-        //  totalPages
-            });
-          });
-        // const queryParams = {
-        //   itemperpage: 10,
-        //   page: 1,
-        // };
-      
-      });
+
+    // this.activatedRoute.queryParams.subscribe((params: Params) => {
+
+    //   this.activeQueryParams = Object.assign({}, params);
+    //   this.loadData(params);
+    // });
+
+    this.loadData();
 
   }
+
+  public loadData() {
+
+    const obsParams = combineLatest(this.activatedRoute.params, this.activatedRoute.queryParams,
+    (params, qparams) => ({ params, qparams }));
+
+    obsParams.subscribe((route) => {
+      const id = route.params.id;
+      const queryParams = route.qparams;
+
+      this.currentPage = (queryParams.page === undefined) ? 1 : +queryParams.page;
+
+      this.productService.getProductAnotherVarian(id).subscribe(res => {
+        console.log('ros:', res);
+        this.productService.getProductDetailV2Variant(id).subscribe((variants) => {
+          this.product = variants;
+          console.log('variants : ', this.product);
+          this.activeVariants = [];
+          variants.forEach(variant => {
+            this.activeVariants.push('');
+          });
+
+          this._fetchQueryParams();
+        });
+
+      });
+
+      this.prodIdAtas = route.params.id;
+      this.pages = [];
+      this.productService.getProductDataDetail(id, queryParams).subscribe((res) => {
+        this.variantDetailBwah = res.content;
+
+        console.log('isi', res);
+
+        this.totalElements  = res.totalElements;
+        // this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+        const x = res.number;         // assign the value 5 to x
+        const y = 1;         // assign the value 2 to y
+        const z = x + y;     // assign the value 7 to z (x + y)
+        this.hasil = z;
+        this.numberOfEl = res.numberOfElements;
+
+        this.lastPage = res.totalPages;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= res.totalPages) {
+            this.pages.push(r);
+          }
+        }
+      });
+
+
+
+    });
+  }
+
   public selectVariant(attributeId, attributeValueId, index) {
-    console.log('tesint', attributeId, attributeValueId, index );
+
     this.activeVariants[index] = [attributeId, attributeValueId].join(':');
 
     let queryValueString = this.activeVariants.toString();
@@ -166,7 +184,7 @@ export class AnotherOfferV2Component implements OnInit {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.lastPage) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/product/another-offer/' + this.prodIdAtas], { queryParams: {page: page}, queryParamsHandling: 'merge' });
+    this.router.navigate(['/product/another-offers/' + this.prodIdAtas], { queryParams: {page: page}, queryParamsHandling: 'merge' });
     window.scrollTo(0, 0);
   }
 

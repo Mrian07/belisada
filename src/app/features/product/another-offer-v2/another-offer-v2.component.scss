@@ -7,6 +7,7 @@
 }
 .wrapperF {
     margin-top: 1%;
+    padding: 1%;
     border: 3px solid  hsl(209, 22%, 74%);;
 }
 
@@ -65,8 +66,9 @@
     padding: .5rem;
     color: #8f8f8f;
     background-color: #fff;
-    margin-left: 1rem;
-
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    display: inline-block;
     &:hover {
         cursor: pointer;
     }
@@ -182,6 +184,8 @@
       border-bottom: 0;
     }
   }
+
+  
   .paging{
     margin-top:20px;
 }

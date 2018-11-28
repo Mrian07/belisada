@@ -33,16 +33,24 @@
             height: 100%;
         }
 
+        /**
+        * TODO [DONE,MBA INTAN] Use rem instead of px (1rem = 10px)
+        */
         .textblock {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 2rem;
+            right: 2rem;
             background-color:white;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 2rem;
+            padding-right: 2rem;
             text-align: center;
-            width: 150px; 
-            height: 60px;
+            width: 15rem; 
+            height: 6rem;
+
+            a {
+                text-decoration: none; 
+                color:crimson;
+            }
         }
     }
 

@@ -1,96 +1,99 @@
-<div class="containPage has-header  has-footer">
+<div class="container">
+    <div class="containPage has-header  has-footer">
 
-<div class="grid-container wrapperF">
-  <div class="item2">     <img [src]="productStoreUrl + productAtas?.image" alt=""></div>
-  <div class="item3">
-    <span class= "wrapperF__text"> {{ productAtas?.name }}</span>
-    <div>
-    Brand : <span class= "text-color font-size "> {{ productAtas?.brandName }}</span>
-    <br>
-    <div class="item4">
-        <div *ngFor="let item of product; let i = index">
-            <span class="detail-product__variant-label" [ngClass]="{'detail-product__variant-label--not-first': (i !== 0)}">{{ item.name }}</span>
-            <br>
-            <span [class]="'detail-product__variant detail-product__variant--' + (i + 1)"
-                [ngClass]="{'active': (
-                    +activeVariants[i]?.split(':')[0] === item.attributeId
-                    && +activeVariants[i]?.split(':')[1] === variant.attributeValueId)}"    
-                    (click)="selectVariant(item.attributeId, variant.attributeValueId, i)"
-                *ngFor="let variant of item.varians">
-                {{ variant.value }}
-            </span>
+        <div class="grid-container wrapperF">
+            <div class="item2">     <img [src]="productStoreUrl + productAtas?.image" alt=""></div>
+            <div class="item3">
+                <span class= "wrapperF__text"> {{ productAtas?.name }}</span>
+                <div>
+                Brand : <span class= "text-color font-size "> {{ productAtas?.brandName }}</span>
+                <br>
+                <div class="item4">
+                    <div *ngFor="let item of product; let i = index">
+                        <span class="detail-product__variant-label" [ngClass]="{'detail-product__variant-label--not-first': (i !== 0)}">{{ item.name }}</span>
+                        <br>
+                        <span [class]="'detail-product__variant detail-product__variant--' + (i + 1)"
+                            [ngClass]="{'active': (
+                                +activeVariants[i]?.split(':')[0] === item.attributeId
+                                && +activeVariants[i]?.split(':')[1] === variant.attributeValueId)}"    
+                                (click)="selectVariant(item.attributeId, variant.attributeValueId, i)"
+                            *ngFor="let variant of item.varians">
+                            {{ variant.value }}
+                        </span>
+                    </div>
+                </div>
+
+                </div>
+            </div>  
+
+            <div class="item5" *ngIf="role !== 2 && role != 0">
+                <a href="{{ baseUrlSeller }}/auth/sign-in?token={{token}}" target="_blank" class="btn btn--yelloworange">
+                Jual Produk Serupa
+                </a>
+            </div> 
+            <div class="item5" *ngIf="role === 0">
+                <a href="{{ baseUrlSeller }}/auth/sign-in" target="_blank" class="btn btn--yelloworange">
+                    Jual Produk Serupa
+                    </a>
+            </div> 
         </div>
-    </div>
+
+        <div class="container wrapperF">
+            <table>
+                <caption>
+                    <span class="text__bawah">Daftar Penjual</span>
+                </caption>
+                <caption>
+                    <span class="text__bawah--v2">
+                        {{hasil}} - {{ numberOfEl }} dari {{ totalPenjual }} penjual 
+                    </span>
+                </caption>
+                
+                <thead>
+                    <tr>
+                    <th scope="col" class="text-color font-size">Dijual Oleh</th>
+                    <th scope="col" class="text-color font-size">Garansi Produk</th>
+                    <th scope="col" class="text-color font-size">Lokasi Penjual</th>
+                    <th scope="col" class="text-color font-size">Pilih Pengiriman</th>
+                    <th scope="col" class="text-color font-size">Harga</th>
+                    <th scope="col" class="text-color font-size"></th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let item of variantDetailBwah; let i = index">
+                    <tr>
+                    <td data-label="Account"> {{ item.storeName }}</td>
+                    <td data-label="Due Date"> {{item.guaranteeTypeValue }} - {{ item.guaranteeTimeValue }} </td>
+                    <td data-label="Amount"> {{ item.locationName }}</td>
+                    <td data-label="Period"><span *ngFor="let courierType of item.courierType; let x = index"> {{ courierType }} <span *ngIf="x < (item.courierType.length - 1)">/</span> </span></td>
+                    <td data-label="Period">{{ item.fixPrice | currency:'Rp ' }}</td>
+                    <td data-label="Period">
+                        <button (click)="addToCart(item.productId, item.storeId, i)" class="btn btn--yelloworange">BELI PRODUCT</button>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="paging" *ngIf="totalElements!=0">
+            <ul>
+                <li>
+                    <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">Go To First</a>
+                </li>
+                <li>
+                    <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">   <fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Prev </a>
+                </li>
+                <li *ngFor="let p of pages">
+                    <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+                </li>
+                <li>
+                    <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}"> Next    <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
+                </li>
+                <li>
+                    <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Go To Last</a>
+                </li>
+            </ul>
+        </div>
 
     </div>
-  </div>  
-  
-  <div class="item5" *ngIf="role !== 2 && role != 0">
-    <a href="{{ baseUrlSeller }}/auth/sign-in?token={{token}}" target="_blank" class="btn btn--yelloworange">
-    Jual Produk Serupa
-    </a>
-  </div> 
-  <div class="item5" *ngIf="role === 0">
-    <a href="{{ baseUrlSeller }}/auth/sign-in" target="_blank" class="btn btn--yelloworange">
-        Jual Produk Serupa
-        </a>
-  </div> 
-  </div>
 
-<div class="grid-container wrapperF">
-    <table>
-        <caption>
-          <span class="text__bawah">Daftar Penjual</span>
-        </caption>
-        <caption>
-          <span class="text__bawah--v2">
-              {{hasil}} - {{ numberOfEl }} dari {{ totalPenjual }} penjual 
-          </span>
-        </caption>
-       
-        <thead>
-          <tr>
-            <th scope="col" class="text-color font-size">Dijual Oleh</th>
-            <th scope="col" class="text-color font-size">Garansi Produk</th>
-            <th scope="col" class="text-color font-size">Lokasi Penjual</th>
-            <th scope="col" class="text-color font-size">Pilih Pengiriman</th>
-            <th scope="col" class="text-color font-size">Harga</th>
-            <th scope="col" class="text-color font-size"></th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let item of variantDetailBwah; let i = index">
-          <tr>
-            <td data-label="Account"> {{ item.storeName }}</td>
-            <td data-label="Due Date"> {{item.guaranteeTypeValue }} {{ item.guaranteeTimeValue }} </td>
-            <td data-label="Amount"> {{ item.locationName }}</td>
-            <td data-label="Period"><span *ngFor="let courierType of item.courierType"> {{ courierType }}</span></td>
-            <td data-label="Period">{{ item.fixPrice | currency:'Rp ' }}</td>
-            <td data-label="Period">
-              <button (click)="addToCart(item.productId, item.storeId, i)" class="btn btn--yelloworange">BELI PRODUCT</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-   
-  </div>
-
-
-  <div class="paging has-footer" >
-      <ul>
-          <li>
-              <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}" class="text-color">Go To First</a>
-          </li>
-          <li>
-              <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">   <fa-icon [icon]="['fas', 'caret-left']"></fa-icon> Prev </a>
-          </li>
-          <!-- <li *ngFor="let p of pages">
-              <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
-          </li> -->
-          <li>
-              <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}" class="text-color"> Next    <fa-icon [icon]="['fas', 'caret-right']"></fa-icon></a>
-          </li>
-          <li>
-              <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}" class="text-color">Go To Last</a>
-          </li>
-      </ul>
-  </div>
+</div>
