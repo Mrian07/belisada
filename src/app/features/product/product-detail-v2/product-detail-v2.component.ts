@@ -73,8 +73,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public sliceValue = [];
 
-  openListDiscussion: any;
-
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
@@ -103,7 +101,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.openListDiscussion = null;
     this._registerEvents();
 
     // TODO create base sandbox to subscribe credentials
@@ -441,9 +438,4 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
   }
 
-  openMoreDiscussion($hasil) {
-    console.log('isi', $hasil);
-    this.openListDiscussion = $hasil.userId;
-
-  }
 }
