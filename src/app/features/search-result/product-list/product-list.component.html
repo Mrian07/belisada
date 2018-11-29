@@ -83,7 +83,6 @@
 
 
         <div  *ngIf="list.totalElements!=0">
-            <!-- REVIEW: [MBA INTAN] keep your code DRY (Don't Repeat Yourself), I'll tell you why -->
             <div [ngClass]="{'product__grid': displayMode === 1,'product__list':displayMode === 2}">
                 <div class="product" *ngFor="let item of list.content; let i = index" >
 
@@ -107,7 +106,7 @@
                                 </div>
                             </div>
                             <div class="img-item" (click)="goDetail(item.productId,item.name)">
-                                <img [src]="produkIMG + item.imageUrl"> <!-- TODO: [DONE,MBA INTAN] 1. between operator and variables should have a spaces; 2. Use double quote instead for declaring attribute value; 3. remove unnecessary attribute (in this case border attribute); 4. Better put height property to the class, and don't forget to use relative measurement unit (in this case 'rem'); Thank you :) -->
+                                <img [src]="produkIMG + item.imageUrl">
                             </div> 
 
                             <div><span class="price">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}</span></div>

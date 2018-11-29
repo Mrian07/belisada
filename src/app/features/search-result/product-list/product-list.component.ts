@@ -164,11 +164,11 @@ export class ProductListComponent implements OnInit {
       };
 
       this.searchService.getSearchFilter(queryParams).subscribe(response => {
-          this.listFilter = response[0].data;
-          this.listLocation = response[6].data;
+          this.listFilter = response[0].data; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
+          this.listLocation = response[6].data; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
           // min
-          this.minValue = response[5].data[0].min;
-          this.maxValue = response[5].data[0].max;
+          this.minValue = response[5].data[0].min; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
+          this.maxValue = response[5].data[0].max; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
           this.options = {
             floor: 0,
             ceil: response[5].data[0].max,

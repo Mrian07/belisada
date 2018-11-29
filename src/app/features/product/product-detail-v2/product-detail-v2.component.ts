@@ -73,6 +73,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public sliceValue = [];
 
+// REVIEW: [PAK LALANG] Please solve the CONFLICT first before push it to the repository
 <<<<<<< HEAD
 =======
   openListDiscussion: any; // TODO: [PAK LALANG] Please remove unnecessary variable
