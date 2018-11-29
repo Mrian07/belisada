@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FilterM } from '@belisada/core/models/filter/filter-m';
 import { FilterSService } from '@belisada/core/services';
-import { ListSearch, DataFilter, DataLocation } from '../../../core/models/search/search.model';
+import { ListSearch, DataFilter } from '../../../core/models/search/search.model';
 import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -92,7 +92,7 @@ export class ProductListComponent implements OnInit {
   address: any;
   okeOce: any = [];
 
-  listLocation: DataLocation[];
+  listLocation: DataFilter[];
   getLocation: string;
   getSortBy: string;
   activeQueryParams: any;
@@ -120,14 +120,14 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const queryParams = {
-      postal: '52181',
-    };
+    // const queryParams = {
+    //   postal: '52181',
+    // };
 
 
-    this.searchService.getLocation(queryParams).subscribe(response => {
-      this.listLocation = response.data;
-    });
+    // this.searchService.getLocation(queryParams).subscribe(response => {
+    //   this.listLocation = response.data;
+    // });
 
     // this.trackMe();
 
@@ -165,7 +165,7 @@ export class ProductListComponent implements OnInit {
 
       this.searchService.getSearchFilter(queryParams).subscribe(response => {
           this.listFilter = response[0].data;
-
+          this.listLocation = response[6].data;
           // min
           this.minValue = response[5].data[0].min;
           this.maxValue = response[5].data[0].max;
@@ -347,7 +347,7 @@ export class ProductListComponent implements OnInit {
 
       this.searchService.getList(queryParams).subscribe(response => {
         this.list = response;
-        // console.log('apa', response.rate);
+        console.log('apa', response);
         this.lastPage = this.list.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
           if (r > 0 && r <= this.list.totalPages) {

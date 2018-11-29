@@ -7,7 +7,7 @@
                     <select style="width:100%" [(ngModel)]="getLocation" [ngModelOptions]="{standalone: true}" 
                     (change)="selectLocation()">
                         <option value=""></option>
-                        <option *ngFor="let itmLoc of listLocation; let n = index" [value]="itmLoc.cityId">{{itmLoc.cityName}}</option>
+                        <option *ngFor="let itmLoc of listLocation; let n = index" [value]="itmLoc.filterId">{{itmLoc.filterName}}</option>
                     </select>
                 </div>
             </div>
