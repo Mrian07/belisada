@@ -369,7 +369,7 @@ export class ProductListComponent implements OnInit {
   goDetail(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
-   window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }
 
   public getUser() {
