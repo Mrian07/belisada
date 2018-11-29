@@ -253,11 +253,8 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                   
                         <div class="discussion__child-wrapper">
 
-                                
-                                
                             <div class="discussion__open-list" *ngIf="item.childs?.length>=2" (click)="sliceValue[x] = 0">
                                 <span class="discussion__more-detail" *ngIf="sliceValue[x] !=0 "><fa-icon [icon]="['far', 'plus-square']"></fa-icon> Lihat {{item.childs?.length-2}} Jawaban Lainnya</span>
                             </div>
@@ -273,8 +270,6 @@
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
-
-
 
                             <div class="discussion__footer-child text-right" *ngIf="isLogin">
                                 <form [formGroup]="createNewDiscussionForm" (submit)="createNewDiscussion(item.discusId)">

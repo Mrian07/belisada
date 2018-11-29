@@ -6,8 +6,8 @@
             <div class="col-sm-9">
                 <div class="promo-banner__slide-show">
                     <img [src]="bannerMain.imageUrl" alt="">
-                    <div class="textblock"  *ngFor="let item of bannerMain.links" [ngStyle]="{'left': item.x + '%', 'top': item.y +'%'}"> <!-- TODO: [DONE,MBA INTAN] change px to % for fluid purpose -->
-                        <a [routerLink]="[item.url]">{{ item.name }}</a> <!-- TODO: [DONE,MBA INTAN] Don't use inline style, use class instead -->
+                    <div class="textblock"  *ngFor="let item of bannerMain.links" [ngStyle]="{'left': item.x + '%', 'top': item.y +'%'}">
+                        <a [routerLink]="[item.url]">{{ item.name }}</a>
                     </div>
                 </div>
             </div>
