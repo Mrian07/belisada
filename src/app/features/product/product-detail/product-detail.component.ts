@@ -306,8 +306,7 @@ export class ProductDetailComponent implements OnInit {
         this.textAreaClick = false;
       }
   showMoreItems(e) {
-  
-    if( this.idDicus = e ) {
+    if ( this.idDicus = e ) {
       console.log('sss');
       this.paginationLimit[this.idDicus] = Number(this.paginationLimit) + 3;
     } else {
@@ -315,7 +314,7 @@ export class ProductDetailComponent implements OnInit {
     }
   }
   showLessItems(e) {
-    if( this.idDicus = e ) {
+    if ( this.idDicus = e ) {
       console.log('sss');
       this.paginationLimit[this.idDicus] = Number(this.paginationLimit) - 3;
     } else {
@@ -327,7 +326,7 @@ export class ProductDetailComponent implements OnInit {
       this.discus = resDiscus.content;
       this.discus.forEach((item => {
         this.paginationLimit[item.discusId] = 2;
-        if(item.childs) {
+        if (item.childs) {
           this.BoolLengDiscus = true;
         }
         // this.LengthDiscus = item.childs.length;
@@ -566,7 +565,7 @@ export class ProductDetailComponent implements OnInit {
       key: environment.googleKey.geoCodeApi,
       latlng: latLong,
     };
-    console.log('latlong',b);
+    console.log('latlong', b );
     this.productService.getMap(b).subscribe(resss => {
       console.log('ress', resss);
       this.ressPonseFromGoogle = resss;
@@ -575,13 +574,13 @@ export class ProductDetailComponent implements OnInit {
       console.log(resss);
       for (const b of this.ressPonseFromGoogle.results) {
         const m = b.types.includes('street_address');
-        if(m) {
+        if (m) {
           this.address = b.formatted_address;
           console.log(b.formatted_address)
         }
-          for(const d of b.address_components) {
+          for (const d of b.address_components) {
             const n = d.types.includes('postal_code');
-            if(n) {
+            if (n) {
               this.zipCode = d.long_name;
               console.log(this.zipCode);
               const array = {
