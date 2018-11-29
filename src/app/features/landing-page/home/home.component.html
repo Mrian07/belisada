@@ -6,14 +6,7 @@
             <div class="col-sm-9">
                 <div class="promo-banner__slide-show">
                     <img [src]="bannerMain.imageUrl" alt="">
-<<<<<<< HEAD
-                    <div class="textblock"  *ngFor="let item of bannerMain.links" [ngStyle]="{'left': item.x + '%', 'top': item.y +'%'}"> <!-- TODO: [DONE,MBA INTAN] change px to % for fluid purpose -->
-                        <a [routerLink]="[item.url]" >{{ item.name }}</a> <!-- TODO: [DONE,MBA INTAN] Don't use inline style, use class instead -->
-=======
-                    <div class="textblock"  *ngFor="let item of bannerMain.links" [ngStyle]="{'left': item.x + '%', 'top': item.y +'%'}">
-                        <a [routerLink]="[item.url]">{{ item.name }}</a>
->>>>>>> 9c9851088f27fd3dcc70caa46eddfe7905a31983
-                    </div>
+                    <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger>
                 </div>
             </div>
             <div class="col-sm-3">

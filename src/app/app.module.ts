@@ -60,6 +60,7 @@ import { ProductsEffects } from './shared/store/effects/products.effect';
 
 import { registerLocaleData } from '@angular/common';
 import localeId from '@angular/common/locales/id';
+import { BsPopoverTriggerComponent } from './features/landing-page/home/bs-popover-trigger.component';
 
 registerLocaleData(localeId, 'id');
 
@@ -73,7 +74,8 @@ library.add(fas, far, fab);
     LandingPageComponent,
     HomeComponent,
     InvoiceComponent,
-    EtalaseTokoComponent
+    EtalaseTokoComponent,
+    BsPopoverTriggerComponent
   ],
   imports: [
     HttpClientModule,
