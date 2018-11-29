@@ -73,8 +73,11 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public sliceValue = [];
 
+<<<<<<< HEAD
+=======
   openListDiscussion: any; // TODO: [PAK LALANG] Please remove unnecessary variable
 
+>>>>>>> 9c9851088f27fd3dcc70caa46eddfe7905a31983
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
@@ -103,7 +106,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.openListDiscussion = null;
     this._registerEvents();
 
     // TODO create base sandbox to subscribe credentials
@@ -441,10 +443,4 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     window.scrollTo(0, 0);
   }
 
-  // TODO: [PAK LALANG] please kindly remove unnecessary method :)
-  openMoreDiscussion($hasil) {
-    console.log('isi', $hasil);
-    this.openListDiscussion = $hasil.userId;
-
-  }
 }
