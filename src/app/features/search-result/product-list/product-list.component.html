@@ -83,9 +83,8 @@
 
 
         <div  *ngIf="list.totalElements!=0">
-            <!-- REVIEW: [MBA INTAN] keep your code DRY (Don't Repeat Yourself), I'll tell you why -->
-            <div class="product__grid" *ngIf="displayMode === 1">
-                <app-grid-container class="product" *ngFor="let item of list.content; let i = index">
+            <div [ngClass]="{'product__grid': displayMode === 1,'product__list':displayMode === 2}">
+                <div class="product" *ngFor="let item of list.content; let i = index" >
 
                     <div class="product__line">
 
@@ -107,51 +106,17 @@
                                 </div>
                             </div>
                             <div class="img-item" (click)="goDetail(item.productId,item.name)">
-                                <img [src]='produkIMG+item.imageUrl' border="0" height="200"> <!-- TODO: [MBA INTAN] 1. between operator and variables should have a spaces; 2. Use double quote instead for declaring attribute value; 3. remove unnecessary attribute (in this case border attribute); 4. Better put height property to the class, and don't forget to use relative measurement unit (in this case 'rem'); Thank you :) -->
+                                <img [src]="produkIMG + item.imageUrl">
                             </div> 
 
                             <div><span class="price">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}</span></div>
 
                         </div>
                     </div>
-                </app-grid-container>
-            </div>
-
-            <div class="product__list" *ngIf="displayMode === 2">
-                    <app-list-container class="product" *ngFor="let item of list.content; let i = index">
-    
-                        <div class="product__line">
-    
-                            <div class="product__container">
-    
-                                <a *ngFor="let item of starList; let i=index " (click)="setStar(i)"> 
-                                    <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
-                                </a>  
-    
-    
-                                <div class="item">
-                                    <span (click)="goDetail(item.productId,item.name)">{{ item.name }}</span>
-                                    <div class="b-star"> 
-                                        <fa-icon class="star-yello" *ngFor="let i of Arr(item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
-                                        <fa-icon class="star-default" *ngFor="let i of Arr(5-item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
-    
-    
-                                    <span class="i-review">{{item.review}} Review</span>
-                                    </div>
-                                </div>
-                                <div class="img-item" (click)="goDetail(item.productId,item.name)">
-                                    <img [src]='produkIMG+item.imageUrl' border="0" height="200"> <!-- TODO: [MBA INTAN] 1. between operator and variables should have a spaces; 2. Use double quote instead for declaring attribute value; 3. remove unnecessary attribute (in this case border attribute); 4. Better put height property to the class, and don't forget to use relative measurement unit (in this case 'rem'); Thank you :) -->
-                                </div> 
-    
-                                <div><span class="price">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}</span></div>
-    
-                            </div>
-                        </div>
-    
-                    </app-list-container>  
-            </div>
-
-
+                </div>
+                
+            
+           
 
         <!-- <div class="b-part" *ngIf="list.totalElements!=0">
                 <div class="grid-product">
