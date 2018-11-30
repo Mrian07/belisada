@@ -7,7 +7,7 @@ import { Globals } from '@belisada/core/services';
     <div class="daddy-container">
       <div class="overlay-header" *ngIf="globals.isBackdropActive === true"></div>
       <app-header></app-header>
-      <div class="container-fluid has-header has-footer"> <!-- TODO: [PAK LALANG] Change container-fluid class to container -->
+      <div class="container has-header has-footer"> <!-- TODO: [DONE, PAK LALANG] Change container-fluid class to container -->
         <div class="container">
           <div class="row">
             <div class="col-7">

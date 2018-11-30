@@ -73,12 +73,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public sliceValue = [];
 
-// REVIEW: [PAK LALANG] Please solve the CONFLICT first before push it to the repository
-<<<<<<< HEAD
-=======
-  openListDiscussion: any; // TODO: [PAK LALANG] Please remove unnecessary variable
-
->>>>>>> 9c9851088f27fd3dcc70caa46eddfe7905a31983
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;

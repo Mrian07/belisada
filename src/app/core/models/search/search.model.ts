@@ -53,6 +53,8 @@ export class DataFilter {
   type: string;
   min: number;
   max: number;
+  filterId: number;
+  filterName: string;
 }
 
 export class Location {

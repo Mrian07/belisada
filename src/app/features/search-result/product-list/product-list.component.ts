@@ -159,48 +159,54 @@ export class ProductListComponent implements OnInit {
 
   filterSearch(params) {
 
-      const queryParams = {
-        q: params.q,
+    const queryParams = {
+      q: params.q,
+    };
+
+    this.searchService.getSearchFilter(queryParams).subscribe(response => {
+
+      console.log('ini', response);
+
+      const listF = response.find(x => x.filter === 'courierTypes');
+      this.listFilter = listF.data;
+
+      const listL = response.find(x => x.filter === 'Location');
+      this.listLocation = listL.data;
+
+      const maxV = response.find(x => x.filter === 'Price');
+      this.maxValue = maxV.data[0].max;
+
+      const minV = response.find(x => x.filter === 'Price');
+      this.minValue = minV.data[0].min;
+
+      this.options = {
+        floor: 0,
+        ceil: response[5].data[0].max,
+
+        translate: (value: number, label: LabelType): string => {
+          switch (label) {
+            case LabelType.Low:
+              return '<b>Min:</b> Rp ' + value;
+            case LabelType.High:
+              return '<b>Max:</b> Rp ' + value;
+            default:
+              return 'Rp ' + value;
+          }
+        }
       };
 
-      this.searchService.getSearchFilter(queryParams).subscribe(response => {
-          this.listFilter = response[0].data; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
-          this.listLocation = response[6].data; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
-          // min
-          this.minValue = response[5].data[0].min; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
-          this.maxValue = response[5].data[0].max; // TODO: [PAK LALANG] It could be cause an error if array position change, do find by some id or key instead
-          this.options = {
-            floor: 0,
-            ceil: response[5].data[0].max,
-
-            translate: (value: number, label: LabelType): string => {
-              switch (label) {
-                case LabelType.Low:
-                  return '<b>Min:</b> Rp ' + value;
-                case LabelType.High:
-                  return '<b>Max:</b> Rp ' + value;
-                default:
-                  return 'Rp ' + value;
-              }
-            }
-          };
-
-          this.listFilter.forEach((item, index) => {
-            this.curType.push('');
-          });
-
-          if (params.courier) {
-            const couriers = params.courier.split(',');
-            console.log('couriers: ', couriers);
-            couriers.forEach(courier => {
-              console.log('asdasdaosdaoskdasjdo amsd oaksmdoa sdaoisdao');
-              const index = this.listFilter.findIndex(x => x.type === courier);
-              console.log('this.curType[index]:', this.curType[index]);
-              this.curType[index] = courier;
-            });
-            console.log('this.curType: ', this.curType);
-          }
+      this.listFilter.forEach((item, index) => {
+        this.curType.push('');
       });
+
+      if (params.courier) {
+        const couriers = params.courier.split(',');
+        couriers.forEach(courier => {
+          const index = this.listFilter.findIndex(x => x.type === courier);
+          this.curType[index] = courier;
+        });
+      }
+    });
 
   }
 
