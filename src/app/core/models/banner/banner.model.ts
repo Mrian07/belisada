@@ -33,9 +33,15 @@ export class BannerMainData {
 }
 
 export class BannerMainLink {
+  height: number;
+  width: number;
+  imageUrl: string;
   name: string;
-  description: string;
+  sku: string;
+  fixPrice: number;
+  discount: number;
+  specialPrice: number;
+  pricelist: number;
   x: number;
   y: number;
-  url: string;
 }

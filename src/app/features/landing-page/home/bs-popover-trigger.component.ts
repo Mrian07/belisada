@@ -12,13 +12,10 @@ import { BannerMainLink } from '@belisada/core/models/banner/banner.model';
             {{ item.name }}
           </h2>
           <div class="popover__image">
-            <img>IMAGE
+            <img [src]="item.imageUrl" [alt]="item.imageUrl">
           </div>
           <div class="popover__price">
-              Rp 10000000
-          </div>
-          <div class="popover__desc">
-            {{ item.description }}
+            {{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}
           </div>
         </div>
       </a>

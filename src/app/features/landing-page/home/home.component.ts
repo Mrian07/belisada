@@ -197,7 +197,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         //   message ['EXPIRED' / 'COUNTING']
         // }
         this.countdown = countdown;
-      }, { format: 'hms' });
+      }, { format: 'dhms' });
     });
   }
 
