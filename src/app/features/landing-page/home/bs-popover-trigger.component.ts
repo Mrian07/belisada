@@ -6,7 +6,7 @@ import { BannerMainLink } from '@belisada/core/models/banner/banner.model';
   template: `
     <button class="trigger" (mouseenter)="mouseEnter(i)" (mouseleave)="mouseLeave(i)" *ngFor="let item of links; let i = index"
       [ngStyle]="{'left': item.x + '%', 'top': item.y +'%'}">
-      <a [routerLink]="[item.url]">
+      <a [routerLink]="['/product/product-detail/' + item.productId + '/' + (item.name)]">
         <div class="popover" [ngStyle]="{'display': (i === selectedIndex) ? 'block' : 'none'}">
           <h2 class="popover__name">
             {{ item.name }}
