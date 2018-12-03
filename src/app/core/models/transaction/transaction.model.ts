@@ -86,6 +86,7 @@ export class CartItems {
     total: number;
     totalWeight: number;
     weightPerItem: number;
+    varians: Varians[];
 }
 
 export class Destinations {
@@ -129,8 +130,32 @@ export class InvoiceData {
 }
 
 export class InvoiceCart {
-
+    productId: number;
+    name: string;
+    priceList: number;
+    specialPrice: number;
+    quantity: number;
+    imageUrl: string;
+    subtotal: number;
+    weightPerItem: number;
+    totalWeight: number;
+    note: string;
+    sku: string;
+    discount: number;
+    varians: Varians[];
 }
+
+export class Varians {
+    attributeId: number;
+    name: string;
+    varians: DetailVarian[];
+}
+
+export class DetailVarian {
+    attributeValueId: number;
+    value: string;
+}
+
 
 export class ItemsReceivedResponse extends BaseResponseModel {
 

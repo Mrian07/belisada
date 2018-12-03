@@ -1,74 +1,78 @@
 .f-head{
     background: #ff9236;
-    padding:10px 10px 0px 10px;
-    font-size: 40px;
+    padding:1rem 1rem 0rem 1rem;
+    font-size: 4rem;
     font-weight: bold;
     color: #ffffff;
-    width:700px;
-    margin:0px auto;
-    margin-top: 20px;
+    width:70rem;
+    margin:0rem auto;
+    margin-top: 2rem;
     text-align: center;
-    border-radius:5px 5px 0px 0px;
+    border-radius:0.5rem 0.5rem 0rem 0rem;
 }
 
 .f-head-icon{
     float: left;
-    width: 250px;
+    width: 2.5rem;
     text-align: left;
-    padding-top:5px;
+    padding-top:0.5rem;
 }
 
 .f-head-title{
     float: left;
-    padding-top:5px;
+    padding-top:0.5rem;
 }
 
 .f-body{
-    padding:10px;
-    font-size: 12px;
-    width:700px;
-    margin:0px auto;
-    border-left: 1px solid #dddddd;
-    border-right: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12); 
-    border-radius:0px 0px 5px 5px;
+    padding:1rem;
+    font-size: 1.2rem;
+    width:70rem;
+    margin:0rem auto;
+    border-left: 0.1rem solid #dddddd;
+    border-right: 0.1rem solid #dddddd;
+    border-bottom: 0.1rem solid #dddddd;
+    box-shadow: 0 0.7rem 0.8rem -0.4rem rgba(0, 0, 0, 0.2), 0 1.3rem 1.9rem 0.2rem rgba(0, 0, 0, 0.14), 0 0.5rem 2.4rem 0.4rem rgba(0, 0, 0, 0.12); 
+    border-radius:0rem 0rem 0.5rem 0.5rem;
 }
 
 .i-title{
     font-weight: bold;
-    font-size: 15px;
+    font-size: 1.5rem;
     color:#111111;
 }
 
 .i-right{
     text-align: right;
-    padding-top: 10px;
+    padding-top: 1rem;
 }
 
 .i-metode{
-    margin-top:10px;
-    margin-bottom:10px;
+    margin-top:1rem;
+    margin-bottom:1rem;
 }
 
 .i-address{
     background: #eeeeee;
-    padding: 10px;
+    padding: 1rem;
+}
+
+.tr{
+    text-align: center;
 }
 
 .i-table{
-    margin-top: 20px;
+    margin-top: 2rem;
     text-align: left;
 }
 
 .i-line{
-   border-top: 1px solid #dddddd;
+    border-top: 0.1rem solid #dddddd;
 }
 
 .i-pengiriman{
-    border-top: 1px solid #dddddd;
-    border-bottom: 1px solid #dddddd;
-    margin-top:20px;
+    border-top: 0.1rem solid #dddddd;
+    border-bottom: 0.1rem solid #dddddd;
+    margin-top:2rem;
 }
 
 .i-price{
@@ -78,16 +82,16 @@
 }
 
 .i-total{
-    font-size: 20px;
+    font-size: 2rem;
     font-weight: bold;
 }
 
 .i-logo{
-    margin-top:20px;
+    margin-top:2rem;
     text-align: center;
 }
 
 .i-kg{
-    margin-top:20px;
+    margin-top:2rem;
     text-align: right;
 }

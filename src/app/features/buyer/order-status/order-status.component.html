@@ -59,8 +59,14 @@
                   <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
               </td>
               <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}}</div>
+                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
+                    Varian:<br>
+                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                      {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                    </span>
+                  </div>
                   <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
+
               </td>
             </tr>
           </table>
