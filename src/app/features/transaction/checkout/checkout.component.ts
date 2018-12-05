@@ -30,6 +30,7 @@ export class CheckoutComponent implements OnInit {
   rates = [];
   shippingAddressDatas = [];
   shippingRates: string[];
+  notes: string[];
   isInsurance: any[];
   itemCartIds: number[];
   shippingAddresses: any[];
@@ -57,6 +58,8 @@ export class CheckoutComponent implements OnInit {
   isNote: boolean;
   isAny0Qty: Boolean = false;
 
+  isTransfer: Boolean = false;
+
   checkoutTrx: CheckoutTrx = new CheckoutTrx;
 
   showDialog;
@@ -73,6 +76,7 @@ export class CheckoutComponent implements OnInit {
   ) {
     this.itemCartIds = [];
     this.shippingRates = [];
+    this.notes = [];
     this.isInsurance = [];
     this.shippingAddresses = [];
     this.checkoutShippingAddress = [];
@@ -96,6 +100,16 @@ export class CheckoutComponent implements OnInit {
 
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
+
+
+      console.log('test', response);
+
+
+      // this.formAddCrtl.patchValue(
+      //   {
+      //     kodepos: postalCode,
+      //   });
+
       response.cart.forEach((cart, index) => {
         this.isInsurance[index] = cart.useAsuransi;
 
@@ -111,11 +125,20 @@ export class CheckoutComponent implements OnInit {
           };
           const newImgUrl = this.thumborService.process(item.imageUrl, option);
           this.checkoutTrx.cart[index].cartItems[i].imageUrl = newImgUrl;
+
+
+
         });
 
         cart.itemCartIds.forEach((item) => {
           if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
         });
+        console.log('cart', cart.cartItems);
+
+        cart.cartItems.forEach((item, i) => {
+          this.notes[i] = item.note;
+        });
+
         this.shippingAddresses[index] =
           (cart.shippingAddressId === 0) ? 0 :
             (cart.destinations.some(x => x.shippingAddressId === cart.shippingAddressId)) ? cart.shippingAddressId : 0;
@@ -409,6 +432,25 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
+  changeNote(cartItem, event: string) {
+
+    const data = {
+      itemCartId: cartItem.itemCartId,
+      note: event,
+      quantity: cartItem.quantity
+    };
+
+    setTimeout(() => {
+      this.shoppingCartService.updateCart(data).subscribe(response => {
+        if (response.status === 1) {
+          this.shoppingCartService.updateQuantity(cartItem.productId, -1);
+          // this.getCartCheckout();
+        }
+      });
+    },
+    5000);
+  }
+
   decreaseQty(cartItem) {
     if (cartItem.quantity > 1) {
       const data = {
@@ -461,5 +503,9 @@ export class CheckoutComponent implements OnInit {
       console.log('response: ', response);
       this.getCartCheckout();
     });
+  }
+
+  cTransfer() {
+    this.isTransfer = true;
   }
 }
