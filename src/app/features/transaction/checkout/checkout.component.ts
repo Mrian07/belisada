@@ -101,15 +101,6 @@ export class CheckoutComponent implements OnInit {
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
 
-
-      console.log('test', response);
-
-
-      // this.formAddCrtl.patchValue(
-      //   {
-      //     kodepos: postalCode,
-      //   });
-
       response.cart.forEach((cart, index) => {
         this.isInsurance[index] = cart.useAsuransi;
 

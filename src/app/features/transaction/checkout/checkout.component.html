@@ -1,10 +1,11 @@
 <div class="containPageCenter contain-checkout chekout-head">
     <div>
-        <a [routerLink]="['/']">
-        <img src="assets/img/logo.png" height="50" border="0">
+        <a [routerLink]="['/']" class="linkHome">
+            <img src="assets/img/logo.png" height="50" border="0">
+            
+            <br>
+            <span class="logoText"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon> Shopping Cart</span>
         </a>
-        <br>
-        <span class="logoText">Shopping Cart</span>
     </div>
     <div class="title-head-chekout">
         <fa-icon [icon]="['fas', 'lock']"></fa-icon>
@@ -56,7 +57,15 @@
                             <img [src]="cartItem.imageUrl" size="20">
                         </div>
                         <div>
-                            <span class="item-name">{{ cartItem.name }}</span> <span class="item-size"> ( {{ cartItem.weightPerItem }} g )</span>
+                            <span class="item-name">{{ cartItem.name }}</span><br>
+                            <div *ngFor="let varian of cartItem.varians" class="varianText">
+                                {{ varian.name }}:
+                                <span *ngFor="let itemVar of varian.varians">
+                                    {{  itemVar.value }}
+                                </span>
+                                <br>
+                    
+                            </div>
                         </div>
 
 
