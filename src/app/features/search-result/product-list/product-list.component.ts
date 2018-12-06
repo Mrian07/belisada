@@ -332,7 +332,7 @@ export class ProductListComponent implements OnInit {
         itemperpage: this.itemperpage,
         ob: this.sortName,
         ot: this.sortUrut,
-        q: params.q,
+        q: params.q ? params.q : '',
         st: params.st,
         location: this.cat,
         shipping: this.shippingOpt,
