@@ -1,82 +1,68 @@
+<div class="containPageCenter contain-checkout chekout-head">
+    <div>
+        <a [routerLink]="['/']" class="linkHome">
+			<img src="assets/img/logo.png" height="50" border="0">
+			<br>
+			<span class="logoText"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon> Shopping Cart</span>
+		</a>
+    </div>
+    <div class="title-head-chekout">
+        <fa-icon [icon]="['fas', 'lock']"></fa-icon>
+        <br>Secure Checkout</div>
+    <div></div>
+</div>
+<div class="line-head">
+    <!--Line Head-->
+</div>
 <div class="containPage has-header">
-	<div class="colom-grid">
-		<div class="b-image">
-			<img class="img-center-dino" src="/assets/img/Asset_3400.png">
+
+    <div class="sub-title-checkout">
+        <div class="sub-title-checkout__left" align="center">
+            <div class="sub-title-checkout__line-blank"></div>
+            <div class="sub-title-checkout__circle-blank">1</div>
+            <div class="sub-title-checkout__title">Keranjang Belanja</div>
+        </div>
+        <div class="sub-title-checkout__right" align="center">
+            <div class="sub-title-checkout__line-active"></div>
+            <div class="sub-title-checkout__circle-active">2</div>
+            <div class="sub-title-checkout__title">Konfirmasi Pembayaran</div>
+        </div>
+	</div>
+	<div class="containPageCenter contain-checkout" *ngFor="let item of successTransactionRes.data.cartItems">
+		<div class="contain-thx-head">
+			<div>Transaction ID: PYT-57657</div>
+			<div class='contain-thx-head__total'>Total Pembayaran</div>
+			<div class='contain-thx-head__price-total'>Rp {{ successTransactionRes.data.grandTotal | number }}</div>
 		</div>
-		<div>
-			<div class="bc">
-			<!-- <app-terimakasih-page inputDate="July 11, 2018 12:00:00"></app-terimakasih-page> -->
 		
-				<img class="img--center--thx" src="/assets/img/logo.png">
-				<div class="text-info">Segera selesaikan pembayaran Anda sebelum stok habis !</div>
-				<div class="b-countdown">
-					<p class="text--center">Anda memiliki waktu 1x24 jam sampai tanggal {{successTransactionRes.data.expiredTimeIndo}}, untuk melakukan pembayaran</p>
-					<p class="text--center custome--timer"> 
-						<countdown-timer [end]="successTransactionRes.data.expiredConfirmationPaymentBuyerDate"></countdown-timer> </p> 
+		<div class="contain-thx-body">
+			<div class="contain-thx-body__detail">
+				<div>
+					<span class="titleItem">{{ item.name }}</span><br>
+					<div *ngFor="let varian of item.varians" class="varianText">
+						{{ varian.name }}:
+						<span *ngFor="let itemVar of varian.varians">
+							{{  itemVar.value }}
+						</span>
+						<br>
+			
+					</div> 
+
 				</div>
-				<!-- <p class="text--center cusstome--font">Anda memiliki waktu 1x24 jam sampai tanggal 23 September 2018, untuk melakukan pembayaran</p> -->
-				<!-- <p class="text--center"></p> -->
-				<div class="text-info">Metode Pembayaran: Bank Transfer</div>
-				
-				<div class="pay" *ngFor="let item of listPayment">
-					<img src="{{ item.imageUrl }}" class="img-icon"><br>
-					<div class="subPay"><b>{{ item.accountNumber }}</b> a/n <b>{{ item.accountName }}</b></div>
-				</div>
-
-				<div class="linePay">
-					<div class="payJml">Jumlah yang harus dibayar:</div>
-					<div class="payTot">{{ successTransactionRes.data.grandTotal | currency:'Rp ' }}</div>
-				</div>
-				<div class="bPanduan">Panduan Pembayaran</div>
-				<div class="titlePanduan">Via ATM BCA</div>
-				<div class="conPanduan">
-					Masukan Kartu ATM BCA & PIN<br>
-					Pilih menu "Transaksi Lainnya"<br>
-					Pilih "Transfer"<br>
-					Masukan Nomor Rekening diatas A/N PT. BELISADA GLOBAL INDONESIA<br>
-					Masukan Nominal yang harus dibayarkan
-				</div>
-				<div class="titlePanduan2">Via M-Banking BCA</div>
-				<div class="titlePanduan2">Via Internet Banking BCA</div>
-				<!-- <div class='list-metode'>
-					<div class="row">
-						<div class="col" *ngFor="let item of listPayment">
-							<div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
-							{{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
-						</div>
-
-
-						<div class="col-3">
-							<div class="img-pay"><img src="assets/img/bank_mandiri.png"class="img-icon"></div>
-							675765765775<br>On<br>PT Belisada Global Indonesia
-						</div>
-						<div class="col-3">
-							<div class="img-pay"><img src="assets/img/bank_bni.png" class="img-icon"></div>
-							675765765775<br>On<br>PT Belisada Global Indonesia
-						</div>
-						<div class="col-3">
-							675765765775<br>On<br>PT Belisada Global Indonesia
-						</div>
-
-
-					</div>
-				
-				</div>  -->
-				<!-- <div class="row">
-					<div class="col-12">
-								<button class="btn btn--orange w_backtohome" (click)="goHome()">Back To Home</button>
-						
-					</div>
-				</div> -->
-
-				<div class="btnStatus" (click)="goToOrder()">Lihat Status Transaksi</div>
-				<div class="textFoot">Pembelian Anda Menunggu Pembayaran, Silakan Lakukan Pembayaran Melalu Metode Bank Transfer Dengan Nomor Rekening Diatas</div>
+				<div>x{{item.quantity}}</div>
+				<div>Rp {{ item.total | number }}</div>
+			</div>
+			<div class="line-ongkir">
+				<div class="titleItem">Ongkos Kirim</div>
+				<div>Rp {{ successTransactionRes.data.totalCourierPrice | number }}</div>
 			</div>
 		</div>
-		<div class="b-image"> 
-			<img class="img-center-kotak" src="/assets/img/atm.png">
+
+		<div class="contain-thx-footer">
+			BCA
 		</div>
-	</div>		
+
+		<div class="contain-thx-btn" (click)="goToOrder()">KONFIRMASI PEMBAYARAN</div>
+	</div>
+	
 </div>
-	
-	

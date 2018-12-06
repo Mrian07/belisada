@@ -10,7 +10,7 @@ import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
 const routes: Routes = [
   {
     path: '',
-    component: TransactionComponent,
+    // component: TransactionComponent,
     canActivateChild: [OnlyLoggedInUsersGuard],
     children: [
       {

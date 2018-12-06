@@ -39,11 +39,19 @@
 }
 
 .item-price{
-    color: #009dff;
+    color: #000000;
+}
+
+.item-price-spesial{
+    color: #f8992e;
 }
 
 .item-qty{
-    color:#f68941;
+    color:#000000;
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+    width:2rem;
+    padding:5px;
 }
 
 .item-delete {
@@ -77,10 +85,9 @@
 .plus-minus{
     border: 1px solid #dddddd;
     padding:5px;
-    margin:10px;
+    // margin:10px;
     cursor: pointer;
     color:#747474;
-    border-radius:5px;
 }
 
 .plus-minus:hover{
@@ -466,4 +473,331 @@
     text-align: center;
     margin-top: 60px;
     padding:10px;
+}
+
+.chekout-head{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    margin-top:20px;
+}
+
+.title-head-chekout{
+    text-align:center;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.line-head{
+    border-top: 10px solid #fcac2f;
+    border-bottom: 10px solid #17415b;
+}
+
+.sub-title-checkout{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width:30%;
+    margin:0px auto;
+
+    &__left{
+        align:center;
+    }
+
+    &__right{
+        align:center;
+    }
+
+    &__circle-active{
+        margin-right:0px;
+        border: 7px solid #18415b;
+        background: #ffffff;
+        border-radius:30px;
+        // padding-bottom: 0.5rem;
+        width: 6rem;
+        height:6rem;
+        text-align: center;
+        margin-top: -3.5rem;
+        font-size: 2.5rem;
+        font-weight:bold;
+        color: #fcac2f;
+    }
+
+    &__circle-blank{
+        margin-right:0px;
+        border: 7px solid #eaeaea;
+        background: #ffffff;
+        border-radius:30px;
+        // padding-bottom: 0.5rem;
+        width: 6rem;
+        height:6rem;
+        text-align: center;
+        margin-top: -3.5rem;
+        font-size: 2.5rem;
+        font-weight:bold;
+        color: #eaeaea;
+    }
+
+    &__line-active{
+        border-top: 7px solid #18415b;
+    }
+
+    &__line-blank{
+        border-top: 7px solid #eaeaea;
+    }
+
+    &__title{
+        font-weight: bold;
+        color:#000000;
+    }
+
+}
+
+.sub-title-checkout-left{
+    text-align:right;
+}
+
+.sub-title-checkout-right{
+    text-align:left;
+}
+
+.table-title{
+    display: grid;
+    grid-template-columns: 30% 15% 10% 15% 20% 10%;
+    padding:10px;
+    color:#fcac2f;
+    background:#ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.5rem;
+}
+
+.box-icon{
+    background: #fcac2f;
+    height:40px;
+    border: 3px solid #dddddd;
+    width:30px;
+}
+
+.contenCart{
+    margin-top:20px;
+    border: 1px solid #dddddd;
+
+    &__shop{
+        padding:5px;
+        border-bottom: 1px solid #dddddd;
+    }
+
+    &__item{
+        display: grid;
+        grid-template-columns: 30% 15% 10% 15% 20% 10%;
+        padding:5px;
+        border-bottom: 1px solid #dddddd;
+        margin-top: 1.5rem;
+    }
+
+    &__info{
+        display: grid;
+        grid-template-columns: 40% 30% 30%;
+        padding:5px;
+        background: #ffffec;
+        font-size: 12px;
+    }
+
+    &__img{
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+
+    &__btn-delete{
+        background: #18415b;
+        color:#ffffff;
+        text-align:center;
+        margin-right:1rem;
+        font-size: 1.3rem;
+        cursor: pointer;
+    }
+
+    &__btn-delete:hover{
+        background: #3d81ac;
+    }
+
+    &__total{
+        text-align: right;
+    }
+
+    &__form{
+        border: 1px solid #dddddd;
+        padding: 0.7rem;
+        font-size: 1.3rem;
+
+        &__textarea{
+            width:90%;
+        }
+    }
+
+    &__opsi{
+        display: grid;
+        grid-template-columns: 40% 60%;
+    }
+
+    &__message{
+        display: grid;
+        grid-template-columns: 15% 85%;
+    }
+}
+
+.fontYellow{
+    color:#fdb02a;
+}
+
+.fontRed{
+    color:#d4183c;
+}
+
+.cPay{
+    margin-top:20px;
+    padding:10px;
+    background:#ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.5rem;
+
+    display: grid;
+    grid-template-columns: 16% 30% 11% 15%;
+
+    &__form{
+        padding:10px;
+        width:100%;
+    }
+
+    &__val{
+        padding:5px;
+    }
+
+    &__btn{
+        border:1px solid #dddddd;
+        padding:10px;
+        cursor: pointer;
+        color:#dddddd;
+        background: #ffffff;
+        font-size:1.5rem;
+    }
+
+    &__btn-active{
+        padding:10px;
+        cursor: pointer;
+        color:#dddddd;
+        font-size:1.5rem;
+        border:1px solid #fdb02a;
+        background: #ffffff;
+        color:#000000;
+    }
+
+    &__btn2{
+        border:1px solid #dddddd;
+        padding:10px;
+        color:#dddddd;
+        background: #ffffff;
+        font-size:1.5rem;
+    }
+
+    &__btn:hover{
+        border:1px solid #fdb02a;
+        background: #ffffff;
+        color:#000000;
+    }
+}
+
+.cPayDetail{
+    padding:10px;
+    background:#ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.3rem;
+
+    &__bank{
+        display: grid;
+        grid-template-columns: 17% 7% 15% 30% 30%;
+        // font-size: 1.2rem;
+    }
+
+    &__modeText{
+        color:#fdb02a;
+    }
+
+    &__shadowText{
+        color:#727070;
+    }
+}
+
+.cFooter{
+    margin-top:20px;
+    padding:10px;
+    background:#ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.5rem;
+
+    &__val{
+        font-size: 2rem;
+        color: #727070;
+        display: grid;
+        grid-template-columns: 50% 25% 25%;
+    }
+
+    &__val2{
+        font-size: 2rem;
+        color: #dddddd;
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+
+    &__btn{
+        color:#ffffff;
+        background: #fdb02a;
+        font-size: 2.5rem;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+    &__btn:hover{
+        background: #fac468;
+    }
+
+    &__subTot{
+        color:#727070;
+        text-align:right;
+    }
+
+    &__subTotBig{
+        color:#fdb02a;
+        text-align:right;
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+}
+
+.big-price{
+    font-size: 2rem;
+}
+
+.total-font{
+    font-size: 1.5rem;
+}
+
+.logoText{
+    font-size: 2rem;
+    color:#000000;
+    font-weight: bold;
+}
+
+.linkHome{
+    color:#000000;
+    text-decoration: none;
+}
+
+.linkHome:hover{
+    color:#f7b855;
+}
+
+.varianText{
+    font-size: 1.3rem;
+    color:#474545;
 }
