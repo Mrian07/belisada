@@ -5,6 +5,7 @@ export class CheckoutReq {
   paymentMethodCode: string;
   voucherCode: string;
   voucherValue: number;
+  channelId: number;
 }
 
 export class CheckoutRes extends BaseResponseModel {

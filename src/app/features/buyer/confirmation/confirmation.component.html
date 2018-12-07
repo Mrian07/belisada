@@ -25,7 +25,8 @@
                 </div>
                 <div class="contain-c">
                     <select formControlName="bankId" class="input-c">
-                        <option  *ngFor="let item of listBank" value="{{item.bankId}}" >{{item.name}}</option>
+                        <option value="" disabled>Pilih bank yang dituju</option>
+                        <option  *ngFor="let item of listBank" [value]="item.bankId" >{{item.name}}</option>
                     </select>
                     <app-field-error-display  [displayError]="isFieldValid('bankId')" errorMsg="Ditransfer dari tidak boleh kosong"></app-field-error-display>
                 </div>

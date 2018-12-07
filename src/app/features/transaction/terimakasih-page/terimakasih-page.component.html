@@ -53,13 +53,21 @@
 				<div>Rp {{ item.total | number }}</div>
 			</div>
 			<div class="line-ongkir">
-				<div class="titleItem">Ongkos Kirim</div>
+				<div class="titleItem">Ongkos Kirim<br>
+					<span class="varianText">Pickup Service</span>
+				</div>
 				<div>Rp {{ successTransactionRes.data.totalCourierPrice | number }}</div>
 			</div>
 		</div>
 
 		<div class="contain-thx-footer">
-			BCA
+			<div class="contain-thx-footer__img">
+				<img src="{{ successTransactionRes.data.bankAccount.imageurl }}" border="0"> Nomor Rekening
+			</div>
+			<div class="contain-thx-footer__rek">
+				{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}
+			</div>
+			
 		</div>
 
 		<div class="contain-thx-btn" (click)="goToOrder()">KONFIRMASI PEMBAYARAN</div>

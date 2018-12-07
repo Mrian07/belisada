@@ -83,7 +83,7 @@
                         </select>
                     </div>
 
-                    <div>Kebijakan Pengembalian: <span class="detail-product__label-val">Mendukung 7 hari pengembalian dana tanpa syarat</span></div>
+                    <!-- <div>Kebijakan Pengembalian: <span class="detail-product__label-val">Mendukung 7 hari pengembalian dana tanpa syarat</span></div> -->
 
                     <div class="detail-product__button-wrapper">
                         <button class="btn btn--flat btn--blue-belisada btn--lg"
@@ -97,13 +97,13 @@
         <div class="col-md-4">
             <section class="product-image"> <!-- #SECTION [PRODUCT_DETAIL] product-image -->
                 <div class="product-image__preview">
-                    <img [src]="'https://img.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + selectedImage" alt="">
+                    <img [src]="thumborProductImgUrl + selectedImage" alt="">
                 </div>
 
                 <div class="row justify-content-sm-center small-gutters product-image__thumbnail-wrapper">
                     <div class="col-sm-5r" *ngFor="let item of product?.imageUrl">
                         <div class="product-image__thumbnail" (click)="selectedImage = item">
-                            <img [src]="'https://img.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item" alt="">
+                            <img [src]="thumborProductImgUrl + item" alt="">
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@
                     </div>
                     <div class="segment__content">
                         <div class="store__image">
-                            <img [src]="'https://image.belisada.co.id/unsafe/fit-in/150x150/center/filters:fill(fff)/' + product?.storeInfo?.storeImageUrl" alt="">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
                         </div>
                         <span class="store__name">{{ product?.storeInfo?.storeName }}</span>
                         <span class="store__location store__row-gap--1">{{ product?.storeInfo?.locationName }}</span>
@@ -149,36 +149,27 @@
                             <a class="btn btn--orange btn--flat" [routerLink]="['/' + product?.storeInfo?.storeUrl]" routerLinkActive="router-link-active" >Lihat Toko <fa-icon [icon]="['fas', 'search']"></fa-icon></a>
                         </div>
                         <div class="store__info">
-                            <table>
-                                <tr>
-                                    <th>Terakhir Online</th>
-                                    <td>:</td>
-                                    <td>{{ product?.storeInfo?.lastOnline }}</td>
-                                </tr>
-                                <tr>
-                                    <th>Produk Terjual</th>
-                                    <td>:</td>
-                                    <td>{{ product?.storeInfo?.productSold }} Produk Terjual</td>
-                                </tr>
-                                <tr>
-                                    <th>Jumlah Produk</th>
-                                    <td>:</td>
-                                    <td>{{ product?.storeInfo?.productQuantity }} Produk</td>
-                                </tr>
-                                <tr>
-                                    <th>Transaksi Sukses</th>
-                                    <td>:</td>
-                                    <td>{{ product?.storeInfo?.transactionSuccess }} Transaksi</td>
-                                    <td>{{ product?.productId }}</td>
-                                </tr>
-                            </table>
+                            <div>
+                                <label>Terakhir Online: </label>
+                                {{ product?.storeInfo?.lastOnline }}
+                            </div>
+                            <div>
+                                <label>Produk Terjual: </label>
+                                {{ product?.storeInfo?.productSold }} Produk Terjual
+                            </div>
+                            <div>
+                                <label>Jumlah Produk: </label>
+                                {{ product?.storeInfo?.productQuantity }} Produk
+                            </div>
+                            <div>
+                                <label>Transaksi Sukses: </label>
+                                {{ product?.storeInfo?.transactionSuccess }} Transaksi
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-            <div>
-                <div class="btn btn--flat btn--fluid btn--orange" (click)= "gotoPenawaran(product?.productId)">Penawaran Lainnya</div>
-            </div>
+            <div class="btn btn--flat btn--fluid btn--orange" (click)= "gotoPenawaran(product?.productId)">Penawaran Lainnya</div>
         </div>
     </div>
 

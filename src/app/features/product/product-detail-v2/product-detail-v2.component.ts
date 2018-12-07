@@ -13,6 +13,7 @@ import { ProductService } from '@belisada/core/services/product/product.service'
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { Home, ProductDetailV2Spec, Isi, HomeContent } from '@belisada/core/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { environment } from '@env/environment';
 
 enum TabTypeEnum {
   SPEC = 'SPEC',
@@ -73,6 +74,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public sliceValue = [];
 
+  public thumborStoreImgUrl: string;
+  public thumborProductImgUrl: string;
+
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
@@ -98,6 +102,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingAddress = '';
     this.selectedShippingMethod = '';
     this.tabActive = TabTypeEnum.SPEC;
+
+    this.thumborStoreImgUrl = environment.thumborUrl + 'unsafe/fit-in/150x150/center/filters:fill(fff)/';
+    this.thumborProductImgUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
   }
 
   ngOnInit() {

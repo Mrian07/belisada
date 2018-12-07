@@ -47,6 +47,8 @@ export class CheckoutComponent implements OnInit {
   kodepos: FormControl;
   alamat: FormControl;
 
+  channelId: number;
+
   listShip: GetShippingResponse[];
   listPayment: PaymentList[];
   payment: Payment[];
@@ -100,7 +102,7 @@ export class CheckoutComponent implements OnInit {
 
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
-
+      console.log('hasilnya', response);
       response.cart.forEach((cart, index) => {
         this.isInsurance[index] = cart.useAsuransi;
 
@@ -124,7 +126,6 @@ export class CheckoutComponent implements OnInit {
         cart.itemCartIds.forEach((item) => {
           if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
         });
-        console.log('cart', cart.cartItems);
 
         cart.cartItems.forEach((item, i) => {
           this.notes[i] = item.note;
@@ -162,6 +163,7 @@ export class CheckoutComponent implements OnInit {
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
     this.listPayment = respon[0].data;
+    console.log('pay', this.listPayment);
     });
   }
 
@@ -356,24 +358,6 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  doCheckout() {
-    const data: CheckoutReq = new CheckoutReq();
-    data.itemCartIds = this.itemCartIds;
-    data.paymentMethodCode = 'BT';
-    if (this.isAny0Qty) {
-      swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
-      return;
-    }
-    this.checkoutService.doCheckout(data).subscribe(response => {
-      if (response.status === 1) {
-        this.shoppingCartService.empty();
-        this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
-      } else {
-        swal('belisada.co.id', response.message, 'error');
-      }
-    });
-  }
-
   dataShipping() {
     this.checkoutService.getShippingAddress().subscribe(response => {
       // console.log('response: ', response);
@@ -499,4 +483,24 @@ export class CheckoutComponent implements OnInit {
   cTransfer() {
     this.isTransfer = true;
   }
+
+  doCheckout() {
+    const data: CheckoutReq = new CheckoutReq();
+    data.itemCartIds = this.itemCartIds;
+    data.paymentMethodCode = 'BT';
+    data.channelId = this.channelId;
+    if (this.isAny0Qty) {
+      swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
+      return;
+    }
+    this.checkoutService.doCheckout(data).subscribe(response => {
+      if (response.status === 1) {
+        this.shoppingCartService.empty();
+        this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+      } else {
+        swal('belisada.co.id', response.message, 'error');
+      }
+    });
+  }
+
 }
