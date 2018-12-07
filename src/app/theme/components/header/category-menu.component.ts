@@ -10,7 +10,7 @@ import { Category } from '@belisada/core/models/category/category.model';
         <li class="category--2" *ngFor="let category of categories">{{ category.name }}
           <ul class="category__detail--2">
             <li class="category--3" *ngFor="let child of category.childs">
-              <a [routerLink]="['/']">{{ child.name }}</a>
+              <a [routerLink]="['/search-result/product-list']" [queryParams]="{category: child.categoryId}">{{ child.name }}</a>
             </li>
           </ul>
         </li>

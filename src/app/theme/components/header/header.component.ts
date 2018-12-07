@@ -37,6 +37,7 @@ export class HeaderComponent implements OnInit {
    *  #[(ngModel)]
    */
   public keywordSearch: string;
+  public categoryId: number;
   /** --------------- */
 
   /**
@@ -83,7 +84,6 @@ export class HeaderComponent implements OnInit {
     this._shoppingCart();
     this._getBennerData();
   }
-
 
   public onSearchFocusOut() {
     setTimeout(() => {

@@ -222,7 +222,6 @@ export class AnotherOfferV2Component implements OnInit {
       //       'Jumlah harus di pilih!'
       //     );
       //   } else {
-          
       //   }
       // }
     } else {
