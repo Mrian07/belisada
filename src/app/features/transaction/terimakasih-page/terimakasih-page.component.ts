@@ -28,8 +28,9 @@ export class TerimakasihPageComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params: Params) => {
       this.checkoutService.getSuccessTransaction(params['id']).subscribe(response => {
-        console.log('response: ', response);
         this.successTransactionRes = response;
+
+        console.log('hasil oi', response);
         // this.expiredTimeIndo = response.data[0].expiredTimeIndo;
         const arrD = response.data.expiredTime.split(' ')[0].split('/');
         const newDate = arrD[2] + '-' + arrD[1] + '-' + arrD[0];
@@ -38,7 +39,6 @@ export class TerimakasihPageComponent implements OnInit {
         this.paymentService.getPayment().subscribe(respon => {
 
           this.listPayment = respon.find(x => x.paymentMethodCode === response.data.paymentMethodCode).data;
-          console.log('this list',this.listPayment)
         });
       });
     });

@@ -152,10 +152,10 @@
         </div>
 
         <div class="cPayDetail" *ngIf="isTransfer == true">
-            <div class="cPayDetail__bank" *ngFor="let item of listPayment">
+            <div class="cPayDetail__bank" *ngFor="let item of listPayment; let j = index">
                 <div></div>
                 <div>
-                    <input type="radio" name="">
+                    <input type="radio" [(ngModel)]="channelId" [value]="item.id">
                 </div>
                 <div>
                     <img src="{{ item.imageUrl }}" class="img-icon">
