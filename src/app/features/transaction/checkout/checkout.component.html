@@ -98,40 +98,40 @@
                     </div>
                     <div><div class="contenCart__btn-delete" (click)="deleteCart(cartItem.itemCartId, cartItem.productId, cartItem.quantity)">HAPUS</div></div>
                 </div>
-                <div class="contenCart__info">
-                    <div class="contenCart__message">
-                        <div>
-                            Pesan 
-                        </div>
-                        <div>
-                            <textarea class="contenCart__form__textarea" [(ngModel)]="notes[in]" (ngModelChange)="changeNote(cartItem,$event)"></textarea>
-                        </div>
+                
+
+            </div>
+            <div class="contenCart__info">
+                <div class="contenCart__message">
+                    <div>
+                        Pesan 
                     </div>
-                    <div class="contenCart__opsi">
-                        <div>Opsi Pengiriman: </div>
-                        <div>
-                            <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
-                            class="contenCart__form">
-                                <option disabled value="">Pilih Pengiriman</option>
-                                <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
-                            </select>
-                        </div>
-                        <div>
-                            Asuransi:
-                        </div>
-                        <div>
-                            <input type="checkbox" [(ngModel)]="isInsurance[in]" (change)="updateInsurance(cartCheckout.itemCartIds, isInsurance[in])">
-                        </div>
-                    </div>
-                    <div class="contenCart__total">
-                        <div><span class="fontYellow big-price" *ngIf="cartCheckout.courierPrice !== 0">
-                                Rp {{ cartCheckout.courierPrice | number }}
-                        </span></div>
-                        <div class="total-font">Total Pesan Produk: <span class="fontRed big-price">Rp {{ cartCheckout.subTotal | number }}</span></div>
+                    <div>
+                        <textarea class="contenCart__form__textarea" [(ngModel)]="notes[in]" (ngModelChange)="changeNote(cartItem,$event)"></textarea>
                     </div>
                 </div>
-
-
+                <div class="contenCart__opsi">
+                    <div>Opsi Pengiriman: </div>
+                    <div>
+                        <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
+                        class="contenCart__form">
+                            <option disabled value="">Pilih Pengiriman</option>
+                            <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        Asuransi:
+                    </div>
+                    <div>
+                        <input type="checkbox" [(ngModel)]="isInsurance[in]" (change)="updateInsurance(cartCheckout.itemCartIds, isInsurance[in])">
+                    </div>
+                </div>
+                <div class="contenCart__total">
+                    <div><span class="fontYellow big-price" *ngIf="cartCheckout.courierPrice !== 0">
+                            Rp {{ cartCheckout.courierPrice | number }}
+                    </span></div>
+                    <div class="total-font">Total Pesan Produk: <span class="fontRed big-price">Rp {{ cartCheckout.subTotal | number }}</span></div>
+                </div>
             </div>
         </div>
 
