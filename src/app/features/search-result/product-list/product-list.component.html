@@ -53,23 +53,23 @@
                     <button class="btn btn-primary-outline" type="button"(click)="onDisplayModeChange(1)" [ngClass]="{'btn-primary active': displayMode === 1}" >
                         <i class="fa fa-th"></i><fa-icon [icon]="['fas', 'th']"></fa-icon>
                     </button>
+                    <div></div>
                     <button class="btn btn-primary-outline" type="button"  (click)="onDisplayModeChange(2)" [ngClass]="{'btn-primary active': displayMode === 2}" >
                         <i class="fa fa-list"></i><fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 
-                        {{ list.totalElements}} items
                     </button> 
+                    <div class="items">
+                            {{ list.totalElements}} items
+                    </div>
             </div>
             
-            <div class="sc-bar">
-                Sort By <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
-                        <option *ngFor="let itmS of listSort">{{itmS}}</option>
-                    </select>
-            </div>
-            <div class="sd-bar">
-                Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
+            <div class="s-bar">
+                <span class="sc-bar">Sort By <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
+                    <option *ngFor="let itmS of listSort">{{itmS}}</option>
+                </select></span>
+                <span class="sd-bar">Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
                     <option *ngFor="let itmPer of perPage">{{itmPer}}</option>
-                </select>
+                </select></span>
             </div>
-            
         </div>
 
 
@@ -114,6 +114,8 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
                 
         <!-- <div class="b-part" *ngIf="list.totalElements!=0">
                 <div class="grid-product">
@@ -170,7 +172,7 @@
                 </div>
         
         </div> -->
-  
+
         <div class="paging" *ngIf="list.totalElements!=0">
             <ul>
                 <li>
@@ -190,10 +192,6 @@
                 </li>
             </ul>
         </div>
-
-
-        
-    </div>
 
     <!-- <div class="b-sr">
 

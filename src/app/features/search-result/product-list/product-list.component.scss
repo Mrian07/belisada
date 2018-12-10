@@ -1,6 +1,10 @@
 .m-head{
-  margin-top:20px;
-  margin-bottom:20px;
+  margin-top:2rem;
+  margin-bottom:2rem;
+}
+
+.paging {
+  margin: 0 auto;
 }
 
 .paging ul {
@@ -15,9 +19,9 @@
 }
 .paging a {
   // border: 1px solid #ebeef2;
-  padding: 3px 10px;
-  margin: 0 3px;
-  border-radius: 5px;
+  padding: 0.3rem 1rem;
+  margin: 0 0.3rem;
+  border-radius: 0.5rem;
   color:#1677b4;
 }
 .paging a.current-page {
@@ -37,13 +41,13 @@
 }
 
 .b-sr{
-    border: 1px solid #d6d6d6;
-    padding:20px;
-    margin-top:50px;
+    border: 0.1rem solid #d6d6d6;
+    padding:2rem;
+    margin-top:5rem;
 }
 
 .b-product-list{
-    // border: 1px solid #dddddd;
+    // border: 0.1rem solid #dddddd;
     // background: #ffffff;
     // // padding: 3px;
     // text-align: center;
@@ -52,15 +56,15 @@
     // font-weight: bold;
     // position: relative;
     // font-family: 'Roboto', sans-serif;
-    // height: 400px;
+    // height: 40rem;
 
-    border-right: 1px solid #dddddd;
+    border-right: 0.1rem solid #dddddd;
 }
 
 .line-hr{
-  border-bottom: 1px solid #dddddd;
-  margin-top:20px;
-  margin-bottom:20px;
+  border-bottom: 0.1rem solid #dddddd;
+  margin-top:2rem;
+  margin-bottom:2rem;
 }
 
 .icon-bar-group {
@@ -72,18 +76,18 @@
 
 .b-part{
     // border-bottom: 1px solid #dddddd;
-    margin-bottom:10px;
+    margin-bottom:1rem;
 }
 
 .price{
-    font-size: 20px;
+    font-size: 2rem;
     color: #e06c36;
     display: block;
     text-align: center;
 }
 
 .price-slash{
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #e06c36;
     display: block;
     text-align: center;
@@ -134,22 +138,22 @@ a.link-search:hover{
 
 .icon-left{
     text-align: left;
-    padding:6px;
+    padding:0.6rem;
 }
 
 .icon-right{
     text-align: right;
-    padding-right: 5px;
-    margin-top: -2px;
+    padding-right: 0.5rem;
+    margin-top: -0.2rem;
 }
 
 .btn-down{
-    margin-left:10px;
+    margin-left:1rem;
     background: #fdfdfd;
-    border: 1px solid #aeacac;
-    padding:5px;
-    border-radius:5px;
-    font-size: 15px;
+    border: 0.1rem solid #aeacac;
+    padding:0.5rem;
+    border-radius:0.5rem;
+    font-size: 1.5rem;
 
 }
 
@@ -266,6 +270,11 @@ h1 {
 
 }
 
+.items {
+  font-size: 1.6rem;
+  color: #e06c36;
+}
+
 .wrapper-with-grid {
   display: grid;
   // color: $color-red;
@@ -308,7 +317,7 @@ h1 {
   border-bottom: 1px solid #dddddd;
   padding-bottom:5px;
   display: grid;
-  grid-template-columns: 40% 10% 25% 25%;
+  grid-template-columns: 43.5% 20% 36.5%;
   font-size: 13px;
   margin-bottom:20px;
   padding-bottom:20px;
@@ -316,21 +325,26 @@ h1 {
 
 .c-bar{
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 30% 5% 30% 35%;
   text-align: center;
 }
 
 .btn-primary-outline{
-  background-color: transparent;
+  background-color:#e9e6e6;
   border-color: #ccc;
 }
 
-.sc-bar{
-  text-align: center;
+.s-bar{
+  text-align: right;
+}
+
+.fa-list {
+  align: left;
 }
 
 .sd-bar{
-  text-align:right;
+  padding-left: 10rem;
+  padding-right: 5rem;
 }
 
 .frame-src-sub{
