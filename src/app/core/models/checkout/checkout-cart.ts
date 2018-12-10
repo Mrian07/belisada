@@ -73,3 +73,4 @@ export class UpdateAsuransiReq {
   itemCartIds: number[];
   useAsuransi: Boolean;
 }
+

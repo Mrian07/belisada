@@ -140,28 +140,22 @@
             <div class="cPay__val">
                 Metode Pembayaran
             </div>
-            <div class="cPay__val">
-                <input type="text" name="" class="cPay__form">
-            </div>
-            <div class="cPay__val">
-                <button [ngClass]="[isTransfer == false ? 'cPay__btn' : 'cPay__btn-active']" (click)="cTransfer()">Transfer Bank</button>
-            </div>
-            <div class="cPay__val">
-                <button class="cPay__btn2">Indomaret</button>
+            <div class="cPay__val" *ngFor="let item of listPayment; let i = index">
+                <button [ngClass]="[isTransfer[i] == false ? 'cPay__btn' : 'cPay__btn-active']" (click)="cTransfer(listPayment,i,item.paymentMethodCode)">{{ item.paymentMethodName }}</button>
             </div>
         </div>
 
-        <div class="cPayDetail" *ngIf="isTransfer == true">
-            <div class="cPayDetail__bank" *ngFor="let item of listPayment; let j = index">
+        <div class="cPayDetail" *ngIf="isTransferBank == true">
+            <div class="cPayDetail__bank" *ngFor="let itemBnk of listPaymentChild; let j = index">
                 <div></div>
                 <div>
-                    <input type="radio" [(ngModel)]="channelId" [value]="item.id">
+                    <input type="radio" [(ngModel)]="channelId" [value]="itemBnk.id">
                 </div>
                 <div>
-                    <img src="{{ item.imageUrl }}" class="img-icon">
+                    <img src="{{ itemBnk.imageUrl }}" class="img-icon">
                 </div>
                 <div>
-                    {{ item.accountNumber }} {{ item.accountName }}<br>
+                    {{ itemBnk.accountNumber }} {{ itemBnk.accountName }}<br>
                     <span class="cPayDetail__shadowText">Hanya menerima dari bank yang sama.</span>
                 </div>
                 <div class="cPayDetail__modeText">
@@ -189,7 +183,26 @@
             </div>
             <div class="cFooter__val2">
                 <div></div>
-                <div class="cFooter__btn" (click)="doCheckout()">Bayar Sekarang</div>
+                <div class="cFooter__btn" *ngIf="this.isBtnTransfer==true" (click)="doCheckout()">Bayar Sekarang</div>
+
+                <form [formGroup]="createForm" #form action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+                    <input type="hidden" formControlName="MerchantCode" placeholder="MerchantCode">
+                    <input type="hidden" formControlName="PaymentId" placeholder="PaymentId">
+                    <input type="hidden" formControlName="RefNo" placeholder="RefNo">
+                    <input type="hidden" formControlName="Amount" placeholder="Amount">
+                    <input type="hidden" formControlName="Currency" placeholder="Currency">
+                    <input type="hidden" formControlName="ProdDesc" placeholder="ProdDesc">
+                    <input type="hidden" formControlName="UserName" placeholder="UserName">
+                    <input type="hidden" formControlName="UserEmail" placeholder="UserEmail">
+                    <input type="hidden" formControlName="UserContact" placeholder="UserContact">
+                    <input type="hidden" formControlName="Remark" placeholder="Remark">
+                    <input type="hidden" formControlName="Lang" placeholder="Lang">
+                    <input type="hidden" formControlName="signature" placeholder="signature">
+                    <input type="hidden" formControlName="ResponseURL" placeholder="ResponseURL">
+                    <input type="hidden" formControlName="BackendURL" placeholder="BackendURL">
+                    <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true" (click)="form.submit()">Bayar Sekarang</button>
+                </form>
+
             </div>
         </div>
 

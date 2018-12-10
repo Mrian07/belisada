@@ -50,7 +50,8 @@ export class CheckoutComponent implements OnInit {
   channelId: number;
 
   listShip: GetShippingResponse[];
-  listPayment: PaymentList[];
+  listPayment: Payment[];
+  listPaymentChild: Payment[];
   payment: Payment[];
 
   selectedShippingAddress: CheckoutShippingAddress = new CheckoutShippingAddress();
@@ -60,12 +61,16 @@ export class CheckoutComponent implements OnInit {
   isNote: boolean;
   isAny0Qty: Boolean = false;
 
-  isTransfer: Boolean = false;
+  isTransfer: boolean[];
+  isTransferBank: Boolean = false;
 
   checkoutTrx: CheckoutTrx = new CheckoutTrx;
 
-  showDialog;
+  isBtnTransfer: Boolean = false;
+  isBtnCart: Boolean = false;
 
+  showDialog;
+  createForm: FormGroup;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -76,12 +81,70 @@ export class CheckoutComponent implements OnInit {
     private checkoutService: CheckoutService,
     private thumborService: ThumborService
   ) {
+    this.isTransfer = [];
     this.itemCartIds = [];
     this.shippingRates = [];
     this.notes = [];
     this.isInsurance = [];
     this.shippingAddresses = [];
     this.checkoutShippingAddress = [];
+
+    this.form();
+    this.fillForms();
+  }
+
+  MerchantCode: string;
+  PaymentId: string;
+  RefNo: string;
+  Amount: string;
+  Currency: string;
+  ProdDesc: string;
+  UserName: string;
+  UserEmail: string;
+  UserContact: string;
+  Remark: string;
+  Lang: string;
+  signature: string;
+  ResponseURL: string;
+  BackendURL: string;
+
+  form() {
+    this.createForm = this.fb.group({
+      MerchantCode: new FormControl('', Validators.required),
+      PaymentId: new FormControl('', Validators.required),
+      RefNo: new FormControl('', Validators.required),
+      Amount: new FormControl('', Validators.required),
+      Currency: new FormControl('', Validators.required),
+      ProdDesc: new FormControl('', Validators.required),
+      UserName: new FormControl('', Validators.required),
+      UserEmail: new FormControl('', Validators.required),
+      UserContact: new FormControl('', Validators.required),
+      Remark: new FormControl('', Validators.required),
+      Lang: new FormControl('', Validators.required),
+      signature: new FormControl('', Validators.required),
+      ResponseURL: new FormControl('', Validators.required),
+      BackendURL: new FormControl('', Validators.required),
+    });
+  }
+
+  fillForms() {
+    this.createForm.patchValue(
+      {
+        MerchantCode: '1111',
+        PaymentId: '',
+        RefNo: '',
+        Amount: '',
+        Currency: '',
+        ProdDesc: '',
+        UserName: '',
+        UserEmail: '',
+        UserContact: '',
+        Remark: '',
+        Lang: '',
+        signature: '',
+        ResponseURL: '',
+        BackendURL: '',
+      });
   }
 
   ngOnInit() {
@@ -162,29 +225,31 @@ export class CheckoutComponent implements OnInit {
 
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[0].data;
-    console.log('pay', this.listPayment);
+    this.listPayment = respon;
+    this.listPayment.forEach((item, i) => {
+        this.isTransfer[i] = false;
+      });
     });
   }
 
   byTransfer() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-      this.listPayment = respon[0].data;
+      // this.listPayment = respon[0].data;
     });
   }
 
   byCart() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[1].data;
+    // this.listPayment = respon[1].data;
     });
   }
 
   byInstan() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[2].data;
+    // this.listPayment = respon[2].data;
   });
   }
 
@@ -480,8 +545,38 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  cTransfer() {
-    this.isTransfer = true;
+  cTransfer(item, i, statusPay) {
+    const dataItem = item;
+    dataItem.forEach((data, n) => {
+      this.isTransfer[n] = false;
+    });
+
+    this.listPaymentChild = item.find(x => x.paymentMethodCode === 'BT').data;
+
+    if (statusPay === 'PI') {
+      this.isTransfer[i] = false;
+      swal(
+        'Alert!',
+        'Maaf metode pembayaran ini belum tersedia',
+        'error'
+      );
+    } else {
+      this.isTransfer[i] = true;
+    }
+
+    if (statusPay === 'KK') {
+      this.isBtnCart = true;
+    } else {
+      this.isBtnCart = false;
+    }
+
+    if (statusPay === 'BT') {
+      this.isBtnTransfer = true;
+      this.isTransferBank = true;
+    } else {
+      this.isTransferBank = false;
+      this.isBtnTransfer = false;
+    }
   }
 
   doCheckout() {
