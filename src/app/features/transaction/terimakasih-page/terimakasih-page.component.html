@@ -28,15 +28,15 @@
             <div class="sub-title-checkout__title">Konfirmasi Pembayaran</div>
         </div>
 	</div>
-	<div class="containPageCenter contain-checkout" *ngFor="let item of successTransactionRes.data.cartItems">
+	<div class="containPageCenter contain-checkout">
 		<div class="contain-thx-head">
-			<div>Transaction ID: PYT-57657</div>
+			<div>Transaction ID: {{ successTransactionRes.data.paymentNumber }}</div>
 			<div class='contain-thx-head__total'>Total Pembayaran</div>
 			<div class='contain-thx-head__price-total'>Rp {{ successTransactionRes.data.grandTotal | number }}</div>
 		</div>
 		
 		<div class="contain-thx-body">
-			<div class="contain-thx-body__detail">
+			<div class="contain-thx-body__detail" *ngFor="let item of successTransactionRes.data.cartItems">
 				<div>
 					<span class="titleItem">{{ item.name }}</span><br>
 					<div *ngFor="let varian of item.varians" class="varianText">
@@ -62,7 +62,7 @@
 
 		<div class="contain-thx-footer">
 			<div class="contain-thx-footer__img">
-				<img src="{{ successTransactionRes.data.bankAccount.imageurl }}" border="0"> Nomor Rekening
+				<img src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0"> Nomor Rekening
 			</div>
 			<div class="contain-thx-footer__rek">
 				{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}
