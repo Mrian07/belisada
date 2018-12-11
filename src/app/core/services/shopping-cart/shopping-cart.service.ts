@@ -287,4 +287,11 @@ export class ShoppingCartService {
         map(response => response as DeleteCartResponse)
       );
   }
+
+  updateNote(data): Observable<UpdateShippingRes> {
+    return this.http.post(this.configuration.apiURL + '/buyer/cart/itemcart/update/note', data)
+      .pipe(
+        map(response => response as UpdateShippingRes)
+      );
+  }
 }

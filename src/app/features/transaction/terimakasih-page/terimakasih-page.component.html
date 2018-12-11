@@ -30,39 +30,51 @@
 	</div>
 	<div class="containPageCenter contain-checkout">
 		<div class="contain-thx-head">
-			<div>Transaction ID: {{ successTransactionRes.data.paymentNumber }}</div>
+			<div>Payment ID: {{ successTransactionRes.data.paymentNumber }}</div>
 			<div class='contain-thx-head__total'>Total Pembayaran</div>
 			<div class='contain-thx-head__price-total'>Rp {{ successTransactionRes.data.grandTotal | number }}</div>
 		</div>
-		
 		<div class="contain-thx-body">
-			<div class="contain-thx-body__detail" *ngFor="let item of successTransactionRes.data.cartItems">
-				<div>
-					<span class="titleItem">{{ item.name }}</span><br>
-					<div *ngFor="let varian of item.varians" class="varianText">
-						{{ varian.name }}:
-						<span *ngFor="let itemVar of varian.varians">
-							{{  itemVar.value }}
-						</span>
-						<br>
-			
-					</div> 
+			<div class="contain-thx-body__head" *ngFor="let listCart of successTransactionRes.data.cart">
+				<div class="contain-thx-body__head__detail" *ngFor="let item of listCart.cartItems">
 
+					<div>
+						<span class="titleItem">{{ item.name }}</span><br>
+						<div *ngFor="let varian of item.varians" class="varianText">
+							{{ varian.name }}:
+							<span *ngFor="let itemVar of varian.varians">
+								{{  itemVar.value }}
+							</span>
+							<br>
+				
+						</div> 
+
+					</div>
+					<div>x{{item.quantity}}</div>
+					<div>Rp {{ item.priceList | number }}</div>
 				</div>
-				<div>x{{item.quantity}}</div>
-				<div>Rp {{ item.total | number }}</div>
-			</div>
-			<div class="line-ongkir">
-				<div class="titleItem">Ongkos Kirim<br>
-					<span class="varianText">Pickup Service</span>
+				<div class="line-ongkir">
+					<div class="titleItem">Biaya Asuransi</div>
+					<div>Rp {{ listCart.asuransi | number }}</div>
 				</div>
-				<div>Rp {{ successTransactionRes.data.totalCourierPrice | number }}</div>
+				<div class="line-ongkir">
+					<div class="titleItem">Ongkos Kirim<br>
+						<span class="varianText">{{listCart.courierName}}</span>
+					</div>
+					<div>Rp {{ listCart.courierPrice | number }}</div>
+				</div>
 			</div>
+
+		</div>
+
+		<div class="contain-thx-sub-footer">
+			Silakan melakukan pembayaran sesuai dengan nomor rekening dan bank yang ada dibawah.<br>
+			Anda memiliki waktu 1 x 24 Jam untuk melakukan pembayaran, atau pesanan Anda akan dibatalkan secara otomatis oleh system.
 		</div>
 
 		<div class="contain-thx-footer">
 			<div class="contain-thx-footer__img">
-				<img src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0"> Nomor Rekening
+				<img src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0"> No. Rekening
 			</div>
 			<div class="contain-thx-footer__rek">
 				{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}

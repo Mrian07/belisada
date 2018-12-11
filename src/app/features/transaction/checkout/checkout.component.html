@@ -33,10 +33,7 @@
     <div class="containPageCenter contain-checkout">
 
         <div class="table-title">
-            <div>
-                <img src="assets/img/boxCheckout.png" height="15" border="0">
-                Produk
-            </div>
+            <div>Produk</div>
             <div>Harga</div>
             <div>Kuantitas</div>
             <div>Total Harga</div>
@@ -46,7 +43,8 @@
 
         <div class="contenCart" *ngFor="let cartCheckout of checkoutTrx.cart; let in = index">
             <div class="contenCart__shop">
-                <img src="assets/img/boxCheckout.png" height="15" border="0">
+                <input type="checkbox" [(ngModel)]="checkShop[in]" class="contenCart__check">
+                <!-- <img src="assets/img/boxCheckout.png" height="15" border="0"> -->
                 {{ cartCheckout.storeName }}
             </div>
             <div *ngFor="let cartItem of cartCheckout.cartItems">
@@ -107,7 +105,7 @@
                         Pesan 
                     </div>
                     <div>
-                        <textarea class="contenCart__form__textarea" [(ngModel)]="notes[in]" (ngModelChange)="changeNote(cartItem,$event)"></textarea>
+                        <textarea class="contenCart__form__textarea" [(ngModel)]="notes[in]" (ngModelChange)="changeNote(cartCheckout.itemCartIds,$event)"></textarea>
                     </div>
                 </div>
                 <div class="contenCart__opsi">

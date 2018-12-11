@@ -580,6 +580,12 @@
     margin-top:20px;
     border: 1px solid #dddddd;
 
+    &__check{
+        font-size: 20px;
+        padding:10px;
+        border-bottom: 1px solid #dddddd;
+    }
+
     &__shop{
         padding:5px;
         border-bottom: 1px solid #dddddd;

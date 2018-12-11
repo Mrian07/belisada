@@ -23,6 +23,7 @@ export class CartCheckout {
   useAsuransi: Boolean;
   totalWeight: number;
   asuransi: number;
+  note: string;
 }
 
 export class CartItemCheckout {
