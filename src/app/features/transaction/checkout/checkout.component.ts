@@ -31,6 +31,7 @@ export class CheckoutComponent implements OnInit {
   shippingAddressDatas = [];
   shippingRates: string[];
   notes: string[];
+  checkShop: any[];
   isInsurance: any[];
   itemCartIds: number[];
   shippingAddresses: any[];
@@ -50,7 +51,8 @@ export class CheckoutComponent implements OnInit {
   channelId: number;
 
   listShip: GetShippingResponse[];
-  listPayment: PaymentList[];
+  listPayment: Payment[];
+  listPaymentChild: Payment[];
   payment: Payment[];
 
   selectedShippingAddress: CheckoutShippingAddress = new CheckoutShippingAddress();
@@ -60,12 +62,17 @@ export class CheckoutComponent implements OnInit {
   isNote: boolean;
   isAny0Qty: Boolean = false;
 
-  isTransfer: Boolean = false;
+  isTransfer: boolean[];
+  isTransferBank: Boolean = false;
+  PMCode: string;
 
   checkoutTrx: CheckoutTrx = new CheckoutTrx;
 
-  showDialog;
+  isBtnTransfer: Boolean = false;
+  isBtnCart: Boolean = false;
 
+  showDialog;
+  createForm: FormGroup;
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -76,12 +83,71 @@ export class CheckoutComponent implements OnInit {
     private checkoutService: CheckoutService,
     private thumborService: ThumborService
   ) {
+    this.isTransfer = [];
     this.itemCartIds = [];
     this.shippingRates = [];
     this.notes = [];
+    this.checkShop = [];
     this.isInsurance = [];
     this.shippingAddresses = [];
     this.checkoutShippingAddress = [];
+
+    this.form();
+    this.fillForms();
+  }
+
+  MerchantCode: string;
+  PaymentId: string;
+  RefNo: string;
+  Amount: string;
+  Currency: string;
+  ProdDesc: string;
+  UserName: string;
+  UserEmail: string;
+  UserContact: string;
+  Remark: string;
+  Lang: string;
+  signature: string;
+  ResponseURL: string;
+  BackendURL: string;
+
+  form() {
+    this.createForm = this.fb.group({
+      MerchantCode: new FormControl('', Validators.required),
+      PaymentId: new FormControl('', Validators.required),
+      RefNo: new FormControl('', Validators.required),
+      Amount: new FormControl('', Validators.required),
+      Currency: new FormControl('', Validators.required),
+      ProdDesc: new FormControl('', Validators.required),
+      UserName: new FormControl('', Validators.required),
+      UserEmail: new FormControl('', Validators.required),
+      UserContact: new FormControl('', Validators.required),
+      Remark: new FormControl('', Validators.required),
+      Lang: new FormControl('', Validators.required),
+      signature: new FormControl('', Validators.required),
+      ResponseURL: new FormControl('', Validators.required),
+      BackendURL: new FormControl('', Validators.required),
+    });
+  }
+
+  fillForms() {
+    this.createForm.patchValue(
+      {
+        MerchantCode: '1111',
+        PaymentId: '',
+        RefNo: '',
+        Amount: '',
+        Currency: '',
+        ProdDesc: '',
+        UserName: '',
+        UserEmail: '',
+        UserContact: '',
+        Remark: '',
+        Lang: '',
+        signature: '',
+        ResponseURL: '',
+        BackendURL: '',
+      });
   }
 
   ngOnInit() {
@@ -102,8 +168,15 @@ export class CheckoutComponent implements OnInit {
 
     this.shoppingCartService.getCartV2().subscribe(response => {
       this.checkoutTrx = response;
-      console.log('hasilnya', response);
+
+      response.cart.forEach((item, i) => {
+        this.checkShop[i] = true;
+      });
+
+      console.log('response', response);
+
       response.cart.forEach((cart, index) => {
+        this.notes[index] = cart.note;
         this.isInsurance[index] = cart.useAsuransi;
 
         cart.cartItems.forEach((item, i) => {
@@ -118,17 +191,10 @@ export class CheckoutComponent implements OnInit {
           };
           const newImgUrl = this.thumborService.process(item.imageUrl, option);
           this.checkoutTrx.cart[index].cartItems[i].imageUrl = newImgUrl;
-
-
-
         });
 
         cart.itemCartIds.forEach((item) => {
           if (this.itemCartIds.indexOf(item) === -1) { this.itemCartIds.push(item); }
-        });
-
-        cart.cartItems.forEach((item, i) => {
-          this.notes[i] = item.note;
         });
 
         this.shippingAddresses[index] =
@@ -162,29 +228,31 @@ export class CheckoutComponent implements OnInit {
 
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[0].data;
-    console.log('pay', this.listPayment);
+    this.listPayment = respon;
+    this.listPayment.forEach((item, i) => {
+        this.isTransfer[i] = false;
+      });
     });
   }
 
   byTransfer() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-      this.listPayment = respon[0].data;
+      // this.listPayment = respon[0].data;
     });
   }
 
   byCart() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[1].data;
+    // this.listPayment = respon[1].data;
     });
   }
 
   byInstan() {
     this.isPayment = true;
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon[2].data;
+    // this.listPayment = respon[2].data;
   });
   }
 
@@ -407,18 +475,17 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  changeNote(cartItem, event: string) {
+  changeNote(itemCartIds, event: string) {
 
     const data = {
-      itemCartId: cartItem.itemCartId,
+      itemCartIds: itemCartIds,
       note: event,
-      quantity: cartItem.quantity
     };
 
     setTimeout(() => {
-      this.shoppingCartService.updateCart(data).subscribe(response => {
+      this.shoppingCartService.updateNote(data).subscribe(response => {
         if (response.status === 1) {
-          this.shoppingCartService.updateQuantity(cartItem.productId, -1);
+          // this.shoppingCartService.updateQuantity(cartItem.productId, -1);
           // this.getCartCheckout();
         }
       });
@@ -480,27 +547,80 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  cTransfer() {
-    this.isTransfer = true;
+  cTransfer(item, i, statusPay) {
+    const dataItem = item;
+    dataItem.forEach((data, n) => {
+      this.isTransfer[n] = false;
+    });
+
+    this.listPaymentChild = item.find(x => x.paymentMethodCode === 'BT').data;
+
+    if (statusPay === 'PI') {
+      this.isTransfer[i] = false;
+      swal(
+        'Alert!',
+        'Maaf metode pembayaran ini belum tersedia',
+        'error'
+      );
+    } else {
+      this.isTransfer[i] = true;
+    }
+
+    if (statusPay === 'KK') {
+      this.isBtnCart = true;
+    } else {
+      this.isBtnCart = false;
+    }
+
+    if (statusPay === 'BT') {
+      this.isBtnTransfer = true;
+      this.isTransferBank = true;
+    } else {
+      this.isTransferBank = false;
+      this.isBtnTransfer = false;
+    }
   }
 
   doCheckout() {
-    const data: CheckoutReq = new CheckoutReq();
-    data.itemCartIds = this.itemCartIds;
-    data.paymentMethodCode = 'BT';
-    data.channelId = this.channelId;
-    if (this.isAny0Qty) {
-      swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
-      return;
-    }
-    this.checkoutService.doCheckout(data).subscribe(response => {
-      if (response.status === 1) {
-        this.shoppingCartService.empty();
-        this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
-      } else {
-        swal('belisada.co.id', response.message, 'error');
+    let checkoutCartIds: number[] = [];
+    this.checkoutTrx.cart.forEach((item, i) => {
+      if (this.checkShop[i]) {
+        checkoutCartIds = checkoutCartIds.concat(
+          item.itemCartIds
+        );
       }
     });
+
+    if (this.isTransferBank === true) {
+      this.PMCode = 'BT';
+    }
+
+    if (this.channelId === 0 || this.channelId === undefined) {
+      swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
+        return;
+    } else if (checkoutCartIds.length) {
+
+      const data: CheckoutReq = new CheckoutReq();
+      data.itemCartIds = checkoutCartIds;
+      data.paymentMethodCode = this.PMCode;
+      data.channelId = this.channelId;
+      if (this.isAny0Qty) {
+        swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
+        return;
+      }
+      this.checkoutService.doCheckout(data).subscribe(response => {
+        if (response.status === 1) {
+          this.shoppingCartService.empty();
+          this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+        } else {
+          swal('belisada.co.id', response.message, 'error');
+        }
+      });
+
+    } else {
+      swal('belisada.co.id', 'Item yang dipesan belum dipilih', 'warning');
+        return;
+    }
   }
 
 }
