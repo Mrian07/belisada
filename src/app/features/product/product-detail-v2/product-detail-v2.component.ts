@@ -2,18 +2,22 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrateg
 import { ShareButtons } from '@ngx-share/core';
 import { Subscription, combineLatest } from 'rxjs';
 import { ProductsSandbox } from '../products.sandbox';
+import { UserData } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
+import { LocalStorageEnum } from '@belisada/core/enum';
 import swal from 'sweetalert2';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { AddressService } from '@belisada/core/services/address/address.service';
+import { ShareMessageService } from '@belisada/core/services';
 import { Home, ProductDetailV2Spec, Isi, HomeContent } from '@belisada/core/models';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
+import { $ } from 'protractor';
 
 enum TabTypeEnum {
   SPEC = 'SPEC',
@@ -48,6 +52,12 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public otherBrandProducts: HomeContent[];
   public productSpecifications: ProductDetailV2Spec[];
   public productDiscussion: Isi;
+
+  public flag: string;
+  public btnJual: boolean;
+  public pemisah: any;
+  userData: UserData = new UserData();
+  baseUrlSeller: string = environment.baseUrlSeller;
 
   public selectedImage: string;
   public tabActive: TabTypeEnum;
@@ -88,7 +98,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     private _router: Router,
     public share: ShareButtons,
     public productsSandbox: ProductsSandbox,
-
+    private shareMessageService: ShareMessageService,
     // TODO: Change to ngrx
     private _userService: UserService,
     private _authService: AuthService,
@@ -109,6 +119,11 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   ngOnInit() {
     this._registerEvents();
+    this.btnJual = false;
+    this.userData = this._userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+    this.pemisah = this.userData.role;
+    if (this.userData) { this.isLogin = true; }
+    this.pemisah = this.userData.role;
 
     // TODO create base sandbox to subscribe credentials
     const token = this._authService.getToken();
@@ -125,6 +140,20 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  cekFlag() {
+    this.shareMessageService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'create-store') {
+        this.btnJual = true;
+      }
+    });
+  }
+
+  goToCreateStore() {
+    this._router.navigateByUrl('/buyer/create-store');
+    this.cekFlag();
   }
 
   /**
@@ -151,6 +180,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       }
     );
   }
+
+  
 
   /**
    * Update quantity product
@@ -303,6 +334,34 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       const queryParams = route.qparams;
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
+        console.log('product: ', product);
+        if (product.status === 0) {
+            swal({
+              title: 'belisada.co.id',
+              text: 'Mohon maaf produk yang anda cari untuk saat ini belum ada.',
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonText: 'Ikut Jualan',
+              cancelButtonText: 'Kembali Belanja',
+              confirmButtonColor: '#f68a43',
+              cancelButtonColor: '#1a960e',
+              reverseButtons: true
+            })
+            .then((result) => {
+              if (result.value) {
+                window.open(
+                  'https://seller0.belisada.id/auth/sign-in',
+                  '_blank' // <- This is what makes it open in a new window.
+                );
+              }});
+            this._router.navigate(
+              ['/product/product-detail/'
+                + this._route.snapshot.params.id
+                + '/'
+                + this._route.snapshot.params.name]
+            );
+            return;
+        }
         this.product = product.data;
         // console.log(product.data);
         this.selectedImage = product.data.imageUrl[0];
