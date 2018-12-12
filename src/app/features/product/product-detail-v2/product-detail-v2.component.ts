@@ -86,6 +86,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public thumborStoreImgUrl: string;
   public thumborProductImgUrl: string;
+  public _masterData: number;
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
@@ -181,7 +182,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     );
   }
 
-  
 
   /**
    * Update quantity product
@@ -335,6 +335,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
         console.log('product: ', product);
+        if (product.status === 1) {
+          this._masterData = product.data.masterId;
+        }
         if (product.status === 0) {
             swal({
               title: 'belisada.co.id',
@@ -350,7 +353,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
             .then((result) => {
               if (result.value) {
                 window.open(
-                  'https://seller0.belisada.id/auth/sign-in',
+                  environment.baseUrlSeller + '/products/' + this._masterData, // <- hit master data ID
                   '_blank' // <- This is what makes it open in a new window.
                 );
               }});
