@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CheckoutService } from '@belisada/core/services/checkout/checkout.service';
-import { SuccessTransactionRes, SuccessTransactionData } from '@belisada/core/models/checkout/checkout-transaction';
+import { SuccessTransactionRes, SuccessTransactionData, ListBankAccount } from '@belisada/core/models/checkout/checkout-transaction';
 import { PaymentService } from '@belisada/core/services/payment/payment.service';
 import { PaymentList } from '@belisada/core/models/payment/payment.model';
 @Component({
@@ -22,6 +22,7 @@ export class TerimakasihPageComponent implements OnInit {
     private paymentService: PaymentService
   ) {
     this.successTransactionRes.data = new SuccessTransactionData();
+    this.successTransactionRes.data.bankAccount = new ListBankAccount();
   }
 
   ngOnInit() {
@@ -44,7 +45,6 @@ export class TerimakasihPageComponent implements OnInit {
     });
 
     this._trialEndsAt = '2018-07-12 00:00:00';
-    console.log(this.router.getNavigatedData());
   }
   goHome() {
     this.router.navigateByUrl('/');

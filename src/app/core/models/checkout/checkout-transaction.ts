@@ -48,8 +48,6 @@ export class CheckoutShippingAddress {
 
 export class SuccessTransactionRes extends BaseResponseModel {
   data: SuccessTransactionData;
-  message: string;
-  status: number;
 }
 
 export class SuccessTransactionData {
@@ -68,6 +66,14 @@ export class SuccessTransactionData {
   paymentNumber: string;
   status: string;
   statusCode: string;
+  bankAccount: ListBankAccount;
+}
 
-
+export class ListBankAccount {
+  accountName: string;
+  accountNumber: number;
+  bankId: number;
+​​​  bankName: string;​
+  imageUrl: string;
+  name: string;
 }

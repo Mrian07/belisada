@@ -57,7 +57,6 @@
                         <div>
                             <span class="item-name">{{ cartItem.name }}</span><br>
                             <div *ngFor="let varian of cartItem.varians" class="varianText">
-                                {{ varian.name }}:
                                 <span *ngFor="let itemVar of varian.varians">
                                     {{  itemVar.value }}
                                 </span>
@@ -121,7 +120,7 @@
                         Asuransi:
                     </div>
                     <div>
-                        <input type="checkbox" [(ngModel)]="isInsurance[in]" (change)="updateInsurance(cartCheckout.itemCartIds, isInsurance[in])">
+                        <input type="checkbox" [(ngModel)]="isInsurance[in]" (change)="updateInsurance(cartCheckout.itemCartIds, isInsurance[in])"> <span class="contenCart__asuPrice">Rp {{ cartCheckout.asuransi | number }}</span>
                     </div>
                 </div>
                 <div class="contenCart__total">
@@ -168,6 +167,11 @@
                 <div></div>
                 <div>Sub Total ({{ checkoutTrx.totalItem }} Produk):</div>
                 <div class="cFooter__subTot">Rp {{ checkoutTrx.subTotal | number }}</div>
+            </div>
+            <div class="cFooter__val">
+                <div></div>
+                <div>Biaya Asuransi:</div>
+                <div class="cFooter__subTot">Rp {{ checkoutTrx.totalAsuransi | number }}</div>
             </div>
             <div class="cFooter__val">
                 <div></div>

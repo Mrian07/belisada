@@ -580,6 +580,12 @@
     margin-top:20px;
     border: 1px solid #dddddd;
 
+    &__asuPrice{
+        color:#5e5c5c;
+        font-size: 1.3rem;
+        margin-left:2rem;
+    }
+
     &__check{
         font-size: 20px;
         padding:10px;
