@@ -7,8 +7,9 @@
 
     <div class="row">
 
-        <div class="col-md-5">
+        <div class="col-md-5" >
             <section class="detail-product"> <!-- #SECTION [PRODUCT_DETAIL] detail-product -->
+
                 <div class="detail-product__wrapper">
                     <div>Brand: <a class="detail-product__brand">{{ product?.brandName }}</a></div>
 
@@ -41,14 +42,14 @@
                         Garansi: <span class="detail-product__label-val">{{ product?.guaranteeTypeValue }} - {{ product?.guaranteeTimeValue }}</span>
                     </div>
 
-                    <div *ngFor="let item of product?.variants; let i = index">
+                    <div *ngFor="let item of product?.variants; let i = index" >
                         <span class="detail-product__variant-label" [ngClass]="{'detail-product__variant-label--not-first': (i !== 0)}">{{ item.name }}</span>
                         <span [class]="'detail-product__variant detail-product__variant--' + (i + 1)"
                             [ngClass]="{'active': (
                                 +activeVariants[i]?.split(':')[0] === item.attributeId
                                 && +activeVariants[i]?.split(':')[1] === variant.attributeValueId)}"    
                             (click)="selectVariant(item.attributeId, variant.attributeValueId, i)"
-                            *ngFor="let variant of item.varians">
+                            *ngFor="let variant of item.varians" >
                             {{ variant.value }}
                         </span>
                     </div>
@@ -169,11 +170,11 @@
                     </div>
                 </div>
             </section>
-            <div class="btn btn--flat btn--fluid btn--orange" (click)= "gotoPenawaran(product?.productId)">Penawaran Lainnya</div>
+            <div class="btn btn--flat btn--fluid btn--orange" (click)= "gotoPenawaran(product?.productId)" *ngIf="product?.variants !== null">Penawaran Lainnya</div>
         </div>
     </div>
 
-    <section class="other-product">  <!-- #SECTION [PRODUCT_DETAIL] other-product -->
+    <section class="other-product" >  <!-- #SECTION [PRODUCT_DETAIL] other-product -->
         <h3>Produk Merk Lainya</h3>
         <div class="row">
             <div class="col-sm-12">
