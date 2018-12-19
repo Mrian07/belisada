@@ -676,7 +676,7 @@ export class CheckoutComponent implements OnInit {
                 });
 
                 console.log('submit', this.createForm.value);
-              return;
+
               this.f.nativeElement.submit();
             });
 
