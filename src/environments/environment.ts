@@ -20,5 +20,10 @@ export const environment = {
   },
   googleKey : {
     geoCodeApi: 'AIzaSyCuNBuV8wyDT2HZaUvzF0s6rWpBzfo1zq4'
+  },
+  ipay88: {
+    MerchantKey: '6dtktPuMO5',
+    MerchantCode: 'ID00015',
+    Currency: 'IDR',
   }
 };

@@ -17,6 +17,10 @@ import { ThumborService } from '@belisada/core/services/thumbor/thumbor.service'
 import { ThumborOptions } from '@belisada/core/services/thumbor/thumbor.options';
 import { ThumborSizingEnum } from '@belisada/core/services/thumbor/thumbor.sizing.enum';
 import { environment } from '@env/environment';
+import { LocalStorageEnum } from '@belisada/core/enum';
+import { UserService, Globals } from '@belisada/core/services';
+
+declare var iPay88Signature: any;
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 // import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
@@ -76,7 +80,9 @@ export class CheckoutComponent implements OnInit {
   isBtnTransfer: Boolean = false;
   isBtnCart: Boolean = false;
 
-
+  userName: string;
+  userEmail: string;
+  userContact: string;
 
   showDialog;
   createForm: FormGroup;
@@ -89,7 +95,8 @@ export class CheckoutComponent implements OnInit {
     private shoppingCartService: ShoppingCartService,
     private checkoutService: CheckoutService,
     private thumborService: ThumborService,
-    private http: HttpClient
+    private http: HttpClient,
+    private _userService: UserService,
   ) {
     this.isTransfer = [];
     this.itemCartIds = [];
@@ -141,8 +148,8 @@ export class CheckoutComponent implements OnInit {
   fillForms() {
     this.createForm.patchValue(
       {
-        MerchantCode: '1111',
-        PaymentId: '',
+        MerchantCode: environment.ipay88.MerchantCode,
+        PaymentId: '1',
         RefNo: '',
         Amount: '',
         Currency: '',
@@ -153,7 +160,7 @@ export class CheckoutComponent implements OnInit {
         Remark: '',
         Lang: '',
         signature: '',
-        ResponseURL: environment.domain + '/transaction/terimakasih/',
+        ResponseURL: '',
         BackendURL: '',
       });
   }
@@ -630,14 +637,49 @@ export class CheckoutComponent implements OnInit {
           if (this.PMCode === vTransfer) {
             this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
           } else if (this.PMCode === vCart) {
+            let sign = '';
+            // MerchantKey
+            sign = sign.concat(environment.ipay88.MerchantKey);
+            // MerchantCode
+            sign = sign.concat(environment.ipay88.MerchantCode);
+            // RefNo
+            sign = sign.concat(response.data.paymentNumber);
+            // Amount
+            sign = sign.concat(this.checkoutTrx.grandTotal.toString());
+            sign = sign.concat('00');
+            // Currency
+            sign = sign.concat(environment.ipay88.Currency);
 
+            console.log('Berhasil', sign);
+            const signature = iPay88Signature(sign);
+            console.log('signature', signature);
 
-            this.createForm.patchValue(
-            {
-              ResponseURL: environment.domain + '/transaction/terimakasih/' + response.data.paymentNumber,
+            this._userService.getProfile().subscribe(respon => {
+              this.userName = respon.name;
+              this.userEmail = respon.email;
+              this.userContact = respon.phone;
+
+              this.createForm.patchValue(
+                {
+                  RefNo: response.data.paymentNumber,
+                  Amount: this.checkoutTrx.grandTotal,
+                  Currency: environment.ipay88.Currency,
+                  ProdDesc: 'Pembelian produk',
+                  UserName: this.userName,
+                  UserEmail: this.userEmail,
+                  UserContact: this.userContact,
+                  Remark: '',
+                  Lang: '',
+                  BackendURL: 'https://api0.belisada.id/payment/response',
+                  ResponseURL: environment.domain + '/transaction/terimakasih/' + response.data.paymentNumber,
+                  signature: signature
+                });
+
+                console.log('submit', this.createForm.value);
+              return;
+              this.f.nativeElement.submit();
             });
 
-            this.f.nativeElement.submit();
           }
 
         } else {
