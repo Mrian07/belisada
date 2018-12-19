@@ -46,4 +46,5 @@ export class CheckoutService {
         map(response => response as SuccessTransactionRes)
       );
   }
+
 }

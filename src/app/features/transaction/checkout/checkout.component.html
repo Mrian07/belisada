@@ -185,9 +185,10 @@
             </div>
             <div class="cFooter__val2">
                 <div></div>
-                <div class="cFooter__btn" *ngIf="this.isBtnTransfer==true" (click)="doCheckout()">Bayar Sekarang</div>
+                <div class="cFooter__btn" (click)="doCheckout()">Bayar Sekarang</div>
+                <!-- <div class="cFooter__btn" *ngIf="this.isBtnTransfer==true" (click)="doCheckout()">Bayar Sekarang</div> -->
 
-                <form [formGroup]="createForm" #form action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+                <form [formGroup]="createForm" #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
                     <input type="hidden" formControlName="MerchantCode" placeholder="MerchantCode">
                     <input type="hidden" formControlName="PaymentId" placeholder="PaymentId">
                     <input type="hidden" formControlName="RefNo" placeholder="RefNo">
@@ -202,7 +203,7 @@
                     <input type="hidden" formControlName="signature" placeholder="signature">
                     <input type="hidden" formControlName="ResponseURL" placeholder="ResponseURL">
                     <input type="hidden" formControlName="BackendURL" placeholder="BackendURL">
-                    <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true" (click)="form.submit()">Bayar Sekarang</button>
+                    <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
                 </form>
 
             </div>
@@ -319,4 +320,8 @@
 
     </div>
 </div>
+
+<script language="javascript">
+    document.write(iPay88Signature("d3kdhKeH93M00045A00257110800MYR")); //sample signature
+ </script>
 
