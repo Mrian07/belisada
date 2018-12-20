@@ -217,8 +217,9 @@ export class CreateStoreComponent implements OnInit {
   }
   onSent(form: NgForm) {
     this.loadingService.show();
-    console.log(form);
+
     if (this.store.valid) {
+      this.loadingService.hide();
       if (this.nameChecking) {
         this.pending_submit = true;
         return false;
@@ -240,7 +241,6 @@ export class CreateStoreComponent implements OnInit {
         // model
       };
 
-      console.log(a);
       model.storePicture = this.data.picture;
       // model.storeUrl = this.asd;
       // console.log('storeUrl : ', this.asd);
@@ -273,6 +273,7 @@ export class CreateStoreComponent implements OnInit {
         }
       });
     } else {
+      this.loadingService.hide();
       swal('Ops Silahkan Cek data kamu kembali');
       this.validateAllFormFields(this.store);
     }
