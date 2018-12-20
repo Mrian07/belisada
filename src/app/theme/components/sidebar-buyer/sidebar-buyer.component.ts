@@ -38,7 +38,7 @@ export class SidebarBuyerComponent implements OnInit {
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     this.pemisah = this.userData.role;
     if (this.userData) { this.isLogin = true; }
-    this.pemisah = this.userData.role;
+    console.log('pemisah: ', this.pemisah);
   }
 
   cekFlag() {
