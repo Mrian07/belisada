@@ -27,7 +27,9 @@
             "stylePreprocessorOptions": {
               "includePaths": ["src/scss"]
             },
-            "scripts": []
+            "scripts": [
+              "src/javascript/sha1.js"
+            ]
           },
           "configurations": {
             "production": {
