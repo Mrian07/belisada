@@ -188,7 +188,7 @@
                 <div class="cFooter__btn" (click)="doCheckout()">Bayar Sekarang</div>
                 <!-- <div class="cFooter__btn" *ngIf="this.isBtnTransfer==true" (click)="doCheckout()">Bayar Sekarang</div> -->
 
-                <form [formGroup]="createForm" #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+                <!-- <form [formGroup]="createForm" #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
                     <input type="hidden" formControlName="MerchantCode" placeholder="MerchantCode">
                     <input type="hidden" formControlName="PaymentId" placeholder="PaymentId">
                     <input type="hidden" formControlName="RefNo" placeholder="RefNo">
@@ -202,7 +202,25 @@
                     <input type="hidden" formControlName="Lang" placeholder="Lang">
                     <input type="hidden" formControlName="signature" placeholder="signature">
                     <input type="hidden" formControlName="ResponseURL" placeholder="ResponseURL">
-                    <input type="hidden" formControlName="BackendURL" placeholder="BackendURL">
+                    <input type="hidden" formControlName="BackendURL" placeholder="BackendURL"> -->
+                    <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
+                <!-- </form> -->
+
+                <form [formGroup]="createForm" ngNoForm #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+                    <input type="hidden" name="MerchantCode" [value]="v.MerchantCode" placeholder="MerchantCode">
+                    <input type="hidden" name="PaymentId" [value]="v.PaymentId" placeholder="PaymentId">
+                    <input type="hidden" name="RefNo" [value]="v.RefNo" placeholder="RefNo">
+                    <input type="hidden" name="Amount" [value]="v.Amount" placeholder="Amount">
+                    <input type="hidden" name="Currency" [value]="v.Currency" placeholder="Currency">
+                    <input type="hidden" name="ProdDesc" [value]="v.ProdDesc" placeholder="ProdDesc">
+                    <input type="hidden" name="UserName" [value]="v.UserName" placeholder="UserName">
+                    <input type="hidden" name="UserEmail" [value]="v.UserEmail" placeholder="UserEmail">
+                    <input type="hidden" name="UserContact" [value]="v.UserContact" placeholder="UserContact">
+                    <input type="hidden" name="Remark" [value]="v.Remark" placeholder="Remark">
+                    <input type="hidden" name="Lang" [value]="v.Lang" placeholder="Lang">
+                    <input type="hidden" name="signature" [value]="v.signature" placeholder="signature">
+                    <input type="hidden" name="ResponseURL" [value]="v.ResponseURL" placeholder="ResponseURL">
+                    <input type="hidden" name="BackendURL" [value]="v.BackendURL" placeholder="BackendURL">
                     <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
                 </form>
 

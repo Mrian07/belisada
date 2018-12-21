@@ -59,12 +59,61 @@ export class CreateStoreComponent implements OnInit {
       storeUrl: this.storeUrl,
       description: new FormControl(null, Validators.required),
       storePicture: new FormControl(),
+
+      region: new FormControl(null, Validators.required),
+      city: new FormControl(null, Validators.required),
+      district: new FormControl(null, Validators.required),
+      village: new FormControl(null, Validators.required),
+      postal: new FormControl(null, Validators.required),
     });
 
-    // this.getProvince();
+    this.getProvince();
     // this.onChanges();
     // this.getCity();
+
+    this.store.patchValue(
+      {
+        region: '',
+        city: '',
+        district: '',
+        village: ''
+      });
   }
+
+
+  // s:New Form
+
+  takeCity(val) {
+    const idReg = val.regionId;
+    this.storeService.getCity(idReg).subscribe(data => {
+      this.cities = data;
+    });
+  }
+
+  takeDistrict(val) {
+    const idDis = val.cityId;
+    this.storeService.getDistrict(idDis).subscribe(data => {
+      this.districts = data;
+    });
+  }
+
+  takeVillage(val) {
+    const idVal = val.districtId;
+    this.storeService.getVillage(idVal).subscribe(data => {
+      this.villages = data;
+    });
+  }
+
+  takePostal(val) {
+    const postal = val.postal;
+    this.store.patchValue(
+      {
+        postal: postal
+      });
+  }
+
+  // e: New Form
+
 
   onChanges() {
     // this.store.controls['storeUrl'].disable();
@@ -217,8 +266,10 @@ export class CreateStoreComponent implements OnInit {
   }
   onSent(form: NgForm) {
     this.loadingService.show();
-    console.log(form);
+
+    // console.log('ini', this.store.valid);
     if (this.store.valid) {
+      this.loadingService.hide();
       if (this.nameChecking) {
         this.pending_submit = true;
         return false;
@@ -231,16 +282,20 @@ export class CreateStoreComponent implements OnInit {
         address: this.store.value.address,
         description: this.store.value.description,
         name: this.store.value.name,
-        city : this.store1.cityId,
-        district: this.store1.districtId,
-        province: this.store1.regionId,
-        villageId:  this.store1.villageId,
-        postal:  this.store1.postal,
+        // city : this.store1.cityId,
+        // district: this.store1.districtId,
+        // province: this.store1.regionId,
+        // villageId:  this.store1.villageId,
+        // postal:  this.store1.postal,
         storeUrl: this.store.value.storeUrl,
-        // model
+
+        city: this.store.value.city,
+        district: this.store.value.district,
+        province: this.store.value.region,
+        villageId: this.store.value.village,
+        postal: this.store.value.postal
       };
 
-      console.log(a);
       model.storePicture = this.data.picture;
       // model.storeUrl = this.asd;
       // console.log('storeUrl : ', this.asd);
@@ -258,7 +313,7 @@ export class CreateStoreComponent implements OnInit {
             if (result.value) {
               this.authService.refreshToken().subscribe(respon => {
                 this.userService.setUserToLocalStorage(respon.token);
-                this.router.navigateByUrl('/buyer/profile');
+                this.router.navigateByUrl('/');
                 console.log('status', respon);
               });
             }
@@ -273,7 +328,8 @@ export class CreateStoreComponent implements OnInit {
         }
       });
     } else {
-      swal('Ops Silahkan Cek data kamu kembali');
+      this.loadingService.hide();
+      // swal('Ops Silahkan Cek data kamu kembali');
       this.validateAllFormFields(this.store);
     }
 
