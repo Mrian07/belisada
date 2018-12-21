@@ -52,3 +52,19 @@ export class DataConfirm {
   userId: number;
   transerDate: any;
 }
+export class Ipay88Req {
+  MerchantCode: string;
+  PaymentId: string;
+  RefNo: string;
+  Amount: number;
+  Currency: string;
+  ProdDesc: string;
+  UserName: string;
+  UserEmail: string;
+  UserContact: string;
+  Remark: string;
+  Lang: string;
+  signature: string;
+  ResponseURL: string;
+  BackendURL: string;
+}

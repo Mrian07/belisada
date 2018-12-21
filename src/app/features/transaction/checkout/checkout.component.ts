@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angula
 import { Province, City, District, Village } from '@belisada/core/models/store/address';
 import { StoreService } from '@belisada/core/services';
 import { PaymentService } from './../../../core/services/payment/payment.service';
-import { Payment, PaymentList } from '@belisada/core/models/payment/payment.model';
+import { Payment, PaymentList, Ipay88Req } from '@belisada/core/models/payment/payment.model';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { CheckoutTrx, UpdateShippingReq, UpdateAsuransiReq } from '@belisada/core/models/checkout/checkout-cart';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
@@ -33,6 +33,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class CheckoutComponent implements OnInit {
 
   @ViewChild('f') f;
+
+  ipay88Req: Ipay88Req = new Ipay88Req();
 
   // ![(ngModel)]
   checkoutAddress: any = '';
@@ -659,23 +661,38 @@ export class CheckoutComponent implements OnInit {
               this.userEmail = respon.email;
               this.userContact = respon.phone;
 
-              this.createForm.patchValue(
-                {
-                  RefNo: response.data.paymentNumber,
-                  Amount: this.checkoutTrx.grandTotal,
-                  Currency: environment.ipay88.Currency,
-                  ProdDesc: 'Pembelian produk',
-                  UserName: this.userName,
-                  UserEmail: this.userEmail,
-                  UserContact: this.userContact,
-                  Remark: '',
-                  Lang: '',
-                  BackendURL: 'https://api0.belisada.id/payment/response',
-                  ResponseURL: environment.domain + '/transaction/terimakasih/' + response.data.paymentNumber,
-                  signature: signature
-                });
+              this.ipay88Req.MerchantCode = environment.ipay88.MerchantCode;
+              this.ipay88Req.PaymentId = '1';
+              this.ipay88Req.RefNo = response.data.paymentNumber;
+              this.ipay88Req.Amount = this.checkoutTrx.grandTotal;
+              this.ipay88Req.Currency = environment.ipay88.Currency;
+              this.ipay88Req.ProdDesc = 'Pembelian produk';
+              this.ipay88Req.UserName = this.userName;
+              this.ipay88Req.UserEmail = this.userEmail;
+              this.ipay88Req.UserContact = this.userContact;
+              this.ipay88Req.Remark = '';
+              this.ipay88Req.Lang = 'UTF-8';
+              this.ipay88Req.signature = signature;
+              this.ipay88Req.ResponseURL = 'https://dev.belisada.id/payment/response';
+              this.ipay88Req.BackendURL = 'https://api0.belisada.id/payment/response';
 
-                console.log('submit', this.createForm.value);
+              // this.createForm.patchValue(
+              //   {
+              //     RefNo: response.data.paymentNumber,
+              //     Amount: this.checkoutTrx.grandTotal,
+              //     Currency: environment.ipay88.Currency,
+              //     ProdDesc: 'Pembelian produk',
+              //     UserName: this.userName,
+              //     UserEmail: this.userEmail,
+              //     UserContact: this.userContact,
+              //     Remark: '',
+              //     Lang: '',
+              //     BackendURL: 'https://api0.belisada.id/payment/response',
+              //     ResponseURL: environment.domain + '/transaction/terimakasih/' + response.data.paymentNumber,
+              //     signature: signature
+              //   });
+
+              console.log('submit', this.createForm.value);
 
               this.f.nativeElement.submit();
             });
