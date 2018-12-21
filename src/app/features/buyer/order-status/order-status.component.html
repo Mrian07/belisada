@@ -107,7 +107,8 @@
         <td width="33%">
           <!-- {{itemListProduct.itemCartId}} - {{itemList.orderNumber}} -->
           <!-- <span (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> -->
-          <span *ngIf="itemList.statusOrderCode === '157'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> 
+          <span *ngIf="itemList.statusOrderCode === '157' && itemList.statusOrderCode !== '180'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
+          <span *ngIf="itemList.statusOrderCode === '180'" (click)="showDialogReview = !showDialogReview" (click)="alertReview(itemList.orderNumber)" class="btn-review">Nilai Produk</span> 
           <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
         </td>
       </tr>
@@ -189,4 +190,49 @@
 
   </div>
   
+</app-models>
+
+<app-models [(visible)]="showDialogReview" maxwidth="600" class="frameDialog">
+<div class="model-head">Nilai Produk Ini</div>
+  <div *ngFor="let item of list">
+      <div *ngIf="transactionId==item.transactionId">
+        <div *ngFor="let itemCart of item.transaction">
+          <div *ngFor="let itemList of itemCart.cart">
+      <table border="0" width="100%">
+          <tr *ngFor="let itemListProduct of itemList.cartItems">
+            <td valign="top" width="20%">
+                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+            </td>
+            <td valign="top" width="30%">
+                <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
+                  Varian:<br>
+                  <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                    {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                  </span>
+                </div>
+                <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
+            </td>
+            <td valign="top" width="50%">
+              <div class="item-colom">
+                  <div class="rating">
+                      <!----<app-rating [rating]='item.rating' [itemId]='item.id' (ratingClick)='ratingComponentClick($event)'></app-rating>-->
+                  </div>
+                  <div class="review">
+                    <textarea cols="60" rows="5" placeholder="Beritahu orang lain tentang produk ini"></textarea>  
+                  </div>
+                </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      </div>
+        </div>
+  </div>
+  <div class="modal-footer">
+
+          <span class="btn-komplain-confirm" (click)="backToOrder()">Nanti Saja</span>
+
+          <span class="btn-selesai-confirm" (click)="receiptReview(orderNumber)">OK</span>
+
+  </div>
 </app-models>

@@ -1,9 +1,20 @@
-<div class="contain-order">
-
-    <span [ngClass]="(tabOrder=='tabStatus')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabStatus', tabOrder)">Status Pesanan</span> 
-    <span [ngClass]="(tabOrder=='tabHistory')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabHistory', tabOrder)">Riwayat Pesanan</span>
-    <div class="frame-order">
-        <app-order-status *ngIf="tabOrder=='tabStatus'"></app-order-status>
-        <app-order-history *ngIf="tabOrder=='tabHistory'"></app-order-history>
-    </div>
+<div class="frame-menu">
+        <div [ngClass]="(tabOrder=='133')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('133')">
+            Belum Bayar
+        </div>
+        <div [ngClass]="(tabOrder=='151')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('151')">
+            Sedang Diproses
+        </div>
+        <div [ngClass]="(tabOrder=='157')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('157')">
+            Dalam Pengiriman
+        </div>
+        <div [ngClass]="(tabOrder=='181')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('181')">
+            Pengiriman Selesai
+        </div>
+        <div [ngClass]="(tabOrder=='ALL')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('ALL')">
+            Semua
+        </div>
+</div>
+<div class="frame-menu-contain">
+    <app-order-status></app-order-status>
 </div>

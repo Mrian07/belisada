@@ -14,7 +14,7 @@ import mct from 'madrick-countdown-timer';
 })
 export class OrderStatusComponent implements OnInit {
   list: OrderStatus[];
-  status: string;
+  status: 'ALL';
   base64Img: string;
   openDetail: boolean;
   updateImg: Boolean = false;
@@ -51,6 +51,7 @@ export class OrderStatusComponent implements OnInit {
   orderNumber: number;
   itemCartId: number;
   showDialogKonfirm: boolean;
+  a: number;
 
   constructor(
     private transactionService: TransactionService,
@@ -65,7 +66,6 @@ export class OrderStatusComponent implements OnInit {
     this.statusFlag();
     this.isForm = true;
     this.isPilih = true;
-    this.pendingOrder();
     this.allPayment();
     mct.countdown('Jan 5, 2019 13:47:25', (countdown) => {
       // countdown = {
@@ -75,6 +75,11 @@ export class OrderStatusComponent implements OnInit {
       // }
 
       this.countdown = countdown;
+  });
+  this.activatedRoute.queryParams.subscribe((queryParam) => {
+    this.currentPage = (queryParam.page) ? queryParam.page : 1;
+    this.status = (queryParam.status) ? queryParam.status : 'ALL';
+    this.orderList((queryParam.status) ? queryParam.status : 'ALL');
   });
   }
 
@@ -87,48 +92,35 @@ export class OrderStatusComponent implements OnInit {
     this.isEmpty = false;
   }
 
-  pendingOrder() {
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
-      const queryParams = {
-        itemperpage: 10,
-        page: this.currentPage,
-        ot: 'asc',
-        transaction_status: 'PENDING'
-      };
+  orderList(statusOrder?: string) {
+    const queryParams = {
+      itemperpage: 10,
+      page: this.currentPage,
+      transaction_status: statusOrder
+    };
 
-      this.transactionService.getOrder(queryParams).subscribe(respon => {
-
-        // console.log('hasilnya', respon.content);
-        if (respon.content.length === 0 ) {
-          this.isEmpty = true;
-        }
-        this.isLoading = false;
-        this.list = respon.content;
-        // for (this.x of respon.content) {
-        //   console.log(this.x.statusCode);
-        // }
-        const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
-        console.log('b', b);
-        this.proddetail = respon;
+    this.transactionService.getOrder(queryParams).subscribe(respon => {
+      const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
+      // console.log(b);
+      this.proddetail = respon;
+      this.list = respon.content;
+      console.log(this.proddetail.content);
         b.forEach((x) => {
-          console.log('x: ', x);
           mct.countdown(x.expiredConfirmationPaymentBuyerDate, (countdown) => {
             this.proddetail.content.find(i => i.paymentNumber === x.paymentNumber).countdown = countdown;
-            // this.countdown = countdown;
           });
         });
-        console.log(this.proddetail.content);
-        this.pages = [];
-        this.lastPage = this.proddetail.totalPages;
-        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-          if (r > 0 && r <= this.proddetail.totalPages) {
-            this.pages.push(r);
-          }
+      console.log('as', this.proddetail);
+      this.proddetail = respon;
+      this.a = respon.totalElements;
+      this.pages = [];
+      this.lastPage = this.proddetail.totalPages;
+      for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+        if (r > 0 && r <= this.proddetail.totalPages) {
+          this.pages.push(r);
         }
-
-      });
-
+      }
+      this.isLoading = false;
     });
   }
 
@@ -165,6 +157,10 @@ export class OrderStatusComponent implements OnInit {
     this.router.navigateByUrl('/buyer/bantuan?id=' + e);
   }
 
+  backToOrder() {
+    this.router.navigateByUrl('/buyer/order');
+  }
+
   // setUrl(event, img) {
   //   const fr = new FileReader();
   //   const f = event.target.files[0];
@@ -198,7 +194,6 @@ export class OrderStatusComponent implements OnInit {
       this.showDialog = false;
       this.isForm = true;
       this.isPilih = true;
-      this.pendingOrder();
     });
 
   }
@@ -228,13 +223,17 @@ export class OrderStatusComponent implements OnInit {
         response.message,
         (response.status === 1) ? 'success' : 'error'
       );
-      this.pendingOrder();
+      this.orderList();
       console.log('response: ', response);
     });
     this.showDialogKonfirm = false;
   }
 
   alertConfirmation(orderNumber) {
+    this.orderNumber = orderNumber;
+  }
+
+  alertReview(orderNumber) {
     this.orderNumber = orderNumber;
   }
 

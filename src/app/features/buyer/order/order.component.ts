@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-order',
@@ -8,23 +8,22 @@ import { Router } from '@angular/router';
 })
 export class OrderComponent implements OnInit {
 
-  tabOrder: string;
+  tabOrder: 'ALL';
   constructor(
-    private router: Router
-  ) { }
-
-  ngOnInit() {
-    this.tabOrder = 'tabStatus';
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+  ) {
+    this.activatedRoute.queryParams.subscribe((queryParam) => {
+      this.tabOrder = (queryParam.status) ? queryParam.status : 'ALL';
+    });
   }
 
-  tab(data, tabOrder) {
+  ngOnInit() {
+  }
 
-    if (tabOrder === data) {
-      this.tabOrder = data;
-    } else {
-      this.router.navigateByUrl('/buyer/order');
-      this.tabOrder = data;
-    }
+  tab(data) {
+    this.tabOrder = data;
+    this.router.navigate(['/buyer/order'], { queryParams: {page: 1, status: data}, queryParamsHandling: 'merge' });
   }
 
 }

@@ -1,8 +1,9 @@
 .model-head{
-    color:#000000;
-    padding-top: 10px;
-    padding-left:10px;
+    color:#161038;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .modal-body{
@@ -244,6 +245,20 @@
     background: #f9b025;
 }
 
+.btn-review{
+    background:  #093261;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.btn-review:hover{
+    background: #0c3e77;
+}
+
 .btn-upload{
     position: relative;
     overflow: hidden;
@@ -443,6 +458,49 @@ p {
     height: 6px;
     border-radius: 2px;
     background-color: #4b9cdb;
+}
+
+
+.rating {
+    float:left;
+}
+
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0.1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+}
+
+
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
 }
 
 /* =Animate the stuff
