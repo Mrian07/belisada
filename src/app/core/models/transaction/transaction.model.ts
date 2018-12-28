@@ -11,6 +11,17 @@ export class ContentOrderStatus {
     totalPages: number;
 }
 
+export class ContentOrderStatusPaid {
+    content: OrderStatusPaid[];
+    first: string;
+    last: string;
+    number: number;
+    numberOfElements: number;
+    size: number;
+    totalElements: number;
+    totalPages: number;
+}
+
 export class OrderStatus {
     expiredTime: string;
     imageUrl: string;
@@ -23,6 +34,47 @@ export class OrderStatus {
     statusCode: string;
     transaction: Transaction[];
     transactionId: number;
+}
+
+export class OrderStatusPaid {
+    storeUrl: string;
+    storeName: string;
+    storeId: number;
+    originId: number;
+    destinationId: number;
+    shippingAddressId: number;
+    itemCartIds: [number];
+    productIds: [number];
+    cartItems: CartItemsPaid[];
+    courierCode: string;
+    courierName: string;
+    courierPrice: number;
+    courierService: string;
+    useAsuransi: string;
+    totalWeight: number;
+    asuransi: number;
+    shipNumber: string;
+    invoiceNumber: string;
+    orderNumber: string;
+    alamatSebagai: string;
+    namaPenerima: string;
+    noResi: number;
+    statusOrder: string;
+    statusOrderCode: number;
+    statusTracking: string;
+    phonePenerima: number;
+    alamatPenerima: string;
+    subTotal: number;
+    paymentMethod: string;
+    createdOrder: string;
+    expiredSellerProcessDate: string;
+    expiredSellerProcessTime: number;
+    note: string;
+    courierType: string;
+    reasonOrderRejected: string;
+    totalQty: number;
+    transactionId: number;
+    paymentNumber: string;
 }
 export class Countdown {
     days: number;
@@ -61,6 +113,8 @@ export class Cart {
     productIds: number;
     shipNumber: string;
     shippingAddressId: number;
+    statusOrder: string;
+    statusOrderCode: number;
     statusTracking: string;
     storeId: number;
     storeName: string;
@@ -82,10 +136,29 @@ export class CartItems {
     productId: number;
     quantity: number;
     specialPrice: number;
+    statusOrderCode: number;
     subtotal: number;
     total: number;
     totalWeight: number;
     weightPerItem: number;
+    varians: Varians[];
+}
+
+export class CartItemsPaid {
+    itemCartId: number;
+    productId: number;
+    name: string;
+    priceList: number;
+    specialPrice: number;
+    quantity: number;
+    imageUrl: string;
+    subtotal: number;
+    weightPerItem: number;
+    totalWeight: number;
+    note: string;
+    sku: string;
+    total: number;
+    discount: number;
     varians: Varians[];
 }
 

@@ -3,7 +3,8 @@ import { HttpParams, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Configuration } from '@belisada/core/config';
 import { map } from 'rxjs/operators';
-import { Invoice, ContentOrderStatus, UploadImgTransfer, ItemsReceivedResponse } from '@belisada/core/models/transaction/transaction.model';
+import { Invoice, ContentOrderStatus, UploadImgTransfer, ItemsReceivedResponse,
+ContentOrderStatusPaid} from '@belisada/core/models/transaction/transaction.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,18 @@ export class TransactionService {
     return this.http.get(this.configuration.apiURL + '/buyer/transaction/history/v2', {params: params})
     .pipe(
       map(response => response as ContentOrderStatus)
+    );
+  }
+
+  getOrderPaid(queryParams) {
+
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get(this.configuration.apiURL + '/buyer/transaction/history/v3', {params: params})
+    .pipe(
+      map(response => response as ContentOrderStatusPaid)
     );
   }
 

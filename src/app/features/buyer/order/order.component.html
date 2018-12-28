@@ -15,6 +15,9 @@
             Semua
         </div>
 </div>
-<div class="frame-menu-contain">
+<div class="frame-menu-contain" *ngIf="tabOrder=='133'">
     <app-order-status></app-order-status>
+</div>
+<div class="frame-menu-contain" *ngIf="tabOrder!='133'">
+    <app-order-status-paid></app-order-status-paid>
 </div>
