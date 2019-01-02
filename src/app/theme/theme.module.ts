@@ -24,8 +24,10 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 import { CategoryMenuComponent } from './components/header/category-menu.component';
 import { AccountMenuComponent } from './components/header/account-menu.component';
+import { ModalComponent } from '@belisada/shared/components/modal/modal.component';
 
 const COMPONENTS = [
+  ModalComponent,
   ModelsComponent,
   HeaderComponent,
   FooterComponent,

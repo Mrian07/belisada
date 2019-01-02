@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { PaymentService } from '@belisada/core/services/payment/payment.service';
 import swal from 'sweetalert2';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
+import { ModalService } from '@belisada/shared/components/modal/modal.service';
 
 
 class PaymentModel {
@@ -34,14 +35,17 @@ export class PaymentComponent implements OnInit {
 
   createForm: FormGroup;
 
+  private bodyText: string;
+
   constructor(
     private _paymentService: PaymentService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private modalService: ModalService
   ) { }
 
-  ngOnInit() {
-    this.form();
-  }
+  // ngOnInit() {
+  //   this.form();
+  // }
 
   form() {
     this.createForm = this.fb.group({
@@ -116,6 +120,18 @@ export class PaymentComponent implements OnInit {
     // });
 
     this.f.nativeElement.submit();
+  }
+
+  ngOnInit() {
+      this.bodyText = 'This text can be updated in modal 1';
+  }
+
+  openModal(id: string) {
+      this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+      this.modalService.close(id);
   }
 
 }
