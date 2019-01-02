@@ -198,31 +198,29 @@
 
 <app-models [(visible)]="showDialogRek" class="frameDialog" *ngFor="let item of list">
     <div class="row modal-body">
-
         <div class="col list-metode" *ngFor="let item of listPayment">
         <div>
             <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
             {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
         </div>
         </div>
-
     </div>
 </app-models>
 
-<app-models [(visible)]="showDialogDetail" class="frameDialog">
+<app-models [(visible)]="showDialogDetail" maxwidth="600" class="frameDialog">
     <div class="modal-body">
         <div class="detail-body" >
             <div class="row row-atur">
-                <span class="store-name col-6 left">{{ transactionDetail.storeName }}</span>
-                <span class="total-qty col-6 right">Total {{ transactionDetail.totalQty }} Item</span>
+                <div class="store-name col-8 left">{{ transactionDetail.storeName }}</div>
+                <div class="total-qty col-4 right">Total {{ transactionDetail.totalQty }} Item</div>
             </div>
             <div class="row row-atur" >
-                <table border="0" width="100%" *ngFor="let cartItem of transactionDetail.cartItems">
+                <table width="100%" *ngFor="let cartItem of transactionDetail.cartItems">
                     <tr>
                         <td width="25%">
-                            <div class="img-item"><img src="{{cartItem.imageUrl}}" border="0"></div>
+                            <div class="img-item"><img src="{{cartItem.imageUrl}}"></div>
                         </td>
-                        <td width="25%">
+                        <td width="40%">
                             <div class="item-colom"> 
                                 <div class ="name">
                                     {{cartItem.name}}
@@ -236,7 +234,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td width="50%">
+                        <td class="center" width="35%">
                             <span class="item-price">Rp&nbsp;{{cartItem.specialPrice | number}}</span>
                         </td>
                     </tr>
@@ -249,7 +247,7 @@
                 Subtotal produk: &nbsp;
             </td>
             <td >
-                Rp &nbsp; {{ (transactionDetail.subTotal - transactionDetail.courierPrice)  | number}}
+                Rp&nbsp;{{ (transactionDetail.subTotal - transactionDetail.courierPrice)  | number}}
             </td>
             </tr>
             <tr>
@@ -257,7 +255,7 @@
                     Biaya Pengiriman: &nbsp; {{ transactionDetail.courierName }} &nbsp;{{ transactionDetail.courierService }}
                 </td>
                 <td>
-                    Rp &nbsp; {{ transactionDetail.courierPrice | number }}
+                    Rp&nbsp;{{ transactionDetail.courierPrice | number }}
                 </td>
             </tr>
             <tr>
@@ -265,14 +263,14 @@
                     Total Pesanan: &nbsp; 
                 </td>
                 <td class="total">
-                    Rp &nbsp; {{ transactionDetail.subTotal | number}}
+                    <b>Rp&nbsp;{{ transactionDetail.subTotal | number}}</b>
                 </td>
             </tr>
         </table>
         <div class="row delivery-detail">
-            <div>
-                Penerima
-                <span>{{ transactionDetail.courierName }}{{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi {{ transactionDetail.noResi }}</span>
+            <div class="fluid">
+                <div class="pull-left">Penerima</div>
+                <div class="pull-right">{{ transactionDetail.courierName }}{{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi {{ transactionDetail.noResi }}</div>
             </div>
             <div>
                 {{ transactionDetail.namaPenerima }},&nbsp;{{ transactionDetail.phonePenerima }}
