@@ -197,7 +197,7 @@ export class OrderStatusPaidComponent implements OnInit {
   }
 
   backToOrder() {
-    this.router.navigateByUrl('/buyer/order');
+    this.showDialogDetail = false;
 
   }
 

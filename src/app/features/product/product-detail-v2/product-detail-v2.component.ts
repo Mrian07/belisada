@@ -400,7 +400,14 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
         this._productService.getProductDetailV2Price(id, queryParams).subscribe((price) => {
           this.product['priceData'] = price.data;
 
-          if (this.product.priceData.isDetail) this._loadDiscuss(this.product.priceData.range.productId);
+          if (this.product.priceData.isDetail) {
+            this._loadDiscuss(this.product.priceData.range.productId);
+
+            this._productService.getReview(this.product.priceData.range.productId).subscribe(rev => {
+              console.log('hasilnya', rev);
+              this.productReview = rev;
+            });
+          }
 
           this._productService.getProductDetailV2Store(id, queryParams).subscribe((storeInfo) => {
             this.product['storeInfo'] = storeInfo.data;
@@ -426,11 +433,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
       this._productService.getProductDetailV2Spec(id).subscribe(specs => {
         this.productSpecifications = specs;
-      });
-
-      this._productService.getReview(id).subscribe(rev => {
-        console.log('hasilnya', rev);
-        this.productReview = rev;
       });
     });
 

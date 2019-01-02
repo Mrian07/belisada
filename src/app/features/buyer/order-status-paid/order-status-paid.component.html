@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-6 right">
                     <span class="order-status">{{ item.statusOrder }}</span>
-                    <span *ngIf="item.statusOrderCode === '157' && item.statusOrderCode !== '181'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(item.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
+                    <span *ngIf="item.statusOrderCode === '157' && item.statusOrderCode !== '180'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(item.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
                 </div>
         </div>
         <div class="row row-atur" >
@@ -74,7 +74,7 @@
             </div>
             <div class="col-4 right">
                 <span class="product-qty">
-                    Lihat {{ item.totalQty }} produk lainnya 
+                    Lihat {{ item.cartItems.length }} produk lainnya 
                 </span>
                 <span class="product-detail">
                         <span (click)="openOS(item)" class="btn-detail">Lihat Detail</span>
