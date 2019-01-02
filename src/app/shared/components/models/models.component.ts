@@ -24,7 +24,7 @@ export class ModelsComponent implements OnInit {
   @Input() myFunction: Function;
   @Input() closable = true;
   @Input() visible: boolean;
-  @Input() minwidth: number;
+  @Input() maxwidth: number;
   @Input() height?: number;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   constructor (private _messageService: TestingServicesService) { }
@@ -38,7 +38,6 @@ export class ModelsComponent implements OnInit {
     sessionStorage.setItem('boolean', 'false');
     const data = sessionStorage.getItem('boolean');
     this._messageService.filter('Register click');
-    console.log('asdasdas');
   }
 
 }

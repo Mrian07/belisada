@@ -40,12 +40,20 @@ export class ProductService {
         map(response => response as AddProductResponse)
       );
   }
+
   getDiscus(id: Object): Observable<Isi> {
     return this.http.get(this.configuration.apiURL + '/productfeedback/discus/all/' + id)
     .pipe(
       map(response => response as Isi)
     );
   }
+
+  getReview(id: Object): Observable<ProductReviewResponse[]> {
+    return this.http.get(this.configuration.apiURL + '/productfeedback/review/all/' + id)
+    .pipe(
+        map(response => response as ProductReviewResponse[])
+    );
+}
 
   getMap(queryParams) {
     let params = new HttpParams();
@@ -134,16 +142,16 @@ export class ProductService {
       );
   }
 
-  getReview(id, queryParams) {
-    let params = new HttpParams();
-    Object.keys(queryParams).forEach(function(k) {
-      params = params.append(k, queryParams[k]);
-    });
-    return this.http.get(this.configuration.apiURL + '/productfeedback/review/all/' + id, {params: params})
-      .pipe(
-        map(response => response as ProductReviewResponse)
-      );
-  }
+  // getReview(id, queryParams) {
+  //   let params = new HttpParams();
+  //   Object.keys(queryParams).forEach(function(k) {
+  //     params = params.append(k, queryParams[k]);
+  //   });
+  //   return this.http.get(this.configuration.apiURL + '/productfeedback/review/all/' + id, {params: params})
+  //     .pipe(
+  //       map(response => response as IsiReview)
+  //     );
+  // }
 
   /*
   Prod Another

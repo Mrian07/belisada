@@ -11,7 +11,7 @@ import { ThemeModule } from '../../theme/theme.module';
 import { ADirective } from '@belisada/shared/directives';
 import { OrderComponent } from './order/order.component';
 import { OrderStatusComponent } from './order-status/order-status.component';
-import { OrderHistoryComponent } from './order-history/order-history.component';
+import { OrderStatusPaidComponent } from './order-status-paid/order-status-paid.component';
 import { ProfileInformationComponent } from './profile-information/profile-information.component';
 import { ShippingAddressComponent } from './shipping-address/shipping-address.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -22,6 +22,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { ComplaintProductComponent } from './complaint-product/complaint-product.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
+import { RatingRequiredValidator } from './star-rating/rating-required.validator.directive';
 
 library.add(fas, far, fab);
 
@@ -45,11 +47,13 @@ library.add(fas, far, fab);
     ADirective,
     OrderComponent,
     OrderStatusComponent,
-    OrderHistoryComponent,
+    OrderStatusPaidComponent,
     ProfileInformationComponent,
     ShippingAddressComponent,
     ConfirmationComponent,
     ComplaintComponent,
+    StarRatingComponent,
+    RatingRequiredValidator,
     ComplaintProductComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

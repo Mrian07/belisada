@@ -1,41 +1,41 @@
-.contain-order{
-    margin-top:70px;
-    margin-bottom:50px;
+.frame-menu{
+    margin-top: 2rem;
+    padding: 0.7rem;
+    border: 1px solid #dddddd;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    text-align: center;
+    box-shadow: 2px 2px 4px #c9c9c9;
+    cursor: pointer;  
 }
 
 .btn-tab{
     
     &__active{
         text-align: center;
-        border: 1px solid #f27138;
-        color: #ffffff;
-        background: #f27138;
-        padding:10px;
-        margin-right:5px;
+        border-bottom: 4px solid #f27138;
+        border-radius: 2px;
+        color: #f27138;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
         cursor: pointer;
     }
 
     &__noActive{
         text-align: center;
-        border: 1px solid #f27138;
+        border-bottom: 1px solid #ffffff;
         color: #222222;
-        background: #ffffff;
-        padding:10px;
-        margin-right:5px;
+        padding: 0.5rem;
+        margin-right: 0.5rem;
         cursor: pointer;
     }
     
 }
 
 .btn-tab__noActive:hover{
-    background: #f27138;
-    color:#ffffff;
+    color: #f27138;
 }
 
-
-.frame-order{
-    border: 1px solid #dadada;
-    padding:20px;
-    margin-top:7px;
-    margin-bottom:20px;
+.frame-menu-contain{
+    margin-top: 1rem;
 }

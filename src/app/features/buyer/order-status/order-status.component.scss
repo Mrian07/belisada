@@ -1,8 +1,10 @@
 .model-head{
-    color:#000000;
-    padding-top: 10px;
-    padding-left:10px;
-    font-weight: bold;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-weight: 750;
+    font-size: 2.1rem;
+    color:#002867;
+    text-align: center;
 }
 
 .modal-body{
@@ -18,29 +20,40 @@
     text-align: right;
 }
 
-.btn-selesai-confirm{
-    background: #f56f29;
-    color:#ffffff;
+.button{
+    text-align: right;
+}
+
+.btn-submit-review{
+    background: #ffc400;
+    color:#fff;
     padding:8px 20px;
     margin-left:10px;
+    width: 9rem;
     cursor: pointer;
+    border-radius: 0.25rem;
+    border: none;
+    font-size: 1.4rem;
 }
 
-.btn-selesai-confirm:hover{
-    background: #f3864c;
-    color:#ffffff;
+.btn-submit-review:hover{
+    background: #ffbb00;
+    color:#fff;
 }
 
-.btn-komplain-confirm{
-    background: #fcfbfc;
-    color:#000000;
+.btn-back{
+    background: #f7f7f7;
+    color:#404040;
     padding:8px 20px;
-    border: 1px solid #ece8ec;
+    border: none;
+    cursor: pointer;
+    border-radius: 0.25rem;
+    font-size: 1.4rem;
 }
 
-.btn-komplain-confirm:hover{
-    background: #ece8ec;
-    color:#000000;
+.btn-back:hover{
+    background: #dfdddd;
+    color:#404040;
     border: 1px solid #ece8ec;
 }
 
@@ -191,14 +204,39 @@
 
 .img-item{
     // background: #ebebeb;
-    height: 100px;
+    height: 14rem;
     text-align: center;
 }
 
 .item-colom{
-    margin-bottom:5px;
-    padding:5px;
-    font-size: 12px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    font-size: 1.2rem;
+    text-align: left;
+    padding-right: 5rem;
+}
+
+.detail{
+    padding-top: 3rem;
+}
+
+.name{
+    font-size: 1.8rem;
+    font-weight: 700;
+    color:#002867;
+}
+
+.varian{
+    font-size: 1.5rem;
+    color: #404040;
+}
+
+.review{
+    padding-right: 3rem;
+}
+
+.rating{
+    padding-bottom: 2rem;
 }
 
 .item-colom-border{
@@ -242,6 +280,20 @@
 
 .btn-konfirm:hover{
     background: #f9b025;
+}
+
+.btn-review{
+    background:  #093261;
+    padding: 10px;
+    border-radius: 5px;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.btn-review:hover{
+    background: #0c3e77;
 }
 
 .btn-upload{
@@ -445,6 +497,49 @@ p {
     background-color: #4b9cdb;
 }
 
+
+.rating {
+    float:left;
+}
+
+.rating:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+    clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+    float:right;
+    width:1em;
+    padding:0.1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:200%;
+    line-height:1.2;
+    color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #f70;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: gold;
+}
+
+
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ea0;
+}
+
 /* =Animate the stuff
 ------------------------ */
 .load-1 .line:nth-last-child(1) {animation: loadingA 1.5s 1s infinite;}
@@ -542,16 +637,16 @@ p {
 }
 
 @keyframes bounce  {
-  0%, 100% {transform: scale(0.0);}
-  50% {transform: scale(1.0);}
+    0%, 100% {transform: scale(0.0);}
+    50% {transform: scale(1.0);}
 }
 
 @keyframes loadingJ {
-  0%,100% {transform: translate(0,0);}
+    0%,100% {transform: translate(0,0);}
 
-  50% {
-      transform: translate(80px,0);
-      background-color: #f5634a;
-      width: 25px;
-  }
+    50% {
+        transform: translate(80px,0);
+        background-color: #f5634a;
+        width: 25px;
+    }
 }

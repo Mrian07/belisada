@@ -15,6 +15,7 @@ import { ProductService } from '@belisada/core/services/product/product.service'
 import { AddressService } from '@belisada/core/services/address/address.service';
 import { ShareMessageService } from '@belisada/core/services';
 import { Home, ProductDetailV2Spec, Isi, HomeContent } from '@belisada/core/models';
+import { ProductReviewResponse } from '@belisada/core/models/product/product-review';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { $ } from 'protractor';
@@ -52,6 +53,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public otherBrandProducts: HomeContent[];
   public productSpecifications: ProductDetailV2Spec[];
   public productDiscussion: Isi;
+  public productReview: ProductReviewResponse[];
+
+  public Arr = Array;
 
   public flag: string;
   public btnJual: boolean;
@@ -305,6 +309,20 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     });
   }
 
+  //   /**
+  //  * get review by product id
+  //  * @param id productId
+  //  */
+  // private _loadReview(id: number) {
+  //   this._productService.getReview(id).subscribe(review => {
+  //     this.productReview = review;
+
+  //     this.productReview.content.forEach((item, index) => {
+  //       this.sliceValue[index] = -2;
+  //     });
+  //   });
+  // }
+
   /**
    * Fetch query params
    */
@@ -382,7 +400,14 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
         this._productService.getProductDetailV2Price(id, queryParams).subscribe((price) => {
           this.product['priceData'] = price.data;
 
-          if (this.product.priceData.isDetail) this._loadDiscuss(this.product.priceData.range.productId);
+          if (this.product.priceData.isDetail) {
+            this._loadDiscuss(this.product.priceData.range.productId);
+
+            this._productService.getReview(this.product.priceData.range.productId).subscribe(rev => {
+              console.log('hasilnya', rev);
+              this.productReview = rev;
+            });
+          }
 
           this._productService.getProductDetailV2Store(id, queryParams).subscribe((storeInfo) => {
             this.product['storeInfo'] = storeInfo.data;

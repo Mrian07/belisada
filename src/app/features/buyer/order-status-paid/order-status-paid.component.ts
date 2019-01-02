@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
-import { OrderStatus, ContentOrderStatus } from '@belisada/core/models/transaction/transaction.model';
+import { OrderStatusPaid, ContentOrderStatusPaid, CartItemsPaid } from '@belisada/core/models/transaction/transaction.model';
 import { ReviewService } from '../../../core/services/review/review.service';
 import { ListReview, ListReviewReq } from '@belisada/core/models/review/review.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -12,20 +12,17 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { RatingValidators } from '../star-rating/rating-validators';
 import { UserService } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
-// interface ICompany {
-//   id: number;
-//   rating: number;
-//   contact: string;
-//   company: string;
-// }
+
 @Component({
-  selector: 'app-order-status',
-  templateUrl: './order-status.component.html',
-  styleUrls: ['./order-status.component.scss']
+  selector: 'app-order-status-paid',
+  templateUrl: './order-status-paid.component.html',
+  styleUrls: ['./order-status-paid.component.scss']
 })
-export class OrderStatusComponent implements OnInit {
+export class OrderStatusPaidComponent implements OnInit {
   review: ListReview[];
-  list: OrderStatus[];
+  list: OrderStatusPaid[];
+  transactionDetail: OrderStatusPaid = new OrderStatusPaid();
+  product: CartItemsPaid = new CartItemsPaid();
   status: 'ALL';
   openDetail: boolean;
   updateImg: Boolean = false;
@@ -44,7 +41,7 @@ export class OrderStatusComponent implements OnInit {
   regSuccess: any;
   showDialogRek: any;
 
-  proddetail: ContentOrderStatus = new ContentOrderStatus();
+  proddetail: ContentOrderStatusPaid = new ContentOrderStatusPaid();
   lastPage: number;
   currentPage: number;
   pages: any = [];
@@ -66,21 +63,7 @@ export class OrderStatusComponent implements OnInit {
   reviewForm: FormGroup;
   prodId: number;
   showDialogReview: boolean;
-
-  // ratingClicked: number;
-  // itemIdRatingClicked: string;
-  // items: ICompany[] = [
-  //   { 'id': 0, 'rating': 0, 'contact': 'Dennis Phillips', 'company': 'PROFLEX' }
-  // ];
-  // ratingComponentClick(clickObj: any): void {
-  //   const item = this.items.find(((i: any) => i.id === clickObj.itemId));
-  //   if (!!item) {
-  //     item.rating = clickObj.rating;
-  //     this.ratingClicked = clickObj.rating;
-  //     this.itemIdRatingClicked = item.company;
-  //   }
-
-  // }
+  showDialogDetail: boolean;
 
   constructor(
     private reviewService: ReviewService,
@@ -115,7 +98,7 @@ export class OrderStatusComponent implements OnInit {
   this.activatedRoute.queryParams.subscribe((queryParam) => {
     this.currentPage = (queryParam.page) ? queryParam.page : 1;
     this.status = (queryParam.status) ? queryParam.status : 'ALL';
-    this.orderList((queryParam.status) ? queryParam.status : 'ALL');
+    this.orderListPaid((queryParam.status) ? queryParam.status : 'ALL');
   });
   }
 
@@ -128,24 +111,17 @@ export class OrderStatusComponent implements OnInit {
     this.isEmpty = false;
   }
 
-  orderList(statusOrderCode?: number) {
+  orderListPaid(statusOrderCode?: number) {
     const queryParams = {
       itemperpage: 10,
       page: this.currentPage,
       transaction_status: statusOrderCode
     };
 
-    this.transactionService.getOrder(queryParams).subscribe(respon => {
-      const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
-      // console.log(b);
+    this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
       this.proddetail = respon;
       this.list = respon.content;
-      console.log(this.proddetail.content);
-        b.forEach((x) => {
-          mct.countdown(x.expiredConfirmationPaymentBuyerDate, (countdown) => {
-            this.proddetail.content.find(i => i.paymentNumber === x.paymentNumber).countdown = countdown;
-          });
-        });
+      console.log('helo', this.proddetail.content);
       console.log('as', this.proddetail);
       this.proddetail = respon;
       this.a = respon.totalElements;
@@ -197,16 +173,6 @@ export class OrderStatusComponent implements OnInit {
     this.showDialogReview = false;
   }
 
-  openOS(status, transactionId) {
-    if (status === true) {
-      this.transactionId = transactionId;
-      this.openDetail = false;
-    } else {
-      this.transactionId = transactionId;
-      this.openDetail = true;
-    }
-  }
-
   setCanvas(e, imageBuktiTransfer) {
     if (!this.updateImg) { return false; }
     const cnv = document.createElement('canvas');
@@ -231,8 +197,8 @@ export class OrderStatusComponent implements OnInit {
   }
 
   backToOrder() {
-    this.router.navigateByUrl('/buyer/order?page=1&status=181');
-    this.showDialogReview = false;
+    this.showDialogDetail = false;
+
   }
 
   // setUrl(event, img) {
@@ -297,7 +263,7 @@ export class OrderStatusComponent implements OnInit {
         response.message,
         (response.status === 1) ? 'success' : 'error'
       );
-      this.orderList();
+      this.orderListPaid();
       console.log('response: ', response);
     });
     this.showDialogKonfirm = false;
@@ -307,8 +273,22 @@ export class OrderStatusComponent implements OnInit {
     this.orderNumber = orderNumber;
   }
 
-  alertReview(orderNumber) {
+  alertReview(orderNumber, itemListProduct) {
+    this.product = itemListProduct;
     this.orderNumber = orderNumber;
+    this.showDialogReview = !this.showDialogReview;
+  }
+
+  // alertDetail(orderNumber, item, itemListProduct) {
+  //   this.list = item;
+  //   this.product = itemListProduct;
+  //   this.orderNumber = orderNumber;
+  //   this.showDialogDetail = !this.showDialogDetail;
+  // }
+
+  openOS(item) {
+    this.transactionDetail = item;
+    this.showDialogDetail = !this.showDialogDetail;
   }
 
   closeShowDialogKonfirm() {

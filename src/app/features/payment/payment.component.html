@@ -20,7 +20,7 @@
 
 <h1>Payment</h1>
 
-<form [formGroup]="createForm" ngNoForm #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+<!-- <form [formGroup]="createForm" ngNoForm #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
     <input type="hidden" name="MerchantCode" [value]="v.MerchantCode" placeholder="MerchantCode">
     <input type="hidden" name="PaymentId" [value]="v.PaymentId" placeholder="PaymentId">
     <input type="hidden" name="RefNo" [value]="v.RefNo" placeholder="RefNo">
@@ -34,8 +34,28 @@
     <input type="hidden" name="Lang" [value]="v.Lang" placeholder="Lang">
     <input type="hidden" name="signature" [value]="v.signature" placeholder="signature">
     <input type="hidden" name="ResponseURL" [value]="v.ResponseURL" placeholder="ResponseURL">
-    <input type="hidden" name="BackendURL" [value]="v.BackendURL" placeholder="BackendURL">
+    <input type="hidden" name="BackendURL" [value]="v.BackendURL" placeholder="BackendURL"> -->
     <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
-</form>
+<!-- </form> -->
 
-<button (click)="onSubmit()" class="btn btn--orange">Submit</button>
+<!-- <button (click)="onSubmit()" class="btn btn--orange">Submit</button> -->
+
+
+<div class="col-md-6 col-md-offset-3">
+    <h1>Home</h1>
+    <p>{{bodyText}}</p>
+    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+    <button (click)="openModal('custom-modal-2')">Open Modal 2</button>
+</div>
+
+<bs-modal id="custom-modal-1">
+    <h1>A Custom Modal!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+    <button (click)="closeModal('custom-modal-1');">Close</button>
+</bs-modal>
+
+<bs-modal id="custom-modal-2">
+    <h1>A Custom Modal 2!</h1>
+    <p>Home page text: <input type="text" [(ngModel)]="bodyText" /></p>
+    <button (click)="closeModal('custom-modal-2');">Close</button>
+</bs-modal>

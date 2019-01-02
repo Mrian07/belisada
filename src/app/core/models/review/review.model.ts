@@ -1,14 +1,4 @@
-export class IsiReview {
-    content: ProductReviewResponse[];
-    first: boolean;
-    last: boolean;
-    number: number;
-    numberOfElements: number;
-    size: number;
-    totalElements: number;
-    totalPages: number;
-}
-export class ProductReviewResponse {
+export class ListReview {
     email: string;
     imageAvatarUrl: string;
     isactive: true;
@@ -27,10 +17,11 @@ export class ProductReviewResponse {
     userId: number;
 }
 
-export class ProductReviewContent {
+export class ListReviewReq {
     message: string;
     productId: number;
     reviewParentId: number;
     star: number;
     title: string;
 }
+

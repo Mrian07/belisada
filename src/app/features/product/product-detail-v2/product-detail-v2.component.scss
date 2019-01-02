@@ -170,6 +170,25 @@
     }
 }
 
+.buyer-name {
+    color:black;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+.product-rating {
+        &__star {
+
+            &--fill {
+                color: #fdc12d;
+            }
+
+            &--empty {
+                color: #e3e3e3;
+            }
+        }
+}
+
 /**
 *   # .extras
 */
