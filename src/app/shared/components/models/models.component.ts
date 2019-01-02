@@ -38,7 +38,6 @@ export class ModelsComponent implements OnInit {
     sessionStorage.setItem('boolean', 'false');
     const data = sessionStorage.getItem('boolean');
     this._messageService.filter('Register click');
-    console.log('asdasdas');
   }
 
 }
