@@ -1,4 +1,4 @@
-<div [@dialog] *ngIf="visible" [ngStyle]="{'min-width.px': minwidth}" class="dialog">
+<div [@dialog] *ngIf="visible" [ngStyle]="{'max-width.px': maxwidth}" class="dialog">
     <div class="modal-body" [ngStyle]="{'height.px': height}">
         <ng-content></ng-content>
         <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__btn--close">

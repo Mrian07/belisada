@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
-import { OrderStatusPaid, ContentOrderStatusPaid } from '@belisada/core/models/transaction/transaction.model';
+import { OrderStatusPaid, ContentOrderStatusPaid, CartItemsPaid } from '@belisada/core/models/transaction/transaction.model';
 import { ReviewService } from '../../../core/services/review/review.service';
 import { ListReview, ListReviewReq } from '@belisada/core/models/review/review.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -21,6 +21,8 @@ import { LoadingService } from '@belisada/core/services/globals/loading.service'
 export class OrderStatusPaidComponent implements OnInit {
   review: ListReview[];
   list: OrderStatusPaid[];
+  transactionDetail: OrderStatusPaid = new OrderStatusPaid();
+  product: CartItemsPaid = new CartItemsPaid();
   status: 'ALL';
   openDetail: boolean;
   updateImg: Boolean = false;
@@ -171,16 +173,6 @@ export class OrderStatusPaidComponent implements OnInit {
     this.showDialogReview = false;
   }
 
-  openOS(status, transactionId) {
-    if (status === true) {
-      this.transactionId = transactionId;
-      this.openDetail = false;
-    } else {
-      this.transactionId = transactionId;
-      this.openDetail = true;
-    }
-  }
-
   setCanvas(e, imageBuktiTransfer) {
     if (!this.updateImg) { return false; }
     const cnv = document.createElement('canvas');
@@ -281,12 +273,22 @@ export class OrderStatusPaidComponent implements OnInit {
     this.orderNumber = orderNumber;
   }
 
-  alertReview(orderNumber) {
+  alertReview(orderNumber, itemListProduct) {
+    this.product = itemListProduct;
     this.orderNumber = orderNumber;
+    this.showDialogReview = !this.showDialogReview;
   }
 
-  alertDetail(orderNumber) {
-    this.orderNumber = orderNumber;
+  // alertDetail(orderNumber, item, itemListProduct) {
+  //   this.list = item;
+  //   this.product = itemListProduct;
+  //   this.orderNumber = orderNumber;
+  //   this.showDialogDetail = !this.showDialogDetail;
+  // }
+
+  openOS(item) {
+    this.transactionDetail = item;
+    this.showDialogDetail = !this.showDialogDetail;
   }
 
   closeShowDialogKonfirm() {
