@@ -285,6 +285,21 @@
                 </div>
             </div>
 
+            <div class="detail-info__specification" *ngIf="tabActive === 'REVW'">
+                    <table class="detail-info__specification-table">
+                        <tr *ngFor="let item of productReview.content">
+                            <td>
+                                    <div class="buyer-name">{{item.name}}</div><br>
+                                    <div class="product__rating">
+                                        <fa-icon class="product-rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.star).fill(1)"></fa-icon>
+                                        <fa-icon class="product-rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.star).fill(1)"></fa-icon>{{item.star}}star
+                                    </div><br>
+                                    {{ item.message }}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
             <!-- <div class="detail-info__discuss" *ngIf="activeDiskusi === true">
                 <div class="row">
                     <div class="col-12 w--product-discusi" *ngFor="let item of discus">

@@ -46,7 +46,7 @@
                             <span class="item-price">Rp&nbsp;{{itemListProduct.specialPrice | number}}</span>
                         </td>
                         <td width="30%" class="right">
-                            <span *ngIf="item.statusOrderCode === '181'" (click)="alertReview(item.orderNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
+                            <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.orderNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
                         </td>
                     </tr>
                     <tr>

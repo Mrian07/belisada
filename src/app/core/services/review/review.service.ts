@@ -12,7 +12,7 @@ export class ReviewService {
 
 constructor(private configuration: Configuration, private http: HttpClient) { }
 
-    getDiscus(id: Object): Observable<ListReview> {
+    getReview(id: Object): Observable<ListReview> {
 
         return this.http.get(this.configuration.apiURL + '/productfeedback/review/all/' + id)
         .pipe(
