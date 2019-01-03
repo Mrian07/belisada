@@ -105,10 +105,11 @@ export class CreateStoreComponent implements OnInit {
   }
 
   takePostal($event) {
-    const postal = $event.target.value;
+    const villageId = $event.target.value;
+    const postalId: string = this.villages.find(x => x.villageId === +villageId).postal;
     this.store.patchValue(
       {
-        postal: postal
+        postal: postalId
       });
   }
 
