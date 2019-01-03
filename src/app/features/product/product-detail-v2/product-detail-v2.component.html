@@ -292,7 +292,7 @@
                                     <div class="buyer-name">{{item.name}}</div><br>
                                     <div class="product__rating">
                                         <fa-icon class="product-rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.star).fill(1)"></fa-icon>
-                                        <fa-icon class="product-rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.star).fill(1)"></fa-icon> &nbsp;{{item.star}}star
+                                        <fa-icon class="product-rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.star).fill(1)"></fa-icon> 
                                     </div><br>
                                     {{ item.message }}
                             </td>

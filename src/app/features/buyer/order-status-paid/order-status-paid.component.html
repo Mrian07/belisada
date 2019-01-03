@@ -274,8 +274,7 @@
         <div class="row delivery-detail">
             <div class="fluid">
                 <div class="pull-left">Penerima</div>
-                <div class="pull-right">{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi: {{ transactionDetail.noResi }}</div>
-                <div class="pull-right" *ngIf="transactionDetail.noResi === 0">{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi: ---</div>
+                <div class="pull-right">{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi: -{{ transactionDetail.noResi }}-</div>
             </div>
             <div>
                 {{ transactionDetail.namaPenerima }},&nbsp;{{ transactionDetail.phonePenerima }}
