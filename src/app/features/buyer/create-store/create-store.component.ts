@@ -83,32 +83,33 @@ export class CreateStoreComponent implements OnInit {
 
   // s:New Form
 
-  takeCity(val) {
-    const idReg = val.regionId;
+  takeCity($event) {
+    const idReg = $event.target.value;
     this.storeService.getCity(idReg).subscribe(data => {
       this.cities = data;
     });
   }
 
-  takeDistrict(val) {
-    const idDis = val.cityId;
+  takeDistrict($event) {
+    const idDis = $event.target.value;
     this.storeService.getDistrict(idDis).subscribe(data => {
       this.districts = data;
     });
   }
 
-  takeVillage(val) {
-    const idVal = val.districtId;
+  takeVillage($event) {
+    const idVal = $event.target.value;
     this.storeService.getVillage(idVal).subscribe(data => {
       this.villages = data;
     });
   }
 
-  takePostal(val) {
-    const postal = val.postal;
+  takePostal($event) {
+    const villageId = $event.target.value;
+    const postalId: string = this.villages.find(x => x.villageId === +villageId).postal;
     this.store.patchValue(
       {
-        postal: postal
+        postal: postalId
       });
   }
 

@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   public homeContents: HomeContent[] = [];
   public brandHomeList: Brand[] = [];
   public flashSaleProducts: FlashSaleContent[] = [];
-  public flashSaleExpired: FlashSaleExpiredData;
+  public flashSaleExpired: FlashSaleExpiredData = new FlashSaleExpiredData();
 
   public Arr = Array;
 
