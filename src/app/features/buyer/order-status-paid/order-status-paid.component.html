@@ -43,7 +43,8 @@
                             </div>
                         </td>
                         <td width="25%">
-                            <span class="item-price">Rp&nbsp;{{itemListProduct.specialPrice | number}}</span>
+                            <span *ngIf="itemListProduct.specialPrice > 0" class="item-price">Rp&nbsp;{{itemListProduct.specialPrice | number}}</span>
+                            <span *ngIf="itemListProduct.specialPrice <= 0" class="item-price">Rp&nbsp;{{itemListProduct.priceList | number}}</span>
                         </td>
                         <td width="30%" class="right">
                             <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
@@ -237,7 +238,8 @@
                             </div>
                         </td>
                         <td class="center" width="35%">
-                            <span class="item-price">Rp&nbsp;{{cartItem.specialPrice | number}}</span>
+                            <span *ngIf="cartItem.specialPrice > 0" class="item-price">Rp&nbsp;{{cartItem.specialPrice | number}}</span>
+                            <span *ngIf="cartItem.specialPrice <= 0" class="item-price">Rp&nbsp;{{cartItem.priceList | number}}</span>
                         </td>
                     </tr>
                 </table>
