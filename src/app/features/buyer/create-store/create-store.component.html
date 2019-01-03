@@ -77,27 +77,31 @@
                 <app-field-error-display [displayError]="isFieldValid('address')" errorMsg="Silahkan Masukan Alamat Toko Mu"></app-field-error-display>
                 
 
-                <select class="input-style-text-100" formControlName="region" [ngClass]="{'has-danger': store.controls.region.invalid && store.controls.region.dirty,'has-success': store.controls.region.valid && store.controls.region.dirty}">
+                <select class="input-style-text-100" (change)="takeCity($event)"
+                    formControlName="region" [ngClass]="{'has-danger': store.controls.region.invalid && store.controls.region.dirty,'has-success': store.controls.region.valid && store.controls.region.dirty}">
                     <option value=''>Pilih Region</option>
-                    <option *ngFor="let r of provinces" (click)="takeCity(r)" value="{{r.regionId}}">{{r.regionName}}</option>
+                    <option *ngFor="let r of provinces" value="{{r.regionId}}">{{r.regionName}}</option>
                 </select>
                 <app-field-error-display [displayError]="isFieldValid('region')" errorMsg="Silahkan Pilih Region"></app-field-error-display>
 
-                <select class="input-style-text-100" formControlName="city" [ngClass]="{'has-danger': store.controls.city.invalid && store.controls.city.dirty,'has-success': store.controls.city.valid && store.controls.city.dirty}">
+                <select class="input-style-text-100" (change)="takeDistrict($event)"
+                    formControlName="city" [ngClass]="{'has-danger': store.controls.city.invalid && store.controls.city.dirty,'has-success': store.controls.city.valid && store.controls.city.dirty}">
                     <option value=''>Pilih Kota</option>
-                    <option *ngFor="let c of cities" (click)="takeDistrict(c)" value="{{c.cityId}}">{{c.cityName}}</option>
+                    <option *ngFor="let c of cities" value="{{c.cityId}}">{{c.cityName}}</option>
                 </select>
                 <app-field-error-display [displayError]="isFieldValid('city')" errorMsg="Silahkan Pilih Kota"></app-field-error-display>
 
-                <select class="input-style-text-100" formControlName="district" [ngClass]="{'has-danger': store.controls.district.invalid && store.controls.district.dirty,'has-success': store.controls.district.valid && store.controls.district.dirty}">
+                <select class="input-style-text-100" (change)="takeVillage($event)"
+                    formControlName="district" [ngClass]="{'has-danger': store.controls.district.invalid && store.controls.district.dirty,'has-success': store.controls.district.valid && store.controls.district.dirty}">
                     <option value=''>Pilih Kecamatan</option>
-                    <option *ngFor="let d of districts" (click)="takeVillage(d)" value="{{d.districtId}}">{{d.districtName}}</option>
+                    <option *ngFor="let d of districts" value="{{d.districtId}}">{{d.districtName}}</option>
                 </select>
                 <app-field-error-display [displayError]="isFieldValid('district')" errorMsg="Silahkan Pilih Kecamatan"></app-field-error-display>
 
-                <select class="input-style-text-100" formControlName="village" [ngClass]="{'has-danger': store.controls.village.invalid && store.controls.village.dirty,'has-success': store.controls.village.valid && store.controls.village.dirty}">
+                <select class="input-style-text-100" (change)="takePostal($event)"
+                    formControlName="village" [ngClass]="{'has-danger': store.controls.village.invalid && store.controls.village.dirty,'has-success': store.controls.village.valid && store.controls.village.dirty}">
                     <option value=''>Pilih Kelurahan</option>
-                    <option *ngFor="let v of villages" (click)="takePostal(v)" value="{{v.villageId}}">{{v.villageName}}</option>
+                    <option *ngFor="let v of villages" value="{{v.villageId}}">{{v.villageName}}</option>
                 </select>
                 <app-field-error-display [displayError]="isFieldValid('village')" errorMsg="Silahkan Pilih Kelurahan"></app-field-error-display>
 
@@ -105,8 +109,7 @@
                 <app-field-error-display [displayError]="isFieldValid('postal')" errorMsg="Silahkan Masukan Kodepos"></app-field-error-display>
 
 
-                <!-- <input type="text" title="klik untuk mengubah" class="input-style-text input-editable" [(ngModel)]="store1.regionName" name="regionName" #regionName="ngModel" (focus)="getRegion()" (blur)="hideRegionSuggest()" placeholder="Region" [ngModelOptions]="{standalone: true}">
-                 -->
+                <!-- <input type="text" title="klik untuk mengubah" class="input-style-text input-editable" [(ngModel)]="store1.regionName" name="regionName" #regionName="ngModel" (focus)="getRegion()" (blur)="hideRegionSuggest()" placeholder="Region" [ngModelOptions]="{standalone: true}">-->
                 <!-- <ul class="input-suges" #regionSuggest [hidden]="provinces == undefined"><li *ngFor="let r of provinces | filter:store1.regionName:'regionName'" (click)="setRegion(r)">{{r.regionName}}</li></ul> -->
                 <!-- <app-field-error-display [displayError]="isFieldValid('province')" errorMsg="Silahkan Masukan Provinsi"></app-field-error-display>  -->
 

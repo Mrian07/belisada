@@ -1,6 +1,6 @@
 <div class="top-header">
     <div class="top-header__banner" [ngStyle]="{'background-color': '#064564'}">
-        <img [src]="bannerTop.imageUrl" alt="">
+        <img [src]="bannerTop?.imageUrl" alt="">
     </div>
 </div>
 
@@ -20,7 +20,16 @@
             </div>
             <div class="col-md-9 extras-header__accounts text-right">
                 <div class="extras-header__accounts-wrapper">
-                    <a class="link" href="https://seller0.belisada.id/auth/sign-in" target="_blank">Mulai menjual di belisada</a>
+                    <a class="link" href="https://seller0.belisada.id/auth/sign-in"
+                        *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
+                        Mulai menjual di belisada
+                    </a>
+
+                    <ng-template #upgradeAccount>
+                        <a class="link" (click)="goToCreateStore()">
+                            Mulai menjual di belisada
+                        </a>
+                    </ng-template>
 
                     <span class="delimiter"></span>
                     
