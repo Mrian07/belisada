@@ -64,6 +64,7 @@ export class OrderStatusPaidComponent implements OnInit {
   prodId: number;
   showDialogReview: boolean;
   showDialogDetail: boolean;
+  showDialogWarranty: boolean;
 
   constructor(
     private reviewService: ReviewService,
@@ -273,6 +274,11 @@ export class OrderStatusPaidComponent implements OnInit {
     this.orderNumber = orderNumber;
   }
 
+  alertWarranty(item) {
+    this.transactionDetail = item;
+    this.showDialogWarranty = !this.showDialogWarranty;
+  }
+
   alertReview(orderNumber, itemListProduct) {
     this.product = itemListProduct;
     this.orderNumber = orderNumber;
@@ -290,6 +296,7 @@ export class OrderStatusPaidComponent implements OnInit {
     this.transactionDetail = item;
     this.showDialogDetail = !this.showDialogDetail;
   }
+
 
   closeShowDialogKonfirm() {
     this.showDialogKonfirm = false;
