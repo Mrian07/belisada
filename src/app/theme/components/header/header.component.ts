@@ -3,7 +3,7 @@ import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { Component, OnInit } from '@angular/core';
 
 import { UserData } from '@belisada/core/models';
-import { UserService, Globals } from '@belisada/core/services';
+import { UserService, Globals, ShareMessageService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { Category } from '@belisada/core/models/category/category.model';
 import { CategoryService } from '@belisada/core/services/category/category.service';
@@ -63,8 +63,12 @@ export class HeaderComponent implements OnInit {
 
   public thumborProfilePicture: string;
 
+  public flag: string;
+  public btnJual: boolean;
+
   constructor(
     public globals: Globals,
+    private _shareMessageService: ShareMessageService,
     private _userService: UserService,
     private _categoryService: CategoryService,
     private _searchService: SearchService,
@@ -217,5 +221,19 @@ export class HeaderComponent implements OnInit {
     this._bannerService.getBannerSearch().subscribe(response => {
       this.bannerSearch = response.data;
     });
+  }
+
+  cekFlag() {
+    this._shareMessageService.currentMessage.subscribe(respon => {
+      this.flag = respon;
+      if (this.flag === 'create-store') {
+        this.btnJual = true;
+      }
+    });
+  }
+
+  goToCreateStore() {
+    this._router.navigateByUrl('/buyer/create-store');
+    this.cekFlag();
   }
 }
