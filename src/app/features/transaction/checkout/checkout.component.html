@@ -108,18 +108,20 @@
                     </div>
                 </div>
                 <div class="contenCart__opsi">
-                    <div>Opsi Pengiriman: </div>
-                    <div>
+                    <div class="align-self-stretch">Opsi Pengiriman: </div>
+                    <div class="align-self-stretch position-relative">
                         <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
                         class="contenCart__form">
                             <option disabled value="">Pilih Pengiriman</option>
                             <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                         </select>
+
+                        <img *ngIf="!rates[in]" class="loading" src="/assets/img/spinner.gif" alt="">
                     </div>
-                    <div>
+                    <div class="align-self-stretch">
                         Asuransi:
                     </div>
-                    <div>
+                    <div class="align-self-stretch">
                         <input type="checkbox" [(ngModel)]="isInsurance[in]" (change)="updateInsurance(cartCheckout.itemCartIds, isInsurance[in])"> <span class="contenCart__asuPrice">Rp {{ cartCheckout.asuransi | number }}</span>
                     </div>
                 </div>
