@@ -47,6 +47,8 @@
                             <span *ngIf="itemListProduct.specialPrice <= 0" class="item-price">Rp&nbsp;{{itemListProduct.priceList | number}}</span>
                         </td>
                         <td width="30%" class="right">
+                            <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
+                            <span class="warranty">Cek Info Garansi</span>
                             <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.orderNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
                         </td>
                     </tr>
@@ -272,7 +274,7 @@
         <div class="row delivery-detail">
             <div class="fluid">
                 <div class="pull-left">Penerima</div>
-                <div class="pull-right">{{ transactionDetail.courierName }}{{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi {{ transactionDetail.noResi }}</div>
+                <div class="pull-right">{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }} &nbsp; | &nbsp; Resi: -{{ transactionDetail.noResi }}-</div>
             </div>
             <div>
                 {{ transactionDetail.namaPenerima }},&nbsp;{{ transactionDetail.phonePenerima }}
@@ -301,7 +303,7 @@
     </div>
 </app-models>
 
-<app-models [(visible)]="showDialogReview" maxwidth="600" class="frameDialog">
+<app-models [(visible)]="showDialogReview" class="frameDialog">
     <div class="model-head">Nilai Produk Ini</div>
     <table border="0" width="100%" >
         <tr>
@@ -336,3 +338,77 @@
         </tr>
     </table>
 </app-models>
+
+<!-- <app-models [(visible)]="showDialogWarranty" class="frameDialog">
+    <div class="model-head"></div>
+    <table border="0" width="100%" >
+        <tr>
+            <td valign="top" width="20%">
+                <div class="img-item"><img src="{{product.imageUrl}}" border="0"></div>
+            </td>
+            <td valign="top" width="30%">
+                <div class="item-colom detail" *ngFor="let cartItem of transactionDetail.cartItems">
+                    <div class="name">{{cartItem.name}} </div>
+                    <div class="varian">
+                        <span *ngFor="let varian of product.varians; let i = index">
+                            Color - Memory / Internal Storage: <br> {{varian.varians[0].value}} {{ (i === product.varians.length - 1) ? '' : ' - ' }}
+                        </span>
+                        <span>
+                            Dijual Oleh: {{ transactionDetail.storeName }} 
+                        </span>
+                        <span>
+                            Jumlah: {{ transactionDetail.storeName }} &nbsp; unit
+                        </span>
+                    </div>
+                </div>
+            </td>
+            <td valign="top" width="50%">
+                <div class="item-colom">
+                    <div class="nfo-garansi">Info Garansi</div>
+                    <table class="rating" border="1">
+                        <tr>
+                            <th></th>
+                            <th>IMEI/SN</th>
+                            <th>Tipe Garansi</th>
+                            <th>Lama Garansi</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>{{cartItem.sn}}</td>
+                            <td>{{cartItem.guaranteeType}}</td>
+                            <td>{{cartItem.guaranteeTime}}</td>
+                        </tr>
+                        <tr>
+                            <td &#x2610;></td>
+                            <td>189716361</td>
+                            <td>Distributor</td>
+                            <td>1 Tahun</td>
+                        </tr>
+                        <tr>
+                            <td &#x2610;></td>
+                            <td>189716361</td>
+                            <td>Distributor</td>
+                            <td>1 Tahun</td>
+                        </tr>
+                        <tr>
+                            <td &#x2610;></td>
+                            <td>189716361</td>
+                            <td>Distributor</td>
+                            <td>1 Tahun</td>
+                        </tr>
+                        <tr>
+                            <td &#x2610;></td>
+                            <td>189716361</td>
+                            <td>Distributor</td>
+                            <td>1 Tahun</td>
+                        </tr>
+                    </table><br>
+                    <div class="button">
+                        <span class="btn-back" (click)="backToOrder()">Tutup</span>
+                        <button class="btn-submit-review" type="submit">Extend Warranty</button>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+</app-models> -->
