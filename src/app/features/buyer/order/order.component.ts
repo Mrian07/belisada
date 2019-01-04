@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class OrderComponent implements OnInit {
 
-  tabOrder: 'ALL';
+  tabOrder = 'ALL';
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,

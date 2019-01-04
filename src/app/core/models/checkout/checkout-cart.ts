@@ -2,6 +2,10 @@ import { BaseResponseModel } from '@belisada/core/models/base-response.model';
 
 export class CheckoutTrx {
   cart: CartCheckout[];
+  totalItem: number;
+  subTotal: number;
+  totalAsuransi: number;
+  totalCourierPrice: number;
   grandTotal: number;
 }
 

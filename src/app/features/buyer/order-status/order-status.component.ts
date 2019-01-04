@@ -66,6 +66,7 @@ export class OrderStatusComponent implements OnInit {
   reviewForm: FormGroup;
   prodId: number;
   showDialogReview: boolean;
+  showDialogDetail: boolean;
 
   // ratingClicked: number;
   // itemIdRatingClicked: string;
@@ -90,7 +91,10 @@ export class OrderStatusComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private paymentService: PaymentService,
-  ) { this.list = []; }
+  ) {
+    this.list = [];
+    this.showDialogDetail = false;
+  }
 
 
 
