@@ -21,7 +21,7 @@
                     <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + item.orderNumber]"><u>Lihat Invoice</u></a>
                 </div>
                 <div class="col-4 right">
-                    <span class="order-status">{{ item.statusOrder }}</span>
+                    <span class="order-status">{{ item.statusOrder }}</span><br>
                     <span *ngIf="item.statusOrderCode === '157' && item.statusOrderCode !== '180'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(item.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
                 </div>
         </div>
@@ -58,7 +58,7 @@
                     <tr>
                 </table>
         </div>
-    <div class="row bottom">
+    <div class="row bottom" *ngIf="item.statusOrderCode === '180'">
             <!-- <div class="time col-4" *ngIf="item.countdown">
                 Batas Waktu Respon:
                 <ng-container *ngIf="item.countdown.status === 1; else expired">
@@ -70,15 +70,33 @@
             </div> -->
             <div class="limit-date col-4">
                 Nilai Produk sebelum tanggal
-                <span class="date">24-10-2019</span>
+                <span class="date">
+                    {{ item.expiredConfirmationPaymentBuyerDate.split(' ')[0].split('-')[2] }}-{{ item.expiredConfirmationPaymentBuyerDate.split(' ')[0].split('-')[1] }}-{{ item.expiredConfirmationPaymentBuyerDate.split(' ')[0].split('-')[0] }}
+                </span>
             </div>
             <div  class="col-4 left">
                 Total Pesanan:
-                <span class="total">
+                <span class="tot">
                     Rp {{ item.subTotal - item.courierPrice - item.asuransi | number}}
                 </span>
             </div>
             <div class="col-4 right">
+                <span class="product-qty">
+                    Lihat {{ item.cartItems.length }} produk lainnya 
+                </span>
+                <span class="product-detail">
+                        <span (click)="openOS(item)" class="btn-detail">Lihat Detail</span>
+                </span>
+            </div>
+    </div>
+    <div class="row bottom" *ngIf="item.statusOrderCode !== '180'">
+            <div  class="col-6 left">
+                Total Pesanan:
+                <span class="tot">
+                    Rp {{ item.subTotal - item.courierPrice - item.asuransi | number}}
+                </span>
+            </div>
+            <div class="col-6 right">
                 <span class="product-qty">
                     Lihat {{ item.cartItems.length }} produk lainnya 
                 </span>
