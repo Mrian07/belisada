@@ -41,8 +41,8 @@
 			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
 			<div class="col-4" *ngIf="isField==true">
 					<input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
+					<app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="No. Handphone tidak boleh kosong"></app-field-error-display>
 			</div>
-			 <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="Phone tidak boleh kosong"></app-field-error-display>
 
 			<!-- <div class="col-4"><input type="text" class="input-style-text" readonly  formControlName="email"></div> -->
 		</div>
@@ -65,7 +65,7 @@
 				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
 				</div>
-				 <app-field-error-display [displayError]="isFieldValid('dateOfBirth')" errorMsg="Tanggal Lahir tidak boleh kosong"></app-field-error-display>
+				<app-field-error-display [displayError]="isFieldValid('dateOfBirth')" errorMsg="Tanggal Lahir tidak boleh kosong"></app-field-error-display>
 			</div>
 
 			<!-- <div class="col-3"> 
