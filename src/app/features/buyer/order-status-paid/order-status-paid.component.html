@@ -14,10 +14,13 @@
 
 <div class="os-body" *ngFor="let item of list">
         <div class="row row-atur">
-                <div class="store-name col-6 left">
+                <div class="store-name col-4 left">
                     {{ item.storeName }}
                 </div>
-                <div class="col-6 right">
+                <div class="col-4 center">
+                    <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + item.orderNumber]"><u>Lihat Invoice</u></a>
+                </div>
+                <div class="col-4 right">
                     <span class="order-status">{{ item.statusOrder }}</span>
                     <span *ngIf="item.statusOrderCode === '157' && item.statusOrderCode !== '180'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(item.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
                 </div>
@@ -48,7 +51,7 @@
                         </td>
                         <td width="30%" class="right">
                             <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
-                            <span class="warranty">Cek Info Garansi</span>
+                            <!-- <span class="warranty">Cek Info Garansi</span> -->
                             <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.orderNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
                         </td>
                     </tr>
@@ -72,7 +75,7 @@
             <div  class="total-pesanan col-4 left">
                 Total Pesanan:
                 <span class="total">
-                    Rp {{ item.subTotal - item.courierPrice | number}}
+                    Rp {{ item.subTotal - item.courierPrice - item.asuransi | number}}
                 </span>
             </div>
             <div class="col-4 right">
@@ -251,20 +254,28 @@
                 Subtotal produk: &nbsp;
             </td>
             <td >
-                Rp&nbsp;{{ (transactionDetail.subTotal - transactionDetail.courierPrice)  | number}}
+                Rp&nbsp;{{ (transactionDetail.subTotal - transactionDetail.courierPrice - transactionDetail.asuransi)  | number}}
             </td>
             </tr>
             <tr>
                 <td>
-                    Biaya Pengiriman: &nbsp; {{ transactionDetail.courierName }} &nbsp;{{ transactionDetail.courierService }}
+                    Asuransi: &nbsp; <b><span *ngIf="transactionDetail.useAsuransi === false">TIDAK</span> <span *ngIf="transactionDetail.useAsuransi === true">IYA</span></b>
+                </td>
+                <td>
+                    <span *ngIf="transactionDetail.useAsuransi === false">Rp&nbsp;0</span> <span *ngIf="transactionDetail.useAsuransi === true">Rp&nbsp;{{ transactionDetail.asuransi | number }}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Biaya Pengiriman: &nbsp; <b>{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }}</b>
                 </td>
                 <td>
                     Rp&nbsp;{{ transactionDetail.courierPrice | number }}
                 </td>
             </tr>
-            <tr>
+            <tr class="bold">
                 <td>
-                    Total Pesanan: &nbsp; 
+                    Total Pesanan &nbsp; 
                 </td>
                 <td class="total">
                     <b>Rp&nbsp;{{ transactionDetail.subTotal | number}}</b>

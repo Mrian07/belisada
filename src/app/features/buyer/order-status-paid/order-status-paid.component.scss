@@ -72,7 +72,6 @@
 
 .total{
     color: #ff5927;
-    font-size: 2.1rem;
 }
 
 .detail-produk{
@@ -395,6 +394,18 @@
     color: #3ba5ff;
     text-decoration: underline;
     padding-right: 2rem;
+}
+
+.bold{
+    font-weight: bold;
+    font-size: 2.2rem;
+    color: rgb(124, 124, 124);
+}
+
+.btn-invoice{
+    color: #2591fd;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .btn-kembali{
