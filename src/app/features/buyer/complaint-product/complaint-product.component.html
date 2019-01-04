@@ -1,5 +1,6 @@
 <div class="sub-contain" *ngIf="showForm==false && isSuccess==false">
-  <span class="sub-b">ORDER ID</span><span class="sub-b">Nama Barang</span>
+      <span class="sub-b">ORDER ID</span>
+      <span class="sub-b">Produk</span>
 </div>
 <div *ngIf="showForm==true">
   <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>

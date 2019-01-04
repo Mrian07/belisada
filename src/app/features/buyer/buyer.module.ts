@@ -22,6 +22,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { ComplaintProductComponent } from './complaint-product/complaint-product.component';
+import { ComplaintHistoryComponent } from './complaint-history/complaint-history.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { RatingRequiredValidator } from './star-rating/rating-required.validator.directive';
 
@@ -55,6 +56,7 @@ library.add(fas, far, fab);
     StarRatingComponent,
     RatingRequiredValidator,
     ComplaintProductComponent,
+    ComplaintHistoryComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

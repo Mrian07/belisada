@@ -51,6 +51,6 @@ export class TerimakasihPageComponent implements OnInit {
   }
 
   goToOrder() {
-    this.router.navigateByUrl('/buyer/order');
+    this.router.navigateByUrl('/buyer/order?page=1&status=133');
   }
 }

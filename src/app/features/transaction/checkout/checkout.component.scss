@@ -815,6 +815,8 @@
     font-size: 2rem;
     color:#000000;
     font-weight: bold;
+    padding-bottom: 2rem;
+    text-align: center;
 }
 
 .linkHome{
@@ -829,4 +831,17 @@
 .varianText{
     font-size: 1.3rem;
     color:#474545;
+}
+
+.loading {
+    position: absolute;
+    top: -6px;
+}
+
+.align-self-center {
+    align-self: center;
+}
+
+.align-self-stretch {
+    align-self: stretch;
 }

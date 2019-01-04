@@ -1,0 +1,20 @@
+<div *ngFor="let item of complaint.content">
+    <table class="complaint">
+        <tr>
+            <th>ORDER ID</th>
+            <th>PRODUK</th> 
+            <th>KOMPLAIN</th>
+            <th>KETERANGAN</th>
+            <th>SOLUSI</th>
+            <th>STATUS</th>
+        </tr>
+        <tr>
+            <td class="complaint-detail">{{ item.orderNumber}}</td>
+            <td class="complaint-detail">{{ item.productName }}</td>
+            <td class="complaint-detail">{{ item.orderComplainIssue }}</td>
+            <td class="complaint-detail">{{ item.reasonOrderComplainIssueSolution }}</td>
+            <td class="complaint-detail">{{ item.orderComplainIssueSolution }}</td>
+            <td class="complaint-detail"><b>{{ item.status }}</b></td>
+        </tr>
+    </table>
+</div>

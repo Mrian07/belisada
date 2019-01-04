@@ -51,7 +51,8 @@
 
 					</div>
 					<div>x{{item.quantity}}</div>
-					<div>Rp {{ item.priceList | number }}</div>
+					<div *ngIf="item.specialPrice > 0">Rp {{ item.specialPrice | number }}</div>
+					<div *ngIf="item.specialPrice <= 0">Rp {{ item.priceList | number }}</div>
 				</div>
 				<div class="line-ongkir">
 					<div class="titleItem">Biaya Asuransi</div>
