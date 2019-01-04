@@ -33,7 +33,6 @@ export class ListComplaint {
     reasonOrderComplainIssueSolution: string;
     orderRecieved: boolean;
     image: string;
-    items: [];
     status: string;
     statusCode: number;
 }
