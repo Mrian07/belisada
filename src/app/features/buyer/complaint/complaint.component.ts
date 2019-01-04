@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-complaint',
@@ -9,12 +9,23 @@ import { Router } from '@angular/router';
 export class ComplaintComponent implements OnInit {
 
   tabOrder: string;
+  orderNumber: string;
   constructor(
-    private router: Router
-  ) { }
+    private router: Router,
+    private _activatedRoute: ActivatedRoute
+  ) {
+
+  }
 
   ngOnInit() {
     this.tabOrder = 'tabProduct';
+
+    this._activatedRoute.queryParams.subscribe(qparams => {
+      this.orderNumber = qparams.id;
+      if (!this.orderNumber) {
+        this.tabOrder = 'tabHistory';
+      }
+    });
   }
 
   tab(data, tabOrder) {

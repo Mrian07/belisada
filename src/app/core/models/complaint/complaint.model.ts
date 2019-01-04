@@ -13,6 +13,31 @@ export class ListIssuReq {
     reasonOrderComplainIssueSolution: string;
 }
 
+export class Complaint {
+    content: ListComplaint[];
+    last: boolean;
+    totalPages: number;
+    totalElements: number;
+    numberOfElements: number;
+    first: boolean;
+    size: number;
+    number: number;
+}
+
+export class ListComplaint {
+    orderNumber: number;
+    orderComplainIssue: string;
+    orderComplainIssueCode: number;
+    orderComplainIssueSolution: string;
+    orderComplainIssueSolutionCode: number;
+    reasonOrderComplainIssueSolution: string;
+    orderRecieved: boolean;
+    image: string;
+    items: [];
+    status: string;
+    statusCode: number;
+}
+
 
 export class ListRes {
     status: number;

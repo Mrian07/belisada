@@ -1,6 +1,6 @@
 <div class="contain-order">
 
-  <span [ngClass]="(tabOrder=='tabProduct')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabProduct', tabOrder)">Komplain Produk</span> 
+  <span [ngClass]="(tabOrder=='tabProduct')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabProduct', tabOrder)" *ngIf="orderNumber">Komplain Produk</span> 
   <span [ngClass]="(tabOrder=='tabHistory')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('tabHistory', tabOrder)">Riwayat Komplain</span>
   <div class="frame-order">
       <app-complaint-product *ngIf="tabOrder=='tabProduct'"></app-complaint-product>
