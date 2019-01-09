@@ -1,4 +1,5 @@
 import { BaseResponseModel } from '@belisada/core/models/base-response.model';
+import { CartItems } from '../transaction/transaction.model';
 
 export class CheckoutReq {
   itemCartIds: number[];
@@ -67,6 +68,7 @@ export class SuccessTransactionData {
   status: string;
   statusCode: string;
   bankAccount: ListBankAccount;
+  cart: CartItems[];
 }
 
 export class ListBankAccount {

@@ -50,7 +50,7 @@ export class OrderStatusPaid {
     courierName: string;
     courierPrice: number;
     courierService: string;
-    useAsuransi: string;
+    useAsuransi: boolean;
     totalWeight: number;
     asuransi: number;
     shipNumber: string;
