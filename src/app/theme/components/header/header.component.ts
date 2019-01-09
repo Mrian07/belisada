@@ -66,6 +66,8 @@ export class HeaderComponent implements OnInit {
   public flag: string;
   public btnJual: boolean;
 
+  public baseUrlSeller: string = environment.baseUrlSeller;
+
   constructor(
     public globals: Globals,
     private _shareMessageService: ShareMessageService,

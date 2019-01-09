@@ -20,7 +20,7 @@
             </div>
             <div class="col-md-9 extras-header__accounts text-right">
                 <div class="extras-header__accounts-wrapper">
-                    <a class="link" href="https://seller0.belisada.id/auth/sign-in"
+                    <a class="link" href="{{ baseUrlSeller }}/auth/sign-in"
                         *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
                         Mulai menjual di belisada
                     </a>
