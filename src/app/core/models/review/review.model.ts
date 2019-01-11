@@ -20,6 +20,7 @@ export class ListReview {
 export class ListReviewReq {
     message: string;
     productId: number;
+    paymentNumber: string;
     reviewParentId: number;
     star: number;
     title: string;

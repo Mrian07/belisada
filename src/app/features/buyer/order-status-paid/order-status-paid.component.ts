@@ -65,6 +65,7 @@ export class OrderStatusPaidComponent implements OnInit {
   showDialogReview: boolean;
   showDialogDetail: boolean;
   showDialogWarranty: boolean;
+  paymentNumberReview: string;
 
   constructor(
     private reviewService: ReviewService,
@@ -141,7 +142,8 @@ export class OrderStatusPaidComponent implements OnInit {
     this.reviewForm = this.fb.group({
       star: new FormControl('', RatingValidators.required),
       message: new FormControl('', Validators.required),
-      productId: new FormControl('', Validators.required)
+      productId: new FormControl('', Validators.required),
+      paymentNumber: new FormControl('', Validators.required)
     });
   }
 
@@ -155,13 +157,15 @@ export class OrderStatusPaidComponent implements OnInit {
 
   onSubmit(productId) {
     this.reviewForm.patchValue({
-      productId: productId
+      productId: productId,
+      paymentNumber: this.paymentNumberReview
     });
     const _data: ListReviewReq = new ListReviewReq();
     // if (this.prodId) { _data.productId = this.prodId; }
     _data.star = this.reviewForm.controls['star'].value;
     _data.message = this.reviewForm.controls['message'].value;
     _data.productId = this.reviewForm.controls['productId'].value;
+    _data.paymentNumber = this.reviewForm.controls['paymentNumber'].value;
     this.reviewService.createReview(_data).subscribe(data => {
       this.loadingService.hide();
       swal(
@@ -279,9 +283,9 @@ export class OrderStatusPaidComponent implements OnInit {
     this.showDialogWarranty = !this.showDialogWarranty;
   }
 
-  alertReview(orderNumber, itemListProduct) {
+  alertReview(paymentNumber, itemListProduct) {
     this.product = itemListProduct;
-    this.orderNumber = orderNumber;
+    this.paymentNumberReview = paymentNumber;
     this.showDialogReview = !this.showDialogReview;
   }
 

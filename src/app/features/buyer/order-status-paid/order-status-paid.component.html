@@ -52,7 +52,7 @@
                         <td width="30%" class="right">
                             <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
                             <!-- <span class="warranty">Cek Info Garansi</span> -->
-                            <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.orderNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
+                            <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.paymentNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
                         </td>
                     </tr>
                     <tr>
