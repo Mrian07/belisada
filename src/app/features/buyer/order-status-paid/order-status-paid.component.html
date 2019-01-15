@@ -312,7 +312,7 @@
                 {{ transactionDetail.alamatPenerima}}
             </div>
         </div>
-        <button class="btn-kembali" (click)="backToOrder()">Kembali</button>
+        <button class="btn-kembali" (click)="backToOrderDetail()">Kembali</button>
     </div>
 </app-models>
 
@@ -358,8 +358,8 @@
                         </div><br>
                         <textarea formControlName="message" class="review" cols="40" rows="6" placeholder="Beritahu orang lain tentang produk ini"></textarea><br>
                         <div class="button">
-                            <span class="btn-back" (click)="backToOrder()">Nanti Saja</span>
-                            <button class="btn-submit-review" type="submit">OK</button>
+                            <span class="btn-back" (click)="backToOrderReview()">Nanti Saja</span>
+                            <button class="btn-submit-review"  type="submit">OK</button>
                         </div>
                     </form>
                 </div>
