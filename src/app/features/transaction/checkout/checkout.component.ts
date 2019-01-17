@@ -674,7 +674,7 @@ export class CheckoutComponent implements OnInit {
               this.ipay88Req.Remark = '';
               this.ipay88Req.Lang = 'UTF-8';
               this.ipay88Req.signature = signature;
-              this.ipay88Req.ResponseURL = 'https://dev.belisada.id/payment/response';
+              this.ipay88Req.ResponseURL = 'https://kadal.belisada.id/payment/response';
               this.ipay88Req.BackendURL = 'https://api0.belisada.id/payment/response';
 
               // this.createForm.patchValue(
