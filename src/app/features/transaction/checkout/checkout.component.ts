@@ -88,6 +88,7 @@ export class CheckoutComponent implements OnInit {
 
   showDialog;
   createForm: FormGroup;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -694,7 +695,9 @@ export class CheckoutComponent implements OnInit {
 
               console.log('submit', this.createForm.value);
 
-              this.f.nativeElement.submit();
+              setTimeout(() => {
+                this.f.nativeElement.submit();
+              }, 500);
             });
 
           }
