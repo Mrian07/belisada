@@ -43,9 +43,38 @@ export class PaymentComponent implements OnInit {
     private modalService: ModalService
   ) { }
 
-  // ngOnInit() {
-  //   this.form();
-  // }
+  ngOnInit() {
+    this.v.MerchantCode = '';
+    this.v.PaymentId = '';
+    this.v.RefNo = '';
+    this.v.Amount = '';
+    this.v.Currency = '';
+    this.v.ProdDesc = '';
+    this.v.UserName = '';
+    this.v.UserEmail = '';
+    this.v.UserContact = '';
+    this.v.Remark = '';
+    this.v.Lang = '';
+    this.v.signature = '';
+    this.v.ResponseURL = '';
+    this.v.BackendURL = '';
+    // this.form();
+
+    // document.getElementsByName('MerchantCode').value = 'ID00015';
+    // document.getElementsByName('PaymentId').value = '1';
+    // document.getElementsByName('RefNo').value = 'PYT-24092018-2';
+    // document.getElementsByName('Amount').value = '300000';
+    // document.getElementsByName('Currency').value = 'IDR';
+    // document.getElementsByName('ProdDesc').value = 'Xiaomi A4';
+    // document.getElementsByName('UserName').value = 'Yosi Oliver';
+    // document.getElementsByName('UserEmail').value = 'yosioliver@gmail.com';
+    // document.getElementsByName('UserContact').value = '085214887659';
+    // document.getElementsByName('Remark').value = '';
+    // document.getElementsByName('Lang').value = 'UTF-8';
+    // document.getElementsByName('signature').value = 'GHIRs/2roqDM+BiLQQPPn0fkm/Q=';
+    // document.getElementsByName('ResponseURL').value = 'https://dev.belisada.id/payment/response';
+    // document.getElementsByName('BackendURL').value = 'https://api0.belisada.id/payment/response';
+  }
 
   form() {
     this.createForm = this.fb.group({
@@ -101,6 +130,24 @@ export class PaymentComponent implements OnInit {
     // this.f.controls['BackendURL'].setValue('https://api0.belisada.id/payment/response');
 
 
+    // this.createForm.patchValue(
+    //   {
+    //     MerchantCode: '',
+    //     PaymentId: '1',
+    //     RefNo: '',
+    //     Amount: '',
+    //     Currency: '',
+    //     ProdDesc: '',
+    //     UserName: '',
+    //     UserEmail: '',
+    //     UserContact: '',
+    //     Remark: '',
+    //     Lang: '',
+    //     signature: '',
+    //     ResponseURL: '',
+    //     BackendURL: '',
+    //   }
+    // );
 
     // this.createForm.patchValue({
       this.v.MerchantCode = 'ID00015';
@@ -122,9 +169,9 @@ export class PaymentComponent implements OnInit {
     this.f.nativeElement.submit();
   }
 
-  ngOnInit() {
-      this.bodyText = 'This text can be updated in modal 1';
-  }
+  // ngOnInit() {
+  //     this.bodyText = 'This text can be updated in modal 1';
+  // }
 
   openModal(id: string) {
       this.modalService.open(id);
