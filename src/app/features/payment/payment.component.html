@@ -21,7 +21,7 @@
 
 
 <form #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
-    <input type="text" name="MerchantCode" [value]="v.MerchantCode" placeholder="MerchantCode">
+    <input type="text" name="MerchantCode" [value]="v.MerchantCode" placeholder="MerchantCode" required>
     <input type="text" name="PaymentId" [value]="v.PaymentId" placeholder="PaymentId">
     <input type="text" name="RefNo" [value]="v.RefNo" placeholder="RefNo">
     <input type="text" name="Amount" [value]="v.Amount" placeholder="Amount">
@@ -36,6 +36,8 @@
     <input type="text" name="ResponseURL" [value]="v.ResponseURL" placeholder="ResponseURL">
     <input type="text" name="BackendURL" [value]="v.BackendURL" placeholder="BackendURL">
 </form>
+
+<button class="btn btn--purple" (click)="setValue()">Set Value</button>
 
 <pre>
     {{ v | json }}

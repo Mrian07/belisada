@@ -44,20 +44,20 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.v.MerchantCode = '';
-    this.v.PaymentId = '';
-    this.v.RefNo = '';
-    this.v.Amount = '';
-    this.v.Currency = '';
-    this.v.ProdDesc = '';
-    this.v.UserName = '';
-    this.v.UserEmail = '';
-    this.v.UserContact = '';
-    this.v.Remark = '';
-    this.v.Lang = '';
-    this.v.signature = '';
-    this.v.ResponseURL = '';
-    this.v.BackendURL = '';
+    // this.v.MerchantCode = '';
+    // this.v.PaymentId = '';
+    // this.v.RefNo = '';
+    // this.v.Amount = '';
+    // this.v.Currency = '';
+    // this.v.ProdDesc = '';
+    // this.v.UserName = '';
+    // this.v.UserEmail = '';
+    // this.v.UserContact = '';
+    // this.v.Remark = '';
+    // this.v.Lang = '';
+    // this.v.signature = '';
+    // this.v.ResponseURL = '';
+    // this.v.BackendURL = '';
     // this.form();
 
     // document.getElementsByName('MerchantCode').value = 'ID00015';
@@ -150,23 +150,26 @@ export class PaymentComponent implements OnInit {
     // );
 
     // this.createForm.patchValue({
-      this.v.MerchantCode = 'ID00015';
-      this.v.PaymentId = '1';
-      this.v.RefNo = 'PYT-24092018-2';
-      this.v.Amount = '300000';
-      this.v.Currency = 'IDR';
-      this.v.ProdDesc = 'Xiaomi A4';
-      this.v.UserName = 'Yosi Oliver';
-      this.v.UserEmail = 'yosioliver@gmail.com';
-      this.v.UserContact = '085214887659';
-      this.v.Remark = '';
-      this.v.Lang = 'UTF-8';
-      this.v.signature = 'GHIRs/2roqDM+BiLQQPPn0fkm/Q=';
-      this.v.ResponseURL = 'https://dev.belisada.id/payment/response';
-      this.v.BackendURL = 'https://api0.belisada.id/payment/response';
     // });
 
     this.f.nativeElement.submit();
+  }
+
+  setValue() {
+    this.v.MerchantCode = 'ID00015';
+    this.v.PaymentId = '1';
+    this.v.RefNo = 'PYT-24092018-2';
+    this.v.Amount = '300000';
+    this.v.Currency = 'IDR';
+    this.v.ProdDesc = 'Xiaomi A4';
+    this.v.UserName = 'Yosi Oliver';
+    this.v.UserEmail = 'yosioliver@gmail.com';
+    this.v.UserContact = '085214887659';
+    this.v.Remark = '';
+    this.v.Lang = 'UTF-8';
+    this.v.signature = 'GHIRs/2roqDM+BiLQQPPn0fkm/Q=';
+    this.v.ResponseURL = 'https://dev.belisada.id/payment/response';
+    this.v.BackendURL = 'https://api0.belisada.id/payment/response';
   }
 
   // ngOnInit() {
