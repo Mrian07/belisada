@@ -665,7 +665,7 @@ export class CheckoutComponent implements OnInit {
               this.ipay88Req.MerchantCode = environment.ipay88.MerchantCode;
               this.ipay88Req.PaymentId = '1';
               this.ipay88Req.RefNo = response.data.paymentNumber;
-              this.ipay88Req.Amount = this.checkoutTrx.grandTotal;
+              this.ipay88Req.Amount = +(this.checkoutTrx.grandTotal + '00');
               this.ipay88Req.Currency = environment.ipay88.Currency;
               this.ipay88Req.ProdDesc = 'Pembelian produk';
               this.ipay88Req.UserName = this.userName;
