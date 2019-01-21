@@ -208,11 +208,11 @@
 
 .product {
 
-    &:nth-child(4n) &__container {
+    &:nth-child(5n) &__container {
         border-right: 0;
     }
 
-    &:nth-last-child(-n+4) &__grid {
+    &:nth-last-child(-n+5) &__grid {
         border-bottom: 0;
     }
 
