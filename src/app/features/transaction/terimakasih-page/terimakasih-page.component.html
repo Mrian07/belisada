@@ -75,7 +75,8 @@
 
 		<div class="contain-thx-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
 			<div class="contain-thx-footer__img">
-				<img src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0"> No. Rekening
+				<img style="width: 20rem" src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0">
+				<p>No. Rekening</p>
 			</div>
 			<div class="contain-thx-footer__rek">
 				{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}
