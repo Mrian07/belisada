@@ -5,9 +5,9 @@
             <!-- <div *ngIf="location === '/buyer/profile'">
                 <div (click)="goToCreateStore()" class="btn-jualan">Ikut Jualan</div>
             </div> -->
-            <a href="{{baseUrlSeller}}/auth/sign-in" *ngIf="pemisah != 2; else cold" class="btn-jualan2" target="_blank">
+            <a href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}" *ngIf="pemisah != 2; else cold" class="btn-jualan2" target="_blank">
                 <div class="f-btn-jualan">
-                    Ikut Jualan 
+                    Ke Toko Saya
                 </div>
             </a>
 

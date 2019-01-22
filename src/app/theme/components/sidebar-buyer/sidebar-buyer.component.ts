@@ -24,6 +24,8 @@ export class SidebarBuyerComponent implements OnInit {
   zzzz;
   public location = '';
 
+  token: any;
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
@@ -38,6 +40,8 @@ export class SidebarBuyerComponent implements OnInit {
     this.userData = this.userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
     this.pemisah = this.userData.role;
     if (this.userData) { this.isLogin = true; }
+
+    this.token = localStorage.getItem('token');
     console.log('pemisah: ', this.pemisah);
   }
 
