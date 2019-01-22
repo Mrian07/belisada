@@ -115,7 +115,7 @@
                             <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                         </select>
 
-                        <img *ngIf="loadingRates" class="loading" src="/assets/img/spinner.gif" alt="">
+                        <img *ngIf="loadingRates[in]" class="loading" src="/assets/img/spinner.gif" alt="">
                     </div>
                     <div class="align-self-stretch">
                         Asuransi:

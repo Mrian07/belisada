@@ -80,7 +80,7 @@
                         Metode Pengiriman: 
                         <select [(ngModel)]="selectedShippingMethod">
                             <option disabled value="">Pilih pengiriman</option>
-                            <option *ngFor="let item of shippingMethod" [ngValue]="item">{{ item.name + ' ' + item.courierService + ' Rp ' + item.courierPrice }}</option>
+                            <option *ngFor="let item of shippingMethod" [ngValue]="item">{{ item.courierCode + ' ' + item.courierService + ' Rp ' + item.courierPrice }}</option>
                         </select>
                     </div>
 

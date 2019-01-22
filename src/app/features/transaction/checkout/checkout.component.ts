@@ -81,7 +81,7 @@ export class CheckoutComponent implements OnInit {
 
   isBtnTransfer: Boolean = false;
   isBtnCart: Boolean = false;
-  loadingRates: Boolean = false;
+  loadingRates: boolean[];
 
   userName: string;
   userEmail: string;
@@ -105,6 +105,7 @@ export class CheckoutComponent implements OnInit {
     this.isTransfer = [];
     this.itemCartIds = [];
     this.shippingRates = [];
+    this.loadingRates = [];
     this.notes = [];
     this.checkShop = [];
     this.isInsurance = [];
@@ -190,6 +191,7 @@ export class CheckoutComponent implements OnInit {
 
       response.cart.forEach((item, i) => {
         this.checkShop[i] = true;
+        this.loadingRates.push(false);
       });
 
       console.log('response', response);
@@ -232,6 +234,7 @@ export class CheckoutComponent implements OnInit {
               x => x.courierCode + '~' + x.courierService === cart.courierCode + '~' + cart.courierService))
                 ? cart.courierCode + '~' + cart.courierService : '';
           this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
+          this.loadingRates[index] = false;
         });
       });
     });
@@ -438,9 +441,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   getShippingRates(queryParam, index, callbackSc) {
-    this.loadingRates = true;
+    this.loadingRates[index] = true;
     this.shoppingCartService.getShippingRates(queryParam).subscribe(response => {
-      this.loadingRates = false;
       this.rates[index] = response;
       // console.log('this.rates: ', this.rates);
       return callbackSc(response);
