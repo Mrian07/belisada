@@ -44,7 +44,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2" *ngFor="let item of flashSaleProducts">
-                    <a class="fs-product__link" [routerLink]="['/']">
+                    <a class="fs-product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
                         <div class="fs-product__grid">
                             <!-- <div class="fs-product__container"> -->
                                 <div>
@@ -93,7 +93,7 @@
 
         <div class="section__content">
             <div class="row no-gutters">
-                <div class="product col-md-3 col-xs-6" *ngFor="let item of homeContents | slice:0:12">
+                <div class="product col-md-5r col-xs-6" *ngFor="let item of homeContents | slice:0:15">
                     <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
                         <div class="product__grid">
                             <div class="product__container">
@@ -137,9 +137,11 @@
 
     <div class="row">
         <div class="col-md-5r" *ngFor="let item of brandHomeList">
-            <div class="brand__wrapper">
-                <img class="brand__image" [src]="item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
-            </div>
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId}">
+                <div class="brand__wrapper">
+                    <img class="brand__image" [src]="item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
+                </div>
+            </a>
         </div>
     </div>
 </div>

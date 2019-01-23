@@ -81,6 +81,7 @@ export class CheckoutComponent implements OnInit {
 
   isBtnTransfer: Boolean = false;
   isBtnCart: Boolean = false;
+  loadingRates: boolean[];
 
   userName: string;
   userEmail: string;
@@ -88,6 +89,7 @@ export class CheckoutComponent implements OnInit {
 
   showDialog;
   createForm: FormGroup;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -103,6 +105,7 @@ export class CheckoutComponent implements OnInit {
     this.isTransfer = [];
     this.itemCartIds = [];
     this.shippingRates = [];
+    this.loadingRates = [];
     this.notes = [];
     this.checkShop = [];
     this.isInsurance = [];
@@ -188,6 +191,7 @@ export class CheckoutComponent implements OnInit {
 
       response.cart.forEach((item, i) => {
         this.checkShop[i] = true;
+        this.loadingRates.push(false);
       });
 
       console.log('response', response);
@@ -230,6 +234,7 @@ export class CheckoutComponent implements OnInit {
               x => x.courierCode + '~' + x.courierService === cart.courierCode + '~' + cart.courierService))
                 ? cart.courierCode + '~' + cart.courierService : '';
           this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
+          this.loadingRates[index] = false;
         });
       });
     });
@@ -436,6 +441,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   getShippingRates(queryParam, index, callbackSc) {
+    this.loadingRates[index] = true;
     this.shoppingCartService.getShippingRates(queryParam).subscribe(response => {
       this.rates[index] = response;
       // console.log('this.rates: ', this.rates);
@@ -664,7 +670,7 @@ export class CheckoutComponent implements OnInit {
               this.ipay88Req.MerchantCode = environment.ipay88.MerchantCode;
               this.ipay88Req.PaymentId = '1';
               this.ipay88Req.RefNo = response.data.paymentNumber;
-              this.ipay88Req.Amount = this.checkoutTrx.grandTotal;
+              this.ipay88Req.Amount = +(this.checkoutTrx.grandTotal + '00');
               this.ipay88Req.Currency = environment.ipay88.Currency;
               this.ipay88Req.ProdDesc = 'Pembelian produk';
               this.ipay88Req.UserName = this.userName;
@@ -673,7 +679,7 @@ export class CheckoutComponent implements OnInit {
               this.ipay88Req.Remark = '';
               this.ipay88Req.Lang = 'UTF-8';
               this.ipay88Req.signature = signature;
-              this.ipay88Req.ResponseURL = 'https://dev.belisada.id/payment/response';
+              this.ipay88Req.ResponseURL = 'https://kadal.belisada.id/payment/response';
               this.ipay88Req.BackendURL = 'https://api0.belisada.id/payment/response';
 
               // this.createForm.patchValue(
@@ -694,7 +700,9 @@ export class CheckoutComponent implements OnInit {
 
               console.log('submit', this.createForm.value);
 
-              this.f.nativeElement.submit();
+              setTimeout(() => {
+                this.f.nativeElement.submit();
+              }, 500);
             });
 
           }

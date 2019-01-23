@@ -57,7 +57,7 @@
                             <select
                         class="u-margin-right-1">
                         <option disabled value="">Pilih Pengiriman</option>
-                        <option *ngFor="let rate of responseFromAPIwithLatLong" [ngValue]='rate'>{{ rate.name }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                        <option *ngFor="let rate of responseFromAPIwithLatLong" [ngValue]='rate'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                     </select>
                     </span>
                     <span class="btn-flag"><fa-icon [icon]="['fas', 'exclamation']"></fa-icon></span>

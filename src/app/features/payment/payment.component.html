@@ -1,6 +1,7 @@
-<!-- <button (click)="onSubmit()">ipay88</button>
+<!-- <button (click)="onSubmit()">ipay88</button> -->
+<h1>Payment</h1>
 
-<form #form action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+<!-- <form #form action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
     <input type="text" name="MerchantCode" placeholder="MerchantCode">
     <input type="text" name="PaymentId" placeholder="PaymentId">
     <input type="text" name="RefNo" placeholder="RefNo">
@@ -18,24 +19,28 @@
     <button type="submit" (click)="form.submit()">Submit</button>
 </form> -->
 
-<h1>Payment</h1>
 
-<!-- <form [formGroup]="createForm" ngNoForm #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
-    <input type="hidden" name="MerchantCode" [value]="v.MerchantCode" placeholder="MerchantCode">
-    <input type="hidden" name="PaymentId" [value]="v.PaymentId" placeholder="PaymentId">
-    <input type="hidden" name="RefNo" [value]="v.RefNo" placeholder="RefNo">
-    <input type="hidden" name="Amount" [value]="v.Amount" placeholder="Amount">
-    <input type="hidden" name="Currency" [value]="v.Currency" placeholder="Currency">
-    <input type="hidden" name="ProdDesc" [value]="v.ProdDesc" placeholder="ProdDesc">
-    <input type="hidden" name="UserName" [value]="v.UserName" placeholder="UserName">
-    <input type="hidden" name="UserEmail" [value]="v.UserEmail" placeholder="UserEmail">
-    <input type="hidden" name="UserContact" [value]="v.UserContact" placeholder="UserContact">
-    <input type="hidden" name="Remark" [value]="v.Remark" placeholder="Remark">
-    <input type="hidden" name="Lang" [value]="v.Lang" placeholder="Lang">
-    <input type="hidden" name="signature" [value]="v.signature" placeholder="signature">
-    <input type="hidden" name="ResponseURL" [value]="v.ResponseURL" placeholder="ResponseURL">
-    <input type="hidden" name="BackendURL" [value]="v.BackendURL" placeholder="BackendURL"> -->
-    <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
-<!-- </form> -->
+<form #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
+    <input type="text" name="MerchantCode" [value]="v.MerchantCode" placeholder="MerchantCode" required>
+    <input type="text" name="PaymentId" [value]="v.PaymentId" placeholder="PaymentId">
+    <input type="text" name="RefNo" [value]="v.RefNo" placeholder="RefNo">
+    <input type="text" name="Amount" [value]="v.Amount" placeholder="Amount">
+    <input type="text" name="Currency" [value]="v.Currency" placeholder="Currency">
+    <input type="text" name="ProdDesc" [value]="v.ProdDesc" placeholder="ProdDesc">
+    <input type="text" name="UserName" [value]="v.UserName" placeholder="UserName">
+    <input type="text" name="UserEmail" [value]="v.UserEmail" placeholder="UserEmail">
+    <input type="text" name="UserContact" [value]="v.UserContact" placeholder="UserContact">
+    <input type="text" name="Remark" [value]="v.Remark" placeholder="Remark">
+    <input type="text" name="Lang" [value]="v.Lang" placeholder="Lang">
+    <input type="text" name="signature" [value]="v.signature" placeholder="signature">
+    <input type="text" name="ResponseURL" [value]="v.ResponseURL" placeholder="ResponseURL">
+    <input type="text" name="BackendURL" [value]="v.BackendURL" placeholder="BackendURL">
+</form>
 
-<!-- <button (click)="onSubmit()" class="btn btn--orange">Submit</button> -->
+<button class="btn btn--purple" (click)="setValue()">Set Value</button>
+
+<pre>
+    {{ v | json }}
+</pre>
+
+<button (click)="onSubmit()" class="btn btn--orange">Submit</button>
