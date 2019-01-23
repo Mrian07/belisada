@@ -89,7 +89,7 @@
                     <div class="detail-product__button-wrapper">
                         <button class="btn btn--flat btn--blue-belisada btn--lg"
                             [disabled]="product?.priceData?.isDetail === false" (click)="addToCart()">Add to cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon></button>
-                        <button class="btn btn--flat btn--orange btn--lg">Chat seller</button>
+                        <button class="btn btn--flat btn--orange btn--lg" (click)="showDialogChat = !showDialogChat" (click)="alertChat(product?.productId)">Chat seller</button>
                     </div>
                 </div>
             </section>
@@ -402,3 +402,213 @@
         </div>
     </div>
 </div>
+
+<app-models [(visible)]="showDialogChat" class="frameDialog">
+<div class="chats">
+    <div class="wrapper">
+        <div class="container">
+            <aside class="users">
+                <header>
+                    <h1>Shopping Cart</h1>
+                    <fa-icon class="list-icon" [icon]="['fas', 'list-ul']"></fa-icon> 
+                </header>
+                <div class="search">
+                    <input type="text" placeholder="Search" />
+                    <fa-icon class="icon" [icon]="['fas', 'plus']"></fa-icon>
+                    <fa-icon class="icon" [icon]="['fas', 'search']"></fa-icon>
+                </div>
+                <ul>
+                    <li class="active">
+                        <div class="avatar top">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                            <div class="online offline"></div>
+                        </div>
+                        <div class="users-list">
+                            <div class="username">
+                                <p>{{ product?.storeInfo?.storeName }}</p>
+                            </div>
+                            <div class="text">
+                                <p>Oke terimakasih ya</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="avatar top">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                            <div class="online"></div>
+                        </div>
+                        <div class="users-list">
+                            <div class="username">
+                                <p>Ini Store</p>
+                            </div>
+                            <div class="text">
+                                <p>Produk tersedia</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="avatar top">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                            <div class="online offline"></div>
+                        </div>
+                        <div class="users-list">
+                            <div class="username">
+                                <p>Toko Apa</p>
+                            </div>
+                            <div class="text">
+                                <p>Maaf warna biru kosong</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="avatar top">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                            <div class="online"></div>
+                        </div>
+                        <div class="users-list">
+                            <div class="username">
+                                <p>Laku Terus</p>
+                            </div>
+                            <div class="text">
+                                <p>Baik akan segera diproses</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
+            <div class="chat-screen">
+                <aside class="messages">
+                    <header class="header">
+                        <h1>{{ product?.storeInfo?.storeName }}<br>
+                            <div class="last-online">Terakhir online {{ product?.storeInfo?.lastOnline }}</div></h1>
+                        <fa-icon class="el-icon" [icon]="['fas', 'ellipsis-h']"></fa-icon>
+                    </header>
+                    <article>
+                        <div class="avatar">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                        </div>
+                        <div class="msg">
+                            <div class="pointer"></div>
+                            <div class="inner-msg">
+                                Produk ini tersedia? <br> 
+                                    <table border="0" width="100%">
+                                        <tr>
+                                            <td width="20%">
+                                                <div class="img-item"><img [src]="thumborProductImgUrl + selectedImage" alt=""></div>
+                                            </td>
+                                            <td width="25%">
+                                                <div class="item-colom"> 
+                                                    <div class ="name">
+                                                        {{ product?.name }}<br>
+                                                        {{ product?.priceData?.range.pricelist | currency:'Rp ':'symbol':'1.0' }}
+                                                    </div><br><br>
+                                                    <div>
+                                                        <button class="btn btn--flat green btn--lg" [disabled]="product?.priceData?.isDetail === false" (click)="addToCart()">
+                                                            Add to cart <fa-icon [icon]="['fas', 'cart-arrow-down']"></fa-icon>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                <div class="timestamp">
+                                    <p>18 Jan 16.01</p>
+                                </div>
+                            </div>
+                            <span class="tick">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" id="msg-dblcheck-ack" x="2063" y="2076">
+                                    <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.32.32 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.034l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.88a.32.32 0 0 1-.484.032L1.892 7.77a.366.366 0 0 0-.516.005l-.423.433a.364.364 0 0 0 .006.514l3.255 3.185a.32.32 0 0 0 .484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="#4fc3f7"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </article>
+                    <article class="right">
+                        <div class="avatar">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                        </div>
+                        <div class="msg">
+                            <div class="pointer"></div>
+                            <div class="inner-msg">
+                                <p>Ya tersedia silahkan diorder</p>
+                                <div class="timestamp">
+                                    <p>18 Jan 20.05</p>
+                                </div>
+                            </div>
+                            <span class="tick">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" id="msg-dblcheck-ack" x="2063" y="2076">
+                                    <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.32.32 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.034l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.88a.32.32 0 0 1-.484.032L1.892 7.77a.366.366 0 0 0-.516.005l-.423.433a.364.364 0 0 0 .006.514l3.255 3.185a.32.32 0 0 0 .484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="#4fc3f7"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </article>
+                    <article>
+                        <div class="avatar">
+                            <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                        </div>
+                        <div class="msg">
+                            <div class="pointer"></div>
+                            <div class="inner-msg">
+                                <p>Oke terimakasih ya</p>
+                                <div class="timestamp">
+                                    <p>18 Jan 23.10</p>
+                                </div>
+                            </div>
+                            <span class="tick">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" id="msg-dblcheck-ack" x="2063" y="2076">
+                                    <path d="M15.01 3.316l-.478-.372a.365.365 0 0 0-.51.063L8.666 9.88a.32.32 0 0 1-.484.032l-.358-.325a.32.32 0 0 0-.484.032l-.378.48a.418.418 0 0 0 .036.54l1.32 1.267a.32.32 0 0 0 .484-.034l6.272-8.048a.366.366 0 0 0-.064-.512zm-4.1 0l-.478-.372a.365.365 0 0 0-.51.063L4.566 9.88a.32.32 0 0 1-.484.032L1.892 7.77a.366.366 0 0 0-.516.005l-.423.433a.364.364 0 0 0 .006.514l3.255 3.185a.32.32 0 0 0 .484-.033l6.272-8.048a.365.365 0 0 0-.063-.51z" fill="#4fc3f7"/>
+                                </svg>
+                            </span>
+                        </div>
+                    </article>
+                </aside>
+                <div class="msg-compose">
+                    <input placeholder="Type something here to say...">
+                    <fa-icon class="icon" [icon]="['fas', 'paperclip']"></fa-icon>
+                    <fa-icon class="icon" [icon]="['fas', 'smile']"></fa-icon>
+                    <fa-icon class="icon plane-icon" [icon]="['fas', 'paper-plane']"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="chats">
+    <div class="model-head">
+        <p>Chat</p>
+    </div>
+    <div class="list">
+        <div class="list__header">
+            <p>Shopping Chat </p>
+            <i class="fa fa-list"></i>
+        </div>
+        <div class="list__search">
+            <input type="text" placeholder="search" />
+            <i class="fa fa-search"></i>
+        </div>
+        <div class="list__body">
+            <ul>
+                <li>
+                    <div class="image">
+                        <img [src]="thumborStoreImgUrl + product?.storeInfo?.storeImageUrl" alt="">
+                    </div>
+                    <div class="store">
+                        {{ product?.storeInfo?.storeName }}
+                    </div>
+                </li>
+                <!-- <li>{{ product?.storeInfo?.storeName }}</li>
+                <li>{{ product?.storeInfo?.storeName }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="chat">
+        <div class="chat__header">
+            <span class="store-name">{{ product?.storeInfo?.storeName }}</span>
+            <span class="dot"></span>
+            <span class="status">&nbsp; online</span>
+            <i class="fa fa-ellipsis-h"></i>
+        </div>
+        <div class="chat__body">
+            
+        </div>
+    </div>
+</div> -->
+</app-models>
