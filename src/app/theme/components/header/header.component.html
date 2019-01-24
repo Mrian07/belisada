@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-9 extras-header__accounts text-right">
                 <div class="extras-header__accounts-wrapper">
-                    <a class="link" href="{{ baseUrlSeller }}/auth/sign-in"
+                    <a class="link" href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}"
                         *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
                         Mulai menjual di belisada
                     </a>
