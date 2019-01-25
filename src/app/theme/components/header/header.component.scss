@@ -206,6 +206,7 @@
 
     .navigation {
         list-style: none;
+        font-family: 'Roboto', sans-serif;
 
         li {
             display: inline-block;
@@ -293,6 +294,7 @@
             a {
                 color: #222222;
                 text-decoration: none;
+                text-transform: uppercase;
             }
         }
 
