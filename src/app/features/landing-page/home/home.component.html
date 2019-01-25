@@ -9,8 +9,9 @@
                 </div>
             </div>
             <div class="col-sm-3">
-                <div class="promo-banner__container--inside" *ngFor="let item of bannersLeft">
-                    <img [src]="item?.imageUrl">
+                <div class="promo-banner__container">
+                    <div *ngFor="let item of bannersLeft" [className]="bannersLeft.length === 1 ? 'promo-banner__image--1' : 'promo-banner__image--2'" [ngStyle]="{'background-image': 'url(' + item?.imageUrl + ')'}"></div>
+                    <!-- <img class="object-fit--cover" [src]="item?.imageUrl"> -->
                 </div>
             </div>
         </div>
