@@ -22,7 +22,7 @@
             </div>
             <div class="col-md-9 extras-header__accounts text-right">
                 <div class="extras-header__accounts-wrapper">
-                    <a class="link" href="{{ baseUrlSeller }}/auth/sign-in"
+                    <a class="link" href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}"
                         *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
                         Mulai menjual di belisada
                     </a>
@@ -106,15 +106,28 @@
                 <ul class="navigation">
                     <bs-category-menu [categories]="subMenuCategory"></bs-category-menu>
 
+<<<<<<< HEAD
                     <li class="navigation__menus">
                         <a [routerLink]="['/']">Samsung</a>
+=======
+                    <!-- <li class="navigation__menus">
+                        <a [routerLink]="['/']">Special Offers</a>
+>>>>>>> ea7dc67c56b153b581d269205b9e9ac35c1c4700
                     </li>
                     <li class="navigation__menus">
                         <a [routerLink]="['/']">Apple</a>
                     </li>
                     <li class="navigation__menus">
+<<<<<<< HEAD
                         <a [routerLink]="['/']">Xiaomi</a>
                     </li>
+=======
+                        <a [routerLink]="['/']">Cameras</a>
+                    </li>
+                    <li class="navigation__menus">
+                        <a [routerLink]="['/']">Cell Phones</a>
+                    </li> -->
+>>>>>>> ea7dc67c56b153b581d269205b9e9ac35c1c4700
 
                     <li class="shopping-cart pull-right" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
                         <fa-icon [icon]="['fas', 'shopping-cart']"></fa-icon>

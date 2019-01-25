@@ -25,6 +25,7 @@ export class SidebarBuyerComponent implements OnInit {
   public location = '';
 
   token: any;
+  // getStore: any;
 
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
@@ -42,7 +43,6 @@ export class SidebarBuyerComponent implements OnInit {
     if (this.userData) { this.isLogin = true; }
 
     this.token = localStorage.getItem('token');
-    console.log('pemisah: ', this.pemisah);
   }
 
   cekFlag() {

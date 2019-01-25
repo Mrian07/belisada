@@ -68,6 +68,7 @@ export class HeaderComponent implements OnInit {
 
   public baseUrlSeller: string = environment.baseUrlSeller;
 
+  token: any;
   constructor(
     public globals: Globals,
     private _shareMessageService: ShareMessageService,
@@ -89,6 +90,8 @@ export class HeaderComponent implements OnInit {
     this._getData();
     this._shoppingCart();
     this._getBennerData();
+
+    this.token = localStorage.getItem('token');
   }
 
   public onSearchFocusOut() {
