@@ -79,4 +79,9 @@ export class SidebarBuyerComponent implements OnInit {
     this.router.navigateByUrl('/buyer/confirmation');
   }
 
+  diskusiReview() {
+    this.btnJual = false;
+    this.router.navigateByUrl('/buyer/diskusi-review');
+  }
+
 }

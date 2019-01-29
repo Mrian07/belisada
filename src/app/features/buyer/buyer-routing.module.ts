@@ -8,6 +8,7 @@ import { BuyerComponent } from '@belisada/features/buyer/buyer.component';
 import { OnlyLoggedInUsersGuard } from '@belisada/core/services';
 import { ConfirmationComponent } from '@belisada/features/buyer/confirmation/confirmation.component';
 import { ComplaintComponent } from '@belisada/features/buyer/complaint/complaint.component';
+import { DiscussionReviewComponent } from './discussion-review/discussion-review.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,13 @@ const routes: Routes = [
         component: ComplaintComponent,
         data: {
           title: 'Bantuan'
+        }
+      },
+      {
+        path: 'diskusi-review',
+        component: DiscussionReviewComponent,
+        data: {
+          title: 'Diskusi & Review'
         }
       },
     ]

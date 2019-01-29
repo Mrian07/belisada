@@ -1,0 +1,16 @@
+<div class="frame-menu">
+  <div [ngClass]="(tabOrder=='diskusi')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('diskusi')">
+      Diskusi Produk
+  </div>
+  <div [ngClass]="(tabOrder=='review')?'btn-tab__active':'btn-tab__noActive'" (click)="tab('review')">
+      Review Produk
+  </div>
+</div>
+
+<div class="frame-menu-contain" *ngIf="tabOrder=='diskusi'">
+  <app-discussion-product></app-discussion-product>
+</div>
+
+<div class="frame-menu-contain" *ngIf="tabOrder=='review'">
+  <app-review-product></app-review-product>
+</div>
