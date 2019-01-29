@@ -11,6 +11,7 @@ export class UserData {
     name: string;
     role: number;
     storeId: number;
+    id: number;
 }
 
 export class SignupData {
@@ -62,7 +63,7 @@ export class ActivationResponse extends BaseResponseModel {
     data: DataActive;
 }
 
-export class DataActive{
+export class DataActive {
     token: string;
     name: string;
 }

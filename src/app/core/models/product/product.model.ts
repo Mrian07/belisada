@@ -229,6 +229,7 @@ export class ProductDetailV2Data {
   fromMaster: boolean;
   masterVarianId: number;
   useVarian: boolean;
+  storeInfo: ProductDetailV2StoreData;
 }
 
 export class Specification {

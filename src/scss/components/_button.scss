@@ -144,7 +144,7 @@
     @include btn-theme($btn-color, $btn-text-color-light);
 }
 .btn--blue {
-    $btn-color: btn-color("blue");
+    $btn-color: btn-color("imlek");
     @include btn-theme($btn-color, $btn-text-color-light);
 }
 .btn--blue-belisada {

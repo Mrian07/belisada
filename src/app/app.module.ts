@@ -62,6 +62,10 @@ import { registerLocaleData } from '@angular/common';
 import localeId from '@angular/common/locales/id';
 import { BsPopoverTriggerComponent } from './features/landing-page/home/bs-popover-trigger.component';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const config: SocketIoConfig = { url: environment.chatUrl + ':' + environment.socketServerPort + '/rooms', options: {} };
+
 registerLocaleData(localeId, 'id');
 
 library.add(fas, far, fab);
@@ -94,6 +98,7 @@ library.add(fas, far, fab);
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    SocketIoModule.forRoot(config),
     StoreModule.forRoot(reducers),
     CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects, ProductsEffects, AddressEffect, ShippingMethodEffects]),
