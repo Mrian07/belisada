@@ -28,6 +28,7 @@ const routes: Routes = [
   { path: 'product', loadChildren: 'app/features/product/product.module#ProductModule' },
   { path: 'transaction', loadChildren: 'app/features/transaction/transaction.module#TransactionModule' },
   { path: 'payments', loadChildren: 'app/features/payment/payment.module#PaymentModule' },
+  { path: 'chat', loadChildren: 'app/features/chat/chat.module#ChatModule' },
   {
     path: '',
     component: LandingPageComponent,
