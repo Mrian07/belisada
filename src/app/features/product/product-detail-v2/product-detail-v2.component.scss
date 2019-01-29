@@ -688,6 +688,7 @@
                     input {
                         flex-grow: 2;
                         margin: 0 1rem;
+                        padding-right: 5rem;
                         resize: none;
                         border: none;
                         height: 5rem;
@@ -788,7 +789,7 @@
                 .msg-compose {
                     background-color: #fff;
                     border-top: 1px solid #8f8f8f;
-                    padding: 1rem;
+                    // padding: 1rem;
                     display: flex;
                     justify-content: space-between;
 
@@ -797,7 +798,7 @@
                         margin: 0 1rem;
                         resize: none;
                         border: none;
-                        padding-top: 5px;
+                        padding-right: 51rem;
                         height: 3rem;
 
                         :focus {
@@ -908,23 +909,32 @@
                 display: inline-block;
                 margin-left: 1rem;
                 position: relative;
-                top: 5rem;
+                top: 4.8rem;
+                height: 16px;
+                width: 16px;
+            }
+
+            .tick-product {
+                display: inline-block;
+                margin-left: 1rem;
+                position: relative;
+                top: 25rem;
                 height: 16px;
                 width: 16px;
             }
 
             .icon {
-                float: right;
-                padding-top: 8px;
-                padding-right: 8px;
-                opacity: 0.9;
+                display: inline-block;
+                top: .75rem;
+                font-size: 2rem;
+                padding-right: 1rem;
                 cursor: pointer;
             }
 
-            .plane-icon {
-                border-left: 1px solid grey;
+            .send {
+                display: inline-block;
                 padding-left: 1rem;
-                cursor: pointer;
+                border-left: 1px solid #8f8f8f;
             }
 
             .online {

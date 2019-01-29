@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrateg
 import { ShareButtons } from '@ngx-share/core';
 import { Subscription, combineLatest } from 'rxjs';
 import { ProductsSandbox } from '../products.sandbox';
-import { UserData } from '@belisada/core/models';
+import { UserData, ProductDetailV2Data } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -20,6 +20,7 @@ import { ProductReviewResponse } from '@belisada/core/models/product/product-rev
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { $ } from 'protractor';
+import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
 
 enum TabTypeEnum {
   SPEC = 'SPEC',
@@ -56,7 +57,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public productDiscussion: Isi;
   public productReview: ProductReviewResponse[];
 
-  public chat: UserData[];
+  public chat: CreateRoomRequest[];
 
   public Arr = Array;
 
@@ -80,6 +81,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    *  #[FormGroup]
    */
   public createNewDiscussionForm: FormGroup;
+  public createChatForm: FormGroup;
   /** ---------- */
 
   public activeVariants = [];
@@ -96,6 +98,11 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public _masterData: number;
 
   public productId: number;
+  public storeId: number;
+  room: any;
+  message: any;
+  userId: any;
+  date: any;
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
@@ -147,6 +154,12 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       productId: ['', [Validators.required]]
     });
     // this._fetchQueryParams();
+
+    this.createChatForm = this._fb.group({
+      message: ['', [Validators.required]],
+      userId: ['', [Validators.required]],
+      date: ['', [Validators.required]]
+    });
   }
 
   ngOnDestroy(): void {
@@ -227,9 +240,19 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingMethod = shippingMethod;
   }
 
-  alertChat(productId) {
-    this.productId = productId;
-    this._chatService.joinRoom(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+  alertChat(product: ProductDetailV2Data, storeName) {
+    console.log('product: ', product);
+    this.productId = product.productId;
+    const data: CreateRoomRequest = new CreateRoomRequest();
+    // data.productId = productId;
+    data.users = [product.storeId];
+    data.is_user = true;
+    data.is_private = true;
+    data.name = storeName;
+    console.log('data:', data);
+    this._chatService.createRoom(data).subscribe(res => {
+      console.log('res:', res);
+    });
   }
 
   // private _loadChat(id: number) {
@@ -293,6 +316,15 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       this._loadDiscuss(this.product.priceData.range.productId);
       this.createNewDiscussionForm.reset();
     });
+  }
+
+  public createChat(room: any) {
+    this.room = room;
+    this.createChatForm.patchValue({
+      userId: this.userId,
+      date: new Date()
+    });
+    this._chatService.sendMessage(this.createChatForm.value, this.room);
   }
 
 

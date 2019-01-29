@@ -64,7 +64,7 @@ import { BsPopoverTriggerComponent } from './features/landing-page/home/bs-popov
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
-const config: SocketIoConfig = { url: 'http://192.168.3.20:3000', options: {} };
+const config: SocketIoConfig = { url: environment.chatUrl + ':' + environment.socketServerPort + '/rooms', options: {} };
 
 registerLocaleData(localeId, 'id');
 
