@@ -56,6 +56,7 @@
     "ng5-slider": "^1.1.5",
     "ngx-countdown-timer": "^0.1.9",
     "rxjs": "^6.1.0",
+    "socket.io-client": "^2.2.0",
     "sweetalert2": "^7.19.3",
     "ts-loader": "^4.3.0",
     "zone.js": "^0.8.19"
@@ -68,6 +69,7 @@
     "@types/jasmine": "^2.8.7",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^6.0.109",
+    "@types/socket.io-client": "^1.4.32",
     "codelyzer": "^4.3.0",
     "concurrently": "^3.5.1",
     "jasmine-core": "~2.8.0",

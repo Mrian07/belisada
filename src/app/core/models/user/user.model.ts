@@ -11,6 +11,7 @@ export class UserData {
     name: string;
     role: number;
     storeId: number;
+    userId: string;
 }
 
 export class SignupData {
