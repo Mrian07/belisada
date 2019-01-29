@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrateg
 import { ShareButtons } from '@ngx-share/core';
 import { Subscription, combineLatest } from 'rxjs';
 import { ProductsSandbox } from '../products.sandbox';
-import { UserData } from '@belisada/core/models';
+import { UserData, ProductDetailV2Data } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
+import { ChatService } from '@belisada/core/services/chat/chat.service';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import swal from 'sweetalert2';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
@@ -19,6 +20,7 @@ import { ProductReviewResponse } from '@belisada/core/models/product/product-rev
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { $ } from 'protractor';
+import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
 
 enum TabTypeEnum {
   SPEC = 'SPEC',
@@ -55,6 +57,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public productDiscussion: Isi;
   public productReview: ProductReviewResponse[];
 
+  public chat: CreateRoomRequest[];
+
   public Arr = Array;
 
   public flag: string;
@@ -77,6 +81,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    *  #[FormGroup]
    */
   public createNewDiscussionForm: FormGroup;
+  public createChatForm: FormGroup;
   /** ---------- */
 
   public activeVariants = [];
@@ -91,6 +96,13 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   public thumborStoreImgUrl: string;
   public thumborProductImgUrl: string;
   public _masterData: number;
+
+  public productId: number;
+  public storeId: number;
+  room: any;
+  message: any;
+  userId: any;
+  date: any;
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
@@ -110,7 +122,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     private _shoppingCartService: ShoppingCartService,
     private _productService: ProductService,
     private _addressService: AddressService,
-    private _homeService: HomeSService
+    private _homeService: HomeSService,
+    private _chatService: ChatService
   ) {
     this.isLogin = false;
     this.isSubHeaderShow = false;
@@ -141,6 +154,12 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       productId: ['', [Validators.required]]
     });
     // this._fetchQueryParams();
+
+    this.createChatForm = this._fb.group({
+      message: ['', [Validators.required]],
+      userId: ['', [Validators.required]],
+      date: ['', [Validators.required]]
+    });
   }
 
   ngOnDestroy(): void {
@@ -221,6 +240,36 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingMethod = shippingMethod;
   }
 
+  alertChat(product: ProductDetailV2Data, storeName) {
+    console.log('product: ', product);
+    this.productId = product.productId;
+    const data: CreateRoomRequest = new CreateRoomRequest();
+    // data.productId = productId;
+    data.users = [product.storeId];
+    data.is_user = true;
+    data.is_private = true;
+    data.name = storeName;
+    console.log('data:', data);
+    this._chatService.createRoom(data).subscribe(res => {
+      console.log('res:', res);
+    });
+  }
+
+  // private _loadChat(id: number) {
+  //   this._productService.getDiscus(id).subscribe(discuss => {
+  //     this.productDiscussion = discuss;
+
+  //     this.productDiscussion.content.forEach((item, index) => {
+  //       this.sliceValue[index] = -2;
+  //     });
+  //   });
+  // }
+
+  // listStore() {
+  //   this._chatService.listFriends().subscribe(list => {
+  //     this.chatSeller = list;
+  //   });
+  // }
   /**
    * Add to cart
    */
@@ -267,6 +316,15 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       this._loadDiscuss(this.product.priceData.range.productId);
       this.createNewDiscussionForm.reset();
     });
+  }
+
+  public createChat(room: any) {
+    this.room = room;
+    this.createChatForm.patchValue({
+      userId: this.userId,
+      date: new Date()
+    });
+    this._chatService.sendMessage(this.createChatForm.value, this.room);
   }
 
 

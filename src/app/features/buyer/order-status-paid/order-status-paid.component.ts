@@ -201,8 +201,13 @@ export class OrderStatusPaidComponent implements OnInit {
     this.router.navigateByUrl('/buyer/bantuan?id=' + e);
   }
 
-  backToOrder() {
+  backToOrderDetail() {
     this.showDialogDetail = false;
+
+  }
+
+  backToOrderReview() {
+    this.showDialogReview = false;
 
   }
 

@@ -1,7 +1,7 @@
 <div class="top-header">
     <div class="top-header__banner" [ngStyle]="{'background-color': '#ab2d2f'}">
         <div class="top-header__banner--wrapper container">
-            <!-- <img [src]="bannerTop?.imageUrl" alt=""> -->
+            <img [src]="bannerTop?.imageUrl" alt="">
         </div>
     </div>
 </div>
@@ -138,7 +138,7 @@
                                         </div>
                                         <div class="cart__content--right-side">
                                             <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
-                                            <span class="product--price">Rp {{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | number }}</span><span class="product--qty">Qty {{ item.quantity }}</span>
+                                            <span class="product--price">Rp {{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | number }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
                                             <div class="clearfix"></div>
                                         </div>
                                     </li>
