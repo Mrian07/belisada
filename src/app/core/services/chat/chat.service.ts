@@ -1,68 +1,44 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import { map, catchError } from 'rxjs/operators';
+import * as io from 'socket.io-client';
+
+import Socket = SocketIOClient.Socket;
+import { LocalStorageEnum } from '@belisada/core/enum';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { UserData } from '@belisada/core/models/user/user.model';
-import { HttpClient, HttpResponse} from '@angular/common/http';
-import { environment } from '@env/environment';
-import { CreateRoomRequest, Message } from '@belisada/core/models/chat/chat.model';
+import { ChatRoom } from '@belisada/core/models/chat/chat-room.model';
+import { ChatMessage } from '@belisada/core/models/chat/chat-message.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
-  private storeId: string;
 
-    constructor(private socket: Socket, private http: HttpClient) {
+  private socket: Socket;
 
-      // super();
-      // this.socket = socket;
-      // this.http = http;
-      // this.userId = userId;
+  constructor(private http: HttpClient) {}
 
-      // this.InitializeSocketListerners();
-    }
+  connectSocket(): Socket {
+    this.socket = io('http://localhost:1090/rooms', {query: { token: localStorage.getItem(LocalStorageEnum.TOKEN_KEY) }});
+    return this.socket;
+  }
 
-    // sendMessage(msg: string) {
-    //     this.socket.emit('message', msg);
-    // }
-
-    // getMessage() {
-    //     return this.socket
-    //         .fromEvent<any>('message')
-    //         .pipe(
-    //           map( data => data.msg )
-    //         );
-    // }
-
-    // listFriends(): Observable<UserData[]> {
-    //   // List connected users to show in the friends list
-    //   // Sending the userId from the request body as this is just a demo
-    //   return this.http
-    //       .post('http://192.168.3.20:3000/listFriends', { storeId: this.storeId })
-    //       .pipe(
-    //           map(response => response as UserData[]),
-    //           catchError((error: any) => Observable.throw(error.json().error || 'Server error'))
-    //       );
-    // }
-
-    createRoom(data: CreateRoomRequest) {
-      return this.http.post(environment.chatUrl + ':' + environment.chatServerPort + '/api/rooms', data)
+  getMyChatRooms(id): Observable<ChatRoom[]>  {
+    return this.http.get('http://localhost:3000/api/rooms', {params: {userId: id}})
       .pipe(
-        map(rsl => rsl as CreateRoomRequest)
+        map(response => response as ChatRoom[])
       );
-    }
+  }
 
-    sendMessage(message: Message, room) {
-      const data = {
-        message: message,
-        room: room
-      };
-      this.socket.emit('message', data);
-    }
+  joinRoom(data) {
+    this.socket.emit('join', data);
+  }
 
-
-    // getAllRoom() {
-
-    // }
+  sendMessage(message: ChatMessage, room: string) {
+    const data = {
+      message: message,
+      room: room
+    };
+    this.socket.emit('message', data);
+  }
 }

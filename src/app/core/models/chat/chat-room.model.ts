@@ -1,5 +1,5 @@
 import { ChatMessage } from './chat-message.model';
-import { RoomTypeEnum } from '../enum/room-type.enum';
+import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 
 export class ChatRoom {
   unique_identifier: string;

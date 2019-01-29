@@ -250,9 +250,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     data.is_private = true;
     data.name = storeName;
     console.log('data:', data);
-    this._chatService.createRoom(data).subscribe(res => {
-      console.log('res:', res);
-    });
+    // this._chatService.createRoom(data).subscribe(res => {
+    //   console.log('res:', res);
+    // });
   }
 
   // private _loadChat(id: number) {
