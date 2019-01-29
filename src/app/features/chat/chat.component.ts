@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import Socket = SocketIOClient.Socket;
-import { ChatService } from './services/chat.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from '@belisada/core/services';
-import { ChatMessage } from './models/chat-message.model';
 import { UserData } from '@belisada/core/models';
-import { Observable, of } from 'rxjs';
-import { ChatRoom } from './models/chat-room.model';
+import { ChatRoom } from '@belisada/core/models/chat/chat-room.model';
+import { ChatService } from '@belisada/core/services/chat/chat.service';
+import { ChatMessage } from '@belisada/core/models/chat/chat-message.model';
+
+import Socket = SocketIOClient.Socket;
 
 @Component({
   selector: 'app-chat',
