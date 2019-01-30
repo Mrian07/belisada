@@ -25,6 +25,9 @@ import { ComplaintProductComponent } from './complaint-product/complaint-product
 import { ComplaintHistoryComponent } from './complaint-history/complaint-history.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { RatingRequiredValidator } from './star-rating/rating-required.validator.directive';
+import { DiscussionReviewComponent } from './discussion-review/discussion-review.component';
+import { DiscussionProductComponent } from './discussion-product/discussion-product.component';
+import { ReviewProductComponent } from './review-product/review-product.component';
 
 library.add(fas, far, fab);
 
@@ -57,6 +60,9 @@ library.add(fas, far, fab);
     RatingRequiredValidator,
     ComplaintProductComponent,
     ComplaintHistoryComponent,
+    DiscussionReviewComponent,
+    DiscussionProductComponent,
+    ReviewProductComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

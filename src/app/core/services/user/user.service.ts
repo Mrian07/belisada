@@ -108,9 +108,9 @@ export class UserService {
     to get user data from localstorage
   */
 
-  getUserData(token) {
+  getUserData(token?) {
     let userData: UserData = new UserData();
-    userData = this.jwtUtil.parseJwt(token).UserData;
+    userData = this.jwtUtil.parseJwt(localStorage.getItem(LocalStorageEnum.TOKEN_KEY)).UserData;
     return userData;
   }
 

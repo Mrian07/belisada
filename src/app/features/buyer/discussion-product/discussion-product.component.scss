@@ -1,0 +1,89 @@
+.contain{
+    border: 1px solid #dddddd;
+    padding: 20px;
+    margin-bottom:2rem;
+
+    &__sub{
+        border: 2px solid #dddddd;
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 30% 70%;
+    }
+
+    &__image{
+        border: 1px solid #dddddd;
+        text-align: center;
+    }
+
+    &__btn-detail{
+        background: #fc9b02; 
+        color: #ffffff;
+        cursor: pointer;
+        text-align: center;
+        margin-top:20px;
+    }
+
+    &__btn-detail:hover{
+        background: #faa51b; 
+
+    }
+
+    &__val{
+        margin-left:10px;
+
+        &__com{
+            border: 1px solid #dddddd;
+            padding:8px;
+
+            display: grid;
+            grid-template-columns: 15% 85%;
+        }
+
+        &__rep{
+            border: 1px solid #dddddd;
+            background: #f2f2f2;
+            padding:8px;
+            display: grid;
+            grid-template-columns: 15% 85%;
+            padding-left:5rem;
+        }
+
+        &__form{
+            border: 1px solid #dddddd;
+            padding:8px;
+            display: grid;
+            grid-template-columns: 15% 85%;
+            background: #f2f2f2;
+
+            &__right{
+                text-align: right;
+            }
+        }
+    }
+
+    &__name{
+        font-weight: bold;
+    }
+
+    &__com{
+        font-size:13px;
+    }
+}
+
+.field-form{
+    height: 50px;
+    width: 100%; 
+    padding:3px;
+    margin-bottom: 0;
+    border: 1px solid #e0e0e0;
+    box-shadow: none;
+    box-sizing: border-box;
+    display: block;
+    transition: height .2s ease-in-out,border .2s linear;
+}
+
+.btn-kirim{
+    margin-top:1rem;
+    background: #faa51b;
+    color: #ffffff;
+}

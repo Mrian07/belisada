@@ -1,0 +1,25 @@
+$sidebar--width: 40rem;
+$header--height: 6rem;
+
+.header {
+    display: grid;
+    grid-template-columns: $sidebar--width auto;
+
+    &__side {
+        color: #ffffff;
+        height: $header--height;
+        padding: 1.4rem;
+        background-color: #fdaf2a;
+    }
+
+    &__main {
+        color: #ffffff;
+        height: $header--height;
+        padding: 1.4rem;
+        background-color: #5294de;
+    }
+
+    &__title {
+        font-size: 2rem;
+    }
+}
