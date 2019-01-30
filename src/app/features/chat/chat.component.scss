@@ -1,6 +1,11 @@
 $sidebar--width: 40rem;
 $header--height: 6rem;
 
+.chatting {
+    display: grid;
+    grid-template-columns: 100% $sidebar--width auto;
+}
+
 .header {
     display: grid;
     grid-template-columns: $sidebar--width auto;
@@ -21,5 +26,20 @@ $header--height: 6rem;
 
     &__title {
         font-size: 2rem;
+    }
+}
+
+.circle {
+    padding: .4rem;
+    border-radius: 50%;
+    display: inline-block;
+    border: 3px solid #2d2d52;
+
+    &--online {
+        background-color: #24e028;
+    }
+
+    &--offline {
+        background-color: #787ab1;
     }
 }
