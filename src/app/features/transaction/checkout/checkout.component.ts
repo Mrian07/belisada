@@ -571,6 +571,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   cTransfer(item, i, statusPay) {
+    console.log('sssss');
+    this.isTransferBank = false;
+
     const dataItem = item;
     dataItem.forEach((data, n) => {
       this.isTransfer[n] = false;
