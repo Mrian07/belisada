@@ -99,6 +99,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   public productId: number;
   public storeId: number;
+
+  public showDialogChat: Boolean = false;
+
   room: any;
   message: any;
   userId: any;
