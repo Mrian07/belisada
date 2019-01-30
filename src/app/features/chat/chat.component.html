@@ -29,8 +29,20 @@
         </div>
         <div class="header__main">
             <span class="header__title">Toko Gaban</span>
-            <span><span class="circle-status--online"></span> online</span>
+            <span>
+                <span class="circle circle--online"></span>    
+                online
+            </span>
         </div>
     </header>
-    <aside></aside>
+    <aside class="sidebar">
+        <div class="search">
+            <input type="text" placeholder="Search" />
+            <fa-icon class="icon" [icon]="['fas', 'search']"></fa-icon>
+            <fa-icon class="icon" [icon]="['fas', 'plus']"></fa-icon>
+        </div>
+    </aside>
+    <main class="content">
+
+    </main>
 </div>
