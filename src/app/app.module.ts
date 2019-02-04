@@ -20,7 +20,7 @@ import { Configuration } from '@belisada/core/config';
 import { SharedModule } from '@belisada/shared/shared.module';
 
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
-import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy } from '@angular/common';
+import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy, CurrencyPipe } from '@angular/common';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
@@ -114,6 +114,9 @@ library.add(fas, far, fab);
       useClass: HttpTokenInterceptor,
       multi: true
     },
+
+    CurrencyPipe
+    
       // Configuration,
       // UserService,
       // SubscribeService,
