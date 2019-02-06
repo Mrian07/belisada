@@ -139,7 +139,7 @@
                 Metode Pembayaran
             </div>
             <div class="cPay__val" *ngFor="let item of listPayment; let i = index">
-                <button *ngIf="item.paymentMethodCode !== 'KK'" [ngClass]="[isTransfer[i] == false ? 'cPay__btn' : 'cPay__btn-active']" (click)="cTransfer(listPayment,i,item.paymentMethodCode)">{{ item.paymentMethodName }}</button>
+                <button [ngClass]="[isTransfer[i] == false ? 'cPay__btn' : 'cPay__btn-active']" (click)="cTransfer(listPayment,i,item.paymentMethodCode)">{{ item.paymentMethodName }}</button>
             </div>
         </div>
 
