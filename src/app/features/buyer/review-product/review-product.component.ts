@@ -10,11 +10,16 @@ import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/ro
 })
 export class ReviewProductComponent implements OnInit {
 
-  reviewBuyer = new ReviewBuyer();
+  reviewBuyer: ReviewBuyer  = new ReviewBuyer();
+
+  currentPage: number;
+  lastPage: number;
+  pages: any = [];
 
   constructor(
     private reviewService: ReviewService,
     private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -23,19 +28,41 @@ export class ReviewProductComponent implements OnInit {
   }
 
   loadData() {
-    const queryParams = {
-      itemperpage: 10,
-      page: 1
-    };
 
-    this.reviewService.getReviewBuyer(queryParams).subscribe(response => {
-      console.log('data', response);
-      this.reviewBuyer = response;
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
+
+      const queryParams = {
+        itemperpage: 10,
+        page: this.currentPage,
+        status: 'review'
+      };
+
+      this.reviewService.getReviewBuyer(queryParams).subscribe(response => {
+
+        console.log('apa', response);
+        this.reviewBuyer = response;
+          this.lastPage = this.reviewBuyer.totalPages;
+          for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+            if (r > 0 && r <= this.reviewBuyer.totalPages) {
+              this.pages.push(r);
+            }
+          }
+      });
+
     });
   }
 
   detail(id, name) {
     this.router.navigate(['/product/product-detail/' + id + '/' + name]);
+  }
+
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
+    if (page < 1 || page > this.reviewBuyer.totalPages) { return false; }
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate(['/buyer/diskusi-review', { queryParams: {page: page, status: 'review' }, queryParamsHandling: 'merge' }]) ;
+    window.scrollTo(0, 0);
   }
 
 }

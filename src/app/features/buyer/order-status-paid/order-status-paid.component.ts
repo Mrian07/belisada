@@ -123,7 +123,7 @@ export class OrderStatusPaidComponent implements OnInit {
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
       this.proddetail = respon;
       this.list = respon.content;
-      console.log('helo', this.proddetail.content);
+      console.log('helo', respon);
       console.log('as', this.proddetail);
       this.proddetail = respon;
       this.a = respon.totalElements;
