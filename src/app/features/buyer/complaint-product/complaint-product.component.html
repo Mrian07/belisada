@@ -3,7 +3,7 @@
       <span class="sub-b">Produk</span>
 </div>
 <div *ngIf="showForm==true">
-  <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+  <form class="ui form" [formGroup]="createComForm" #f="ngForm" (ngSubmit)="onSubmit()" novalidate>
   <input type="hidden" formControlName="orderNumber">
 
 
@@ -18,16 +18,16 @@
     <div class="qText">Apakah barang yang anda pesan sudah di terima?</div>
     <div class="qFrom"> 
       <div><input type="radio" formControlName="orderRecieved" value="true" /> Ya</div> 
-      <div><input type="radio" formControlName="orderRecieved" value="false" /> Tidak</div>
+      <div><input type="radio" formControlName="orderRecieved" value="false"/> Tidak</div>
     </div>
     
   </div>
-  <div class="q-contain">
+  <div class="q-contain" *ngIf="createComForm.controls.orderRecieved.value == 'true'">
     <div class="qText">Masalah apa yang anda terima ?</div>
     <div *ngFor="let list of listIssu"><input type="radio" formControlName="orderComplainIssue" value="{{list.statusCode}}" /> {{list.status}}</div>
   </div>
 
-  <div class="q-contain">
+  <div class="q-contain" *ngIf="createComForm.controls.orderRecieved.value == 'true'">
     <div class="qText">Solusi yang anda inginkan</div>
     <div class="qFrom2">
       <div>
@@ -40,7 +40,7 @@
     </div>  
   </div>
   <div class="btn-cont">
-      <button type="button" class="btn-back" (click)="backToOrder()">Kembali Ke Order</button> <button type="submit" class="btn-submit">Submit Komplain</button>
+      <button type="button" class="btn-back" (click)="backToOrder()">Kembali Ke Order</button> <button type="submit" class="btn-submit" *ngIf="createComForm.controls.orderRecieved.value == 'true'">Submit Komplain</button>
   </div>
 
   </form>
