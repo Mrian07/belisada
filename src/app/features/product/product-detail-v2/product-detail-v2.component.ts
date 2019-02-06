@@ -19,7 +19,6 @@ import { Home, ProductDetailV2Spec, Isi, HomeContent } from '@belisada/core/mode
 import { ProductReviewResponse } from '@belisada/core/models/product/product-review';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
-import { $ } from 'protractor';
 import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
 
 enum TabTypeEnum {
