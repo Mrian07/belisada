@@ -24,7 +24,6 @@ export class ReviewProductComponent implements OnInit {
 
   ngOnInit() {
     this.loadData();
-    console.log('gaban ini');
   }
 
   loadData() {
@@ -39,8 +38,6 @@ export class ReviewProductComponent implements OnInit {
       };
 
       this.reviewService.getReviewBuyer(queryParams).subscribe(response => {
-
-        console.log('apa', response);
         this.reviewBuyer = response;
           this.lastPage = this.reviewBuyer.totalPages;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
