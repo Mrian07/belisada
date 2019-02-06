@@ -46,8 +46,8 @@
                             </div>
                         </td>
                         <td width="25%">
-                            <span *ngIf="itemListProduct.specialPrice > 0" class="item-price">Rp&nbsp;{{itemListProduct.specialPrice | number}}</span>
-                            <span *ngIf="itemListProduct.specialPrice <= 0" class="item-price">Rp&nbsp;{{itemListProduct.priceList | number}}</span>
+                            <span *ngIf="itemListProduct.specialPrice > 0" class="item-price">{{itemListProduct.specialPrice | currency:'Rp ':'symbol':'1.0'}}</span>
+                            <span *ngIf="itemListProduct.specialPrice <= 0" class="item-price">{{itemListProduct.priceList | currency:'Rp ':'symbol':'1.0'}}</span>
                         </td>
                         <td width="30%" class="right">
                             <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
@@ -259,8 +259,8 @@
                             </div>
                         </td>
                         <td class="center" width="35%">
-                            <span *ngIf="cartItem.specialPrice > 0" class="item-price">Rp&nbsp;{{cartItem.specialPrice | number}}</span>
-                            <span *ngIf="cartItem.specialPrice <= 0" class="item-price">Rp&nbsp;{{cartItem.priceList | number}}</span>
+                            <span *ngIf="cartItem.specialPrice > 0" class="item-price">{{cartItem.specialPrice | currency:'Rp ':'symbol':'1.0'}}</span>
+                            <span *ngIf="cartItem.specialPrice <= 0" class="item-price">{{cartItem.priceList | currency:'Rp ':'symbol':'1.0'}}</span>
                         </td>
                     </tr>
                 </table>
@@ -272,7 +272,7 @@
                 Subtotal produk: &nbsp;
             </td>
             <td >
-                Rp&nbsp;{{ (transactionDetail.subTotal - transactionDetail.courierPrice - transactionDetail.asuransi)  | number}}
+                {{ (transactionDetail.subTotal - transactionDetail.courierPrice - transactionDetail.asuransi)  | currency:'Rp ':'symbol':'1.0'}}
             </td>
             </tr>
             <tr>
@@ -280,7 +280,7 @@
                     Asuransi: &nbsp; <b><span *ngIf="transactionDetail.useAsuransi === false">TIDAK</span> <span *ngIf="transactionDetail.useAsuransi === true">IYA</span></b>
                 </td>
                 <td>
-                    <span *ngIf="transactionDetail.useAsuransi === false">Rp&nbsp;0</span> <span *ngIf="transactionDetail.useAsuransi === true">Rp&nbsp;{{ transactionDetail.asuransi | number }}</span>
+                    <span *ngIf="transactionDetail.useAsuransi === false">0</span> <span *ngIf="transactionDetail.useAsuransi === true">{{ transactionDetail.asuransi | currency:'Rp ':'symbol':'1.0' }}</span>
                 </td>
             </tr>
             <tr>
@@ -288,7 +288,7 @@
                     Biaya Pengiriman: &nbsp; <b>{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }}</b>
                 </td>
                 <td>
-                    Rp&nbsp;{{ transactionDetail.courierPrice | number }}
+                    {{ transactionDetail.courierPrice | currency:'Rp ':'symbol':'1.0' }}
                 </td>
             </tr>
             <tr class="bold">
@@ -296,7 +296,7 @@
                     Total Pesanan &nbsp; 
                 </td>
                 <td class="total">
-                    <b>Rp&nbsp;{{ transactionDetail.subTotal | number}}</b>
+                    <b>{{ transactionDetail.subTotal | currency:'Rp ':'symbol':'1.0'}}</b>
                 </td>
             </tr>
         </table>
