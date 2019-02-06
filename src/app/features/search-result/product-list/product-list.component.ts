@@ -8,6 +8,7 @@ import { environment } from '@env/environment';
 import { HttpClient } from '@angular/common/http';
 
 import { Options, LabelType } from 'ng5-slider';
+import { CurrencyPipe } from '@angular/common';
 
 
 @Component({
@@ -41,13 +42,13 @@ export class ProductListComponent implements OnInit {
     translate: (valueRate: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
-          return '' + valueRate;
+          return '<font size=2>' + valueRate + '</font>';
         case LabelType.High:
-          return '' + valueRate;
+          return '<font size=2>' + valueRate + '</font>';
         default:
         // <i class="fas fa-star"></i>
           // return '<fa-icon [icon]="[fa, start]"></fa-icon>' + valueRate;
-          return '' + valueRate;
+          return '<font size=2>' + valueRate + '</font>';
       }
     }
 
@@ -108,18 +109,23 @@ export class ProductListComponent implements OnInit {
 
   starDefault: number;
   starYellow: number;
-
+  value: any;
   constructor(private activatedRoute: ActivatedRoute,
     private filterService: FilterSService,
     private router: Router,
     private searchService: SearchService,
     private http: HttpClient,
+    private cp: CurrencyPipe,
   ) {
     this.produkIMG = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
     this.displayMode = 1;
   }
 
   ngOnInit() {
+
+    this.value = 12345;
+    this.value = this.cp.transform(this.value, 'Rp', true, '1.0-0');
+    console.log('ininya adalah', this.value);
     // const queryParams = {
     //   postal: '52181',
     // };
@@ -165,8 +171,6 @@ export class ProductListComponent implements OnInit {
 
     this.searchService.getSearchFilter(queryParams).subscribe(response => {
 
-      console.log('ini', response);
-
       const listF = response.find(x => x.filter === 'courierTypes');
       this.listFilter = listF.data;
 
@@ -183,14 +187,15 @@ export class ProductListComponent implements OnInit {
         floor: 0,
         ceil: response[5].data[0].max,
 
+
         translate: (value: number, label: LabelType): string => {
           switch (label) {
             case LabelType.Low:
-              return '<b>Min:</b> Rp ' + value;
+              return '<font size=2><b>Min:</b>' + this.cp.transform(value, 'Rp ', true, '1.0-0') + '</font>';
             case LabelType.High:
-              return '<b>Max:</b> Rp ' + value;
+              return '<font size=2><b>Max:</b>' + this.cp.transform(value, 'Rp ', true, '1.0-0') + '</font>';
             default:
-              return 'Rp ' + value;
+              return '<font size=2>Rp ' + value + '</font>';
           }
         }
       };

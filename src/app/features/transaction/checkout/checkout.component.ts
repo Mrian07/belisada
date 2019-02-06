@@ -571,6 +571,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   cTransfer(item, i, statusPay) {
+    console.log('sssss');
+    this.isTransferBank = false;
+
     const dataItem = item;
     dataItem.forEach((data, n) => {
       this.isTransfer[n] = false;
@@ -616,7 +619,7 @@ export class CheckoutComponent implements OnInit {
 
     const vTransfer = 'BT';
     const vCart = 'KK';
-
+    this.PMCode = null;
     if (this.isTransferBank === true) {
       this.PMCode = vTransfer;
     }
@@ -625,7 +628,10 @@ export class CheckoutComponent implements OnInit {
       this.PMCode = vCart;
     }
 
-    if (this.channelId === 0 && this.isTransferBank === true || this.channelId === undefined && this.isTransferBank === true) {
+    if (this.PMCode === '') {
+        swal('belisada.co.id', 'Anda belum memilih metode pembayaran1', 'warning');
+        return;
+    } else if (this.channelId === 0 && this.isTransferBank === true || this.channelId === undefined && this.isTransferBank === true) {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (checkoutCartIds.length) {

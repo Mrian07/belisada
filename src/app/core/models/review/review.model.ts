@@ -26,3 +26,25 @@ export class ListReviewReq {
     title: string;
 }
 
+export class ReviewBuyer {
+    content: ReviewBuyerContent[];
+    last: true;
+    totalPages: number;
+    totalElements: number;
+    first: true;
+    numberOfElements: number;
+    size: number;
+    number: number;
+}
+
+export class ReviewBuyerContent {
+    message: string;
+    star: number;
+    userId: number;
+    name: string;
+    productId: number;
+    since: string;
+    imageAvatarUrl: any;
+    productName: string;
+    productImage: any;
+}
