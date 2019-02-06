@@ -141,9 +141,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this._registerEvents();
     this.btnJual = false;
     this.userData = this._userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
-    this.pemisah = this.userData.role;
-    if (this.userData) { this.isLogin = true; }
-    this.pemisah = this.userData.role;
+    // this.pemisah = this.userData.role;
+    // if (this.userData) { this.isLogin = true; }
+    // this.pemisah = this.userData.role;
 
     // TODO create base sandbox to subscribe credentials
     const token = this._authService.getToken();
