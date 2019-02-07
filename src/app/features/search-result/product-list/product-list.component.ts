@@ -137,11 +137,12 @@ export class ProductListComponent implements OnInit {
 
     // this.trackMe();
 
-    this.filterSearch(this.activatedRoute.snapshot.queryParams);
+    // this.filterSearch(this.activatedRoute.snapshot.queryParams);
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
 
       this.activeQueryParams = Object.assign({}, params);
+      this.filterSearch(params);
       this.loadData(params);
     });
   }
@@ -181,7 +182,7 @@ export class ProductListComponent implements OnInit {
       this.maxValue = (maxV.data[0]) ? maxV.data[0].max : 0;
 
       const minV = response.find(x => x.filter === 'Price');
-      this.minValue = (maxV.data[0]) ? maxV.data[0].min : 0;
+      this.minValue = (minV.data[0]) ? minV.data[0].min : 0;
 
       this.options = {
         floor: 0,
