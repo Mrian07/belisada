@@ -1,3 +1,50 @@
-<p>
-  review-product works!
-</p>
+<div class="contain">
+
+  <div class="contain__sub" *ngFor="let item of reviewBuyer.content">
+    <div>
+      <div class="contain__image">
+        <img src="{{item.productImage}}" width="150">
+      </div>
+
+      <div class="contain__btn-detail" (click)="detail(item.productId, item.productName)">
+        Lihat Detail
+      </div>
+    </div>
+    <div class="contain__val">
+      <div class="contain__val__com"> 
+        <div class="img-av">
+          <img src="{{item.imageAvatarUrl}}" width="80">
+        </div>
+        <div>
+          <div class="contain__name">{{item.name}}</div>
+          <div class="contain__com">{{item.message}}</div>
+        </div>  
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-review" *ngIf="reviewBuyer.totalElements==0">
+    Maaf tidak ada review yang tersedia.
+  </div>
+
+  <div class="paging" *ngIf="reviewBuyer.totalElements!=0">
+    <ul>
+        <li>
+            <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+        </li>
+        <li>
+            <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+        </li>
+        <li *ngFor="let p of pages">
+            <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+        </li>
+        <li>
+            <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+        </li>
+        <li>
+            <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+        </li>
+    </ul>
+</div>
+  
+</div>

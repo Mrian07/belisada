@@ -15,4 +15,7 @@ export class DiscussionProductComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSent() {
+  }
+
 }

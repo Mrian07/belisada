@@ -119,7 +119,7 @@ export class ComplaintProductComponent implements OnInit {
   }
 
   setUrl(event, img) {
-    // consol
+    // console
     const fr = new FileReader();
     const f = event.target.files[0];
     const that = this;

@@ -137,11 +137,12 @@ export class ProductListComponent implements OnInit {
 
     // this.trackMe();
 
-    this.filterSearch(this.activatedRoute.snapshot.queryParams);
+    // this.filterSearch(this.activatedRoute.snapshot.queryParams);
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
 
       this.activeQueryParams = Object.assign({}, params);
+      this.filterSearch(params);
       this.loadData(params);
     });
   }
@@ -178,22 +179,22 @@ export class ProductListComponent implements OnInit {
       this.listLocation = listL.data;
 
       const maxV = response.find(x => x.filter === 'Price');
-      this.maxValue = maxV.data[0].max;
+      this.maxValue = (maxV.data[0]) ? maxV.data[0].max : 0;
 
       const minV = response.find(x => x.filter === 'Price');
-      this.minValue = minV.data[0].min;
+      this.minValue = (minV.data[0]) ? minV.data[0].min : 0;
 
       this.options = {
         floor: 0,
-        ceil: response[5].data[0].max,
+        ceil: (response[5].data[0]) ? response[5].data[0].max : 0,
 
 
         translate: (value: number, label: LabelType): string => {
           switch (label) {
             case LabelType.Low:
-              return '<font size=2><b>Min:</b>' + this.cp.transform(value, 'Rp ', true, '1.0-0') + '</font>';
+              return '<font size=2><b>Min:</b>' + this.cp.transform(value, 'Rp ', 'symbol', '1.0') + '</font>';
             case LabelType.High:
-              return '<font size=2><b>Max:</b>' + this.cp.transform(value, 'Rp ', true, '1.0-0') + '</font>';
+              return '<font size=2><b>Max:</b>' + this.cp.transform(value, 'Rp ', 'symbol', '1.0') + '</font>';
             default:
               return '<font size=2>Rp ' + value + '</font>';
           }

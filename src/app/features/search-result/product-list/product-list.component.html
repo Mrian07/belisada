@@ -57,18 +57,18 @@
                     <button class="btn btn-primary-outline" type="button"  (click)="onDisplayModeChange(2)" [ngClass]="{'btn-primary active': displayMode === 2}" >
                         <fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 
                     </button> 
-                    <div class="items">
+                    <!-- <div class="items">
                             {{ list.totalElements}} items
-                    </div>
+                    </div> -->
             </div>
             
             <div class="s-bar">
                 <span class="sc-bar">Sort By <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
                     <option *ngFor="let itmS of listSort">{{itmS}}</option>
                 </select></span>
-                <span class="sd-bar">Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
+                <!-- <span class="sd-bar">Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
                     <option *ngFor="let itmPer of perPage">{{itmPer}}</option>
-                </select></span>
+                </select></span> -->
             </div>
         </div>
 
@@ -115,44 +115,31 @@
                         <div *ngIf="displayMode === 2">
                             <div class="product__new-line">
                                 <div class="img-item" (click)="goDetail(item.productId,item.name)"><img [src]="produkIMG + item.imageUrl"></div>
-                                <div>
-                                    
-               
+                                <div class="descriptionContainer">
                                     <span class="product__title" (click)="goDetail(item.productId,item.name)">{{ item.name }}</span>
                                     <div class="b-star"> 
                                         <fa-icon class="star-yello" *ngFor="let i of Arr(item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
                                         <fa-icon class="star-default" *ngFor="let i of Arr(5-item.rate).fill(1)" [icon]="['fas', 'star']"></fa-icon>
-    
-    
-                                    <span class="i-review">{{item.review}} Review</span>
+                                        <span class="i-review">{{item.review}} Review</span>
                                     </div>
-                                 
-
-
                                     <div class="product__deskripsi">
-                                            
                                         Get in the scene<br>
-Tampilan layar terbesar untuk Galaxy A saat ini! Rasakan lebih apa yang Anda tonton di layar dan dapatkan pengalaman sinematik menakjubkan dengan Infinity Display ratio 18, 5:9 dan tampilan horisontal yang lebar.
-<br><br>
-See it all at once<br>
-Read and browse more, scroll less! Infinity Display yang lebih panjang dari layar memberikan Anda keluasaan untuk melihat lebih banyak dalam satu tampilan.
-<br><br>
-Masterpiece in a snap<br>
-Di Galaxy A8, mengambil foto menakjubkan semudah menekan tombol shutter. Dual Front Camera menginovasi selfie dan wefies Anda. Fokuskan hasil foto pada Anda dan teman - teman Anda, dan abadikan momen lainnya dengan cara baru. Kamera belakang 16MP memberikan hasil foto lebih terang dan jernih.
-
+                                        Tampilan layar terbesar untuk Galaxy A saat ini! Rasakan lebih apa yang Anda tonton di layar dan dapatkan pengalaman sinematik menakjubkan dengan Infinity Display ratio 18, 5:9 dan tampilan horisontal yang lebar.
+                                        <br><br>
+                                        See it all at once<br>
+                                        Read and browse more, scroll less! Infinity Display yang lebih panjang dari layar memberikan Anda keluasaan untuk melihat lebih banyak dalam satu tampilan.
+                                        <br><br>
+                                        Masterpiece in a snap<br>
+                                        Di Galaxy A8, mengambil foto menakjubkan semudah menekan tombol shutter. Dual Front Camera menginovasi selfie dan wefies Anda. Fokuskan hasil foto pada Anda dan teman - teman Anda, dan abadikan momen lainnya dengan cara baru. Kamera belakang 16MP memberikan hasil foto lebih terang dan jernih.
                                     </div>
                                     <div class="product__price-list" (click)="goDetail(item.productId,item.name)">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }} <span class="btn-detail">More Detail</span></div>
-
                                 </div>
                             </div>
                         </div>    
-
-
                     </div>
                 </div>
             </div>
         </div>
-                
         <!-- <div class="b-part" *ngIf="list.totalElements!=0">
                 <div class="grid-product">
                 <div *ngFor="let item of list.content; let i = index">
