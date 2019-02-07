@@ -59,8 +59,6 @@ export class CheckoutComponent implements OnInit {
   kodepos: FormControl;
   alamat: FormControl;
 
-  channelId: number;
-
   listShip: GetShippingResponse[];
   listPayment: Payment[];
   listPaymentChild: Payment[];
@@ -90,6 +88,9 @@ export class CheckoutComponent implements OnInit {
   showDialog;
   createForm: FormGroup;
 
+  // channelId: number;
+  channelId = 2;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -102,6 +103,7 @@ export class CheckoutComponent implements OnInit {
     private http: HttpClient,
     private _userService: UserService,
   ) {
+
     this.isTransfer = [];
     this.itemCartIds = [];
     this.shippingRates = [];
