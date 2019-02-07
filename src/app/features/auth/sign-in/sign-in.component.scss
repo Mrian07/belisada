@@ -68,3 +68,116 @@
   .loginBtn--google:focus {
     background: #E74B37;
   }
+
+  .no-padding {
+    padding: 0;
+}
+
+.socialContainer {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669F2;
+
+.google-btn {
+    width: 225px;
+    height: 42px;
+    background-color: $google-blue;
+    border-radius: 2px;
+    margin: 0 auto;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+    .google-icon-wrapper {
+        position: absolute;
+        margin-top: 1px;
+        margin-left: 1px;
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        background-color: $white;
+    }
+    .google-icon {
+        position: absolute;
+        margin-top: 11px;
+        margin-left: 11px;
+        width: 18px;
+        height: 18px;
+    }
+    .btn-text {
+        float: right;
+        margin: 10px 29px 0 0;
+        color: $white;
+        font-size: 14px;
+        letter-spacing: 0.2px;
+        font-family: "Roboto";
+    }
+    &:hover {
+        box-shadow: 0 0 6px $google-blue;
+        background-color: #629eff;
+    }
+    &:active {
+        background: $button-active-blue;
+    }
+}
+
+.facebookLoginBtnMain {
+	background-color: #4267b2;
+	//margin: 8px;
+	border: none;
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	font-family: sans-serif;
+	outline: none;
+	cursor: pointer;
+    box-sizing: border-box;
+    box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+}
+
+.facebookLoginBtnMain:hover {
+    background: #5979d1;
+    box-shadow: 0 0 6px $google-blue;
+}
+
+.facebookLoginBtnMain span {
+	float: right;
+}
+
+.xLargeFacebookBtn.facebookLoginBtnMain {
+	height: 42px;
+	font-size: 14px;
+	font-weight: 600;
+	padding: 6px;
+	border-radius: 4px;
+}
+
+.xLargeFacebookBtn.facebookLoginBtnMain svg {
+	height: 30px;
+}
+
+.xLargeFacebookBtn.facebookLoginBtnMain span {
+	height: 28px;
+	line-height: 28px;
+	padding: 0 16px;
+}
+
+.verticalMiddle {
+    vertical-align: middle;
+    position: relative;
+    height: 930px;
+}
+
+.verticalMiddleInside {
+    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%,-50%);
+    max-width: 500px;
+}
+
+.marginRemindPass {
+  margin-bottom: 15px;
+}

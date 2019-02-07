@@ -24,7 +24,7 @@
     border-radius: 6px;
     border: 1px solid;
     color: red;
-    width: 363px;
+    width: 100%;
     text-align: center;
     padding: 5px 9px 6px;
 }
@@ -32,7 +32,7 @@
     border-radius: 6px;
     border: 1px solid;
     color: red;
-    width: 363px;
+    width: 100%;
     text-align: center;
     padding: 5px 9px 6px;
     margin-bottom: 10px;
@@ -76,11 +76,10 @@
     border-color: transparent transparent black transparent;
 }
 .wrapper2 {
-    display: grid;
-    // color: $color-red;
-    grid-template-columns: 30% 33% 27%;
-    grid-gap: 1em;
+    display: block;
     padding-top: 10px;
+    width: 54%;
+    margin: 0 auto;
 }
 .f-registrasi {
     text-transform: uppercase;
@@ -127,7 +126,7 @@
 }
 
 .input-style-text-90 {
-    width: 90%;
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
@@ -309,11 +308,10 @@ select:focus {
       //akhir loader
  @media (max-width:1440px) {
     .wrapper2 {
-        display: grid;
-        // color: $color-red;
-        grid-template-columns: 30% 33% 27%;
-        grid-gap: 1em;
+        display: block;
         padding-top: 10px;
+        width: 54%;
+        margin: 0 auto;
     }
     .text-box {
         position: absolute;
@@ -325,11 +323,10 @@ select:focus {
 }
 @media (max-width:920px) {
     .wrapper2 {
-        display: grid;
-        // color: $color-red;
-        grid-template-columns: 100%;
-        grid-gap: 1em;
+        display: block;
         padding-top: 10px;
+        width: 54%;
+        margin: 0 auto;
     }
     .text-box {
         position: absolute;

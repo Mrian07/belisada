@@ -8,7 +8,7 @@
         <input id="tab2-2" name="tabs-two"  checked="checked" type="radio">
         <div>
             <div class="padding-on-top">
-                <div class="title-page">Login</div>
+                <div class="title-page">LOGIN</div>
 				<div *ngIf="msg !== undefined && signinFormGroup.dirty" class="alert-error">
                     <p>{{ msg }}</p>
                 </div>
@@ -42,16 +42,37 @@
                     </div>
                     <div class="border-btn u-margin-bottom-3">
                         <div class="text-registration">
-                            <input type="checkbox" formControlName="isRemember" value="true"> Ingatkan<br>
+                            <div class="marginRemindPass"><input type="checkbox" formControlName="isRemember" value="true"> Ingat Account Saya</div>
                             Lupa Password? <a routerLink="/account/forgot-password" class="link-text">Klik</a> Disini
                         </div>
                         <div class="component-center">
                             <button class="btn btn--orange btn-size-55 text-btn component-center" type="submit" >MASUK</button>
                         </div>
                     </div>
+                    <div class="socialContainer">
+                        <div class="col-6 pull-left no-padding">
+                            <div (click)="facebookLogin()" class="facebookLoginBtnMain xLargeFacebookBtn">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 216 216" class="_55a2"><path fill="white" d="
+                                    M204.1 0H11.9C5.3 0 0 5.3 0 11.9v192.2c0 6.6 5.3 11.9 11.9
+                                    11.9h103.5v-83.6H87.2V99.8h28.1v-24c0-27.9 17-43.1 41.9-43.1
+                                    11.9 0 22.2.9 25.2 1.3v29.2h-17.3c-13.5 0-16.2 6.4-16.2
+                                    15.9v20.8h32.3l-4.2 32.6h-28V216h55c6.6 0 11.9-5.3
+                                    11.9-11.9V11.9C216 5.3 210.7 0 204.1 0z"></path></svg>
+                                <span>Sign In with Facebook</span>
+                            </div>
+                        </div>
+                        <div class="col-6 pull-right no-padding">
+                            <div (click)="googleLogin()" class="google-btn">
+                                <div class="google-icon-wrapper">
+                                    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+                                </div>
+                                <p class="btn-text"><b>Sign In with Google</b></p>
+                            </div>
+                        </div>
+                    </div>
                 </form>
 
-                <div class="row no-gutters justify-content-md-center width-90">
+                <!-- <div class="row no-gutters justify-content-md-center width-90">
                     <div class="col-xl-6 col-xs-12 text-right">
                         <button (click)="facebookLogin()" class="loginBtn loginBtn--facebook">
                             Login with Facebook
@@ -62,7 +83,7 @@
                             Login with Google
                         </button>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
