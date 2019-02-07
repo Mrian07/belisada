@@ -137,11 +137,12 @@ export class ProductListComponent implements OnInit {
 
     // this.trackMe();
 
-    this.filterSearch(this.activatedRoute.snapshot.queryParams);
+    // this.filterSearch(this.activatedRoute.snapshot.queryParams);
 
     this.activatedRoute.queryParams.subscribe((params: Params) => {
 
       this.activeQueryParams = Object.assign({}, params);
+      this.filterSearch(params);
       this.loadData(params);
     });
   }
