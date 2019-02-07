@@ -57,18 +57,18 @@
                     <button class="btn btn-primary-outline" type="button"  (click)="onDisplayModeChange(2)" [ngClass]="{'btn-primary active': displayMode === 2}" >
                         <fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 
                     </button> 
-                    <div class="items">
+                    <!-- <div class="items">
                             {{ list.totalElements}} items
-                    </div>
+                    </div> -->
             </div>
             
             <div class="s-bar">
                 <span class="sc-bar">Sort By <select [(ngModel)]="sortName" [ngModelOptions]="{standalone: true}" (change)="selectSortBy()">
                     <option *ngFor="let itmS of listSort">{{itmS}}</option>
                 </select></span>
-                <span class="sd-bar">Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
+                <!-- <span class="sd-bar">Items per page <select [(ngModel)]="itemperpage" [ngModelOptions]="{standalone: true}" (change)="selectPerPage()">
                     <option *ngFor="let itmPer of perPage">{{itmPer}}</option>
-                </select></span>
+                </select></span> -->
             </div>
         </div>
 
