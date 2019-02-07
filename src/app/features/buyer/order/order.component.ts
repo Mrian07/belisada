@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
   ) {
-    this.activatedRoute.queryParams.subscribe((queryParam) => {
+      this.activatedRoute.queryParams.subscribe((queryParam) => {
       this.tabOrder = (queryParam.status) ? queryParam.status : 'ALL';
     });
   }
