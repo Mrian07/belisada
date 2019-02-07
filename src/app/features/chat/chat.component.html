@@ -24,12 +24,21 @@
 
 <div class="chatting">
     <header class="header">
+        <div class="header__top">
+            <span><fa-icon class="icon red" [icon]="['fas', 'circle']"></fa-icon></span>
+            <span><fa-icon class="icon yellow" [icon]="['fas', 'circle']"></fa-icon></span>
+            <span><fa-icon class="icon green" [icon]="['fas', 'circle']"></fa-icon></span>
+            <span><h4>Chat Room</h4></span>
+            <span>
+                <fa-icon class="exit" (click)="exit()" [icon]="['fas', 'times']"></fa-icon>
+            </span>
+        </div>
         <div class="header__side">
-            <span class="header__title">Chat</span>
+            <span class="header__title">Belisada Chat</span>
         </div>
         <div class="header__main">
-            <span class="header__title">Toko Gaban</span>
-            <span>
+            <span class="header__title">{{ selectedRoom?.name2 }}</span>
+            <span class="header__stat">
                 <span class="circle circle--online"></span>
                 online
             </span>
@@ -42,8 +51,8 @@
             <fa-icon class="search__icon--left" [icon]="['fas', 'search']"></fa-icon>
             <fa-icon class="search__icon--right" [icon]="['fas', 'plus']"></fa-icon>
         </div>
-        <div class="rooms">
-            <div class="room active">
+        <div class="rooms" *ngFor="let room of chatRooms">
+            <!-- <div class="room active">
                 <div class="room__avatar">
                     <img src="https://img.belisada.id/unsafe/50x50/center/filters:fill(fff)/https://cdn.myacico.co.id/myacico/image/avatar/avatarbackup.png" alt="">
                     <span class="circle circle--online"></span>
@@ -52,32 +61,32 @@
                     <h3 class="room__name">Toko Gaban</h3>
                     <p class="room__last-message">In this respect, your platform should...</p>
                 </div>
-            </div>
-
-            <div class="room">
+            </div> -->
+            <div class="room" (click)="activateRoom(room)" [ngClass]="(selectedRoom?._id === room._id)?'room__active':'room__noActive'">
                 <div class="room__avatar">
-                    <img src="https://img.belisada.id/unsafe/50x50/center/filters:fill(fff)/https://cdn.myacico.co.id/myacico/image/avatar/avatarbackup.png" alt="">
-                    <span class="circle circle--offline"></span>
+                    <img [src]="room.avatar2" alt="">
+                    <span class="circle circle--online"></span>
                 </div>
                 <div class="room__info">
-                    <h3 class="room__name">Toko Ceban</h3>
+                    <h3 class="room__name">{{ room.name2 }}</h3>
                     <p class="room__last-message">In this respect, your platform should...</p>
                 </div>
             </div>
         </div>
     </aside>
     <main class="content">
+        <!-- <div class="messages" *ngFor="let message of room.messages"> -->
         <div class="messages">
-            <article class="receiver">
+            <article class="sender" *ngFor="let message of chatMessages">
                 <div class="avatar">
-                    <img src="https://img.belisada.id/unsafe/50x50/center/filters:fill(fff)/https://cdn.myacico.co.id/myacico/image/avatar/avatarbackup.png" alt="">
+                    <img [src]="message.user.basic_imageurl_avatar" alt="">
                 </div>
                 <div class="message">
                     <div class="message__pointer"></div>
                     <div class="message__balloon">
-                        <p>Oke terimakasih ya</p>
+                        <p>{{ message.message }}</p>
                         <div class="message__timestamp">
-                            18 Jan 23.10
+                        {{ message.date | date : "d MMM h:mm a" }}
                         </div>
                     </div>
                     <span class="message__tick">
@@ -88,14 +97,14 @@
                 </div>
             </article>
 
-            <article class="sender">
+            <article class="receiver">
                 <div class="avatar">
                     <img src="https://img.belisada.id/unsafe/50x50/center/filters:fill(fff)/https://cdn.myacico.co.id/myacico/image/avatar/avatarbackup.png" alt="">
                 </div>
                 <div class="message">
                     <div class="message__pointer"></div>
                     <div class="message__balloon">
-                        <p>Oke terimakasih ya</p>
+                        <p>Ada</p>
                         <div class="message__timestamp">
                             18 Jan 23.10
                         </div>
@@ -110,12 +119,15 @@
         </div>
 
         <footer>
-            <form [formGroup]="createChatForm" (onSubmit)="createChat('5c498b0b5dc22f8d101283b1')">
-                <textarea class="message__input" formControlName="message" placeholder="Type something here to say..."></textarea>
+            <form [formGroup]="chatFormGroup" (ngSubmit)="submit()">
+                <input class="message__input" formControlName="message" placeholder="Type something here to say...">
                 <div class="message__toolbox">
-                    <fa-icon class="icon" [icon]="['fas', 'paperclip']"></fa-icon>
+                    <fa-icon class="icon" [icon]="['fas', 'paperclip']" ngxFilePicker></fa-icon>
+                    <!-- <emoji-mart><fa-icon class="icon" [icon]="['fas', 'smile']"></fa-icon></emoji-mart> -->
+                    <!-- <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart> -->
                     <fa-icon class="icon" [icon]="['fas', 'smile']"></fa-icon>
-                    <button class="button__send">
+                    <!-- <emoji-mart [hidden]="!emoji"></emoji-mart> -->
+                    <button type="submit" class="button__send">
                         <fa-icon class="button__send-icon" [icon]="['fas', 'paper-plane']"></fa-icon>
                     </button>
                 </div>

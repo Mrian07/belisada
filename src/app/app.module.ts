@@ -61,6 +61,11 @@ import { ProductsEffects } from './shared/store/effects/products.effect';
 import { registerLocaleData } from '@angular/common';
 import localeId from '@angular/common/locales/id';
 import { BsPopoverTriggerComponent } from './features/landing-page/home/bs-popover-trigger.component';
+import { ChatComponent } from './features/chat/chat.component';
+
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
+import { FileHelpersModule } from 'ngx-file-helpers';
 
 registerLocaleData(localeId, 'id');
 
@@ -75,7 +80,8 @@ library.add(fas, far, fab);
     HomeComponent,
     InvoiceComponent,
     EtalaseTokoComponent,
-    BsPopoverTriggerComponent
+    BsPopoverTriggerComponent,
+    ChatComponent
   ],
   imports: [
     HttpClientModule,
@@ -91,6 +97,8 @@ library.add(fas, far, fab);
     SlideshowModule,
     ThemeModule,
     FormsModule,
+    PickerModule,
+    FileHelpersModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -116,7 +124,6 @@ library.add(fas, far, fab);
     },
 
     CurrencyPipe
-    
       // Configuration,
       // UserService,
       // SubscribeService,

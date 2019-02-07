@@ -2,11 +2,48 @@ $sidebar--width: 40rem;
 $header--height: 6rem;
 
 .chatting {
-    height: 40rem;
-    border-bottom: 3px solid #d2d7ea;
+    height: 60rem;
+    border: 3px solid #DDDDDD;
 }
 
 .header {
+
+    &__top {
+        background-color: #DDDDDD;
+        height: 3rem;
+
+        .icon {
+            padding-top: 2rem;
+            padding-left: 0.6rem;
+            font-size: 1.2rem;
+        }
+    
+        .red {
+            color: red;
+        }
+    
+        .yellow {
+            color: rgb(255, 202, 55);
+        }
+    
+        .green {
+            color: green;
+        }
+    
+        h4{
+            display: inline-block;
+            padding-left: 40rem;
+        }
+
+        .exit {
+            position: absolute;
+            right: 1.5rem;
+            // top: 1.2rem;
+            padding-bottom: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+    }
 
     &__side {
         float: left;
@@ -29,14 +66,19 @@ $header--height: 6rem;
     &__title {
         font-size: 2rem;
     }
+
+    &__stat {
+        font-size: 1.2rem;
+        padding: 1rem;
+    }
 }
 
 .sidebar {
     position: relative;
-    z-index: 2;
+    // z-index: 2;
     float: left;
     overflow: auto;
-    height: calc(100% - 6rem);
+    height: calc(100% - 9rem);
     width: $sidebar--width;
     border-right: 1px solid #ddd;
     // -webkit-box-shadow: 1px 0px 5px 0px rgba(0,0,0,0.3);
@@ -84,32 +126,48 @@ $header--height: 6rem;
 .room {
     display: table;
     width: 100%;
-    height: 8rem;
+    height: 10rem;
 
-    &.active {
+    &__active {
         background-color: #f3a536;
+        cursor: pointer;
 
         .room__last-message {
             color: #000000;
+            font-size: 1.2rem;
+        }
+    }
+
+    &__noActive {
+        background-color: #ffffff;
+        cursor: pointer;
+
+        .room__last-message {
+            color: #7e7e7e;
+            font-size: 1.5rem;
         }
     }
 
     &__avatar {
         position: relative;
-        width: 9rem;
+        // width: 8rem;
+        // height: 8rem;
         display: table-cell;
         text-align: center;
         vertical-align: middle;
 
         img {
             vertical-align: middle;
+            width: 6rem;
+            height: 6rem;
             border-radius: 50%;
         }
 
         .circle {
             position: absolute;
-            top: 1.8rem;
-            right: 1.8rem;
+            top: 2.1rem;
+            left: 5.1rem;
+            padding: .4rem; 
         }
     }
 
@@ -147,12 +205,13 @@ article {
             height: 0;
             border-style: solid;
             border-width: .75rem 0 .75rem .75rem;
-            border-color: #FFFFFF transparent transparent transparent;
+            border-color: rgb(248, 247, 247) transparent transparent transparent;
         }
 
         &__balloon {
             padding: 1rem 2rem;
-            background-color: #FFFFFF;
+            color: rgb(0, 0, 0);
+            background-color: rgb(248, 247, 247);
             border-radius: 0 .5rem .5rem .5rem;
             box-shadow: 0px 10px 1px #ddd, 0 10px 20px #ccc;
         }
@@ -160,6 +219,8 @@ article {
         &__timestamp {
             font-size: 1rem;
             text-align: right;
+            color: #585858;
+            padding: 1rem;
         }
 
         &__tick {
@@ -173,6 +234,14 @@ article {
     &.receiver {
         .avatar {
             margin-right: 1rem;
+
+            img {
+                vertical-align: middle;
+                width: 6rem;
+                height: 6rem;
+                border-radius: 50%;
+            }
+
         }
     }
 
@@ -181,6 +250,13 @@ article {
 
         .avatar {
             margin-left: 1rem;
+
+            img {
+                vertical-align: middle;
+                width: 6rem;
+                height: 6rem;
+                border-radius: 50%;
+            }
         }
 
         .message {
@@ -192,9 +268,13 @@ article {
             }
 
             &__balloon {
-                color: #FFFFFF;
+                color: rgb(255, 255, 255);
                 background-color: #4A91E5;
                 border-radius: .5rem 0rem .5rem .5rem;
+            }
+
+            &__timestamp {
+                color: #ffffff;
             }
         }
     }
@@ -207,9 +287,9 @@ article {
 }
 
 footer {
-    height: 8rem;
+    height: 5rem;
     background-color: #fff;
-    border-top: 1px solid #8f8f8f;
+    border-top: 1px solid #DDDDDD;
     // padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -246,25 +326,28 @@ footer {
 
     .icon {
         display: inline-block;
-        padding: 2rem;
-        font-size: 2.4rem;
+        padding: 1.2rem;
+        font-size: 2rem;
+        cursor: pointer;
     }
 
     .button__send {
         padding: 2rem;
-        font-size: 2.4rem;
+        font-size: 1.8rem;
         background: none;
         border-left: 1px solid #DDDDDD;
         border-right: none;
         border-top: none;
         border-bottom: none;
         height: 100%;
+        cursor: pointer;
     }
     
 }
 
 .circle {
-    padding: .4rem;
+    padding: .2rem;
+    top: 4rem;
     border-radius: 50%;
     display: inline-block;
     border: 3px solid #2d2d52;
@@ -277,3 +360,4 @@ footer {
         background-color: #787ab1;
     }
 }
+

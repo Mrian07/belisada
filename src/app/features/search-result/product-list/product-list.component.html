@@ -51,11 +51,11 @@
             </div>
             <div class="btn-group c-bar">
                     <button class="btn btn-primary-outline" type="button"(click)="onDisplayModeChange(1)" [ngClass]="{'btn-primary active': displayMode === 1}" >
-                        <i class="fa fa-th"></i><fa-icon [icon]="['fas', 'th']"></fa-icon>
+                        <fa-icon [icon]="['fas', 'th']"></fa-icon>
                     </button>
                     <div></div>
                     <button class="btn btn-primary-outline" type="button"  (click)="onDisplayModeChange(2)" [ngClass]="{'btn-primary active': displayMode === 2}" >
-                        <i class="fa fa-list"></i><fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 
+                        <fa-icon [icon]="['fas', 'align-justify']"></fa-icon> 
                     </button> 
                     <div class="items">
                             {{ list.totalElements}} items
