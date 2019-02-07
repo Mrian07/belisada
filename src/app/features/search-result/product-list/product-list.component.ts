@@ -181,7 +181,7 @@ export class ProductListComponent implements OnInit {
       this.maxValue = (maxV.data[0]) ? maxV.data[0].max : 0;
 
       const minV = response.find(x => x.filter === 'Price');
-      this.minValue = (maxV.data[0]) ? maxV.data[0].min : 0;
+      this.minValue = (minV.data[0]) ? minV.data[0].min : 0;
 
       this.options = {
         floor: 0,
