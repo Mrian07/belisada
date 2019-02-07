@@ -39,6 +39,7 @@ export class ReviewProductComponent implements OnInit {
 
       this.reviewService.getReviewBuyer(queryParams).subscribe(response => {
         this.reviewBuyer = response;
+        this.pages = [];
           this.lastPage = this.reviewBuyer.totalPages;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
             if (r > 0 && r <= this.reviewBuyer.totalPages) {
@@ -58,7 +59,7 @@ export class ReviewProductComponent implements OnInit {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.reviewBuyer.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
-    this.router.navigate(['/buyer/diskusi-review', { queryParams: {page: page, status: 'review' }, queryParamsHandling: 'merge' }]) ;
+    this.router.navigate(['/buyer/diskusi-review'], { queryParams: {page: page, status: 'review' }, queryParamsHandling: 'merge' }) ;
     window.scrollTo(0, 0);
   }
 
