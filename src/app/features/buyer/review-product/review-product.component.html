@@ -23,6 +23,10 @@
     </div>
   </div>
 
+  <div class="empty-review" *ngIf="reviewBuyer.totalElements==0">
+    Maaf tidak ada review yang tersedia.
+  </div>
+
   <div class="paging" *ngIf="reviewBuyer.totalElements!=0">
     <ul>
         <li>
