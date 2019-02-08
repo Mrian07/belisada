@@ -20,14 +20,16 @@
           <div class="contain__com">{{item.message}}</div>
         </div>  
       </div>
-      <div class="contain__val__rep" *ngFor="let iChild of item.childs">  
-          <div>
-            <img src="{{iChild.imageAvatarUrl}}" width="50">
-          </div>
-          <div>
-            <div class="contain__name">{{iChild.name}}</div>
-            <div class="contain__com">{{iChild.message}}</div>
-          </div>  
+      <div class="cRep">
+        <div class="contain__val__rep" *ngFor="let iChild of item.childs">  
+            <div>
+              <img src="{{iChild.imageAvatarUrl}}" width="50">
+            </div>
+            <div>
+              <div class="contain__name">{{iChild.name}}</div>
+              <div class="contain__com">{{iChild.message}}</div>
+            </div>  
+        </div>
       </div>
       <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
         <input type="hidden" class="input-c" formControlName="discusParentId">

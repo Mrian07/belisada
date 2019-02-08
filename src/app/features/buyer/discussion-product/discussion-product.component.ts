@@ -93,8 +93,6 @@ export class DiscussionProductComponent implements OnInit {
 
     const msg = this.createComForm.controls['message'].value;
 
-console.log('apa', msg);
-
     if ( msg === null || msg === '') {
       swal(
         'Alert',
@@ -113,7 +111,6 @@ console.log('apa', msg);
       };
 
       this.discusService.addBuyerDiscus(data).subscribe(respon => {
-        console.log('hasil', respon);
         this.loadData();
       });
 
