@@ -7,7 +7,10 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
   selector: 'app-root',
   template: `
     <router-outlet></router-outlet>
-    <div class="loading" *ngIf="globals.isLoading === true"></div>`,
+    <div class="loading" *ngIf="globals.isLoading === true"></div>
+    <div class="chat-wrapper" *ngIf="globals.showChat === true">
+    <app-chat></app-chat>
+    <div>`,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {

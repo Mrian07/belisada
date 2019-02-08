@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UserService } from '@belisada/core/services';
+import { UserService, StoreService, Globals } from '@belisada/core/services';
 import { UserData } from '@belisada/core/models';
 import { ChatRoom } from '@belisada/core/models/chat/chat-room.model';
-import { ChatService } from '@belisada/core/services/chat/chat.service';
+import { ChatService } from '@belisada/core/services/globals/chat.service';
 import { ChatMessage } from '@belisada/core/models/chat/chat-message.model';
 
 import Socket = SocketIOClient.Socket;
+import { ProfileStoreResponse } from '@belisada/core/models/store/store.model';
+import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 
 @Component({
   selector: 'app-chat',
@@ -21,22 +23,39 @@ export class ChatComponent implements OnInit {
   public chatMessages = [];
   public chatRooms: ChatRoom[] = [];
   public userData: UserData = new UserData;
+  public profileStoreResponse: ProfileStoreResponse = new ProfileStoreResponse;
+  public roomData: ChatRoom = new ChatRoom;
+
+  public globals: Globals;
+
+  _id: string;
+  selectedRoom: any;
+
+  // storeId: number;
 
   constructor(
     private chatService: ChatService,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private storeService: StoreService,
   ) { }
 
   ngOnInit() {
     this.userData = this.userService.getUserData();
     this.chatService.getMyChatRooms(this.userData.userId).subscribe(res => {
       this.chatRooms = res;
+      this.selectedRoom = res[0];
       console.log('this.chatRooms: ', this.chatRooms);
     });
     console.log('userData: ', this.userData);
     this.socket = this.chatService.connectSocket();
-    this.chatService.joinRoom('5c4ed9ce5ab0a221e7b8caf3');
+    console.log('storeID:', this.chatService.getStoreId());
+    this.chatService.joinRoom({
+      uniqueIdentifier: undefined,
+      senderId: this.userData.userId,
+      receiverId: this.chatService.getStoreId(),
+      roomType: RoomTypeEnum.BS
+    });
 
     this.socket.on('users', (userIds: string[]) => {
       console.log('--- users ---:userids-> ', userIds);
@@ -59,10 +78,17 @@ export class ChatComponent implements OnInit {
     });
   }
 
+  activateRoom(room) {
+    this.selectedRoom = room;
+    this.chatMessages = [];
+    // tslint:disable-next-line:max-line-length
+    this.chatService.joinRoom({ uniqueIdentifier: this.selectedRoom.uniqueIdentifier, senderId: 0, receiverId: 0, roomType: RoomTypeEnum.BS });
+  }
+
   submit() {
     console.log('Submited');
     this.chatFormGroup.patchValue({
-      room: '5c4ed9ce5ab0a221e7b8caf3',
+      room: this.selectedRoom._id,
       userId: this.userService.getUserData().userId
     });
 
@@ -78,4 +104,7 @@ export class ChatComponent implements OnInit {
     this.chatService.sendMessage(message, room);
   }
 
+  exit() {
+    this.chatService.hide();
+  }
 }
