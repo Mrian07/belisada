@@ -9,5 +9,6 @@ export class Configuration {
   apiUrlMongo: string = environment.apiUrlMongo;
   thumborUrl: string = environment.thumborUrl;
   domainUrl: string = environment.domain;
+  elasticSearchUrl: string = environment.elasticSearchUrl;
   // imgUrl163x179: string = environment.imgUrl163x179;
 }

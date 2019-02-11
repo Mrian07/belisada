@@ -9,6 +9,7 @@ import { ChatMessage } from '@belisada/core/models/chat/chat-message.model';
 import Socket = SocketIOClient.Socket;
 import { ProfileStoreResponse } from '@belisada/core/models/store/store.model';
 import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
+import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
 
 @Component({
   selector: 'app-chat',
@@ -26,14 +27,13 @@ export class ChatComponent implements OnInit {
   public profileStoreResponse: ProfileStoreResponse = new ProfileStoreResponse;
   public roomData: ChatRoom = new ChatRoom;
 
-  public globals: Globals;
-
   _id: string;
   selectedRoom: any;
 
   // storeId: number;
 
   constructor(
+    public globals: Globals,
     private chatService: ChatService,
     private fb: FormBuilder,
     private userService: UserService,
@@ -42,19 +42,16 @@ export class ChatComponent implements OnInit {
 
   ngOnInit() {
     this.userData = this.userService.getUserData();
+
+    this.socket = this.globals.socket;
+
     this.chatService.getMyChatRooms(this.userData.userId).subscribe(res => {
       this.chatRooms = res;
       this.selectedRoom = res[0];
-      console.log('this.chatRooms: ', this.chatRooms);
-    });
-    console.log('userData: ', this.userData);
-    this.socket = this.chatService.connectSocket();
-    console.log('storeID:', this.chatService.getStoreId());
-    this.chatService.joinRoom({
-      uniqueIdentifier: undefined,
-      senderId: this.userData.userId,
-      receiverId: this.chatService.getStoreId(),
-      roomType: RoomTypeEnum.BS
+      const joinRoom = new JoinRoom();
+      joinRoom.uniqueIdentifier = this.selectedRoom.unique_identifier;
+      joinRoom.roomType = RoomTypeEnum.BS;
+      this.chatService.joinRoom(joinRoom);
     });
 
     this.socket.on('users', (userIds: string[]) => {
@@ -81,8 +78,12 @@ export class ChatComponent implements OnInit {
   activateRoom(room) {
     this.selectedRoom = room;
     this.chatMessages = [];
-    // tslint:disable-next-line:max-line-length
-    this.chatService.joinRoom({ uniqueIdentifier: this.selectedRoom.uniqueIdentifier, senderId: 0, receiverId: 0, roomType: RoomTypeEnum.BS });
+
+    const joinRoom = new JoinRoom();
+    joinRoom.uniqueIdentifier = this.selectedRoom.unique_identifier;
+    joinRoom.roomType = RoomTypeEnum.BS;
+
+    this.chatService.joinRoom(joinRoom);
   }
 
   submit() {

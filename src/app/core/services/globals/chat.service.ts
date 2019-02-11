@@ -11,6 +11,7 @@ import { ChatMessage } from '@belisada/core/models/chat/chat-message.model';
 
 import { Globals } from '@belisada/core/services/globals/globals';
 import { environment } from '@env/environment';
+import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
 
 const chatUrl = environment.chatUrl + ':' + environment.chatServerPort;
 const socketUrl = environment.chatUrl + ':' + environment.socketServerPort;
@@ -37,16 +38,8 @@ export class ChatService {
       );
   }
 
-  joinRoom({uniqueIdentifier, senderId, receiverId, roomType}) {
-    const data = {
-      uniqueIdentifier: (uniqueIdentifier) ? uniqueIdentifier : senderId + '~' + receiverId,
-      data : {
-        senderId: senderId,
-        receiverId: receiverId,
-        roomType: roomType,
-      }
-    };
-    this.socket.emit('join', data);
+  joinRoom(joinRoom: JoinRoom) {
+    this.socket.emit('join', joinRoom);
   }
 
   sendMessage(message: ChatMessage, room: string) {
