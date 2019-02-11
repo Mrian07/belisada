@@ -30,6 +30,8 @@
 
     &__val{
         margin-left:10px;
+        // height:30rem;
+        // overflow:scroll;
 
         &__com{
             border: 1px solid #dddddd;
@@ -39,20 +41,22 @@
             grid-template-columns: 15% 85%;
         }
 
+
         &__rep{
             border: 1px solid #dddddd;
             background: #f2f2f2;
             padding:8px;
             display: grid;
             grid-template-columns: 15% 85%;
-            padding-left:5rem;
+            padding-left:2rem;
         }
+        
 
         &__form{
             border: 1px solid #dddddd;
             padding:8px;
             display: grid;
-            grid-template-columns: 15% 85%;
+            grid-template-columns: 100%;
             background: #f2f2f2;
 
             &__right{
@@ -68,6 +72,11 @@
     &__com{
         font-size:13px;
     }
+}
+
+.cRep{
+    height:23rem;
+    overflow:scroll;
 }
 
 .field-form{

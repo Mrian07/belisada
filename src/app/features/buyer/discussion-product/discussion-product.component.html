@@ -1,62 +1,50 @@
 <div class="contain">
 
-  <div class="contain__sub">
+  <div class="contain__sub" *ngFor="let item of buyerDiscus.content">
     <div>
       <div class="contain__image">
-        Image
+        <img src="{{item.productImage}}" width="150">
       </div>
 
-      <div class="contain__btn-detail">
+      <div class="contain__btn-detail" (click)="detail(item.productId, item.productName)">
         Lihat Detail
       </div>
     </div>
     <div class="contain__val">
       <div class="contain__val__com"> 
         <div>
-          Image
+          <img src="{{item.imageAvatarUrl}}" width="80">
         </div>
         <div>
-          <div class="contain__name">Johan</div>
-          <div class="contain__com">Gan sudah dikirim belum barangnya??</div>
+          <div class="contain__name">{{item.name}}</div>
+          <div class="contain__com">{{item.message}}</div>
         </div>  
       </div>
-      <div class="contain__val__rep">  
-          <div>
-            Image
-          </div>
-          <div>
-            <div class="contain__name">Toko Gaban</div>
-            <div class="contain__com">Sudah gan, ditunggu aja</div>
-          </div>  
+      <div class="cRep">
+        <div class="contain__val__rep" *ngFor="let iChild of item.childs">  
+            <div>
+              <img src="{{iChild.imageAvatarUrl}}" width="50">
+            </div>
+            <div>
+              <div class="contain__name">{{iChild.name}}</div>
+              <div class="contain__com">{{iChild.message}}</div>
+            </div>  
+        </div>
       </div>
-      <div class="contain__val__rep">  
-          <div>
-            Image
-          </div>
-          <div>
-            <div class="contain__name">Johan</div>
-            <div class="contain__com">Dikirim pake apa gan?</div>
-          </div>  
-      </div>
-      <div class="contain__val__rep">  
-          <div>
-            Image
-          </div>
-          <div>
-            <div class="contain__name">Toko Gaban</div>
-            <div class="contain__com">Pake onta</div>
-          </div>  
-      </div>
+      <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
+        <input type="hidden" class="input-c" formControlName="discusParentId">
+        <input type="hidden" class="input-c" formControlName="productId">
       <div class="contain__val__form"> 
-          <div>
+          <!-- <div>
             Image
-          </div>
+          </div> -->
           <div class="contain__val__form__right">
-            <textarea class="field-form">hallooo</textarea>
+            <textarea class="field-form" formControlName="message"></textarea>
+            <!-- <app-field-error-display  [displayError]="isFieldValid('message')" errorMsg="Pesan tidak boleh kosong"></app-field-error-display> -->
             <button class="btn btn-kirim">Kirim</button>
           </div>  
       </div>
-
+      </form> 
     </div>
   </div>
   
