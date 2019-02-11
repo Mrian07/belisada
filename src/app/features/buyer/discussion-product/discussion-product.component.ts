@@ -50,19 +50,27 @@ export class DiscussionProductComponent implements OnInit {
       const queryParams = {
         itemperpage: 10,
         page: this.currentPage,
-        status: 'review'
+        status: 'diskusi'
       };
 
       this.discusService.getListBuyerDiscus(queryParams).subscribe(response => {
         this.buyerDiscus = response;
 
-        this.createComForm.patchValue({
-          message: null,
-          discusParentId: response.content[0].discusId,
-          productId: response.content[0].productId,
-        });
+        this.pages = [];
+        this.lastPage = this.buyerDiscus.totalPages;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.buyerDiscus.totalPages) {
+            this.pages.push(r);
+          }
+        }
 
-          console.log('hasil', response);
+        if (response.totalElements) {
+          this.createComForm.patchValue({
+            message: null,
+            discusParentId: response.content[0].discusId,
+            productId: response.content[0].productId,
+          });
+        }
       });
 
     });
@@ -118,6 +126,14 @@ export class DiscussionProductComponent implements OnInit {
       this.validateAllFormFields(this.createComForm);
     }
 
+  }
+
+  setPage(page: number, increment?: number) {
+    if (increment) { page = +page + increment; }
+    if (page < 1 || page > this.buyerDiscus.totalPages) { return false; }
+    // tslint:disable-next-line:max-line-length
+    this.router.navigate(['/buyer/diskusi-review'], { queryParams: {page: page, status: 'review' }, queryParamsHandling: 'merge' }) ;
+    window.scrollTo(0, 0);
   }
 
 }
