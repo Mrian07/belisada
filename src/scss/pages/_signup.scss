@@ -338,4 +338,6 @@ select:focus {
 }
 .padding-wrapper {
     padding:22px;
+    position: relative;
+    z-index: 99;
 }

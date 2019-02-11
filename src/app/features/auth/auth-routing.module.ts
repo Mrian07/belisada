@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {
   AuthComponent, SigninComponent, SignUpComponent, SignUpActivationComponent,
-  ForgotPasswordComponent, ResetPasswordComponent
+  ForgotPasswordComponent, ResetPasswordComponent, TermsConditionsComponent
 } from '@belisada/features/auth';
 
 const routes: Routes = [
@@ -43,7 +43,14 @@ const routes: Routes = [
         }
       },
     ]
-  }
+  },
+  {
+    path: 'terms-conditions',
+    component: TermsConditionsComponent,
+    data: {
+      title: 'Terms and Conditions'
+    }
+  },
 ];
 
 @NgModule({

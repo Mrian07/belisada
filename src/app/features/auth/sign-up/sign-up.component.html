@@ -71,7 +71,7 @@
                             </div>
                             <div class="border-btn">
                                 <div class="bottom-center">
-                                    <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
+                                    <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan" [routerLink]="['/account/terms-conditions']">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
                                 </div>
                                 <div *ngIf="vForValidation.invalid || status === 1; else signUp">
                                     <div class="component-center">
