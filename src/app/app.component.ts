@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Globals } from '@belisada/core/services';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { ChatService } from './core/services/globals/chat.service';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,21 @@ import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
     <router-outlet></router-outlet>
     <div class="loading" *ngIf="globals.isLoading === true"></div>
     <div class="chat-wrapper" *ngIf="globals.showChat === true">
-    <app-chat></app-chat>
+      <app-chat></app-chat>
     <div>`,
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   title = 'app';
 
-  constructor(public globals: Globals, titleService: Title, router: Router, activatedRoute: ActivatedRoute) {
+  constructor(
+    public globals: Globals,
+    titleService: Title,
+    router: Router,
+    activatedRoute: ActivatedRoute,
+    _chatService: ChatService
+  ) {
+    globals.socket = _chatService.connectSocket();
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         window.scrollTo(0, 0);
