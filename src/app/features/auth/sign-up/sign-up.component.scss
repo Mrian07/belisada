@@ -1,0 +1,9 @@
+.text-syarat-dan-ketentuan {
+    &:hover {
+        color: #0F516A;
+        cursor: pointer;
+    }
+    &:active {
+        color: rgb(17, 52, 65);
+    }
+}

@@ -6,8 +6,8 @@ import { UserData, ProductDetailV2Data } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService, AuthService, HomeSService } from '@belisada/core/services';
-import { ChatService } from '@belisada/core/services/chat/chat.service';
+import { UserService, AuthService, HomeSService, Globals } from '@belisada/core/services';
+import { ChatService } from '@belisada/core/services/globals/chat.service';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import swal from 'sweetalert2';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
@@ -20,6 +20,9 @@ import { ProductReviewResponse } from '@belisada/core/models/product/product-rev
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
+import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
+import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
+
 
 enum TabTypeEnum {
   SPEC = 'SPEC',
@@ -112,6 +115,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     }
 
   constructor(
+    public globals: Globals,
     private _fb: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
@@ -242,19 +246,18 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingMethod = shippingMethod;
   }
 
-  alertChat(product: ProductDetailV2Data, storeName) {
-    console.log('product: ', product);
-    this.productId = product.productId;
-    const data: CreateRoomRequest = new CreateRoomRequest();
-    // data.productId = productId;
-    data.users = [product.storeId];
-    data.is_user = true;
-    data.is_private = true;
-    data.name = storeName;
-    console.log('data:', data);
-    // this._chatService.createRoom(data).subscribe(res => {
-    //   console.log('res:', res);
-    // });
+  alertChat(storeId) {
+    console.log('storeId:', storeId);
+    this._chatService.setStoreId(storeId);
+    const joinRoom = new JoinRoom();
+    joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
+    joinRoom.senderId = this.userData.userId;
+    joinRoom.receiverId = storeId;
+    joinRoom.roomType = RoomTypeEnum.BS;
+    this._chatService.joinRoom(joinRoom);
+    this.globals.socket.on('joinReturn', () => {
+      this._chatService.show();
+    });
   }
 
   // private _loadChat(id: number) {

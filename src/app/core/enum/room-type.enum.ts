@@ -1,3 +1,5 @@
 export enum RoomTypeEnum {
-  BS, BA, SA
+  BS = 'BS',
+  BA = 'BA',
+  SA = 'SA'
 }

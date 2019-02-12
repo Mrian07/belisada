@@ -7,7 +7,7 @@ import { UserService, Globals, ShareMessageService } from '@belisada/core/servic
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { Category } from '@belisada/core/models/category/category.model';
 import { CategoryService } from '@belisada/core/services/category/category.service';
-import { SearchBarResponse } from '@belisada/core/models/search/search.model';
+import { SearchBarResponse, SearchBarData } from '@belisada/core/models/search/search.model';
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { Router } from '@angular/router';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit {
    */
   public menuCategory: Category[];
   public subMenuCategory: Category[];
-  public searchBarResults: SearchBarResponse[];
+  public searchBarResults: SearchBarData[];
   /** ---------------- */
 
   public bannerTop: BannerData = new BannerData();
@@ -108,7 +108,7 @@ export class HeaderComponent implements OnInit {
       q: this.keywordSearch
     };
     this._searchService.getSearchBar(queryParams).subscribe(result => {
-      this.searchBarResults = result;
+      this.searchBarResults = result.data;
     });
   }
 
@@ -121,11 +121,11 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
   }
 
-  public clickSearch(catID) {
+  public clickSearch(keyword) {
     const queryParams = {
       st: 'product',
-      q: this.keywordSearch,
-      category: [catID]
+      q: keyword,
+      // category: [catID]
     };
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
   }

@@ -24,14 +24,14 @@ export class SearchService {
     );
   }
 
-  getSearchBar(queryParams: Object): Observable<SearchBarResponse[]> {
+  getSearchBar(queryParams: Object): Observable<SearchBarResponse> {
     let params = new HttpParams();
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
-    return this.http.get(this.configuration.apiUrlMongo + '/search/bar', {params: params})
+    return this.http.get(this.configuration.elasticSearchUrl + '/searchbar', {params: params})
     .pipe(
-      map(response => response as SearchBarResponse[])
+      map(response => response as SearchBarResponse)
     );
   }
 
