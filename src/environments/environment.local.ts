@@ -7,8 +7,7 @@ export const environment = {
   thumborUrl: 'https://img.belisada.id/',
   elasticSearchUrl: 'http://elastic.belisada.id:3000',
   chatUrl: 'https://chat0.belisada.id',
-  chatServerPort: '3009',
-  socketServerPort: '1080',
+  socketUrl: 'https://chat0-websock.belisada.id',
   firebase: {
     apiKey: 'AIzaSyBIUJNYI-q2h2Bh1Drb7GvDuK7KDjx_e5o',
     authDomain: 'belisada-dev.firebaseapp.com',

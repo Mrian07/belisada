@@ -103,6 +103,7 @@ export class ChatComponent implements OnInit {
     console.log('message: ', message);
     console.log('room: ', room);
     this.chatService.sendMessage(message, room);
+    this.chatFormGroup.controls['message'].reset();
   }
 
   exit() {
