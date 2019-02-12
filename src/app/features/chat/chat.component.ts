@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, StoreService, Globals } from '@belisada/core/services';
 import { UserData } from '@belisada/core/models';
@@ -16,7 +16,8 @@ import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('messages') private messagesContainer: ElementRef;
 
   private socket: Socket;
 
@@ -61,10 +62,15 @@ export class ChatComponent implements OnInit {
     this.socket.on('message', (datas: any[]) => {
       console.log('--- message ---:data-> ', datas);
       this.chatMessages = [...this.chatMessages, ...datas];
+      this.scrollToBottom();
       console.log('chatMessages: ', this.chatMessages);
     });
 
     this.createForm();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   createForm() {
@@ -109,4 +115,10 @@ export class ChatComponent implements OnInit {
   exit() {
     this.chatService.hide();
   }
+
+  scrollToBottom(): void {
+    try {
+        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+}
 }
