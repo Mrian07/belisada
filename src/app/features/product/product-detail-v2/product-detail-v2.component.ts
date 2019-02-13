@@ -34,9 +34,7 @@ enum TabTypeEnum {
 /**
  * ANCHOR Todo list PRODUCT DETAIL
  *
- * TODO Discussion paging (show more child)
  * TODO Find solution for ngrx subscribe issues
- * TODO Review product
  */
 
 @Component({
