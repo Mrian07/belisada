@@ -5,6 +5,7 @@ import { HomeComponent } from '@belisada/features/landing-page/home/home.compone
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
+import { FaqComponent } from './features/faq/faq.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'transaction', loadChildren: 'app/features/transaction/transaction.module#TransactionModule' },
   { path: 'payments', loadChildren: 'app/features/payment/payment.module#PaymentModule' },
   { path: 'chat', loadChildren: 'app/features/chat/chat.module#ChatModule' },
+  { path: 'faq', component: FaqComponent, data: {title: 'FAQ - Belisada.co.id'}},
   {
     path: '',
     component: LandingPageComponent,
