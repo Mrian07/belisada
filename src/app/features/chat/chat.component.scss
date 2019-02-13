@@ -150,7 +150,7 @@ $header--height: 6rem;
 
     &__avatar {
         position: relative;
-        // width: 8rem;
+        width: 8rem;
         // height: 8rem;
         display: table-cell;
         text-align: center;
@@ -361,3 +361,56 @@ footer {
     }
 }
 
+.circle-window {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 .3rem;
+    position: relative;
+
+    &:hover {
+        fa-icon {
+            display: block;
+        }
+    }
+
+    &--close {
+        background-color: #fc605c;
+        border-color: #de4844;
+    }
+
+    &--minimize {
+        background-color: #fdbd41;
+        border-color: #de9f34;
+    }
+
+    &--maximize {
+        background-color: #34c84a;
+        border-color: #27aa35;
+    }
+
+    fa-icon {
+        font-size: .5rem;
+        position: absolute;
+        color: #444444;
+        display: none;
+
+        &.close {
+            left: 2px;
+            top: -1px;
+        }
+
+        &.minimize {
+            left: 1px;
+            top: -1px;
+        }
+
+        &.maximize {
+            left: 1px;
+            top: -1px;
+        }
+    }
+}
