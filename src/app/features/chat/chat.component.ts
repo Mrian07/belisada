@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService, StoreService, Globals } from '@belisada/core/services';
 import { UserData } from '@belisada/core/models';
@@ -16,7 +16,8 @@ import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
+  @ViewChild('messages') private messagesContainer: ElementRef;
 
   private socket: Socket;
 
@@ -45,14 +46,8 @@ export class ChatComponent implements OnInit {
 
     this.socket = this.globals.socket;
 
-    this.chatService.getMyChatRooms(this.userData.userId).subscribe(res => {
-      this.chatRooms = res;
-      this.selectedRoom = res[0];
-      const joinRoom = new JoinRoom();
-      joinRoom.uniqueIdentifier = this.selectedRoom.unique_identifier;
-      joinRoom.roomType = RoomTypeEnum.BS;
-      this.chatService.joinRoom(joinRoom);
-    });
+    this.findAndJoinRoom();
+
 
     this.socket.on('users', (userIds: string[]) => {
       console.log('--- users ---:userids-> ', userIds);
@@ -61,10 +56,27 @@ export class ChatComponent implements OnInit {
     this.socket.on('message', (datas: any[]) => {
       console.log('--- message ---:data-> ', datas);
       this.chatMessages = [...this.chatMessages, ...datas];
+      this.scrollToBottom();
+      // this.findAndJoinRoom();
       console.log('chatMessages: ', this.chatMessages);
     });
 
     this.createForm();
+  }
+
+  findAndJoinRoom() {
+    this.chatService.getMyChatRooms(this.userData.userId).subscribe(res => {
+      this.chatRooms = res.filter(x => this.userData.userId === +x.unique_identifier.split('~')[0]);
+      this.selectedRoom = this.chatRooms[0];
+      const joinRoom = new JoinRoom();
+      joinRoom.uniqueIdentifier = this.selectedRoom.unique_identifier;
+      joinRoom.roomType = RoomTypeEnum.BS;
+      this.chatService.joinRoom(joinRoom);
+    });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
   }
 
   createForm() {
@@ -109,4 +121,10 @@ export class ChatComponent implements OnInit {
   exit() {
     this.chatService.hide();
   }
+
+  scrollToBottom(): void {
+    try {
+        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+    } catch (err) { }
+}
 }

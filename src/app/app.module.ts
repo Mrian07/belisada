@@ -40,6 +40,7 @@ import { ADirective } from '@belisada/shared/directives';
 import 'angular2-navigate-with-data';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
+import { FaqComponent } from './features/faq/faq.component';
 
 // !font-awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -78,6 +79,7 @@ library.add(fas, far, fab);
     MaintenanceComponent,
     LandingPageComponent,
     HomeComponent,
+    FaqComponent,
     InvoiceComponent,
     EtalaseTokoComponent,
     BsPopoverTriggerComponent,
