@@ -142,8 +142,8 @@
     <div class="row">
         <div class="col-md-5r" *ngFor="let item of brandHomeList">
             <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId}">
-                <div class="brand__wrapper verticalMiddle">
-                    <img class="brand__image verticalMiddleInside" [src]="item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
+                <div class="brand__wrapper">
+                    <img class="brand__image" [src]="brandImageUrl + item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
                 </div>
             </a>
         </div>
