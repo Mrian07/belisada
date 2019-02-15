@@ -64,7 +64,7 @@ import localeId from '@angular/common/locales/id';
 import { BsPopoverTriggerComponent } from './features/landing-page/home/bs-popover-trigger.component';
 import { ChatComponent } from './features/chat/chat.component';
 
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
 
@@ -99,7 +99,7 @@ library.add(fas, far, fab);
     SlideshowModule,
     ThemeModule,
     FormsModule,
-    PickerModule,
+    NgxEmojiPickerModule.forRoot(),
     FileHelpersModule,
     FontAwesomeModule,
     ReactiveFormsModule,

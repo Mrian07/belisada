@@ -31,6 +31,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   _id: string;
   selectedRoom: any;
 
+  toggled: Boolean = false;
+
   // storeId: number;
 
   constructor(
@@ -114,6 +116,14 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   exit() {
     this.chatService.hide();
+  }
+
+  emoji() {
+    this.chatService.showEmoji();
+  }
+
+  handleSelection(event) {
+    console.log(event.char);
   }
 
   scrollToBottom(): void {

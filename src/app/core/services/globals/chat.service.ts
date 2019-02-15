@@ -56,6 +56,14 @@ export class ChatService {
     this.globals.showChat = false;
   }
 
+  showEmoji() {
+    this.globals.showEmoji = true;
+  }
+
+  hideEmoji() {
+    this.globals.showEmoji = false;
+  }
+
   setStoreId(storeId: number) {
     this.globals.storeId = storeId;
   }

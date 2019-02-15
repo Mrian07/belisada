@@ -6,6 +6,7 @@ import { ChatComponent } from './chat.component';
 import { ThemeModule } from 'app/theme/theme.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxEmojiPickerModule
   ],
   declarations: [ChatComponent]
 })
