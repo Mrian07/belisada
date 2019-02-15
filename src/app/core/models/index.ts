@@ -6,3 +6,4 @@ export * from './brand/brand.model';
 export * from './home/home';
 export * from './product/product.model';
 export * from './complaint/complaint.model';
+export * from './midtrans/midtrans.model';

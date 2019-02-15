@@ -10,6 +10,7 @@ export const environment = {
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
   thumborUrl: 'https://img.belisada.id/',
+  urlMidtrans: 'https://app.sandbox.midtrans.com',
   chatUrl: '',
   chatServerPort: '',
   socketServerPort: '',

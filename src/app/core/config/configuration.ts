@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 })
 export class Configuration {
   apiURL: string = environment.apiUrl;
+  urlMidtrans: string = environment.urlMidtrans;
   apiUrlMongo: string = environment.apiUrlMongo;
   thumborUrl: string = environment.thumborUrl;
   domainUrl: string = environment.domain;

@@ -3,6 +3,9 @@ import { PaymentService } from '@belisada/core/services/payment/payment.service'
 import swal from 'sweetalert2';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
 import { ModalService } from '@belisada/shared/components/modal/modal.service';
+import { MidtransService } from '@belisada/core/services/midtrans/midtrans.service';
+import { MidRequest, TransactionDetails, CreditCard } from '@belisada/core/models';
+import { tick } from '@angular/core/src/render3';
 
 
 class PaymentModel {
@@ -29,6 +32,10 @@ class PaymentModel {
 })
 export class PaymentComponent implements OnInit {
 
+
+
+
+
   @ViewChild('f') f;
 
   v: PaymentModel = new PaymentModel();
@@ -40,7 +47,8 @@ export class PaymentComponent implements OnInit {
   constructor(
     private _paymentService: PaymentService,
     private fb: FormBuilder,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private midtransService: MidtransService
   ) { }
 
   ngOnInit() {
@@ -74,6 +82,28 @@ export class PaymentComponent implements OnInit {
     // document.getElementsByName('signature').value = 'GHIRs/2roqDM+BiLQQPPn0fkm/Q=';
     // document.getElementsByName('ResponseURL').value = 'https://dev.belisada.id/payment/response';
     // document.getElementsByName('BackendURL').value = 'https://api0.belisada.id/payment/response';
+
+    this.payMitrans();
+  }
+
+  payMitrans() {
+
+    const data1: TransactionDetails = new TransactionDetails();
+    data1.order_id = 'PYT-15022019-5';
+    data1.gross_amount = 17000;
+
+    const data2: CreditCard = new CreditCard();
+    data2.secure = true;
+    const data: MidRequest = new MidRequest();
+
+    data.transaction_details = data1;
+    data.credit_card = data2;
+
+    console.log('ini', data);
+
+    this.midtransService.getPay(data).subscribe((response) => {
+      console.log(response);
+    });
   }
 
   form() {
@@ -93,6 +123,7 @@ export class PaymentComponent implements OnInit {
       ResponseURL: new FormControl('', Validators.required),
       BackendURL: new FormControl('', Validators.required),
     });
+
   }
 
   public onSubmit() {
