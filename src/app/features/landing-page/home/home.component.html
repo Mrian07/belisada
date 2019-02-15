@@ -26,7 +26,7 @@
     </div>
     <!-- !PROMO BANNER! -->
 
-    <div class="row" *ngIf="flashSaleProducts.length !== 0">
+    <div *ngIf="flashSaleProducts.length !== 0">
         <!-- <div class="col">
             <div class="fs__title">
                 <h2>Today Deal</h2>
@@ -143,7 +143,7 @@
         <div class="col-md-5r" *ngFor="let item of brandHomeList">
             <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId}">
                 <div class="brand__wrapper">
-                    <img class="brand__image" [src]="item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
+                    <img class="brand__image" [src]="brandImageUrl + item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
                 </div>
             </a>
         </div>

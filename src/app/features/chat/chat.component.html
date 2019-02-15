@@ -25,13 +25,19 @@
 <div class="chatting">
     <header class="header">
         <div class="header__top">
-            <span><fa-icon class="icon red" [icon]="['fas', 'circle']"></fa-icon></span>
-            <span><fa-icon class="icon yellow" [icon]="['fas', 'circle']"></fa-icon></span>
-            <span><fa-icon class="icon green" [icon]="['fas', 'circle']"></fa-icon></span>
-            <span><h4>Chat Room</h4></span>
-            <span>
-                <fa-icon class="exit" (click)="exit()" [icon]="['fas', 'times']"></fa-icon>
+            <span (click)="exit()" class="circle-window circle-window--close">
+                <fa-icon class="close" [icon]="['fas', 'times']"></fa-icon>
             </span>
+            <span class="circle-window circle-window--minimize">
+                <fa-icon class="minimize" [icon]="['fas', 'minus']"></fa-icon>
+            </span>
+            <span class="circle-window circle-window--maximize">
+                <fa-icon class="maximize" [icon]="['fas', 'expand-arrows-alt']"></fa-icon>
+            </span>
+            <span><h4>Chat Room</h4></span>
+            <!-- <span>
+                <fa-icon class="exit" (click)="exit()" [icon]="['fas', 'times']"></fa-icon>
+            </span> -->
         </div>
         <div class="header__side">
             <span class="header__title">Belisada Chat</span>
@@ -69,7 +75,9 @@
                 </div>
                 <div class="room__info">
                     <h3 class="room__name">{{ room.name2 }}</h3>
-                    <p class="room__last-message">In this respect, your platform should...</p>
+                    <p class="room__last-message">
+                        {{ room.messages.length !== 0 ? room.messages[room.messages.length - 1].message : ''  }}
+                    </p>
                 </div>
             </div>
         </div>
