@@ -6,7 +6,7 @@ import { UserData, ProductDetailV2Data } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService, AuthService, HomeSService } from '@belisada/core/services';
+import { UserService, AuthService, HomeSService, Globals } from '@belisada/core/services';
 import { ChatService } from '@belisada/core/services/globals/chat.service';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import swal from 'sweetalert2';
@@ -20,6 +20,8 @@ import { ProductReviewResponse } from '@belisada/core/models/product/product-rev
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { environment } from '@env/environment';
 import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
+import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
+import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 
 
 enum TabTypeEnum {
@@ -32,9 +34,7 @@ enum TabTypeEnum {
 /**
  * ANCHOR Todo list PRODUCT DETAIL
  *
- * TODO Discussion paging (show more child)
  * TODO Find solution for ngrx subscribe issues
- * TODO Review product
  */
 
 @Component({
@@ -113,6 +113,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     }
 
   constructor(
+    public globals: Globals,
     private _fb: FormBuilder,
     private _route: ActivatedRoute,
     private _router: Router,
@@ -246,7 +247,15 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   alertChat(storeId) {
     console.log('storeId:', storeId);
     this._chatService.setStoreId(storeId);
-    this._chatService.show();
+    const joinRoom = new JoinRoom();
+    joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
+    joinRoom.senderId = this.userData.userId;
+    joinRoom.receiverId = storeId;
+    joinRoom.roomType = RoomTypeEnum.BS;
+    this._chatService.joinRoom(joinRoom);
+    this.globals.socket.on('joinReturn', () => {
+      this._chatService.show();
+    });
   }
 
   // private _loadChat(id: number) {

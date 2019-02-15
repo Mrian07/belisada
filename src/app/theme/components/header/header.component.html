@@ -1,5 +1,5 @@
 <div class="top-header">
-    <div class="top-header__banner" [ngStyle]="{'background-color': '#ab2d2f'}">
+    <div class="top-header__banner">
         <div class="top-header__banner--wrapper container">
             <img [src]="bannerTop?.imageUrl" alt="">
         </div>
@@ -68,18 +68,18 @@
                                 <fa-icon class="search__icon" [icon]="['fas', 'search']"></fa-icon>
 
                                 <div class="list-suggestion" [ngClass]="{'show-element': showSearch === true, 'hide-element': showSearch === false}">
-                                    <div class="product-suggestion">
+                                    <!-- <div class="product-suggestion">
                                         <ul>
                                             <li (click)="onSearchSubmit()"><span class="highlight">{{ keywordSearch }}</span></li>
                                         </ul>
-                                    </div>
+                                    </div> -->
                 
                                     <div class="product-suggestion" *ngIf="searchBarResults.length > 0">
-                                        <div class="suggestion-block">
+                                        <!-- <div class="suggestion-block">
                                             <span class="suggestion-label">Kategori</span>
-                                        </div>
+                                        </div> -->
                                         <ul>
-                                            <li (click)="clickSearch(item.categoryId)" *ngFor="let item of searchBarResults; let i = index"><span class="highlight">{{ keywordSearch }}</span> di {{ item.categoryName }}</li>
+                                            <li (click)="clickSearch(item.name)" *ngFor="let item of searchBarResults | slice:0:5;"><span class="highlight">{{ item.name }}</span></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -8,4 +8,5 @@ export class Globals {
   isLoading: Boolean = false;
   showChat: Boolean = false;
   storeId: number;
+  socket;
 }

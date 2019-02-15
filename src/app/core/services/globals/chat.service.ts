@@ -11,9 +11,7 @@ import { ChatMessage } from '@belisada/core/models/chat/chat-message.model';
 
 import { Globals } from '@belisada/core/services/globals/globals';
 import { environment } from '@env/environment';
-
-const chatUrl = environment.chatUrl + ':' + environment.chatServerPort;
-const socketUrl = environment.chatUrl + ':' + environment.socketServerPort;
+import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -25,28 +23,21 @@ export class ChatService {
   constructor(private http: HttpClient, private globals: Globals) {}
 
   connectSocket(): Socket {
-    this.socket = io(socketUrl + '/rooms',
+    console.log('environment.socketUrl: ', environment.socketUrl);
+    this.socket = io(environment.socketUrl + '/rooms',
       {query: { token: localStorage.getItem(LocalStorageEnum.TOKEN_KEY) }});
     return this.socket;
   }
 
   getMyChatRooms(id): Observable<ChatRoom[]>  {
-    return this.http.get(chatUrl + '/api/rooms' , {params: {userId: id}})
+    return this.http.get(environment.chatUrl + '/api/rooms' , {params: {userId: id}})
       .pipe(
         map(response => response as ChatRoom[])
       );
   }
 
-  joinRoom({uniqueIdentifier, senderId, receiverId, roomType}) {
-    const data = {
-      uniqueIdentifier: (uniqueIdentifier) ? uniqueIdentifier : senderId + '~' + receiverId,
-      data : {
-        senderId: senderId,
-        receiverId: receiverId,
-        roomType: roomType,
-      }
-    };
-    this.socket.emit('join', data);
+  joinRoom(joinRoom: JoinRoom) {
+    this.socket.emit('join', joinRoom);
   }
 
   sendMessage(message: ChatMessage, room: string) {

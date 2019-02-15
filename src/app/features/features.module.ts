@@ -9,7 +9,7 @@ import { FeaturesComponent } from '.';
     CommonModule,
     FeaturesRoutingModule
   ],
-  declarations: [FeaturesComponent,
+  declarations: [FeaturesComponent
     // InvoiceComponent
   ]
 })

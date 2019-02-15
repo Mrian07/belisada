@@ -14,8 +14,9 @@
 
 .chat-wrapper {
     position: fixed;
-    bottom: 0;
+    bottom: 2rem;
     right: 2rem;
     width: 100rem;
+    z-index: 100;
     background-color: #fff;
 }
