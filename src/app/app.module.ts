@@ -53,6 +53,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireMessagingModule } from 'angularfire2/messaging';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { AddressEffect } from './shared/store/effects/address.effect';
 import { reducers } from './shared/store';
@@ -67,6 +69,10 @@ import { ChatComponent } from './features/chat/chat.component';
 import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
+
+import { MessagingService } from './shared/messaging.service';
+
+import { AsyncPipe } from '../../node_modules/@angular/common';
 
 registerLocaleData(localeId, 'id');
 
@@ -91,6 +97,8 @@ library.add(fas, far, fab);
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireMessagingModule,
+    AngularFireDatabaseModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,
     AppRoutingModule,
@@ -124,6 +132,8 @@ library.add(fas, far, fab);
       useClass: HttpTokenInterceptor,
       multi: true
     },
+    MessagingService,
+    AsyncPipe,
 
     CurrencyPipe
       // Configuration,
