@@ -630,8 +630,8 @@ export class CheckoutComponent implements OnInit {
       this.PMCode = vCart;
     }
 
-    if (this.PMCode === '') {
-        swal('belisada.co.id', 'Anda belum memilih metode pembayaran1', 'warning');
+    if (this.PMCode === '' || this.PMCode === null) {
+        swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (this.channelId === 0 && this.isTransferBank === true || this.channelId === undefined && this.isTransferBank === true) {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
@@ -642,6 +642,7 @@ export class CheckoutComponent implements OnInit {
       data.itemCartIds = checkoutCartIds;
       data.paymentMethodCode = this.PMCode;
       data.channelId = this.channelId;
+
       if (this.isAny0Qty) {
         swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
         return;

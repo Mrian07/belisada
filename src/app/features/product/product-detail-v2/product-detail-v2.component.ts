@@ -437,10 +437,11 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
                 );
               }});
             this._router.navigate(
-              ['/product/product-detail/'
-                + this._route.snapshot.params.id
-                + '/'
-                + this._route.snapshot.params.name]
+              ['/']
+              // ['/product/product-detail/'
+              //   + this._route.snapshot.params.id
+              //   + '/'
+              //   + this._route.snapshot.params.name]
             );
             return;
         }
