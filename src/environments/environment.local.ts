@@ -5,16 +5,10 @@ export const environment = {
   apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
   thumborUrl: 'https://img.belisada.id/',
-<<<<<<< HEAD
   urlMidtrans: 'https://app.sandbox.midtrans.com',
-  chatUrl: 'http://192.168.3.20',
-  chatServerPort: '3009',
-  socketServerPort: '1080',
-=======
   elasticSearchUrl: 'https://elastic.belisada.id',
   chatUrl: 'https://chat0.belisada.id',
   socketUrl: 'https://chat0-websock.belisada.id',
->>>>>>> 1b764675b8da0fb4e10f6f35a38e3fef78711b0c
   firebase: {
     apiKey: 'AIzaSyBIUJNYI-q2h2Bh1Drb7GvDuK7KDjx_e5o',
     authDomain: 'belisada-dev.firebaseapp.com',

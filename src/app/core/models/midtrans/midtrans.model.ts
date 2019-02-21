@@ -1,4 +1,4 @@
-export class MidRequest {
+export class MidtransRequest {
   transaction_details: TransactionDetails;
   credit_card: CreditCard;
 }
@@ -12,7 +12,7 @@ export class CreditCard {
   secure: boolean;
 }
 
-export class MidResponse {
+export class MidtransResponse {
   token: any;
   redirect_url: string;
 }
