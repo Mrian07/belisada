@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Globals } from '@belisada/core/services';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { ChatService } from './core/services/globals/chat.service';
+import { MessagingService } from './shared/messaging.service';
 
 @Component({
   selector: 'app-root',
@@ -14,15 +15,18 @@ import { ChatService } from './core/services/globals/chat.service';
     <div>`,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'app';
+
+  message;
 
   constructor(
     public globals: Globals,
     titleService: Title,
     router: Router,
     activatedRoute: ActivatedRoute,
-    _chatService: ChatService
+    _chatService: ChatService,
+    private messagingService: MessagingService
   ) {
     globals.socket = _chatService.connectSocket();
     router.events.subscribe(event => {
@@ -35,6 +39,13 @@ export class AppComponent {
         (<any>window).ga('send', 'pageview');
       }
     });
+  }
+
+  ngOnInit() {
+    const userId = 'user001';
+    this.messagingService.requestPermission(userId);
+    this.messagingService.receiveMessage();
+    this.message = this.messagingService.currentMessage;
   }
 
   // collect that title data properties from all child routes

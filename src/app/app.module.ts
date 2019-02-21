@@ -20,7 +20,7 @@ import { Configuration } from '@belisada/core/config';
 import { SharedModule } from '@belisada/shared/shared.module';
 
 import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
-import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy, CurrencyPipe } from '@angular/common';
+import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy, CurrencyPipe, AsyncPipe } from '@angular/common';
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
@@ -53,6 +53,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireMessagingModule } from 'angularfire2/messaging';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
 import { AddressEffect } from './shared/store/effects/address.effect';
 import { reducers } from './shared/store';
@@ -64,14 +66,15 @@ import localeId from '@angular/common/locales/id';
 import { BsPopoverTriggerComponent } from './features/landing-page/home/bs-popover-trigger.component';
 import { ChatComponent } from './features/chat/chat.component';
 
-import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import 'hammerjs';
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+// import { enableProdMode } from '@angular/core';
+// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { CarouselComponent } from './features/landing-page/carousel/carousel.component';
+import { MessagingService } from './shared/messaging.service';
 registerLocaleData(localeId, 'id');
 
 library.add(fas, far, fab);
@@ -96,6 +99,8 @@ library.add(fas, far, fab);
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
+    AngularFireMessagingModule,
+    AngularFireDatabaseModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserTransferStateModule,
     AppRoutingModule,
@@ -104,7 +109,7 @@ library.add(fas, far, fab);
     SlideshowModule,
     ThemeModule,
     FormsModule,
-    PickerModule,
+    NgxEmojiPickerModule.forRoot(),
     FileHelpersModule,
     FontAwesomeModule,
     ReactiveFormsModule,
@@ -130,6 +135,8 @@ library.add(fas, far, fab);
       useClass: HttpTokenInterceptor,
       multi: true
     },
+    MessagingService,
+    AsyncPipe,
 
     CurrencyPipe
       // Configuration,

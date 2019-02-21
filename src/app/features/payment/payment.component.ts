@@ -4,7 +4,7 @@ import swal from 'sweetalert2';
 import { FormGroup, FormBuilder, FormControl, Validators, NgForm } from '@angular/forms';
 import { ModalService } from '@belisada/shared/components/modal/modal.service';
 import { MidtransService } from '@belisada/core/services/midtrans/midtrans.service';
-import { MidRequest, TransactionDetails, CreditCard } from '@belisada/core/models';
+import { TransactionDetails, CreditCard, MidtransRequest } from '@belisada/core/models';
 import { tick } from '@angular/core/src/render3';
 
 
@@ -87,14 +87,13 @@ export class PaymentComponent implements OnInit {
   }
 
   payMitrans() {
-
     const data1: TransactionDetails = new TransactionDetails();
     data1.order_id = 'PYT-15022019-5';
     data1.gross_amount = 17000;
 
     const data2: CreditCard = new CreditCard();
     data2.secure = true;
-    const data: MidRequest = new MidRequest();
+    const data: MidtransRequest = new MidtransRequest();
 
     data.transaction_details = data1;
     data.credit_card = data2;
