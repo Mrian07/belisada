@@ -67,7 +67,11 @@ import { ChatComponent } from './features/chat/chat.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
-
+import { NgxHmCarouselModule } from 'ngx-hm-carousel';
+import 'hammerjs';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { CarouselComponent } from './features/landing-page/carousel/carousel.component';
 registerLocaleData(localeId, 'id');
 
 library.add(fas, far, fab);
@@ -83,7 +87,8 @@ library.add(fas, far, fab);
     InvoiceComponent,
     EtalaseTokoComponent,
     BsPopoverTriggerComponent,
-    ChatComponent
+    ChatComponent,
+    CarouselComponent
   ],
   imports: [
     HttpClientModule,
@@ -104,6 +109,7 @@ library.add(fas, far, fab);
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NgxHmCarouselModule,
     StoreModule.forRoot(reducers),
     CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects, ProductsEffects, AddressEffect, ShippingMethodEffects]),
