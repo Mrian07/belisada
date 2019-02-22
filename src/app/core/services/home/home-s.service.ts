@@ -20,6 +20,13 @@ export class HomeSService {
       );
   }
 
+  getHomeNew(): Observable<Home> {
+    return this.http.get(this.cfg.apiUrlMongo + '/home/new')
+      .pipe(
+        map(response => response as Home)
+      );
+  }
+
   getFlashSale(queryParams): Observable<FlashSaleResponse> {
     let params = new HttpParams();
     Object.keys(queryParams).forEach(function(k) {

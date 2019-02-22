@@ -9,4 +9,5 @@ export class Globals {
   showChat: Boolean = false;
   storeId: number;
   socket;
+  showEmoji: Boolean = false;
 }

@@ -113,7 +113,7 @@
                     <fa-icon class="icon" [icon]="['fas', 'paperclip']" ngxFilePicker></fa-icon>
                     <!-- <emoji-mart><fa-icon class="icon" [icon]="['fas', 'smile']"></fa-icon></emoji-mart> -->
                     <!-- <emoji-mart (emojiClick)="addEmoji($event)"></emoji-mart> -->
-                    <fa-icon class="icon" [icon]="['fas', 'smile']"></fa-icon>
+                    <fa-icon class="icon" [icon]="['fas', 'smile']" (click)="toggled = !toggled"></fa-icon>
                     <!-- <emoji-mart [hidden]="!emoji"></emoji-mart> -->
                     <button type="submit" class="button__send">
                         <fa-icon class="button__send-icon" [icon]="['fas', 'paper-plane']"></fa-icon>
