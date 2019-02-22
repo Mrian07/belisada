@@ -4,7 +4,7 @@
         <div class="row small-gutters">
             <div class="col-sm-12">
                 <div class="promo-banner__slide-show">
-                    <img src="https://cdn.belisada.id/banner/slider1.png" alt="">
+                    <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
                     <!-- <app-carousel [images]="banners"></app-carousel> -->
 
                     <!-- <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger> -->
@@ -24,14 +24,14 @@
                 <img [src]="item?.imageUrl" alt="">
             </div> -->
             <div class="col-3">
-                <img src="https://cdn.belisada.id/banner/banner_bottom1.png">
+                <img [src]="cdnUrl + '/banner/banner_bottom1.png'">
             </div>
             <div class="col-3">
-                <img src="https://cdn.belisada.id/banner/banner_bottom2.png">
+                <img [src]="cdnUrl + '/banner/banner_bottom2.png'">
             </div>
             <div class="col-6">
-                <img src="https://cdn.belisada.id/banner/banner_bottom3.png">
-                <img src="https://cdn.belisada.id/banner/banner_bottom4.png">
+                <img [src]="cdnUrl + '/banner/banner_bottom3.png'">
+                <img [src]="cdnUrl + '/banner/banner_bottom4.png'">
             </div>
         </div>
     </div>
@@ -151,7 +151,7 @@
             <img class="c-fluid" [src]="bannersPromoTwo.imageUrl" alt="">
         </div> -->
         <div class="col-md-12">
-            <img class="c-fluid" src="https://cdn.belisada.id/banner/banner_footer.png" alt="">
+            <img class="c-fluid" [src]="cdnUrl + '/banner/banner_footer.png'" alt="">
         </div>
     </div>
 

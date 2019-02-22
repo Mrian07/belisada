@@ -67,6 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   dataForPopUp;
 
   public brandImageUrl: string;
+  public cdnUrl = environment.cdnUrl;
 
   public bannerMain: BannerMainData = new BannerMainData();
   public bannersLeft: BannerData[] = [];

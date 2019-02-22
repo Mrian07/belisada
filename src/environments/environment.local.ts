@@ -8,6 +8,7 @@ export const environment = {
   urlMidtrans: 'https://app.sandbox.midtrans.com',
   elasticSearchUrl: 'https://elastic.belisada.id',
   chatUrl: 'https://chat0.belisada.id',
+  cdnUrl: 'https://cdn.belisada.id',
   socketUrl: 'https://chat0-websock.belisada.id',
   firebase: {
     apiKey: 'AIzaSyBIUJNYI-q2h2Bh1Drb7GvDuK7KDjx_e5o',
