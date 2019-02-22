@@ -6,46 +6,13 @@
     </div>
 </div>
 
-<div class="extras-header">
+<!-- <div class="extras-header">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 extras-header__social-list">
-                <a href="https://www.facebook.com/BelisadaID/" target="_blank">
-                    <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
-                </a>
-                <a href="https://twitter.com/BelisadaID/" target="_blank">
-                    <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
-                </a>
-                <a href="https://www.instagram.com/belisada.id/" target="_blank">
-                    <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
-                </a>
-            </div>
-            <div class="col-md-9 extras-header__accounts text-right">
-                <div class="extras-header__accounts-wrapper">
-                    <a class="link" href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}"
-                        *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
-                        Mulai menjual di belisada
-                    </a>
-
-                    <ng-template #upgradeAccount>
-                        <a class="link" (click)="goToCreateStore()">
-                            Mulai menjual di belisada
-                        </a>
-                    </ng-template>
-
-                    <span class="delimiter"></span>
-                    
-                    <ul class="accounts__wrapper" *ngIf="userData">
-                        <bs-account-menu [userData]="userData" (logedOut)="logout()"></bs-account-menu>
-                    </ul>
-
-                    <a *ngIf="!userData" [routerLink]="['/account/sign-in']" class="btn btn--inverted btn--orange btn--bold">Login</a>
-                    <a *ngIf="!userData" [routerLink]="['/account/sign-up']" class="btn btn--blue btn--bold">Daftar</a>
-                </div>
-            </div>
+            
         </div>
     </div>
-</div>
+</div> -->
 
 <div class="main-header-wrapper">
     <div class="main-header">
@@ -59,7 +26,7 @@
                     </div>
                 </div>
                 <div class="header-extras col-md-9 col-sm-3">
-                    <div class="search">
+                    <div class="col-md-6 search">
                         <div class="search__box">
                             <div class="search__wrapper">
                                 <input type="text" [(ngModel)]="keywordSearch" class="search__input"
@@ -88,9 +55,28 @@
                             <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="extras-menu">
-                        <div class="extras-menu__banner--1">
-                            <img [src]="bannerSearch?.imageUrl" alt="">
+                    <div class="col-md-6 extras-menu">
+                        <div class="col-md-12 extras-header extras-header__accounts text-right">
+                            <a class="link linkJual" href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}" *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
+                                <img class="iconJual" src="/assets/img/icon_shopOpen.png">
+                                <p>Mulai menjual di belisada</p>
+                            </a>
+        
+                            <ng-template #upgradeAccount>
+                                <a class="link linkJual" (click)="goToCreateStore()">
+                                    <img class="iconJual" src="/assets/img/icon_shopOpen.png">
+                                    Mulai menjual di belisada
+                                </a>
+                            </ng-template>
+        
+                            <span class="delimiter"></span>
+                            
+                            <ul class="accounts__wrapper" *ngIf="userData">
+                                <bs-account-menu [userData]="userData" (logedOut)="logout()"></bs-account-menu>
+                            </ul>
+        
+                            <a *ngIf="!userData" [routerLink]="['/account/sign-in']" class="btn btn--inverted btn--orange btn--bold">Login</a>
+                            <a *ngIf="!userData" [routerLink]="['/account/sign-up']" class="btn btn--blue btn--bold">Daftar</a>
                         </div>
                     </div>
                 </div>

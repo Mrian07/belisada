@@ -17,11 +17,10 @@
 }
 
 .flash-sale {
-    background-color: #033250;
-    padding: 2rem 0;
+    background-color: #fff;
+    padding: 0;
 }
 
-// promo-banner
 .promo-banner {
 
     &__slide-show {
@@ -149,7 +148,7 @@
 }
 
 .section {
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
 
     &__link {
         &--1 {
@@ -224,14 +223,56 @@
     }
 }
 
-.product {
+.addToCart {
+    display: none;
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 10px 10px 0;
+    .btnCart {
+        background-color: #000;
+        color: #fff;
+        width: 70%;
+        height: 40px;
+        padding: 0 5px;
+        font-size: 16px;
+        &:hover {
+            background-color: #2c2c2c;
+        }
+    }
+    .btnFavorite {
+        background-color: #1967c1;
+        color: #fff;
+        width: 25%;
+        height: 40px;
+        padding: 0 5px;
+        float: right;
+        text-align: center;
+        font-size: 19px;
+        text-align: center;
+        &:hover {
+            background-color: #367fd3;
+        }
+    }
+    
+}
 
+.product {
+    .productOpacity {
+        transition: opacity .2s ease-in-out;
+    }
     &:nth-child(5n) &__container {
         border-right: 0;
     }
-
     &:nth-last-child(-n+5) &__grid {
         border-bottom: 0;
+    }
+    &:hover {
+        .addToCart {
+            display: inline-block;
+        }
+        .productOpacity {
+            opacity: 0.5;
+        }
     }
 
     &__link {
@@ -250,11 +291,12 @@
     &__container {
         padding: 0 10%;
         border-right: 1px solid #e3e3e3;
+        height: 322.88px;
     }
 
     &__image {
         margin: 1rem 0;
-        padding-top: 100%;
+        padding-top: 75%;
         position: relative;
         overflow: hidden;
 
@@ -264,14 +306,15 @@
             bottom: 0;
             left: 0;
             right: 0;
-            width: 100%;
+            margin: 0 auto;
+            width: 70%;
             display: flex;
             align-items: center;
         }
     }
 
     &__name {
-        color: #fff;
+        color: #033250;
         font-size: 2rem;
         font-weight: 600;
         margin: 0;
@@ -304,7 +347,7 @@
             display: block;
             text-align: center;
             font-size: 2.2rem;
-            color: #fff;
+            color: #f3672a;
             font-weight: 700;
         }
 
@@ -325,6 +368,19 @@
     }
 }
 
+.underline {
+    border-bottom: 1px solid #ddd;
+    text-transform: uppercase;
+}
+
+.rating {
+    &__count {
+        color: #8b8b8b;
+        font-size: 14px;
+        margin-left: 5px;
+        font-weight: bold;
+    }
+
 .fs-product {
     &__link {
         text-decoration: none;
@@ -343,11 +399,6 @@
 
     &__rating {
         font-size: 1.2rem;
-
-        .rating {
-            &__count {
-                color: #fff;
-            }
 
             &__star {
 
@@ -521,13 +572,38 @@
 .brand {
 
     &__wrapper {
-        border: 1px solid rgba(112, 112, 112, 0.3);
         height: 17rem;
         width: 100%;
         text-align: center;
         padding: 1rem 0;
     }
+}
 
-    &__image {
+.benefits {
+    border-top: 1px solid #c3c3c3;
+    padding: 25px 0 50px;
+    text-align: center;
+    color: #2c3145;
+    font-family: "Roboto", sans-serif;
+
+    .benefitsTitle {
+        font-size: 25px;
+        font-weight: 700;
+    }
+
+    img {
+        margin: 0 auto;
+        display: block;
+        height: 85px;
+    }
+
+    h2{
+        font-size: 22px;
+        margin: 10px 0;
+    }
+    p {
+        font-size: 20px;
+        line-height: 22px;
+        color: #919191;
     }
 }

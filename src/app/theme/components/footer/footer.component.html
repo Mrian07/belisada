@@ -2,10 +2,12 @@
     <div class="container">
         <div class="footer__top">
             <div class="row">
-                <div class="col-md-6"></div>
+                <div class="col-md-6 inline">
+                    <img src="/assets/img/icon-subscribe.png" alt="">
+                    <label class="footer__signup">Sign up For Newsletter</label>
+                </div>
                 <div class="col-md-6">
                     <form class="form-subscribe" (ngSubmit)="subscribe()">
-                        <!-- <label for="email">Subscribe to our newsletter:</label> -->
                         <div class="form-subscribe__wrapper pull-right">
                             <input type="text" class="form-subscribe__input" [formControl]="subscribe_email" placeholder="Enter your email address">
                             <span class="form-subscribe__delimiter"></span>
@@ -19,53 +21,70 @@
             </div>
         </div>
     </div>
-    <!-- <div class="footer__main">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-5r">
-                    <img src="/assets/img/banner/footer2.png" alt="">
-                </div>
-                <div class="col-md-5r">
-                    <div class="sitemap__title">
-                        <h2>Categories</h2>
+    <div class="container">
+        <div class="footer__main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5r marginLeft">
+                        <img src="/assets/img/logo.png" alt="">
+                        <h2 class="sitemap__description">Situs jual beli online terbaru yang mengutamakan layanan setelah pembelian.</h2>
+                        <div class="sitemap__contact">
+                            <h2>Follow Us</h2>
+                            <div class="sitemap__social">
+                                <a href="https://www.instagram.com/belisada.id/" target="_blank">
+                                    <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+                                </a>
+                                <a href="https://www.facebook.com/BelisadaID/" target="_blank">
+                                    <fa-icon [icon]="['fab', 'facebook-square']"></fa-icon>
+                                </a>
+                                <a href="" target="_blank">
+                                    <fa-icon [icon]="['fab', 'youtube']"></fa-icon>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="sitemap__list">
-                        <li><a [routerLink]="['/']">Handpicked Items</a></li>
-                        <li><a [routerLink]="['/']">Electronics</a></li>
-                        <li><a [routerLink]="['/']">Fresh New Arrival</a></li>
-                        <li><a [routerLink]="['/']">Smartphones</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-5r">
-                    <div class="sitemap__title">
-                        <h2>Quick Links</h2>
+                    <div class="col-md-5r marginLeft">
+                        <div class="sitemap__title">
+                            <h2>Information</h2>
+                        </div>
+                        <ul class="sitemap__list">
+                            <li><a [routerLink]="['/account/terms-conditions']">Terms & Conditions</a></li>
+                            <li><a [routerLink]="['/']">Brands</a></li>
+                            <li><a [routerLink]="['/faq']">FAQ</a></li>
+                        </ul>
                     </div>
-                    <ul class="sitemap__list">
-                        <li><a [routerLink]="['/']">Shipping & Returns</a></li>
-                        <li><a [routerLink]="['/']">Privacy Policy</a></li>
-                        <li><a [routerLink]="['/']">Terms & Conditions</a></li>
-                        <li><a [routerLink]="['/']">Vacancies</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-5r">
-                    <div class="sitemap__title">
-                        <h2>Account</h2>
+                    <div class="col-md-5r">
+                        <div class="sitemap__title">
+                            <h2>User Menu</h2>
+                        </div>
+                        <ul class="sitemap__list">
+                            <li><a [routerLink]="['/']">My Account</a></li>
+                            <li><a [routerLink]="['/']">Order History</a></li>
+                            <li><a [routerLink]="['/']">Seller Registration</a></li>
+                        </ul>
                     </div>
-                    <ul class="sitemap__list">
-                        <li><a [routerLink]="['/']">Wishlist</a></li>
-                        <li><a [routerLink]="['/']">Compare</a></li>
-                        <li><a [routerLink]="['/']">Subscribe</a></li>
-                        <li><a [routerLink]="['/']">Log in</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-5r">
-                    <img src="/assets/img/banner/footer1.png" alt="">
+                    <div class="col-md-5r">
+                        <div class="sitemap__title">
+                            <h2>Customer Service</h2>
+                        </div>
+                        <!-- <ul class="sitemap__list">
+                            <li><a [routerLink]="['/']">Contact Us</a></li>
+                        </ul> -->
+                        <div class="sitemap__contact">
+                            <h2>Telephone:</h2>
+                            <p>(+021) 123 777 8888 - (+021) 123 888 9999</p>
+                            <h2>Email:</h2>
+                            <p>support@belisada.co.id</p>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-5r">
+                    </div> -->
                 </div>
             </div>
         </div>
-    </div> -->
+    </div>
 
-    <div class="footer__bottom u-margin-top-1">
+    <!-- <div class="footer__bottom u-margin-top-1">
         <div class="container">
             <div class="row">
                 <div class="col-md-4 verticalMiddle">
@@ -79,12 +98,12 @@
                 <div class="col-md-4 text-right verticalMiddle">
                     <button class="btn btn--blue verticalCenterContainer" [routerLink]="['/faq']"><fa-icon [icon]="['fas', 'question-circle']"></fa-icon> Frequently Asked Question</button>
                 </div>
-                <!-- <div class="col-md-4 text-right verticalMiddle">
+                <div class="col-md-4 text-right verticalMiddle">
                     <button class="btn btn--blue verticalCenterContainer">Bahasa Indonesia</button>
-                </div> -->
+                </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- <div class="wrapper--orange">
         <div class="container">
