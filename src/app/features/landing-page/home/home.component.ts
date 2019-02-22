@@ -263,7 +263,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private _getDataForPop() {
-    this._homeService.getHomePopular().subscribe(res => {
+    this._homeService.getHomeNew().subscribe(res => {
       this.homeContents = res.content;
     });
   }
