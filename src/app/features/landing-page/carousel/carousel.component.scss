@@ -26,7 +26,7 @@ $transition_time:.2s;
             }
 
             &:last-child,
-            &:first-child,
+            &:first-child
             {
                 opacity: 0;
             }
@@ -55,7 +55,7 @@ $transition_time:.2s;
         opacity: 0.5;
 
         &.visible {
-        opacity: 1;
+            opacity: 1;
         }
     }
 
@@ -73,7 +73,7 @@ $transition_time:.2s;
         text-align: center;
 
         i {
-        font-size: 3em;
+            font-size: 3em;
         }
     }
 }
