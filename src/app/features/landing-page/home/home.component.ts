@@ -52,6 +52,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   regForm: boolean;
   regSuccess: boolean;
 
+  banners: any[];
   productNew: Home[] = [];
   productPop: Home[] = [];
   productImageUrl;
@@ -66,6 +67,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   dataForPopUp;
 
   public brandImageUrl: string;
+  public cdnUrl = environment.cdnUrl;
 
   public bannerMain: BannerMainData = new BannerMainData();
   public bannersLeft: BannerData[] = [];
@@ -102,7 +104,20 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._messageService.listen().subscribe((m: any) => {
       // console.log(m);
       this.onFilterClick(m);
-  });
+    });
+
+    this.banners = [
+      {
+        url: 'https://cdn.belisada.id/banner/slider1.png',
+        title: '1'
+      }, {
+        url: 'https://cdn.belisada.id/banner/slider2.png',
+        title: '2'
+      }, {
+        url: 'https://cdn.belisada.id/banner/slider3.png',
+        title: '3'
+      }
+    ];
   }
 
   ngOnInit() {
@@ -249,7 +264,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   private _getDataForPop() {
-    this._homeService.getHomePopular().subscribe(res => {
+    this._homeService.getHomeNew().subscribe(res => {
       this.homeContents = res.content;
     });
   }

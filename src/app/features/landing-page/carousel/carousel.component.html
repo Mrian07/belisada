@@ -1,19 +1,18 @@
 <ngx-hm-carousel
   [(ngModel)]="index"
-  (ngModelChange)="indexChanged($event)"
   [autoplay-speed]="speed"
   [autoplay]="autoplay"
   [autoplay-direction]="direction"
   [infinite]="infinite"
   [between-delay]="2000"
-  [data]="avatars"
+  [data]="images"
   [aniTime]="200"
   class="carousel">
 
   <section ngx-hm-carousel-container class="content">
     <article class="item cursor-pointer visible_important"
       ngx-hm-carousel-item
-      *ngFor="let avatar of avatars; let i = index">
+      *ngFor="let avatar of images; let i = index">
       <div class="img"
         [style.backgroundImage]="'url('+avatar.url+')'">
       </div>
