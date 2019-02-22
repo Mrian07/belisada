@@ -85,7 +85,7 @@ export class ComplaintProductComponent implements OnInit {
         'Silakan pilih masalah apa yang anda terima.',
         'error'
       );
-    } else if (this.createComForm.controls['orderComplainIssue'].value === '') {
+    } else if (this.createComForm.controls['orderComplainIssueSolution'].value === '') {
       swal(
         'Gagal',
         'Silakan pilih solusi yang anda inginkan.',

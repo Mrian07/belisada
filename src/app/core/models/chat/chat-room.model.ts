@@ -13,4 +13,5 @@ export class ChatRoom {
   room_type: RoomTypeEnum;
   created_at: Date;
   updated_at: Date;
+  _id: string;
 }

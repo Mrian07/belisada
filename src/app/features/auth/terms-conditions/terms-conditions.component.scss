@@ -1,0 +1,149 @@
+.container-float {
+    box-shadow: 0 0 9px 2px rgba(0,0,0,0.1);
+}
+
+.container {
+    margin: 20px auto;
+    padding: 10px 0;
+}
+
+.logo {
+    width: auto;
+    height: calc(2*34.5px);
+    display: block;
+}
+
+.social-list {
+    a {
+        color: #757575;
+        margin-left: 3rem;
+        font-size: 25px;
+        text-decoration: none;
+        &:hover {
+            color: #3d3d3d;
+        }
+    }
+    ul#horizontal li {
+        display: inline;
+    }
+}
+
+.title {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+
+.verticalMiddle {
+    position: relative;
+}
+
+.verticalMiddleInside {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(-15px,-50%);
+}
+
+.group {
+    margin-bottom: 30px;
+}
+
+.point {
+    color: black;
+    font-size: 17px;
+}
+
+ol {
+    counter-reset: item;
+    margin-left: 31px;
+    text-align: justify;
+}
+
+ol > li {
+    counter-increment: item;
+}
+
+ol ol > li {
+    display: block;
+}
+
+ol ol > li:before {
+    content: counters(item, ".") ". ";
+    margin-left: -31px;
+}
+
+.footer {
+    height: 50px;
+    h1 {
+        font-size: 17px;
+        margin-bottom: 0;
+    }
+}
+
+.verticalMiddleFooter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.bottom {
+    margin: 40px 0;
+}
+
+.btn {
+    font-size: 18px !important;
+}
+
+.sticky {
+    position: fixed;
+    z-index: 999;
+    height: 63px;
+    width: 290px;
+    padding: 3px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    vertical-align: middle;
+    text-align: center;
+    background-color: rgb(255, 109, 109);
+    color: #fff;
+    font-weight: bold;
+    top: 15%;
+    right: -226px;
+    transition: 0.4s;
+    text-decoration: none;
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.3);
+    a {
+        color: #fff;
+        font-size: 30px;
+        position: absolute;
+        transform: translate(-50%,6%);
+        width: 275px;
+        text-decoration: none;
+        &:active {
+            color: #fff;
+        }
+        &:focus {
+            color: #fff;
+        }
+        .square {
+            border: 1px solid #fff;
+            border-radius: 5px;
+            padding: 2px 6px;
+            margin-right: 5px;
+        }
+    }
+    &:hover {
+        //background-color: rgb(204, 85, 85);
+        cursor: pointer;
+        right: 0;
+    }
+    &:active {
+        text-decoration: none;
+    }
+    &:focus {
+        text-decoration: none;
+    }
+}

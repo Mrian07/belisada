@@ -1,0 +1,192 @@
+<div class="sticky">
+    <a [routerLink]="['/']" routerLinkActive="router-link-active" ><span class="square"><fa-icon [icon]="['fas', 'home']"></fa-icon></span> Back to Home</a>
+  </div>
+  <div class="container-float">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 verticalMiddle">
+          <div class="logo pull-left">
+            <a [routerLink]="['/']">
+              <img src="/assets/img/logo.png" alt="">
+            </a>
+          </div>
+          <div class="social verticalMiddleInside">
+            <div class="social-list">
+              <ul id="horizontal">
+                <li>
+                  <a href="https://www.facebook.com/BelisadaID/" target="_blank">
+                    <fa-icon [icon]="['fab', 'facebook-f']"></fa-icon>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://twitter.com/BelisadaID/" target="_blank">
+                    <fa-icon [icon]="['fab', 'twitter']"></fa-icon>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com/belisada.id/" target="_blank">
+                    <fa-icon [icon]="['fab', 'instagram']"></fa-icon>
+                  </a>
+                </li>
+              </ul>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-2 sidemenu">
+        <img class="qnaIcon" src="/assets/img/qna.png" alt="">
+        <h1 class="menu" (click)="faqButton()">FAQ</h1>
+        <h1 class="menu" (click)="regButton()">Panduan Registrasi</h1>
+        <h1 class="menu" (click)="sellerButton()">Panduan Seller</h1>
+      </div>
+      <div class="col-10">
+        <div class="content">
+          <div id="faq">
+            <div class="scaffolding">
+              <h2 class="point pull-left"><b>FAQ (Frequently Asked Question)</b></h2>
+              <div (click)="toggleFaq()" class="dropdownIcon pull-right">
+                <fa-icon [icon]="['fas', 'chevron-circle-down']"></fa-icon>
+              </div>
+            </div>
+            <div id="faqContent" class="scaffoldingContent">
+              <div class="group">
+                <h1 class="tanya">Apa itu belisada.co.id?</h1>
+                <p class="jawab">media belanja online terbaru yang mengutamakan layanan setelah pembelian yang saat ini kurang diperhatikan oleh media belanja online lainnya.</p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Apa saja layanan setelah pembelian yang ada di belisada.co.id?</h1>
+                <p class="jawab">layanan pengembalian produk dan uang, garansi, asuransi, perbaikan, dan tukar baru melalui belisada.co.id.</p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Apa saja yang termasuk dalam asuransi di belisada.co.id?</h1>
+                <p class="jawab">Belisada.co.id menyediakan 2 jenis asuransi: Asuransi pengiriman dan Asuransi setelah pembelian.<br>
+                    Asuransi pengiriman sebesar 0.2% dari harga setiap produk, setiap produk yang hilang dalam pengiriman akan dikembalikan uangnya maksimal 7 hari kerja.<br>
+                    Asuransi setelah pembelian sebesar 1% dari harga setiap produk, setiap produk yang rusak dalam pemakaian akan diperbaiki tanpa biaya tambahan.</p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Bagaimana cara membeli di belisada.co.id?</h1>
+                <p class="jawab">Anda dapat melakukan pembelian dengan registrasi maupun tanpa registrasi, registrasi memudahkan Anda mendapatkan layanan setelah pembelian.</p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Bagaimana cara menghubungi belisada.co.id?</h1>
+                <p class="jawab">Belisada.co.id dapat dihubungi melalui telepon di +62 21 xxxxxxx, email di layanan@belisada.co.id, obrolan di belisada.co.id dan di +62 812 xxxxxx, social media di Facebook, Instagram dan Twitter atas nama Belisada Global Indonesia.</p>
+              </div>
+              <div>
+                <h1 class="tanya">Bagaimana cara mengajukan pengembalian produk dan uang di belisada.co.id?</h1>
+                <p class="jawab">Setelah komplain disetujui, Anda dapat mengirimkan produk tersebut ke belisada.co.id<br>
+                    setelah produk diterima, uang akan dikembalikan maksimal 7 hari kerja.</p>
+              </div>
+            </div>
+          </div>
+          <div id="registrasi">
+            <div class="scaffolding">
+              <h2 class="point pull-left"><b>Panduan Registrasi</b></h2>
+              <div (click)="toggleRegis()" class="dropdownIcon pull-right">
+                <fa-icon [icon]="['fas', 'chevron-circle-down']"></fa-icon>
+              </div>
+            </div>
+            <div id="regisContent" class="scaffoldingContent">
+              <div class="group">
+                <h1 class="tanya">Bagaimana cara mendaftar di belisada.co.id?</h1>
+                <p class="jawab">- Buka halaman registrasi di <a [routerLink]="['/account/sign-up']"><b>belisada.co.id/account/sign-up</b></a><br>
+                - Isi nama lengkap, email, password.<br>
+                - Klik tombol register.
+                </p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Panduan melakukan pembayaran</h1>
+                <p class="jawab">
+                  - Melakukan transfer antar rekening, BCA 5270086910 Belisada Global Indonesia<br>
+                  - Buka halaman pesananku di belisada.co.id<br>
+                  - Klik tombol konfirmasi pembayaran<br>
+                  - Isi informasi transfer<br>
+                  - Klik tombol submit<br><br>
+                  Tim belisada.co.id akan melakukan konfirmasi dalam 1 jam kerja. Anda akan mendapatkan notifikasi melalui WhatsApp +62812 xxxxxxx dan email status@belisada.co.id
+                </p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Panduan melakukan konfirmasi penerimaan pesanan</h1>
+                <p class="jawab">- Buka halaman pesananku yang ada di Profile anda.<br>
+                - Pilih Menu “Pesananku”.<br>
+                - Klik tombol konfirmasi penerimaan pesanan.<br>
+                - Klik tombol selesai.<br>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div id="seller">
+            <div class="scaffolding">
+              <h2 class="point pull-left"><b>Panduan Seller</b></h2>
+              <div (click)="toggleSeller()" class="dropdownIcon pull-right">
+                <fa-icon [icon]="['fas', 'chevron-circle-down']"></fa-icon>
+              </div>
+            </div>
+            <div id="sellerContent" class="scaffoldingContent">
+              <div class="group">
+                <h1 class="tanya">Bagaimana cara mendaftar di belisada.co.id?</h1>
+                <p class="jawab">- Buka halaman registrasi di <a [routerLink]="['']"><b>seller.belisada.co.id</b></a><br>
+                - Isi nama lengkap, email, password.<br>
+                - Klik tombol register.
+                </p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Panduan menjual produk</h1>
+                <p class="jawab">
+                    - buka seller.belisada.co.id<br>
+                    - pastikan Anda sudah melengkapi profil toko Anda<br>
+                    - klik tombol tambah produk<br>
+                    <img src="/assets/img/buttonAddProduct.JPG"><br>
+                    - cari produk yang ingin Anda jual<br>
+                    - klik produk yang ingin Anda jual<br>
+                    - isi informasi produk<br>
+                    - klik tombol submit<br>
+                    - jika produk yang ingin Anda jual tidak ditemukan<br>
+                    - klik tombol request produk<br>
+                    - isi informasi produk<br>
+                    - klik tombol request<br>
+                </p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Panduan mengirim pesanan</h1>
+                <p class="jawab">	
+                    - buka halaman pesanan di seller.belisada.co.id.<br>
+                    
+                    <i style="color: black;">* pastikan Anda sudah mengirimkan pesanan</i><br>
+                    
+                    - klik input nomor pengiriman.<br>
+                    
+                    - isi informasi pengiriman.<br>
+                    
+                    - klik tombol submit.<br>
+                </p>
+              </div>
+              <div class="group">
+                <h1 class="tanya">Panduan pencairan Dana</h1>
+                <p class="jawab">	
+                    - buka halaman pemasukan di seller.belisada.co.id<br>
+                    - pilih pesanan yang akan dicairkan uangnya<br>
+                    - klik tombol cairkan dana<br><br>
+                    Tim seller.belisada.co.idakan carikan uang Anda dalam 1 jam kerja
+                    Anda akan mendapatkan notifikasi melalui WhatsApp +62812 xxxxxxx dan email status@belisada.co.id
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-float bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 verticalMiddle text-center footer">
+          <h1 class="verticalMiddleFooter">&copy; Belisada 2019</h1>
+          <div class="btn btn--orange verticalMiddleInside" (click)="topFunction()">Back to Top</div>
+        </div>
+      </div>
+    </div>
+  </div>

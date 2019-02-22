@@ -60,28 +60,18 @@
                                 </div>
                             </div> -->
                             <div class="wrapper2">
-                                <div>
-
-                                </div>
-                                <div>
-                                    <div>
-                                        <label class="container-checkbox">
-                                            <div class="text-box">
-                                                <span class="heading-primary-main">Dapatkan info Menarik di </span>
-                                                <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
-                                            </div>
-                                            <input type="checkbox" formControlName="isSubscribe" (change)="changeValue()">
-                                            <span class="checkmark"></span>
-                                        </label>
+                                <label class="container-checkbox">
+                                    <div class="text-box">
+                                        <span class="heading-primary-main">Dapatkan info Menarik di </span>
+                                        <span class="heading-primary-sub">Newsletter Belisada.co.id</span>
                                     </div>
-                                </div>
-                                <div>
-
-                                </div>
+                                    <input type="checkbox" formControlName="isSubscribe" (change)="changeValue()">
+                                    <span class="checkmark"></span>
+                                </label>
                             </div>
                             <div class="border-btn">
                                 <div class="bottom-center">
-                                    <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
+                                    <span>Dengan click DAFTAR Anda Telah menyetujui <span class="text-syarat-dan-ketentuan" [routerLink]="['/account/terms-conditions']">Syarat & Ketentuan</span> Serta Kebijakan Privasi</span>
                                 </div>
                                 <div *ngIf="vForValidation.invalid || status === 1; else signUp">
                                     <div class="component-center">

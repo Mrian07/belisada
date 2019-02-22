@@ -59,8 +59,6 @@ export class CheckoutComponent implements OnInit {
   kodepos: FormControl;
   alamat: FormControl;
 
-  channelId: number;
-
   listShip: GetShippingResponse[];
   listPayment: Payment[];
   listPaymentChild: Payment[];
@@ -90,6 +88,9 @@ export class CheckoutComponent implements OnInit {
   showDialog;
   createForm: FormGroup;
 
+  // channelId: number;
+  channelId = 2;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -102,6 +103,7 @@ export class CheckoutComponent implements OnInit {
     private http: HttpClient,
     private _userService: UserService,
   ) {
+
     this.isTransfer = [];
     this.itemCartIds = [];
     this.shippingRates = [];
@@ -628,8 +630,8 @@ export class CheckoutComponent implements OnInit {
       this.PMCode = vCart;
     }
 
-    if (this.PMCode === '') {
-        swal('belisada.co.id', 'Anda belum memilih metode pembayaran1', 'warning');
+    if (this.PMCode === '' || this.PMCode === null) {
+        swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (this.channelId === 0 && this.isTransferBank === true || this.channelId === undefined && this.isTransferBank === true) {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
@@ -640,6 +642,7 @@ export class CheckoutComponent implements OnInit {
       data.itemCartIds = checkoutCartIds;
       data.paymentMethodCode = this.PMCode;
       data.channelId = this.channelId;
+
       if (this.isAny0Qty) {
         swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
         return;

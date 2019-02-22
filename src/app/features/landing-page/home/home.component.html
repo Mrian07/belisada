@@ -2,31 +2,42 @@
     <!-- PROMO BANNER -->
     <div class="promo-banner__container">
         <div class="row small-gutters">
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <div class="promo-banner__slide-show">
-                    <img [src]="bannerMain.imageUrl" alt="">
-                    <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger>
+                    <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
+                    <!-- <app-carousel [images]="banners"></app-carousel> -->
+
+                    <!-- <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger> -->
                 </div>
             </div>
-            <div class="col-sm-3">
+            <!-- <div class="col-sm-3">
                 <div class="promo-banner__container">
                     <div *ngFor="let item of bannersLeft" [className]="bannersLeft.length === 1 ? 'promo-banner__image--1' : 'promo-banner__image--2'" [ngStyle]="{'background-image': 'url(' + item?.imageUrl + ')'}"></div>
-                    <!-- <img class="object-fit--cover" [src]="item?.imageUrl"> -->
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 
     <div class="promo-banner__bottom">
         <div class="row small-gutters">
-            <div class="col-sm-6" *ngFor="let item of bannersBottom">
+            <!-- <div class="col-sm-6" *ngFor="let item of bannersBottom">
                 <img [src]="item?.imageUrl" alt="">
+            </div> -->
+            <div class="col-3">
+                <img [src]="cdnUrl + '/banner/banner_bottom1.png'">
+            </div>
+            <div class="col-3">
+                <img [src]="cdnUrl + '/banner/banner_bottom2.png'">
+            </div>
+            <div class="col-6">
+                <img [src]="cdnUrl + '/banner/banner_bottom3.png'">
+                <img [src]="cdnUrl + '/banner/banner_bottom4.png'">
             </div>
         </div>
     </div>
     <!-- !PROMO BANNER! -->
 
-    <div class="row" *ngIf="flashSaleProducts.length !== 0">
+    <div *ngIf="flashSaleProducts.length !== 0">
         <!-- <div class="col">
             <div class="fs__title">
                 <h2>Today Deal</h2>
@@ -40,12 +51,12 @@
                 </a>
             </div>
         </div> -->
-        <div><!-- class="section__title" -->
-            <h2 style="margin-bottom: 1rem;">Produk Favorit</h2>
+        <div class="underline"><!-- class="section__title" -->
+            <h2 style="margin-bottom: 1rem;">Produk Terbaru</h2>
             <!-- <span class="striped"></span> -->
         </div>
     </div>
-    <div class="flash-sale full-width u-margin-bottom-3" *ngIf="flashSaleProducts.length !== 0">
+    <div class="flash-sale full-width" *ngIf="homeContents.length !== 0">
         <div class="container">
             <div class="row">
                 <!-- <div class="col-md-2" *ngFor="let item of flashSaleProducts">
@@ -86,11 +97,11 @@
                     </a>
                 </div> -->
                 <!-- POPULAR PRODUCT -->
-                <div class="section u-margin-bottom-3" *ngIf="homeContents.length !== 0">
+                <div class="section" *ngIf="homeContents.length !== 0">
                     <div class="section__content">
                         <div class="row no-gutters">
                             <div class="product col-md-5r col-xs-6" *ngFor="let item of homeContents | slice:0:15">
-                                <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
+                                <a class="product__link">
                                     <div class="product__grid">
                                         <div class="product__container">
                                             <div>
@@ -103,15 +114,20 @@
                                                     <span class="rating__count"> {{ item.review }} Reviews</span>
                                                 </div>
                                             </div>
-                                            
-                                            <div class="product__image">
-                                                <img [src]="productImageUrl + item.imageUrl" [alt]="item.imageUrl">
+                                            <div class="productOpacity">
+                                                <div class="product__image">
+                                                    <img [src]="productImageUrl + item.imageUrl" [alt]="item.imageUrl">
+                                                </div>
+                    
+                                                <div class="product__info">
+                                                    <span class="product__info--price">
+                                                        {{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}
+                                                    </span>
+                                                </div>
                                             </div>
-                
-                                            <div class="product__info">
-                                                <span class="product__info--price">
-                                                    {{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}
-                                                </span>
+                                            <div class="addToCart">
+                                                <button class="btn btnCart" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">View Product</button>
+                                                <button class="btn btnFavorite"><fa-icon [icon]="['far', 'heart']"></fa-icon></button>
                                             </div>
                                         </div>
                                     </div>
@@ -135,7 +151,7 @@
             <img class="c-fluid" [src]="bannersPromoTwo.imageUrl" alt="">
         </div> -->
         <div class="col-md-12">
-            <img class="c-fluid" [src]="bannersPromoOne.imageUrl" alt="">
+            <img class="c-fluid" [src]="cdnUrl + '/banner/banner_footer.png'" alt="">
         </div>
     </div>
 
@@ -149,7 +165,33 @@
         </div>
     </div>
 </div>
-
+<div class="container benefits">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="benefitsTitle">Benefits work with us</h1>
+        </div>
+        <div class="col-3">
+            <img src="/assets/img/icon-delivery.png">
+            <h2>Free Delivery</h2>
+            <p>And free returns. See checkout for delivery date.</p>
+        </div>
+        <div class="col-3">
+            <img src="/assets/img/icon-creditcard.png">
+            <h2>Safe Payment</h2>
+            <p>Pay with the Most popular & Secure payment methods.</p>
+        </div>
+        <div class="col-3">
+            <img src="/assets/img/icon-shopping.png">
+            <h2>Shop with confidence</h2>
+            <p>Our buyer protection covers your purchase since click to delivery.</p>
+        </div>
+        <div class="col-3">
+            <img src="/assets/img/icon-question.png">
+            <h2>24/7 Help Center</h2>
+            <p>Have a questions? Call our specialist or chat online.</p>
+        </div>
+    </div>
+</div>
 
 <!-- Modals -->
 <app-models [(visible)]="showDialog" minwidth="800" height="300" class="modal-home"

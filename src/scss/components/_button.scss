@@ -81,11 +81,11 @@
 
     &:disabled,
     &[disabled] {
-        background-color: #aeb3b8;
+        background-color: #d8d8d8;;
         cursor: not-allowed;
 
         &:hover {
-            background-color: #aeb3b8;
+            background-color: #d8d8d8;;
         }
     }
 }
@@ -144,7 +144,7 @@
     @include btn-theme($btn-color, $btn-text-color-light);
 }
 .btn--blue {
-    $btn-color: btn-color("imlek");
+    $btn-color: btn-color("blue");
     @include btn-theme($btn-color, $btn-text-color-light);
 }
 .btn--blue-belisada {
@@ -213,6 +213,7 @@
     cursor: not-allowed;
     $btn-color: btn-color("orange");
     @include btn-theme($btn-color, $btn-text-color-light);
+    border: 1px solid #d8d8d8
 }
 .btn-size-100 {
     width: 100%;
@@ -301,5 +302,5 @@
 }
 
 .border-btn{
-    width: 90%;
+    width: 100%;
 }
