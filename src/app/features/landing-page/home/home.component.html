@@ -4,7 +4,9 @@
         <div class="row small-gutters">
             <div class="col-sm-12">
                 <div class="promo-banner__slide-show">
-                    <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
+                    <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1}">
+                        <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
+                    </a>
                     <!-- <app-carousel [images]="banners"></app-carousel> -->
 
                     <!-- <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger> -->
@@ -24,14 +26,22 @@
                 <img [src]="item?.imageUrl" alt="">
             </div> -->
             <div class="col-3">
-                <img [src]="cdnUrl + '/banner/banner_bottom1.png'">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:34}">
+                    <img [src]="cdnUrl + '/banner/banner_bottom1.png'">
+                </a>
             </div>
             <div class="col-3">
-                <img [src]="cdnUrl + '/banner/banner_bottom2.png'">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3}">
+                    <img [src]="cdnUrl + '/banner/banner_bottom2.png'">
+                </a>
             </div>
             <div class="col-6">
-                <img [src]="cdnUrl + '/banner/banner_bottom3.png'">
-                <img [src]="cdnUrl + '/banner/banner_bottom4.png'">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:11}">
+                    <img [src]="cdnUrl + '/banner/banner_bottom3.png'">
+                </a>
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:8}">
+                    <img [src]="cdnUrl + '/banner/banner_bottom4.png'">
+                </a>
             </div>
         </div>
     </div>
@@ -151,7 +161,9 @@
             <img class="c-fluid" [src]="bannersPromoTwo.imageUrl" alt="">
         </div> -->
         <div class="col-md-12">
-            <img class="c-fluid" [src]="cdnUrl + '/banner/banner_footer.png'" alt="">
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:14}">
+                <img class="c-fluid" [src]="cdnUrl + '/banner/banner_footer.png'" alt="">
+            </a>
         </div>
     </div>
 
