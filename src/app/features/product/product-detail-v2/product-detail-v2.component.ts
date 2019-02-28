@@ -477,6 +477,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
             this._addressService.getShipping().subscribe((address) => {
               if (address.length > 0) {
                 this.selectedShippingAddress = address.find(x => x.isDefault === true);
+                if (typeof this.selectedShippingAddress === 'undefined') this.selectedShippingAddress = address[0];
               }
               this.shippingAddresses = address;
               this._loadShippingMethod({

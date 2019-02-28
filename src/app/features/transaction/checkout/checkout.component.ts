@@ -91,6 +91,8 @@ export class CheckoutComponent implements OnInit {
   // channelId: number;
   channelId = 2;
 
+  selectedPaymentMethod: Payment = new Payment();
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -252,10 +254,16 @@ export class CheckoutComponent implements OnInit {
 
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon;
-    this.listPayment.forEach((item, i) => {
-        this.isTransfer[i] = false;
-      });
+      this.listPayment = respon;
+      console.log('listPayment', this.listPayment);
+      if (this.listPayment.length > 0) {
+        this.selectedPaymentMethod = this.listPayment.find(x => x.isDefault === true);
+        if (typeof this.selectedPaymentMethod === 'undefined') this.selectedPaymentMethod = this.listPayment[0];
+      }
+      // TODO: REMOVE
+      // this.listPayment.forEach((item, i) => {
+      //   this.isTransfer[i] = false;
+      // });
     });
   }
 
@@ -621,14 +629,14 @@ export class CheckoutComponent implements OnInit {
 
     const vTransfer = 'BT';
     const vCart = 'KK';
-    this.PMCode = null;
-    if (this.isTransferBank === true) {
-      this.PMCode = vTransfer;
-    }
+    this.PMCode = this.selectedPaymentMethod.paymentMethodCode;
+    // if (this.isTransferBank === true) {
+    //   this.PMCode = vTransfer;
+    // }
 
-    if (this.isBtnCart === true) {
-      this.PMCode = vCart;
-    }
+    // if (this.isBtnCart === true) {
+    //   this.PMCode = vCart;
+    // }
 
     if (this.PMCode === '' || this.PMCode === null) {
         swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');

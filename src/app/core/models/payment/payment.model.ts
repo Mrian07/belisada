@@ -1,4 +1,5 @@
 export class Payment {
+  isDefault: Boolean;
   paymentMethodId: number;
   paymentMethodName: string;
   paymentMethodCode: string;

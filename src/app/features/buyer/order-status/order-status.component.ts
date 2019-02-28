@@ -132,7 +132,7 @@ export class OrderStatusComponent implements OnInit {
     this.isEmpty = false;
   }
 
-  orderList(statusOrderCode?: number) {
+  orderList(statusOrderCode?: any) {
     const queryParams = {
       itemperpage: 10,
       page: this.currentPage,
@@ -181,6 +181,7 @@ export class OrderStatusComponent implements OnInit {
   // }
 
   onSubmit(productId) {
+
     this.reviewForm.patchValue({
       productId: productId
     });
@@ -191,6 +192,7 @@ export class OrderStatusComponent implements OnInit {
     _data.productId = this.reviewForm.controls['productId'].value;
     this.reviewService.createReview(_data).subscribe(data => {
       this.loadingService.hide();
+      this.orderList(this.status);
       swal(
         'Sukses',
         'Terimakasih atas penilaian Anda.',
