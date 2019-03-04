@@ -66,12 +66,13 @@
                     <app-field-error-display  [displayError]="isFieldValid('transerDate')" errorMsg="Tanggal transfer tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
-                    Jam Transfer :
+                    Waktu Transfer :
                     <div date-picker="start"></div>
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="transferTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
                     <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+                    <app-field-error-display  [displayError]="isFieldValid('transferTime')" errorMsg="Waktu transfer tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Berita :
