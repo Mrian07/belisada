@@ -28,6 +28,7 @@ import { RatingRequiredValidator } from './star-rating/rating-required.validator
 import { DiscussionReviewComponent } from './discussion-review/discussion-review.component';
 import { DiscussionProductComponent } from './discussion-product/discussion-product.component';
 import { ReviewProductComponent } from './review-product/review-product.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 library.add(fas, far, fab);
 
@@ -42,6 +43,8 @@ library.add(fas, far, fab);
     MyDatePickerModule,
     BuyerRoutingModule,
     FontAwesomeModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   declarations: [
     BuyerComponent,

@@ -5,6 +5,10 @@
             Bila Anda telah melakukan pembayaran secara <span class="text-t">BANK TRANSFER</span>,<p>
             Konfirmasikan pembayaran Anda disini agar kami proses segera.</span>
             <br>
+
+            <!-- <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+            <owl-date-time #dt></owl-date-time> -->
+
             <form class="ui form" [formGroup]="createComForm" (ngSubmit)="onSubmit()" novalidate>
             <div class="form-c">
                 <div class="label-c">
@@ -60,6 +64,14 @@
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="transerDate" class="date-confim input-c"></my-date-picker>
                     </div>
                     <app-field-error-display  [displayError]="isFieldValid('transerDate')" errorMsg="Tanggal transfer tidak boleh kosong"></app-field-error-display>
+                </div>
+                <div class="label-c">
+                    Jam Transfer :
+                    <div date-picker="start"></div>
+                </div>
+                <div class="contain-c">
+                    <input type="text" class="input-c" formControlName="transferTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
+                    <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
                 </div>
                 <div class="label-c">
                     Berita :
