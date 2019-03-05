@@ -66,6 +66,9 @@ import { FileHelpersModule } from 'ngx-file-helpers';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
 import { CarouselComponent } from './features/landing-page/carousel/carousel.component';
 import { MessagingService } from './shared/messaging.service';
+
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 registerLocaleData(localeId, 'id');
 
 library.add(fas, far, fab);
@@ -106,6 +109,8 @@ library.add(fas, far, fab);
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxHmCarouselModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     StoreModule.forRoot(reducers),
     CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects, ProductsEffects, AddressEffect, ShippingMethodEffects]),

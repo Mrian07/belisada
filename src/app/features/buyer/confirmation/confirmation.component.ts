@@ -91,6 +91,7 @@ export class ConfirmationComponent implements OnInit {
       transferTo: new FormControl('', Validators.required),
       bankId: new FormControl('', Validators.required),
       transerDate: new FormControl('', Validators.required),
+      transferTime: new FormControl('', Validators.required),
       accountName: new FormControl('', Validators.required),
       accountNumber: new FormControl('', Validators.required),
       nominal: new FormControl('', Validators.required),
@@ -142,13 +143,22 @@ export class ConfirmationComponent implements OnInit {
   onSubmit() {
 
     if (this.createComForm.valid) {
+
+      const getTime = this.createComForm.controls['transferTime'].value;
+      const hours = getTime.getHours();
+      const minutes = getTime.getMinutes();
+
+      const allTime = hours + ':' + minutes + ':' + '00';
+      const allDate = this.dateUtil.formatMyDate(this.createComForm.controls['transerDate'].value.date, this.defaultDateFormat);
+      const dateTime = allDate + ' ' + allTime;
+
       const data = {
         paymentNumber: this.createComForm.controls['paymentNumber'].value,
         transferTo: this.createComForm.controls['transferTo'].value,
         bankId: this.createComForm.controls['bankId'].value,
         accountName: this.createComForm.controls['accountName'].value,
         accountNumber: this.createComForm.controls['accountNumber'].value,
-        transerDate: this.dateUtil.formatMyDate(this.createComForm.controls['transerDate'].value.date, this.defaultDateFormat),
+        transerDate: dateTime,
         news: this.createComForm.controls['news'].value,
         nominal: this.createComForm.controls['nominal'].value,
       };
