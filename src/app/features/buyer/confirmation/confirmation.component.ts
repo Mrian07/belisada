@@ -8,6 +8,7 @@ import { IMyDpOptions } from 'mydatepicker';
 import swal from 'sweetalert2';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 import { DataConfirm } from '@belisada/core/models/payment/payment.model';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -52,7 +53,7 @@ export class ConfirmationComponent implements OnInit {
     private dateUtil: DateUtil,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    // private route: ActivatedRoute
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -141,7 +142,7 @@ export class ConfirmationComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.loadingService.show();
     if (this.createComForm.valid) {
 
       const getTime = this.createComForm.controls['transferTime'].value;
@@ -164,9 +165,11 @@ export class ConfirmationComponent implements OnInit {
       };
 
       this.paymentService.confirmation(data).subscribe(respon => {
+        this.loadingService.hide();
         if (respon.status === 1) {
           this.isProses = true;
         } else {
+          this.loadingService.hide();
           swal(
             'Alert',
             'Konfirmasi gagal pastikan Payment ID yang Anda masukan sudah benar.',
@@ -176,7 +179,8 @@ export class ConfirmationComponent implements OnInit {
       });
 
     } else {
-          this.validateAllFormFields(this.createComForm);
+      this.loadingService.hide();
+      this.validateAllFormFields(this.createComForm);
     }
 
   }

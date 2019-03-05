@@ -4,6 +4,7 @@ import { FormsModule, FormGroup, FormControl, ReactiveFormsModule, Validators, N
 import { ResetPasswdRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
 import { PasswordValidation } from '@belisada/shared/validators';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -20,7 +21,8 @@ export class ResetPasswordComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -58,12 +60,15 @@ export class ResetPasswordComponent implements OnInit {
 
   /*Fungsi ini untuk melakukan proses reset password*/
   onSubmit(form: NgForm) {
+    this.loadingService.show();
     console.log(form);
     if (this.rstForm.valid) {
       this.data.newPassword = this.rstForm.value.password;
       this.userService.resetPasswd(this.data).subscribe(rsl => {
+        this.loadingService.hide();
         this.msg = rsl.message;
         if (rsl.status === 1) {
+          this.loadingService.hide();
           this.success = true;
         }
       });

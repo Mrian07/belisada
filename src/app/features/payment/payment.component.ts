@@ -6,6 +6,7 @@ import { ModalService } from '@belisada/shared/components/modal/modal.service';
 import { MidtransService } from '@belisada/core/services/midtrans/midtrans.service';
 import { TransactionDetails, CreditCard, MidtransRequest } from '@belisada/core/models';
 import { tick } from '@angular/core/src/render3';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 
 class PaymentModel {
@@ -48,7 +49,8 @@ export class PaymentComponent implements OnInit {
     private _paymentService: PaymentService,
     private fb: FormBuilder,
     private modalService: ModalService,
-    private midtransService: MidtransService
+    private midtransService: MidtransService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -126,6 +128,7 @@ export class PaymentComponent implements OnInit {
   }
 
   public onSubmit() {
+    this.loadingService.show();
     // swal({
     //   type: 'info',
     //   title: 'SUBMITTED! SEE CONSOLE!'
@@ -183,6 +186,7 @@ export class PaymentComponent implements OnInit {
     // });
 
     this.f.nativeElement.submit();
+    this.loadingService.hide();
   }
 
   setValue() {

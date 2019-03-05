@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { SubscribeRequest } from '@belisada/core/models';
 import { SubscribeService } from '@belisada/core/services';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -13,7 +14,8 @@ export class FooterComponent implements OnInit {
   subscribeRequest: SubscribeRequest = new SubscribeRequest();
 
   constructor(
-    private onSubs: SubscribeService
+    private onSubs: SubscribeService,
+    private loadingService: LoadingService
   ) {}
 
   ngOnInit() {
@@ -25,16 +27,19 @@ export class FooterComponent implements OnInit {
 
   /* Fungsi ini untuk mendaftarkan email dengan dilakukan validasi email terlebih dulu apakah sudah terdaftar atau belum. */
   subscribe() {
+    this.loadingService.show();
     if (!this.subscribe_email.invalid) {
     this.subscribeRequest.email = this.subscribe_email.value;
     this.onSubs.newsLetter(this.subscribeRequest)
       .subscribe(data => {
+        this.loadingService.hide();
         swal(data.message);
         if (data.status === 1) {
           this.subscribe_email.reset();
         }
       },
       error => {
+        this.loadingService.hide();
         swal('Ops, try again later');
       });
     }

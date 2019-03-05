@@ -44,7 +44,7 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
   test: any;
   private storage: Storage;
   routeback: string;
-  
+
   isLoaded: Boolean = false;
   // subscription: Subscription;
 
@@ -68,7 +68,7 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
     this.test = '';
     this.createFormControl();
     this.checkIsLogin();
-    this.route.queryParams.subscribe(params => this.routeback = params.routeback || '/buyer/profile')
+    this.route.queryParams.subscribe(params => this.routeback = params.routeback || '/buyer/profile');
   }
 
   ngAfterViewInit() {

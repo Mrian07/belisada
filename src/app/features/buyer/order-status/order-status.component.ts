@@ -181,7 +181,7 @@ export class OrderStatusComponent implements OnInit {
   // }
 
   onSubmit(productId) {
-
+    this.loadingService.show();
     this.reviewForm.patchValue({
       productId: productId
     });
