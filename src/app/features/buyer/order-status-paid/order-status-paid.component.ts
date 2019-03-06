@@ -275,7 +275,7 @@ export class OrderStatusPaidComponent implements OnInit {
         response.message,
         (response.status === 1) ? 'success' : 'error'
       );
-      this.orderListPaid();
+      this.orderListPaid(this.status);
       console.log('response: ', response);
     });
     this.showDialogKonfirm = false;
