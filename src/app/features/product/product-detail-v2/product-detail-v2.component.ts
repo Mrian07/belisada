@@ -5,7 +5,7 @@ import { ProductsSandbox } from '../products.sandbox';
 import { UserData, ProductDetailV2Data } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { UserService, AuthService, HomeSService, Globals } from '@belisada/core/services';
 import { ChatService } from '@belisada/core/services/globals/chat.service';
 import { LocalStorageEnum } from '@belisada/core/enum';
@@ -108,6 +108,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   userId: any;
   date: any;
   token: any;
+
+  snapshot: RouterStateSnapshot;
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
@@ -251,20 +253,26 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   alertChat(storeId) {
     const userData = this._userService.getUserData(this._authService.getToken());
+    console.log('storeId:', storeId);
+    this._chatService.setStoreId(storeId);
+    const joinRoom = new JoinRoom();
+    joinRoom.receiverId = storeId;
+    joinRoom.roomType = RoomTypeEnum.BS;
+    this._chatService.joinRoom(joinRoom);
     if (userData) {
-      console.log('storeId:', storeId);
-      this._chatService.setStoreId(storeId);
-      const joinRoom = new JoinRoom();
-      joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
-      joinRoom.senderId = this.userData.userId;
-      joinRoom.receiverId = storeId;
-      joinRoom.roomType = RoomTypeEnum.BS;
-      this._chatService.joinRoom(joinRoom);
-      this.globals.socket.on('joinReturn', () => {
-        this._chatService.show();
-      });
+    joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
+    joinRoom.senderId = this.userData.userId;
+    this.globals.socket.on('joinReturn', () => {
+      this._chatService.show();
+    });
     } else {
-      this._router.navigate(['/account/sign-in']);
+      this._router.navigate(['/account/sign-in'],
+      {
+        queryParams: {
+          routeback: this._router.url
+        }
+      }
+    );
     }
   }
 
