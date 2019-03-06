@@ -25,6 +25,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { CategoryMenuComponent } from './components/header/category-menu.component';
 import { AccountMenuComponent } from './components/header/account-menu.component';
 import { ModalComponent } from '@belisada/shared/components/modal/modal.component';
+// import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 const COMPONENTS = [
   ModalComponent,
@@ -57,6 +58,8 @@ library.add(fas, far, fab);
     RouterModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    // OwlDateTimeModule,
+    // OwlNativeDateTimeModule,
     CountdownTimerModule.forRoot()
   ],
   exports: [...PIPES, ...COMPONENTS],

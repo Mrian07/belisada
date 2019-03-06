@@ -7,6 +7,7 @@ import swal from 'sweetalert2';
 import { EmailChecking, SendEmailRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
 import { SendEmailTypeEnum } from '@belisada/core/enum';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -28,6 +29,7 @@ export class ForgotPasswordComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private fb: FormBuilder,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
@@ -62,7 +64,7 @@ export class ForgotPasswordComponent implements OnInit {
     //     }
     //   });
     // }
-
+    this.loadingService.show();
     delete this.msg;
     const data: SendEmailRequest = this.fogotFormGroup.value;
     data.type = SendEmailTypeEnum.RESET_PASSWORD;
@@ -70,13 +72,16 @@ export class ForgotPasswordComponent implements OnInit {
     result => {
       // Handle result
       if (result.status === 1) {
+        this.loadingService.hide();
         this.email = data.email;
         this.success = true;
       } else {
+        this.loadingService.hide();
         this.msg = result.message;
       }
     },
     error => {
+      this.loadingService.hide();
       swal('belisada.co.id', 'unknown error', 'error');
       }
     );

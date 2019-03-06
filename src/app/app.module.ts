@@ -24,19 +24,13 @@ import { APP_BASE_HREF, PathLocationStrategy, LocationStrategy, CurrencyPipe, As
 import { HomeComponent } from '@belisada/features/landing-page/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreEffects } from '@belisada/core/ngrx/effects';
-import { ProvinceReducer, CityReducer } from '@belisada/core/ngrx/reducers/store';
-import { SigninComponent, SignUpComponent, SignUpActivationComponent,
-  ForgotPasswordComponent, ResetPasswordComponent } from '@belisada/features/auth';
 
-
-// import { AuthComponent } from '@belisada/features/auth';
 import { ThemeModule } from './theme/theme.module';
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 import { HttpTokenInterceptor } from '@belisada/core/interceptors';
 import { StorageService, LocalStorageServie } from '@belisada/core/services/local-storage/storage.service';
 
 import { CountdownTimerModule } from 'ngx-countdown-timer';
-import { ADirective } from '@belisada/shared/directives';
 import 'angular2-navigate-with-data';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
@@ -71,11 +65,11 @@ import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
 import { NgxHmCarouselModule } from 'ngx-hm-carousel';
-import 'hammerjs';
-// import { enableProdMode } from '@angular/core';
-// import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { CarouselComponent } from './features/landing-page/carousel/carousel.component';
 import { MessagingService } from './shared/messaging.service';
+
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
 registerLocaleData(localeId, 'id');
 
 library.add(fas, far, fab);
@@ -116,6 +110,8 @@ library.add(fas, far, fab);
     ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxHmCarouselModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
     StoreModule.forRoot(reducers),
     CountdownTimerModule.forRoot(),
     EffectsModule.forRoot([StoreEffects, ProductsEffects, AddressEffect, ShippingMethodEffects]),

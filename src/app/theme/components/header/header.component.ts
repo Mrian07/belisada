@@ -20,6 +20,7 @@ import { BannerService } from '@belisada/core/services/banner/banner.service';
 import { BannerData } from '@belisada/core/models/banner/banner.model';
 import { environment } from '@env/environment';
 import swal from 'sweetalert2';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
@@ -80,6 +81,7 @@ export class HeaderComponent implements OnInit {
     private _thumborService: ThumborService,
     private _bannerService: BannerService,
     private _router: Router,
+    private loadingService: LoadingService
   ) {
     this.searchBarResults = [];
     this.showSearch = false;
@@ -113,12 +115,14 @@ export class HeaderComponent implements OnInit {
   }
 
   public onSearchSubmit() {
+    this.loadingService.show();
     const queryParams = {
       st: 'product',
       q: this.keywordSearch
     };
     this.showSearch = false;
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
+    this.loadingService.hide();
   }
 
   public clickSearch(keyword) {

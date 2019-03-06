@@ -5,7 +5,7 @@ import { ProductsSandbox } from '../products.sandbox';
 import { UserData, ProductDetailV2Data } from '@belisada/core/models';
 import { GetShippingResponse } from '@belisada/core/models/address/address.model';
 import { ShippingRate } from '@belisada/core/models/shopping-cart/delivery-option.model';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterStateSnapshot } from '@angular/router';
 import { UserService, AuthService, HomeSService, Globals } from '@belisada/core/services';
 import { ChatService } from '@belisada/core/services/globals/chat.service';
 import { LocalStorageEnum } from '@belisada/core/enum';
@@ -22,6 +22,7 @@ import { environment } from '@env/environment';
 import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
 import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
 import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 
 enum TabTypeEnum {
@@ -106,6 +107,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   message: any;
   userId: any;
   date: any;
+  token: any;
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
@@ -127,7 +129,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     private _productService: ProductService,
     private _addressService: AddressService,
     private _homeService: HomeSService,
-    private _chatService: ChatService
+    private _chatService: ChatService,
+    private loadingService: LoadingService
   ) {
     this.isLogin = false;
     this.isSubHeaderShow = false;
@@ -164,6 +167,8 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       userId: ['', [Validators.required]],
       date: ['', [Validators.required]]
     });
+
+    // this.token = localStorage.getItem('token');
   }
 
   ngOnDestroy(): void {
@@ -244,18 +249,27 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingMethod = shippingMethod;
   }
 
-  alertChat(storeId) {
-    console.log('storeId:', storeId);
-    this._chatService.setStoreId(storeId);
-    const joinRoom = new JoinRoom();
-    joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
-    joinRoom.senderId = this.userData.userId;
-    joinRoom.receiverId = storeId;
-    joinRoom.roomType = RoomTypeEnum.BS;
-    this._chatService.joinRoom(joinRoom);
-    this.globals.socket.on('joinReturn', () => {
-      this._chatService.show();
-    });
+  alertChat(storeId, state: RouterStateSnapshot) {
+    const userData = this._userService.getUserData(this._authService.getToken());
+    if (userData) {
+      console.log('storeId:', storeId);
+      this._chatService.setStoreId(storeId);
+      const joinRoom = new JoinRoom();
+      joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
+      joinRoom.senderId = this.userData.userId;
+      joinRoom.receiverId = storeId;
+      joinRoom.roomType = RoomTypeEnum.BS;
+      this._chatService.joinRoom(joinRoom);
+      this.globals.socket.on('joinReturn', () => {
+        this._chatService.show();
+      });
+    } else {
+        this._router.navigate(['/account/sign-in'], {
+          queryParams: {
+            routeback: this._router.url
+          }
+        });
+    }
   }
 
   // private _loadChat(id: number) {
@@ -277,16 +291,20 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
    * Add to cart
    */
   public addToCart() {
+    this.loadingService.show();
     const productId = this.product.priceData.range.productId;
     const userData = this._userService.getUserData(this._authService.getToken());
 
     if (userData) {
+      this.loadingService.hide();
       if (userData.storeId === this.product.storeInfo.storeId) {
+        this.loadingService.hide();
         swal(
             'belisada.co.id',
             'Product ini berasal dari Toko Anda'
           );
       } else {
+        this.loadingService.hide();
         const addToCartRequest: AddToCartRequest = {
           productId: this.product.priceData.range.productId,
           quantity: this.qty,
@@ -296,6 +314,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
         };
 
         this._shoppingCartService.create(addToCartRequest).subscribe(response => {
+          this.loadingService.hide();
           if (response.status === 1) {
             this._shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
           } else {
@@ -304,18 +323,21 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
         });
       }
     } else {
+      this.loadingService.hide();
       this._shoppingCartService.addItem(productId, +this.qty);
     }
   }
 
 
   public createNewDiscussion(discusParentId?: number) {
+    this.loadingService.show();
     this.createNewDiscussionForm.patchValue({
       discusParentId: discusParentId || null,
       productId: this.product.priceData.range.productId
     });
     // console.log(this.createNewDiscussionForm.value);
     this._productService.createDiscus(this.createNewDiscussionForm.value).subscribe(rsl => {
+      this.loadingService.hide();
       this._loadDiscuss(this.product.priceData.range.productId);
       this.createNewDiscussionForm.reset();
     });
@@ -477,6 +499,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
             this._addressService.getShipping().subscribe((address) => {
               if (address.length > 0) {
                 this.selectedShippingAddress = address.find(x => x.isDefault === true);
+                if (typeof this.selectedShippingAddress === 'undefined') this.selectedShippingAddress = address[0];
               }
               this.shippingAddresses = address;
               this._loadShippingMethod({

@@ -139,12 +139,12 @@
                 Metode Pembayaran
             </div>
             <div class="cPay__val" *ngFor="let item of listPayment; let i = index">
-                <button [ngClass]="[isTransfer[i] == false ? 'cPay__btn' : 'cPay__btn-active']" (click)="cTransfer(listPayment,i,item.paymentMethodCode)">{{ item.paymentMethodName }}</button>
+                <button [ngClass]="[(selectedPaymentMethod === item) ? 'cPay__btn-active' : 'cPay__btn']" (click)="cTransfer(listPayment,i,item.paymentMethodCode)">{{ item.paymentMethodName }}</button>
             </div>
         </div>
 
-        <div class="cPayDetail" *ngIf="isTransferBank == true">
-            <div class="cPayDetail__bank" *ngFor="let itemBnk of listPaymentChild; let j = index">
+        <div class="cPayDetail" *ngIf="selectedPaymentMethod.paymentMethodCode === 'BT'"> <!-- *ngIf="isTransferBank == true" -->
+            <div class="cPayDetail__bank" *ngFor="let itemBnk of selectedPaymentMethod.data; let j = index">
                 <div></div>
                 <div>
                     <input type="radio" [(ngModel)]="channelId" [value]="itemBnk.id">
@@ -342,5 +342,5 @@
 
 <script language="javascript">
     document.write(iPay88Signature("d3kdhKeH93M00045A00257110800MYR")); //sample signature
- </script>
+</script>
 

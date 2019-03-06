@@ -23,6 +23,7 @@ import { UserService, Globals } from '@belisada/core/services';
 declare var iPay88Signature: any;
 
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 // import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
 
 @Component({
@@ -91,6 +92,8 @@ export class CheckoutComponent implements OnInit {
   // channelId: number;
   channelId = 2;
 
+  selectedPaymentMethod: Payment = new Payment();
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -102,6 +105,7 @@ export class CheckoutComponent implements OnInit {
     private thumborService: ThumborService,
     private http: HttpClient,
     private _userService: UserService,
+    private loadingService: LoadingService
   ) {
 
     this.isTransfer = [];
@@ -252,10 +256,16 @@ export class CheckoutComponent implements OnInit {
 
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
-    this.listPayment = respon;
-    this.listPayment.forEach((item, i) => {
-        this.isTransfer[i] = false;
-      });
+      this.listPayment = respon;
+      console.log('listPayment', this.listPayment);
+      if (this.listPayment.length > 0) {
+        this.selectedPaymentMethod = this.listPayment.find(x => x.isDefault === true);
+        if (typeof this.selectedPaymentMethod === 'undefined') this.selectedPaymentMethod = this.listPayment[0];
+      }
+      // TODO: REMOVE
+      // this.listPayment.forEach((item, i) => {
+      //   this.isTransfer[i] = false;
+      // });
     });
   }
 
@@ -308,7 +318,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSent() {
-
+    this.loadingService.show();
     if (this.formAddCrtl.valid) {
       const data = new AddShippingRequest();
       data.address = this.formAddCrtl.value.alamat;
@@ -320,12 +330,14 @@ export class CheckoutComponent implements OnInit {
       data.villageId = this.formAddCrtl.value.villageId;
 
       this.addressService.addShipping(data).subscribe(respon => {
+        this.loadingService.hide();
         if (respon.status === 1) {
           this.showDialogPilihAlamat = false;
           this.getCartCheckout();
         }
       });
     } else {
+      this.loadingService.hide();
       this.validateAllFormFields(this.formAddCrtl);
     }
 
@@ -610,6 +622,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   doCheckout() {
+    this.loadingService.show();
     let checkoutCartIds: number[] = [];
     this.checkoutTrx.cart.forEach((item, i) => {
       if (this.checkShop[i]) {
@@ -621,14 +634,14 @@ export class CheckoutComponent implements OnInit {
 
     const vTransfer = 'BT';
     const vCart = 'KK';
-    this.PMCode = null;
-    if (this.isTransferBank === true) {
-      this.PMCode = vTransfer;
-    }
+    this.PMCode = this.selectedPaymentMethod.paymentMethodCode;
+    // if (this.isTransferBank === true) {
+    //   this.PMCode = vTransfer;
+    // }
 
-    if (this.isBtnCart === true) {
-      this.PMCode = vCart;
-    }
+    // if (this.isBtnCart === true) {
+    //   this.PMCode = vCart;
+    // }
 
     if (this.PMCode === '' || this.PMCode === null) {
         swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
@@ -637,7 +650,6 @@ export class CheckoutComponent implements OnInit {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (checkoutCartIds.length) {
-
       const data: CheckoutReq = new CheckoutReq();
       data.itemCartIds = checkoutCartIds;
       data.paymentMethodCode = this.PMCode;
@@ -649,6 +661,7 @@ export class CheckoutComponent implements OnInit {
       }
 
       this.checkoutService.doCheckout(data).subscribe(response => {
+        this.loadingService.hide();
         if (response.status === 1) {
           this.shoppingCartService.empty();
           if (this.PMCode === vTransfer) {
@@ -723,6 +736,7 @@ export class CheckoutComponent implements OnInit {
 
     } else {
       swal('belisada.co.id', 'Item yang dipesan belum dipilih', 'warning');
+      this.loadingService.hide();
         return;
     }
   }
