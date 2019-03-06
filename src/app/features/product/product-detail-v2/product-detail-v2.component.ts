@@ -109,8 +109,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   date: any;
   token: any;
 
-  snapshot: RouterStateSnapshot;
-
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
       this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
@@ -251,28 +249,26 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingMethod = shippingMethod;
   }
 
-  alertChat(storeId) {
+  alertChat(storeId, state: RouterStateSnapshot) {
     const userData = this._userService.getUserData(this._authService.getToken());
-    console.log('storeId:', storeId);
-    this._chatService.setStoreId(storeId);
-    const joinRoom = new JoinRoom();
-    joinRoom.receiverId = storeId;
-    joinRoom.roomType = RoomTypeEnum.BS;
-    this._chatService.joinRoom(joinRoom);
     if (userData) {
-    joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
-    joinRoom.senderId = this.userData.userId;
-    this.globals.socket.on('joinReturn', () => {
-      this._chatService.show();
-    });
+      console.log('storeId:', storeId);
+      this._chatService.setStoreId(storeId);
+      const joinRoom = new JoinRoom();
+      joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
+      joinRoom.senderId = this.userData.userId;
+      joinRoom.receiverId = storeId;
+      joinRoom.roomType = RoomTypeEnum.BS;
+      this._chatService.joinRoom(joinRoom);
+      this.globals.socket.on('joinReturn', () => {
+        this._chatService.show();
+      });
     } else {
-      this._router.navigate(['/account/sign-in'],
-      {
-        queryParams: {
-          routeback: this._router.url
-        }
-      }
-    );
+        this._router.navigate(['/account/sign-in'], {
+          queryParams: {
+            routeback: this._router.url
+          }
+        });
     }
   }
 
