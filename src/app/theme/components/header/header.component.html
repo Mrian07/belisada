@@ -1,7 +1,9 @@
 <div class="top-header">
     <div class="top-header__banner">
         <div class="top-header__banner--wrapper container">
-            <img [src]="bannerTop?.imageUrl" alt="">
+            <a [routerLink]="['/routePath']">
+                <img [src]="bannerTop?.imageUrl" alt="">
+            </a>
         </div>
     </div>
 </div>
@@ -59,13 +61,13 @@
                         <div class="col-md-12 extras-header extras-header__accounts text-right">
                             <a class="link linkJual" href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}" *ngIf="userData?.role !== 2; else upgradeAccount" target="_blank">
                                 <img class="iconJual" src="/assets/img/icon_shopOpen.png">
-                                <p>Mulai menjual di belisada</p>
+                                <p>Buka Halaman Seller</p>
                             </a>
         
                             <ng-template #upgradeAccount>
                                 <a class="link linkJual" (click)="goToCreateStore()">
                                     <img class="iconJual" src="/assets/img/icon_shopOpen.png">
-                                    Mulai menjual di belisada
+                                    Mulai menjual
                                 </a>
                             </ng-template>
         
@@ -112,7 +114,7 @@
                                     <span class="counter">{{ itemCount }}</span>
                                 </div>
                                 <div class="cart__header--right">
-                                    Total: <span class="total-price">Rp {{itemsTotal | number}}</span>
+                                    Total: <span class="total-price">{{itemsTotal | currency:'Rp ':'symbol':'1.0'}}</span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -124,7 +126,7 @@
                                         </div>
                                         <div class="cart__content--right-side">
                                             <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
-                                            <span class="product--price">Rp {{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | number }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
+                                            <span class="product--price">{{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | currency:'Rp ':'symbol':'1.0' }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
                                             <div class="clearfix"></div>
                                         </div>
                                     </li>
