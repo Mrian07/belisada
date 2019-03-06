@@ -650,7 +650,6 @@ export class CheckoutComponent implements OnInit {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (checkoutCartIds.length) {
-      // this.loadingService.hide();
       const data: CheckoutReq = new CheckoutReq();
       data.itemCartIds = checkoutCartIds;
       data.paymentMethodCode = this.PMCode;
@@ -737,6 +736,7 @@ export class CheckoutComponent implements OnInit {
 
     } else {
       swal('belisada.co.id', 'Item yang dipesan belum dipilih', 'warning');
+      this.loadingService.hide();
         return;
     }
   }
