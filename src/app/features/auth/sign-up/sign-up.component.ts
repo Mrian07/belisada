@@ -12,6 +12,7 @@ import { PasswordValidation } from '@belisada/shared/validators';
 import { Store, ActionsSubject } from '@ngrx/store';
 import * as UserAction from '@belisada/core/ngrx/actions/user';
 import * as UserReducer from '@belisada/core/ngrx/reducers/user';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,7 +26,6 @@ export class SignUpComponent implements OnInit {
   users: User[] = [];
   signupData: SignupData = new SignupData();
   emailChecking: EmailChecking = new EmailChecking();
-  loading = false;
   title = true;
   emailToSuccess: string;
   message: string;
@@ -45,7 +45,8 @@ export class SignUpComponent implements OnInit {
     private fb: FormBuilder,
     private actionsSubject: ActionsSubject,
     private ngrx: Store<UserAction.SignUpBuyer>,
-    private authService: AuthService
+    private authService: AuthService,
+    private loadingService: LoadingService
   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
@@ -92,7 +93,7 @@ export class SignUpComponent implements OnInit {
               console.log(response);
               // if (response.status === 1) {
                   this.emailToSuccess = this.signupData.email;
-                  this.loading = false;
+                  this.loadingService.hide();
                   this.title = false;
               // } else {
               //     swal({
@@ -170,8 +171,8 @@ export class SignUpComponent implements OnInit {
   }
 
   submit(form: NgForm) {
+      this.loadingService.show();
       const model = this.vForValidation.value;
-      this.loading = true;
       this.signupData.name = model.fullname;
       this.signupData.email = model.email;
       this.signupData.phone = model.phoneNumber;
@@ -180,5 +181,6 @@ export class SignUpComponent implements OnInit {
       this.ngrx.dispatch(new UserAction.SignUpBuyer(this.signupData));
       // console.log(form);
       this.vForValidation.reset();
+      this.loadingService.hide();
   }
 }

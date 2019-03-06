@@ -5,6 +5,7 @@ import { DiscusService } from '@belisada/core/services/discus/discus.service';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import { FormGroup, FormBuilder, FormControl, NgForm, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-discussion-product',
@@ -25,7 +26,8 @@ export class DiscussionProductComponent implements OnInit {
     private discusService: DiscusService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private loadingService: LoadingService
   ) {
     this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/45x45/center/filters:fill(fff)/';
   }
@@ -98,10 +100,11 @@ export class DiscussionProductComponent implements OnInit {
   }
 
   onSubmit() {
-
+    this.loadingService.show();
     const msg = this.createComForm.controls['message'].value;
 
     if ( msg === null || msg === '') {
+      this.loadingService.hide();
       swal(
         'Alert',
         'Silakan isi pesan Anda.',
@@ -111,7 +114,7 @@ export class DiscussionProductComponent implements OnInit {
       return;
     }
     if (this.createComForm.valid) {
-
+      this.loadingService.hide();
       const data = {
         discusParentId: this.createComForm.controls['discusParentId'].value,
         productId: this.createComForm.controls['productId'].value,
@@ -119,10 +122,12 @@ export class DiscussionProductComponent implements OnInit {
       };
 
       this.discusService.addBuyerDiscus(data).subscribe(respon => {
+        this.loadingService.hide();
         this.loadData();
       });
 
     } else {
+      this.loadingService.hide();
       this.validateAllFormFields(this.createComForm);
     }
 

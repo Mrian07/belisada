@@ -6,6 +6,7 @@ import { ActivationResponse, ActivationRequest, SendEmailRequest } from '@belisa
 import { UserService } from '@belisada/core/services';
 import { JWTUtil } from '@belisada/core/util';
 import { SendEmailTypeEnum } from '@belisada/core/enum';
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-sign-up-activation',
@@ -25,7 +26,8 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private fb: FormBuilder,
-    private jwtUtil: JWTUtil
+    private jwtUtil: JWTUtil,
+    private loadingService: LoadingService
   ) { }
 
 
@@ -37,7 +39,6 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
     const activationRequest: ActivationRequest = new ActivationRequest();
     activationRequest.key = this.key;
     this.userService.activation(activationRequest).subscribe(response => {
-      
       if(response.status === 2){
         this.userService.setUserToLocalStorage(response.data.token);
         this.name = response.data.name;
@@ -45,7 +46,6 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
           this.router.navigateByUrl('/buyer/profile');
         } , 1500);
       }
-      
 
       this.activationResponse = response;
 
@@ -69,11 +69,13 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.loadingService.show();
     const data: SendEmailRequest = new SendEmailRequest();
     data.email = this.emailFC.value;
     data.type = SendEmailTypeEnum.ACTIVATION;
     this.userService.sendEmail(data).subscribe(
     result => {
+      this.loadingService.hide();
       swal(
       'belisada.co.id',
       result.message,
@@ -83,6 +85,7 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
       this.name = result.name;
     },
     error => {
+      this.loadingService.hide();
       swal(
       'belisada.co.id',
       'Unknown error',
