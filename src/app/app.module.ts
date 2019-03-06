@@ -41,6 +41,7 @@ import 'angular2-navigate-with-data';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 import { FaqComponent } from './features/faq/faq.component';
+import { ContactUsComponent } from './features/contact-us/contact-us.component';
 
 // !font-awesome
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';

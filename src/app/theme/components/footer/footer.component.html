@@ -60,7 +60,12 @@
                         <ul class="sitemap__list">
                             <li><a [routerLink]="['/buyer/profile']">My Account</a></li>
                             <li><a [routerLink]="['/buyer/order']">Order History</a></li>
-                            <li><a href="https://seller.belisada.co.id">Seller Registration</a></li>
+                            <li>
+                                <a href="{{baseUrlSeller}}/auth/sign-in?token={{this.token}}" *ngIf="userData?.role !== 2; else upgradeAccount">Seller Page</a>
+                                <ng-template #upgradeAccount>
+                                    <a class="link linkJual" (click)="goToCreateStore()">Become a Seller</a>
+                                </ng-template>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-md-5r">
@@ -71,10 +76,10 @@
                             <li><a [routerLink]="['/']">Contact Us</a></li>
                         </ul> -->
                         <div class="sitemap__contact">
-                            <h2>Telephone:</h2>
-                            <p>(+021) 123 777 8888 - (+021) 123 888 9999</p>
+                            <h2>Question?</h2>
+                            <a class="contactUs" [routerLink]="['/contact-us']">Contact Us</a>
                             <h2>Email:</h2>
-                            <p>support@belisada.co.id</p>
+                            <p>cs@belisada.co.id</p>
                         </div>
                     </div>
                     <!-- <div class="col-md-5r">
