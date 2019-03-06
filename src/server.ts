@@ -8,9 +8,8 @@ import * as express from 'express';
 import { join } from 'path';
 import 'localstorage-polyfill';
 
-
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 global['localStorage'] = localStorage;
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();

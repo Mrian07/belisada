@@ -650,7 +650,7 @@ export class CheckoutComponent implements OnInit {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (checkoutCartIds.length) {
-      this.loadingService.hide();
+      // this.loadingService.hide();
       const data: CheckoutReq = new CheckoutReq();
       data.itemCartIds = checkoutCartIds;
       data.paymentMethodCode = this.PMCode;
@@ -666,10 +666,8 @@ export class CheckoutComponent implements OnInit {
         if (response.status === 1) {
           this.shoppingCartService.empty();
           if (this.PMCode === vTransfer) {
-            this.loadingService.hide();
             this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
           } else if (this.PMCode === vCart) {
-            this.loadingService.hide();
             let sign = '';
             // MerchantKey
             sign = sign.concat(environment.ipay88.MerchantKey);
@@ -733,13 +731,11 @@ export class CheckoutComponent implements OnInit {
           }
 
         } else {
-          this.loadingService.hide();
           swal('belisada.co.id', response.message, 'error');
         }
       });
 
     } else {
-      this.loadingService.hide();
       swal('belisada.co.id', 'Item yang dipesan belum dipilih', 'warning');
         return;
     }
