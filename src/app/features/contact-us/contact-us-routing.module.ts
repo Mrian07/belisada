@@ -14,8 +14,9 @@ const routes: Routes = [
         data: {
           title: 'Contact Us'
         }
+      },
     ]
-  }
+  },
 ];
 
 @NgModule({

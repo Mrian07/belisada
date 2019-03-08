@@ -4,7 +4,7 @@
     &__banner {
         width: 100%;
         height: 57px;
-        // text-align: center;
+        background-color: #000;
 
         &--wrapper {
             height: 75px;
@@ -201,6 +201,7 @@
     -webkit-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
     box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+    background-color: #23303d;
 
     .navigation {
         list-style: none;
