@@ -1,4 +1,133 @@
-<div *ngIf="isLoading==true">
+<!-- <div *ngIf="isEmpty==true">
+    Saat ini belum ada pesanan.
+</div> -->
+
+<div *ngFor="let item of order.content">
+    <div  class="os-head">
+        <div class="row row-atur">
+            <div class="col-3">
+                <div class="text-order">{{item.createdTime}}</div>
+            </div>
+            <div class="col-9">
+                <div class="text-rek" (click)="showPaymentMethodModal = !showPaymentMethodModal">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
+                <a [routerLink]="['/buyer/confirmation/' + item.paymentNumber]">
+                    <div class="text-confirm">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
+                </a>
+                <div class="text-more" (click)="openOS(openDetail, item.transactionId)">Lihat Detail <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
+            </div>
+        </div>
+        <div class="row row-atur">
+            <div class="col-4">
+                <div class="text-payid">Payment ID: {{item.paymentNumber}} </div>
+            </div>
+            <div class="col-4">
+
+                <div class="text-payinfo">Payment: ({{item.paymentMethod}})
+                
+                </div>
+            </div>
+            <div class="col-2">
+                <div *ngIf="item.countdown">
+                    Batas Waktu Respon:
+                    <ng-container *ngIf="item.countdown.status === 1; else expired">
+                        {{ item.countdown.days }}d - {{ item.countdown.hours }}h - {{ item.countdown.minutes }}m - {{ item.countdown.seconds }}s
+                    </ng-container>
+                    <ng-template #expired>
+                        {{ item.countdown.message }}
+                    </ng-template>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="openDetail === true && transactionId === item.transactionId" class="os-body">
+
+        <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
+            <tr *ngFor="let itemList of itemCart.cart">
+                <td valign="top" width="20%">
+                    <span class="order-id">ORDER ID: {{itemList.orderNumber}}</span>
+                    <table border="0" width="100%">
+                        <tr *ngFor="let itemListProduct of itemList.cartItems">
+                            <td valign="top" width="40%">
+                                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+                            </td>
+                            <td valign="top" width="60%">
+                                <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
+                                    Varian:<br>
+                                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                                        {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                                    </span>
+                                </div>
+                                <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="top" width="35%">
+                    <div class="item-colom-border">
+                        <div class="row">
+                            <div class="col-6">
+                                Nama Penerima: <br><label>{{itemList.namaPenerima}}</label>
+                            </div>
+                            <div class="col-6">
+                                No Handphone: <br><label>{{itemList.phonePenerima}}</label>
+                            </div>
+                        </div>
+
+                        Alamat: {{itemList.alamatSebagai}}<br><label>{{ itemList.alamatPenerima }}</label>
+                    </div>
+                </td>
+                <td valign="top" width="22%">
+                    <div class="item-colom">
+                        <div class="row">
+                        <div class="col-12">
+                            No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
+                        </div>
+                        <div class="col-12">
+                            Status: <label>{{itemList.statusOrder}}</label>
+                        </div>
+                        <div class="col-12">
+                            Total Berat: <label>{{itemList.totalWeight/1000}}kg</label>
+                        </div>
+                        <div class="col-12">
+                            Biaya Pengiriman: <label>Rp.{{itemList.courierPrice | number}}</label>
+                        </div>
+                        </div>
+                    </div>
+                </td>
+                <td width="33%">
+                    <span *ngIf="itemList.statusOrderCode === '157' && itemList.statusOrderCode !== '181'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
+                    <span *ngIf="itemList.statusOrderCode === '181'" (click)="showDialogReview = !showDialogReview" (click)="alertReview(itemList.orderNumber)" class="btn-review">Nilai Produk</span> 
+                    <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="paging" *ngIf="order.totalElements != 0">
+    <ul>
+        <li>
+            <a (click)="setPage(1)" [ngClass]="{disabled:currentPage == 1}">First</a>
+        </li>
+        <li>
+            <a (click)="setPage(currentPage, -1)" [ngClass]="{disabled:(currentPage-1) < 1}">Previous</a>
+        </li>
+        <li *ngFor="let p of pages">
+            <a (click)="setPage(p)" [ngClass]="currentPage == p?'current-page':''">{{p}}</a>
+        </li>
+        <li>
+            <a (click)="setPage(currentPage, +1)" [ngClass]="{disabled:currentPage == lastPage}">Next</a>
+        </li>
+        <li>
+            <a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
+        </li>
+    </ul>
+</div>
+
+<!-- <div *ngIf="isLoading==true">
     <div class="load-wrapp">
         <div class="load-4">
             <p>Loading...</p>
@@ -8,112 +137,108 @@
 </div>
 
 <div *ngIf="isEmpty==true">
-  Saat ini belum ada pesanan.
+    Saat ini belum ada pesanan.
 </div>
 
 <div *ngFor="let item of list">
-  <div  class="os-head">
-      <div class="row row-atur">
-        <div class="col-3">
-            <div class="text-order">{{item.createdTime}}</div>
-        </div>
-        <div class="col-9">
-            <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
-            <div class="text-confirm" (click)="confirm(item.paymentNumber)">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
-            <div class="text-more" (click)="openOS(openDetail, item.transactionId)">Lihat Detail <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
-        </div>
-      </div>
-      <div class="row row-atur">
-        <div class="col-4">
-            <div class="text-payid">Payment ID: {{item.paymentNumber}} </div>
-        </div>
-        <div class="col-4">
-
-            <div class="text-payinfo">Payment: ({{item.paymentMethod}})
-              <!-- <span class="btn-konfirm" (click)="showDialog = !showDialog" (click)="takeId(item.transactionId, item.imageUrl)">Unggah Bukti Transfer</span> -->
+    <div  class="os-head">
+        <div class="row row-atur">
+            <div class="col-3">
+                <div class="text-order">{{item.createdTime}}</div>
+            </div>
+            <div class="col-9">
+                <div class="text-rek" (click)="showDialogRek = !showDialogRek">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
+                <div class="text-confirm" (click)="confirm(item.paymentNumber)">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
+                <div class="text-more" (click)="openOS(openDetail, item.transactionId)">Lihat Detail <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
             </div>
         </div>
-        <div class="col-2" *ngIf="item.countdown">
-          Batas Waktu Respon:
-          <ng-container *ngIf="item.countdown.status === 1; else expired">
-            {{ item.countdown.days }}d - {{ item.countdown.hours }}h - {{ item.countdown.minutes }}m - {{ item.countdown.seconds }}s
-          </ng-container>
-          <ng-template #expired>
-            {{ item.countdown.message }}
-          </ng-template>
-        </div>
-        <div class="col-2">
-          <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
-        </div>
-      </div>
-  </div>
-  <div *ngIf="openDetail==true && transactionId==item.transactionId" class="os-body">
+        <div class="row row-atur">
+            <div class="col-4">
+                <div class="text-payid">Payment ID: {{item.paymentNumber}} </div>
+            </div>
+            <div class="col-4">
 
-    <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
-      <tr *ngFor="let itemList of itemCart.cart">
-        <td valign="top" width="20%">
-          <span class="order-id">ORDER ID: {{itemList.orderNumber}}</span>
-          <table border="0" width="100%">
-            <tr *ngFor="let itemListProduct of itemList.cartItems">
-              <td valign="top" width="40%">
-                  <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
-              </td>
-              <td valign="top" width="60%">
-                  <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
-                    Varian:<br>
-                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
-                      {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
-                    </span>
-                  </div>
-                  <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
+                <div class="text-payinfo">Payment: ({{item.paymentMethod}})
+                
+                </div>
+            </div>
+            <div class="col-2" *ngIf="item.countdown">
+                Batas Waktu Respon:
+                <ng-container *ngIf="item.countdown.status === 1; else expired">
+                    {{ item.countdown.days }}d - {{ item.countdown.hours }}h - {{ item.countdown.minutes }}m - {{ item.countdown.seconds }}s
+                </ng-container>
+                <ng-template #expired>
+                    {{ item.countdown.message }}
+                </ng-template>
+            </div>
+            <div class="col-2">
+                <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="openDetail==true && transactionId==item.transactionId" class="os-body">
 
-              </td>
+        <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
+            <tr *ngFor="let itemList of itemCart.cart">
+                <td valign="top" width="20%">
+                    <span class="order-id">ORDER ID: {{itemList.orderNumber}}</span>
+                    <table border="0" width="100%">
+                        <tr *ngFor="let itemListProduct of itemList.cartItems">
+                            <td valign="top" width="40%">
+                                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+                            </td>
+                            <td valign="top" width="60%">
+                                <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
+                                    Varian:<br>
+                                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                                        {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                                    </span>
+                                </div>
+                                <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="top" width="35%">
+                    <div class="item-colom-border">
+                        <div class="row">
+                            <div class="col-6">
+                                Nama Penerima: <br><label>{{itemList.namaPenerima}}</label>
+                            </div>
+                            <div class="col-6">
+                                No Handphone: <br><label>{{itemList.phonePenerima}}</label>
+                            </div>
+                        </div>
+
+                        Alamat: {{itemList.alamatSebagai}}<br><label>{{ itemList.alamatPenerima }}</label>
+                    </div>
+                </td>
+                <td valign="top" width="22%">
+                    <div class="item-colom">
+                        <div class="row">
+                        <div class="col-12">
+                            No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
+                        </div>
+                        <div class="col-12">
+                            Status: <label>{{itemList.statusOrder}}</label>
+                        </div>
+                        <div class="col-12">
+                            Total Berat: <label>{{itemList.totalWeight/1000}}kg</label>
+                        </div>
+                        <div class="col-12">
+                            Biaya Pengiriman: <label>Rp.{{itemList.courierPrice | number}}</label>
+                        </div>
+                        </div>
+                    </div>
+                </td>
+                <td width="33%">
+                    <span *ngIf="itemList.statusOrderCode === '157' && itemList.statusOrderCode !== '181'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
+                    <span *ngIf="itemList.statusOrderCode === '181'" (click)="showDialogReview = !showDialogReview" (click)="alertReview(itemList.orderNumber)" class="btn-review">Nilai Produk</span> 
+                    <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
+                </td>
             </tr>
-          </table>
-          
-        </td>
-        <td valign="top" width="35%">
-          <div class="item-colom-border">
-            <div class="row">
-              <div class="col-6">
-                Nama Penerima: <br><label>{{itemList.namaPenerima}}</label>
-              </div>
-              <div class="col-6">
-                No Handphone: <br><label>{{itemList.phonePenerima}}</label>
-              </div>
-            </div>
-
-            Alamat: {{itemList.alamatSebagai}}<br><label>{{ itemList.alamatPenerima }}</label>
-          </div>
-        </td>
-        <td valign="top" width="22%">
-          <div class="item-colom">
-            <div class="row">
-              <div class="col-12">
-                No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
-              </div>
-              <div class="col-12">
-                Status: <label>{{itemList.statusOrder}}</label>
-              </div>
-              <div class="col-12">
-                Total Berat: <label>{{itemList.totalWeight/1000}}kg</label>
-              </div>
-              <div class="col-12">
-                Biaya Pengiriman: <label>Rp.{{itemList.courierPrice | number}}</label>
-              </div>
-            </div>
-          </div>
-        </td>
-        <td width="33%">
-          <!-- {{itemListProduct.itemCartId}} - {{itemList.orderNumber}} -->
-          <!-- <span (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span> -->
-          <span *ngIf="itemList.statusOrderCode === '157' && itemList.statusOrderCode !== '181'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
-          <span *ngIf="itemList.statusOrderCode === '181'" (click)="showDialogReview = !showDialogReview" (click)="alertReview(itemList.orderNumber)" class="btn-review">Nilai Produk</span> 
-          <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
-        </td>
-      </tr>
-    </table>
-  </div>
+        </table>
+    </div>
 </div>
 <div class="paging" *ngIf="proddetail.totalElements != 0">
 	<ul>
@@ -133,47 +258,40 @@
 			<a (click)="setPage(lastPage)" [ngClass]="{disabled:currentPage == lastPage}">Last</a>
 		</li>
 	</ul>
-</div>
-
-
+</div> -->
+<!-- 
 <app-models [(visible)]="showDialog" class="frameDialog">
-  <div class="modal-body">
-
-    <div *ngIf="isForm==true">
-
-      <div class="title-modal">Upload Bukti Transfer Anda</div>
-
-      <div class="image">
-        <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
-      </div>
-
-      <div class="upload-btn-wrapper" *ngIf="isPilih == true">
-          <div class="btn-konfirm">Pilih Bukti Transfer</div>
-          <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
-      </div>
-      <div class="btn-upload" *ngIf="isSent == true" (click)="uploadBuktiTransfer()">Klik disini untuk unggah bukti transfer</div>
-
+    <div class="modal-body">
+        <div *ngIf="isForm==true">
+            <div class="title-modal">Upload Bukti Transfer Anda</div>
+            <div class="image">
+                <img src="{{imgBuktiTransfer}}" alt="Profile Picture" class="img-avatar" (load)="setCanvas($event,'imgBuktiTransfer')" #avaImg />
+            </div>
+            <div class="upload-btn-wrapper" *ngIf="isPilih == true">
+                <div class="btn-konfirm">Pilih Bukti Transfer</div>
+                <input type="file" name="myfile" (change)="setUrl($event, avaImg)"/>
+            </div>
+            <div class="btn-upload" *ngIf="isSent == true" (click)="uploadBuktiTransfer()">Klik disini untuk unggah bukti transfer</div>
+        </div>
+        <div *ngIf="regSuccess==true" class="isSuccess">
+            <div class="title-modal">Upload Bukti Transfer Berhasil</div>
+            <div class="text-success">berhasil.</div>
+        </div>
     </div>
-    <div *ngIf="regSuccess==true" class="isSuccess">
-        <div class="title-modal">Upload Bukti Transfer Berhasil</div>
-        <div class="text-success">berhasil.</div>
+</app-models> -->
+
+<!-- NOTE: Used -->
+<app-models [(visible)]="showPaymentMethodModal" class="frameDialog">
+    <div class="row modal-body">
+        <div class="col list-metode" *ngFor="let item of listPayment">
+            <div>
+                <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
+                {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
+            </div>
+        </div>
     </div>
-  </div>
 </app-models>
-
-<app-models [(visible)]="showDialogRek" class="frameDialog" *ngFor="let item of list">
-  <div class="row modal-body">
-
-    <div class="col list-metode" *ngFor="let item of listPayment">
-      <div>
-        <div class="img-pay"><img src="{{ item.imageUrl }}" class="img-icon"></div>
-        {{ item.accountNumber }}<br>A.N.<br>{{ item.accountName }}
-      </div>
-    </div>
-
-  </div>
-</app-models>
-
+<!-- 
 <app-models [(visible)]="showDialogDetail" class="frameDialog">
     <div class="detail-modal" *ngFor="let item of list">
         <div *ngIf="transactionId==item.transactionId">
@@ -219,72 +337,66 @@
         <div *ngIf="transactionId==item.transactionId">
             <div *ngFor="let itemCart of item.transaction">
                 <div *ngFor="let itemList of itemCart.cart">
-                  <table>
-                    
-                  </table>
+                    <table></table>
                 </div>
             </div>
         </div>
     </div>
-</app-models>
-
+</app-models> -->
+<!-- 
 <app-models [(visible)]="showDialogKonfirm" maxwidth="600" class="frameDialog">
-  <div class="model-head">KONFIRMASI PENERIMAAN BARANG</div>
-  <div class="modal-body">
-    <b>Apakah anda sudah menerima pesanan anda?</b><br>
-    - Klik Selesai untuk menyelesaikan transaksi anda dan Dana akan diteruskan kepada Seller<br>
-    - Klik Komplain jika barang yang anda terima tidak sesuai (Kurang/ Rusak/ Lain-lain)
-  </div>
-  <div class="modal-footer">
-
-          <span class="btn-komplain-confirm" (click)="complaint(orderNumber)">Komplain</span>
-
-          <span class="btn-selesai-confirm" (click)="receiptConfirmation(orderNumber)">Selesai</span>
-
-  </div>
-  
-</app-models>
-
+    <div class="model-head">KONFIRMASI PENERIMAAN BARANG</div>
+    <div class="modal-body">
+        <b>Apakah anda sudah menerima pesanan anda?</b><br>
+        - Klik Selesai untuk menyelesaikan transaksi anda dan Dana akan diteruskan kepada Seller<br>
+        - Klik Komplain jika barang yang anda terima tidak sesuai (Kurang/ Rusak/ Lain-lain)
+    </div>
+    <div class="modal-footer">
+        <span class="btn-komplain-confirm" (click)="complaint(orderNumber)">Komplain</span>
+        <span class="btn-selesai-confirm" (click)="receiptConfirmation(orderNumber)">Selesai</span>
+    </div>
+</app-models> -->
+<!-- 
 <app-models [(visible)]="showDialogReview" maxwidth="600" class="frameDialog">
 <div class="model-head">Nilai Produk Ini</div>
-  <div *ngFor="let item of list">
-      <div *ngIf="transactionId==item.transactionId">
-        <div *ngFor="let itemCart of item.transaction">
-          <div *ngFor="let itemList of itemCart.cart">
-      <table border="0" width="100%">
-          <tr *ngFor="let itemListProduct of itemList.cartItems">
-            <td valign="top" width="20%">
-                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
-            </td>
-            <td valign="top" width="30%">
-                <div class="item-colom detail">
-                  <div class="name">{{itemListProduct.name}} </div>
-                  <div class="varian">
-                    Varian<br>
-                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
-                    {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
-                    </span>
-                  </div>
+    <div *ngFor="let item of list">
+        <div *ngIf="transactionId==item.transactionId">
+            <div *ngFor="let itemCart of item.transaction">
+                <div *ngFor="let itemList of itemCart.cart">
+                    <table border="0" width="100%">
+                        <tr *ngFor="let itemListProduct of itemList.cartItems">
+                            <td valign="top" width="20%">
+                                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+                            </td>
+                            <td valign="top" width="30%">
+                                <div class="item-colom detail">
+                                    <div class="name">{{itemListProduct.name}} </div>
+                                    <div class="varian">
+                                        Varian<br>
+                                        <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                                            {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td valign="top" width="50%">
+                                <div class="item-colom">
+                                    <form [formGroup]="reviewForm" (ngSubmit)="onSubmit(itemListProduct.productId)">
+                                        <div class="rating">
+                                            <rating-input formControlName="star"></rating-input>
+                                        </div><br>
+                                        <textarea formControlName="message" class="review" cols="40" rows="6" placeholder="Beritahu orang lain tentang produk ini"></textarea><br>
+                                        <div class="button">
+                                            <span class="btn-back" (click)="backToOrder()">Nanti Saja</span>
+                                            <button class="btn-submit-review" type="submit">OK</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-            </td>
-            <td valign="top" width="50%">
-              <div class="item-colom">
-                <form [formGroup]="reviewForm" (ngSubmit)="onSubmit(itemListProduct.productId)">
-                  <div class="rating">
-                  <rating-input formControlName="star"></rating-input>
-                  </div><br>
-                  <textarea formControlName="message" class="review" cols="40" rows="6" placeholder="Beritahu orang lain tentang produk ini"></textarea><br>
-                  <div class="button">
-                    <span class="btn-back" (click)="backToOrder()">Nanti Saja</span>
-                    <button class="btn-submit-review" type="submit">OK</button>
-                  </div>
-                </form>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-      </div>
+            </div>
         </div>
-      </div>
-</app-models>
+    </div>
+</app-models> -->
