@@ -94,7 +94,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private _bannerService: BannerService,
     private _brandService: BrandService,
   ) {
-    this.productImageUrl = environment.thumborUrl + 'unsafe/400x400/center/filters:fill(fff)/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
     this.brandImageUrl = environment.thumborUrl + 'unsafe/fit-in/1000x1000/center/filters:fill(fff)/';
     this.productStoreUrl = environment.thumborUrl + 'unsafe/50x50/center/filters:fill(fff)/';
     this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';

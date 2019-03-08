@@ -95,13 +95,13 @@
                     <bs-category-menu [categories]="subMenuCategory"></bs-category-menu>
 
                     <li class="navigation__menus">
-                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ brand: '3', q:'' }">Samsung</a>
+                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ category: '1125' }">Smartphone</a>
                     </li>
                     <li class="navigation__menus">
-                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ brand: '1', q:'' }">Apple</a>
+                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ category: '1132' }">Smartwatch</a>
                     </li>
                     <li class="navigation__menus">
-                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ brand: '4', q:'' }">Xiaomi</a>
+                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ category: '1130' }">Tablet</a>
                     </li>
 
                     <li class="shopping-cart pull-right" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
