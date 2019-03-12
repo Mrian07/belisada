@@ -3,14 +3,24 @@
     <div class="promo-banner__container">
         <div class="row small-gutters">
             <div class="col-sm-12">
-                <div class="promo-banner__slide-show">
-                    <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1}">
+                <!-- <div class="promo-banner__slide-show"> -->
+                    <!-- <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1}">
                         <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
-                    </a>
+                    </a> -->
                     <!-- <app-carousel [images]="banners"></app-carousel> -->
 
+                    <ngb-carousel *ngIf="banners">
+                        <ng-template ngbSlide *ngFor="let image of banners">
+                            <img [src]="image" alt="Random first slide">
+                            <div class="carousel-caption">
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div>
+                        </ng-template>
+                    </ngb-carousel>
+
                     <!-- <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger> -->
-                </div>
+                <!-- </div> -->
             </div>
             <!-- <div class="col-sm-3">
                 <div class="promo-banner__container">
@@ -62,7 +72,7 @@
             </div>
         </div> -->
         <div class="underline"><!-- class="section__title" -->
-            <h2 style="margin-bottom: 1rem;">Produk Terbaru</h2>
+            <h2 style="margin: 1rem 0;">Produk Terbaru</h2>
             <!-- <span class="striped"></span> -->
         </div>
     </div>

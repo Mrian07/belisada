@@ -64,7 +64,7 @@ import { ChatComponent } from './features/chat/chat.component';
 import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
-import { NgxHmCarouselModule } from 'ngx-hm-carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './features/landing-page/carousel/carousel.component';
 import { MessagingService } from './shared/messaging.service';
 
@@ -109,7 +109,7 @@ library.add(fas, far, fab);
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxHmCarouselModule,
+    NgbModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     StoreModule.forRoot(reducers),
