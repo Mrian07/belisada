@@ -118,7 +118,9 @@ export class HeaderComponent implements OnInit {
     this.loadingService.show();
     const queryParams = {
       st: 'product',
-      q: this.keywordSearch
+      q: this.keywordSearch,
+      min: 0,
+      max: 999999999999
     };
     this.showSearch = false;
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
@@ -129,6 +131,8 @@ export class HeaderComponent implements OnInit {
     const queryParams = {
       st: 'product',
       q: keyword,
+      min: 0,
+      max: 999999999999
       // category: [catID]
     };
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
