@@ -249,7 +249,7 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     this.selectedShippingMethod = shippingMethod;
   }
 
-  alertChat(storeId, state: RouterStateSnapshot) {
+  alertChat(storeId) {
     const userData = this._userService.getUserData(this._authService.getToken());
     if (userData) {
       console.log('storeId:', storeId);
