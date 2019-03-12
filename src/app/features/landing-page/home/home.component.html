@@ -3,14 +3,26 @@
     <div class="promo-banner__container">
         <div class="row small-gutters">
             <div class="col-sm-12">
-                <div class="promo-banner__slide-show">
-                    <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1}">
+                <!-- <div class="promo-banner__slide-show"> -->
+                    <!-- <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1}">
                         <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
-                    </a>
+                    </a> -->
                     <!-- <app-carousel [images]="banners"></app-carousel> -->
 
+                    <ngb-carousel *ngIf="banners">
+                        <ng-template ngbSlide *ngFor="let banner of banners">
+                            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:banner.brand,min:0,max:999999999999}">
+                                <img [src]="banner.imageUrl" alt="Random first slide">
+                            </a>
+                            <!-- <div class="carousel-caption">
+                                <h3>First slide label</h3>
+                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            </div> -->
+                        </ng-template>
+                    </ngb-carousel>
+
                     <!-- <bs-popover-trigger [links]="bannerMain.links"></bs-popover-trigger> -->
-                </div>
+                <!-- </div> -->
             </div>
             <!-- <div class="col-sm-3">
                 <div class="promo-banner__container">
@@ -26,20 +38,20 @@
                 <img [src]="item?.imageUrl" alt="">
             </div> -->
             <div class="col-3">
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:34}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:34,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom1.png'">
                 </a>
             </div>
             <div class="col-3">
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom2.png'">
                 </a>
             </div>
             <div class="col-6">
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:11}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:11,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom3.png'">
                 </a>
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:8}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:8,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom4.png'">
                 </a>
             </div>
@@ -62,7 +74,7 @@
             </div>
         </div> -->
         <div class="underline"><!-- class="section__title" -->
-            <h2 style="margin-bottom: 1rem;">Produk Terbaru</h2>
+            <h2 style="margin: 1rem 0;">Produk Terbaru</h2>
             <!-- <span class="striped"></span> -->
         </div>
     </div>
@@ -161,7 +173,7 @@
             <img class="c-fluid" [src]="bannersPromoTwo.imageUrl" alt="">
         </div> -->
         <div class="col-md-12">
-            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:14}">
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:14,min:0,max:999999999999}">
                 <img class="c-fluid" [src]="cdnUrl + '/banner/banner_footer.png'" alt="">
             </a>
         </div>
@@ -169,7 +181,7 @@
 
     <div class="row">
         <div class="col-md-5r" *ngFor="let item of brandHomeList">
-            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId}">
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId,min:0,max:999999999999}">
                 <div class="brand__wrapper">
                     <img class="brand__image" [src]="brandImageUrl + item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
                 </div>
