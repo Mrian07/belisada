@@ -4,7 +4,7 @@
         <div class="row small-gutters">
             <div class="col-sm-12">
                 <div class="promo-banner__slide-show">
-                    <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1}">
+                    <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:1,min:0,max:999999999999}">
                         <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
                     </a>
                     <!-- <app-carousel [images]="banners"></app-carousel> -->
@@ -26,20 +26,20 @@
                 <img [src]="item?.imageUrl" alt="">
             </div> -->
             <div class="col-3">
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:34}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:34,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom1.png'">
                 </a>
             </div>
             <div class="col-3">
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom2.png'">
                 </a>
             </div>
             <div class="col-6">
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:11}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:11,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom3.png'">
                 </a>
-                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:8}">
+                <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:8,min:0,max:999999999999}">
                     <img [src]="cdnUrl + '/banner/banner_bottom4.png'">
                 </a>
             </div>
@@ -161,7 +161,7 @@
             <img class="c-fluid" [src]="bannersPromoTwo.imageUrl" alt="">
         </div> -->
         <div class="col-md-12">
-            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:14}">
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:14,min:0,max:999999999999}">
                 <img class="c-fluid" [src]="cdnUrl + '/banner/banner_footer.png'" alt="">
             </a>
         </div>
@@ -169,7 +169,7 @@
 
     <div class="row">
         <div class="col-md-5r" *ngFor="let item of brandHomeList">
-            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId}">
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:item.brandId,min:0,max:999999999999}">
                 <div class="brand__wrapper">
                     <img class="brand__image" [src]="brandImageUrl + item.imageUrl" [alt]="brandImageUrl + item.imageUrl">
                 </div>
