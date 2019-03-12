@@ -106,7 +106,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.onFilterClick(m);
     });
 
-    this.banners = [1, 2, 3].map((i) => `https://cdn.belisada.id/banner/slider${i}.png`);
+    this.banners = [{
+      imageUrl: 'https://cdn.belisada.id/banner/slider1.png',
+      brand: 1
+    },
+    {
+      imageUrl: 'https://cdn.belisada.id/banner/slider2.png',
+      brand: 4
+    },
+    {
+      imageUrl: 'https://cdn.belisada.id/banner/slider3.png',
+      brand: 7
+    }];
   }
 
   ngOnInit() {
