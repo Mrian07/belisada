@@ -651,10 +651,11 @@ export class CheckoutComponent implements OnInit {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (checkoutCartIds.length) {
+      const cid = (this.selectedPaymentMethod.paymentMethodId === 1) ? this.channelId : this.selectedPaymentMethod.paymentMethodId;
       const data: CheckoutReq = new CheckoutReq();
       data.itemCartIds = checkoutCartIds;
       data.paymentMethodCode = this.selectedPaymentMethod.paymentMethodCode;
-      data.channelId = this.selectedPaymentMethod.paymentMethodId;
+      data.channelId = cid;
 
       if (this.isAny0Qty) {
         swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
