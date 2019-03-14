@@ -123,7 +123,7 @@ export class ConfirmationComponent implements OnInit {
       transferTime: new FormControl('', Validators.required),
       accountName: new FormControl('', Validators.required),
       accountNumber: new FormControl('', Validators.required),
-      reffNumber: new FormControl('', Validators.required),
+      refNo: new FormControl('', Validators.required),
       nominal: new FormControl('', Validators.required),
       news: new FormControl('')
     });
@@ -190,7 +190,7 @@ export class ConfirmationComponent implements OnInit {
         bankId: this.createComForm.controls['bankId'].value,
         accountName: this.createComForm.controls['accountName'].value,
         accountNumber: this.createComForm.controls['accountNumber'].value,
-        reffNumber: this.createComForm.controls['reffNumber'].value,
+        refNo: this.createComForm.controls['refNo'].value,
         transerDate: dateTime,
         news: this.createComForm.controls['news'].value,
         nominal: newNominal,
