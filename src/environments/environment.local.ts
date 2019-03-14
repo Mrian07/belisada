@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   baseUrlSeller: 'http://localhost:4300',
   domain: 'http://localhost:4200',
-  apiUrl: 'http://localhost:8080/belisada',
+  apiUrl: 'https://api0.belisada.id/belisada',
   apiUrlMongo: 'https://api0.belisada.id/belisada-mongo',
   thumborUrl: 'https://img.belisada.id/',
   urlMidtrans: 'https://app.sandbox.midtrans.com',
