@@ -60,12 +60,11 @@
 				</div>
 				<div class="line-ongkir">
 					<div class="titleItem">Ongkos Kirim<br>
-						<span class="varianText">{{listCart.courierName}}</span>
+						<span class="varianText">{{listCart.courierName}}</span><span class="varianText courierService"> - {{listCart.courierService}}</span>
 					</div>
 					<div>Rp {{ listCart.courierPrice | number }}</div>
 				</div>
 			</div>
-
 		</div>
 		
 		<div class="contain-thx-sub-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
