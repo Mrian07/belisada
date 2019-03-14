@@ -139,7 +139,7 @@
                 Metode Pembayaran
             </div>
             <div class="cPay__val" *ngFor="let item of listPayment; let i = index">
-                <button [ngClass]="[(selectedPaymentMethod === item) ? 'cPay__btn-active' : 'cPay__btn']" (click)="cTransfer(listPayment,i,item.paymentMethodCode)">{{ item.paymentMethodName }}</button>
+                <button [ngClass]="[(selectedPaymentMethod === item) ? 'cPay__btn-active' : 'cPay__btn']" (click)="cTransfer(listPayment,i,item)">{{ item.paymentMethodName }}</button>
             </div>
         </div>
 
@@ -187,44 +187,6 @@
             <div class="cFooter__val2">
                 <div></div>
                 <div class="cFooter__btn" (click)="doCheckout()">Bayar Sekarang</div>
-                <!-- <div class="cFooter__btn" *ngIf="this.isBtnTransfer==true" (click)="doCheckout()">Bayar Sekarang</div> -->
-
-                <!-- <form [formGroup]="createForm" #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
-                    <input type="hidden" formControlName="MerchantCode" placeholder="MerchantCode">
-                    <input type="hidden" formControlName="PaymentId" placeholder="PaymentId">
-                    <input type="hidden" formControlName="RefNo" placeholder="RefNo">
-                    <input type="hidden" formControlName="Amount" placeholder="Amount">
-                    <input type="hidden" formControlName="Currency" placeholder="Currency">
-                    <input type="hidden" formControlName="ProdDesc" placeholder="ProdDesc">
-                    <input type="hidden" formControlName="UserName" placeholder="UserName">
-                    <input type="hidden" formControlName="UserEmail" placeholder="UserEmail">
-                    <input type="hidden" formControlName="UserContact" placeholder="UserContact">
-                    <input type="hidden" formControlName="Remark" placeholder="Remark">
-                    <input type="hidden" formControlName="Lang" placeholder="Lang">
-                    <input type="hidden" formControlName="signature" placeholder="signature">
-                    <input type="hidden" formControlName="ResponseURL" placeholder="ResponseURL">
-                    <input type="hidden" formControlName="BackendURL" placeholder="BackendURL"> -->
-                    <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
-                <!-- </form> -->
-
-                <form #f action="https://sandbox.ipay88.co.id/epayment/entry.asp" method="POST">
-                    <input type="hidden" name="MerchantCode" [value]="ipay88Req.MerchantCode" placeholder="MerchantCode">
-                    <input type="hidden" name="PaymentId" [value]="ipay88Req.PaymentId" placeholder="PaymentId">
-                    <input type="hidden" name="RefNo" [value]="ipay88Req.RefNo" placeholder="RefNo">
-                    <input type="hidden" name="Amount" [value]="ipay88Req.Amount" placeholder="Amount">
-                    <input type="hidden" name="Currency" [value]="ipay88Req.Currency" placeholder="Currency">
-                    <input type="hidden" name="ProdDesc" [value]="ipay88Req.ProdDesc" placeholder="ProdDesc">
-                    <input type="hidden" name="UserName" [value]="ipay88Req.UserName" placeholder="UserName">
-                    <input type="hidden" name="UserEmail" [value]="ipay88Req.UserEmail" placeholder="UserEmail">
-                    <input type="hidden" name="UserContact" [value]="ipay88Req.UserContact" placeholder="UserContact">
-                    <input type="hidden" name="Remark" [value]="ipay88Req.Remark" placeholder="Remark">
-                    <input type="hidden" name="Lang" [value]="ipay88Req.Lang" placeholder="Lang">
-                    <input type="hidden" name="signature" [value]="ipay88Req.signature" placeholder="signature">
-                    <input type="hidden" name="ResponseURL" [value]="ipay88Req.ResponseURL" placeholder="ResponseURL">
-                    <input type="hidden" name="BackendURL" [value]="ipay88Req.BackendURL" placeholder="BackendURL">
-                    <!-- <button type="submit" class="cFooter__btn-cart" *ngIf="isBtnCart==true">Bayar Sekarang</button> -->
-                </form>
-
             </div>
         </div>
 

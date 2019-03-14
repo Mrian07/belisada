@@ -16,6 +16,11 @@ import { LoadingService } from '@belisada/core/services/globals/loading.service'
   styleUrls: ['./confirmation.component.scss']
 })
 export class ConfirmationComponent implements OnInit {
+
+  DECIMAL_SEPARATOR = ',';
+  GROUP_SEPARATOR = '.';
+
+
   list: DataConfirm;
   createComForm: FormGroup;
   nmBank: string;
@@ -56,6 +61,29 @@ export class ConfirmationComponent implements OnInit {
     private loadingService: LoadingService
   ) { }
 
+  format(valString) {
+    console.log('valString: ', valString);
+    if (!valString) {
+        return '';
+    }
+    const val = valString.toString();
+    const parts = this.unFormat(val).split(this.DECIMAL_SEPARATOR);
+    return parts[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, this.GROUP_SEPARATOR) + (!parts[1] ? '' : this.DECIMAL_SEPARATOR + parts[1]);
+  }
+
+  unFormat(val) {
+    if (!val) {
+        return '';
+    }
+    val = val.replace(/^0+/, '');
+
+    if (this.GROUP_SEPARATOR === ',') {
+        return val.replace(/,/g, '');
+    } else {
+        return val.replace(/\./g, '');
+    }
+  }
+
   ngOnInit() {
     this.createFormControls();
     this.allPayment();
@@ -95,6 +123,7 @@ export class ConfirmationComponent implements OnInit {
       transferTime: new FormControl('', Validators.required),
       accountName: new FormControl('', Validators.required),
       accountNumber: new FormControl('', Validators.required),
+      refNo: new FormControl('', Validators.required),
       nominal: new FormControl('', Validators.required),
       news: new FormControl('')
     });
@@ -153,15 +182,18 @@ export class ConfirmationComponent implements OnInit {
       const allDate = this.dateUtil.formatMyDate(this.createComForm.controls['transerDate'].value.date, this.defaultDateFormat);
       const dateTime = allDate + ' ' + allTime;
 
+      const newNominal = this.unFormat(this.createComForm.controls['nominal'].value);
+
       const data = {
         paymentNumber: this.createComForm.controls['paymentNumber'].value,
         transferTo: this.createComForm.controls['transferTo'].value,
         bankId: this.createComForm.controls['bankId'].value,
         accountName: this.createComForm.controls['accountName'].value,
         accountNumber: this.createComForm.controls['accountNumber'].value,
+        refNo: this.createComForm.controls['refNo'].value,
         transerDate: dateTime,
         news: this.createComForm.controls['news'].value,
-        nominal: this.createComForm.controls['nominal'].value,
+        nominal: newNominal,
       };
 
       this.paymentService.confirmation(data).subscribe(respon => {

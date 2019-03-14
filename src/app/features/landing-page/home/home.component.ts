@@ -107,18 +107,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.onFilterClick(m);
     });
 
-    this.banners = [
-      {
-        url: 'https://cdn.belisada.id/banner/slider1.png',
-        title: '1'
-      }, {
-        url: 'https://cdn.belisada.id/banner/slider2.png',
-        title: '2'
-      }, {
-        url: 'https://cdn.belisada.id/banner/slider3.png',
-        title: '3'
-      }
-    ];
+    this.banners = [{
+      imageUrl: 'https://cdn.belisada.id/banner/slider1.png',
+      brand: 1
+    },
+    {
+      imageUrl: 'https://cdn.belisada.id/banner/slider2.png',
+      brand: 4
+    },
+    {
+      imageUrl: 'https://cdn.belisada.id/banner/slider3.png',
+      brand: 7
+    }];
   }
 
   ngOnInit() {

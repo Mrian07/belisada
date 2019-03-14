@@ -1,0 +1,57 @@
+.frame-op{
+    padding: 18px;
+    margin-top:10px;
+    margin-bottom: 10px;
+    color:#111111;
+}
+
+.line-ongkir{
+    margin-top:1.5rem;
+    display: grid;
+    grid-template-columns: 85% 15%;
+}
+
+.titleItem{
+    margin-top:10px;
+    color:#085381;
+} 
+
+.contain-thx-head{
+    padding:2rem;
+    display: grid;
+    font-size: 1.5rem;
+    grid-template-columns: 65% 20% 15%;
+    background:#ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    &__price-total{
+        color: #f52111;
+        font-weight: bold;
+    }
+
+    &__total{
+        font-weight: bold;
+    }
+}
+
+.contain-thx-body{
+    
+    background: #fafafa;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding:2rem;
+
+    &__head{
+
+        padding:2rem;
+        margin-top:1rem;
+        background:#ffffff;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+        &__detail{
+            display: grid;
+            grid-template-columns: 35% 50% 15%;
+        }
+    }
+
+}
+

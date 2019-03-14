@@ -52,7 +52,7 @@
                     Nominal :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="nominal" (keypress)="numberCheck($event)">
+                    <input type="text" class="input-c" formControlName="nominal" (keypress)="numberCheck($event)" [(ngModel)]="nominal" (input)="nominal = format(nominal)">
                     <app-field-error-display  [displayError]="isFieldValid('nominal')" errorMsg="Nominal tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
@@ -73,6 +73,13 @@
                     <input type="text" class="input-c" formControlName="transferTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
                     <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
                     <app-field-error-display  [displayError]="isFieldValid('transferTime')" errorMsg="Waktu transfer tidak boleh kosong"></app-field-error-display>
+                </div>
+                <div class="label-c">
+                    No Referensi :
+                </div>
+                <div class="contain-c">
+                    <input type="text" class="input-c" formControlName="refNo">
+                    <app-field-error-display  [displayError]="isFieldValid('refNo')" errorMsg="Nomor referensi tidak boleh kosong"></app-field-error-display>
                 </div>
                 <div class="label-c">
                     Berita :
@@ -135,7 +142,7 @@
                     Nominal :
                 </div>
                 <div class="contain-c">
-                    {{list.nominal}}
+                    Rp {{list.nominal | number}}
                 </div>
                 <div class="label-c">
                     Tanggal Transfer :
@@ -143,6 +150,13 @@
                 </div>
                 <div class="contain-c">
                     {{list.transerDate}}
+                </div>
+                <div class="label-c">
+                    Nomor Referensi :
+                    <div date-picker="start"></div>
+                </div>
+                <div class="contain-c">
+                    -
                 </div>
                 <div class="label-c">
                     Berita :

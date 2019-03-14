@@ -24,7 +24,6 @@ declare var iPay88Signature: any;
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
-import { DeviceDetectorService } from 'ngx-device-detector';
 // import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
 
 @Component({
@@ -95,11 +94,6 @@ export class CheckoutComponent implements OnInit {
 
   selectedPaymentMethod: Payment = new Payment();
 
-  public lat;
-  public lng;
-
-  deviceInfo = null;
-
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -111,8 +105,7 @@ export class CheckoutComponent implements OnInit {
     private thumborService: ThumborService,
     private http: HttpClient,
     private _userService: UserService,
-    private loadingService: LoadingService,
-    private deviceService: DeviceDetectorService
+    private loadingService: LoadingService
   ) {
 
     this.isTransfer = [];
@@ -192,41 +185,6 @@ export class CheckoutComponent implements OnInit {
     this.onChanges();
     this.dataShipping();
     this.allPayment();
-    this.getLocation();
-    this.getDevice();
-  }
-
-  getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position: Position) => {
-        if (position) {
-          console.log('Latitude: ', position.coords.latitude);
-          console.log('Longitude: ', position.coords.longitude);
-          // this.lat = position.coords.latitude;
-          // this.lng = position.coords.longitude;
-        }
-      },
-        (error: PositionError) => console.log(error));
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
-  }
-
-  getDevice() {
-    this.deviceInfo = this.deviceService.getDeviceInfo();
-    const isMobile = this.deviceService.isMobile();
-    const isTablet = this.deviceService.isTablet();
-    const isDesktopDevice = this.deviceService.isDesktop();
-    if (this.deviceService.isMobile()) {
-      console.log('This is a Mobile Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
-    }
-    if (this.deviceService.isTablet()) {
-      console.log('This is a Tablet Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
-    }
-    if (this.deviceService.isDesktop()) {
-      console.log('This is a Desktop Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
-    }
-    console.log('Device browser:', this.deviceInfo.browser);
   }
 
   getCartCheckout() {
