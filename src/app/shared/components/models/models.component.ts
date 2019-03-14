@@ -1,6 +1,7 @@
 import { TestingServicesService } from './../../../core/services/testService/testing-services.service';
 import { ShareMessageService } from './../../../core/services/share-message/share-message.service';
-import { Component, OnInit, Input, Output, OnChanges, EventEmitter, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, Output, OnChanges, EventEmitter, HostBinding, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -28,17 +29,19 @@ export class ModelsComponent implements OnInit {
   @Input() maxwidth: number;
   @Input() height?: number;
   @Output() visibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
-  constructor (private _messageService: TestingServicesService) { }
+  constructor (private _messageService: TestingServicesService, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
   }
 
   close() {
-    this.visible = false;
-    this.visibleChange.emit(this.visible);
-    sessionStorage.setItem('boolean', 'false');
-    const data = sessionStorage.getItem('boolean');
-    this._messageService.filter('Register click');
+    if (isPlatformBrowser(this.platformId)) {
+      this.visible = false;
+      this.visibleChange.emit(this.visible);
+      sessionStorage.setItem('boolean', 'false');
+      const data = sessionStorage.getItem('boolean');
+      this._messageService.filter('Register click');
+    }
   }
 
 }

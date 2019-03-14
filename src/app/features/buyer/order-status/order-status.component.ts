@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject, PLATFORM_ID } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
 import { OrderStatus, ContentOrderStatus } from '@belisada/core/models/transaction/transaction.model';
 import { ReviewService } from '../../../core/services/review/review.service';
@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { RatingValidators } from '../star-rating/rating-validators';
 import { UserService } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { isPlatformBrowser } from '@angular/common';
 // interface ICompany {
 //   id: number;
 //   rating: number;
@@ -128,6 +129,7 @@ export class OrderStatusComponent implements OnInit {
   // }
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     // private reviewService: ReviewService,
     // private loadingService: LoadingService,
     // private fb: FormBuilder,
@@ -370,7 +372,9 @@ export class OrderStatusComponent implements OnInit {
     if (page < 1 || page > this.order.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this._router.navigate(['/buyer/order'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

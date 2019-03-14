@@ -100,10 +100,7 @@ export class PaymentComponent implements OnInit {
     data.transaction_details = data1;
     data.credit_card = data2;
 
-    console.log('ini', data);
-
     this.midtransService.getPay(data).subscribe((response) => {
-      console.log(response);
     });
   }
 

@@ -44,19 +44,16 @@ export class PaymentService {
    * Ipay entry to ipay88
    */
   public ipayEntry(queryParams) {
-    console.log('[IPAY88] queryParams: ', queryParams);
     // let params = new HttpParams();
     // Object.keys(queryParams).forEach(function(k) {
     //   params = params.append(k, queryParams[k]);
     // });
-    // console.log('[IPAY88] params: ', params);
 
 
     const formData = new FormData();
     Object.keys(queryParams).forEach(function(k) {
       formData.append(k, queryParams[k]);
     });
-    console.log('[IPAY88] formData: ', formData);
 
     return this.http.post('https://sandbox.ipay88.co.id/epayment/entry.asp', formData).pipe(
       map(response => response)

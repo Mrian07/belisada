@@ -23,7 +23,6 @@ export class AuthEffects {
     .pipe(switchMap((req) =>
       this.userService.signin(req)
       .pipe(switchMap( (status: any) => {
-        // console.log('status: ', status.);
         this.loadingService.hide();
         if (status.status === 0) {
           swal('belisada.co.id', status.message, 'warning');

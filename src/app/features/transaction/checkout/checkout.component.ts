@@ -24,6 +24,7 @@ declare var iPay88Signature: any;
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { DeviceDetectorService } from 'ngx-device-detector';
 // import { CheckoutModel } from '@belisada/core/models/checkout/checkout-transaction';
 
 @Component({
@@ -94,6 +95,11 @@ export class CheckoutComponent implements OnInit {
 
   selectedPaymentMethod: Payment = new Payment();
 
+  public lat;
+  public lng;
+
+  deviceInfo = null;
+
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -105,7 +111,8 @@ export class CheckoutComponent implements OnInit {
     private thumborService: ThumborService,
     private http: HttpClient,
     private _userService: UserService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private deviceService: DeviceDetectorService
   ) {
 
     this.isTransfer = [];
@@ -177,7 +184,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('[CART] CHECKOUT PAGE');
     this.isNote = false;
     this.isPayment = false;
     this.getCartCheckout();
@@ -186,6 +192,41 @@ export class CheckoutComponent implements OnInit {
     this.onChanges();
     this.dataShipping();
     this.allPayment();
+    this.getLocation();
+    this.getDevice();
+  }
+
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: Position) => {
+        if (position) {
+          console.log('Latitude: ', position.coords.latitude);
+          console.log('Longitude: ', position.coords.longitude);
+          // this.lat = position.coords.latitude;
+          // this.lng = position.coords.longitude;
+        }
+      },
+        (error: PositionError) => console.log(error));
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+  }
+
+  getDevice() {
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    const isMobile = this.deviceService.isMobile();
+    const isTablet = this.deviceService.isTablet();
+    const isDesktopDevice = this.deviceService.isDesktop();
+    if (this.deviceService.isMobile()) {
+      console.log('This is a Mobile Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+    }
+    if (this.deviceService.isTablet()) {
+      console.log('This is a Tablet Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+    }
+    if (this.deviceService.isDesktop()) {
+      console.log('This is a Desktop Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+    }
+    console.log('Device browser:', this.deviceInfo.browser);
   }
 
   getCartCheckout() {
@@ -199,8 +240,6 @@ export class CheckoutComponent implements OnInit {
         this.checkShop[i] = true;
         this.loadingRates.push(false);
       });
-
-      console.log('response', response);
 
       response.cart.forEach((cart, index) => {
         this.notes[index] = cart.note;
@@ -257,7 +296,6 @@ export class CheckoutComponent implements OnInit {
   allPayment() {
     this.paymentService.getPayment().subscribe(respon => {
       this.listPayment = respon;
-      console.log('listPayment', this.listPayment);
       if (this.listPayment.length > 0) {
         this.selectedPaymentMethod = this.listPayment.find(x => x.isDefault === true);
         if (typeof this.selectedPaymentMethod === 'undefined') this.selectedPaymentMethod = this.listPayment[0];
@@ -411,7 +449,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   addressChange(itemCartIds, originId, weight, destinations, index) {
-    // console.log('addressChange--event: ', event);
     const val = this.shippingAddresses[index];
     if (val === 'tambah') {
       this.showDialogPilihAlamat = !this.showDialogPilihAlamat;
@@ -441,7 +478,6 @@ export class CheckoutComponent implements OnInit {
 
   updateShipping(itemCartIds, index) {
     const data: UpdateShippingReq = new UpdateShippingReq();
-    // console.log('this.shippingRates[index]: ', this.shippingRates[index]);
     data.courierCode = this.shippingRates[index].split('~')[0];
     data.courierService = this.shippingRates[index].split('~')[1];
     data.itemCartIds = itemCartIds;
@@ -458,18 +494,15 @@ export class CheckoutComponent implements OnInit {
     this.loadingRates[index] = true;
     this.shoppingCartService.getShippingRates(queryParam).subscribe(response => {
       this.rates[index] = response;
-      // console.log('this.rates: ', this.rates);
       return callbackSc(response);
     });
   }
 
   dataShipping() {
     this.checkoutService.getShippingAddress().subscribe(response => {
-      // console.log('response: ', response);
       this.checkoutShippingAddress = response;
       if (this.checkoutShippingAddress.length !== 0) {
         this.selectedShippingAddress = this.checkoutShippingAddress[0];
-        // console.log('this.selectedShippingAddress: ', this.selectedShippingAddress);
       }
     });
   }
@@ -579,13 +612,11 @@ export class CheckoutComponent implements OnInit {
     updateAsuransiReq.itemCartIds = itemCartIds;
     updateAsuransiReq.useAsuransi = isInsurance;
     this.checkoutService.updateAsuransi(updateAsuransiReq).subscribe(response => {
-      console.log('response: ', response);
       this.getCartCheckout();
     });
   }
 
   cTransfer(item, i, statusPay) {
-    console.log('sssss');
     this.isTransferBank = false;
 
     const dataItem = item;
@@ -679,10 +710,7 @@ export class CheckoutComponent implements OnInit {
             sign = sign.concat('00');
             // Currency
             sign = sign.concat(environment.ipay88.Currency);
-
-            console.log('Berhasil', sign);
             const signature = iPay88Signature(sign);
-            console.log('signature', signature);
 
             this._userService.getProfile().subscribe(respon => {
               this.userName = respon.name;
@@ -719,8 +747,6 @@ export class CheckoutComponent implements OnInit {
               //     ResponseURL: environment.domain + '/transaction/terimakasih/' + response.data.paymentNumber,
               //     signature: signature
               //   });
-
-              console.log('submit', this.createForm.value);
 
               setTimeout(() => {
                 this.f.nativeElement.submit();

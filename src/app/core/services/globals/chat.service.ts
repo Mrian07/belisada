@@ -23,7 +23,6 @@ export class ChatService {
   constructor(private http: HttpClient, private globals: Globals) {}
 
   connectSocket(): Socket {
-    console.log('environment.socketUrl: ', environment.socketUrl);
     this.socket = io(environment.socketUrl + '/rooms',
       {query: { token: localStorage.getItem(LocalStorageEnum.TOKEN_KEY) }});
     return this.socket;
