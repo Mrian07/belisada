@@ -87,10 +87,8 @@ export class SignUpComponent implements OnInit {
     this.RegStatus = this.actionsSubject.asObservable()
       .pipe(filter(action => action.type === UserAction.SIGNUPBUYERSUCCESS))
         .subscribe((action: UserAction.SignUpBuyerSuccess) => {
-          // console.log('reg success');
           this.ngrx.select<any>(UserReducer.SignUpBuyerState).subscribe(
             response => {
-              console.log(response);
               // if (response.status === 1) {
                   this.emailToSuccess = this.signupData.email;
                   this.loadingService.hide();
@@ -126,11 +124,9 @@ export class SignUpComponent implements OnInit {
                       this.message = data.message;
                       this.status = data.status;
                   } else {
-                      console.log('its Good');
                   }
               },
               error => {
-                  console.log('error', error);
               });
   }
   onSearchChange(searchValue: string) {
@@ -143,17 +139,14 @@ export class SignUpComponent implements OnInit {
                       this.message = data.message;
                       this.status = data.status;
                   } else {
-                      console.log('its Good');
                   }
               },
               error => {
-                  console.log('error', error);
               });
   }
 
   keyLa(event: any) {
     const pattern = /[a-zA-Z ]+/;
-    console.log('aaaaaa', event);
 
     const inputChar = String.fromCharCode(event.charCode);
     if (event.keyCode !== 8 && event.keyCode !== 9   && !pattern.test(inputChar)) {
@@ -179,7 +172,6 @@ export class SignUpComponent implements OnInit {
       this.signupData.password = model.password;
       this.signupData.isSubscribe = model.isSubscribe;
       this.ngrx.dispatch(new UserAction.SignUpBuyer(this.signupData));
-      // console.log(form);
       this.vForValidation.reset();
       this.loadingService.hide();
   }

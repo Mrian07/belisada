@@ -72,7 +72,6 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('[CART] ngAfterViewInit');
     this.LoginStatus = this.actionsSubject.asObservable()
     .pipe(filter(action => action.type === UserAction.LOGINSUCCESS))
     .subscribe((action: UserAction.LoginSuccess) => {
@@ -85,9 +84,6 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
         // if (form.value.isRemember === 'true') {
 
         this.userService.setUserToLocalStorage(token);
-        console.log('[CART] UserAction.LoginSuccess');
-        console.log('[CART] this.isLoaded:', this.isLoaded);
-
         this.setCartToLocalStorage(token).then(() => {
           x.unsubscribe();
           this.router.navigateByUrl(this.routeback);
@@ -193,7 +189,6 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
 
   setCartToLocalStorage(token) {
     return new Promise((resolve, reject) => {
-      console.log('[CART] setCartToLocalStorage !BEGIN');
       let isAlertAppeared = false;
       const user = this.userService.getUserData(token);
       const cart = new ShoppingCart();
@@ -201,12 +196,9 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
       const storedCart = this.storage.getItem(CART_KEY);
       if (storedCart && JSON.parse(storedCart).items.length !== 0) {
           preLoginCart.updateFrom(JSON.parse(storedCart));
-          console.log('[CART] preLoginCart.items.length:', preLoginCart.items.length);
           preLoginCart.items.forEach((item, index) => {
-            console.log('[CART] Looping preLoginCart.items | index:', index);
             this.productService.get(item.productId).subscribe(product => {
               const prod = product.data;
-              console.log('[CART] productService.get | prod.productId:', prod.productId);
               const data = {
                 productId: prod.productId,
                 quantity: item.quantity,
@@ -215,8 +207,6 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
               };
               if (user.storeId !== prod.storeId) {
                 this.shoppingCartService.create(data).subscribe(response => {
-                  console.log('[CART] shoppingCartService.create | index:', index);
-                  console.log('[CART] shoppingCartService.create | preLoginCart.items.length:', preLoginCart.items.length);
                   if (index === preLoginCart.items.length - 1) {
                     return cb();
                   } else {
@@ -259,16 +249,11 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
 
       const that = this;
       function cb() {
-        console.log('[CART] cb !BEGIN');
         that.shoppingCartService.getSingleResult().subscribe(response => {
-          console.log('[CART] shoppingCartService.getSingleResult | response:', response);
           cart.grossTotal = response.grandTotal;
           cart.deliveryTotal = response.deliveryTotal;
           cart.itemsTotal = response.grandTotal;
-
-          console.log('[CART] shoppingCartService.getSingleResult | response.items:', response.items);
           response.items.forEach((item, index) => {
-            console.log('[CART] response.items | index:', index);
             const cartItem = new CartItem();
             cartItem.itemCartId = item.itemCartId;
             cartItem.productId = item.productId;
@@ -321,7 +306,6 @@ export class SigninComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    console.log('[CART] ngOnDestroy');
     this.LoginStatus.unsubscribe();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
 import { OrderStatusPaid, ContentOrderStatusPaid, CartItemsPaid } from '@belisada/core/models/transaction/transaction.model';
 import { ReviewService } from '../../../core/services/review/review.service';
@@ -12,6 +12,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { RatingValidators } from '../star-rating/rating-validators';
 import { UserService } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-order-status-paid',
@@ -68,6 +69,7 @@ export class OrderStatusPaidComponent implements OnInit {
   paymentNumberReview: string;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private reviewService: ReviewService,
     private loadingService: LoadingService,
     private fb: FormBuilder,
@@ -123,8 +125,6 @@ export class OrderStatusPaidComponent implements OnInit {
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
       this.proddetail = respon;
       this.list = respon.content;
-      console.log('helo', respon);
-      console.log('as', this.proddetail);
       this.proddetail = respon;
       this.a = respon.totalElements;
       this.pages = [];
@@ -276,7 +276,6 @@ export class OrderStatusPaidComponent implements OnInit {
         (response.status === 1) ? 'success' : 'error'
       );
       this.orderListPaid(this.status);
-      console.log('response: ', response);
     });
     this.showDialogKonfirm = false;
   }
@@ -318,7 +317,9 @@ export class OrderStatusPaidComponent implements OnInit {
     if (page < 1 || page > this.proddetail.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/buyer/order'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

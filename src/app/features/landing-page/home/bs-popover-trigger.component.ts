@@ -30,12 +30,10 @@ export class BsPopoverTriggerComponent {
   public selectedIndex: number;
 
   mouseEnter(index: number) {
-    console.log('mouse enter : ' + index);
     this.selectedIndex = index;
   }
 
   mouseLeave(index: number) {
-    console.log('mouse leave :' + index);
     this.selectedIndex = undefined;
   }
 }

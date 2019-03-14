@@ -22,7 +22,13 @@ export class CheckoutResData {
   paymentMethod: string;
   expiredTime: string;
   imageUrl: string;
+  midtrans: MidtransCCRes;
   // transaction: []
+}
+
+export class MidtransCCRes {
+  token: String;
+  redirect_url: string;
 }
 
 export class CheckoutShippingAddress {

@@ -584,7 +584,8 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  cTransfer(item, i, statusPay) {
+  cTransfer(item, i, paymentMethod: Payment) {
+    this.selectedPaymentMethod = paymentMethod;
     console.log('sssss');
     this.isTransferBank = false;
 
@@ -595,7 +596,7 @@ export class CheckoutComponent implements OnInit {
 
     this.listPaymentChild = item.find(x => x.paymentMethodCode === 'BT').data;
 
-    if (statusPay === 'PI') {
+    if (paymentMethod.paymentMethodCode === 'PI') {
       this.isTransfer[i] = false;
       swal(
         'Alert!',
@@ -606,13 +607,13 @@ export class CheckoutComponent implements OnInit {
       this.isTransfer[i] = true;
     }
 
-    if (statusPay === 'KK') {
+    if (paymentMethod.paymentMethodCode === 'KK') {
       this.isBtnCart = true;
     } else {
       this.isBtnCart = false;
     }
 
-    if (statusPay === 'BT') {
+    if (paymentMethod.paymentMethodCode === 'BT') {
       this.isBtnTransfer = true;
       this.isTransferBank = true;
     } else {
@@ -650,10 +651,11 @@ export class CheckoutComponent implements OnInit {
       swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');
         return;
     } else if (checkoutCartIds.length) {
+      const cid = (this.selectedPaymentMethod.paymentMethodId === 1) ? this.channelId : this.selectedPaymentMethod.paymentMethodId;
       const data: CheckoutReq = new CheckoutReq();
       data.itemCartIds = checkoutCartIds;
-      data.paymentMethodCode = this.PMCode;
-      data.channelId = this.channelId;
+      data.paymentMethodCode = this.selectedPaymentMethod.paymentMethodCode;
+      data.channelId = cid;
 
       if (this.isAny0Qty) {
         swal('belisada.co.id', 'Produk yang anda beli tidak tersedia', 'warning');
@@ -664,71 +666,20 @@ export class CheckoutComponent implements OnInit {
         this.loadingService.hide();
         if (response.status === 1) {
           this.shoppingCartService.empty();
+          switch (this.selectedPaymentMethod.paymentMethodCode) {
+            case 'BT':
+              this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+              break;
+            case 'KK':
+              window.location.href = response.data.midtrans.redirect_url;
+              break;
+            default:
+              this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+              break;
+          }
           if (this.PMCode === vTransfer) {
             this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
-          } else if (this.PMCode === vCart) {
-            let sign = '';
-            // MerchantKey
-            sign = sign.concat(environment.ipay88.MerchantKey);
-            // MerchantCode
-            sign = sign.concat(environment.ipay88.MerchantCode);
-            // RefNo
-            sign = sign.concat(response.data.paymentNumber);
-            // Amount
-            sign = sign.concat(this.checkoutTrx.grandTotal.toString());
-            sign = sign.concat('00');
-            // Currency
-            sign = sign.concat(environment.ipay88.Currency);
-
-            console.log('Berhasil', sign);
-            const signature = iPay88Signature(sign);
-            console.log('signature', signature);
-
-            this._userService.getProfile().subscribe(respon => {
-              this.userName = respon.name;
-              this.userEmail = respon.email;
-              this.userContact = respon.phone;
-
-              this.ipay88Req.MerchantCode = environment.ipay88.MerchantCode;
-              this.ipay88Req.PaymentId = '1';
-              this.ipay88Req.RefNo = response.data.paymentNumber;
-              this.ipay88Req.Amount = +(this.checkoutTrx.grandTotal + '00');
-              this.ipay88Req.Currency = environment.ipay88.Currency;
-              this.ipay88Req.ProdDesc = 'Pembelian produk';
-              this.ipay88Req.UserName = this.userName;
-              this.ipay88Req.UserEmail = this.userEmail;
-              this.ipay88Req.UserContact = this.userContact;
-              this.ipay88Req.Remark = '';
-              this.ipay88Req.Lang = 'UTF-8';
-              this.ipay88Req.signature = signature;
-              this.ipay88Req.ResponseURL = 'https://kadal.belisada.id/payment/response';
-              this.ipay88Req.BackendURL = 'https://api0.belisada.id/payment/response';
-
-              // this.createForm.patchValue(
-              //   {
-              //     RefNo: response.data.paymentNumber,
-              //     Amount: this.checkoutTrx.grandTotal,
-              //     Currency: environment.ipay88.Currency,
-              //     ProdDesc: 'Pembelian produk',
-              //     UserName: this.userName,
-              //     UserEmail: this.userEmail,
-              //     UserContact: this.userContact,
-              //     Remark: '',
-              //     Lang: '',
-              //     BackendURL: 'https://api0.belisada.id/payment/response',
-              //     ResponseURL: environment.domain + '/transaction/terimakasih/' + response.data.paymentNumber,
-              //     signature: signature
-              //   });
-
-              console.log('submit', this.createForm.value);
-
-              setTimeout(() => {
-                this.f.nativeElement.submit();
-              }, 500);
-            });
-
           }
-
         } else {
           swal('belisada.co.id', response.message, 'error');
         }

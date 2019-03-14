@@ -70,6 +70,8 @@ import { MessagingService } from './shared/messaging.service';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
+import { DeviceDetectorModule } from 'ngx-device-detector';
+
 registerLocaleData(localeId, 'id');
 
 library.add(fas, far, fab);
@@ -118,6 +120,7 @@ library.add(fas, far, fab);
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    DeviceDetectorModule.forRoot()
   ],
   providers: [
     {

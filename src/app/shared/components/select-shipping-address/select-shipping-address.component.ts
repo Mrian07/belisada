@@ -32,7 +32,6 @@ export class SelectShippingAddressComponent implements OnInit {
   ngOnInit(): void {
     this._data.subscribe(data => {
       this.shippingAddress = data.find(x => x.isDefault === true);
-      console.log(this.shippingAddress);
       this.select.emit(this.shippingAddress);
     });
   }

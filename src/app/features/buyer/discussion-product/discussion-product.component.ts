@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { environment } from '@env/environment';
 import { BuyerDiscus } from '../../../core/models/discus/discus.model';
 import { DiscusService } from '@belisada/core/services/discus/discus.service';
@@ -23,6 +24,7 @@ export class DiscussionProductComponent implements OnInit {
   createComForm: FormGroup;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private discusService: DiscusService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -138,7 +140,9 @@ export class DiscussionProductComponent implements OnInit {
     if (page < 1 || page > this.buyerDiscus.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/buyer/diskusi-review'], { queryParams: {page: page, status: 'review' }, queryParamsHandling: 'merge' }) ;
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

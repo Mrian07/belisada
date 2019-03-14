@@ -1,20 +1,32 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import {
   CheckoutReq, CheckoutRes,
   CheckoutShippingAddress, SuccessTransactionRes
 } from '@belisada/core/models/checkout/checkout-transaction';
 import { Configuration } from '@belisada/core/config';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UpdateAsuransiReq } from '@belisada/core/models/checkout/checkout-cart';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class CheckoutService {
 
-  constructor(private configuration: Configuration, private http: HttpClient) { }
+  lat: number;
+  lng: number;
+
+  deviceInfo = null;
+  device: string;
+
+  constructor(
+    private configuration: Configuration,
+    private http: HttpClient,
+    private deviceService: DeviceDetectorService
+    ) { }
 
   getShippingAddress(): Observable<CheckoutShippingAddress[]> {
     return this.http.get(this.configuration.apiURL + '/buyer/cart/shippingaddress')
@@ -24,8 +36,45 @@ export class CheckoutService {
   }
 
   doCheckout(data: CheckoutReq): Observable<CheckoutRes> {
-
-    return this.http.post(this.configuration.apiURL + '/buyer/transaction/checkout', data)
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: Position) => {
+        if (position) {
+          this.lat = position.coords.latitude;
+          this.lng = position.coords.longitude;
+        }
+      },
+        (error: PositionError) => console.log(error));
+    } else {
+      alert('Geolocation is not supported by this browser.');
+    }
+    this.deviceInfo = this.deviceService.getDeviceInfo();
+    if (this.deviceService.isMobile()) {
+      console.log('This is a Mobile Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+      this.device = 'Mobile';
+    }
+    if (this.deviceService.isTablet()) {
+      console.log('This is a Tablet Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+      this.device = 'Tablet';
+    }
+    if (this.deviceService.isDesktop()) {
+      console.log('This is a Desktop Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
+      this.device = 'Desktop';
+    }
+    const log = {
+      'longitude': this.lng,
+      'latitude': this.lat,
+      'device': this.deviceInfo.device,
+      'browser': this.deviceInfo.browser,
+      'browser_version': this.deviceInfo.browser_version,
+      'os': this.deviceInfo.os,
+      'os_version': this.deviceInfo.os_version,
+      'platform': this.device
+    };
+    console.log('Log:', log);
+    let headers: HttpHeaders = new  HttpHeaders();
+    headers = headers.append('Log', JSON.stringify(log));
+    console.log(headers);
+    return this.http.post(this.configuration.apiURL + '/buyer/transaction/checkout', data, {headers})
       .pipe(
         map(response => response as CheckoutRes)
       );

@@ -267,8 +267,6 @@ export class CreateStoreComponent implements OnInit {
   }
   onSent(form: NgForm) {
     this.loadingService.show();
-
-    // console.log('ini', this.store.valid);
     if (this.store.valid) {
       this.loadingService.hide();
       if (this.nameChecking) {
@@ -298,8 +296,6 @@ export class CreateStoreComponent implements OnInit {
       };
 
       model.storePicture = this.data.picture;
-      // model.storeUrl = this.asd;
-      // console.log('storeUrl : ', this.asd);
       this.storeService.create(a).subscribe(rsl => {
         this.loadingService.hide();
         if (rsl.status === 1) {
@@ -315,14 +311,12 @@ export class CreateStoreComponent implements OnInit {
               this.authService.refreshToken().subscribe(respon => {
                 this.userService.setUserToLocalStorage(respon.token);
                 this.router.navigateByUrl('/');
-                console.log('status', respon);
               });
             }
           });
         } else {
           swal(rsl.message);
           // this.authService.refreshToken().subscribe(respon => {
-          //   console.log('status', respon);
           //   this.userService.setUserToLocalStorage(respon.token);
           // });
           // location.reload();
@@ -400,7 +394,6 @@ export class CreateStoreComponent implements OnInit {
     this.fileToUpload = files.item(0);
   }
   setRegion(o) {
-    console.log(o);
     this.store1.regionName = o.regionName;
     this.store1.regionId = o.regionId;
     delete this.store1.cityName;
@@ -412,7 +405,6 @@ export class CreateStoreComponent implements OnInit {
   getCity() {
     this.storeService.getCity(this.store1.regionId).subscribe(data => {
       this.cities = data;
-      console.log(data);
     });
   }
   setCity(o) {
