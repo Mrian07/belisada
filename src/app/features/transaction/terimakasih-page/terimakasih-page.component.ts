@@ -31,7 +31,7 @@ export class TerimakasihPageComponent implements OnInit {
       this.checkoutService.getSuccessTransaction(params['id']).subscribe(response => {
         this.successTransactionRes = response;
 
-        console.log('apaaaa', this.successTransactionRes.data.paymentMethodCode);
+        console.log('apaaaa', this.successTransactionRes);
 
         console.log('hasil oi', response);
         // this.expiredTimeIndo = response.data[0].expiredTimeIndo;
