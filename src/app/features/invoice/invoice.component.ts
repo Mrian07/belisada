@@ -29,7 +29,6 @@ export class InvoiceComponent implements OnInit {
   }
   // getDetail(){
   //       this.transactionService.getInvoice(id).subscribe(respon => {
-  //    console.log('apa ini', respon);
   //   });
   // }
 }

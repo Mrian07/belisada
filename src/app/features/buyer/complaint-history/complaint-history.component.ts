@@ -50,7 +50,6 @@ export class ComplaintHistoryComponent implements OnInit {
 
     this.complaintService.getComplaint(queryParams).subscribe(response => {
 
-      console.log('ini', response);
       this.complaint = response;
       this.a = response.totalElements;
       this.pages = [];

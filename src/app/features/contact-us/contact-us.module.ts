@@ -23,6 +23,6 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     ThemeModule,
     FontAwesomeModule,
   ],
-  declarations: [ContactUsComponent, ContactFormComponent]
+  declarations: [ContactFormComponent]
 })
 export class ContactUsModule { }

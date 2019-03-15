@@ -52,15 +52,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
 
     this.socket.on('users', (userIds: string[]) => {
-      console.log('--- users ---:userids-> ', userIds);
     });
 
     this.socket.on('message', (datas: any[]) => {
-      console.log('--- message ---:data-> ', datas);
       this.chatMessages = [...this.chatMessages, ...datas];
       this.scrollToBottom();
-      // this.findAndJoinRoom();
-      console.log('chatMessages: ', this.chatMessages);
     });
 
     this.createForm();
@@ -101,7 +97,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   submit() {
-    console.log('Submited');
     this.chatFormGroup.patchValue({
       room: this.selectedRoom._id,
       userId: this.userService.getUserData().userId
@@ -113,9 +108,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     message.date = new Date();
 
     const room = this.chatFormGroup.controls['room'].value;
-
-    console.log('message: ', message);
-    console.log('room: ', room);
     this.chatService.sendMessage(message, room);
     this.chatFormGroup.controls['message'].reset();
   }
@@ -129,7 +121,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   handleSelection(event) {
-    console.log(event.char);
   }
 
   scrollToBottom(): void {
