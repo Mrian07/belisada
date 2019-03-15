@@ -13,6 +13,7 @@ import { RatingValidators } from '../star-rating/rating-validators';
 import { UserService } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '@env/environment';
 // interface ICompany {
 //   id: number;
 //   rating: number;
@@ -28,6 +29,7 @@ export class OrderStatusComponent implements OnInit {
   // review: ListReview[];
   private _order: ContentOrderStatus;
   private _currentPage: number;
+  public url_mitrans = environment.urlMidtrans;
 
   get order(): ContentOrderStatus {
     return this._order;
