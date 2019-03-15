@@ -40,7 +40,7 @@ export class OrderStatusPaidComponent implements OnInit {
   showDialog: Boolean = false;
   isPilih: boolean;
   isSent: boolean;
-  isLoading: boolean;
+  //isLoading: boolean;
   isEmpty: boolean;
   transactionId: number;
   listPayment: PaymentList[];
