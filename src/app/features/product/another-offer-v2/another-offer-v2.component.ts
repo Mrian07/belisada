@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Subscription, combineLatest } from 'rxjs';
 import { ProductsSandbox } from '../products.sandbox';
 import { ProductService } from '@belisada/core/services/product/product.service';
@@ -14,6 +14,7 @@ import { ProductReviewResponse } from '@belisada/core/models/product/product-rev
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import swal from 'sweetalert2';
 import { LocalStorageEnum } from '@belisada/core/enum';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-another-offer-v2',
@@ -54,6 +55,7 @@ export class AnotherOfferV2Component implements OnInit {
 
   baseUrlSeller: string = environment.baseUrlSeller;
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     public productsSandbox: ProductsSandbox,
 
     private productService: ProductService,
@@ -80,7 +82,6 @@ export class AnotherOfferV2Component implements OnInit {
       // this.productsSandbox.anotherProdcut(product);
       if (product) {
         // this.productsSandbox.anotherProdcut(product);
-        console.log(product.data);
         this.productAtas = product.data;
       }
     }));
@@ -108,10 +109,8 @@ export class AnotherOfferV2Component implements OnInit {
       this.currentPage = (queryParams.page === undefined) ? 1 : +queryParams.page;
 
       this.productService.getProductAnotherVarian(id).subscribe(res => {
-        console.log('ros:', res);
         this.productService.getProductDetailV2Variant(id).subscribe((variants) => {
           this.product = variants;
-          console.log('variants : ', this.product);
           this.activeVariants = [];
           variants.forEach(variant => {
             this.activeVariants.push('');
@@ -126,8 +125,6 @@ export class AnotherOfferV2Component implements OnInit {
       this.pages = [];
       this.productService.getProductDataDetail(id, queryParams).subscribe((res) => {
         this.variantDetailBwah = res.content;
-
-        console.log('isi', res);
 
         this.totalElements  = res.totalElements;
         // this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
@@ -173,7 +170,6 @@ export class AnotherOfferV2Component implements OnInit {
         const variants = queryParam.varians.split(',');
         variants.forEach(variant => {
           const index = this.product.findIndex(x => x.attributeId === +variant.split(':')[0]);
-          console.log(this.product);
           this.activeVariants[index] = variant;
         });
       }
@@ -185,14 +181,13 @@ export class AnotherOfferV2Component implements OnInit {
     if (page < 1 || page > this.lastPage) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/product/another-offers/' + this.prodIdAtas], { queryParams: {page: page}, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
   addToCart(productId, storeId, i) {
-    console.log('123', productId, storeId, i);
     const userData = this.userService.getUserData(this.authService.getToken());
-    console.log('userData: ', userData);
-    console.log(this.cartItem);
     if (userData) {
       const addToCartRequest: AddToCartRequest = {
         productId: productId,
@@ -201,8 +196,6 @@ export class AnotherOfferV2Component implements OnInit {
         // courierService: this.shippingRates[i].courierService,
         shippingAddressId: this.addressId
       };
-
-      // console.log('ini', this.shippingRates[i].courierCode);
       this.shoppingCartService.create(addToCartRequest).subscribe(response => {
         if (response.status === 1) {
           this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);

@@ -90,7 +90,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
    /* Fungsi ini untuk melakukan pengecekan email valid*/
-   onSearchChange(searchValue: string) {
+  onSearchChange(searchValue: string) {
     const modelz = this.fogotFormGroup.value;
     this.emailChecking.email = modelz.email,
     this.userService.checkEmail(this.emailChecking)
@@ -105,7 +105,6 @@ export class ForgotPasswordComponent implements OnInit {
         }
       },
       error => {
-          console.log('error', error);
       });
   }
 

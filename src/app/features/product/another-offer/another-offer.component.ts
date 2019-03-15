@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ProductService } from './../../../core/services/product/product.service';
 import { ProductDetailList, Filter, FilterOffers } from '@belisada/core/models/product/product.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -10,6 +10,7 @@ import swal from 'sweetalert2';
 import { UserService, AuthService, HomeSService } from '@belisada/core/services';
 import { AddToCartRequest } from '@belisada/core/models/shopping-cart/shopping-cart.model';
 import { environment } from '@env/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-another-offer',
@@ -56,6 +57,7 @@ export class AnotherOfferComponent implements OnInit {
   environment = environment;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private shoppingCartService: ShoppingCartService,
@@ -80,7 +82,6 @@ export class AnotherOfferComponent implements OnInit {
 
   addToCart(productId, storeId, i) {
     const userData = this.userService.getUserData(this.authService.getToken());
-    // console.log('userData: ', userData);
 
     if (userData) {
       if (userData.storeId === storeId) {
@@ -102,8 +103,6 @@ export class AnotherOfferComponent implements OnInit {
             courierService: this.shippingRates[i].courierService,
             shippingAddressId: this.addressId
           };
-
-          console.log('ini', addToCartRequest);
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
             if (response.status === 1) {
               this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
@@ -122,8 +121,6 @@ export class AnotherOfferComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe((params2: Params) => {
     this.currentPage = (params2['page'] === undefined) ? 1 : +params2['page'];
-
-    // console.log('ambil ship: ', params2['shipping']);
       if (params2['classification']) {
         this.currentClassification = params2['classification'];
       }
@@ -167,7 +164,7 @@ export class AnotherOfferComponent implements OnInit {
         const queryParams3 = this.dataConst2;
         const queryParams = this.dataConst;
         this.productService.getOffers(queryParams).subscribe(respon => {
-  
+
           this.filter = respon;
           this.lastPage = this.filter.totalPages;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
@@ -177,7 +174,6 @@ export class AnotherOfferComponent implements OnInit {
           }
 
           this.addressService.getShipping().subscribe(result => {
-            console.log('result: ', result);
             this.addressId = result[0].addressId;
             const rajaOngkirId = result[0].rajaOngkirId;
 
@@ -241,7 +237,6 @@ export class AnotherOfferComponent implements OnInit {
         break;
 
       default:
-        console.log('not specified');
         break;
     }
 
@@ -294,7 +289,9 @@ export class AnotherOfferComponent implements OnInit {
     if (page < 1 || page > this.filter.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/product/another-offer/' + this.id + '/' + this.name], { queryParams: {page: page, ob: this.sortName, ot: this.sortUrut, classification: this.getListClassification.toString(), shipping: this.getlistCourier.toString() }, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

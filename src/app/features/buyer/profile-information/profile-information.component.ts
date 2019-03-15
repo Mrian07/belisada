@@ -169,7 +169,6 @@ validateAllFormFields(formGroup: FormGroup) {
       this.userService.updateProfile(editProfileRequest).subscribe(data => {
         this.authService.refreshToken().subscribe(respon => {
           this.loadingService.hide();
-          console.log('status', respon.status);
           if (respon.status === 1) {
             // if (localStorage.getItem('isRemember') === 'true') {
               this.userService.setUserToLocalStorage(respon.token);
@@ -190,7 +189,6 @@ validateAllFormFields(formGroup: FormGroup) {
       });
     } else {
       this.loadingService.hide();
-      console.log(this.validationOnpopUpCreateStore.valid);
         // swal('ops maaf ada kesalahan silahkan cek data kamu');
         this.validateAllFormFields(this.validationOnpopUpCreateStore);
     }
