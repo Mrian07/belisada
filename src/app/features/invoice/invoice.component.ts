@@ -23,6 +23,9 @@ export class InvoiceComponent implements OnInit {
   loadData() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.transactionService.getInvoice(params['id']).subscribe(respon => {
+
+        console.log(respon.data);
+
         this.info = respon.data;
       });
     });

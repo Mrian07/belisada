@@ -16,18 +16,16 @@
         </div>
 </div>
 <div class="frame-menu-contain" >
-    <div [ngClass]="[isLoading ? 'show' : 'hide']">
+    <!-- <div [ngClass]="[isLoading ? 'show' : 'hide']">
         <div class="load-wrapp">
-            <div class="load-4">
+            <div class="load-4"> -->
                 <!-- <p>Loading...</p> -->
-                <div class="ring-1"></div>
+                <!-- <div class="ring-1"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <app-order-status *ngIf="activeTab === '133'"
-        [order]="order"
-        [currentPage]="currentPage"></app-order-status>
+    <app-order-status *ngIf="activeTab === '133'" [order]="order" [currentPage]="currentPage"></app-order-status>
     <app-order-status-paid *ngIf="activeTab !== '133'"></app-order-status-paid>
 </div>
 <!-- <div class="frame-menu-contain" >

@@ -49,6 +49,7 @@ export class OrderComponent implements OnInit {
     const queryParams = {
       itemperpage: 10,
       page: this.currentPage,
+      ot: 'desc',
       transaction_status: statusOrderCode
     };
     this._loadingService.show();
