@@ -54,6 +54,7 @@ export class OrderComponent implements OnInit {
     };
     this._loadingService.show();
     this._transactionService.getOrder(queryParams).subscribe(response => {
+
       this._loadingService.hide();
       this.order = response;
       // const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
