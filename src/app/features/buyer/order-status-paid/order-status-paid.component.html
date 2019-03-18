@@ -311,6 +311,10 @@
                 {{ transactionDetail.alamatPenerima}}
             </div>
         </div>
+
+        <div class="delivery-tolak" *ngIf="transactionDetail.reasonOrderRejected">
+            Keterangan Tolak: {{ transactionDetail.reasonOrderRejected}}
+        </div>
         <button class="btn-kembali" (click)="backToOrderDetail()">Kembali</button>
     </div>
 </app-models>
