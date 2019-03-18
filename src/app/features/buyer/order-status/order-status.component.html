@@ -32,7 +32,7 @@
             </div>
             <div class="col-4">
 
-                <div class="text-payinfo">Payment: ({{item.paymentMethod}})<br>Grand Total: Rp -
+                <div class="text-payinfo">Payment: ({{item.paymentMethod}})<br>Grand Total: Rp.{{item.transaction[0].grandTotal | number}}
                 
                 </div>
             </div>
@@ -92,18 +92,21 @@
                 <td valign="top" width="22%">
                     <div class="item-colom">
                         <div class="row">
-                        <div class="col-12">
-                            No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
-                        </div>
-                        <div class="col-12">
-                            Status: <label>{{itemList.statusOrder}}</label>
-                        </div>
-                        <div class="col-12">
-                            Total Berat: <label>{{itemList.totalWeight/1000}}kg</label>
-                        </div>
-                        <div class="col-12">
-                            Biaya Pengiriman: <label>Rp.{{itemList.courierPrice | number}}</label>
-                        </div>
+                            <div class="col-12">
+                                No Resi: <label>{{itemList.noResi}} ({{itemList.courierName}} {{itemList.courierService}})</label>
+                            </div>
+                            <div class="col-12">
+                                Status: <label>{{itemList.statusOrder}}</label>
+                            </div>
+                            <div class="col-12">
+                                Total Berat: <label>{{itemList.totalWeight/1000}}kg</label>
+                            </div>
+                            <div class="col-12">
+                                Biaya Pengiriman: <label>Rp.{{itemList.courierPrice | number}}</label>
+                            </div>
+                            <div class="col-12">
+                                Asuransi: <b><span *ngIf="itemList.useAsuransi === false">Tidak</span> <span *ngIf="itemList.useAsuransi === true">Ya</span></b>
+                            </div>
                         </div>
                     </div>
                 </td>

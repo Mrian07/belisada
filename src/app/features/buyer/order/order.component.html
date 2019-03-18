@@ -24,8 +24,8 @@
             </div>
         </div>
     </div> -->
-
-    <app-order-status *ngIf="activeTab === '133'" [order]="order" [currentPage]="currentPage"></app-order-status>
+{{grandTotal}}
+    <app-order-status *ngIf="activeTab === '133'" [order]="order" [grandTotal]="grandTotal" [currentPage]="currentPage"></app-order-status>
     <app-order-status-paid *ngIf="activeTab !== '133'"></app-order-status-paid>
 </div>
 <!-- <div class="frame-menu-contain" >
