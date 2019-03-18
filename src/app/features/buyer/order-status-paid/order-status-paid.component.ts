@@ -11,8 +11,10 @@ import mct from 'madrick-countdown-timer';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RatingValidators } from '../star-rating/rating-validators';
 import { UserService } from '@belisada/core/services';
-import { LoadingService } from '@belisada/core/services/globals/loading.service';
+// import { LoadingService } from '@belisada/core/services/globals/loading.service';
 import { isPlatformBrowser } from '@angular/common';
+
+import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
   selector: 'app-order-status-paid',
@@ -20,6 +22,9 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./order-status-paid.component.scss']
 })
 export class OrderStatusPaidComponent implements OnInit {
+
+  public isLoading: Boolean = false;
+
   review: ListReview[];
   list: OrderStatusPaid[];
   transactionDetail: OrderStatusPaid = new OrderStatusPaid();
@@ -35,7 +40,7 @@ export class OrderStatusPaidComponent implements OnInit {
   showDialog: Boolean = false;
   isPilih: boolean;
   isSent: boolean;
-  isLoading: boolean;
+  //isLoading: boolean;
   isEmpty: boolean;
   transactionId: number;
   listPayment: PaymentList[];
@@ -77,13 +82,17 @@ export class OrderStatusPaidComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private paymentService: PaymentService,
+
+    private _loadingService: LoadingService,
   ) { this.list = []; }
 
 
 
   ngOnInit() {
+
     this.imgBuktiTransfer = 'assets/img/add-product.png';
-    this.isLoading = true;
+    // this.isLoading = true;
+    
     this.createFormControls();
     this.statusFlag();
     this.isForm = true;
@@ -116,6 +125,9 @@ export class OrderStatusPaidComponent implements OnInit {
   }
 
   orderListPaid(statusOrderCode?: any) {
+
+    this._loadingService.show();
+
     const queryParams = {
       itemperpage: 10,
       page: this.currentPage,
@@ -123,6 +135,7 @@ export class OrderStatusPaidComponent implements OnInit {
     };
 
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
+
       this.proddetail = respon;
       this.list = respon.content;
       this.proddetail = respon;
@@ -134,7 +147,8 @@ export class OrderStatusPaidComponent implements OnInit {
           this.pages.push(r);
         }
       }
-      this.isLoading = false;
+      // this.isLoading = false;
+      this._loadingService.hide();
     });
   }
 
