@@ -1,22 +1,24 @@
 <section class="footer">
-    <div class="container">
-        <div class="footer__top">
-            <div class="row">
-                <div class="col-md-6 inline">
-                    <img src="/assets/img/icon-subscribe.png" alt="">
-                    <label class="footer__signup">Sign up For Newsletter</label>
-                </div>
-                <div class="col-md-6">
-                    <form class="form-subscribe" (ngSubmit)="subscribe()">
-                        <div class="form-subscribe__wrapper pull-right">
-                            <input type="text" class="form-subscribe__input" [formControl]="subscribe_email" placeholder="Enter your email address">
-                            <span class="form-subscribe__delimiter"></span>
-                            <button class="form-subscribe__button" type="submit">Subscribe</button>
-                        </div>
-                        <!-- <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
-                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                        </div> -->
-                    </form>
+    <div class="container-fluid noPadding">
+        <div class="container">
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-md-6 inline">
+                        <img src="/assets/img/icon-subscribe.png" alt="">
+                        <label class="footer__signup">Sign up For Newsletter</label>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-subscribe" (ngSubmit)="subscribe()">
+                            <div class="form-subscribe__wrapper pull-right">
+                                <input type="text" class="form-subscribe__input" [formControl]="subscribe_email" placeholder="Enter your email address">
+                                <span class="form-subscribe__delimiter"></span>
+                                <button class="form-subscribe__button" type="submit">Subscribe</button>
+                            </div>
+                            <!-- <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
+                                <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                            </div> -->
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

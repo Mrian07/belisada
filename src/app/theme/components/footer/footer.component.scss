@@ -18,13 +18,17 @@
     text-align: center;
 }
 
+.noPadding{
+    padding: 0;
+    background-color: #033250;
+}
+
 .marginLeft {
     margin-left: 65px;
 }
 
 .footer {
     &__top {
-        background-color: #033250;
         padding: 1.5rem 10rem;
         .inline {
             display: inherit;

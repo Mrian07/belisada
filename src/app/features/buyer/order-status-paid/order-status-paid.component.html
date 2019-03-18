@@ -276,7 +276,7 @@
             </tr>
             <tr>
                 <td>
-                    Asuransi: &nbsp; <b><span *ngIf="transactionDetail.useAsuransi === false">TIDAK</span> <span *ngIf="transactionDetail.useAsuransi === true">IYA</span></b>
+                    Asuransi: &nbsp; <b><span *ngIf="transactionDetail.useAsuransi === false">TIDAK</span> <span *ngIf="transactionDetail.useAsuransi === true">YA</span></b>
                 </td>
                 <td>
                     <span *ngIf="transactionDetail.useAsuransi === false">0</span> <span *ngIf="transactionDetail.useAsuransi === true">{{ transactionDetail.asuransi | currency:'Rp ':'symbol':'1.0' }}</span>
