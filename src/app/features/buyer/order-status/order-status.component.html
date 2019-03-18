@@ -32,7 +32,7 @@
             </div>
             <div class="col-4">
 
-                <div class="text-payinfo">Payment: ({{item.paymentMethod}})<br>Grand Total: Rp -
+                <div class="text-payinfo">Payment: ({{item.paymentMethod}})<br>Grand Total: Rp.{{item.transaction[0].grandTotal | number}}
                 
                 </div>
             </div>
