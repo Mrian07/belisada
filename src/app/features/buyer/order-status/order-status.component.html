@@ -9,36 +9,35 @@
                 <div class="text-order">{{item.createdTime}}</div>
             </div>
             <div class="col-9">
-                <div class="text-rek" (click)="showPaymentMethodModal = !showPaymentMethodModal">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
+                <div class="text-rek" *ngIf="item.paymentMethodCode != 'KK'" (click)="showPaymentMethodModal = !showPaymentMethodModal">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
                 
-                <!-- {{item.paymentMethodCode}} -->
-                <div *ngIf="item.paymentMethodCode == 'KK'">
+                <div *ngIf="item.paymentMethodCode == 'KK' && item.countdown?.status === 1">
                     <a href="{{url_mitrans}}/snap/v2/vtweb/{{item.tokenTransaction}}">
-                        <div class="text-confirm">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
+                        <div class="text-confirm">Lanjutkan Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
                     </a>
                 </div>
+           
                 <div *ngIf="item.paymentMethodCode != 'KK'">
                     <a [routerLink]="['/buyer/confirmation/' + item.paymentNumber]">
                         <div class="text-confirm">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
                     </a>
                 </div>
-                
+          
                 <div class="text-more" (click)="openOS(openDetail, item.transactionId)">Lihat Detail <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
             </div>
         </div>
         <div class="row row-atur">
-            <div class="col-4">
-                <div class="text-payid">Payment ID: {{item.paymentNumber}} </div>
+            <div class="col-3">
+                <div class="text-payid">Payment ID: {{item.paymentNumber}}</div>
             </div>
-            <div class="col-4">
+            <div class="col-3">
 
                 <div class="text-payinfo">Payment: ({{item.paymentMethod}})<br>Grand Total: Rp.{{item.transaction[0].grandTotal | number}}
-                
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                 <div *ngIf="item.countdown">
-                    Batas Waktu Respon:
+                    Batas Waktu Respon:<br>
                     <ng-container *ngIf="item.countdown.status === 1; else expired">
                         {{ item.countdown.days }}d - {{ item.countdown.hours }}h - {{ item.countdown.minutes }}m - {{ item.countdown.seconds }}s
                     </ng-container>
@@ -47,7 +46,7 @@
                     </ng-template>
                 </div>
             </div>
-            <div class="col-2">
+            <div class="col-3">
                 <div class="text-progress"> <span id="text-tunggu">{{item.status}}</span></div>
             </div>
         </div>
