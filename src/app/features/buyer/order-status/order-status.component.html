@@ -9,7 +9,7 @@
                 <div class="text-order">{{item.createdTime}}</div>
             </div>
             <div class="col-9">
-                <div class="text-rek" (click)="showPaymentMethodModal = !showPaymentMethodModal">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
+                <div class="text-rek" *ngIf="item.paymentMethodCode != 'KK'" (click)="showPaymentMethodModal = !showPaymentMethodModal">Lihat Nomor Rekening Belisada <span class="text-yellow"><fa-icon [icon]="['fas', 'credit-card']"></fa-icon></span></div>
                 
                 <div *ngIf="item.paymentMethodCode == 'KK' && item.countdown?.status === 1">
                     <a href="{{url_mitrans}}/snap/v2/vtweb/{{item.tokenTransaction}}">
