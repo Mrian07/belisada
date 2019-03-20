@@ -10,4 +10,5 @@ export class Globals {
   storeId: number;
   socket;
   showEmoji: Boolean = false;
+  position;
 }

@@ -105,7 +105,8 @@ export class CheckoutComponent implements OnInit {
     private thumborService: ThumborService,
     private http: HttpClient,
     private _userService: UserService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    public globals: Globals
   ) {
 
     this.isTransfer = [];
@@ -177,6 +178,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('this.globals.position: ', this.globals.position);
     console.log('[CART] CHECKOUT PAGE');
     this.isNote = false;
     this.isPayment = false;
