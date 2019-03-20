@@ -52,6 +52,23 @@
                 }
               ]
             },
+            "uat": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.uat.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
             "local": {
               "fileReplacements": [
                 {
@@ -70,6 +87,9 @@
           "configurations": {
             "production": {
               "browserTarget": "myacico-smp:build:production"
+            },
+            "uat": {
+              "browserTarget": "belisada-seller:build:uat"
             },
             "local": {
               "browserTarget": "myacico-smp:build:local"
