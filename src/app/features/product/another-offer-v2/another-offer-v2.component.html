@@ -2,9 +2,15 @@
     <div class="containPage has-header  has-footer">
 
         <div class="grid-container wrapperF">
-            <div class="item2">     <img [src]="productStoreUrl + productAtas?.image" alt=""></div>
+            <div class="item2">
+                <a [routerLink]="['/product/product-detail/' + productAtas.productId + '/' + encodeUrl(productAtas.name)]">
+                    <img [src]="productStoreUrl + productAtas?.image" alt="">
+                </a>
+            </div>
             <div class="item3">
+                <a [routerLink]="['/product/product-detail/' + productAtas.productId + '/' + encodeUrl(productAtas.name)]">
                 <span class= "wrapperF__text"> {{ productAtas?.name }}</span>
+                </a>
                 <div>
                 Brand : <span class= "text-color font-size "> {{ productAtas?.brandName }}</span>
                 <br>
@@ -40,14 +46,14 @@
 
         <div class="container wrapperF">
             <table>
-                <caption>
+                <!-- <caption>
                     <span class="text__bawah">Daftar Penjual</span>
                 </caption>
                 <caption>
                     <span class="text__bawah--v2">
                         {{hasil}} - {{ numberOfEl }} dari {{ totalPenjual }} penjual 
                     </span>
-                </caption>
+                </caption> -->
                 
                 <thead>
                     <tr>
@@ -61,12 +67,12 @@
                 </thead>
                 <tbody *ngFor="let item of variantDetailBwah; let i = index">
                     <tr>
-                    <td data-label="Account"> {{ item.storeName }}</td>
-                    <td data-label="Due Date"> {{item.guaranteeTypeValue }} - {{ item.guaranteeTimeValue }} </td>
-                    <td data-label="Amount"> {{ item.locationName }}</td>
-                    <td data-label="Period"><span *ngFor="let courierType of item.courierType; let x = index"> {{ courierType }} <span *ngIf="x < (item.courierType.length - 1)">/</span> </span></td>
-                    <td data-label="Period">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0'}}</td>
-                    <td data-label="Period">
+                    <td data-label="Dijual Oleh"><a [routerLink]="['/'+item.storeUrl]">{{ item.storeName }}</a></td>
+                    <td data-label="Garansi Produk"> {{item.guaranteeTypeValue }} - {{ item.guaranteeTimeValue }} </td>
+                    <td data-label="Lokasi Penjual"> {{ item.locationName }}</td>
+                    <td data-label="Pilih Pengiriman"><span *ngFor="let courierType of item.courierType; let x = index"> {{ courierType }} <span *ngIf="x < (item.courierType.length - 1)">/</span> </span></td>
+                    <td data-label="Harga">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0'}}</td>
+                    <td data-label="">
                         <button (click)="addToCart(item.productId, item.storeId, i)" class="btn btn--yelloworange">BELI PRODUCT</button>
                     </td>
                     </tr>
