@@ -188,6 +188,10 @@ export class CheckoutComponent implements OnInit {
     this.allPayment();
   }
 
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
+  }
+
   getCartCheckout() {
 
     this.cekShipping();
