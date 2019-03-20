@@ -97,6 +97,10 @@ export class AnotherOfferV2Component implements OnInit {
 
   }
 
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
+  }
+
   public loadData() {
 
     const obsParams = combineLatest(this.activatedRoute.params, this.activatedRoute.queryParams,
@@ -125,7 +129,6 @@ export class AnotherOfferV2Component implements OnInit {
       this.pages = [];
       this.productService.getProductDataDetail(id, queryParams).subscribe((res) => {
         this.variantDetailBwah = res.content;
-
         this.totalElements  = res.totalElements;
         // this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
         const x = res.number;         // assign the value 5 to x

@@ -138,7 +138,7 @@
                                             </div>
                                             <div class="productOpacity">
                                                 <div class="product__image">
-                                                    <img [src]="productImageUrl + item.imageUrl" [alt]="item.imageUrl">
+                                                    <a [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]"><img [src]="productImageUrl + item.imageUrl" [alt]="item.imageUrl"></a>
                                                 </div>
                     
                                                 <div class="product__info">
@@ -148,7 +148,7 @@
                                                 </div>
                                             </div>
                                             <div class="addToCart">
-                                                <button class="btn btnCart" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">View Product</button>
+                                                <button class="btn btnCart" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">More Detail</button>
                                                 <button class="btn btnFavorite"><fa-icon [icon]="['far', 'heart']"></fa-icon></button>
                                             </div>
                                         </div>

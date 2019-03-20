@@ -188,11 +188,18 @@ export class CheckoutComponent implements OnInit {
     this.allPayment();
   }
 
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
+  }
+
   getCartCheckout() {
 
     this.cekShipping();
 
     this.shoppingCartService.getCartV2().subscribe(response => {
+
+      console.log('load data', response);
+
       this.checkoutTrx = response;
 
       response.cart.forEach((item, i) => {

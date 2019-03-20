@@ -42,19 +42,24 @@
 
         <div class="contenCart" *ngFor="let cartCheckout of checkoutTrx.cart; let in = index">
             <div class="contenCart__shop">
-                <input type="checkbox" [(ngModel)]="checkShop[in]" class="contenCart__check">
+                <input type="checkbox" [(ngModel)]="checkShop[in]" class="contenCart__check"> 
                 <!-- <img src="assets/img/boxCheckout.png" height="15" border="0"> -->
-                {{ cartCheckout.storeName }}
+                <a [routerLink]="['/'+cartCheckout.storeUrl]">{{ cartCheckout.storeName }}</a>
             </div>
             <div *ngFor="let cartItem of cartCheckout.cartItems">
                 <div class="contenCart__item">
                     <div class="contenCart__img">
                         
                         <div>
+                            <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]">
                             <img [src]="cartItem.imageUrl" size="20">
+                            </a>
                         </div>
                         <div>
-                            <span class="item-name">{{ cartItem.name }}</span><br>
+                            <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]">
+                            <span class="item-name">{{ cartItem.name }}</span>
+                            </a>
+                            <br>
                             <div *ngFor="let varian of cartItem.varians" class="varianText">
                                 <span *ngFor="let itemVar of varian.varians">
                                     {{  itemVar.value }}
