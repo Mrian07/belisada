@@ -102,6 +102,7 @@
     border: 1px solid $btn-color;
     background-color: $btn-color;
     &:hover, &:active {
+        color: $text-color;
         background-color: darken($btn-color, 6%);
     }
 
