@@ -127,7 +127,7 @@
                                     <div class="product__grid">
                                         <div class="product__container">
                                             <div>
-                                                <h2 class="product__name">
+                                                <h2 [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]" class="product__name">
                                                     {{ item.name }}
                                                 </h2>
                                                 <div class="product__rating">
@@ -148,8 +148,8 @@
                                                 </div>
                                             </div>
                                             <div class="addToCart">
-                                                <button class="btn btnCart" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">More Detail</button>
-                                                <button class="btn btnFavorite"><fa-icon [icon]="['far', 'heart']"></fa-icon></button>
+                                                <button class="btn btnCart" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">View Product</button>
+                                                <!-- <button class="btn btnFavorite"><fa-icon [icon]="['far', 'heart']"></fa-icon></button> -->
                                             </div>
                                         </div>
                                     </div>

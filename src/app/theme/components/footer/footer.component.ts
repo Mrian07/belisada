@@ -9,6 +9,7 @@ import { UserData } from '@belisada/core/models';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { UserService, Globals } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { empty } from 'rxjs';
 
 @Component({
   selector: 'app-footer',
@@ -46,19 +47,28 @@ export class FooterComponent implements OnInit {
   subscribe() {
     this.loadingService.show();
     if (!this.subscribe_email.invalid) {
-    this.subscribeRequest.email = this.subscribe_email.value;
-    this.onSubs.newsLetter(this.subscribeRequest)
+      this.subscribeRequest.email = this.subscribe_email.value;
+      this.onSubs.newsLetter(this.subscribeRequest)
       .subscribe(data => {
         this.loadingService.hide();
-        swal(data.message);
+        swal({title: data.message, showConfirmButton: true, timer: 1500, type: 'success'});
         if (data.status === 1) {
           this.subscribe_email.reset();
+        } else if (data.status === 0)  {
+          swal({title: 'Sudah Pernah Terdaftar', showConfirmButton: true, timer: 1500, type: 'warning'});
         }
       },
       error => {
         this.loadingService.hide();
         swal('Ops, try again later');
       });
+    } else {
+      this.loadingService.hide();
+      if (this.subscribe_email.errors.required) {
+        swal('Isi email anda', 'Email tidak boleh kosong', 'error');
+      } else if (this.subscribe_email.errors.pattern) {
+        swal('Cek alamat email anda', 'Format penulisan Email Salah', 'error');
+      }
     }
   }
 
