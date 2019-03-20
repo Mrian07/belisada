@@ -24,38 +24,33 @@
                     <span *ngIf="item.statusOrderCode === '157' && item.statusOrderCode !== '180'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(item.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
                 </div>
         </div>
-        <div class="row row-atur" >
-                <table border="0" width="100%" *ngFor="let itemListProduct of item.cartItems">
-                    <tr>
-                        <td width="20%">
-                            <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
-                        </td>
-                        <td width="25%">
-                            <div class="item-colom"> 
-                                <div class ="name">
-                                    {{itemListProduct.name}}
-                                </div>
-                                <div class="varian">
-                                    Varian<br>
-                                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
-                                        {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
-                                    </span><br><br>
-                                    x{{ itemListProduct.quantity }}
-                                </div>
-                            </div>
-                        </td>
-                        <td width="25%">
-                            <span *ngIf="itemListProduct.specialPrice > 0" class="item-price">{{itemListProduct.specialPrice | currency:'Rp ':'symbol':'1.0'}}</span>
-                            <span *ngIf="itemListProduct.specialPrice <= 0" class="item-price">{{itemListProduct.priceList | currency:'Rp ':'symbol':'1.0'}}</span>
-                        </td>
-                        <td width="30%" class="right">
-                            <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
-                            <!-- <span class="warranty">Cek Info Garansi</span> -->
-                            <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.paymentNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
-                        </td>
-                    </tr>
-                    <tr>
-                </table>
+        <div class="row" [ngClass]="{'itemCartScroll': item.cartItems.length>=2}">
+            <div class="itemCart" *ngFor="let itemListProduct of item.cartItems">
+
+                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+                <div> 
+                    <div class ="name">
+                        {{itemListProduct.name}}
+                    </div>
+                    <div class="varian">
+                        Varian<br>
+                        <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                            {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                        </span><br><br>
+                        x{{ itemListProduct.quantity }}
+                    </div>
+                </div>
+                <div>
+                    <span *ngIf="itemListProduct.specialPrice > 0" class="item-price">{{itemListProduct.specialPrice | currency:'Rp ':'symbol':'1.0'}}</span>
+                    <span *ngIf="itemListProduct.specialPrice <= 0" class="item-price">{{itemListProduct.priceList | currency:'Rp ':'symbol':'1.0'}}</span>
+                </div>
+                <div>
+                    <!-- <span class="warranty"  (click)="alertWarranty(item)">Cek Info Garansi</span> -->
+                    <!-- <span class="warranty">Cek Info Garansi</span> -->
+                    <span *ngIf="item.statusOrderCode === '180' && item.statusOrderCode !== '181'" (click)="alertReview(item.paymentNumber, itemListProduct)" class="btn-review">Nilai Produk</span>
+                </div>
+            </div>
+                
         </div>
     <div class="row bottom" *ngIf="item.statusOrderCode === '180'">
             <!-- <div class="time col-4" *ngIf="item.countdown">
