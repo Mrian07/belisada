@@ -394,3 +394,19 @@ p {
 .img-pay {
     width: 25rem;
 }
+
+.itemCart{
+    display: grid;
+    grid-template-columns: 30% 30% 27% 13%;
+
+}
+
+.itemCartSub{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+
+.itemCartScroll{
+    overflow:scroll; 
+    height:360px;
+}
