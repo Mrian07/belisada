@@ -15,7 +15,7 @@
     <!--Line Head-->
 </div>
 <div class="containPage has-header">
-
+	
     <div class="sub-title-checkout">
         <div class="sub-title-checkout__left" align="center">
             <div class="sub-title-checkout__line-blank"></div>
@@ -29,12 +29,25 @@
         </div>
 	</div>
 	<div class="containPageCenter contain-checkout">
+
+		<div class="pay-success" *ngIf="status_code=='200'">
+			Pembayaran berhasil	
+		</div>
+		<div class="pay-error" *ngIf="status_code=='400'">
+			Pembayaran sudah pernah dilakukan	
+		</div>
+		<div class="pay-error" *ngIf="status_code=='500'">
+			Pembayaran gagal	
+		</div>
+		
 		<div class="contain-thx-head">
 			<div>Payment ID: {{ successTransactionRes.data.paymentNumber }}</div>
 			<div class='contain-thx-head__total'>Total Pembayaran</div>
 			<div class='contain-thx-head__price-total'>Rp {{ successTransactionRes.data.grandTotal | number }}</div>
 		</div>
 		<div class="contain-thx-body">
+
+
 			<div class="contain-thx-body__head" *ngFor="let listCart of successTransactionRes.data.cart">
 				<div class="contain-thx-body__head__detail" *ngFor="let item of listCart.cartItems">
 
@@ -66,24 +79,27 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="contain-thx-sub-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
-			Silakan melakukan pembayaran sesuai dengan nomor rekening dan bank yang ada dibawah.<br>
-			Anda memiliki waktu 2 x 24 Jam untuk melakukan pembayaran, atau pesanan Anda akan dibatalkan secara otomatis oleh system.
-		</div>
-
-		<div class="contain-thx-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
-			<div class="contain-thx-footer__img">
-				<img style="width: 20rem" src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0">
-				<p>No. Rekening</p>
-			</div>
-			<div class="contain-thx-footer__rek">
-				{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}
-			</div>
+		<div *ngIf="status_code==0">
 			
+			<div class="contain-thx-sub-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
+				Silakan melakukan pembayaran sesuai dengan nomor rekening dan bank yang ada dibawah.<br>
+				Anda memiliki waktu 2 x 24 Jam untuk melakukan pembayaran, atau pesanan Anda akan dibatalkan secara otomatis oleh system.
+			</div>
+	
+			<div class="contain-thx-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
+				<div class="contain-thx-footer__img">
+					<img style="width: 20rem" src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0">
+					<p>No. Rekening</p>
+				</div>
+				<div class="contain-thx-footer__rek">
+					{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}
+				</div>
+				
+			</div>
+	
+			<div class="contain-thx-btn" (click)="goToOrder()" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">KONFIRMASI PEMBAYARAN</div>
 		</div>
-
-		<div class="contain-thx-btn" (click)="goToOrder()" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">KONFIRMASI PEMBAYARAN</div>
+		
 	</div>
 	
 </div>

@@ -416,3 +416,19 @@
 .courierService {
     text-transform: capitalize;
 }
+
+.pay-success{
+    border: 1px solid #26a700;
+    padding: 5px;
+    margin-bottom: 10px;
+    padding-left:10px;
+    border-radius: 5px;
+}
+
+.pay-error{
+    border: 1px solid #e4390e;
+    padding: 5px;
+    margin-bottom: 10px;
+    padding-left:10px;
+    border-radius: 5px;
+}
