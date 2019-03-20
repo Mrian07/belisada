@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UpdateAsuransiReq } from '@belisada/core/models/checkout/checkout-cart';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { Globals } from '../globals/globals';
 
 @Injectable({
   providedIn: 'root',
@@ -25,7 +26,8 @@ export class CheckoutService {
   constructor(
     private configuration: Configuration,
     private http: HttpClient,
-    private deviceService: DeviceDetectorService
+    private deviceService: DeviceDetectorService,
+    public globals: Globals
     ) { }
 
   getShippingAddress(): Observable<CheckoutShippingAddress[]> {
@@ -35,18 +37,18 @@ export class CheckoutService {
       );
   }
 
-  doCheckout(data: CheckoutReq): Observable<CheckoutRes> {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position: Position) => {
-        if (position) {
-          this.lat = position.coords.latitude;
-          this.lng = position.coords.longitude;
-        }
-      },
-        (error: PositionError) => console.log(error));
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
+  doCheckout(data: CheckoutReq) {
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition((position: Position) => {
+    //     if (position) {
+    //       this.lat = position.coords.latitude;
+    //       this.lng = position.coords.longitude;
+    //     }
+    //   },
+    //     (error: PositionError) => console.log(error));
+    // } else {
+    //   alert('Geolocation is not supported by this browser.');
+    // }
     this.deviceInfo = this.deviceService.getDeviceInfo();
     if (this.deviceService.isMobile()) {
       console.log('This is a Mobile Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
@@ -60,9 +62,24 @@ export class CheckoutService {
       console.log('This is a Desktop Device');  // returns if the device is a mobile device (android / iPhone / windows-phone etc)
       this.device = 'Desktop';
     }
+
+    // const longitude = new Promise((resolve, reject) => {
+    //   navigator.geolocation.getCurrentPosition(
+    //     position => { resolve(position.coords.longitude); },
+    //     error => { reject(error); }
+    //   );
+    // }).catch(error => error);
+
+    // const latitude = new Promise((resolve, reject) => {
+    //   navigator.geolocation.getCurrentPosition(
+    //     position => { resolve(position.coords.longitude); },
+    //     error => { reject(error); }
+    //   );
+    // }).catch(error => error);
+
     const log = {
-      'longitude': this.lng,
-      'latitude': this.lat,
+      'longitude': this.globals.position.coords.longitude,
+      'latitude': this.globals.position.coords.latitude,
       'device': this.deviceInfo.device,
       'browser': this.deviceInfo.browser,
       'browser_version': this.deviceInfo.browser_version,
