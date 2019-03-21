@@ -7,7 +7,7 @@
           <span class="caption">Feel free to contact us if you have any questions</span>
         </div>
 
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">{{contactForm.controls.name.invalid}}
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
 
 
           <input class="inputStyle" type="text" formControlName="name" placeholder="Name">
