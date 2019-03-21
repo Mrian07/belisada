@@ -7,3 +7,4 @@ export * from './home/home';
 export * from './product/product.model';
 export * from './complaint/complaint.model';
 export * from './midtrans/midtrans.model';
+export * from './contact-us/contact-us.model';

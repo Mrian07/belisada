@@ -105,7 +105,8 @@ export class CheckoutComponent implements OnInit {
     private thumborService: ThumborService,
     private http: HttpClient,
     private _userService: UserService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    public globals: Globals
   ) {
 
     this.isTransfer = [];
@@ -177,6 +178,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('this.globals.position: ', this.globals.position);
     console.log('[CART] CHECKOUT PAGE');
     this.isNote = false;
     this.isPayment = false;
@@ -675,17 +677,17 @@ export class CheckoutComponent implements OnInit {
           this.shoppingCartService.empty();
           switch (this.selectedPaymentMethod.paymentMethodCode) {
             case 'BT':
-              this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+              this.router.navigate(['/transaction/finish'], {queryParam: {order_id: response.data.paymentNumber}});
               break;
             case 'KK':
               window.location.href = response.data.midtrans.redirect_url;
               break;
             default:
-              this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+              this.router.navigate(['/transaction/finish'], {queryParam: {order_id: response.data.paymentNumber}});
               break;
           }
           if (this.PMCode === vTransfer) {
-            this.router.navigate(['/transaction/terimakasih/' + response.data.paymentNumber]);
+            this.router.navigate(['/transaction/finish'], {queryParam: {order_id: response.data.paymentNumber}});
           }
         } else {
           swal('belisada.co.id', response.message, 'error');

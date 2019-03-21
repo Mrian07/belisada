@@ -211,18 +211,11 @@
     border-radius:0px 0px 7px 7px;
 }
 
-
-
-
-
-
-
-
-
 .chekout-head{
     display: grid;
     grid-template-columns: 25% 50% 25%;
     margin-top:20px;
+    height: 90px;
 }
 
 .contain-checkout{
@@ -392,10 +385,14 @@
 .linkHome{
     color:#000000;
     text-decoration: none;
+    height: 90px;
+    &:hover{
+        color:#f7b855;
+    }
 }
 
-.linkHome:hover{
-    color:#f7b855;
+.logoText{
+    font-weight: bold;
 }
 
 .line-ongkir{
@@ -415,4 +412,20 @@
 
 .courierService {
     text-transform: capitalize;
+}
+
+.pay-success{
+    border: 1px solid #26a700;
+    padding: 5px;
+    margin-bottom: 10px;
+    padding-left:10px;
+    border-radius: 5px;
+}
+
+.pay-error{
+    border: 1px solid #e4390e;
+    padding: 5px;
+    margin-bottom: 10px;
+    padding-left:10px;
+    border-radius: 5px;
 }

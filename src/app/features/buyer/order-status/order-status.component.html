@@ -52,29 +52,24 @@
         </div>
     </div>
     <div *ngIf="openDetail === true && transactionId === item.transactionId" class="os-body">
-
-        <table border="0" width="100%" *ngFor="let itemCart of item.transaction">
-            <tr *ngFor="let itemList of itemCart.cart">
-                <td valign="top" width="20%">
+        <div *ngFor="let itemCart of item.transaction" [ngClass]="{'itemCartScroll': itemCart.cart.length>=2}">
+            <div class="itemCart" *ngFor="let itemList of itemCart.cart">              
+                <div>
                     <span class="order-id">ORDER ID: {{itemList.orderNumber}}</span>
-                    <table border="0" width="100%">
-                        <tr *ngFor="let itemListProduct of itemList.cartItems">
-                            <td valign="top" width="40%">
-                                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
-                            </td>
-                            <td valign="top" width="60%">
-                                <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
-                                    Varian:<br>
-                                    <span *ngFor="let varian of itemListProduct.varians; let i = index">
-                                        {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
-                                    </span>
-                                </div>
-                                <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-                <td valign="top" width="35%">
+                    <div class="itemCartSub" *ngFor="let itemListProduct of itemList.cartItems">
+                        <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+                        <div>
+                            <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
+                                Varian:<br>
+                                <span *ngFor="let varian of itemListProduct.varians; let i = index">
+                                    {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
+                                </span>
+                            </div>
+                            <div class="item-colom">Rp.{{itemListProduct.subtotal | number}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
                     <div class="item-colom-border">
                         <div class="row">
                             <div class="col-6">
@@ -87,8 +82,8 @@
 
                         Alamat: {{itemList.alamatSebagai}}<br><label>{{ itemList.alamatPenerima }}</label>
                     </div>
-                </td>
-                <td valign="top" width="22%">
+                </div>
+                <div>
                     <div class="item-colom">
                         <div class="row">
                             <div class="col-12">
@@ -108,14 +103,14 @@
                             </div>
                         </div>
                     </div>
-                </td>
-                <td width="33%">
+                </div>
+                <div>
                     <span *ngIf="itemList.statusOrderCode === '157' && itemList.statusOrderCode !== '181'" (click)="showDialogKonfirm = !showDialogKonfirm" (click)="alertConfirmation(itemList.orderNumber)" class="btn-konfirm">Konfirmasi Barang</span>
                     <span *ngIf="itemList.statusOrderCode === '181'" (click)="showDialogReview = !showDialogReview" (click)="alertReview(itemList.orderNumber)" class="btn-review">Nilai Produk</span> 
                     <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + itemList.orderNumber]"><u>Lihat Invoice</u></a>
-                </td>
-            </tr>
-        </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 

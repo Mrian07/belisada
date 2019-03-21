@@ -27,6 +27,13 @@ const routes: Routes = [
           title: 'Chekout'
         }
       },
+      {
+        path: 'finish',
+        component: TerimakasihPageComponent,
+        data: {
+          title: 'Chekout'
+        }
+      },
     ]
   },
 ];

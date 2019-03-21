@@ -12,6 +12,8 @@ import { PaymentList } from '@belisada/core/models/payment/payment.model';
 export class TerimakasihPageComponent implements OnInit {
   public _trialEndsAt;
 
+  status_code: number;
+
   successTransactionRes: SuccessTransactionRes = new SuccessTransactionRes();
   listPayment: PaymentList[];
   expiredTimeIndo: any;
@@ -27,8 +29,13 @@ export class TerimakasihPageComponent implements OnInit {
 
   ngOnInit() {
 
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.checkoutService.getSuccessTransaction(params['id']).subscribe(response => {
+    this.activatedRoute.queryParams.subscribe((params: Params) => {
+      this.checkoutService.getSuccessTransaction(params['order_id']).subscribe(response => {
+        if (params['status_code']) {
+          this.status_code = params['status_code'];
+        } else {
+          this.status_code = 0;
+        }
         this.successTransactionRes = response;
         // this.expiredTimeIndo = response.data[0].expiredTimeIndo;
         const arrD = response.data.expiredTime.split(' ')[0].split('/');
@@ -39,6 +46,7 @@ export class TerimakasihPageComponent implements OnInit {
 
           this.listPayment = respon.find(x => x.paymentMethodCode === response.data.paymentMethodCode).data;
         });
+
       });
     });
 

@@ -479,6 +479,7 @@
     display: grid;
     grid-template-columns: 25% 50% 25%;
     margin-top:20px;
+    height: 90px;
 }
 
 .title-head-chekout{
@@ -817,11 +818,22 @@
     font-weight: bold;
     padding-bottom: 2rem;
     text-align: center;
+    &:hover {
+        color: #777777;
+    }
+}
+
+.backButton:hover {
+    color: #777777;
+    fa-icon {
+        color: #777777;
+    }
 }
 
 .linkHome{
     color:#000000;
     text-decoration: none;
+    height: 100px;
 }
 
 .linkHome:hover{

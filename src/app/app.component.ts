@@ -31,6 +31,9 @@ export class AppComponent implements OnInit {
     private messagingService: MessagingService
   ) {
     globals.socket = _chatService.connectSocket();
+    navigator.geolocation.getCurrentPosition((position: Position) => {
+      globals.position = position;
+    }, (error: PositionError) => console.log(error));
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         if (isPlatformBrowser(this.platformId)) {
