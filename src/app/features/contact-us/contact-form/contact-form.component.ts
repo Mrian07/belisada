@@ -12,17 +12,12 @@ import { ContactUsService } from '@belisada/core/services';
 })
 export class ContactFormComponent implements OnInit {
 
-  createComForm: FormGroup;
-
-  // name: FormControl;
-  // email: FormControl;
-  // message: FormControl;
+  contactForm: FormGroup;
   constructor(
     private fb: FormBuilder,
-    // private contactusservice: ContactUsService,
     private contactUsService: ContactUsService
   ) {
-    this.createComForm = this.fb.group({
+    this.contactForm = this.fb.group({
       email: [null, Validators.required, Validators.email],
       message: [null, [Validators.required]],
       name: [null, [Validators.required]]
@@ -33,16 +28,18 @@ export class ContactFormComponent implements OnInit {
 
   }
   onSubmit() {
-    // const contactusmodel: ContactUsModel = new ContactUsModel;
-    // contactusmodel.name = this.contactForm.controls['email'].value;
-    // contactusmodel.name = this.contactForm.controls['message'].value;
-    // contactusmodel.name = this.contactForm.controls['name'].value;
-    // console.log('contact us model:', contactusmodel);
+    if (this.contactForm.valid) {
+      const contactusmodel: ContactUsModel = new ContactUsModel;
+      contactusmodel.name = this.contactForm.controls['name'].value;
+      contactusmodel.email = this.contactForm.controls['email'].value;
+      contactusmodel.message = this.contactForm.controls['message'].value;
 
-    // return;
+      this.contactUsService.insert(contactusmodel).subscribe(data => {
+        // if (data[0].status === 1) {
 
-    // this.contactUsService.insert(contactusmodel).subscribe(data => {
-    //   console.log(data);
-    // });
+        // }
+        console.log(data);
+      });
+    }
   }
 }

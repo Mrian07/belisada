@@ -7,8 +7,11 @@
           <span class="caption">Feel free to contact us if you have any questions</span>
         </div>
 
-        <form [formGroup]="createComForm" (ngSubmit)="onSubmit()">
-          <input class="inputStyle" type="text" formControlName="name" placeholder="Name">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+          <input class="inputStyle" type="text" formControlName="name" placeholder="Name" [ngClass]="{'form-error': (contactForm.controls.name.invalid)}">
+          <div *ngIf="contactForm.controls.name.invalid" class="alert alert-danger toll tooltip testing">
+            <span class="tooltiptext">Nama Tidak Boleh Kosong</span>
+          </div>
           <input class="inputStyle" type="email" formControlName="email" placeholder="Email">
           <textarea class="inputStyle" rows="7" formControlName="message" placeholder="Message"></textarea>
           <input type="submit" class="btn-submit" value="Submit" />
