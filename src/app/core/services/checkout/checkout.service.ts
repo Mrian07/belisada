@@ -78,8 +78,8 @@ export class CheckoutService {
     // }).catch(error => error);
 
     const log = {
-      'longitude': this.globals.position.coords.longitude,
-      'latitude': this.globals.position.coords.latitude,
+      'longitude': (typeof this.globals.position === 'undefined') ? '' : this.globals.position.coords.longitude,
+      'latitude': (typeof this.globals.position === 'undefined') ? '' : this.globals.position.coords.latitude,
       'device': this.deviceInfo.device,
       'browser': this.deviceInfo.browser,
       'browser_version': this.deviceInfo.browser_version,

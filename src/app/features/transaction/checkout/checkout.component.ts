@@ -677,17 +677,17 @@ export class CheckoutComponent implements OnInit {
           this.shoppingCartService.empty();
           switch (this.selectedPaymentMethod.paymentMethodCode) {
             case 'BT':
-              this.router.navigate(['/transaction/finish'], {queryParam: {order_id: response.data.paymentNumber}});
+              this.router.navigate(['/transaction/finish'], {queryParams: {order_id: response.data.paymentNumber}});
               break;
             case 'KK':
               window.location.href = response.data.midtrans.redirect_url;
               break;
             default:
-              this.router.navigate(['/transaction/finish'], {queryParam: {order_id: response.data.paymentNumber}});
+              this.router.navigate(['/transaction/finish'], {queryParams: {order_id: response.data.paymentNumber}});
               break;
           }
           if (this.PMCode === vTransfer) {
-            this.router.navigate(['/transaction/finish'], {queryParam: {order_id: response.data.paymentNumber}});
+            this.router.navigate(['/transaction/finish'], {queryParams: {order_id: response.data.paymentNumber}});
           }
         } else {
           swal('belisada.co.id', response.message, 'error');
