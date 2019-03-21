@@ -6,7 +6,8 @@
           <h1>Contact Us</h1>
           <span class="caption">Feel free to contact us if you have any questions</span>
         </div>
-        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+
+        <form [formGroup]="createComForm" (ngSubmit)="onSubmit()">
           <input class="inputStyle" type="text" formControlName="name" placeholder="Name">
           <input class="inputStyle" type="email" formControlName="email" placeholder="Email">
           <textarea class="inputStyle" rows="7" formControlName="message" placeholder="Message"></textarea>

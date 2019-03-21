@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ContactUsComponent } from './contact-us.component';
 import { Routes } from '@angular/router';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // const routes: Routes = [
 //   {
@@ -22,6 +23,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     CommonModule,
     ThemeModule,
     FontAwesomeModule,
+    ReactiveFormsModule
   ],
   declarations: [ContactUsComponent, ContactFormComponent]
 })
