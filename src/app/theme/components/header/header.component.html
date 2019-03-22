@@ -76,7 +76,7 @@
                             <ul class="accounts__wrapper" *ngIf="userData">
                                 <bs-account-menu [userData]="userData" (logedOut)="logout()"></bs-account-menu>
                             </ul>
-        
+    
                             <a *ngIf="!userData" [routerLink]="['/account/sign-in']" class="btn btn--inverted btn--orange btn--bold">Login</a>
                             <a *ngIf="!userData" [routerLink]="['/account/sign-up']" class="btn btn--blue btn--bold">Daftar</a>
                         </div>
