@@ -34,7 +34,6 @@ const routes: Routes = [
   { path: 'faq', component: FaqComponent, data: {title: 'FAQ - Belisada.co.id'}},
   // { path: 'contact-us', component: ContactUsComponent, data: {title: 'Contact Us - Belisada.co.id'}},
   { path: 'contact-us', loadChildren: 'app/features/contact-us/contact-us.module#ContactUsModule' },
-  { path: 'onlinepayment', loadChildren: 'app/features/onlinepayment/onlinepayment.module#OnlinepaymentModule' },
   {
     path: '',
     component: LandingPageComponent,
