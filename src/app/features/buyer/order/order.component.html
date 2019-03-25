@@ -1,19 +1,19 @@
 <div class="frame-menu">
-        <div [ngClass]="(activeTab=='133')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('133')">
-            Belum Bayar
-        </div>
-        <div [ngClass]="(activeTab=='151')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('151')">
-            Sedang Diproses
-        </div>
-        <div [ngClass]="(activeTab=='157')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('157')">
-            Dalam Pengiriman
-        </div>
-        <div [ngClass]="(activeTab=='180')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('180')">
-            Pengiriman Selesai
-        </div>
-        <div [ngClass]="(activeTab=='ALL')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('ALL')">
-            Semua
-        </div>
+    <div [ngClass]="(activeTab=='133')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('133')">
+        Belum Bayar
+    </div>
+    <div [ngClass]="(activeTab=='151')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('151')">
+        Sedang Diproses
+    </div>
+    <div [ngClass]="(activeTab=='157')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('157')">
+        Dalam Pengiriman
+    </div>
+    <div [ngClass]="(activeTab=='180')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('180')">
+        Pengiriman Selesai
+    </div>
+    <div [ngClass]="(activeTab=='ALL')?'btn-tab__active':'btn-tab__noActive'" (click)="changeTab('ALL')">
+        Semua
+    </div>
 </div>
 <div class="frame-menu-contain" >
     <!-- <div [ngClass]="[isLoading ? 'show' : 'hide']">
@@ -24,8 +24,8 @@
             </div>
         </div>
     </div> -->
-{{grandTotal}}
-    <app-order-status *ngIf="activeTab === '133'" [order]="order" [grandTotal]="grandTotal" [currentPage]="currentPage"></app-order-status>
+<!-- {{grandTotal}} -->
+    <app-order-status *ngIf="activeTab === '133'" [order]="order" [currentPage]="currentPage"></app-order-status>
     <app-order-status-paid *ngIf="activeTab !== '133'"></app-order-status-paid>
 </div>
 <!-- <div class="frame-menu-contain" >

@@ -12,6 +12,7 @@ import { UserService, ShareMessageService } from '@belisada/core/services';
 import { UserData } from '@belisada/core/models';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { MessagingService } from '@belisada/shared/messaging.service';
 
 @Component({
   selector: 'app-profile-information',
@@ -69,7 +70,8 @@ export class ProfileInformationComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private shareMessageService: ShareMessageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messagingService: MessagingService
   ) { }
 
   ngOnInit() {
@@ -172,6 +174,7 @@ validateAllFormFields(formGroup: FormGroup) {
           if (respon.status === 1) {
             // if (localStorage.getItem('isRemember') === 'true') {
               this.userService.setUserToLocalStorage(respon.token);
+              this.shareMessageService.changeMessage('photo-upload');
             // } else {
             //   this.userService.setUserToSessionStorage(respon.token);
             // }

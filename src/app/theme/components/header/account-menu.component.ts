@@ -22,8 +22,9 @@ import { UserData } from '@belisada/core/models';
 export class AccountMenuComponent {
   public accountMenuShow: boolean;
   public thumborProfilePicture: string;
+  private _userData: UserData;
 
-  @Input() userData: UserData;
+  // @Input() userData: UserData;
   @Output() logedOut = new EventEmitter<boolean>();
 
   @HostListener('document:click', ['$event'])
@@ -44,5 +45,15 @@ export class AccountMenuComponent {
   public logout() {
     this.logedOut.emit();
     this.accountMenuShow = false;
+  }
+
+  get userData(): UserData {
+    return this._userData;
+  }
+
+  @Input()
+  set userData(userData: UserData) {
+    this._userData = userData;
+    console.log('imgaenya', userData);
   }
 }
