@@ -101,22 +101,22 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.productStoreUrl = environment.thumborUrl + 'unsafe/50x50/center/filters:fill(fff)/';
     this.imageHeader = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
     this.imageDmy = environment.thumborUrl + 'unsafe/fit-in/150x150/center/filters:fill(fff)/';
-    this.imageHeaderNya = 'http://cdn.belisada.id/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
-    this.imageDummy = 'https://cdn.belisada.id/imageproductbrand/2ad61795-9903-4efe-a8a8-ffbdfe705d0c.jpeg';
+    this.imageHeaderNya = this.cdnUrl + '/imageproductbrand/7bb882a8-3c31-40bd-8356-4974a4ce0595.png';
+    this.imageDummy = this.cdnUrl + '/imageproductbrand/2ad61795-9903-4efe-a8a8-ffbdfe705d0c.jpeg';
     this._messageService.listen().subscribe((m: any) => {
       this.onFilterClick(m);
     });
 
     this.banners = [{
-      imageUrl: 'https://cdn.belisada.id/banner/slider1.png',
+      imageUrl: this.cdnUrl + '/banner/slider1.png',
       brand: 1
     },
     {
-      imageUrl: 'https://cdn.belisada.id/banner/slider2.png',
+      imageUrl: this.cdnUrl + '/banner/slider2.png',
       brand: 4
     },
     {
-      imageUrl: 'https://cdn.belisada.id/banner/slider3.png',
+      imageUrl: this.cdnUrl + '/banner/slider3.png',
       brand: 7
     }];
   }
