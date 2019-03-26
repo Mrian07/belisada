@@ -27,6 +27,7 @@ export class AnotherOfferV2Component implements OnInit {
   productStoreUrl;
   public product;
   public activeVariants = [];
+  public qty = 1;
   variantDetailBwah: AnotherOffersDetailData[];
   totalPenjual: number;
   hasil: any;
@@ -67,7 +68,7 @@ export class AnotherOfferV2Component implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    this.productStoreUrl = environment.thumborUrl + 'unsafe/200x200/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/fit-in/200x200/center/filters:fill(fff)/';
   }
 
   ngOnInit() {
@@ -128,6 +129,8 @@ export class AnotherOfferV2Component implements OnInit {
       this.prodIdAtas = route.params.id;
       this.pages = [];
       this.productService.getProductDataDetail(id, queryParams).subscribe((res) => {
+
+        console.log('apa', res);
         this.variantDetailBwah = res.content;
         this.totalElements  = res.totalElements;
         // this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
@@ -194,14 +197,14 @@ export class AnotherOfferV2Component implements OnInit {
     if (userData) {
       const addToCartRequest: AddToCartRequest = {
         productId: productId,
-        quantity: 1,
+        quantity: this.qty,
         // courierCode: this.shippingRates[i].courierCode,
         // courierService: this.shippingRates[i].courierService,
         shippingAddressId: this.addressId
       };
       this.shoppingCartService.create(addToCartRequest).subscribe(response => {
         if (response.status === 1) {
-          this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
+          this.shoppingCartService.addItem(productId, this.qty, +response.itemCartId);
         } else {
           swal('belisada.co.id', response.message, 'error');
         }
