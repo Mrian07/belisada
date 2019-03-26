@@ -12,7 +12,7 @@ import { PaymentList } from '@belisada/core/models/payment/payment.model';
 export class TerimakasihPageComponent implements OnInit {
   public _trialEndsAt;
 
-  status_code: number;
+  status_code: any;
 
   successTransactionRes: SuccessTransactionRes = new SuccessTransactionRes();
   listPayment: PaymentList[];
@@ -34,7 +34,7 @@ export class TerimakasihPageComponent implements OnInit {
         if (params['status_code']) {
           this.status_code = params['status_code'];
         } else {
-          this.status_code = 0;
+          this.status_code = '0';
         }
         this.successTransactionRes = response;
         // this.expiredTimeIndo = response.data[0].expiredTimeIndo;
