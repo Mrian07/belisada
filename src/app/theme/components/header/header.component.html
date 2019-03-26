@@ -126,7 +126,8 @@
                                         </div>
                                         <div class="cart__content--right-side">
                                             <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
-                                            <span class="product--price">{{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | currency:'Rp ':'symbol':'1.0' }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
+                                            <span class="product--price">{{ item.product.specialPrice > 0 ? (item.product.specialPrice | currency:'Rp ':'symbol':'1.0') : (item.product.pricelist | currency:'Rp ':'symbol':'1.0') }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
+                                            <!-- <span class="product--price">{{item.product.specialPrice > 0 ? item.product.specialPrice | currency:'Rp ':'symbol':'1.0' : item.product.pricelist | currency:'Rp ':'symbol':'1.0'}} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span> -->
                                             <div class="clearfix"></div>
                                         </div>
                                     </li>
