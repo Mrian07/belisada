@@ -4,8 +4,7 @@
         <div class="grid-container wrapperF">
             <div class="item2">
                 <a [routerLink]="['/product/product-detail/' + productAtas.productId + '/' + encodeUrl(productAtas.name)]">
-                    <!-- <img [src]="productStoreUrl + productAtas?.image" alt=""> -->
-                    <div class='imgProduct'><img [src]="productAtas?.image" alt=""></div>
+                    <img [src]="productStoreUrl + productAtas?.image" alt="">
                 </a>
             </div>
             <div class="item3">

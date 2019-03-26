@@ -65,19 +65,29 @@
             <div class="col-6">
                 <label>Simpan sebagai alamat:</label>
                 <input type="text" formControlName="simpan_sebagai" class="input-style-text-100" maxlength="20" placeholder="Contoh disimpan sebagai alamat(Kantor, Rumah, Kosan dll.)">
-                <app-field-error-display [displayError]="isFieldValid('simpan_sebagai')" errorMsg="Simpan sebagai tidak boleh kosong"></app-field-error-display>
+                <div *ngIf="formAddCrtl.controls.simpan_sebagai.invalid && (submitted || (formAddCrtl.controls.simpan_sebagai.dirty && formAddCrtl.controls.simpan_sebagai.touched))" class="alert alert-danger" >
+                  <span class="tooltiptext">Simpan sebagai alamat tidak boleh kosong</span>
+                </div>
+                <!-- <app-field-error-display [displayError]="isFieldValid('simpan_sebagai')" errorMsg="Simpan sebagai tidak boleh kosong"></app-field-error-display> -->
             </div>
             <div class="col-6">
                 <label>Nama Penerima:</label>
                 <input type="text" formControlName="penerima" class="input-style-text-100" placeholder="Masukan nama penerima" maxlength="30">
-                <app-field-error-display [displayError]="isFieldValid('penerima')" errorMsg="Penerima tidak boleh kosong"></app-field-error-display>
+                <div *ngIf="formAddCrtl.controls.penerima.invalid && (submitted ||(formAddCrtl.controls.penerima.dirty && formAddCrtl.controls.penerima.touched))" class="alert alert-danger" >
+                  <span class="tooltiptext">Nama Penerima tidak boleh kosong</span>
+                </div>
+
+                <!-- <app-field-error-display [displayError]="isFieldValid('penerima')" errorMsg="Penerima tidak boleh kosong"></app-field-error-display> -->
             </div>
         </div>
         <div class="row row-atur">  
             <div class="col-4">
                 <label>No. Handphone:</label>
                 <input type="text" formControlName="hp" class="input-style-text-100" placeholder="Masukan nomor handphone" (keypress)="phoneCheck($event)" maxlength="15">
-                <app-field-error-display [displayError]="isFieldValid('hp')" errorMsg="Handphone tidak boleh kosong"></app-field-error-display>
+                <!-- <app-field-error-display [displayError]="isFieldValid('hp')" errorMsg="Handphone tidak boleh kosong"></app-field-error-display> -->
+                <div *ngIf="formAddCrtl.controls.hp.invalid && (submitted ||(formAddCrtl.controls.hp.dirty && formAddCrtl.controls.hp.touched))" class="alert alert-danger" >
+                  <span class="tooltiptext">Nomor handphone tidak boleh kosong</span>
+                </div>
             </div>
             <div class="col-4">
                 <label>Provinsi:</label>
@@ -128,7 +138,6 @@
                     <p class="tooltiptext"> Kode Poss Harus 5 </p>
                 </div>
                 <ng-template #postalOn>
-                        <!-- Silahkan Masukan Kode Poss -->
                     <app-field-error-display [displayError]="isFieldValid('kodepos')" errorMsg="Silahkan Masukan Kode Poss"></app-field-error-display>
                 </ng-template>
             </div>              
@@ -137,12 +146,16 @@
             <div class="col-12">
                 <label>Alamat:</label>
                 <textarea formControlName="alamat" class="input-style-text-100"></textarea>
-                <app-field-error-display [displayError]="isFieldValid('alamat')" errorMsg="Alamat tidak boleh kosong"></app-field-error-display>
+                <!-- <app-field-error-display [displayError]="isFieldValid('alamat')" errorMsg="Alamat tidak boleh kosong"></app-field-error-display> -->
+
+                <div *ngIf="formAddCrtl.controls.alamat.invalid && (submitted ||(formAddCrtl.controls.alamat.dirty && formAddCrtl.controls.alamat.touched))" class="alert alert-danger" >
+                  <span class="tooltiptext">Alamat tidak boleh kosong</span>
+                </div>
             </div>
         </div>
         <div class="row">  
             <div class="col-12">{{addId}}
-                <button class="btn btn--orange component-center" *ngIf="isEdit==false">Tambah</button> 
+                <button type='submit' class="btn btn--orange component-center" *ngIf="isEdit==false">Tambah</button> 
                 <button class="btn btn--orange component-center" *ngIf="isEdit==true">Update</button> 
             </div>
         </div>

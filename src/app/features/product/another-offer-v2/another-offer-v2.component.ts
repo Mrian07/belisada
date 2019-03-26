@@ -68,7 +68,7 @@ export class AnotherOfferV2Component implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
-    this.productStoreUrl = environment.thumborUrl + 'unsafe/200x200/center/filters:fill(fff)/';
+    this.productStoreUrl = environment.thumborUrl + 'unsafe/fit-in/200x200/center/filters:fill(fff)/';
   }
 
   ngOnInit() {

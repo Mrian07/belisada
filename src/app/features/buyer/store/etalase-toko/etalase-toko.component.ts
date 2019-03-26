@@ -40,7 +40,7 @@ export class EtalaseTokoComponent implements OnInit {
     private router: Router) {
 
     this.storeImage = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
-    this.productImageUrl = environment.thumborUrl + 'unsafe/400x400/center/filters:fill(fff)/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
     this.productStoreUrl = environment.thumborUrl + 'unsafe/50x50/center/filters:fill(fff)/';
   }
 
