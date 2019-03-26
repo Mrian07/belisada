@@ -316,6 +316,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
           shippingAddressId: this.selectedShippingAddress.addressId
         };
 
+        // console.log('add to cart', addToCartRequest);
+        // return;
+
         this._shoppingCartService.create(addToCartRequest).subscribe(response => {
           this.loadingService.hide();
           if (response.status === 1) {
