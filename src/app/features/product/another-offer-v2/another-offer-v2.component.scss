@@ -1,8 +1,37 @@
+.imgProduct {
+  width: 400px;
+  text-align: center;
+  margin:0px auto;
+}
+
+.f-price{
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.bDiskon{
+  background: #ed7425;
+  color:#fff;
+  font-weight: bold;
+  padding:5px;
+  font-size: 12px;
+  margin-top:-10px;
+}
+
+.bArrow{
+  width: 0; 
+  height: 10; 
+  
+  border-left: 26px solid transparent;
+  border-right: 26px solid transparent;
+  
+  border-top: 10px solid #ed7425;
+}
+
 .dadyContainWrappper {
     padding: 3rem;
 }
 .containWrapper {
- 
     border: 3px solid hsl(209, 22%, 74%);
 }
 .wrapperF {

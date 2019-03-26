@@ -128,6 +128,8 @@ export class AnotherOfferV2Component implements OnInit {
       this.prodIdAtas = route.params.id;
       this.pages = [];
       this.productService.getProductDataDetail(id, queryParams).subscribe((res) => {
+
+        console.log('apa', res);
         this.variantDetailBwah = res.content;
         this.totalElements  = res.totalElements;
         // this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
