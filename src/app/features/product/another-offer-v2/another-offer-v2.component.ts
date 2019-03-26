@@ -27,6 +27,7 @@ export class AnotherOfferV2Component implements OnInit {
   productStoreUrl;
   public product;
   public activeVariants = [];
+  public qty = 1;
   variantDetailBwah: AnotherOffersDetailData[];
   totalPenjual: number;
   hasil: any;
@@ -196,14 +197,14 @@ export class AnotherOfferV2Component implements OnInit {
     if (userData) {
       const addToCartRequest: AddToCartRequest = {
         productId: productId,
-        quantity: 1,
+        quantity: this.qty,
         // courierCode: this.shippingRates[i].courierCode,
         // courierService: this.shippingRates[i].courierService,
         shippingAddressId: this.addressId
       };
       this.shoppingCartService.create(addToCartRequest).subscribe(response => {
         if (response.status === 1) {
-          this.shoppingCartService.addItem(productId, +this.cartItem[i], +response.itemCartId);
+          this.shoppingCartService.addItem(productId, this.qty, +response.itemCartId);
         } else {
           swal('belisada.co.id', response.message, 'error');
         }
