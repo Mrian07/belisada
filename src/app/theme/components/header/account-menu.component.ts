@@ -54,6 +54,5 @@ export class AccountMenuComponent {
   @Input()
   set userData(userData: UserData) {
     this._userData = userData;
-    console.log('imgaenya', userData);
   }
 }

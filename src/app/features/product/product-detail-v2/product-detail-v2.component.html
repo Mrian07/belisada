@@ -11,11 +11,22 @@
             <section class="detail-product"> <!-- #SECTION [PRODUCT_DETAIL] detail-product -->
 
                 <div class="detail-product__wrapper">
-                    <div>Brand: <a class="detail-product__brand">{{ product?.brandName }}</a></div>
 
-                    <h1 class="detail-product__product-name">
-                        {{ product?.name }}
-                    </h1>
+                    <div class="detail-product__frame-title">
+                        <div>
+                            <div>Brand: <a class="detail-product__brand">{{ product?.brandName }}</a></div>
+
+                            <h1 class="detail-product__product-name">
+                                {{ product?.name }}
+                            </h1>
+                        </div>
+                        <div *ngIf="product.discount>1">
+                            <div class="detail-product__frame-title__diskon">{{ product?.discount }}%</div>
+                            <div class='detail-product__frame-title__arrow'></div>
+                        </div>
+                    </div>
+
+                    
 
                     <div class="detail-product__price-wrapper">
                         <div *ngIf="product?.priceData?.isDetail === false; else isDetail">

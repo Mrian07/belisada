@@ -440,6 +440,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       const queryParams = route.qparams;
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
+
+        console.log('detail ini', product);
+
         if (product.status === 1) {
           this._masterData = product.data.masterId;
         }
@@ -464,13 +467,14 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
                   );
                 }
               }});
+              /*
             this._router.navigate(
               ['/']
               // ['/product/product-detail/'
               //   + this._route.snapshot.params.id
               //   + '/'
               //   + this._route.snapshot.params.name]
-            );
+            );*/
             return;
         }
         this.product = product.data;
