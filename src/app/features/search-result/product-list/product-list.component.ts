@@ -352,6 +352,9 @@ export class ProductListComponent implements OnInit {
 
       this.searchService.getList(queryParams).subscribe(response => {
         this.list = response;
+
+        console.log('list data', this.list);
+
         this.lastPage = this.list.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
           if (r > 0 && r <= this.list.totalPages) {
