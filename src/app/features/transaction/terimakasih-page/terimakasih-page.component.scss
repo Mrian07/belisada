@@ -430,3 +430,16 @@
     padding-left:10px;
     border-radius: 5px;
 }
+
+.backButton {
+    font-size: 2rem;
+    color: #000000;
+}
+
+.backButton:hover {
+    color: #777777;
+    fa-icon {
+        color: #777777;
+    }
+    text-decoration: none;
+}

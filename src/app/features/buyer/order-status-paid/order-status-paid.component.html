@@ -14,7 +14,9 @@
 <div class="os-body" *ngFor="let item of list">
         <div class="row row-atur">
                 <div class="store-name col-4 left">
-                    {{ item.storeName }}
+                    <a [routerLink]="['/'+item.storeUrl]">
+                        {{ item.storeName }}
+                    </a>  
                 </div>
                 <div class="col-4 center">
                     <a class="btn-invoice" target="_blank" [routerLink]="['/invoice/' + item.orderNumber]"><u>Lihat Invoice</u></a>
@@ -26,11 +28,16 @@
         </div>
         <div class="row" [ngClass]="{'itemCartScroll': item.cartItems.length>=2}">
             <div class="itemCart" *ngFor="let itemListProduct of item.cartItems">
-
-                <div class="img-item"><img src="{{itemListProduct.imageUrl}}" border="0"></div>
+                <div class="img-item">
+                    <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]">
+                        <img src="{{itemListProduct.imageUrl}}" border="0">
+                    </a>
+                </div>
                 <div> 
                     <div class ="name">
-                        {{itemListProduct.name}}
+                        <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]">
+                            {{itemListProduct.name}}
+                        </a>
                     </div>
                     <div class="varian">
                         Varian<br>
@@ -229,19 +236,29 @@
     <div class="modal-body">
         <div class="detail-body" >
             <div class="row row-atur">
-                <div class="store-name col-8 left">{{ transactionDetail.storeName }}</div>
+                <div class="store-name col-8 left">
+                    <a [routerLink]="['/'+transactionDetail.storeUrl]" (click)="backToOrderDetail()">
+                        {{ transactionDetail.storeName }}
+                    </a>
+                </div>
                 <div class="total-qty col-4 right">Total {{ transactionDetail.totalQty }} Item</div>
             </div>
             <div class="row row-atur" >
                 <table width="100%" *ngFor="let cartItem of transactionDetail.cartItems">
                     <tr>
                         <td width="25%">
-                            <div class="img-item"><img src="{{cartItem.imageUrl}}"></div>
+                            <div class="img-item">
+                                <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]">
+                                    <img src="{{cartItem.imageUrl}}" (click)="backToOrderDetail()">
+                                </a>
+                            </div>
                         </td>
                         <td width="40%">
                             <div class="item-colom"> 
                                 <div class ="name">
-                                    {{cartItem.name}}
+                                    <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]">
+                                        {{cartItem.name}}
+                                    </a>
                                 </div>
                                 <div class="varian">
                                     Varian<br>

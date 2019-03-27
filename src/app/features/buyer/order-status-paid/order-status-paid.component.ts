@@ -136,6 +136,8 @@ export class OrderStatusPaidComponent implements OnInit {
 
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
 
+      console.log('list', respon.content);
+
       this.proddetail = respon;
       this.list = respon.content;
       this.proddetail = respon;
@@ -334,6 +336,10 @@ export class OrderStatusPaidComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0, 0);
     }
+  }
+
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
   }
 
 }
