@@ -736,6 +736,7 @@
 
     &__shadowText{
         color:#727070;
+        font-size: 1.6rem;
     }
 }
 
@@ -825,6 +826,7 @@
 
 .backButton {
     font-size: 2rem;
+    color: #000000;
 }
 
 .backButton:hover {
@@ -832,6 +834,7 @@
     fa-icon {
         color: #777777;
     }
+    text-decoration: none;
 }
 
 .linkHome{

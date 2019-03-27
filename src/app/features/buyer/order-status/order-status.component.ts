@@ -379,4 +379,7 @@ export class OrderStatusComponent implements OnInit {
     }
   }
 
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
+  }
 }
