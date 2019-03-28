@@ -182,7 +182,6 @@ export class HeaderComponent implements OnInit {
       this.cartItems = [];
       cart.items.forEach(item => {
         this._productService.get(item.productId).subscribe(result => {
-
           const product = result.data;
           const option = {
             width: 150,
