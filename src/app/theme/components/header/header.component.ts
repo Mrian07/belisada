@@ -182,7 +182,7 @@ export class HeaderComponent implements OnInit {
       this.cartItems = [];
       cart.items.forEach(item => {
         this._productService.get(item.productId).subscribe(result => {
-
+          console.log('inilah', result);
           const product = result.data;
           const option = {
             width: 150,
@@ -199,6 +199,9 @@ export class HeaderComponent implements OnInit {
             ...item,
             product,
             totalCost: product.pricelist * item.quantity });
+
+            console.log('cartItems', this.cartItems[0].product);
+
         });
       });
     });

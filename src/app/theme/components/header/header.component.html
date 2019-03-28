@@ -114,7 +114,8 @@
                                     <span class="counter">{{ itemCount }}</span>
                                 </div>
                                 <div class="cart__header--right">
-                                    Total: <span class="total-price">{{itemsTotal | currency:'Rp ':'symbol':'1.0'}}</span>
+                                    Total: 
+                                    <span class="total-price">{{itemsTotal | currency:'Rp ':'symbol':'1.0'}}</span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -126,9 +127,17 @@
                                         </div>
                                         <div class="cart__content--right-side">
                                             <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
+                                            <div class="product--varian" *ngFor="let iVar of item.product.varians">{{iVar.name}}: 
+                                                <span *ngFor="let iVarChald of iVar.varians">
+                                                    {{iVarChald.value}}
+                                                </span>
+
+                                            </div>
                                             <span class="product--price">{{ item.product.specialPrice > 0 ? (item.product.specialPrice | currency:'Rp ':'symbol':'1.0') : (item.product.pricelist | currency:'Rp ':'symbol':'1.0') }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
                                             <!-- <span class="product--price">{{item.product.specialPrice > 0 ? item.product.specialPrice | currency:'Rp ':'symbol':'1.0' : item.product.pricelist | currency:'Rp ':'symbol':'1.0'}} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span> -->
-                                            <div class="clearfix"></div>
+            
+                                            
+                                            <!-- <div class="clearfix"></div> -->
                                         </div>
                                     </li>
                                 </ul>
