@@ -71,7 +71,17 @@
                     <td data-label="Garansi Produk"> {{item.guaranteeTypeValue }} - {{ item.guaranteeTimeValue }} </td>
                     <td data-label="Lokasi Penjual"> {{ item.locationName }}</td>
                     <td data-label="Pilih Pengiriman"><span *ngFor="let courierType of item.courierType; let x = index"> {{ courierType }} <span *ngIf="x < (item.courierType.length - 1)">/</span> </span></td>
-                    <td data-label="Harga">{{ item.fixPrice | currency:'Rp ':'symbol':'1.0'}}</td>
+                    <td data-label="Harga">
+                        <div class="f-price">
+                            <div>{{ item.fixPrice | currency:'Rp ':'symbol':'1.0'}}</div>
+                            <div>
+                                <div class="bDiskon">{{item.discount}}%</div>
+                                <div class='bArrow'></div>
+                            </div>
+                        </div>
+                        
+                        
+                    </td>
                     <td data-label="">
                         <button (click)="addToCart(item.productId, item.storeId, i)" class="btn btn--yelloworange">BELI PRODUCT</button>
                     </td>
@@ -103,3 +113,9 @@
     </div>
 
 </div>
+
+
+
+
+
+

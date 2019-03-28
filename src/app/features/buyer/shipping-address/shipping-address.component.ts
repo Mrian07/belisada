@@ -30,6 +30,7 @@ export class ShippingAddressComponent implements OnInit {
   isList: boolean;
   isAdd: boolean;
   isEdit: boolean;
+  submitted: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -161,7 +162,7 @@ export class ShippingAddressComponent implements OnInit {
   }
 
   onSent() {
-
+    this.submitted = true;
     if (this.formAddCrtl.valid) {
 
       if (this.formAddCrtl.value.addId) {

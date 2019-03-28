@@ -444,6 +444,7 @@
     }
 }
 
+<<<<<<< HEAD
 .price {
     text-align: right;
 }
@@ -454,4 +455,25 @@
 
 .courierPrice {
     text-align: right;
+=======
+.pay-error{
+    border: 1px solid #e4390e;
+    padding: 5px;
+    margin-bottom: 10px;
+    padding-left:10px;
+    border-radius: 5px;
+}
+
+.backButton {
+    font-size: 2rem;
+    color: #000000;
+}
+
+.backButton:hover {
+    color: #777777;
+    fa-icon {
+        color: #777777;
+    }
+    text-decoration: none;
+>>>>>>> 891026a57bc0efbefb7ed20936ed58cfde755703
 }

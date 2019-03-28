@@ -136,6 +136,8 @@ export class OrderStatusPaidComponent implements OnInit {
 
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
 
+      console.log('list', respon.content);
+
       this.proddetail = respon;
       this.list = respon.content;
       this.proddetail = respon;
@@ -181,17 +183,40 @@ export class OrderStatusPaidComponent implements OnInit {
     _data.message = this.reviewForm.controls['message'].value;
     _data.productId = this.reviewForm.controls['productId'].value;
     _data.paymentNumber = this.reviewForm.controls['paymentNumber'].value;
-    this.reviewService.createReview(_data).subscribe(data => {
-      this.loadingService.hide();
-      this.orderListPaid(this.status);
+
+    if (this.reviewForm.controls['star'].value === ''
+    || this.reviewForm.controls['star'].value === 0
+    || this.reviewForm.controls['star'].value === undefined) {
       swal(
-        'Sukses',
-        'Terimakasih atas penilaian Anda.',
-        'success'
+        'Gagal',
+        'Silakan pilih rating.',
+        'error'
       );
-    });
-    this.reviewForm.reset();
-    this.showDialogReview = false;
+      this.loadingService.hide();
+    } else if (this.reviewForm.controls['message'].value === ''
+    || this.reviewForm.controls['message'].value === 0
+    || this.reviewForm.controls['message'].value === undefined) {
+      swal(
+        'Gagal',
+        'Silakan isi komentar Anda.',
+        'error'
+      );
+      this.loadingService.hide();
+    } else {
+
+      this.reviewService.createReview(_data).subscribe(data => {
+        this.loadingService.hide();
+        this.orderListPaid(this.status);
+        swal(
+          'Sukses',
+          'Terimakasih atas penilaian Anda.',
+          'success'
+        );
+      });
+      this.reviewForm.reset();
+      this.showDialogReview = false;
+    }
+
   }
 
   setCanvas(e, imageBuktiTransfer) {
@@ -334,6 +359,10 @@ export class OrderStatusPaidComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0, 0);
     }
+  }
+
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
   }
 
 }

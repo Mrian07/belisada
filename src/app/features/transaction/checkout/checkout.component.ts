@@ -246,7 +246,7 @@ export class CheckoutComponent implements OnInit {
         this.getShippingRates(queryParam, index, () => {
           this.shippingRates[index] = (cart.courierCode === '') ? '' :
             (this.rates[index].some(
-              x => x.courierCode + '~' + x.courierService === cart.courierCode + '~' + cart.courierService))
+              x => x.courierCode + '~' + x.courierService.trim() === cart.courierCode + '~' + cart.courierService.trim()))
                 ? cart.courierCode + '~' + cart.courierService : '';
           this.shippingAddressDatas[index] = cart.destinations.find(x => x.shippingAddressId === cart.shippingAddressId);
           this.loadingRates[index] = false;
@@ -631,7 +631,7 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  doCheckout() {
+  doCheckout(grandTotal) {
     this.loadingService.show();
     let checkoutCartIds: number[] = [];
     this.checkoutTrx.cart.forEach((item, i) => {
@@ -652,6 +652,20 @@ export class CheckoutComponent implements OnInit {
     // if (this.isBtnCart === true) {
     //   this.PMCode = vCart;
     // }
+
+    if (this.PMCode === 'KK') {
+      if (grandTotal < 50000) {
+        this.loadingService.hide();
+        swal('belisada.co.id', 'Total pembayaran minimal Rp.50.000', 'warning');
+        return;
+      }
+    } else if (this.PMCode === 'BT') {
+      if (grandTotal <= 0) {
+        this.loadingService.hide();
+        swal('belisada.co.id', 'Maaf tidak ada pembelian', 'warning');
+        return;
+      }
+    }
 
     if (this.PMCode === '' || this.PMCode === null) {
         swal('belisada.co.id', 'Anda belum memilih metode pembayaran', 'warning');

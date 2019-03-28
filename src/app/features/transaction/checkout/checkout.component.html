@@ -4,8 +4,8 @@
             <img src="assets/img/logo.png" height="50" border="0">
         </a>
             <br>
-        <a class="backButton">
-            <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon><span class="logoText"> Shopping Cart</span><br>
+        <a [routerLink]="['/buyer/order']" [queryParams]="{page:'1', status: '133'}" class="backButton">
+            <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon><span class="logoText"> Pesananku</span><br>
         </a>
     </div>
     <div class="title-head-chekout">
@@ -118,7 +118,7 @@
                         <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
                         class="contenCart__form">
                             <option disabled value="">Pilih Pengiriman</option>
-                            <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                            <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService.trim()'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                         </select>
 
                         <img *ngIf="loadingRates[in]" class="loading" src="/assets/img/spinner.gif" alt="">
@@ -156,11 +156,11 @@
                     <input type="radio" [(ngModel)]="channelId" [value]="itemBnk.id">
                 </div>
                 <div>
-                    <img src="{{ itemBnk.imageUrl }}" class="img-icon">
+                    <img src="{{ itemBnk.imageUrl }}" height='30' class="img-icon">
                 </div>
-                <div>
+                <div class="cPayDetail__shadowText">
                     {{ itemBnk.accountNumber }} {{ itemBnk.accountName }}<br>
-                    <span class="cPayDetail__shadowText">Hanya menerima dari bank yang sama.</span>
+                    <!-- <span class="cPayDetail__shadowText">Hanya menerima dari bank yang sama.</span> -->
                 </div>
                 <div class="cPayDetail__modeText">
                     Metode Pembayaran Lebih Mudah
@@ -192,7 +192,7 @@
             </div>
             <div class="cFooter__val2">
                 <div></div>
-                <div class="cFooter__btn" (click)="doCheckout()">Bayar Sekarang</div>
+                <div class="cFooter__btn" (click)="doCheckout(checkoutTrx.grandTotal)">Bayar Sekarang</div>
             </div>
         </div>
 

@@ -121,6 +121,34 @@
     color: #203a71;
 }
 
+.item-grid{
+  display: grid;
+  grid-template-columns: 80% 20%;
+
+  &__diskon{
+    background: #ed7425;
+    color:#fff;
+    font-weight: bold;
+    padding:5px;
+    font-size: 12px;
+    margin-top:-10px;
+    text-align: center;
+  }
+  
+  &__arrow{
+    width: 0; 
+    height: 10; 
+    
+    border-left: 19px solid transparent;
+    border-right: 19px solid transparent;
+    
+    border-top: 10px solid #ed7425;
+  }
+
+}
+
+
+
 .title-search{
     font-weight: bold;
     font-family: 'Roboto', sans-serif;

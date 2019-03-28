@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import swal from 'sweetalert2';
 import { SubscribeRequest } from '@belisada/core/models';
-import { SubscribeService, ShareMessageService } from '@belisada/core/services';
+import { SubscribeService, ShareMessageService, AuthService } from '@belisada/core/services';
 import { Router } from '@angular/router';
 import { environment } from '@env/environment.local';
 import { UserData } from '@belisada/core/models';
@@ -10,6 +10,9 @@ import { LocalStorageEnum } from '@belisada/core/enum';
 import { UserService, Globals } from '@belisada/core/services';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
 import { empty } from 'rxjs';
+import { ChatService } from '@belisada/core/services/globals/chat.service';
+import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
+import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 
 @Component({
   selector: 'app-footer',
@@ -25,13 +28,17 @@ export class FooterComponent implements OnInit {
   public baseUrlSeller: string = environment.baseUrlSeller;
   public userData: UserData = new UserData();
 
+  isLogin: number;
+
   constructor(
     public globals: Globals,
     private onSubs: SubscribeService,
     private _shareMessageService: ShareMessageService,
     private _userService: UserService,
     private _router: Router,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private _authService: AuthService,
+    private _chatService: ChatService,
   ) {}
 
   ngOnInit() {
@@ -41,6 +48,10 @@ export class FooterComponent implements OnInit {
     ]);
     this.token = localStorage.getItem('token');
     this._getData();
+
+    const userData = this._userService.getUserData(this._authService.getToken());
+    this.isLogin = userData.userId;
+    console.log('apa ini', userData);
   }
 
   /* Fungsi ini untuk mendaftarkan email dengan dilakukan validasi email terlebih dulu apakah sudah terdaftar atau belum. */
@@ -88,5 +99,9 @@ export class FooterComponent implements OnInit {
 
   private _getData() {
     this.userData = this._userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+  }
+
+  alertChat() {
+    this._chatService.show();
   }
 }

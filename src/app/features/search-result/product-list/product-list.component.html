@@ -94,6 +94,13 @@
                                 <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
                             </a>  
 
+                            <div class="item-grid">
+                                <div></div>
+                                <div *ngIf="item.discount>=1">
+                                    <div class="item-grid__diskon">{{ item.discount }}%</div>
+                                    <div class='item-grid__arrow'></div>
+                                </div>
+                            </div>
 
                             <div class="item">
                                 <span (click)="goDetail(item.productId,item.name)">{{ item.name }}</span>
