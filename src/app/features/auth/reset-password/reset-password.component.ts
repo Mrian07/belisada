@@ -5,6 +5,7 @@ import { ResetPasswdRequest } from '@belisada/core/models';
 import { UserService } from '@belisada/core/services';
 import { PasswordValidation } from '@belisada/shared/validators';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 @Component({
   selector: 'app-reset-password',
@@ -22,6 +23,7 @@ export class ResetPasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private userService: UserService,
+    private _router: Router,
     private loadingService: LoadingService
   ) { }
 
@@ -29,7 +31,13 @@ export class ResetPasswordComponent implements OnInit {
     this.createForm();
     this.route.queryParams.subscribe( params => {
       this.data.key = params.key;
+      console.log('key', this.data.key);
     });
+    if (typeof this.data.key === 'undefined') {
+      this._router.navigateByUrl('/account/sign-in');
+    } else if (this.data.key === '') {
+      this._router.navigateByUrl('/');
+    }
   }
 
   createForm() {
