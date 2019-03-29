@@ -2,13 +2,10 @@
     <div>
         <a [routerLink]="['/']" class="linkHome">
 			<img src="assets/img/logo.png" height="50" border="0">
+        </a>
 			<br>
-			<a [routerLink]="['/buyer/order']" [queryParams]="{page:'1', status: '133'}" class="backButton">
-				<span class="logoText">
-					<fa-icon [icon]="['fas', 'arrow-left']"></fa-icon> Pesananku
-				</span>
-			</a>
-			
+		<a [routerLink]="['/']" class="linkHome">
+			<span class="logoText"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon> Shopping Cart</span>
 		</a>
     </div>
     <div class="title-head-chekout">
@@ -35,14 +32,14 @@
 	</div>
 	<div class="containPageCenter contain-checkout">
 
-		<div class="pay-success" *ngIf="status_code=='200'">
+		<div class="pay pay-success" *ngIf="status_code=='200'">
 			Pembayaran berhasil	
 		</div>
-		<div class="pay-error" *ngIf="status_code=='400'">
+		<div class="pay pay-error" *ngIf="status_code=='400'">
 			Pembayaran sudah pernah dilakukan	
 		</div>
-		<div class="pay-error" *ngIf="status_code=='500'">
-			Pembayaran gagal	
+		<div class="pay pay-error" *ngIf="status_code=='500'">
+			Pembayaran gagal
 		</div>
 		
 		<div class="contain-thx-head">
@@ -51,11 +48,8 @@
 			<div class='contain-thx-head__price-total'>Rp {{ successTransactionRes.data.grandTotal | number }}</div>
 		</div>
 		<div class="contain-thx-body">
-
-
 			<div class="contain-thx-body__head" *ngFor="let listCart of successTransactionRes.data.cart">
 				<div class="contain-thx-body__head__detail" *ngFor="let item of listCart.cartItems">
-
 					<div>
 						<span class="titleItem">{{ item.name }}</span><br>
 						<div *ngFor="let varian of item.varians" class="varianText">
@@ -64,33 +58,33 @@
 								{{  itemVar.value }}
 							</span>
 							<br>
-				
-						</div> 
-
+						</div>
 					</div>
 					<div>x{{item.quantity}}</div>
-					<div *ngIf="item.specialPrice > 0">Rp {{ item.specialPrice | number }}</div>
-					<div *ngIf="item.specialPrice <= 0">Rp {{ item.priceList | number }}</div>
+					<div class="price" *ngIf="item.specialPrice > 0">Rp {{ item.specialPrice | number }}</div>
+					<div class="price" *ngIf="item.specialPrice <= 0">Rp {{ item.priceList | number }}</div>
 				</div>
 				<div class="line-ongkir">
 					<div class="titleItem">Biaya Asuransi</div>
-					<div>Rp {{ listCart.asuransi | number }}</div>
+					<div class="insurancePrice">Rp {{ listCart.asuransi | number }}</div>
 				</div>
 				<div class="line-ongkir">
 					<div class="titleItem">Ongkos Kirim<br>
 						<span class="varianText">{{listCart.courierName}}</span><span class="varianText courierService"> - {{listCart.courierService}}</span>
 					</div>
-					<div>Rp {{ listCart.courierPrice | number }}</div>
+					<div class="courierPrice">Rp {{ listCart.courierPrice | number }}</div>
 				</div>
 			</div>
 		</div>
+		
+		<div class="contain-thx-btn" [routerLink]="['/']" *ngIf="successTransactionRes.data.paymentMethodCode==='KK' && status_code==200">Back to Home</div>
+		<div class="contain-thx-btn" [routerLink]="['/buyer/order']" [queryParams]="{page: '1', status: '133'}" *ngIf="successTransactionRes.data.paymentMethodCode==='KK' && status_code==400 || status_code==500">Kembali ke Pesananku</div>
+		
 		<div *ngIf="status_code==0">
-			
 			<div class="contain-thx-sub-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
 				Silakan melakukan pembayaran sesuai dengan nomor rekening dan bank yang ada dibawah.<br>
 				Anda memiliki waktu 2 x 24 Jam untuk melakukan pembayaran, atau pesanan Anda akan dibatalkan secara otomatis oleh system.
 			</div>
-	
 			<div class="contain-thx-footer" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">
 				<div class="contain-thx-footer__img">
 					<img style="width: 20rem" src="{{ successTransactionRes.data.bankAccount.imageUrl }}" border="0">
@@ -99,12 +93,8 @@
 				<div class="contain-thx-footer__rek">
 					{{ successTransactionRes.data.bankAccount.accountNumber }} a/n {{ successTransactionRes.data.bankAccount.accountName }}
 				</div>
-				
 			</div>
-	
 			<div class="contain-thx-btn" (click)="goToOrder()" *ngIf="successTransactionRes.data.paymentMethodCode==='BT'">KONFIRMASI PEMBAYARAN</div>
 		</div>
-		
 	</div>
-	
 </div>
