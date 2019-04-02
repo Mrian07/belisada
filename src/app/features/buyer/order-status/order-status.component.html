@@ -56,12 +56,17 @@
                     <span class="order-id">ORDER ID: {{itemList.orderNumber}}</span>
                     <div class="itemCartSub" *ngFor="let itemListProduct of itemList.cartItems">
                         <div class="img-item">
-                            <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]">
+                            <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]"
+                            [queryParams]="{varians:itemListProduct.varians[0].attributeId + ':' + itemListProduct.varians[0].varians[0].attributeValueId + ',' + itemListProduct.varians[1].attributeId + ':' + itemListProduct.varians[1].varians[0].attributeValueId}"
+                            >
                                 <img src="{{itemListProduct.imageUrl}}" border="0">
                             </a>  
                         </div>
                         <div>
-                            <div class="item-colom">{{itemListProduct.name}} x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
+                            <div class="item-colom">
+                                    <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]"
+                                    [queryParams]="{varians:itemListProduct.varians[0].attributeId + ':' + itemListProduct.varians[0].varians[0].attributeValueId + ',' + itemListProduct.varians[1].attributeId + ':' + itemListProduct.varians[1].varians[0].attributeValueId}"
+                                    >{{itemListProduct.name}}</a> x{{ itemListProduct.quantity }} <br>Produk ID: {{itemListProduct.productId}} <br>
                                 Varian:<br>
                                 <span *ngFor="let varian of itemListProduct.varians; let i = index">
                                     {{varian.varians[0].value}} {{ (i === itemListProduct.varians.length - 1) ? '' : ' - ' }}
