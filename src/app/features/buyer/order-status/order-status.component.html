@@ -16,13 +16,11 @@
                         <div class="text-confirm">Lanjutkan Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
                     </a>
                 </div>
-           
                 <div *ngIf="item.paymentMethodCode != 'KK'">
                     <a [routerLink]="['/buyer/confirmation/' + item.paymentNumber]">
                         <div class="text-confirm">Konfirmasi Pembayaran <span class="text-yellow"><fa-icon [icon]="['fa', 'bell']"></fa-icon></span></div>
                     </a>
                 </div>
-          
                 <div class="text-more" (click)="openOS(openDetail, item.transactionId)">Lihat Detail <span class="text-yellow"><fa-icon [icon]="['fa', 'search']"></fa-icon></span></div>
             </div>
         </div>
