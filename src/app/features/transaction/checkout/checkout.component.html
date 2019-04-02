@@ -52,12 +52,16 @@
                     <div class="contenCart__img">
                         
                         <div>
-                            <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]">
+                            <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]"
+                            [queryParams]="{varians:cartItem.varians[0].attributeId + ':' + cartItem.varians[0].varians[0].attributeValueId + ',' + cartItem.varians[1].attributeId + ':' + cartItem.varians[1].varians[0].attributeValueId}"
+                            >
                             <img [src]="cartItem.imageUrl" size="20">
                             </a>
                         </div>
                         <div>
-                            <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]">
+                            <a [routerLink]="['/product/product-detail/' + cartItem.productId + '/' + encodeUrl(cartItem.name)]"
+                            [queryParams]="{varians:cartItem.varians[0].attributeId + ':' + cartItem.varians[0].varians[0].attributeValueId + ',' + cartItem.varians[1].attributeId + ':' + cartItem.varians[1].varians[0].attributeValueId}"
+                            >
                             <span class="item-name">{{ cartItem.name }}</span>
                             </a>
                             <br>
