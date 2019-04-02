@@ -125,7 +125,7 @@ export class ConfirmationComponent implements OnInit {
       transferTime: new FormControl('', Validators.required),
       accountName: new FormControl('', Validators.required),
       accountNumber: new FormControl('', Validators.required),
-      refNo: new FormControl('', Validators.required),
+      refNo: new FormControl(''),
       nominal: new FormControl('', Validators.required),
       news: new FormControl('')
     });
