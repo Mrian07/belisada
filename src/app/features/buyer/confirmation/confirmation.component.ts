@@ -33,6 +33,8 @@ export class ConfirmationComponent implements OnInit {
   isProses: Boolean = false;
   isConfirm: Boolean = false;
 
+  submitted: boolean;
+
   // ----- Start date picker declaration required
   today: Date = new Date();
   defaultDateFormat: DateFormatEnum = DateFormatEnum.DDMMYYYY_WITH_SLASH;
@@ -171,6 +173,7 @@ export class ConfirmationComponent implements OnInit {
   }
 
   onSubmit() {
+    this.submitted = true;
     this.loadingService.show();
     if (this.createComForm.valid) {
 
