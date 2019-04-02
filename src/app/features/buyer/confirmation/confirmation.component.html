@@ -116,9 +116,6 @@
                 <div class="contain-c">
                     <input type="text" class="input-c" maxlength="25" formControlName="refNo">
                     <!-- <app-field-error-display  [displayError]="isFieldValid('refNo')" errorMsg="Nomor referensi tidak boleh kosong"></app-field-error-display> -->
-                    <div *ngIf="createComForm.controls.refNo.invalid && (submitted || createComForm.controls.refNo.dirty && createComForm.controls.refNo.touched)" class="alert alert-danger" >
-                        <span class="tooltiptext">No referensi tidak boleh kosong</span>
-                    </div>
                 </div>
                 <div class="label-c">
                     Berita :
