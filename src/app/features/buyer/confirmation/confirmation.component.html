@@ -54,7 +54,7 @@
                     Pemilik Rekening :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="accountName">
+                    <input type="text" class="input-c" maxlength="80" formControlName="accountName">
                     <!-- <app-field-error-display  [displayError]="isFieldValid('accountName')" errorMsg="Pemilik rekening tidak boleh kosong"></app-field-error-display> -->
                     <div *ngIf="createComForm.controls.accountName.invalid && (submitted || createComForm.controls.accountName.dirty && createComForm.controls.accountName.touched)" class="alert alert-danger" >
                         <span class="tooltiptext">Pemilik rekening tidak boleh kosong</span>
@@ -64,7 +64,7 @@
                     No Rekening :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="accountNumber" (keypress)="numberCheck($event)">
+                    <input type="text" class="input-c" formControlName="accountNumber" maxlength="25" (keypress)="numberCheck($event)">
                     <!-- <app-field-error-display  [displayError]="isFieldValid('accountNumber')" errorMsg="Nomor rekening tidak boleh kosong"></app-field-error-display> -->
                     <div *ngIf="createComForm.controls.accountNumber.invalid && (submitted || createComForm.controls.accountNumber.dirty && createComForm.controls.accountNumber.touched)" class="alert alert-danger" >
                         <span class="tooltiptext">Nomor rekening tidak boleh kosong</span>
@@ -114,7 +114,7 @@
                     No Referensi :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="refNo">
+                    <input type="text" class="input-c" maxlength="25" formControlName="refNo">
                     <!-- <app-field-error-display  [displayError]="isFieldValid('refNo')" errorMsg="Nomor referensi tidak boleh kosong"></app-field-error-display> -->
                     <div *ngIf="createComForm.controls.refNo.invalid && (submitted || createComForm.controls.refNo.dirty && createComForm.controls.refNo.touched)" class="alert alert-danger" >
                         <span class="tooltiptext">No referensi tidak boleh kosong</span>
@@ -124,7 +124,8 @@
                     Berita :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="news">
+                    <textarea class="input-c textarea" maxlength="500" formControlName="news"></textarea>
+                    <!-- <input type="text" class="input-c" maxlength="500" formControlName="news"> -->
                 </div>
             </div>
             
