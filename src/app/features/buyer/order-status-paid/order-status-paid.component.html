@@ -78,7 +78,8 @@
             <div  class="col-4 left">
                 Total Pesanan:
                 <span class="tot">
-                    Rp {{ item.subTotal - item.courierPrice - item.asuransi | number}}
+                    <!-- Rp {{ item.subTotal - item.courierPrice - item.asuransi | number}} -->
+                    Rp {{ item.subTotal | number}}
                 </span>
             </div>
             <div class="col-4 right">
@@ -94,7 +95,7 @@
             <div  class="col-6 left">
                 Total Pesanan:
                 <span class="tot">
-                    Rp {{ item.subTotal - item.courierPrice - item.asuransi | number}}
+                    Rp {{ item.subTotal | number}}
                 </span>
             </div>
             <div class="col-6 right">

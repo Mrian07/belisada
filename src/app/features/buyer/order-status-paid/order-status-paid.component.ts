@@ -136,8 +136,6 @@ export class OrderStatusPaidComponent implements OnInit {
 
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
 
-      console.log('list', respon.content);
-
       this.proddetail = respon;
       this.list = respon.content;
       this.proddetail = respon;
