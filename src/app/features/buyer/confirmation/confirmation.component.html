@@ -16,7 +16,7 @@
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="paymentNumber">
-                    <app-field-error-display  [displayError]="isFieldValid('paymentNumber')" errorMsg="Payment id tidak boleh kosong"></app-field-error-display>
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('paymentNumber')" errorMsg="Payment id tidak boleh kosong"></app-field-error-display> -->
                 </div>
                 <div class="label-c">
                     Di Transfer Ke :
@@ -24,36 +24,66 @@
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="transferTo" readonly>
                 </div>
+
                 <div class="label-c">
-                    Ditransfer Dari :
+                </div>
+                <div class="contain-c">
+                </div>
+
+                <div class="label-c label-title">
+                    SUMBER TRANSFER 
+                </div>
+                <div class="contain-c">
+
+                </div>
+
+                <div class="label-c">
+                    Ditransfer Melalui :
                 </div>
                 <div class="contain-c">
                     <select formControlName="bankId" class="input-c">
                         <option value="" disabled>Pilih bank yang dituju</option>
                         <option  *ngFor="let item of listBank" [value]="item.bankId" >{{item.name}}</option>
                     </select>
-                    <app-field-error-display  [displayError]="isFieldValid('bankId')" errorMsg="Ditransfer dari tidak boleh kosong"></app-field-error-display>
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('bankId')" errorMsg="Ditransfer dari tidak boleh kosong"></app-field-error-display> -->
+                    <div *ngIf="createComForm.controls.bankId.invalid && (submitted || createComForm.controls.bankId.dirty && createComForm.controls.bankId.touched)" class="alert alert-danger" >
+                        <span class="tooltiptext">Silakan pilih bank yang dituju</span>
+                    </div>
                 </div>
                 <div class="label-c">
                     Pemilik Rekening :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="accountName">
-                    <app-field-error-display  [displayError]="isFieldValid('accountName')" errorMsg="Pemilik rekening tidak boleh kosong"></app-field-error-display>
+                    <input type="text" class="input-c" maxlength="80" formControlName="accountName">
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('accountName')" errorMsg="Pemilik rekening tidak boleh kosong"></app-field-error-display> -->
+                    <div *ngIf="createComForm.controls.accountName.invalid && (submitted || createComForm.controls.accountName.dirty && createComForm.controls.accountName.touched)" class="alert alert-danger" >
+                        <span class="tooltiptext">Pemilik rekening tidak boleh kosong</span>
+                    </div>
                 </div>
                 <div class="label-c">
                     No Rekening :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="accountNumber" (keypress)="numberCheck($event)">
-                    <app-field-error-display  [displayError]="isFieldValid('accountNumber')" errorMsg="Nomor rekening tidak boleh kosong"></app-field-error-display>
+                    <input type="text" class="input-c" formControlName="accountNumber" maxlength="25" (keypress)="numberCheck($event)">
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('accountNumber')" errorMsg="Nomor rekening tidak boleh kosong"></app-field-error-display> -->
+                    <div *ngIf="createComForm.controls.accountNumber.invalid && (submitted || createComForm.controls.accountNumber.dirty && createComForm.controls.accountNumber.touched)" class="alert alert-danger" >
+                        <span class="tooltiptext">Nomor rekening tidak boleh kosong</span>
+                    </div>
                 </div>
+                <div class="label-c">
+                </div>
+                <div class="contain-c">
+                </div>
+
                 <div class="label-c">
                     Nominal :
                 </div>
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="nominal" (keypress)="numberCheck($event)" [(ngModel)]="nominal" (input)="nominal = format(nominal)">
-                    <app-field-error-display  [displayError]="isFieldValid('nominal')" errorMsg="Nominal tidak boleh kosong"></app-field-error-display>
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('nominal')" errorMsg="Nominal tidak boleh kosong"></app-field-error-display> -->
+                    <div *ngIf="createComForm.controls.nominal.invalid && (submitted || createComForm.controls.nominal.dirty && createComForm.controls.nominal.touched)" class="alert alert-danger" >
+                        <span class="tooltiptext">Nominal tidak boleh kosong</span>
+                    </div>
                 </div>
                 <div class="label-c">
                     Tanggal Transfer :
@@ -63,7 +93,10 @@
                     <div class="date-custom">
                         <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="transerDate" class="date-confim input-c"></my-date-picker>
                     </div>
-                    <app-field-error-display  [displayError]="isFieldValid('transerDate')" errorMsg="Tanggal transfer tidak boleh kosong"></app-field-error-display>
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('transerDate')" errorMsg="Tanggal transfer tidak boleh kosong"></app-field-error-display> -->
+                    <div *ngIf="createComForm.controls.transerDate.invalid && (submitted || createComForm.controls.transerDate.dirty && createComForm.controls.transerDate.touched)" class="alert alert-danger" >
+                        <span class="tooltiptext">Tanggal transfer tidak boleh kosong</span>
+                    </div>
                 </div>
                 <div class="label-c">
                     Waktu Transfer :
@@ -72,20 +105,24 @@
                 <div class="contain-c">
                     <input type="text" class="input-c" formControlName="transferTime" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4">
                     <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
-                    <app-field-error-display  [displayError]="isFieldValid('transferTime')" errorMsg="Waktu transfer tidak boleh kosong"></app-field-error-display>
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('transferTime')" errorMsg="Waktu transfer tidak boleh kosong"></app-field-error-display> -->
+                    <div *ngIf="createComForm.controls.transferTime.invalid && (submitted || createComForm.controls.transferTime.dirty && createComForm.controls.transferTime.touched)" class="alert alert-danger" >
+                        <span class="tooltiptext">Waktu transfer tidak boleh kosong</span>
+                    </div>
                 </div>
                 <div class="label-c">
                     No Referensi :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="refNo">
-                    <app-field-error-display  [displayError]="isFieldValid('refNo')" errorMsg="Nomor referensi tidak boleh kosong"></app-field-error-display>
+                    <input type="text" class="input-c" maxlength="25" formControlName="refNo">
+                    <!-- <app-field-error-display  [displayError]="isFieldValid('refNo')" errorMsg="Nomor referensi tidak boleh kosong"></app-field-error-display> -->
                 </div>
                 <div class="label-c">
                     Berita :
                 </div>
                 <div class="contain-c">
-                    <input type="text" class="input-c" formControlName="news">
+                    <textarea class="input-c textarea" maxlength="500" formControlName="news"></textarea>
+                    <!-- <input type="text" class="input-c" maxlength="500" formControlName="news"> -->
                 </div>
             </div>
             
