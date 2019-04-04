@@ -3,7 +3,7 @@
   <div class="contain__sub" *ngFor="let item of reviewBuyer.content">
     <div>
       <div class="contain__image">
-        <img src="{{item.productImage}}" width="150">
+        <img src="{{item.productImage}}" class="imgDiscuss">
       </div>
 
       <div class="contain__btn-detail" (click)="detail(item.productId, item.productName)">
@@ -13,7 +13,7 @@
     <div class="contain__val">
       <div class="contain__val__com"> 
         <div class="img-av">
-          <img src="{{item.imageAvatarUrl}}" width="80">
+          <img src="{{item.imageAvatarUrl}}" class="imgDiscussChild">
         </div>
         <div>
           <div class="contain__name">{{item.name}}</div>

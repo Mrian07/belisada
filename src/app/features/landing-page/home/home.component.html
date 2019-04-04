@@ -140,6 +140,7 @@
                                     <a class="product__link">
                                         <div class="product__grid">
                                             <div class="product__container">
+                                                <div class="ribbon ribbon--orange" *ngIf="item.discount > 0">{{ item.discount }}%</div>
                                                 <div>
                                                     <h2 [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]" class="product__name">
                                                         {{ item.name }}

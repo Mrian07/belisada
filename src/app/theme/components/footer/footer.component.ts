@@ -51,7 +51,6 @@ export class FooterComponent implements OnInit {
 
     const userData = this._userService.getUserData(this._authService.getToken());
     this.isLogin = userData.userId;
-    console.log('apa ini', userData);
   }
 
   /* Fungsi ini untuk mendaftarkan email dengan dilakukan validasi email terlebih dulu apakah sudah terdaftar atau belum. */
