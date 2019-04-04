@@ -400,8 +400,27 @@
 }
 
 .logoText{
-    font-weight: bold;
     font-size: 2rem;
+    color:#000000;
+    font-weight: bold;
+    padding-bottom: 2rem;
+    text-align: center;
+    &:hover {
+        color: #777777;
+    }
+}
+
+.backButton {
+    font-size: 2rem;
+    color: #000000;
+}
+
+.backButton:hover {
+    color: #777777;
+    fa-icon {
+        color: #777777;
+    }
+    text-decoration: none;
 }
 
 .line-ongkir{
