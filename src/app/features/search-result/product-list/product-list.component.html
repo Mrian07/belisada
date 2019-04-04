@@ -82,9 +82,9 @@
 
 
 
-        <div  *ngIf="list.totalElements!=0">
+        <div  *ngIf="list.totalPages!=0">
             <div [ngClass]="{'product__grid': displayMode === 1,'product__list':displayMode === 2}">
-                <div class="product" *ngFor="let item of list.content; let i = index" >
+                <div class="product" *ngFor="let item of list.data; let i = index" >
 
                     <div class="product__line">
 
