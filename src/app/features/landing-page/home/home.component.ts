@@ -266,6 +266,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   private _getDataForPop() {
     this._homeService.getHomeNew().subscribe(res => {
       this.homeContents = res.content;
+
+      console.log('homeContents', this.homeContents);
+
     });
   }
 
