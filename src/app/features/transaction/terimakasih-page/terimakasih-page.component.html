@@ -4,9 +4,12 @@
 			<img src="assets/img/logo.png" height="50" border="0">
         </a>
 			<br>
-		<a [routerLink]="['/']" class="linkHome">
+		<!-- <a [routerLink]="['/']" class="linkHome">
 			<span class="logoText"><fa-icon [icon]="['fas', 'arrow-left']"></fa-icon> Shopping Cart</span>
-		</a>
+		</a> -->
+		<a [routerLink]="['/buyer/order']" [queryParams]="{page:'1', status: '133'}" class="backButton">
+            <fa-icon [icon]="['fas', 'arrow-left']"></fa-icon><span class="logoText"> Pesananku</span><br>
+        </a>
     </div>
     <div class="title-head-chekout">
         <fa-icon [icon]="['fas', 'lock']"></fa-icon>

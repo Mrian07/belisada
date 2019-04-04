@@ -29,13 +29,16 @@
         <div class="row" [ngClass]="{'itemCartScroll': item.cartItems.length>=2}">
             <div class="itemCart" *ngFor="let itemListProduct of item.cartItems">
                 <div class="img-item">
-                    <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]">
+                    <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]"
+                    [queryParams]="{varians:itemListProduct.varians[0].attributeId + ':' + itemListProduct.varians[0].varians[0].attributeValueId + ',' + itemListProduct.varians[1].attributeId + ':' + itemListProduct.varians[1].varians[0].attributeValueId}"
+                    >
                         <img src="{{itemListProduct.imageUrl}}" border="0">
                     </a>
                 </div>
                 <div> 
                     <div class ="name">
-                        <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]">
+                        <a [routerLink]="['/product/product-detail/' + itemListProduct.productId + '/' + encodeUrl(itemListProduct.name)]"
+                        [queryParams]="{varians:itemListProduct.varians[0].attributeId + ':' + itemListProduct.varians[0].varians[0].attributeValueId + ',' + itemListProduct.varians[1].attributeId + ':' + itemListProduct.varians[1].varians[0].attributeValueId}">
                             {{itemListProduct.name}}
                         </a>
                     </div>

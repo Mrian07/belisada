@@ -270,8 +270,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   flagStatus() {
-  this.regForm = false;
-  this.regSuccess = false;
+    this.regForm = false;
+    this.regSuccess = false;
   }
 
   testingform(form: NgForm) {

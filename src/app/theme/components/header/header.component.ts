@@ -173,6 +173,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
+  }
 
   private _shoppingCart() {
     this.cart = this._shoppingCartService.get();
@@ -183,6 +186,9 @@ export class HeaderComponent implements OnInit {
       cart.items.forEach(item => {
         this._productService.get(item.productId).subscribe(result => {
           const product = result.data;
+
+          console.log('ini produk', product);
+
           const option = {
             width: 150,
             height: 150,
