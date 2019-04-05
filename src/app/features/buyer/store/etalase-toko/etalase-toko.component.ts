@@ -65,7 +65,8 @@ export class EtalaseTokoComponent implements OnInit {
         itemperpage: 16,
         page: this.currentPage
       };
-      this.prodS.getList(queryParams).subscribe(responseList => {
+      this.storeS.getStoreProductList(queryParams).subscribe(responseList =>{
+        console.log(responseList)
         this.list  = responseList;
         this.pages = [];
         this.lastPage = this.list.totalPages;
@@ -74,7 +75,18 @@ export class EtalaseTokoComponent implements OnInit {
             this.pages.push(r);
           }
         }
-      });
+
+      })
+      // this.prodS.getList(queryParams).subscribe(responseList => {
+      //   this.list  = responseList;
+      //   this.pages = [];
+      //   this.lastPage = this.list.totalPages;
+      //   for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+      //     if (r > 0 && r <= this.list.totalPages) {
+      //       this.pages.push(r);
+      //     }
+      //   }
+      // });
     });
   }
 

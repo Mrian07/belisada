@@ -27,6 +27,10 @@
 <!-- {{grandTotal}} -->
     <app-order-status *ngIf="activeTab === '133'" [order]="order" [currentPage]="currentPage"></app-order-status>
     <app-order-status-paid *ngIf="activeTab !== '133'"></app-order-status-paid>
+
+    <!-- <app-order-status *ngIf="activeTab === '133'" [order]="order" [currentPage]="currentPage"></app-order-status>
+    <app-order-status-paid *ngIf="activeTab === '151' || activeTab === '157' || activeTab === '180'"></app-order-status-paid>
+    <app-order-status-all *ngIf="activeTab === 'ALL'"></app-order-status-all> -->
 </div>
 <!-- <div class="frame-menu-contain" >
     

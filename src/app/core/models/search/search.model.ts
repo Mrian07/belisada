@@ -7,6 +7,7 @@ export class ListSearch {
   numberOfElements: number;
   size: number;
   number: number;
+  max_price: any;
 }
 
 export class ContentSearch {

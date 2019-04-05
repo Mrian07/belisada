@@ -29,6 +29,7 @@ import { DiscussionReviewComponent } from './discussion-review/discussion-review
 import { DiscussionProductComponent } from './discussion-product/discussion-product.component';
 import { ReviewProductComponent } from './review-product/review-product.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { OrderStatusAllComponent } from './order-status-all/order-status-all.component';
 
 library.add(fas, far, fab);
 
@@ -66,6 +67,7 @@ library.add(fas, far, fab);
     DiscussionReviewComponent,
     DiscussionProductComponent,
     ReviewProductComponent,
+    OrderStatusAllComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
