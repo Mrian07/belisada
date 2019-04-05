@@ -88,7 +88,7 @@
     <div class="product-spec-conten" *ngIf="activeProduct === true">
         
             <div class="row small-gutters">
-                <div class="col-xl-8r col-md-3 col-xs-6 u-margin-bottom-1" *ngFor="let item of list.content">
+                <div class="col-xl-8r col-md-3 col-xs-6 u-margin-bottom-1" *ngFor="let item of list.data">
                     <a class="product__link" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
                         <div class="product__grid">
                             <div class="ribbon ribbon--orange ribbon--small" *ngIf="item.discount > 0">
