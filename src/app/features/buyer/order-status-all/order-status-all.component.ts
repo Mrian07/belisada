@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
-import { OrderStatusPaid, ContentOrderStatusPaid, CartItemsPaid } from '@belisada/core/models/transaction/transaction.model';
+import { OrderStatus, ContentOrderStatus, CartItemsPaid } from '@belisada/core/models/transaction/transaction.model';
 import { ReviewService } from '../../../core/services/review/review.service';
 import { ListReview, ListReviewReq } from '@belisada/core/models/review/review.model';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -17,17 +17,18 @@ import { isPlatformBrowser } from '@angular/common';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
-  selector: 'app-order-status-paid',
-  templateUrl: './order-status-paid.component.html',
-  styleUrls: ['./order-status-paid.component.scss']
+  selector: 'app-order-status-all',
+  templateUrl: './order-status-all.component.html',
+  styleUrls: ['./order-status-all.component.scss']
 })
-export class OrderStatusPaidComponent implements OnInit {
+export class OrderStatusAllComponent implements OnInit {
 
+  
   public isLoading: Boolean = false;
 
   review: ListReview[];
-  list: OrderStatusPaid[];
-  transactionDetail: OrderStatusPaid = new OrderStatusPaid();
+  list: OrderStatus[];
+  transactionDetail: OrderStatus = new OrderStatus();
   product: CartItemsPaid = new CartItemsPaid();
   status: 'ALL';
   openDetail: boolean;
@@ -47,7 +48,7 @@ export class OrderStatusPaidComponent implements OnInit {
   regSuccess: any;
   showDialogRek: any;
 
-  proddetail: ContentOrderStatusPaid = new ContentOrderStatusPaid();
+  proddetail: ContentOrderStatus = new ContentOrderStatus();
   lastPage: number;
   currentPage: number;
   pages: any = [];
@@ -135,9 +136,17 @@ export class OrderStatusPaidComponent implements OnInit {
     };
 
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
-      console.log('v2', respon)
+      console.log('data lama', respon);
+    });
+
+    this.transactionService.getOrder(queryParams).subscribe(respon => {
+      console.log('data baru', respon);
       this.proddetail = respon;
       this.list = respon.content;
+
+console.log('ini', this.list);
+console.log('apa', respon.content);
+
       this.proddetail = respon;
       this.a = respon.totalElements;
       this.pages = [];
@@ -362,5 +371,6 @@ export class OrderStatusPaidComponent implements OnInit {
   public encodeUrl(name) {
     return name.replace(new RegExp('/', 'g'), ' ');
   }
+
 
 }
