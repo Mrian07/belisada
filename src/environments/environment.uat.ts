@@ -6,7 +6,7 @@ export const environment = {
   apiUrlMongo: 'https://api.uat.belisada.id/belisada-mongo',
   thumborUrl: 'https://image.uat.belisada.id/',
   urlMidtrans: 'https://app.sandbox.midtrans.com',
-  elasticSearchUrl: 'http://elastic.uat.belisada.id:3000',
+  elasticSearchUrl: 'https://elastic.uat.belisada.id/',
   chatUrl: 'https://chat.uat.belisada.id',
   cdnUrl: 'https://cdn.uat.belisada.id',
   socketUrl: 'https://socket.uat.belisada.id',
