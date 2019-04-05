@@ -62,7 +62,7 @@ export class SearchService {
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
-    return this.http.get('http://localhost:3000/searchlist', {params: params})
+    return this.http.get(this.configuration.elasticSearchUrl+'/searchlist', {params: params})
     .pipe(
       map(response => response as any)
     );

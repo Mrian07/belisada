@@ -168,4 +168,15 @@ export class StoreService {
       );
   }
 
+  getStoreProductList(queryParams: Object): Observable<any> {
+    let params = new HttpParams();
+    Object.keys(queryParams).forEach(function(k) {
+      params = params.append(k, queryParams[k]);
+    });
+    return this.http.get( this.cfg.elasticSearchUrl + '/seller', {params: params})
+    .pipe(
+      map(response => response as any)
+    );
+  }
+
 }
