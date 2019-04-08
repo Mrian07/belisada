@@ -198,7 +198,7 @@
                         <div class="col-sm-2" *ngFor="let item of otherBrandProducts | slice:0:6">
                             <a [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">
                                 <div>
-                                    <img [src]="'https://img.belisada.id/unsafe/fit-in/400x400/filters:fill(fff)/' + item.imageUrl" alt="">
+                                    <img [src]="thumborProductImgUrl + item.imageUrl" alt="">
                                     <div>
                                         <div class="other-product__product-name">{{ item.name }}</div>
                                         <div class="other-product__product-price" *ngIf="item.specialPrice !== 0">{{ item.specialPrice | currency:'Rp ':'symbol':'1.0' }}</div>
