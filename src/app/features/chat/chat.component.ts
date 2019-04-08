@@ -10,6 +10,7 @@ import Socket = SocketIOClient.Socket;
 import { ProfileStoreResponse } from '@belisada/core/models/store/store.model';
 import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-chat',
@@ -32,6 +33,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   selectedRoom: any;
 
   toggled: Boolean = false;
+  thumborUrl: string;
 
   // storeId: number;
 
@@ -41,7 +43,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     private fb: FormBuilder,
     private userService: UserService,
     private storeService: StoreService,
-  ) { }
+  ) {
+    this.thumborUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
+  }
 
   ngOnInit() {
     this.userData = this.userService.getUserData();
@@ -127,5 +131,5 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     try {
         this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
     } catch (err) { }
-}
+  }
 }
