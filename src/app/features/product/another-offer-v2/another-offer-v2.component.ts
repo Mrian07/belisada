@@ -203,7 +203,10 @@ export class AnotherOfferV2Component implements OnInit {
         shippingAddressId: this.addressId
       };
       this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-        if (response.status === 1) {
+
+        if (response.status === 2) {
+          swal('belisada.co.id', response.message, 'error');
+        } else if (response.status === 1) {
           this.shoppingCartService.addItem(productId, this.qty, +response.itemCartId);
         } else {
           swal('belisada.co.id', response.message, 'error');
