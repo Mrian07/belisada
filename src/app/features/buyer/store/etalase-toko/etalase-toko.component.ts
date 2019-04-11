@@ -66,7 +66,7 @@ export class EtalaseTokoComponent implements OnInit {
         page: this.currentPage
       };
       this.storeS.getStoreProductList(queryParams).subscribe(responseList =>{
-        console.log(responseList)
+        console.log(responseList);
         this.list  = responseList;
         this.pages = [];
         this.lastPage = this.list.totalPages;
