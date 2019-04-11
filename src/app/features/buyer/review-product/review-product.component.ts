@@ -3,6 +3,7 @@ import { ReviewService } from '@belisada/core/services/review/review.service';
 import { ReviewBuyer } from '../../../core/models/review/review.model';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-review-product',
@@ -10,6 +11,9 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./review-product.component.scss']
 })
 export class ReviewProductComponent implements OnInit {
+  imgProduct: string;
+  storeImgDiscussion: string;
+  storeImgDiscussionChild: string;
 
   reviewBuyer: ReviewBuyer  = new ReviewBuyer();
 
@@ -22,7 +26,11 @@ export class ReviewProductComponent implements OnInit {
     private reviewService: ReviewService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {
+    this.imgProduct = environment.thumborUrl + 'unsafe/fit-in/250x250/center/filters:fill(fff)/';
+    this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/100x100/center/filters:fill(fff)/';
+    this.storeImgDiscussionChild = environment.thumborUrl + 'unsafe/fit-in/50x50/center/filters:fill(fff)/';
+  }
 
   ngOnInit() {
     this.loadData();

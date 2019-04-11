@@ -70,10 +70,6 @@
     color: #217a01;
 }
 
-.total{
-    color: #ff5927;
-}
-
 .tot {
     color: #ff5927;
     font-weight: 700;
@@ -84,15 +80,6 @@
     text-align: right;
 }
 
-.detail-total{
-    padding: 1.2rem;
-    color: #292929;
-    font-size: 1.6rem;
-    background: #ffffeb;
-    border: 1px solid #cbcbcb;
-    box-shadow: 0 0px 2px -4px rgba(0, 0, 0, 0.2), 0 1px 1px -2px rgba(0, 0, 0, 0.14), 0 0px 1px 1px rgba(0, 0, 0, 0.12);
-    margin: 20px auto;
-}
 
 .delivery-detail{
     padding: 1.2rem;
@@ -411,12 +398,6 @@
     color: #3ba5ff;
     text-decoration: underline;
     padding-right: 2rem;
-}
-
-.bold{
-    font-weight: bold;
-    font-size: 2.2rem;
-    color: rgb(124, 124, 124);
 }
 
 .btn-invoice{
@@ -853,4 +834,33 @@ p {
 .itemCartScroll{
     overflow:scroll; 
     height:360px;
+}
+
+.frame-pesanan{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 1.2rem;
+    color: #292929;
+    font-size: 1.6rem;
+    background: #ffffeb;
+    border: 1px solid #cbcbcb;
+    box-shadow: 0 0px 2px -4px rgba(0, 0, 0, 0.2), 0 1px 1px -2px rgba(0, 0, 0, 0.14), 0 0px 1px 1px rgba(0, 0, 0, 0.12);
+    margin: 20px auto;
+
+    &__right{
+        text-align: right;
+
+        &__red{
+            color: #ff0000;
+            text-align: right;
+            font-size: 2.3rem;
+        }
+    }
+
+    &__left{
+        &__abuabu{
+            color: #7c7c7c;
+            font-size: 2.3rem;
+        }
+    }
 }

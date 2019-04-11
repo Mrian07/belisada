@@ -15,6 +15,8 @@ import { LoadingService } from '@belisada/core/services/globals/loading.service'
 })
 export class DiscussionProductComponent implements OnInit {
   storeImgDiscussion: string;
+  storeImgDiscussionChild: string;
+  imgProduct: string;
 
   buyerDiscus: BuyerDiscus  = new BuyerDiscus();
 
@@ -31,7 +33,9 @@ export class DiscussionProductComponent implements OnInit {
     private fb: FormBuilder,
     private loadingService: LoadingService
   ) {
-    this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/45x45/center/filters:fill(fff)/';
+    this.imgProduct = environment.thumborUrl + 'unsafe/fit-in/250x250/center/filters:fill(fff)/';
+    this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/100x100/center/filters:fill(fff)/';
+    this.storeImgDiscussionChild = environment.thumborUrl + 'unsafe/fit-in/50x50/center/filters:fill(fff)/';
   }
 
   ngOnInit() {

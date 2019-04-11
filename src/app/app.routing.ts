@@ -37,6 +37,11 @@ const routes: Routes = [
   // { path: 'contact-us', component: ContactUsComponent, data: {title: 'Contact Us - Belisada.co.id'}},
   { path: 'contact-us', loadChildren: 'app/features/contact-us/contact-us.module#ContactUsModule' },
   {
+    path: '404',
+    pathMatch: 'full',
+    component: Page404Component,
+  },
+  {
     path: '',
     component: LandingPageComponent,
     children: [

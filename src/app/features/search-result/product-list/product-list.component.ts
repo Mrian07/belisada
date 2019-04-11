@@ -349,29 +349,29 @@ export class ProductListComponent implements OnInit {
       if (params.sortName) this.sortName = params.sortName;
       if (this.cat) this.getLocation = this.cat;
 
-      this.searchService.getSearchList(queryParams).subscribe(res => {
-        console.log(res)
-        this.list = res;
-        this.lastPage = this.list.totalPages;
-        this.maxValue = this.list.max_price;
-        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-              if (r > 0 && r <= this.list.totalPages) {
-                this.pages.push(r);
-              }
-            }
-      })
-      // this.searchService.getList(queryParams).subscribe(response => {
-      //   this.list = response;
-
-      //   // console.log('list data', this.list);
-
+      // this.searchService.getSearchList(queryParams).subscribe(res => {
+      //   console.log(res)
+      //   this.list = res;
       //   this.lastPage = this.list.totalPages;
+      //   this.maxValue = this.list.max_price;
       //   for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
-      //     if (r > 0 && r <= this.list.totalPages) {
-      //       this.pages.push(r);
-      //     }
-      //   }
-      // });
+      //         if (r > 0 && r <= this.list.totalPages) {
+      //           this.pages.push(r);
+      //         }
+      //       }
+      // })
+      this.searchService.getList(queryParams).subscribe(response => {
+        this.list = response;
+
+        // console.log('list data', this.list);
+
+        this.lastPage = this.list.totalPages;
+        for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+          if (r > 0 && r <= this.list.totalPages) {
+            this.pages.push(r);
+          }
+        }
+      });
     // });
   }
 
