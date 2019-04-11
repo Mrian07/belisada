@@ -281,40 +281,22 @@
                 </table>
             </div>
         </div>
-        <table class="detail-total" width="100%">
-            <tr>
-            <td>
-                Subtotal produk: &nbsp;
-            </td>
-            <td >
-                {{ (transactionDetail.subTotal - transactionDetail.courierPrice - transactionDetail.asuransi)  | currency:'Rp ':'symbol':'1.0'}}
-            </td>
-            </tr>
-            <tr>
-                <td>
-                    Asuransi: &nbsp; <b><span *ngIf="transactionDetail.useAsuransi === false">TIDAK</span> <span *ngIf="transactionDetail.useAsuransi === true">YA</span></b>
-                </td>
-                <td>
-                    <span *ngIf="transactionDetail.useAsuransi === false">0</span> <span *ngIf="transactionDetail.useAsuransi === true">{{ transactionDetail.asuransi | currency:'Rp ':'symbol':'1.0' }}</span>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    Biaya Pengiriman: &nbsp; <b>{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }}</b>
-                </td>
-                <td>
-                    {{ transactionDetail.courierPrice | currency:'Rp ':'symbol':'1.0' }}
-                </td>
-            </tr>
-            <tr class="bold">
-                <td>
-                    Total Pesanan &nbsp; 
-                </td>
-                <td class="total">
-                    <b>{{ transactionDetail.subTotal | currency:'Rp ':'symbol':'1.0'}}</b>
-                </td>
-            </tr>
-        </table>
+
+
+        <div class="frame-pesanan">
+            <div>Subtotal produk</div>
+            <div class="frame-pesanan__right">{{ (transactionDetail.subTotal - transactionDetail.courierPrice - transactionDetail.asuransi)  | currency:'Rp ':'symbol':'1.0'}}</div>
+            
+            <div>Asuransi: &nbsp; <b><span *ngIf="transactionDetail.useAsuransi === false">TIDAK</span> <span *ngIf="transactionDetail.useAsuransi === true">YA</span></b></div>
+            <div class="frame-pesanan__right"><span *ngIf="transactionDetail.useAsuransi === false">0</span> <span *ngIf="transactionDetail.useAsuransi === true">{{ transactionDetail.asuransi | currency:'Rp ':'symbol':'1.0' }}</span></div>
+        
+            <div>Biaya Pengiriman: &nbsp; <b>{{ transactionDetail.courierName }} - {{ transactionDetail.courierService }}</b></div>
+            <div class="frame-pesanan__right">{{ transactionDetail.courierPrice | currency:'Rp ':'symbol':'1.0' }}</div>
+
+            <div class="frame-pesanan__left__abuabu">Total Pesanan</div>
+            <div class="frame-pesanan__right__red"><b>{{ transactionDetail.subTotal | currency:'Rp ':'symbol':'1.0'}}</b></div>
+        </div>
+
         <div class="row delivery-detail">
             <div class="fluid">
                 <div class="pull-left">Penerima</div>
