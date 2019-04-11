@@ -58,9 +58,14 @@
         </div>
     </div>
     <!-- !PROMO BANNER! -->
+    
 
     <!-- FLASH SALE START -->
-    <div *ngIf="flashSaleProducts.length !== 0">
+    <!-- <div *ngIf="flashSaleProducts.length !== 0"> -->
+
+
+
+
         <!-- <div class="col">
             <div class="fs__title">
                 <h2>Today Deal</h2>
@@ -70,14 +75,20 @@
         <!-- <div class="col text-right">
             
         </div>  -->
-        <div class="flashWrapper"><!-- class="section__title" -->
+
+
+
+
+
+
+        <!-- <div class="flashWrapper">
             <h2 class="pull-left">Flash Sale</h2>
             <div class="fs__see-all pull-right">
                 <a [routerLink]="['/event']">
                     Lihat semua
                 </a>
             </div>
-            <!-- <span class="striped"></span> -->
+    
         </div>
         <div class="flash-sale full-width" *ngIf="homeContents.length !== 0">
             <div class="container">
@@ -90,11 +101,6 @@
                                         <h2 class="fs-product__name">
                                             {{ item.name }}
                                         </h2>
-                                        <!-- <div class="fs-product__rating">
-                                            <fa-icon class="rating__star rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.rate).fill(1)"></fa-icon>
-                                            <fa-icon class="rating__star rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.rate).fill(1)"></fa-icon>
-                                            <span class="rating__count"> {{ item.review }} Reviews</span>
-                                        </div> -->
                                     </div>
                                     
                                     <div class="fs-product__image">
@@ -122,8 +128,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- !FLASH SALE END! -->
+
+
 
     <!-- START POPULAR PRODUCT -->
     <div *ngIf="homeContents.length !== 0">
