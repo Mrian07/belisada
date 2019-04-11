@@ -3,7 +3,7 @@
   <div class="contain__sub" *ngFor="let item of buyerDiscus.content">
     <div>
       <div class="contain__image">
-        <img src="{{item.productImage}}" width="150">
+        <img [src]="imgProduct + item.productImage" [alt]="item.productImage">
       </div>
 
       <div class="contain__btn-detail" (click)="detail(item.productId, item.productName)">
@@ -12,9 +12,8 @@
     </div>
     <div class="contain__val">
       <div class="contain__val__com"> 
-        <div>
-          <!-- <img [src]="storeImgDiscussion + item.imageAvatarUrl" [alt]="item.imageAvatarUrl"> -->
-          <img src="{{item.imageAvatarUrl}}" class="imgDiscuss">
+        <div class="storeImgDiscussion">
+          <img [src]="storeImgDiscussion + item.imageAvatarUrl" [alt]="item.imageAvatarUrl">
         </div>
         <div>
           <div class="contain__name">{{item.name}}</div>
@@ -24,7 +23,7 @@
       <div class="cRep">
         <div class="contain__val__rep" *ngFor="let iChild of item.childs">  
             <div>
-              <img src="{{iChild.imageAvatarUrl}}" class="imgDiscussChild">
+                <img [src]="storeImgDiscussionChild + iChild.imageAvatarUrl" [alt]="iChild.imageAvatarUrl">
             </div>
             <div>
               <div class="contain__name">{{iChild.name}}</div>
