@@ -77,6 +77,9 @@ export class ResetPasswordComponent implements OnInit {
         if (rsl.status === 1) {
           this.loadingService.hide();
           this.success = true;
+          setTimeout(() => {
+            this.router.navigateByUrl('/account/sign-in');
+          }, 3000);
         }
       });
     }
