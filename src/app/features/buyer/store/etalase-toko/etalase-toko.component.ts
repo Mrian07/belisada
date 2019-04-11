@@ -7,6 +7,7 @@ import { SearchService } from '@belisada/core/services/search/search.service';
 import { ListSearch } from '@belisada/core/models/search/search.model';
 import { environment } from '@env/environment';
 import { isPlatformBrowser } from '@angular/common';
+import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 
 @Component({
   selector: 'app-etalase-toko',
@@ -51,8 +52,11 @@ export class EtalaseTokoComponent implements OnInit {
     );
     this.storeS.getEtalase(this.aaaa).subscribe(response => {
       this.proddetail = response.data;
-
-      this.getProductList(this.proddetail.storeId);
+      if (response.status) {
+        this.getProductList(this.proddetail.storeId);
+      } else {
+        this.router.navigateByUrl('/404');
+      }
     });
   }
 
@@ -65,8 +69,7 @@ export class EtalaseTokoComponent implements OnInit {
         itemperpage: 16,
         page: this.currentPage
       };
-      this.storeS.getStoreProductList(queryParams).subscribe(responseList =>{
-        console.log(responseList);
+      this.storeS.getStoreProductList(queryParams).subscribe(responseList => {
         this.list  = responseList;
         this.pages = [];
         this.lastPage = this.list.totalPages;

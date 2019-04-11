@@ -8,7 +8,6 @@
                         <img [src]="cdnUrl + '/banner/slider1.png'" alt="">
                     </a> -->
                     <!-- <app-carousel [images]="banners"></app-carousel> -->
-
                     <ngb-carousel *ngIf="banners">
                         <ng-template ngbSlide *ngFor="let banner of banners">
                             <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:banner.brand,min:0,max:999999999999}">
