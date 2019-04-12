@@ -74,8 +74,8 @@
                     <td data-label="Harga">
                         <div class="f-price">
                             <div>{{ item.fixPrice | currency:'Rp ':'symbol':'1.0'}}</div>
-                            <div>
-                                <div class="bDiskon" *ngIf="item.discount > 0">{{item.discount}}%</div>
+                            <div *ngIf="item.discount > 0">
+                                <div class="bDiskon">{{item.discount}}%</div>
                                 <div class='bArrow'></div>
                             </div>
                         </div>
