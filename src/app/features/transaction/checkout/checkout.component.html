@@ -122,7 +122,7 @@
                         <select [(ngModel)]="shippingRates[in]" (change)="shippingChange(cartCheckout.itemCartIds, in)"
                         class="contenCart__form">
                             <option disabled value="">Pilih Pengiriman</option>
-                            <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService.trim()'>{{ rate.courierCode }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
+                            <option *ngFor="let rate of rates[in]" [ngValue]='rate.courierCode + "~" + rate.courierService.trim()'>{{ rate.nameCapital }} {{ rate.courierService }} Rp {{ rate.courierPrice }}</option>
                         </select>
 
                         <img *ngIf="loadingRates[in]" class="loading" src="/assets/img/spinner.gif" alt="">
