@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ReviewService } from '@belisada/core/services/review/review.service';
 import { ReviewBuyer } from '../../../core/models/review/review.model';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-review-product',
@@ -9,6 +11,9 @@ import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/ro
   styleUrls: ['./review-product.component.scss']
 })
 export class ReviewProductComponent implements OnInit {
+  imgProduct: string;
+  storeImgDiscussion: string;
+  storeImgDiscussionChild: string;
 
   reviewBuyer: ReviewBuyer  = new ReviewBuyer();
 
@@ -17,10 +22,15 @@ export class ReviewProductComponent implements OnInit {
   pages: any = [];
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private reviewService: ReviewService,
     private router: Router,
     private activatedRoute: ActivatedRoute
-  ) { }
+  ) {
+    this.imgProduct = environment.thumborUrl + 'unsafe/fit-in/250x250/center/filters:fill(fff)/';
+    this.storeImgDiscussion = environment.thumborUrl + 'unsafe/fit-in/100x100/center/filters:fill(fff)/';
+    this.storeImgDiscussionChild = environment.thumborUrl + 'unsafe/fit-in/50x50/center/filters:fill(fff)/';
+  }
 
   ngOnInit() {
     this.loadData();
@@ -60,7 +70,9 @@ export class ReviewProductComponent implements OnInit {
     if (page < 1 || page > this.reviewBuyer.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/buyer/diskusi-review'], { queryParams: {page: page, status: 'review' }, queryParamsHandling: 'merge' }) ;
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

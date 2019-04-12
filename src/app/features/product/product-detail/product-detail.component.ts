@@ -1,7 +1,7 @@
 import { FormControl, Validators } from '@angular/forms';
 import { Content } from './../../../core/models/product/product.model';
 import { Component, OnInit, HostListener, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformServer } from '@angular/common';
+import { isPlatformServer, isPlatformBrowser } from '@angular/common';
 import { Router, ActivatedRoute, Params, RouterStateSnapshot } from '@angular/router';
 import { Title, Meta, TransferState, makeStateKey } from '@angular/platform-browser';
 import { ProductDetailList, MoreInformation, CreateDiscus } from '@belisada/core/models/product/product.model';
@@ -105,10 +105,13 @@ export class ProductDetailComponent implements OnInit {
   public result;
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
-      this.isSubHeaderShow = (window.pageYOffset > 450) ? true : false;
+      if (isPlatformBrowser(this.platformId)) {
+        this.isSubHeaderShow = (window.pageYOffset > 450) ? true : false;
+      }
     }
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private authService: AuthService,
@@ -124,7 +127,6 @@ export class ProductDetailComponent implements OnInit {
     private meta: Meta,
     private tstate: TransferState,
     private http: HttpClient,
-    @Inject(PLATFORM_ID) platformId
 
   ) {
     this.storeImageUrl = environment.thumborUrl + 'unsafe/fit-in/218x218/';
@@ -179,7 +181,6 @@ export class ProductDetailComponent implements OnInit {
     if (token) {
       this.isLogin = true;
     }
-    // // console.log('shippingAddress: ', this.shippingAddress);
     this.active();
     this.loadData();
   }
@@ -198,7 +199,6 @@ export class ProductDetailComponent implements OnInit {
     this.activeSpesifikasi = true;
     // this.homeS.getHomeNew().subscribe(res => {
     //   this.productNewatProdDetail = res;
-    //   // // console.log('ini res: ', res);
     // });
     this.activatedRoute.params.subscribe((params: Params) => {
       this.getDiscus(params);
@@ -234,7 +234,6 @@ export class ProductDetailComponent implements OnInit {
         this.meta.updateTag({ property: 'og:url', content: this.configuration.domainUrl + '/product/product-detail/' +
         this.productDetail.id + '/' + this.productDetail.name });
         ///
-        console.log(this.productImageUrl + '' + this.productDetail.imageUrl[0]);
         const thumborOption: ThumborOptions = {
           width: 100,
           height: 100,
@@ -247,12 +246,7 @@ export class ProductDetailComponent implements OnInit {
         this.productDetail.couriers.forEach((item, index) => {
           this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
         });
-
-        // console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
-
-        // // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
-        // console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -261,7 +255,6 @@ export class ProductDetailComponent implements OnInit {
       this.productService.detailProduct(params['id']).subscribe(res => {
         this.productDetail = res.data;
         this.moreInformation = res.data.moreInformation;
-        // console.log('this.productDetail: ', this.productDetail);
         this.tabVal = this.productDetail.specification;
 
         const thumborOption: ThumborOptions = {
@@ -276,12 +269,7 @@ export class ProductDetailComponent implements OnInit {
         this.productDetail.couriers.forEach((item, index) => {
           this.productDetail.couriers[index].imageUrl = this.thumborService.process(item.imageUrl, thumborOption);
         });
-
-        // console.log('this.productDetail.couriers--updated: ', this.productDetail.couriers);
-
-        // // console.log('ini tabval', this.tabVal);
         this.imgIndex = this.productDetail.imageUrl[0];
-        // console.log('this.imgIndex: ', this.imgIndex);
 
         if (this.isLogin) {
           this.listShipping();
@@ -298,7 +286,6 @@ export class ProductDetailComponent implements OnInit {
   }
     textAreaExpannded(e) {
         this.idDicus = e;
-        console.log(e);
         this.messageString.reset();
         this.textAreaClick = true;
       }
@@ -307,18 +294,14 @@ export class ProductDetailComponent implements OnInit {
       }
   showMoreItems(e) {
     if ( this.idDicus = e ) {
-      console.log('sss');
       this.paginationLimit[this.idDicus] = Number(this.paginationLimit) + 3;
     } else {
-      console.log('aaa');
     }
   }
   showLessItems(e) {
     if ( this.idDicus = e ) {
-      console.log('sss');
       this.paginationLimit[this.idDicus] = Number(this.paginationLimit) - 3;
     } else {
-      console.log('aaa');
     }
   }
   private getDiscus(params: Params) {
@@ -331,15 +314,11 @@ export class ProductDetailComponent implements OnInit {
         }
         // this.LengthDiscus = item.childs.length;
       }));
-      console.log(this.paginationLimit);
-      console.log('discus', this.discus);
-      console.log('this', this.LengthDiscus);
     });
   }
 
   goStore(url) {
     this.router.navigate(['/' + url]);
-    // // console.log(url);
   }
 
   selectImg(img) {
@@ -358,9 +337,6 @@ export class ProductDetailComponent implements OnInit {
         };
         this.getShippingRates(queryParam);
       }
-
-      // // console.log('this.shippingAddress: ', this.shippingAddress);
-      // // console.log('this.shippingAddressList: ', this.shippingAddressList);
     });
   }
 
@@ -405,8 +381,6 @@ export class ProductDetailComponent implements OnInit {
       cancelButtonColor: '#d33'
     }).then((result) => {
       if (result.value) {
-        console.log('result.value: ', result.value);
-        console.log('this.snapshot.url', this.snapshot.url);
         this.router.navigate(['/account/sign-in'],
           {
             queryParams: {
@@ -433,20 +407,19 @@ export class ProductDetailComponent implements OnInit {
 
   gotTodetailPart(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
-    // // console.log(r);
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
   shippingChange() {
-    // // console.log('aaaa');
   }
   BtnBuat() {
     const a = {
       message : this.messageBottom.value,
       productId: this.productDetail.productId
     };
-    console.log('ini a', this.oktest);
     if (this.isLogin) {
       this.productService.createDiscus(a).subscribe(rsl => {
         this.productService.getDiscus(this.productDetail.productId).subscribe(resDiscus => {
@@ -465,8 +438,6 @@ export class ProductDetailComponent implements OnInit {
         cancelButtonColor: '#d33'
       }).then((result) => {
         if (result.value) {
-          console.log('result.value: ', result.value);
-          console.log('this.snapshot.url', this.snapshot.url);
           this.router.navigate(['/account/sign-in'],
             {
               queryParams: {
@@ -481,7 +452,6 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart(productId, storeId) {
     const userData = this.userService.getUserData(this.authService.getToken());
-    // // console.log('userData: ', userData);
 
     if (userData) {
       if (userData.storeId === storeId) {
@@ -505,7 +475,6 @@ export class ProductDetailComponent implements OnInit {
           };
 
           this.shoppingCartService.create(addToCartRequest).subscribe(response => {
-            // // console.log('response: ', response);
             if (response.status === 1) {
               // this.shoppingCartService.addItem(productId, +quantity);
               this.shoppingCartService.addItem(productId, +this.qty, +response.itemCartId);
@@ -538,13 +507,14 @@ export class ProductDetailComponent implements OnInit {
 
     const r = name.replace(new RegExp('/', 'g'), ' ');
     this.router.navigate(['/product/another-offer/' + id + '/' + r]);
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 
   // function untuk mendapatkan current posisition //
   trackMe() {
-    console.log('123123')
     if (navigator.geolocation) {
       this.isTracking = true;
       navigator.geolocation.getCurrentPosition((position) => {
@@ -556,33 +526,25 @@ export class ProductDetailComponent implements OnInit {
   }
 
   showTrackingPosition(position) {
-    console.log(`tracking postion:  ${position.coords.latitude} - ${position.coords.longitude}`);
     this.currentLat = position.coords.latitude;
     this.currentLong = position.coords.longitude;
     const latLong = `${position.coords.latitude},${position.coords.longitude}`;
-    console.log(latLong);
     const b = {
       key: environment.googleKey.geoCodeApi,
       latlng: latLong,
     };
-    console.log('latlong', b );
     this.productService.getMap(b).subscribe(resss => {
-      console.log('ress', resss);
       this.ressPonseFromGoogle = resss;
       this.statusFromGoogle = this.ressPonseFromGoogle.status;
-      console.log(this.ressPonseFromGoogle.status);
-      console.log(resss);
       for (const b of this.ressPonseFromGoogle.results) {
         const m = b.types.includes('street_address');
         if (m) {
           this.address = b.formatted_address;
-          console.log(b.formatted_address)
         }
           for (const d of b.address_components) {
             const n = d.types.includes('postal_code');
             if (n) {
               this.zipCode = d.long_name;
-              console.log(this.zipCode);
               const array = {
                 productId: this.productDetail.productId,
                 postal: this.zipCode

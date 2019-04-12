@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { Globals } from '@belisada/core/services';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -21,6 +22,7 @@ export class AppComponent implements OnInit {
   message;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     public globals: Globals,
     titleService: Title,
     router: Router,
@@ -29,14 +31,19 @@ export class AppComponent implements OnInit {
     private messagingService: MessagingService
   ) {
     globals.socket = _chatService.connectSocket();
+    navigator.geolocation.getCurrentPosition((position: Position) => {
+      globals.position = position;
+    }, (error: PositionError) => console.log(error));
     router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        window.scrollTo(0, 0);
+        if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo(0, 0); }
         const title = this.getTitle(router.routerState, router.routerState.root).join('-');
-        console.log('title', title);
         titleService.setTitle(title);
-        (<any>window).ga('set', 'page', event.urlAfterRedirects);
-        (<any>window).ga('send', 'pageview');
+        if (isPlatformBrowser(this.platformId)) {
+        (<any>window).ga('set', 'page', event.urlAfterRedirects); }
+        if (isPlatformBrowser(this.platformId)) {
+        (<any>window).ga('send', 'pageview'); }
       }
     });
   }

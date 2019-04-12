@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { ShareButtons } from '@ngx-share/core';
 import { Subscription, combineLatest } from 'rxjs';
 import { ProductsSandbox } from '../products.sandbox';
@@ -23,6 +23,7 @@ import { CreateRoomRequest } from '@belisada/core/models/chat/chat.model';
 import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
 import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { isPlatformBrowser } from '@angular/common';
 
 
 enum TabTypeEnum {
@@ -111,10 +112,13 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
 
   @HostListener('window:scroll', ['$event'])
     doSomething(event) {
-      this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
+      if (isPlatformBrowser(this.platformId)) {
+        this.isSubHeaderShow = (window.pageYOffset > 645) ? true : false;
+      }
     }
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     public globals: Globals,
     private _fb: FormBuilder,
     private _route: ActivatedRoute,
@@ -252,7 +256,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   alertChat(storeId) {
     const userData = this._userService.getUserData(this._authService.getToken());
     if (userData) {
-      console.log('storeId:', storeId);
       this._chatService.setStoreId(storeId);
       const joinRoom = new JoinRoom();
       joinRoom.uniqueIdentifier =  this.userData.userId + '~' + storeId;
@@ -313,6 +316,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
           shippingAddressId: this.selectedShippingAddress.addressId
         };
 
+        // console.log('add to cart', addToCartRequest);
+        // return;
+
         this._shoppingCartService.create(addToCartRequest).subscribe(response => {
           this.loadingService.hide();
           if (response.status === 1) {
@@ -335,7 +341,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       discusParentId: discusParentId || null,
       productId: this.product.priceData.range.productId
     });
-    // console.log(this.createNewDiscussionForm.value);
     this._productService.createDiscus(this.createNewDiscussionForm.value).subscribe(rsl => {
       this.loadingService.hide();
       this._loadDiscuss(this.product.priceData.range.productId);
@@ -435,7 +440,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
       const queryParams = route.qparams;
 
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
-        console.log('product: ', product);
+
+        console.log('detail ini', product);
+
         if (product.status === 1) {
           this._masterData = product.data.masterId;
         }
@@ -453,22 +460,24 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
             })
             .then((result) => {
               if (result.value) {
-                window.open(
-                  environment.baseUrlSeller + '/products/' + this._masterData, // <- hit master data ID
-                  '_blank' // <- This is what makes it open in a new window.
-                );
+                if (isPlatformBrowser(this.platformId)) {
+                  window.open(
+                    environment.baseUrlSeller + '/products/' + this._masterData, // <- hit master data ID
+                    '_blank' // <- This is what makes it open in a new window.
+                  );
+                }
               }});
+              /*
             this._router.navigate(
               ['/']
               // ['/product/product-detail/'
               //   + this._route.snapshot.params.id
               //   + '/'
               //   + this._route.snapshot.params.name]
-            );
+            );*/
             return;
         }
         this.product = product.data;
-        // console.log(product.data);
         this.selectedImage = product.data.imageUrl[0];
 
         this._productService.getProductDetailV2Variant(id).subscribe((variants) => {
@@ -488,7 +497,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
             this._loadDiscuss(this.product.priceData.range.productId);
 
             this._productService.getReview(this.product.priceData.range.productId).subscribe(rev => {
-              console.log('hasilnya', rev);
               this.productReview = rev;
             });
           }
@@ -568,7 +576,6 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     //                   this.selectedShippingAddress = address.find(x => x.isDefault === true);
     //                 }
     //                 this.shippingAddresses = address;
-    //                 console.log('this.product.priceData.range.productId: ', this.product.priceData.range.productId);
     //                 this._loadShippingMethod({
     //                   productId: this.product.priceData.range.productId,
     //                   rajaOngkirId: this.selectedShippingAddress.rajaOngkirId,
@@ -614,7 +621,9 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
   */
   gotoPenawaran(e) {
     this._router.navigate(['/product/another-offers/' + e ]);
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 }

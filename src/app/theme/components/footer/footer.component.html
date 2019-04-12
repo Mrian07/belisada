@@ -1,22 +1,32 @@
 <section class="footer">
-    <div class="container">
-        <div class="footer__top">
-            <div class="row">
-                <div class="col-md-6 inline">
-                    <img src="/assets/img/icon-subscribe.png" alt="">
-                    <label class="footer__signup">Sign up For Newsletter</label>
-                </div>
-                <div class="col-md-6">
-                    <form class="form-subscribe" (ngSubmit)="subscribe()">
-                        <div class="form-subscribe__wrapper pull-right">
-                            <input type="text" class="form-subscribe__input" [formControl]="subscribe_email" placeholder="Enter your email address">
-                            <span class="form-subscribe__delimiter"></span>
-                            <button class="form-subscribe__button" type="submit">Subscribe</button>
-                        </div>
-                        <!-- <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
-                            <span class="tooltiptext">Harap masukan format email dengan benar</span>
-                        </div> -->
-                    </form>
+
+    <!-- Chat Buyer -->
+    <!-- <div class="sticky" *ngIf="isLogin" (click)="alertChat()">
+        <a>
+            <span class="square"><fa-icon [icon]="['fas', 'comments']"></fa-icon></span> Chat dengan seller
+        </a>
+    </div> -->
+
+    <div class="container-fluid noPadding">
+        <div class="container">
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-md-6 inline">
+                        <img src="/assets/img/icon-subscribe.png" alt="">
+                        <label class="footer__signup">Sign up For Newsletter</label>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-subscribe" (ngSubmit)="subscribe()">
+                            <div class="form-subscribe__wrapper pull-right">
+                                <input type="text" class="form-subscribe__input" [formControl]="subscribe_email" placeholder="Enter your email address">
+                                <span class="form-subscribe__delimiter"></span>
+                                <button class="form-subscribe__button" type="submit">Subscribe</button>
+                            </div>
+                            <!-- <div *ngIf="subscribe_email.dirty && subscribe_email.invalid">
+                                <span class="tooltiptext">Harap masukan format email dengan benar</span>
+                            </div> -->
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,10 +86,10 @@
                             <li><a [routerLink]="['/']">Contact Us</a></li>
                         </ul> -->
                         <div class="sitemap__contact">
-                            <h2>Question?</h2>
-                            <a class="contactUs" [routerLink]="['/contact-us']">Contact Us</a>
+                            <!-- <h2>Question?</h2>
+                            <a class="contactUs" [routerLink]="['/contact-us']">Contact Us</a> -->
                             <h2>Email:</h2>
-                            <p>cs@belisada.co.id</p>
+                            <a class="contactUs" href="mailto:cs@belisada.co.id">cs@belisada.co.id</a>
                         </div>
                     </div>
                     <!-- <div class="col-md-5r">

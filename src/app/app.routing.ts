@@ -6,6 +6,7 @@ import { Page404Component, MaintenanceComponent } from '@belisada/features/error
 import { LandingPageComponent } from '@belisada/features/landing-page/landing-page.component';
 import { EtalaseTokoComponent } from '@belisada/features/buyer/store/etalase-toko/etalase-toko.component';
 import { FaqComponent } from './features/faq/faq.component';
+import { EventComponent } from './features/event/event.component';
 // import { ContactUsComponent } from './features/contact-us/contact-us.component';
 
 const routes: Routes = [
@@ -30,10 +31,16 @@ const routes: Routes = [
   { path: 'product', loadChildren: 'app/features/product/product.module#ProductModule' },
   { path: 'transaction', loadChildren: 'app/features/transaction/transaction.module#TransactionModule' },
   { path: 'payments', loadChildren: 'app/features/payment/payment.module#PaymentModule' },
+  { path: 'event', loadChildren: 'app/features/event/event.module#EventModule' },
   { path: 'chat', loadChildren: 'app/features/chat/chat.module#ChatModule' },
   { path: 'faq', component: FaqComponent, data: {title: 'FAQ - Belisada.co.id'}},
   // { path: 'contact-us', component: ContactUsComponent, data: {title: 'Contact Us - Belisada.co.id'}},
   { path: 'contact-us', loadChildren: 'app/features/contact-us/contact-us.module#ContactUsModule' },
+  {
+    path: '404',
+    pathMatch: 'full',
+    component: Page404Component,
+  },
   {
     path: '',
     component: LandingPageComponent,

@@ -9,12 +9,12 @@ export class CarouselComponent implements OnInit {
 
   @Input() images: any[] = [];
 
-  index = 0;
-  speed = 4000;
-  infinite = true;
-  direction = 'right';
-  directionToggle = true;
-  autoplay = true;
+  // index = 0;
+  // speed = 4000;
+  // infinite = true;
+  // direction = 'right';
+  // directionToggle = true;
+  // autoplay = true;
 
   constructor() { }
 

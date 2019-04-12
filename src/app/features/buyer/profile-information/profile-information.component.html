@@ -16,7 +16,11 @@
 			<div class="col-2 title-line">Nama</div> 
 			<div class="col-4" *ngIf="isField==false">{{profile.name}}</div>
 			<div class="col-4" *ngIf="isField==true"><input type="text" (keypress)="keyLa($event)" class="input-style-text" formControlName="name" maxlength="30" appA>
-				<div *ngIf="validationOnpopUpCreateStore.controls.name.invalid && (validationOnpopUpCreateStore.controls.name.dirty && validationOnpopUpCreateStore.controls.name.touched)" class="alert alert-danger toll tooltip testing">
+				<!-- <div *ngIf="validationOnpopUpCreateStore.controls.name.invalid && (validationOnpopUpCreateStore.controls.name.dirty && validationOnpopUpCreateStore.controls.name.touched)" class="alert alert-danger toll tooltip testing">
+					<span class="tooltiptext">Nama tidak boleh kosong</span>
+				</div> -->
+
+				<div *ngIf="validationOnpopUpCreateStore.controls.name.invalid && (validationOnpopUpCreateStore.controls.name.dirty && validationOnpopUpCreateStore.controls.name.touched)" class="alert alert-danger" >
 					<span class="tooltiptext">Nama tidak boleh kosong</span>
 				</div>
 				
@@ -40,8 +44,13 @@
 			<div class="col-2 title-line">No. Handphone </div>
 			<div class="col-4" *ngIf="isField==false">{{profile.phone}}</div>
 			<div class="col-4" *ngIf="isField==true">
-					<input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
-					<app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="No. Handphone tidak boleh kosong"></app-field-error-display>
+				<input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
+
+				<div *ngIf="validationOnpopUpCreateStore.controls.phone.invalid && (validationOnpopUpCreateStore.controls.phone.dirty && validationOnpopUpCreateStore.controls.phone.touched)" class="alert alert-danger" >
+					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
+				</div>
+
+				<!-- <app-field-error-display [displayError]="isFieldValid('phone')" errorMsg="No. Handphone tidak boleh kosong"></app-field-error-display> -->
 			</div>
 
 			<!-- <div class="col-4"><input type="text" class="input-style-text" readonly  formControlName="email"></div> -->
@@ -64,6 +73,9 @@
 				<my-date-picker class="frame-date" name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
 				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
+				</div>
+				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger" >
+					<span class="tooltiptext">Tanggal lahir tidak boleh kosong</span>
 				</div>
 				<app-field-error-display [displayError]="isFieldValid('dateOfBirth')" errorMsg="Tanggal Lahir tidak boleh kosong"></app-field-error-display>
 			</div>

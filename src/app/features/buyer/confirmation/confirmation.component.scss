@@ -47,7 +47,7 @@
 .input-c{
     border:0px;
     font-size: 13px;
-    padding:10px;
+    padding:0px;
     border-bottom: 1px solid #2d2d2d;
     width:100%;
     margin-left:8px;
@@ -55,11 +55,22 @@
     margin-bottom:5px;
 }
 
+.label-title{
+    font-weight: bold;
+}
+
+.textarea{
+    height: 10rem;
+}
+
 .label-c{
     text-align: right;
     color: #2d2d2d;
     width:200px;
     margin-top:10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-size: 1.3rem;
 }
 
 .date-confim{
@@ -68,9 +79,13 @@
 }
 
 .date-custom{
-    margin-top:10px;
+    margin-top:-10px;
     border-bottom: 1px solid #2d2d2d;
-    margin-left:5px;
+    margin-left:10px;
+}
+
+.date-confim{
+    margin-left:-10px;
 }
 
 .btn-status{
@@ -94,4 +109,8 @@
     margin-top:12px;
     margin-left:10px;
     font-weight: bold;
+}
+
+.mydp .selection{
+    padding-left: 0px; 
 }

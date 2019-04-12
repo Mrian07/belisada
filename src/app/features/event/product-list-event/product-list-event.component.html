@@ -1,0 +1,74 @@
+<!-- START POPULAR PRODUCT -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <img src="../../../../assets/img/launchday.png" class="banner-event">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div *ngIf="flashSaleProducts.length !== 0">
+        <div class="underline">
+            <h2>Flash Sale</h2>
+        </div>
+        <div class="full-width">
+            <div class="container">
+                <div class="row">
+                    <div class="section">
+                        <div class="section__content">
+                            <div class="row no-gutters">
+                                <div class="product col-md-5r col-xs-6" *ngFor="let item of flashSaleProducts">
+                                    <a class="product__link">
+                                        <div class="product__grid">
+                                            <div class="product__container">
+                                                <div>
+                                                    <h2 [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]" class="product__name">
+                                                        {{ item.name }}
+                                                    </h2>
+                                                    <div class="product__rating">
+                                                        <fa-icon class="rating__star rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.rate).fill(1)"></fa-icon>
+                                                        <fa-icon class="rating__star rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.rate).fill(1)"></fa-icon>
+                                                        <span class="rating__count"> {{ item.review }} Reviews</span>
+                                                    </div>
+                                                </div>
+                                                <div class="productOpacity">
+                                                    <div class="product__image">
+                                                        <a [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]"><img [src]="productImageUrl + item.imageUrl" [alt]="item.imageUrl"></a>
+                                                    </div>
+                                                    <div class="product__info">
+                                                        <span class="product__info--price">
+                                                            {{ item.fixPrice | currency:'Rp ':'symbol':'1.0' }}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="addToCart">
+                                                    <button class="btn btnCart" [routerLink]="['/product/product-detail/' + item.productId + '/' + encodeUrl(item.name)]">More Detail</button>
+                                                    <!-- <button class="btn btnFavorite"><fa-icon [icon]="['far', 'heart']"></fa-icon></button> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="title">
+                <h1>Syarat dan Ketentuan</h1>
+            </div>
+            <ol>
+                <li>Soleat delectus conceptam vim cu, ex timeam verterem aliquando sed. Eu minimum omittantur sed</li>
+                <li>An aperiam ceteros molestiae has, ad simul molestie noluisse sed, ei pri dolorum percipit.</li>
+                <li>Salutatus neglegentur ius ei, ipsum animal id sea.</li>
+                <li>Id vero exerci perpetua sea.</li>
+                <li>Tritani accusamus usu eu, ad recusabo praesent vituperata has.</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- !END OF POPULAR PRODUCT! -->

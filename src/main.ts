@@ -4,10 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-console.log('environment.production: ', environment.production);
-
 if (environment.production) {
-  console.log('prod');
   enableProdMode();
   document.write(`
     <script type="text/javascript">
@@ -25,7 +22,6 @@ if (environment.production) {
       ga('create', 'UA-124072597-2', 'auto');// add your tracking ID here.
     </script>`);
 } else {
-  console.log('dev');
   document.write(`
     <script type="text/javascript">
       (function(i, s, o, g, r, a, m) {

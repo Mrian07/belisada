@@ -4,6 +4,31 @@
 *   # .detail-product
 */
 .detail-product {
+
+    &__frame-title{
+        display: grid;
+        grid-template-columns: 90% 10%;
+
+        &__diskon{
+            background: #ed7425;
+            color:#fff;
+            padding:5px;
+            font-size: 18px;
+            margin-top:-10px;
+            text-align: center;
+        }
+
+        &__arrow{
+            width: 0; 
+            height: 10; 
+            
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            
+            border-top: 10px solid #ed7425;
+        }
+    }
+
     &__row-gap {
         &--1 {
             margin-bottom: 1rem;

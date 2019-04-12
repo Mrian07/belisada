@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { StoreService } from '@belisada/core/services';
 import { EtalaseStore, EtalaseStoreData } from '@belisada/core/models/store/store.model';
@@ -6,6 +6,8 @@ import { ProductService } from '@belisada/core/services/product/product.service'
 import { SearchService } from '@belisada/core/services/search/search.service';
 import { ListSearch } from '@belisada/core/models/search/search.model';
 import { environment } from '@env/environment';
+import { isPlatformBrowser } from '@angular/common';
+import { Page404Component, MaintenanceComponent } from '@belisada/features/error-pages';
 
 @Component({
   selector: 'app-etalase-toko',
@@ -31,6 +33,7 @@ export class EtalaseTokoComponent implements OnInit {
 
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private activatedRoute: ActivatedRoute,
     private route: ActivatedRoute,
     private storeS: StoreService,
@@ -38,7 +41,7 @@ export class EtalaseTokoComponent implements OnInit {
     private router: Router) {
 
     this.storeImage = environment.thumborUrl + 'unsafe/fit-in/180x180/center/filters:fill(fff)/';
-    this.productImageUrl = environment.thumborUrl + 'unsafe/400x400/center/filters:fill(fff)/';
+    this.productImageUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
     this.productStoreUrl = environment.thumborUrl + 'unsafe/50x50/center/filters:fill(fff)/';
   }
 
@@ -49,8 +52,11 @@ export class EtalaseTokoComponent implements OnInit {
     );
     this.storeS.getEtalase(this.aaaa).subscribe(response => {
       this.proddetail = response.data;
-
-      this.getProductList(this.proddetail.storeId);
+      if (response.status) {
+        this.getProductList(this.proddetail.storeId);
+      } else {
+        this.router.navigateByUrl('/404');
+      }
     });
   }
 
@@ -63,11 +69,19 @@ export class EtalaseTokoComponent implements OnInit {
         itemperpage: 16,
         page: this.currentPage
       };
-      console.log(queryParams);
+      // this.storeS.getStoreProductList(queryParams).subscribe(responseList => {
+      //   this.list  = responseList;
+      //   this.pages = [];
+      //   this.lastPage = this.list.totalPages;
+      //   for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
+      //     if (r > 0 && r <= this.list.totalPages) {
+      //       this.pages.push(r);
+      //     }
+      //   }
+
+      // })
       this.prodS.getList(queryParams).subscribe(responseList => {
         this.list  = responseList;
-
-        console.log(this.list);
         this.pages = [];
         this.lastPage = this.list.totalPages;
         for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
@@ -98,13 +112,17 @@ export class EtalaseTokoComponent implements OnInit {
   goToDetail(id, name) {
     const r = name.replace(new RegExp('/', 'g'), ' ');
     this.router.navigate(['/product/product-detail/' + id + '/' + r]);
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
   setPage(page: number, increment?: number) {
     if (increment) { page = +page + increment; }
     if (page < 1 || page > this.list.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/' + this.aaaa], { queryParams: {page: page}, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 }

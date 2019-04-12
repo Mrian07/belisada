@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { TransactionService } from '../../../core/services/transaction/transaction.service';
 import { OrderStatusPaid, ContentOrderStatusPaid, CartItemsPaid } from '@belisada/core/models/transaction/transaction.model';
 import { ReviewService } from '../../../core/services/review/review.service';
@@ -11,6 +11,9 @@ import mct from 'madrick-countdown-timer';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { RatingValidators } from '../star-rating/rating-validators';
 import { UserService } from '@belisada/core/services';
+// import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { isPlatformBrowser } from '@angular/common';
+
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
 
 @Component({
@@ -19,6 +22,9 @@ import { LoadingService } from '@belisada/core/services/globals/loading.service'
   styleUrls: ['./order-status-paid.component.scss']
 })
 export class OrderStatusPaidComponent implements OnInit {
+
+  public isLoading: Boolean = false;
+
   review: ListReview[];
   list: OrderStatusPaid[];
   transactionDetail: OrderStatusPaid = new OrderStatusPaid();
@@ -34,7 +40,7 @@ export class OrderStatusPaidComponent implements OnInit {
   showDialog: Boolean = false;
   isPilih: boolean;
   isSent: boolean;
-  isLoading: boolean;
+  //isLoading: boolean;
   isEmpty: boolean;
   transactionId: number;
   listPayment: PaymentList[];
@@ -68,6 +74,7 @@ export class OrderStatusPaidComponent implements OnInit {
   paymentNumberReview: string;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private reviewService: ReviewService,
     private loadingService: LoadingService,
     private fb: FormBuilder,
@@ -75,13 +82,17 @@ export class OrderStatusPaidComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private paymentService: PaymentService,
+
+    private _loadingService: LoadingService,
   ) { this.list = []; }
 
 
 
   ngOnInit() {
+
     this.imgBuktiTransfer = 'assets/img/add-product.png';
-    this.isLoading = true;
+    // this.isLoading = true;
+    
     this.createFormControls();
     this.statusFlag();
     this.isForm = true;
@@ -114,6 +125,9 @@ export class OrderStatusPaidComponent implements OnInit {
   }
 
   orderListPaid(statusOrderCode?: any) {
+
+    this._loadingService.show();
+
     const queryParams = {
       itemperpage: 10,
       page: this.currentPage,
@@ -121,10 +135,9 @@ export class OrderStatusPaidComponent implements OnInit {
     };
 
     this.transactionService.getOrderPaid(queryParams).subscribe(respon => {
+      console.log('v2', respon)
       this.proddetail = respon;
       this.list = respon.content;
-      console.log('helo', respon);
-      console.log('as', this.proddetail);
       this.proddetail = respon;
       this.a = respon.totalElements;
       this.pages = [];
@@ -134,7 +147,8 @@ export class OrderStatusPaidComponent implements OnInit {
           this.pages.push(r);
         }
       }
-      this.isLoading = false;
+      // this.isLoading = false;
+      this._loadingService.hide();
     });
   }
 
@@ -167,17 +181,40 @@ export class OrderStatusPaidComponent implements OnInit {
     _data.message = this.reviewForm.controls['message'].value;
     _data.productId = this.reviewForm.controls['productId'].value;
     _data.paymentNumber = this.reviewForm.controls['paymentNumber'].value;
-    this.reviewService.createReview(_data).subscribe(data => {
-      this.loadingService.hide();
-      this.orderListPaid(this.status);
+
+    if (this.reviewForm.controls['star'].value === ''
+    || this.reviewForm.controls['star'].value === 0
+    || this.reviewForm.controls['star'].value === undefined) {
       swal(
-        'Sukses',
-        'Terimakasih atas penilaian Anda.',
-        'success'
+        'Gagal',
+        'Silakan pilih rating.',
+        'error'
       );
-    });
-    this.reviewForm.reset();
-    this.showDialogReview = false;
+      this.loadingService.hide();
+    } else if (this.reviewForm.controls['message'].value === ''
+    || this.reviewForm.controls['message'].value === 0
+    || this.reviewForm.controls['message'].value === undefined) {
+      swal(
+        'Gagal',
+        'Silakan isi komentar Anda.',
+        'error'
+      );
+      this.loadingService.hide();
+    } else {
+
+      this.reviewService.createReview(_data).subscribe(data => {
+        this.loadingService.hide();
+        this.orderListPaid(this.status);
+        swal(
+          'Sukses',
+          'Terimakasih atas penilaian Anda.',
+          'success'
+        );
+      });
+      this.reviewForm.reset();
+      this.showDialogReview = false;
+    }
+
   }
 
   setCanvas(e, imageBuktiTransfer) {
@@ -276,7 +313,6 @@ export class OrderStatusPaidComponent implements OnInit {
         (response.status === 1) ? 'success' : 'error'
       );
       this.orderListPaid(this.status);
-      console.log('response: ', response);
     });
     this.showDialogKonfirm = false;
   }
@@ -318,7 +354,13 @@ export class OrderStatusPaidComponent implements OnInit {
     if (page < 1 || page > this.proddetail.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/buyer/order'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
+  }
+
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
   }
 
 }

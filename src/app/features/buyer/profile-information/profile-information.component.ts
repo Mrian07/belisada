@@ -12,6 +12,7 @@ import { UserService, ShareMessageService } from '@belisada/core/services';
 import { UserData } from '@belisada/core/models';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { MessagingService } from '@belisada/shared/messaging.service';
 
 @Component({
   selector: 'app-profile-information',
@@ -61,6 +62,7 @@ export class ProfileInformationComponent implements OnInit {
   userData: UserData = new UserData();
   token: string;
   status: any;
+  submitted: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -69,7 +71,8 @@ export class ProfileInformationComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private shareMessageService: ShareMessageService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private messagingService: MessagingService
   ) { }
 
   ngOnInit() {
@@ -138,62 +141,63 @@ export class ProfileInformationComponent implements OnInit {
   }
 
 validateAllFormFields(formGroup: FormGroup) {
-  Object.keys(formGroup.controls).forEach(field => {
-    const control = formGroup.get(field);
-    if (control instanceof FormControl) {
-        control.markAsTouched({
-            onlySelf: true
-        });
-    } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-    }
-});
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+          control.markAsTouched({
+              onlySelf: true
+          });
+      } else if (control instanceof FormGroup) {
+          this.validateAllFormFields(control);
+      }
+    });
   }
+
   isFieldValid(field: string) {
       return !this.validationOnpopUpCreateStore.get(field).valid && this.validationOnpopUpCreateStore.get(field).touched;
   }
 
   /* Fungsi ini untuk melakukan update data profile kedalam fungsi updateProfile pada service  userService*/
   onSubmit() {
-    this.loadingService.show();
-    if (this.validationOnpopUpCreateStore.valid) {
+    this.submitted = true;
+    if (this.validationOnpopUpCreateStore.valid)
+    {
+      this.loadingService.show();
       const model = this.validationOnpopUpCreateStore.value;
-        const editProfileRequest: EditProfileRequest = new EditProfileRequest();
-    if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
-      editProfileRequest.name = this.validationOnpopUpCreateStore.controls['name'].value;
-      editProfileRequest.phone = this.validationOnpopUpCreateStore.controls['phone'].value;
-      editProfileRequest.gender = this.validationOnpopUpCreateStore.controls['gender'].value;
-      editProfileRequest.dateOfBirth =
-      this.dateUtil.formatMyDate(this.validationOnpopUpCreateStore.controls['dateOfBirth'].value.date, this.defaultDateFormat);
+      const editProfileRequest: EditProfileRequest = new EditProfileRequest();
+      if (this.base64Img) { editProfileRequest.imageAvatarUrl = this.base64Img; }
+        editProfileRequest.name = this.validationOnpopUpCreateStore.controls['name'].value;
+        editProfileRequest.phone = this.validationOnpopUpCreateStore.controls['phone'].value;
+        editProfileRequest.gender = this.validationOnpopUpCreateStore.controls['gender'].value;
+        editProfileRequest.dateOfBirth =
+        this.dateUtil.formatMyDate(this.validationOnpopUpCreateStore.controls['dateOfBirth'].value.date, this.defaultDateFormat);
 
-      this.userService.updateProfile(editProfileRequest).subscribe(data => {
-        this.authService.refreshToken().subscribe(respon => {
-          this.loadingService.hide();
-          console.log('status', respon.status);
-          if (respon.status === 1) {
-            // if (localStorage.getItem('isRemember') === 'true') {
-              this.userService.setUserToLocalStorage(respon.token);
-            // } else {
-            //   this.userService.setUserToSessionStorage(respon.token);
-            // }
+        this.userService.updateProfile(editProfileRequest).subscribe(data => {
+          this.authService.refreshToken().subscribe(respon => {
+            this.loadingService.hide();
+            if (respon.status === 1) {
+              // if (localStorage.getItem('isRemember') === 'true') {
+                this.userService.setUserToLocalStorage(respon.token);
+                this.shareMessageService.changeMessage('photo-upload');
+              // } else {
+              //   this.userService.setUserToSessionStorage(respon.token);
+              // }
 
-            swal(
-              'Sukses',
-              'Ubah data profile berhasil.',
-              'success'
-            );
-            this.loadData();
-            this.isField = false;
-            this.shareMessageService.changeMessage('update-profile');
-          }
+              swal(
+                'Sukses',
+                'Ubah data profile berhasil.',
+                'success'
+              );
+              this.loadData();
+              this.isField = false;
+              this.shareMessageService.changeMessage('update-profile');
+            }
+          });
         });
-      });
-    } else {
-      this.loadingService.hide();
-      console.log(this.validationOnpopUpCreateStore.valid);
-        // swal('ops maaf ada kesalahan silahkan cek data kamu');
-        this.validateAllFormFields(this.validationOnpopUpCreateStore);
-    }
+      } else {
+          // swal('ops maaf ada kesalahan silahkan cek data kamu');
+          this.validateAllFormFields(this.validationOnpopUpCreateStore);
+      }
 
   }
 

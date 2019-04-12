@@ -27,12 +27,16 @@
     padding:1rem;
     font-size: 1.2rem;
     width:70rem;
-    margin:0rem auto;
+    margin: 0rem auto 50px;
     border-left: 0.1rem solid #dddddd;
     border-right: 0.1rem solid #dddddd;
     border-bottom: 0.1rem solid #dddddd;
     box-shadow: 0 0.7rem 0.8rem -0.4rem rgba(0, 0, 0, 0.2), 0 1.3rem 1.9rem 0.2rem rgba(0, 0, 0, 0.14), 0 0.5rem 2.4rem 0.4rem rgba(0, 0, 0, 0.12); 
     border-radius:0rem 0rem 0.5rem 0.5rem;
+}
+
+.courier {
+    text-transform: uppercase;
 }
 
 .i-title{

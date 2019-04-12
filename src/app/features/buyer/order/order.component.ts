@@ -49,12 +49,14 @@ export class OrderComponent implements OnInit {
     const queryParams = {
       itemperpage: 10,
       page: this.currentPage,
+      ot: 'desc',
       transaction_status: statusOrderCode
     };
     this._loadingService.show();
     this._transactionService.getOrder(queryParams).subscribe(response => {
       this._loadingService.hide();
       this.order = response;
+      console.log('list data', response);
       // const b =  respon.content.filter(x => x.expiredConfirmationPaymentBuyerDate !== '');
       // this.proddetail = respon;
       // this.list = respon.content;

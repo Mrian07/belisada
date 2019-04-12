@@ -82,9 +82,9 @@
 
 
 
-        <div  *ngIf="list.totalElements!=0">
+        <div  *ngIf="list.totalElements!=0"> <!--*ngIf="list.totalPages!=0"-->
             <div [ngClass]="{'product__grid': displayMode === 1,'product__list':displayMode === 2}">
-                <div class="product" *ngFor="let item of list.content; let i = index" >
+                <div class="product" *ngFor="let item of list.content; let i = index" > <!--*ngFor="let item of list.data; let i = index"-->
 
                     <div class="product__line">
 
@@ -94,6 +94,13 @@
                                 <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
                             </a>  
 
+                            <div class="item-grid">
+                                <div></div>
+                                <div *ngIf="item.discount>=1">
+                                    <div class="item-grid__diskon">{{ item.discount }}%</div>
+                                    <div class='item-grid__arrow'></div>
+                                </div>
+                            </div>
 
                             <div class="item">
                                 <span (click)="goDetail(item.productId,item.name)">{{ item.name }}</span>

@@ -17,14 +17,21 @@ const routes: Routes = [
         path: 'checkout',
         component: CheckoutComponent,
         data: {
-          title: 'Chekout'
+          title: 'Checkout'
         }
       },
       {
         path: 'terimakasih/:id',
         component: TerimakasihPageComponent,
         data: {
-          title: 'Chekout'
+          title: 'Checkout'
+        }
+      },
+      {
+        path: 'finish',
+        component: TerimakasihPageComponent,
+        data: {
+          title: 'Credit Card Checkout'
         }
       },
     ]

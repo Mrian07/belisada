@@ -100,7 +100,9 @@ export class UserService {
   */
 
   setUserToSessionStorage(token) {
-    sessionStorage.setItem(LocalStorageEnum.TOKEN_KEY, token);
+    if (isPlatformBrowser(this.platformId)) {
+      sessionStorage.setItem(LocalStorageEnum.TOKEN_KEY, token);
+    }
   }
 
   /*
@@ -109,9 +111,11 @@ export class UserService {
   */
 
   getUserData(token?) {
-    let userData: UserData = new UserData();
-    userData = this.jwtUtil.parseJwt(localStorage.getItem(LocalStorageEnum.TOKEN_KEY)).UserData;
-    return userData;
+    if (isPlatformBrowser(this.platformId)) {
+      let userData: UserData = new UserData();
+      userData = this.jwtUtil.parseJwt(localStorage.getItem(LocalStorageEnum.TOKEN_KEY)).UserData;
+      return userData;
+    }
   }
 
   /*

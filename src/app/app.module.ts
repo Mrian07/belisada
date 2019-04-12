@@ -64,11 +64,13 @@ import { ChatComponent } from './features/chat/chat.component';
 import {  NgxEmojiPickerModule  } from 'ngx-emoji-picker';
 
 import { FileHelpersModule } from 'ngx-file-helpers';
-import { NgxHmCarouselModule } from 'ngx-hm-carousel';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './features/landing-page/carousel/carousel.component';
 import { MessagingService } from './shared/messaging.service';
 
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 registerLocaleData(localeId, 'id');
 
@@ -109,7 +111,7 @@ library.add(fas, far, fab);
     FontAwesomeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    NgxHmCarouselModule,
+    NgbModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     StoreModule.forRoot(reducers),
@@ -118,6 +120,7 @@ library.add(fas, far, fab);
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
+    DeviceDetectorModule.forRoot()
   ],
   providers: [
     {

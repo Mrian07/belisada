@@ -35,11 +35,10 @@ export class SignUpActivationComponent implements OnInit, OnDestroy {
     this.createForm();
 
     this.key = this.activatedRoute.snapshot.queryParamMap.get('key');
-    console.log('ada key: ', this.key);
     const activationRequest: ActivationRequest = new ActivationRequest();
     activationRequest.key = this.key;
     this.userService.activation(activationRequest).subscribe(response => {
-      if(response.status === 2){
+      if (response.status === 2) {
         this.userService.setUserToLocalStorage(response.data.token);
         this.name = response.data.name;
         setTimeout(() => {

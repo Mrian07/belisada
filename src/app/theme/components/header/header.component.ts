@@ -3,7 +3,7 @@ import { CartItem } from '@belisada/core/models/shopping-cart/cart-item.model';
 import { Component, OnInit } from '@angular/core';
 
 import { UserData } from '@belisada/core/models';
-import { UserService, Globals, ShareMessageService } from '@belisada/core/services';
+import { UserService, Globals, ShareMessageService, AuthService } from '@belisada/core/services';
 import { LocalStorageEnum } from '@belisada/core/enum';
 import { Category } from '@belisada/core/models/category/category.model';
 import { CategoryService } from '@belisada/core/services/category/category.service';
@@ -81,7 +81,9 @@ export class HeaderComponent implements OnInit {
     private _thumborService: ThumborService,
     private _bannerService: BannerService,
     private _router: Router,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private authService: AuthService,
+    private userService: UserService
   ) {
     this.searchBarResults = [];
     this.showSearch = false;
@@ -92,6 +94,7 @@ export class HeaderComponent implements OnInit {
     this._getData();
     this._shoppingCart();
     this._getBennerData();
+    this._changePhoto();
 
     this.token = localStorage.getItem('token');
   }
@@ -118,7 +121,9 @@ export class HeaderComponent implements OnInit {
     this.loadingService.show();
     const queryParams = {
       st: 'product',
-      q: this.keywordSearch
+      q: this.keywordSearch,
+      min: 0,
+      max: 999999999999
     };
     this.showSearch = false;
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
@@ -129,6 +134,8 @@ export class HeaderComponent implements OnInit {
     const queryParams = {
       st: 'product',
       q: keyword,
+      min: 0,
+      max: 999999999999
       // category: [catID]
     };
     this._router.navigate(['/search-result/product-list'], { queryParams: queryParams });
@@ -166,6 +173,9 @@ export class HeaderComponent implements OnInit {
     });
   }
 
+  public encodeUrl(name) {
+    return name.replace(new RegExp('/', 'g'), ' ');
+  }
 
   private _shoppingCart() {
     this.cart = this._shoppingCartService.get();
@@ -238,11 +248,19 @@ export class HeaderComponent implements OnInit {
       if (this.flag === 'create-store') {
         this.btnJual = true;
       }
+
+      if (this.flag === 'photo-upload') {
+          this.userData = this._userService.getUserData(localStorage.getItem(LocalStorageEnum.TOKEN_KEY));
+      }
     });
   }
 
   goToCreateStore() {
     this._router.navigateByUrl('/buyer/create-store');
+    this.cekFlag();
+  }
+
+  private _changePhoto() {
     this.cekFlag();
   }
 }

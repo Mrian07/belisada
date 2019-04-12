@@ -211,18 +211,11 @@
     border-radius:0px 0px 7px 7px;
 }
 
-
-
-
-
-
-
-
-
 .chekout-head{
     display: grid;
     grid-template-columns: 25% 50% 25%;
     margin-top:20px;
+    height: 90px;
 }
 
 .contain-checkout{
@@ -300,7 +293,7 @@
 }
 
 .contain-thx-head{
-    padding:2rem;
+    padding: 2rem 4rem;
     display: grid;
     font-size: 1.5rem;
     grid-template-columns: 65% 20% 15%;
@@ -310,6 +303,7 @@
     &__price-total{
         color: #f52111;
         font-weight: bold;
+        text-align: right;
     }
 
     &__total{
@@ -372,30 +366,61 @@
 }
 
 .contain-thx-btn{
-    margin:0px auto;
-    margin-top:3rem;
+    margin: 0px auto;
+    padding: 5px 0px;
+    border-radius: 5px;
+    margin-top: 3rem;
     background: #fcac2f;
-    color:#ffffff;
-    text-align:center;
-    width:50%;
+    color: #fff;
+    text-align: center;
+    width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 2.5rem;
     font-weight: bold;
     cursor: pointer;
+    transition: all .3s;
 }
 
 .contain-thx-btn:hover{
-    background: #f7b855;
-    color:#000000;
+    background: #da9526;
+}
+
+.contain-thx-btn:active{
+    position: relative;
+    top: 1px;
 }
 
 .linkHome{
     color:#000000;
     text-decoration: none;
+    height: 90px;
+    &:hover{
+        color:#f7b855;
+    }
 }
 
-.linkHome:hover{
-    color:#f7b855;
+.logoText{
+    font-size: 2rem;
+    color:#000000;
+    font-weight: bold;
+    padding-bottom: 2rem;
+    text-align: center;
+    &:hover {
+        color: #777777;
+    }
+}
+
+.backButton {
+    font-size: 2rem;
+    color: #000000;
+}
+
+.backButton:hover {
+    color: #777777;
+    fa-icon {
+        color: #777777;
+    }
+    text-decoration: none;
 }
 
 .line-ongkir{
@@ -406,9 +431,46 @@
 
 .titleItem{
     color:#085381;
+    text-transform: capitalize;
 } 
 
 .varianText{
     font-size: 1.3rem;
     color:#474545;
+}
+
+.courierService {
+    text-transform: capitalize;
+}
+
+.pay {
+    padding: 10px 5px;
+    margin: 0 auto 30px;
+    padding-left: 10px;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 21px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: capitalize;
+    &-success {
+        border: 1px solid #61c543;
+        color: #61c543;
+    }
+    &-error {
+        border: 1px solid #f85d2e;
+        color: #f85d2e;
+    }
+}
+
+.price {
+    text-align: right;
+}
+
+.insurancePrice {
+    text-align: right;
+}
+
+.courierPrice {
+    text-align: right;
 }

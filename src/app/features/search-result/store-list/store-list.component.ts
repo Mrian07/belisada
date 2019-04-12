@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ListSearch } from '../../../core/models/search/search.model';
 import { SearchService } from './../../../core/services/search/search.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-store-list',
@@ -30,12 +31,13 @@ export class StoreListComponent implements OnInit {
   keyST: string;
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private activatedRoute: ActivatedRoute, private router: Router,
     private searchService: SearchService
     ) { }
 
   ngOnInit() {
-   this.loadData();
+    this.loadData();
   }
 
   loadData() {
@@ -81,7 +83,9 @@ export class StoreListComponent implements OnInit {
     if (page < 1 || page > this.list.totalPages) { return false; }
     // tslint:disable-next-line:max-line-length
     this.router.navigate(['/search-result/product-list'], { queryParams: {page: page}, queryParamsHandling: 'merge' });
-    window.scrollTo(0, 0);
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo(0, 0);
+    }
   }
 
 

@@ -10,6 +10,7 @@ import Socket = SocketIOClient.Socket;
 import { ProfileStoreResponse } from '@belisada/core/models/store/store.model';
 import { RoomTypeEnum } from '@belisada/core/enum/room-type.enum';
 import { JoinRoom } from '@belisada/core/interfaces/join-room.interface';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'app-chat',
@@ -32,6 +33,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   selectedRoom: any;
 
   toggled: Boolean = false;
+  thumborUrl: string;
 
   // storeId: number;
 
@@ -41,7 +43,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     private fb: FormBuilder,
     private userService: UserService,
     private storeService: StoreService,
-  ) { }
+  ) {
+    this.thumborUrl = environment.thumborUrl + 'unsafe/fit-in/400x400/center/filters:fill(fff)/';
+  }
 
   ngOnInit() {
     this.userData = this.userService.getUserData();
@@ -52,15 +56,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
 
     this.socket.on('users', (userIds: string[]) => {
-      console.log('--- users ---:userids-> ', userIds);
     });
 
     this.socket.on('message', (datas: any[]) => {
-      console.log('--- message ---:data-> ', datas);
       this.chatMessages = [...this.chatMessages, ...datas];
       this.scrollToBottom();
-      // this.findAndJoinRoom();
-      console.log('chatMessages: ', this.chatMessages);
     });
 
     this.createForm();
@@ -101,7 +101,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   submit() {
-    console.log('Submited');
     this.chatFormGroup.patchValue({
       room: this.selectedRoom._id,
       userId: this.userService.getUserData().userId
@@ -113,9 +112,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     message.date = new Date();
 
     const room = this.chatFormGroup.controls['room'].value;
-
-    console.log('message: ', message);
-    console.log('room: ', room);
     this.chatService.sendMessage(message, room);
     this.chatFormGroup.controls['message'].reset();
   }
@@ -129,12 +125,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   handleSelection(event) {
-    console.log(event.char);
   }
 
   scrollToBottom(): void {
     try {
         this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
     } catch (err) { }
-}
+  }
 }

@@ -9,8 +9,6 @@ import { FeaturesComponent } from '.';
     CommonModule,
     FeaturesRoutingModule
   ],
-  declarations: [FeaturesComponent
-    // InvoiceComponent
-  ]
+  declarations: [FeaturesComponent]
 })
 export class FeaturesModule { }

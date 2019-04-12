@@ -54,6 +54,7 @@ export class ShoppingCartService {
   }
 
   public addItem(productId: number, quantity: number, itemCartId?: number): void {
+
     const cart = this.retrieve();
     let item = cart.items.find((p) => p.productId === productId);
     if (item === undefined) {
@@ -75,8 +76,6 @@ export class ShoppingCartService {
     this.calculateCart(cart, (modifiedCart, prod) => {
       this.save(modifiedCart);
       this.dispatch(modifiedCart);
-
-      console.log('quantity: ', quantity);
       if (quantity > 0) {
         this.popupSuccess(prod);
       }
@@ -85,7 +84,6 @@ export class ShoppingCartService {
 
   public updateQuantity(productId: number, quantity: number) {
     const cart = this.retrieve();
-    // console.log(cart);
     let item = cart.items.find((p) => p.productId === productId);
     if (item === undefined) {
       item = new CartItem();
@@ -130,7 +128,6 @@ export class ShoppingCartService {
       this.productService.get(item.productId)
       .subscribe(product => {
         const prod = product.data;
-        console.log('prod: ', prod);
         prod.weight = (prod.weight === 0) ? 1 : prod.weight;
         cart.itemsTotal += item.quantity * ((prod.specialPrice > 0) ? prod.specialPrice : prod.pricelist);
         cart.deliveryTotal +=
@@ -156,7 +153,6 @@ export class ShoppingCartService {
   }
 
   private popupSuccess(prod) {
-    console.log('popupSuccess--prod: ', prod);
     swal({
       html:
         `<div class="add-to-card-info">
@@ -206,7 +202,6 @@ export class ShoppingCartService {
   public retrievePostLogin(cbSuccess) {
     const cart = new ShoppingCart();
     this.getSingleResult().subscribe(response => {
-      console.log('response--retrievePostLogin: ', response);
       cart.grossTotal = response.grandTotal;
       cart.deliveryTotal = response.deliveryTotal;
       cart.itemsTotal = response.grandTotal;
@@ -216,7 +211,6 @@ export class ShoppingCartService {
         cartItem.productId = item.productId;
         cartItem.quantity = item.quantity;
         cart.items.push(cartItem);
-        // console.log('cart_loop: ', cart);
         if (index === (response.items.length - 1)) {
           return cbSuccess(cart);
         } else {
@@ -235,7 +229,6 @@ export class ShoppingCartService {
   }
 
   create(data: AddToCartRequest): Observable<AddToCartResponse> {
-    console.log('[CART] create-data-res: ', data);
     return this.http.post(this.configuration.apiURL + '/buyer/cart/create', data)
       .pipe(
         map(response => response as AddToCartResponse)

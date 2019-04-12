@@ -1,7 +1,7 @@
 <div class="top-header">
     <div class="top-header__banner">
         <div class="top-header__banner--wrapper container">
-            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3}">
+            <a [routerLink]="['/search-result/product-list']" [queryParams]="{brand:3,min:0,max:999999999999}">
                 <img [src]="bannerTop?.imageUrl" alt="">
             </a>
         </div>
@@ -76,7 +76,7 @@
                             <ul class="accounts__wrapper" *ngIf="userData">
                                 <bs-account-menu [userData]="userData" (logedOut)="logout()"></bs-account-menu>
                             </ul>
-        
+    
                             <a *ngIf="!userData" [routerLink]="['/account/sign-in']" class="btn btn--inverted btn--orange btn--bold">Login</a>
                             <a *ngIf="!userData" [routerLink]="['/account/sign-up']" class="btn btn--blue btn--bold">Daftar</a>
                         </div>
@@ -95,13 +95,13 @@
                     <bs-category-menu [categories]="subMenuCategory"></bs-category-menu>
 
                     <li class="navigation__menus">
-                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ brand: '3', q:'' }">Samsung</a>
+                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ category: '1125', min:'0',max:'999999999999' }">Smartphone</a>
                     </li>
                     <li class="navigation__menus">
-                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ brand: '1', q:'' }">Apple</a>
+                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ category: '1132', min:'0',max:'999999999999' }">Smartwatch</a>
                     </li>
                     <li class="navigation__menus">
-                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ brand: '4', q:'' }">Xiaomi</a>
+                        <a [routerLink]="['/search-result/product-list']" [queryParams]="{ category: '1130', min:'0',max:'999999999999' }">Tablet</a>
                     </li>
 
                     <li class="shopping-cart pull-right" (mouseenter)="globals.isBackdropActive = true" (mouseleave)="globals.isBackdropActive = false">
@@ -114,7 +114,8 @@
                                     <span class="counter">{{ itemCount }}</span>
                                 </div>
                                 <div class="cart__header--right">
-                                    Total: <span class="total-price">{{itemsTotal | currency:'Rp ':'symbol':'1.0'}}</span>
+                                    Total: 
+                                    <span class="total-price">{{itemsTotal | currency:'Rp ':'symbol':'1.0'}}</span>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -122,12 +123,27 @@
                                 <ul>
                                     <li *ngFor="let item of cartItems">
                                         <div class="cart__content--left-side">
-                                            <img class="product--image" [src]="item.product.imageUrl" alt="">
+                                            <a [routerLink]="['/product/product-detail/' + item.product.productId + '/' + encodeUrl(item.product.name)]" 
+                                            [queryParams]="{varians:item.product.varians[0].attributeId + ':' + item.product.varians[0].varians[0].attributeValueId + ',' + item.product.varians[1].attributeId + ':' + item.product.varians[1].varians[0].attributeValueId}"
+                                            >
+                                                <img class="product--image" [src]="item.product.imageUrl" alt="">
+                                            </a>
                                         </div>
                                         <div class="cart__content--right-side">
-                                            <a [routerLink]="" class="product--title">{{ item.product.name }}</a>
-                                            <span class="product--price">{{ item.product.specialPrice > 0 ? item.product.specialPrice : item.product.pricelist | currency:'Rp ':'symbol':'1.0' }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
-                                            <div class="clearfix"></div>
+                                            <a [routerLink]="['/product/product-detail/' + item.product.productId + '/' + encodeUrl(item.product.name)]" 
+                                            [queryParams]="{varians:item.product.varians[0].attributeId + ':' + item.product.varians[0].varians[0].attributeValueId + ',' + item.product.varians[1].attributeId + ':' + item.product.varians[1].varians[0].attributeValueId}"
+                                            class="product--title">{{ item.product.name }}</a>
+                                            <div class="product--varian" *ngFor="let iVar of item.product.varians">{{iVar.name}}: 
+                                                <span *ngFor="let iVarChald of iVar.varians">
+                                                    {{iVarChald.value}}
+                                                </span>
+
+                                            </div>
+                                            <span class="product--price">{{ item.product.specialPrice > 0 ? (item.product.specialPrice | currency:'Rp ':'symbol':'1.0') : (item.product.pricelist | currency:'Rp ':'symbol':'1.0') }} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span>
+                                            <!-- <span class="product--price">{{item.product.specialPrice > 0 ? item.product.specialPrice | currency:'Rp ':'symbol':'1.0' : item.product.pricelist | currency:'Rp ':'symbol':'1.0'}} &nbsp;</span><span class="product--qty">( {{ item.quantity }} )</span> -->
+            
+                                            
+                                            <!-- <div class="clearfix"></div> -->
                                         </div>
                                     </li>
                                 </ul>
