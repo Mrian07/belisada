@@ -237,7 +237,13 @@ export class OrderStatusPaidComponent implements OnInit {
   }
 
   complaint(e) {
-    this.router.navigateByUrl('/buyer/bantuan?id=' + e);
+    this.showDialogKonfirm = false;
+    swal(
+      'Silakan hubungi Customer Service kami di cs@belisada.co.id.',
+      ''
+    );
+    // Note: komplain sementara di hide dulu
+    // this.router.navigateByUrl('/buyer/bantuan?id=' + e);
   }
 
   backToOrderDetail() {
