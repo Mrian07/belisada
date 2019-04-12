@@ -79,9 +79,13 @@
 }
 
 .date-custom{
-    margin-top:10px;
+    margin-top:-10px;
     border-bottom: 1px solid #2d2d2d;
-    margin-left:5px;
+    margin-left:10px;
+}
+
+.date-confim{
+    margin-left:-10px;
 }
 
 .btn-status{
@@ -105,4 +109,8 @@
     margin-top:12px;
     margin-left:10px;
     font-weight: bold;
+}
+
+.mydp .selection{
+    padding-left: 0px; 
 }

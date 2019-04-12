@@ -36,7 +36,6 @@ export class ForgotPasswordComponent implements OnInit {
 
     this.createFormControl();
     this.success = false;
-
   }
 
   /* Fungsi untuk membuat nama field pada form */

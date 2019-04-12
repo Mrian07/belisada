@@ -71,11 +71,6 @@
                     </div>
                 </div>
                 <div class="label-c">
-                </div>
-                <div class="contain-c">
-                </div>
-
-                <div class="label-c">
                     Nominal :
                 </div>
                 <div class="contain-c">
@@ -91,7 +86,7 @@
                 </div>
                 <div class="contain-c">
                     <div class="date-custom">
-                        <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="transerDate" class="date-confim input-c"></my-date-picker>
+                        <my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="transerDate" class="date-confim"></my-date-picker>
                     </div>
                     <!-- <app-field-error-display  [displayError]="isFieldValid('transerDate')" errorMsg="Tanggal transfer tidak boleh kosong"></app-field-error-display> -->
                     <div *ngIf="createComForm.controls.transerDate.invalid && (submitted || createComForm.controls.transerDate.dirty && createComForm.controls.transerDate.touched)" class="alert alert-danger" >
