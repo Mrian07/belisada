@@ -133,6 +133,19 @@
     text-align: center;
 }
 
+.product-rating {
+    &__star {
+
+        &--fill {
+            color: #fdc12d;
+        }
+
+        &--empty {
+            color: #e3e3e3;
+        }
+    }
+}
+
 // .imgDiscuss{
 //     object-fit: cover;
 //     width: 80px;

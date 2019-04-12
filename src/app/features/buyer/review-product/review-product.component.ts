@@ -21,6 +21,8 @@ export class ReviewProductComponent implements OnInit {
   lastPage: number;
   pages: any = [];
 
+  public Arr = Array;
+
   constructor(
     @Inject(PLATFORM_ID) private platformId: Object,
     private reviewService: ReviewService,
@@ -49,6 +51,9 @@ export class ReviewProductComponent implements OnInit {
 
       this.reviewService.getReviewBuyer(queryParams).subscribe(response => {
         this.reviewBuyer = response;
+
+        console.log('reviewBuyer', this.reviewBuyer);
+
         this.pages = [];
           this.lastPage = this.reviewBuyer.totalPages;
           for (let r = (this.currentPage - 3); r < (this.currentPage - (-4)); r++) {
