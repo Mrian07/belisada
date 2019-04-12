@@ -65,6 +65,7 @@ export class EtalaseTokoComponent implements OnInit {
       this.currentPage = (params['page'] === undefined) ? 1 : +params['page'];
 
       const queryParams = {
+        st: 'store',
         store: storeId,
         itemperpage: 16,
         page: this.currentPage
