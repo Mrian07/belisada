@@ -291,6 +291,7 @@
                 </div>
 
                 <div class="discussion__footer text-right" *ngIf="isLogin">
+                    <div class="noteDiscuss">Silakan memilih varian produk sebelum mengirimkan diskusi produk.</div>
                     <form [formGroup]="createNewDiscussionForm" (submit)="createNewDiscussion()">
                         <div class="form-group">
                             <textarea formControlName="message" class="discussion__text-area" rows="7"></textarea>
@@ -301,6 +302,7 @@
             </div>
 
             <div class="detail-info__specification" *ngIf="tabActive === 'REVW'">
+                    <div class="noteDiscuss">Silakan memilih varian produk sebelum melihat ulasan produk.</div>
                     <table class="detail-info__specification-table">
                         <tr *ngFor="let item of productReview.content">
                             <td>

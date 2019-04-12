@@ -16,6 +16,10 @@
           <img [src]="storeImgDiscussion + item.imageAvatarUrl" [alt]="item.imageAvatarUrl">
         </div>
         <div>
+          <div class="product__rating">
+            <fa-icon class="product-rating__star--fill" [icon]="['fas', 'star']" *ngFor="let i of Arr(item.star).fill(1)"></fa-icon>
+            <fa-icon class="product-rating__star--empty" [icon]="['fas', 'star']" *ngFor="let i of Arr(5 - item.star).fill(1)"></fa-icon> 
+          </div>
           <div class="contain__name">{{item.name}}</div>
           <div class="contain__com">{{item.message}}</div>
         </div>  
