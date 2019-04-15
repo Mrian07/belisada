@@ -68,6 +68,7 @@ export class ResetPasswordComponent implements OnInit {
 
   /*Fungsi ini untuk melakukan proses reset password*/
   onSubmit(form: NgForm) {
+
     this.loadingService.show();
     if (this.rstForm.valid) {
       this.data.newPassword = this.rstForm.value.password;
