@@ -200,7 +200,7 @@
 </div>
 
 
-<app-models [(visible)]="showDialog" class="frameDialog">
+<app-models [(visible)]="showDialog" class="">
     <div class="modal-body">
 
         <div *ngIf="isForm==true">
@@ -237,7 +237,6 @@
 </app-models>
 
 <app-models [(visible)]="showDialogDetail" maxwidth="600" class="frameDialog">
-    <div class="modal-body">
         <div class="detail-body" >
             <div class="row row-atur">
                 <div class="store-name col-8 left">
@@ -247,7 +246,7 @@
                 </div>
                 <div class="total-qty col-4 right">Total {{ transactionDetail.totalQty }} Item</div>
             </div>
-            <div class="row row-atur" >
+            <div class="row row-atur modal-scroll">
                 <table width="100%" *ngFor="let cartItem of transactionDetail.cartItems">
                     <tr>
                         <td width="25%">
@@ -314,7 +313,6 @@
             Keterangan Tolak: {{ transactionDetail.reasonOrderRejected}}
         </div>
         <button class="btn-kembali" (click)="backToOrderDetail()">Kembali</button>
-    </div>
 </app-models>
 
 <app-models [(visible)]="showDialogKonfirm" maxwidth="600" class="frameDialog">
