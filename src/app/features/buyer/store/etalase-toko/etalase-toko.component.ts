@@ -52,6 +52,7 @@ export class EtalaseTokoComponent implements OnInit {
     );
     this.storeS.getEtalase(this.aaaa).subscribe(response => {
       this.proddetail = response.data;
+      console.log('store',response)
       if (response.status) {
         this.getProductList(this.proddetail.storeId);
       } else {
@@ -81,7 +82,9 @@ export class EtalaseTokoComponent implements OnInit {
       //   }
 
       // })
-      this.prodS.getList(queryParams).subscribe(responseList => {
+    
+      this.storeS.getStoreProductList(queryParams).subscribe(responseList => {
+        console.log('list',responseList)
         this.list  = responseList;
         this.pages = [];
         this.lastPage = this.list.totalPages;

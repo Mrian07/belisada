@@ -7,7 +7,7 @@ export const environment = {
   thumborUrl: 'https://img.belisada.id/',
   urlMidtrans: 'https://app.sandbox.midtrans.com',
   // elasticSearchUrl: 'https://elastic.belisada.id',
-  elasticSearchUrl: 'http://192.168.3.231:3000',
+  elasticSearchUrl: 'http://localhost:3000',
   chatUrl: 'https://chat0.belisada.id',
   cdnUrl: 'https://cdn.belisada.id',
   socketUrl: 'https://chat0-websock.belisada.id',

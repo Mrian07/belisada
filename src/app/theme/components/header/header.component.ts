@@ -9,7 +9,7 @@ import { Category } from '@belisada/core/models/category/category.model';
 import { CategoryService } from '@belisada/core/services/category/category.service';
 import { SearchBarResponse, SearchBarData } from '@belisada/core/models/search/search.model';
 import { SearchService } from '@belisada/core/services/search/search.service';
-import { Router } from '@angular/router';
+import { Router, Route } from '@angular/router';
 import { ShoppingCartService } from '@belisada/core/services/shopping-cart/shopping-cart.service';
 import { ProductService } from '@belisada/core/services/product/product.service';
 import { Observable, Subscription } from 'rxjs';
@@ -21,6 +21,7 @@ import { BannerData } from '@belisada/core/models/banner/banner.model';
 import { environment } from '@env/environment';
 import swal from 'sweetalert2';
 import { LoadingService } from '@belisada/core/services/globals/loading.service';
+import { ContactUsModule } from '@belisada/features/contact-us/contact-us.module';
 
 interface ICartItemWithProduct extends CartItem {
   product: ProductDetailSimple;
@@ -68,7 +69,7 @@ export class HeaderComponent implements OnInit {
   public btnJual: boolean;
 
   public baseUrlSeller: string = environment.baseUrlSeller;
-
+  suggestion:any;
   token: any;
   constructor(
     public globals: Globals,
@@ -83,7 +84,8 @@ export class HeaderComponent implements OnInit {
     private _router: Router,
     private loadingService: LoadingService,
     private authService: AuthService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.searchBarResults = [];
     this.showSearch = false;
@@ -114,7 +116,32 @@ export class HeaderComponent implements OnInit {
     };
     this._searchService.getSearchBar(queryParams).subscribe(result => {
       this.searchBarResults = result.data;
+      this.suggestion = result.suggest;
+      console.log(result)
+
     });
+  }
+
+  ClickSuggestion(a,b){
+    
+    if(b === 'Store'){
+      this.router.navigateByUrl('/'+a)
+    }
+    if(b === 'name'){
+      this.router.navigateByUrl('/search-result/product-list?q='+a+'&min=0&max=9999999999');
+    }
+    if(b === 'Brand'){
+      this.router.navigateByUrl('/search-result/product-list?brand='+a+'&min=0&max=9999999999');
+    }
+    if(b === 'Main Category'){
+      this.router.navigateByUrl('/search-result/product-list?category='+a+'&min=0&max=9999999999');
+    }
+    if(b === 'Sub Main Category'){
+      this.router.navigateByUrl('/search-result/product-list?category='+a+'&min=0&max=9999999999');
+    }
+    if(b === 'Sub Category'){
+      this.router.navigateByUrl('/search-result/product-list?category='+a+'&min=0&max=9999999999');
+    }
   }
 
   public onSearchSubmit() {

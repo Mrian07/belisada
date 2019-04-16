@@ -18,20 +18,20 @@ export class SearchService {
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
-    return this.http.get(this.configuration.apiUrlMongo + '/search', {params: params})
+    return this.http.get(this.configuration.elasticSearchUrl + '/searchlist', {params: params})
     .pipe(
       map(response => response as ListSearch)
     );
   }
 
-  getSearchBar(queryParams: Object): Observable<SearchBarResponse> {
+  getSearchBar(queryParams: Object): Observable<any> {
     let params = new HttpParams();
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
     return this.http.get(this.configuration.elasticSearchUrl + '/searchbar', {params: params})
     .pipe(
-      map(response => response as SearchBarResponse)
+      map(response => response as any)
     );
   }
 
