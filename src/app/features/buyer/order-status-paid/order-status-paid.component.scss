@@ -15,6 +15,13 @@
     font-size: 12px;
 }
 
+.modal-scroll {
+    // max-height: calc(120vh - 210px);
+    overflow-y: auto;
+    height: 340px;
+    border: 0px;
+}
+
 .modal-footer{
     padding: 2rem;
     text-align: right;
