@@ -173,6 +173,7 @@ export class StoreService {
     Object.keys(queryParams).forEach(function(k) {
       params = params.append(k, queryParams[k]);
     });
+    console.log(params)
     return this.http.get( this.cfg.elasticSearchUrl + '/seller', {params: params})
     .pipe(
       map(response => response as any)
