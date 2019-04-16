@@ -46,7 +46,7 @@
 			<div class="col-4" *ngIf="isField==true">
 				<input type="text" class="input-style-text" formControlName="phone" (keypress)="phoneCheck($event)" maxlength="12">
 
-				<div *ngIf="validationOnpopUpCreateStore.controls.phone.invalid && (validationOnpopUpCreateStore.controls.phone.dirty && validationOnpopUpCreateStore.controls.phone.touched)" class="alert alert-danger" >
+				<div *ngIf="validationOnpopUpCreateStore.controls.phone.invalid && (submitted || (validationOnpopUpCreateStore.controls.phone.dirty && validationOnpopUpCreateStore.controls.phone.touched))" class="alert alert-danger" >
 					<span class="tooltiptext">No. Handphone tidak boleh kosong</span>
 				</div>
 
@@ -71,10 +71,10 @@
 			<div class="col-4" *ngIf="isField==false">{{profile.dateOfBirth}}</div>
 			<div class="col-3" *ngIf="isField==true"> 
 				<my-date-picker class="frame-date" name="mydate" [options]="myDatePickerOptions" formControlName="dateOfBirth"></my-date-picker>
-				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
+				<!-- <div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger toll tooltip testing">
 					<span class="tooltiptext">Tanggal Lahir tidak boleh kosong</span>
-				</div>
-				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched)" class="alert alert-danger" >
+				</div> -->
+				<div *ngIf="validationOnpopUpCreateStore.controls.dateOfBirth.invalid && (submitted || (validationOnpopUpCreateStore.controls.dateOfBirth.dirty && validationOnpopUpCreateStore.controls.dateOfBirth.touched))" class="alert alert-danger" >
 					<span class="tooltiptext">Tanggal lahir tidak boleh kosong</span>
 				</div>
 				<app-field-error-display [displayError]="isFieldValid('dateOfBirth')" errorMsg="Tanggal Lahir tidak boleh kosong"></app-field-error-display>
@@ -95,6 +95,10 @@
 					<option value="M">Laki-laki</option>
 					<option value="F">Perempuan</option>
 				</select>
+
+				<div *ngIf="validationOnpopUpCreateStore.controls.gender.invalid && (submitted || (validationOnpopUpCreateStore.controls.gender.dirty && validationOnpopUpCreateStore.controls.gender.touched))" class="alert alert-danger" >
+					<span class="tooltiptext">Jenis kelamin tidak boleh kosong</span>
+				</div>
 				<app-field-error-display [displayError]="isFieldValid('gender')" errorMsg="Gender tidak boleh kosong"></app-field-error-display>
 			</div>
 
