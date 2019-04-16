@@ -438,10 +438,10 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
     obsParams.subscribe((route) => {
       const id = route.params.id;
       const queryParams = route.qparams;
-
+      console.log('queryParams: ', queryParams.varians);
       this._productService.getProductDetailV2(id, queryParams).subscribe((product) => {
 
-        console.log('detail ini', product);
+        console.log('getProductDetailV2: ', product);
 
         if (product.status === 1) {
           this._masterData = product.data.masterId;
@@ -481,11 +481,31 @@ export class ProductDetailV2Component implements OnInit, OnDestroy {
         this.selectedImage = product.data.imageUrl[0];
 
         this._productService.getProductDetailV2Variant(id).subscribe((variants) => {
+          console.log('variants: ', variants);
           this.product['variants'] = variants;
+          const lowestVariant = this.product['variant'];
           this.activeVariants = [];
-          variants.forEach(variant => {
-            this.activeVariants.push('');
-          });
+          console.log('lowestVariant: ', lowestVariant);
+          if (!queryParams.varians) {
+            console.log('-------------------------');
+            lowestVariant.forEach((variant, index) => {
+              console.log('variant: ', variant);
+              this.activeVariants[index] = [variant.attributeId, variant.attributeValueId].join(':');
+            });
+
+            const queryValueString = this.activeVariants.toString();
+            this._router.navigate(
+              ['/product/product-detail/'
+                + this._route.snapshot.params.id
+                + '/'
+                + this._route.snapshot.params.name],
+              {
+                queryParams: {
+                  varians: queryValueString
+                }
+              }
+            );
+          }
 
           this._fetchQueryParams();
         });
